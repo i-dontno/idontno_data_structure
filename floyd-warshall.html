@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Floyd–Warshall algorithm · Learn Data Structures with idontno</title>
+<meta name="description" content="All-pairs shortest paths with dynamic programming.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="floyd-warshall">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="cur" data-lesson="floyd-warshall" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module IV · Graphs</span><span>›</span><span>Lesson 14 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+  Shortest Path Problems & the Floyd&#8211;Warshall Algorithm
+  Interactive learning blog for MCA Data Structures
+  Paste this whole file into Blogger: New Post &#8594; "HTML view".
+  Do not switch back to "Compose view" after pasting.
+============================================================= -->
+<style>
+#fwb{
+  --ink:#1c1f33; --ink2:#454a66; --muted:#6b7090; --paper:#fbfaf6; --card:#ffffff;
+  --line:#e4e2d9; --soft:#f3f1ea;
+  --accent:#0f766e; --accent-soft:#e1f3f0;
+  --pivot:#e8590c; --pivot-soft:#fff0e6;
+  --src:#2563eb; --src-soft:#e8efff;
+  --dst:#15803d; --dst-soft:#e6f6ea;
+  --upd:#f59f00; --upd-soft:#fff6d6;
+  --bad:#c92a2a; --bad-soft:#ffe9e9;
+  --codebg:#1e2235;
+  font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink); background:var(--paper); line-height:1.65; font-size:17px;
+  max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+#fwb *,#fwb *::before,#fwb *::after{box-sizing:border-box}
+#fwb p{margin:0 0 14px}
+#fwb a{color:var(--accent)}
+#fwb h2,#fwb h3,#fwb h4{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1.25;margin:0}
+#fwb code,#fwb .mono{font-family:'Fira Code',ui-monospace,monospace;font-size:.88em}
+#fwb :not(pre)>code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+#fwb ul,#fwb ol{margin:0 0 14px;padding-left:24px}
+#fwb li{margin:4px 0}
+#fwb table{border-collapse:collapse}
+#fwb img{max-width:100%}
+#fwb button{font-family:inherit}
+
+/* ---------- hero ---------- */
+#fwb .fw-hero{background:linear-gradient(135deg,#14213d 0%,#1f3a5f 55%,#0f766e 100%);color:#fff;border-radius:18px;padding:38px 34px 30px;margin:0 0 26px;position:relative;overflow:hidden}
+#fwb .fw-hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,4.4vw,44px);font-weight:800;line-height:1.08;margin:6px 0 12px;color:#fff;letter-spacing:-.5px}
+#fwb .fw-hero p{color:#d8e4f0;max-width:620px;font-size:17px}
+#fwb .fw-kicker{font-family:'Fira Code',monospace;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fe3d7}
+#fwb .fw-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#fwb .fw-hero-tags span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:3px 12px}
+#fwb .fw-hero svg{position:absolute;right:-20px;top:10px;opacity:.22;width:300px;height:220px}
+
+/* ---------- toc ---------- */
+#fwb .fw-toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:28px}
+#fwb .fw-toc h4{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:8px}
+#fwb .fw-toc ol{columns:2;column-gap:30px;margin:0;padding-left:22px}
+#fwb .fw-toc a{text-decoration:none;color:var(--ink2);font-weight:500}
+#fwb .fw-toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#fwb .fw-sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:26px}
+#fwb .fw-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#fwb .fw-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}
+#fwb .fw-sec-head h2{font-size:clamp(22px,3vw,29px);font-weight:800;letter-spacing:-.3px}
+#fwb h3{font-size:21px;font-weight:700;margin:26px 0 10px}
+#fwb h4{font-size:17px;font-weight:700;margin:18px 0 8px}
+
+/* callouts */
+#fwb .fw-box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#fwb .fw-box b.t{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+#fwb .fw-box p:last-child,#fwb .fw-box ul:last-child{margin-bottom:0}
+#fwb .fw-def{background:var(--accent-soft);border-color:#b5e0d8}
+#fwb .fw-def b.t{color:var(--accent)}
+#fwb .fw-exam{background:var(--upd-soft);border-color:#f5d97a}
+#fwb .fw-exam b.t{color:#a36200}
+#fwb .fw-warn{background:var(--bad-soft);border-color:#f4b9b9}
+#fwb .fw-warn b.t{color:var(--bad)}
+#fwb .fw-tip{background:var(--src-soft);border-color:#c3d4fb}
+#fwb .fw-tip b.t{color:var(--src)}
+
+/* grids & cards */
+#fwb .fw-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
+#fwb .fw-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+#fwb .fw-card h4{margin:0 0 6px;font-size:16px}
+#fwb .fw-card p{font-size:15px;margin:0;color:var(--ink2)}
+#fwb .fw-card .fw-pill{display:inline-block;font-family:'Fira Code',monospace;font-size:11.5px;padding:1px 8px;border-radius:99px;background:var(--ink);color:#fff;margin-bottom:6px}
+#fwb .fw-card.hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* generic table */
+#fwb .fw-tbl-wrap{overflow-x:auto;margin:14px 0}
+#fwb table.fw-tbl{width:100%;font-size:15px;background:#fff}
+#fwb table.fw-tbl th,#fwb table.fw-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+#fwb table.fw-tbl th{background:var(--soft);font-weight:700}
+#fwb table.fw-tbl tr.hl td{background:var(--accent-soft)}
+
+/* formula */
+#fwb .fw-formula{font-family:'Fira Code',monospace;background:var(--ink);color:#f1f3ff;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:15px;overflow-x:auto;line-height:1.9}
+#fwb .fw-formula .k{color:#ffb37a}#fwb .fw-formula .i{color:#8fb5ff}#fwb .fw-formula .c{color:#8a91b4}
+
+/* distance matrices (worked example + visualizer) */
+#fwb .fw-mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:16px 0}
+#fwb .fw-mat-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto}
+#fwb .fw-mat-card h4{margin:0 0 4px;font-size:16px}
+#fwb .fw-mat-card .sub{font-size:13px;color:var(--muted);margin-bottom:8px}
+#fwb table.fw-mat{font-family:'Fira Code',monospace;font-size:14.5px;margin:0 auto}
+#fwb table.fw-mat th,#fwb table.fw-mat td{width:44px;height:38px;text-align:center;border:1px solid var(--line);padding:0;background:#fff}
+#fwb table.fw-mat th{background:var(--soft);color:var(--ink2);font-weight:600}
+#fwb table.fw-mat td.krow,#fwb table.fw-mat td.kcol{background:var(--pivot-soft)}
+#fwb table.fw-mat td.chg{background:var(--upd-soft);font-weight:700;color:#8a4b00;box-shadow:inset 0 0 0 2px var(--upd)}
+#fwb table.fw-mat th.kh{background:var(--pivot);color:#fff}
+#fwb .fw-mat-card .chgs{font-size:13px;margin-top:8px;color:var(--ink2);font-family:'Fira Code',monospace;line-height:1.6}
+
+/* legend */
+#fwb .fw-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px;color:var(--ink2);margin:8px 0}
+#fwb .fw-legend span{display:inline-flex;align-items:center;gap:6px}
+#fwb .fw-legend i{display:inline-block;width:14px;height:14px;border-radius:4px}
+
+/* code */
+#fwb .fw-code{background:var(--codebg);border-radius:12px;margin:14px 0;overflow:hidden}
+#fwb .fw-code-bar{display:flex;align-items:center;justify-content:space-between;background:#151827;padding:8px 14px;color:#a7adcf;font-family:'Fira Code',monospace;font-size:12.5px}
+#fwb .fw-code pre{margin:0;padding:16px 18px;overflow-x:auto;color:#e6e8f5;font-family:'Fira Code',monospace;font-size:13.8px;line-height:1.65;background:transparent;border:0;white-space:pre}
+#fwb .fw-code pre code{background:none;border:0;padding:0;font-size:inherit;color:inherit}
+#fwb .fw-out pre{background:#0d1020;color:#b8f5c8}
+#fwb .py-kw{color:#ff9ac1}#fwb .py-str{color:#ffd88a}#fwb .py-com{color:#7f88b0;font-style:italic}
+#fwb .py-num{color:#9ee8ff}#fwb .py-bi{color:#8fd3a5}#fwb .py-fn{color:#8fb5ff}
+#fwb .fw-copy{background:#2b3050;color:#e6e8f5;border:1px solid #3d4370;border-radius:7px;padding:4px 12px;font-size:12.5px;cursor:pointer;font-family:'Fira Code',monospace}
+#fwb .fw-copy:hover{background:#3a4170}
+#fwb .fw-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+#fwb .fw-tab{border:1px solid var(--line);background:var(--soft);padding:8px 14px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink2)}
+#fwb .fw-tab.on{background:var(--codebg);color:#fff;border-color:var(--codebg)}
+#fwb .fw-pane{display:none}
+#fwb .fw-pane.on{display:block}
+#fwb .fw-pane > .fw-code:first-child{margin-top:0;border-top-left-radius:0}
+
+/* pseudocode */
+#fwb .fw-pseudo{font-family:'Fira Code',monospace;font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 0;margin:12px 0;line-height:1.75;overflow-x:auto}
+#fwb .fw-pseudo div{padding:0 16px;white-space:pre;border-left:3px solid transparent}
+#fwb .fw-pseudo div .ln{display:inline-block;width:26px;color:#a0a4bd}
+#fwb .fw-pseudo div.on{background:var(--upd-soft);border-left-color:var(--upd)}
+#fwb .fw-pseudo .kw{color:#7c3aed;font-weight:600}
+#fwb .fw-pseudo .cm{color:#8a8fa8;font-style:italic}
+
+/* buttons / inputs */
+#fwb .fw-btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:8px 14px;border-radius:9px;font-weight:600;font-size:14.5px;cursor:pointer;line-height:1.2}
+#fwb .fw-btn:hover{filter:brightness(1.25)}
+#fwb .fw-btn.ghost{background:#fff;color:var(--ink)}
+#fwb .fw-btn.ghost:hover{background:var(--soft);filter:none}
+#fwb .fw-btn.acc{background:var(--accent);border-color:var(--accent)}
+#fwb .fw-btn:disabled{opacity:.4;cursor:not-allowed}
+#fwb select,#fwb input[type=text]{font-family:inherit;font-size:14.5px;border:1px solid #cfccc0;border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+#fwb .fw-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+#fwb .fw-row label{font-size:14px;color:var(--ink2);font-weight:600}
+
+/* lab + visualizer layout */
+#fwb .fw-lab{border:2px solid var(--ink);border-radius:16px;padding:18px;margin:18px 0;background:#fff}
+#fwb .fw-lab-title{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#fwb .fw-lab-title span{font-family:'Fira Code',monospace;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:var(--pivot);color:#fff;border-radius:6px;padding:2px 8px}
+#fwb .fw-lab-title h3{margin:0;font-size:20px}
+#fwb .fw-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+#fwb .fw-two > *{min-width:0}
+#fwb .fw-graph{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block}
+#fwb .fw-graph .v circle{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+#fwb .fw-graph .v text{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#fwb .fw-graph .v.pivot circle{fill:var(--pivot);stroke:var(--pivot)}#fwb .fw-graph .v.pivot text{fill:#fff}
+#fwb .fw-graph .v.src circle{fill:var(--src);stroke:var(--src)}#fwb .fw-graph .v.src text{fill:#fff}
+#fwb .fw-graph .v.dst circle{fill:var(--dst);stroke:var(--dst)}#fwb .fw-graph .v.dst text{fill:#fff}
+#fwb .fw-graph .v.onpath circle{stroke:var(--accent);stroke-width:4}
+#fwb .fw-graph .e path{fill:none;stroke:#8d91a8;stroke-width:2}
+#fwb .fw-graph .e.neg path{stroke:var(--bad)}
+#fwb .fw-graph .e.hov path{stroke:var(--upd);stroke-width:4}
+#fwb .fw-graph .e.path path{stroke:var(--accent);stroke-width:4.5}
+#fwb .fw-graph .e.dim{opacity:.35}
+#fwb .fw-graph g.faded{opacity:.28}
+#fwb .fw-graph .elab rect{fill:#fff;stroke:var(--line)}
+#fwb .fw-graph .elab text{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#fwb .fw-graph .elab.neg text{fill:var(--bad)}
+#fwb .fw-graph .ov path{fill:none;stroke-width:2.5;stroke-dasharray:7 5}
+#fwb .fw-graph .ov.a path{stroke:var(--src)}#fwb .fw-graph .ov.b path{stroke:var(--dst)}#fwb .fw-graph .ov.c path{stroke:#9aa0b8}
+#fwb .fw-graph .ov text{font-family:'Fira Code',monospace;font-size:12.5px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+#fwb .fw-graph .ov.a text{fill:var(--src)}#fwb .fw-graph .ov.b text{fill:var(--dst)}#fwb .fw-graph .ov.c text{fill:#6b7090}
+
+#fwb table.fw-in{font-family:'Fira Code',monospace;font-size:14px;margin:6px 0}
+#fwb table.fw-in th{background:var(--soft);width:46px;height:34px;border:1px solid var(--line);text-align:center}
+#fwb table.fw-in td{border:1px solid var(--line);padding:0;width:56px;height:38px}
+#fwb table.fw-in input{width:100%;height:38px;border:0;border-radius:0;text-align:center;font-family:'Fira Code',monospace;font-size:14px;padding:0;background:#fff}
+#fwb table.fw-in input:focus{outline:2px solid var(--upd);background:var(--upd-soft)}
+#fwb table.fw-in input:disabled{background:var(--soft);color:var(--muted)}
+#fwb table.fw-in input.bad{background:var(--bad-soft);color:var(--bad)}
+#fwb .fw-stat{font-size:14px;color:var(--ink2);background:var(--paper);border:1px dashed #cfccc0;border-radius:10px;padding:8px 12px;margin-top:8px;font-family:'Fira Code',monospace;line-height:1.6}
+
+#fwb .fw-viz-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+#fwb .fw-phase{font-weight:800;font-size:17px}
+#fwb .fw-phase em{font-style:normal;color:var(--pivot)}
+#fwb .fw-prog{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+#fwb .fw-prog div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pivot));transition:width .25s}
+#fwb .fw-msg{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:15.5px;min-height:78px;margin:10px 0}
+#fwb .fw-msg.upd{border-left-color:var(--upd);background:#fffbea}
+#fwb .fw-msg.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+#fwb .fw-msg .calc{font-family:'Fira Code',monospace;font-size:14px;display:block;margin-top:4px}
+#fwb .fw-vmat td{transition:background .2s}
+#fwb table.fw-mat td.tgt{box-shadow:inset 0 0 0 3px var(--dst)}
+#fwb table.fw-mat td.s1{box-shadow:inset 0 0 0 3px var(--src)}
+#fwb table.fw-mat td.tgt.upd{background:var(--upd-soft);font-weight:700}
+#fwb table.fw-mat td .old{display:block;font-size:10.5px;color:var(--muted);text-decoration:line-through;line-height:1}
+#fwb table.fw-mat td.negd{background:var(--bad-soft);color:var(--bad);font-weight:700}
+#fwb .fw-log{max-height:170px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 12px;line-height:1.7}
+#fwb .fw-log div.cur{background:var(--upd-soft);border-radius:4px}
+#fwb .fw-predict{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:var(--src-soft);border:1px solid #c3d4fb;border-radius:10px;padding:10px 12px;margin:8px 0}
+#fwb .fw-predict.on{display:flex}
+#fwb .fw-predict b{font-size:15px}
+#fwb .fw-pathres{font-family:'Fira Code',monospace;font-size:14.5px;margin-top:6px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);display:none}
+
+/* details (answers) */
+#fwb details{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+#fwb details summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style:none}
+#fwb details summary::-webkit-details-marker{display:none}
+#fwb details summary::before{content:"\0025B8  ";color:var(--accent)}
+#fwb details[open] summary::before{content:"\0025BE  "}
+#fwb details .ans{padding:0 16px 12px;border-top:1px dashed var(--line);padding-top:10px}
+
+/* quiz */
+#fwb .fw-q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--paper)}
+#fwb .fw-q .qt{font-weight:700;margin-bottom:10px}
+#fwb .fw-q .qt span{color:var(--accent);margin-right:6px}
+#fwb .fw-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;margin:6px 0;cursor:pointer;font-size:15.5px;color:var(--ink)}
+#fwb .fw-opt:hover:not(:disabled){border-color:var(--ink2)}
+#fwb .fw-opt.right{border-color:var(--dst);background:var(--dst-soft)}
+#fwb .fw-opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+#fwb .fw-opt:disabled{cursor:default;opacity:1}
+#fwb .fw-exp{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:9px;background:var(--src-soft)}
+#fwb .fw-score{font-size:18px;font-weight:800;padding:14px 16px;border-radius:12px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* ---------- slide navigation ---------- */
+#fwb .fw-nav{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 18px;box-shadow:0 4px 14px rgba(28,31,51,.06)}
+#fwb .fw-nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:2px}
+#fwb .fw-nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;padding:5px 10px 5px 7px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;line-height:1.2}
+#fwb .fw-nav-tab b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:var(--soft);color:var(--ink);font-size:12.5px}
+#fwb .fw-nav-tab:hover{border-color:var(--ink2)}
+#fwb .fw-nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#fwb .fw-nav-tab.on b{background:var(--pivot);color:#fff}
+#fwb .fw-nav-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+#fwb .fw-nav-count{flex:1 1 200px;text-align:center;font-weight:700;font-size:15px;color:var(--ink)}
+#fwb .fw-nav-count span{font-family:'Fira Code',monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin-right:8px;color:var(--ink2)}
+#fwb .fw-nav-bar .fw-btn{padding:7px 12px;font-size:14px}
+#fwb .fw-nav-tools{display:flex;gap:8px;margin-left:auto}
+#fwb.fw-slides .fw-slide{display:none}
+#fwb.fw-slides .fw-slide.on{display:block;animation:fwFade .25s ease}
+@keyframes fwFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#fwb .fw-slide-foot{display:none;justify-content:space-between;gap:10px;margin:-8px 0 26px}
+#fwb.fw-slides .fw-slide-foot{display:flex}
+#fwb:fullscreen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#fwb:-webkit-full-screen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#fwb:fullscreen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+#fwb:-webkit-full-screen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+@media (max-width:760px){
+  #fwb .fw-nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
+  #fwb .fw-nav-count{order:-1;flex-basis:100%}
+  #fwb .fw-nav-tools{margin-left:0}
+}
+#fwb .fw-foot{text-align:center;color:var(--muted);font-size:14px;margin-top:10px}
+
+@media (max-width:760px){
+  #fwb{font-size:16px}
+  #fwb .fw-sec{padding:20px 16px}
+  #fwb .fw-two{grid-template-columns:1fr}
+  #fwb .fw-toc ol{columns:1}
+  #fwb .fw-hero{padding:28px 20px}
+  #fwb .fw-hero svg{display:none}
+  #fwb .fw-lab{padding:12px}
+  #fwb table.fw-mat th,#fwb table.fw-mat td{width:38px;height:34px;font-size:13px}
+}
+</style>
+
+<div id="fwb">
+
+<!-- ======================= HERO ======================= -->
+<!-- ======================= SLIDE NAVIGATION ======================= -->
+<nav class="fw-nav" id="fw-nav" aria-label="Blog sections">
+  <div class="fw-nav-tabs" id="fw-nav-tabs">
+    <button class="fw-nav-tab" data-slide="0" style="padding-left:11px">Home</button>
+    <button class="fw-nav-tab" data-slide="1"><b>1</b>What is it</button>
+    <button class="fw-nav-tab" data-slide="2"><b>2</b>Concepts &amp; lab</button>
+    <button class="fw-nav-tab" data-slide="3"><b>3</b>Visualiser</button>
+    <button class="fw-nav-tab" data-slide="4"><b>4</b>Complexity</button>
+    <button class="fw-nav-tab" data-slide="5"><b>5</b>Special cases</button>
+    <button class="fw-nav-tab" data-slide="6"><b>6</b>Python</button>
+    <button class="fw-nav-tab" data-slide="7"><b>7</b>Practice</button>
+  </div>
+  <div class="fw-nav-bar">
+    <button class="fw-btn ghost" id="fw-nav-prev">&#8592; Previous</button>
+    <div class="fw-nav-count" id="fw-nav-count"></div>
+    <button class="fw-btn" id="fw-nav-next">Next &#8594;</button>
+    <div class="fw-nav-tools">
+      <button class="fw-btn ghost" id="fw-nav-all">Show all sections</button>
+      <button class="fw-btn ghost" id="fw-nav-fs">&#9974; Fullscreen</button>
+    </div>
+  </div>
+</nav>
+
+<div class="fw-slide" id="fw-home" data-title="Overview">
+<header class="fw-hero">
+  <svg viewBox="0 0 300 220" aria-hidden="true">
+    <g stroke="#fff" stroke-width="3" fill="none"><path d="M60 50 L240 50"/><path d="M60 50 L60 170"/><path d="M60 170 L240 170"/><path d="M240 170 L240 50"/><path d="M60 50 L240 170"/></g>
+    <g fill="#fff"><circle cx="60" cy="50" r="18"/><circle cx="240" cy="50" r="18"/><circle cx="240" cy="170" r="18"/><circle cx="60" cy="170" r="18"/></g>
+  </svg>
+  <div class="fw-kicker">Graphs &#183; Shortest Paths &#183; Dynamic Programming</div>
+  <h1>Shortest Path Problems &amp; the Floyd&#8211;Warshall Algorithm</h1>
+  <p>One algorithm, three nested loops, and the shortest distance between <b>every pair</b> of vertices &#8212; even when some edge weights are negative. Learn it by watching it run, step by step.</p>
+  <div class="fw-hero-tags"><span>MCA &#183; Data Structures</span><span>All-Pairs Shortest Path</span><span>&#920;(V&#179;) time</span><span>Python</span></div>
+</header>
+
+<nav class="fw-toc">
+  <h4>In this post</h4>
+  <ol>
+    <li><a href="#fw-s1">Introduction to Shortest Paths</a></li>
+    <li><a href="#fw-s2">Core Concepts &amp; Graph Lab</a></li>
+    <li><a href="#fw-s3">The Floyd&#8211;Warshall Algorithm &amp; Visualizer</a></li>
+    <li><a href="#fw-s4">Comparison &amp; Complexity</a></li>
+    <li><a href="#fw-s5">Special Cases &amp; Common Mistakes</a></li>
+    <li><a href="#fw-s6">Python Implementation</a></li>
+    <li><a href="#fw-s7">Practice &amp; Quiz</a></li>
+  </ol>
+</nav>
+</div>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s1" data-title="Introduction to shortest paths">
+  <div class="fw-sec-head"><div class="fw-num">1</div><h2>Introduction to Shortest Path Problems</h2></div>
+
+  <p>Imagine a map of cities joined by roads, where each road has a travel time. A natural question is: <i>what is the quickest way to get from one city to another?</i> This is the <b>shortest path problem</b>, one of the most important problems in graph theory.</p>
+
+  <div class="fw-box fw-def">
+    <b class="t">Definitions</b>
+    <ul>
+      <li>A <b>weighted graph</b> G = (V, E) is a graph where every edge (u, v) has a number <code>w(u, v)</code> called its <b>weight</b> (cost, distance or time).</li>
+      <li>A <b>path</b> is a sequence of vertices v<sub>0</sub> &#8594; v<sub>1</sub> &#8594; &#8230; &#8594; v<sub>k</sub> where each consecutive pair is joined by an edge.</li>
+      <li>The <b>weight of a path</b> is the sum of its edge weights.</li>
+      <li>The <b>shortest-path distance</b> &#948;(u, v) is the minimum weight over all paths from u to v. If no path exists, &#948;(u, v) = &#8734; (infinity).</li>
+    </ul>
+  </div>
+
+  <p>Note that &#8220;shortest&#8221; means <b>least total weight</b>, not fewest edges. A path with four cheap edges can beat a single expensive edge.</p>
+
+  <h3>Four versions of the problem</h3>
+  <div class="fw-grid">
+    <div class="fw-card"><span class="fw-pill">SSSP</span><h4>Single-source</h4><p>Distances from one source vertex to <b>all</b> other vertices. Solved by Dijkstra's algorithm (non-negative weights) or Bellman&#8211;Ford.</p></div>
+    <div class="fw-card"><span class="fw-pill">SDSP</span><h4>Single-destination</h4><p>Distances from every vertex to one target. Reverse all edges and it becomes single-source.</p></div>
+    <div class="fw-card"><span class="fw-pill">SPSP</span><h4>Single-pair</h4><p>Shortest path from u to v only. Usually solved by running a single-source algorithm and stopping early.</p></div>
+    <div class="fw-card hl"><span class="fw-pill">APSP</span><h4>All-pairs</h4><p>Shortest distance between <b>every</b> pair (u, v). This is what <b>Floyd&#8211;Warshall</b> solves.</p></div>
+  </div>
+
+  <p>In our previous post we studied <b>Dijkstra's algorithm</b>, which solves the single-source problem very efficiently. In this post we focus on the <b>all-pairs</b> problem and the classic algorithm for it: <b>Floyd&#8211;Warshall</b>.</p>
+
+  <h3>Why do we need an all-pairs algorithm?</h3>
+  <p>Many applications need a complete &#8220;distance table&#8221; rather than distances from just one place:</p>
+  <div class="fw-grid">
+    <div class="fw-card"><h4>&#128506;&#65039; Road atlases &amp; maps</h4><p>The city-to-city distance chart printed in road atlases is exactly an all-pairs shortest path table.</p></div>
+    <div class="fw-card"><h4>&#127760; Network routing</h4><p>Routers need the cheapest route between every pair of nodes in a (small) network.</p></div>
+    <div class="fw-card"><h4>&#127973; Facility location</h4><p>To place a hospital so the farthest town is as close as possible, you need all pairwise distances (the <i>graph centre</i>).</p></div>
+    <div class="fw-card"><h4>&#128177; Currency arbitrage</h4><p>With weights &#8722;log(rate), a negative cycle means a profitable exchange loop. Floyd&#8211;Warshall can detect it.</p></div>
+    <div class="fw-card"><h4>&#128279; Reachability</h4><p>A small change gives Warshall's algorithm, which finds whether any path exists between each pair (transitive closure).</p></div>
+    <div class="fw-card"><h4>&#127918; Games &amp; AI</h4><p>Small game maps often pre-compute all distances so characters can look up routes instantly.</p></div>
+  </div>
+
+  <h3>A simple example</h3>
+  <p>Look at the graph below. The direct road from <b>A</b> to <b>B</b> costs <b>7</b>. But the route <b>A &#8594; D &#8594; C &#8594; B</b> costs 1 + 1 + 1 = <b>3</b>. The direct edge is <i>not</i> the shortest path! Also notice the edge B &#8594; A has a <b>negative</b> weight (&#8722;1), which Dijkstra's algorithm cannot handle correctly. Floyd&#8211;Warshall can.</p>
+  <svg class="fw-graph" id="fw-intro-graph" viewBox="0 0 420 300" style="max-width:420px;margin:10px auto"></svg>
+  <p style="text-align:center;font-size:14px;color:var(--muted)">Figure 1 &#8212; The example graph used throughout this post (negative edge shown in red).</p>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s2" data-title="Core concepts &amp; graph lab">
+  <div class="fw-sec-head"><div class="fw-num">2</div><h2>Core Concepts</h2></div>
+
+  <h3>2.1 Key terminology</h3>
+  <div class="fw-tbl-wrap"><table class="fw-tbl">
+    <tr><th style="width:28%">Term</th><th>Meaning</th></tr>
+    <tr><td><b>Intermediate vertex</b></td><td>Any vertex on a path other than the first and last. In A &#8594; D &#8594; C &#8594; B, the intermediate vertices are D and C.</td></tr>
+    <tr><td><b>Distance matrix D</b></td><td>An n &#215; n table where <code>D[i][j]</code> stores the best known distance from vertex i to vertex j.</td></tr>
+    <tr><td><b>Weight (cost) matrix W</b></td><td>The adjacency matrix with weights: <code>W[i][j]</code> = weight of edge i&#8594;j, 0 if i = j, and &#8734; if there is no edge. This is the starting matrix D<sup>(0)</sup>.</td></tr>
+    <tr><td><b>Relaxation</b></td><td>Trying to improve a distance through another vertex: if going through k is shorter, update the distance.</td></tr>
+    <tr><td><b>Negative edge</b></td><td>An edge with weight &lt; 0 (e.g. a refund, a discount, or a downhill energy gain). Allowed in Floyd&#8211;Warshall.</td></tr>
+    <tr><td><b>Negative cycle</b></td><td>A cycle whose total weight is &lt; 0. Going around it repeatedly makes a path cheaper without limit, so shortest paths are <b>undefined</b>. Floyd&#8211;Warshall can <i>detect</i> it but cannot give meaningful distances.</td></tr>
+    <tr><td><b>Optimal substructure</b></td><td>Every part of a shortest path is itself a shortest path. This property allows dynamic programming.</td></tr>
+    <tr><td><b>Dynamic programming (DP)</b></td><td>Solving a big problem by combining answers to smaller, overlapping subproblems that are stored in a table.</td></tr>
+  </table></div>
+
+  <h3>2.2 The key idea: &#8220;allow one more vertex at a time&#8221;</h3>
+  <p>Number the vertices 1, 2, &#8230;, n. Floyd&#8211;Warshall builds a sequence of matrices D<sup>(0)</sup>, D<sup>(1)</sup>, &#8230;, D<sup>(n)</sup>, where:</p>
+  <div class="fw-box fw-def"><b class="t">Meaning of D<sup>(k)</sup></b>
+  <p><code>D<sup>(k)</sup>[i][j]</code> = length of the shortest path from i to j that uses <b>only vertices 1, 2, &#8230;, k as intermediate vertices</b>.</p></div>
+  <ul>
+    <li><b>D<sup>(0)</sup></b>: no intermediate vertices allowed &#8594; only direct edges. So D<sup>(0)</sup> = W.</li>
+    <li><b>D<sup>(1)</sup></b>: paths may pass through vertex 1.</li>
+    <li><b>D<sup>(2)</sup></b>: paths may pass through vertices 1 and 2. And so on &#8230;</li>
+    <li><b>D<sup>(n)</sup></b>: paths may pass through any vertex &#8594; these are the true shortest distances.</li>
+  </ul>
+
+  <p>When we move from D<sup>(k&#8722;1)</sup> to D<sup>(k)</sup>, the best path from i to j that may use vertex k has only <b>two possibilities</b>:</p>
+  <div class="fw-two">
+    <div>
+      <ol>
+        <li><b>It does not use k.</b> Then its length is the old value <code>D<sup>(k&#8722;1)</sup>[i][j]</code>.</li>
+        <li><b>It does use k</b> (exactly once, since there are no negative cycles). Then it splits into <b>i &#8669; k</b> and <b>k &#8669; j</b>, and both parts use only vertices 1&#8230;k&#8722;1. Its length is <code>D<sup>(k&#8722;1)</sup>[i][k] + D<sup>(k&#8722;1)</sup>[k][j]</code>.</li>
+      </ol>
+      <p>We take the smaller of the two.</p>
+    </div>
+    <svg viewBox="0 0 360 210" class="fw-graph" aria-label="Path from i to j directly or through k">
+      <defs><marker id="fw-ar-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6b7090"/></marker>
+      <marker id="fw-ar-kb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker></defs>
+      <path d="M78 168 L282 168" stroke="#6b7090" stroke-width="2.5" fill="none" stroke-dasharray="7 5" marker-end="url(#fw-ar-k)"/>
+      <path d="M68 150 Q110 70 160 52" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#fw-ar-kb)"/>
+      <path d="M200 52 Q250 70 292 150" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#fw-ar-kb)"/>
+      <g class="v src"><circle cx="58" cy="168" r="20"/><text x="58" y="168">i</text></g>
+      <g class="v pivot"><circle cx="180" cy="44" r="20"/><text x="180" y="44">k</text></g>
+      <g class="v dst"><circle cx="302" cy="168" r="20"/><text x="302" y="168">j</text></g>
+      <text x="180" y="190" text-anchor="middle" font-family="Fira Code" font-size="13" fill="#6b7090">D[i][j]  (path avoiding k)</text>
+      <text x="82" y="88" text-anchor="middle" font-family="Fira Code" font-size="13" fill="#2563eb">D[i][k]</text>
+      <text x="280" y="88" text-anchor="middle" font-family="Fira Code" font-size="13" fill="#2563eb">D[k][j]</text>
+    </svg>
+  </div>
+
+  <h3>2.3 The recurrence relation</h3>
+  <p>This gives the famous DP recurrence &#8212; learn it by heart for exams:</p>
+  <div class="fw-formula">
+    D<sup>(0)</sup>[i][j] = w(i, j)  <span class="c">// 0 if i = j, &#8734; if no edge</span><br>
+    D<sup>(<span class="k">k</span>)</sup>[<span class="i">i</span>][<span class="i">j</span>] = min( D<sup>(k&#8722;1)</sup>[<span class="i">i</span>][<span class="i">j</span>] ,  D<sup>(k&#8722;1)</sup>[<span class="i">i</span>][<span class="k">k</span>] + D<sup>(k&#8722;1)</sup>[<span class="k">k</span>][<span class="i">j</span>] )   <span class="c">for k &#8805; 1</span>
+  </div>
+
+  <h3>2.4 Internal representation</h3>
+  <p>Floyd&#8211;Warshall works on the <b>adjacency matrix</b> representation of a graph (see our Graph Representations post). An adjacency list is not convenient here, because the algorithm looks at <i>every</i> pair (i, j), including pairs with no direct edge. For our example graph (vertices A, B, C, D):</p>
+  <div class="fw-two">
+    <ul>
+      <li>Row = &#8220;from&#8221; vertex, column = &#8220;to&#8221; vertex.</li>
+      <li>Diagonal entries are 0 (distance from a vertex to itself).</li>
+      <li>&#8734; means &#8220;no direct edge&#8221;.</li>
+      <li>The matrix need not be symmetric because the graph is <b>directed</b>. For an undirected graph, store each edge in both directions.</li>
+    </ul>
+    <div class="fw-mat-card" style="max-width:300px"><h4>W = D<sup>(0)</sup></h4>
+      <table class="fw-mat"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+      <tr><th>A</th><td>0</td><td>7</td><td>&#8734;</td><td>1</td></tr>
+      <tr><th>B</th><td>&#8722;1</td><td>0</td><td>&#8734;</td><td>&#8734;</td></tr>
+      <tr><th>C</th><td>3</td><td>1</td><td>0</td><td>&#8734;</td></tr>
+      <tr><th>D</th><td>&#8734;</td><td>&#8734;</td><td>1</td><td>0</td></tr></table></div>
+  </div>
+
+  <!-- LAB -->
+  <div class="fw-lab" id="fw-lab">
+    <div class="fw-lab-title"><span>Interactive Lab</span><h3>Graph &#8644; Matrix Builder</h3></div>
+    <p style="font-size:15px;color:var(--ink2);margin-bottom:6px">Type weights into the matrix (leave a cell blank or type <code>&#8734;</code> or <code>inf</code> for &#8220;no edge&#8221;). The graph redraws instantly. Hover over a cell to highlight its edge. When you are happy, send the graph to the visualizer in Section 3.</p>
+    <div class="fw-row">
+      <label>Vertices</label>
+      <select id="fw-lab-n"><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
+      <label>Preset</label>
+      <select id="fw-lab-preset">
+        <option value="ex">Worked example</option>
+        <option value="five">5-vertex road network</option>
+        <option value="neg">Negative cycle</option>
+        <option value="disc">Disconnected graph</option>
+      </select>
+      <button class="fw-btn ghost" id="fw-lab-load">Load preset</button>
+      <button class="fw-btn ghost" id="fw-lab-rand">Random</button>
+      <button class="fw-btn ghost" id="fw-lab-clear">Clear</button>
+    </div>
+    <div class="fw-two">
+      <div>
+        <div class="fw-tbl-wrap" style="margin:0"><table class="fw-in" id="fw-lab-mat"></table></div>
+        <div class="fw-stat" id="fw-lab-stat"></div>
+      </div>
+      <svg class="fw-graph" id="fw-lab-graph" viewBox="0 0 420 320"></svg>
+    </div>
+    <div class="fw-row"><button class="fw-btn acc" id="fw-lab-send">Send this graph to the Visualizer &#8595;</button></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s3" data-title="Floyd&#8211;Warshall step by step">
+  <div class="fw-sec-head"><div class="fw-num">3</div><h2>The Floyd&#8211;Warshall Algorithm</h2></div>
+
+  <p>The <b>Floyd&#8211;Warshall algorithm</b> (published by Robert Floyd in 1962, building on Stephen Warshall's transitive-closure algorithm of the same year; Bernard Roy described a similar method in 1959) is a <b>dynamic programming</b> algorithm that computes the shortest distances between <b>all pairs</b> of vertices in a weighted, directed graph. It works with negative edge weights, as long as there is no negative cycle.</p>
+
+  <h3>3.1 Step-by-step working</h3>
+  <ol>
+    <li><b>Initialise:</b> create D = W. Put 0 on the diagonal, the edge weight where an edge exists, and &#8734; elsewhere.</li>
+    <li><b>Pick a pivot k</b> (also called the <i>intermediate</i> vertex), starting from the first vertex.</li>
+    <li><b>For every pair (i, j)</b>, check whether going through k is shorter: if <code>D[i][k] + D[k][j] &lt; D[i][j]</code>, replace D[i][j] with the smaller value.</li>
+    <li><b>Repeat</b> steps 2&#8211;3 for every vertex k = 1, 2, &#8230;, n.</li>
+    <li><b>Finish:</b> D now holds all shortest distances. If any diagonal entry <code>D[v][v] &lt; 0</code>, the graph has a negative cycle.</li>
+  </ol>
+
+  <h3>3.2 Algorithm (pseudocode)</h3>
+  <div class="fw-pseudo">
+<div><span class="ln">1</span><span class="kw">FLOYD-WARSHALL</span>(W, n)</div>
+<div><span class="ln">2</span>   D &#8592; W                          <span class="cm">// D(0): direct edges only</span></div>
+<div><span class="ln">3</span>   <span class="kw">for</span> k &#8592; 1 <span class="kw">to</span> n <span class="kw">do</span>              <span class="cm">// intermediate vertex (OUTERMOST)</span></div>
+<div><span class="ln">4</span>      <span class="kw">for</span> i &#8592; 1 <span class="kw">to</span> n <span class="kw">do</span>           <span class="cm">// source</span></div>
+<div><span class="ln">5</span>         <span class="kw">for</span> j &#8592; 1 <span class="kw">to</span> n <span class="kw">do</span>        <span class="cm">// destination</span></div>
+<div><span class="ln">6</span>            <span class="kw">if</span> D[i][k] + D[k][j] &lt; D[i][j] <span class="kw">then</span></div>
+<div><span class="ln">7</span>               D[i][j] &#8592; D[i][k] + D[k][j]</div>
+<div><span class="ln">8</span>   <span class="kw">return</span> D</div>
+  </div>
+
+  <div class="fw-box fw-exam"><b class="t">Why can we use just one matrix?</b>
+  <p>The recurrence uses D<sup>(k&#8722;1)</sup>, so it looks like we need n + 1 matrices. But during phase k, <b>row k and column k never change</b> (when there is no negative cycle): for example <code>D[i][k] = min(D[i][k], D[i][k] + D[k][k]) = D[i][k]</code> because <code>D[k][k] = 0</code>. Since every update in phase k only <i>reads</i> row k and column k, updating the matrix in place gives exactly the same result. This reduces space from &#920;(n&#179;) to <b>&#920;(n&#178;)</b>.</p></div>
+
+  <h3>3.3 Path reconstruction</h3>
+  <p>The distance matrix tells us <i>how far</i>, but not <i>which route</i>. To recover the actual path, keep a second n &#215; n matrix called <code>next</code> (also called the <b>successor</b> matrix):</p>
+  <ul>
+    <li>Initially <code>next[i][j] = j</code> if there is an edge i &#8594; j, otherwise <i>None</i>.</li>
+    <li>Whenever D[i][j] is improved through k, set <code>next[i][j] = next[i][k]</code> (&#8220;to go from i to j, first head towards k&#8221;).</li>
+    <li>To print the path u &#8669; v: start at u and repeatedly jump <code>u = next[u][v]</code> until u = v.</li>
+  </ul>
+  <div class="fw-box fw-tip"><b class="t">Another convention you may see</b><p>Some textbooks store the intermediate vertex instead: <code>P[i][j] = k</code>. The path is then printed recursively as path(i, k) + path(k, j). Both methods are correct; just do not mix them.</p></div>
+
+  <h3>3.4 Worked example</h3>
+  <p>Let us run the algorithm by hand on the graph from Figure 1. In each matrix, the <span style="background:var(--pivot-soft);padding:0 4px;border-radius:3px">orange row and column</span> belong to the pivot k (they never change in that phase), and <span style="background:var(--upd-soft);padding:0 4px;border-radius:3px;font-weight:700">yellow cells</span> are the values that were just improved.</p>
+  <div class='fw-mats'>
+<div class='fw-mat-card'><h4>D<sup>(0)</sup></h4><div class='sub'>Direct edges only (= W)</div><table class='fw-mat'><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>A</th><td class=''>0</td><td class=''>7</td><td class=''>&#8734;</td><td class=''>1</td></tr><tr><th>B</th><td class=''>&#8722;1</td><td class=''>0</td><td class=''>&#8734;</td><td class=''>&#8734;</td></tr><tr><th>C</th><td class=''>3</td><td class=''>1</td><td class=''>0</td><td class=''>&#8734;</td></tr><tr><th>D</th><td class=''>&#8734;</td><td class=''>&#8734;</td><td class=''>1</td><td class=''>0</td></tr></table><div class='chgs'>No intermediate vertex allowed.</div></div>
+<div class='fw-mat-card'><h4>D<sup>(1)</sup> &#8212; via A</h4><div class='sub'>Intermediate vertices allowed: {A}</div><table class='fw-mat'><tr><th></th><th class="kh">A</th><th>B</th><th>C</th><th>D</th></tr><tr><th class="kh">A</th><td class='krow kcol'>0</td><td class='krow'>7</td><td class='krow'>&#8734;</td><td class='krow'>1</td></tr><tr><th>B</th><td class='kcol'>&#8722;1</td><td class=''>0</td><td class=''>&#8734;</td><td class='chg'>0</td></tr><tr><th>C</th><td class='kcol'>3</td><td class=''>1</td><td class=''>0</td><td class='chg'>4</td></tr><tr><th>D</th><td class='kcol'>&#8734;</td><td class=''>&#8734;</td><td class=''>1</td><td class=''>0</td></tr></table><div class='chgs'>B&#8594;D: B&#8594;A&#8594;D = &#8722;1 + 1 = 0 &lt; &#8734;<br>C&#8594;D: C&#8594;A&#8594;D = 3 + 1 = 4 &lt; &#8734;</div></div>
+<div class='fw-mat-card'><h4>D<sup>(2)</sup> &#8212; via B</h4><div class='sub'>Intermediate vertices allowed: {A, B}</div><table class='fw-mat'><tr><th></th><th>A</th><th class="kh">B</th><th>C</th><th>D</th></tr><tr><th>A</th><td class=''>0</td><td class='kcol'>7</td><td class=''>&#8734;</td><td class=''>1</td></tr><tr><th class="kh">B</th><td class='krow'>&#8722;1</td><td class='krow kcol'>0</td><td class='krow'>&#8734;</td><td class='krow'>0</td></tr><tr><th>C</th><td class='chg'>0</td><td class='kcol'>1</td><td class=''>0</td><td class='chg'>1</td></tr><tr><th>D</th><td class=''>&#8734;</td><td class='kcol'>&#8734;</td><td class=''>1</td><td class=''>0</td></tr></table><div class='chgs'>C&#8594;A: C&#8594;B&#8594;A = 1 + &#8722;1 = 0 &lt; 3<br>C&#8594;D: C&#8594;B&#8594;D = 1 + 0 = 1 &lt; 4</div></div>
+<div class='fw-mat-card'><h4>D<sup>(3)</sup> &#8212; via C</h4><div class='sub'>Intermediate vertices allowed: {A, B, C}</div><table class='fw-mat'><tr><th></th><th>A</th><th>B</th><th class="kh">C</th><th>D</th></tr><tr><th>A</th><td class=''>0</td><td class=''>7</td><td class='kcol'>&#8734;</td><td class=''>1</td></tr><tr><th>B</th><td class=''>&#8722;1</td><td class=''>0</td><td class='kcol'>&#8734;</td><td class=''>0</td></tr><tr><th class="kh">C</th><td class='krow'>0</td><td class='krow'>1</td><td class='krow kcol'>0</td><td class='krow'>1</td></tr><tr><th>D</th><td class='chg'>1</td><td class='chg'>2</td><td class='kcol'>1</td><td class=''>0</td></tr></table><div class='chgs'>D&#8594;A: D&#8594;C&#8594;A = 1 + 0 = 1 &lt; &#8734;<br>D&#8594;B: D&#8594;C&#8594;B = 1 + 1 = 2 &lt; &#8734;</div></div>
+<div class='fw-mat-card'><h4>D<sup>(4)</sup> &#8212; via D</h4><div class='sub'>Intermediate vertices allowed: {A, B, C, D}</div><table class='fw-mat'><tr><th></th><th>A</th><th>B</th><th>C</th><th class="kh">D</th></tr><tr><th>A</th><td class=''>0</td><td class='chg'>3</td><td class='chg'>2</td><td class='kcol'>1</td></tr><tr><th>B</th><td class=''>&#8722;1</td><td class=''>0</td><td class='chg'>1</td><td class='kcol'>0</td></tr><tr><th>C</th><td class=''>0</td><td class=''>1</td><td class=''>0</td><td class='kcol'>1</td></tr><tr><th class="kh">D</th><td class='krow'>1</td><td class='krow'>2</td><td class='krow'>1</td><td class='krow kcol'>0</td></tr></table><div class='chgs'>A&#8594;B: A&#8594;D&#8594;B = 1 + 2 = 3 &lt; 7<br>A&#8594;C: A&#8594;D&#8594;C = 1 + 1 = 2 &lt; &#8734;<br>B&#8594;C: B&#8594;D&#8594;C = 0 + 1 = 1 &lt; &#8734;</div></div>
+</div>
+  <p>Reading the final matrix D<sup>(4)</sup>: the shortest distance from A to B is <b>3</b> (via D and C), from C to A is <b>0</b> (via B, using the negative edge), and from B to D is <b>0</b>. All diagonal entries are 0, so there is <b>no negative cycle</b>.</p>
+  <div class="fw-box fw-exam"><b class="t">Exam shortcut</b>
+  <p>To fill D<sup>(k)</sup> quickly by hand: copy row k and column k unchanged, then for every other cell compute <i>(value in row i of column k) + (value in column j of row k)</i>, and keep it only if it is smaller than the current cell. If either term is &#8734;, skip the cell.</p></div>
+
+  <!-- VISUALIZER -->
+  <div class="fw-lab" id="fw-viz">
+    <div class="fw-lab-title"><span>Visualizer</span><h3>Floyd&#8211;Warshall Step by Step</h3></div>
+    <div class="fw-row">
+      <label>Graph</label>
+      <select id="fw-viz-preset">
+        <option value="ex">Worked example (A&#8211;D)</option>
+        <option value="five">5-vertex road network</option>
+        <option value="neg">Negative cycle</option>
+        <option value="disc">Disconnected graph</option>
+        <option value="lab">My graph from the Lab</option>
+      </select>
+      <label><input type="checkbox" id="fw-viz-predict"> Predict mode</label>
+      <label>Speed <input type="range" id="fw-viz-speed" min="1" max="10" value="5" style="vertical-align:middle"></label>
+    </div>
+    <div class="fw-row">
+      <button class="fw-btn ghost" id="fw-viz-reset">&#10226; Reset</button>
+      <button class="fw-btn ghost" id="fw-viz-back">&#9664; Back</button>
+      <button class="fw-btn" id="fw-viz-step">Step &#9654;</button>
+      <button class="fw-btn acc" id="fw-viz-play">&#9654; Play</button>
+      <button class="fw-btn ghost" id="fw-viz-nextupd">Next update &#9197;</button>
+      <button class="fw-btn ghost" id="fw-viz-phase">Finish phase &#9193;</button>
+      <button class="fw-btn ghost" id="fw-viz-end">Run to end &#9197;&#9197;</button>
+    </div>
+    <div class="fw-viz-top"><div class="fw-phase" id="fw-viz-phase-lbl"></div><div class="mono" style="font-size:13px;color:var(--muted)" id="fw-viz-count"></div></div>
+    <div class="fw-prog"><div id="fw-viz-bar"></div></div>
+    <div class="fw-predict" id="fw-viz-pq"><b id="fw-viz-pq-txt"></b><button class="fw-btn" id="fw-viz-pq-yes">Yes, update</button><button class="fw-btn ghost" id="fw-viz-pq-no">No, keep</button><span id="fw-viz-pq-fb" style="font-weight:700"></span></div>
+    <div class="fw-msg" id="fw-viz-msg"></div>
+    <div class="fw-two">
+      <div>
+        <svg class="fw-graph" id="fw-viz-graph" viewBox="0 0 420 320"></svg>
+        <div class="fw-legend"><span><i style="background:var(--pivot)"></i>pivot k</span><span><i style="background:var(--src)"></i>source i</span><span><i style="background:var(--dst)"></i>destination j</span><span><i style="background:var(--upd)"></i>updated</span></div>
+      </div>
+      <div>
+        <div class="fw-mat-card"><h4>Distance matrix D</h4><div class="sub">Blue = D[i][k] and D[k][j], green = D[i][j]</div><div id="fw-viz-mat"></div></div>
+        <div class="fw-pseudo" id="fw-viz-code" style="font-size:12.5px"></div>
+      </div>
+    </div>
+    <h4>Update log</h4>
+    <div class="fw-log" id="fw-viz-log"></div>
+    <h4>Find a path (uses the current matrices)</h4>
+    <div class="fw-row"><label>From</label><select id="fw-viz-from"></select><label>To</label><select id="fw-viz-to"></select><button class="fw-btn acc" id="fw-viz-path">Show path</button></div>
+    <div class="fw-pathres" id="fw-viz-pathres"></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s4" data-title="Comparison &amp; complexity">
+  <div class="fw-sec-head"><div class="fw-num">4</div><h2>Comparison &amp; Complexity Analysis</h2></div>
+
+  <h3>4.1 Time complexity</h3>
+  <p>The algorithm has three nested loops, each running n = |V| times, and the body does constant work (one addition, one comparison, maybe one assignment):</p>
+  <div class="fw-formula">T(n) = &#931;<sub>k=1..n</sub> &#931;<sub>i=1..n</sub> &#931;<sub>j=1..n</sub> O(1) = n &#183; n &#183; n = <span class="k">&#920;(n&#179;)</span></div>
+  <ul>
+    <li><b>Best case:</b> &#920;(V&#179;) &#8212; the loops always run fully, even if no update ever happens.</li>
+    <li><b>Average case:</b> &#920;(V&#179;).</li>
+    <li><b>Worst case:</b> &#920;(V&#179;).</li>
+  </ul>
+  <p>The running time does <b>not</b> depend on the number of edges E. That is why Floyd&#8211;Warshall is a good choice for <b>dense</b> graphs (E close to V&#178;) and a poor choice for large sparse graphs.</p>
+
+  <h3>4.2 Space complexity</h3>
+  <ul>
+    <li><b>&#920;(V&#178;)</b> for the in-place distance matrix (plus another &#920;(V&#178;) for the <code>next</code> matrix if paths are needed).</li>
+    <li>A naive version that stores every D<sup>(k)</sup> separately would need &#920;(V&#179;) space &#8212; unnecessary, as explained in Section 3.</li>
+  </ul>
+
+  <h3>4.3 Comparison with other shortest-path algorithms</h3>
+  <div class="fw-tbl-wrap"><table class="fw-tbl">
+    <tr><th>Algorithm</th><th>Problem</th><th>Negative edges?</th><th>Time (for all pairs)</th><th>Technique</th></tr>
+    <tr class="hl"><td><b>Floyd&#8211;Warshall</b></td><td>All-pairs</td><td>&#9989; Yes (detects negative cycles)</td><td>&#920;(V&#179;)</td><td>Dynamic programming</td></tr>
+    <tr><td>Dijkstra (run from every vertex)</td><td>Single-source &#215; V</td><td>&#10060; No</td><td>O(V &#183; (V + E) log V) with binary heap; O(V&#179;) with array</td><td>Greedy</td></tr>
+    <tr><td>Bellman&#8211;Ford (run from every vertex)</td><td>Single-source &#215; V</td><td>&#9989; Yes</td><td>O(V&#178; &#183; E) &#8212; up to O(V&#8308;) on dense graphs</td><td>Dynamic programming</td></tr>
+    <tr><td>BFS (run from every vertex)</td><td>Unweighted graphs only</td><td>&#8212; (no weights)</td><td>O(V &#183; (V + E))</td><td>Level-by-level search</td></tr>
+  </table></div>
+  <p style="font-size:14.5px;color:var(--muted)">For reference (beyond the usual syllabus): Johnson's algorithm re-weights edges with one Bellman&#8211;Ford run and then uses Dijkstra from every vertex, giving O(V&#178; log V + VE) for sparse graphs with negative edges.</p>
+
+  <h3>4.4 Floyd&#8211;Warshall vs Dijkstra at a glance</h3>
+  <div class="fw-tbl-wrap"><table class="fw-tbl">
+    <tr><th>Feature</th><th>Dijkstra</th><th>Floyd&#8211;Warshall</th></tr>
+    <tr><td>Output</td><td>Distances from one source</td><td>Distances between all pairs</td></tr>
+    <tr><td>Approach</td><td>Greedy: always finalise the nearest unvisited vertex</td><td>DP: allow intermediate vertices one at a time</td></tr>
+    <tr><td>Negative weights</td><td>Not allowed (may give wrong answers)</td><td>Allowed; negative cycles are detected</td></tr>
+    <tr><td>Data structure</td><td>Adjacency list + priority queue (min-heap)</td><td>Adjacency matrix (2-D array)</td></tr>
+    <tr><td>Best for</td><td>Large sparse graphs, one source</td><td>Small/dense graphs, all pairs</td></tr>
+    <tr><td>Code length</td><td>Moderate</td><td>Very short (3 loops)</td></tr>
+  </table></div>
+
+  <h3>4.5 Why not just use Dijkstra with a negative edge?</h3>
+  <div class="fw-two">
+    <div>
+      <p>Take edges S &#8594; A (2), S &#8594; B (5) and B &#8594; A (&#8722;4). Dijkstra starts at S, then picks the nearest vertex A (distance 2) and <b>finalises</b> it. Later it reaches B (distance 5) and discovers A could be reached for 5 &#8722; 4 = <b>1</b>, but A is already final. Dijkstra reports &#948;(S, A) = 2, which is <b>wrong</b>.</p>
+      <p>Floyd&#8211;Warshall never &#8220;finalises&#8221; a value early; it keeps improving every cell, so it correctly finds &#948;(S, A) = 1.</p>
+    </div>
+    <svg class="fw-graph" id="fw-dij-graph" viewBox="0 0 360 230"></svg>
+  </div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s5" data-title="Special cases &amp; common mistakes">
+  <div class="fw-sec-head"><div class="fw-num">5</div><h2>Special Cases &amp; Common Mistakes</h2></div>
+
+  <h3>5.1 Special cases and edge cases</h3>
+  <div class="fw-tbl-wrap"><table class="fw-tbl">
+    <tr><th style="width:26%">Situation</th><th>What happens / what to do</th></tr>
+    <tr><td><b>Negative cycle</b></td><td>Some diagonal entry becomes negative (<code>D[v][v] &lt; 0</code>). Distances involving that cycle are meaningless. Report &#8220;negative cycle&#8221; instead of distances. Try the &#8220;Negative cycle&#8221; preset in the visualizer.</td></tr>
+    <tr><td><b>Disconnected graph</b></td><td>If j cannot be reached from i, <code>D[i][j]</code> stays &#8734;. This is correct output, not an error.</td></tr>
+    <tr><td><b>Undirected graph</b></td><td>Put every edge in both directions: <code>W[u][v] = W[v][u] = w</code>. The result is symmetric. <b>Warning:</b> one negative undirected edge u&#8212;v is already a negative cycle u &#8594; v &#8594; u.</td></tr>
+    <tr><td><b>Parallel (multiple) edges</b></td><td>Keep only the smallest weight: <code>W[u][v] = min(W[u][v], w)</code>.</td></tr>
+    <tr><td><b>Self-loops</b></td><td>A positive self-loop is useless (diagonal stays 0). A negative self-loop is a negative cycle by itself.</td></tr>
+    <tr><td><b>Ties</b></td><td>Update only when strictly smaller (<code>&lt;</code>). Equal values are not an improvement; this keeps the first path found.</td></tr>
+    <tr><td><b>Single vertex / no edges</b></td><td>D is just the identity-like matrix of 0s and &#8734;s. The loops still run in &#920;(V&#179;).</td></tr>
+  </table></div>
+
+  <h3>5.2 Advantages and disadvantages</h3>
+  <div class="fw-two">
+    <div class="fw-card" style="border-color:#a7dcb5;background:var(--dst-soft)"><h4>&#9989; Advantages</h4>
+      <ul style="margin:0;font-size:15.5px">
+        <li>Solves the all-pairs problem in one run.</li>
+        <li>Handles negative edge weights.</li>
+        <li>Detects negative cycles for free (check the diagonal).</li>
+        <li>Very short and easy to code; no heap or queue needed.</li>
+        <li>Fast in practice on small dense graphs (simple loops, cache-friendly array).</li>
+        <li>Easily adapted: transitive closure, widest path, graph centre, etc.</li>
+      </ul></div>
+    <div class="fw-card" style="border-color:#f4b9b9;background:var(--bad-soft)"><h4>&#10060; Disadvantages</h4>
+      <ul style="margin:0;font-size:15.5px">
+        <li>&#920;(V&#179;) time is too slow for large graphs (V in the tens of thousands).</li>
+        <li>&#920;(V&#178;) memory, even if the graph has few edges.</li>
+        <li>Wasteful when you only need distances from one source.</li>
+        <li>Cannot give meaningful distances when a negative cycle exists.</li>
+        <li>Needs an adjacency matrix; sparse graphs must be converted.</li>
+      </ul></div>
+  </div>
+
+  <h3>5.3 Common implementation mistakes</h3>
+  <div class="fw-box fw-warn"><b class="t">Mistake 1 &#8212; Wrong loop order</b>
+  <p>The <b>k loop must be outermost</b>. If you write <code>for i &#8230; for j &#8230; for k &#8230;</code>, the value D[i][j] is finalised before the paths it depends on are ready. On our example graph, this wrong order gives D[A][B] = <b>7</b> instead of the correct <b>3</b>. (We verified this by running both versions.)</p></div>
+  <div class="fw-box fw-warn"><b class="t">Mistake 2 &#8212; Using 9999 (or similar) as &#8220;infinity&#8221;</b>
+  <p>With a fake infinity like 9999 and a negative edge, <code>9999 + (&#8722;2) = 9997 &lt; 9999</code>, so the algorithm invents paths that do not exist. In Python use <code>float('inf')</code> (&#8734; + any finite number is still &#8734;). In C/Java, add a guard: only relax if <code>D[i][k] != INF and D[k][j] != INF</code> &#8212; this also prevents integer overflow.</p></div>
+  <div class="fw-box fw-warn"><b class="t">Mistake 3 &#8212; Diagonal not set to 0</b>
+  <p>If D[i][i] starts as &#8734;, many updates through k = i break, and negative-cycle detection no longer works.</p></div>
+  <div class="fw-box fw-warn"><b class="t">Mistake 4 &#8212; Wrong path update</b>
+  <p>With the <code>next</code> (successor) matrix, the update is <code>next[i][j] = next[i][k]</code>, <b>not</b> <code>next[i][j] = k</code>. Using k would skip the vertices between i and k.</p></div>
+  <div class="fw-box fw-warn"><b class="t">Mistake 5 &#8212; Trusting distances after a negative cycle</b>
+  <p>Always check the diagonal before using the result. Path reconstruction can even loop forever if a negative cycle exists.</p></div>
+
+  <h3>5.4 Related algorithm: Warshall's transitive closure</h3>
+  <p>If we only care <b>whether</b> a path exists (not its length), replace numbers with 1/0 (true/false), <code>min</code> with OR, and <code>+</code> with AND:</p>
+  <div class="fw-formula">R[i][j] = R[i][j] <span class="k">OR</span> ( R[i][k] <span class="k">AND</span> R[k][j] )</div>
+  <p>The result R is the <b>reachability matrix</b> (transitive closure). Same &#920;(V&#179;) time. See Tab 4 in Section 6.</p>
+
+  <h3>5.5 Important examination points</h3>
+  <div class="fw-box fw-exam"><b class="t">Remember for exams</b>
+  <ul>
+    <li>Floyd&#8211;Warshall solves the <b>All-Pairs Shortest Path (APSP)</b> problem using <b>dynamic programming</b>.</li>
+    <li>Recurrence: <code>D<sup>k</sup>[i][j] = min(D<sup>k&#8722;1</sup>[i][j], D<sup>k&#8722;1</sup>[i][k] + D<sup>k&#8722;1</sup>[k][j])</code>.</li>
+    <li>Time <b>&#920;(V&#179;)</b> in all cases; space <b>&#920;(V&#178;)</b>.</li>
+    <li>Works with negative edges, <b>not</b> with negative cycles. Negative cycle &#8660; negative diagonal entry.</li>
+    <li>The <b>k loop must be outermost</b>. In phase k, row k and column k do not change (no negative cycle &#8658; D[k][k] = 0).</li>
+    <li>For n vertices you draw n + 1 matrices: D<sup>(0)</sup> &#8230; D<sup>(n)</sup>.</li>
+    <li>Warshall's algorithm (transitive closure) is the Boolean version.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s6" data-title="Python implementation">
+  <div class="fw-sec-head"><div class="fw-num">6</div><h2>Python Implementation</h2></div>
+  <p>All four programs below are complete and runnable (Python 3.6+). The outputs shown are the actual outputs of the programs. Use the tabs to switch between them and the <b>Copy</b> button to copy the code.</p>
+
+  <div class="fw-tabs" data-group="code">
+    <button class="fw-tab on" data-pane="fw-p1">1 &#183; Basic (with D<sup>(k)</sup> trace)</button>
+    <button class="fw-tab" data-pane="fw-p2">2 &#183; Path reconstruction</button>
+    <button class="fw-tab" data-pane="fw-p3">3 &#183; Negative cycle check</button>
+    <button class="fw-tab" data-pane="fw-p4">4 &#183; Warshall (reachability)</button>
+  </div>
+
+  <div class="fw-pane on" id="fw-p1">
+    <div class="fw-code"><div class="fw-code-bar"><span>floyd_warshall.py</span><button class="fw-copy">Copy</button></div><pre><code class="py"># Floyd&#8211;Warshall Algorithm: All-Pairs Shortest Paths
+# Prints the distance matrix after every phase k (D0, D1, ... Dn).
+
+INF = float('inf')          # "no edge" / "no path known yet"
+
+
+def print_matrix(D, names, title):
+    print(title)
+    print("     " + "".join(f"{v:&gt;5}" for v in names))
+    for i, row in enumerate(D):
+        cells = "".join(f"{('&#8734;' if x == INF else x):&gt;5}" for x in row)
+        print(f"{names[i]:&gt;5}" + cells)
+    print()
+
+
+def floyd_warshall(n, edges, names):
+    # Step 1: build the initial distance matrix D0
+    D = [[0 if i == j else INF for j in range(n)] for i in range(n)]
+    for u, v, w in edges:
+        D[u][v] = min(D[u][v], w)        # keep the lightest parallel edge
+    print_matrix(D, names, "D0 (direct edges only)")
+
+    # Step 2: allow vertex k as an intermediate vertex, one k at a time
+    for k in range(n):                   # k MUST be the outermost loop
+        for i in range(n):
+            for j in range(n):
+                if D[i][k] + D[k][j] &lt; D[i][j]:
+                    D[i][j] = D[i][k] + D[k][j]
+        print_matrix(D, names, f"D{k + 1} (intermediate vertices allowed: "
+                               f"{', '.join(names[:k + 1])})")
+    return D
+
+
+if __name__ == "__main__":
+    names = ["A", "B", "C", "D"]
+    # (from, to, weight)  &#8212; directed graph with one negative edge
+    edges = [(0, 1, 7), (0, 3, 1), (1, 0, -1),
+             (2, 0, 3), (2, 1, 1), (3, 2, 1)]
+    floyd_warshall(len(names), edges, names)</code></pre></div>
+    <div class="fw-code fw-out"><div class="fw-code-bar"><span>Output</span></div><pre>D0 (direct edges only)
+         A    B    C    D
+    A    0    7    &#8734;    1
+    B   -1    0    &#8734;    &#8734;
+    C    3    1    0    &#8734;
+    D    &#8734;    &#8734;    1    0
+
+D1 (intermediate vertices allowed: A)
+         A    B    C    D
+    A    0    7    &#8734;    1
+    B   -1    0    &#8734;    0
+    C    3    1    0    4
+    D    &#8734;    &#8734;    1    0
+
+D2 (intermediate vertices allowed: A, B)
+         A    B    C    D
+    A    0    7    &#8734;    1
+    B   -1    0    &#8734;    0
+    C    0    1    0    1
+    D    &#8734;    &#8734;    1    0
+
+D3 (intermediate vertices allowed: A, B, C)
+         A    B    C    D
+    A    0    7    &#8734;    1
+    B   -1    0    &#8734;    0
+    C    0    1    0    1
+    D    1    2    1    0
+
+D4 (intermediate vertices allowed: A, B, C, D)
+         A    B    C    D
+    A    0    3    2    1
+    B   -1    0    1    0
+    C    0    1    0    1
+    D    1    2    1    0</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li><code>INF = float('inf')</code> represents &#8220;no edge&#8221;. Python handles <code>inf + x = inf</code> correctly, even for negative x.</li>
+      <li><b>Initialisation</b> builds D<sup>(0)</sup>: 0 on the diagonal, &#8734; elsewhere, then fills in the edge weights. <code>min()</code> keeps the lightest of any parallel edges.</li>
+      <li>The <b>triple loop</b> is the algorithm. The <code>k</code> loop is outermost, as required.</li>
+      <li>The matrix is printed after each phase so you can compare it with the worked example in Section 3.4 &#8212; they match exactly.</li>
+    </ul>
+  </div>
+
+  <div class="fw-pane" id="fw-p2">
+    <div class="fw-code"><div class="fw-code-bar"><span>fw_path.py</span><button class="fw-copy">Copy</button></div><pre><code class="py"># Floyd&#8211;Warshall with Path Reconstruction
+# nxt[i][j] stores the NEXT vertex to visit after i on the shortest path i -&gt; j.
+
+INF = float('inf')
+
+
+def floyd_warshall_with_path(n, edges):
+    D = [[0 if i == j else INF for j in range(n)] for i in range(n)]
+    nxt = [[j if i == j else None for j in range(n)] for i in range(n)]
+
+    for u, v, w in edges:
+        if w &lt; D[u][v]:
+            D[u][v] = w
+            nxt[u][v] = v            # direct edge: next hop is v itself
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if D[i][k] + D[k][j] &lt; D[i][j]:
+                    D[i][j] = D[i][k] + D[k][j]
+                    nxt[i][j] = nxt[i][k]   # first go towards k
+    return D, nxt
+
+
+def get_path(nxt, u, v):
+    """Return the list of vertices on the shortest path u -&gt; v."""
+    if nxt[u][v] is None:
+        return []                     # v is unreachable from u
+    path = [u]
+    while u != v:
+        u = nxt[u][v]
+        path.append(u)
+    return path
+
+
+if __name__ == "__main__":
+    names = ["A", "B", "C", "D"]
+    edges = [(0, 1, 7), (0, 3, 1), (1, 0, -1),
+             (2, 0, 3), (2, 1, 1), (3, 2, 1)]
+    n = len(names)
+    D, nxt = floyd_warshall_with_path(n, edges)
+
+    for s in range(n):
+        for t in range(n):
+            if s != t:
+                p = get_path(nxt, s, t)
+                route = " -&gt; ".join(names[x] for x in p) if p else "no path"
+                print(f"{names[s]} to {names[t]}: cost = {D[s][t]:&gt;2}   path: {route}")</code></pre></div>
+    <div class="fw-code fw-out"><div class="fw-code-bar"><span>Output</span></div><pre>A to B: cost =  3   path: A -&gt; D -&gt; C -&gt; B
+A to C: cost =  2   path: A -&gt; D -&gt; C
+A to D: cost =  1   path: A -&gt; D
+B to A: cost = -1   path: B -&gt; A
+B to C: cost =  1   path: B -&gt; A -&gt; D -&gt; C
+B to D: cost =  0   path: B -&gt; A -&gt; D
+C to A: cost =  0   path: C -&gt; B -&gt; A
+C to B: cost =  1   path: C -&gt; B
+C to D: cost =  1   path: C -&gt; B -&gt; A -&gt; D
+D to A: cost =  1   path: D -&gt; C -&gt; B -&gt; A
+D to B: cost =  2   path: D -&gt; C -&gt; B
+D to C: cost =  1   path: D -&gt; C</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li><code>nxt[i][j]</code> is the first step on the best known path from i to j. For a direct edge, it is simply j.</li>
+      <li>When the path through k is better, the first step from i towards j becomes the first step from i towards k: <code>nxt[i][j] = nxt[i][k]</code>.</li>
+      <li><code>get_path</code> follows the <code>nxt</code> pointers from u until it reaches v. It returns an empty list when v is unreachable.</li>
+      <li>Notice <b>A &#8594; B</b> costs 3 using the route A &#8594; D &#8594; C &#8594; B, not the direct edge of weight 7.</li>
+    </ul>
+  </div>
+
+  <div class="fw-pane" id="fw-p3">
+    <div class="fw-code"><div class="fw-code-bar"><span>fw_negative_cycle.py</span><button class="fw-copy">Copy</button></div><pre><code class="py"># Detecting a Negative-Weight Cycle with Floyd&#8211;Warshall
+# After the algorithm, if D[v][v] &lt; 0 for any v, then v lies on
+# (or can reach and return through) a negative cycle.
+
+INF = float('inf')
+
+
+def floyd_warshall(n, edges):
+    D = [[0 if i == j else INF for j in range(n)] for i in range(n)]
+    for u, v, w in edges:
+        D[u][v] = min(D[u][v], w)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if D[i][k] + D[k][j] &lt; D[i][j]:
+                    D[i][j] = D[i][k] + D[k][j]
+    return D
+
+
+def has_negative_cycle(D):
+    return any(D[v][v] &lt; 0 for v in range(len(D)))
+
+
+if __name__ == "__main__":
+    names = ["P", "Q", "R"]
+    # Cycle P -&gt; Q -&gt; R -&gt; P has total weight 2 + 3 + (-6) = -1
+    edges = [(0, 1, 2), (1, 2, 3), (2, 0, -6)]
+    D = floyd_warshall(3, edges)
+
+    print("Diagonal entries:", {names[v]: D[v][v] for v in range(3)})
+    if has_negative_cycle(D):
+        bad = [names[v] for v in range(3) if D[v][v] &lt; 0]
+        print("Negative cycle detected! Vertices affected:", ", ".join(bad))
+        print("Shortest distances are NOT defined for this graph.")
+    else:
+        print("No negative cycle. Distances are valid.")</code></pre></div>
+    <div class="fw-code fw-out"><div class="fw-code-bar"><span>Output</span></div><pre>Diagonal entries: {'P': -1, 'Q': -1, 'R': -2}
+Negative cycle detected! Vertices affected: P, Q, R
+Shortest distances are NOT defined for this graph.</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>The cycle P &#8594; Q &#8594; R &#8594; P has total weight 2 + 3 &#8722; 6 = &#8722;1.</li>
+      <li>After the algorithm, a vertex on a negative cycle can &#8220;reach itself&#8221; with negative cost, so its diagonal entry becomes negative.</li>
+      <li>R shows &#8722;2 because the algorithm keeps updating with already-improved values; the exact negative numbers are meaningless &#8212; only the <b>sign</b> matters.</li>
+    </ul>
+  </div>
+
+  <div class="fw-pane" id="fw-p4">
+    <div class="fw-code"><div class="fw-code-bar"><span>warshall_closure.py</span><button class="fw-copy">Copy</button></div><pre><code class="py"># Warshall's Algorithm: Transitive Closure (Reachability Matrix)
+# R[i][j] = 1 if there is ANY path from i to j, otherwise 0.
+# Same triple loop as Floyd&#8211;Warshall, but uses OR / AND instead of min / +.
+
+
+def warshall(adj):
+    n = len(adj)
+    R = [row[:] for row in adj]           # copy the adjacency matrix
+    for i in range(n):
+        R[i][i] = 1                       # every vertex reaches itself
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                R[i][j] = R[i][j] or (R[i][k] and R[k][j])
+    return R
+
+
+if __name__ == "__main__":
+    names = ["1", "2", "3", "4"]
+    #        1  2  3  4
+    adj = [[0, 1, 0, 0],    # 1 -&gt; 2
+           [0, 0, 1, 0],    # 2 -&gt; 3
+           [0, 0, 0, 0],    # 3 has no outgoing edge
+           [1, 0, 0, 0]]    # 4 -&gt; 1
+    R = warshall(adj)
+    print("Reachability matrix:")
+    print("   " + " ".join(names))
+    for i in range(4):
+        print(names[i] + "  " + " ".join(str(int(x)) for x in R[i]))</code></pre></div>
+    <div class="fw-code fw-out"><div class="fw-code-bar"><span>Output</span></div><pre>Reachability matrix:
+   1 2 3 4
+1  1 1 1 0
+2  0 1 1 0
+3  0 0 1 0
+4  1 1 1 1</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>Same three loops, but with Boolean operations: &#8220;i reaches j&#8221; if it already did, <b>or</b> if i reaches k <b>and</b> k reaches j.</li>
+      <li>Vertex 4 reaches everything (4 &#8594; 1 &#8594; 2 &#8594; 3), while vertex 3 reaches only itself.</li>
+      <li>Here we set R[i][i] = 1 (reflexive closure). Some textbooks leave the diagonal as computed; check your syllabus convention.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="fw-sec fw-slide" id="fw-s7" data-title="Practice &amp; quiz">
+  <div class="fw-sec-head"><div class="fw-num">7</div><h2>Practice &amp; Assessment</h2></div>
+  <p>Try each question yourself first, then open the answer.</p>
+
+  <h3>7.1 Conceptual questions</h3>
+  <details><summary>Q1. What is the all-pairs shortest path problem? Name an algorithm that solves it.</summary><div class="ans">Find the shortest distance &#948;(u, v) for <b>every</b> ordered pair of vertices (u, v) in a weighted graph. Floyd&#8211;Warshall solves it in &#920;(V&#179;) time.</div></details>
+  <details><summary>Q2. Why is Floyd&#8211;Warshall called a dynamic programming algorithm?</summary><div class="ans">It solves the problem using smaller overlapping subproblems &#8212; &#8220;shortest path from i to j using only vertices 1&#8230;k&#8221; &#8212; and builds the answer for k from the stored answers for k &#8722; 1. Shortest paths have <b>optimal substructure</b>, which makes this valid.</div></details>
+  <details><summary>Q3. Why must the k loop be the outermost loop?</summary><div class="ans">D<sup>(k)</sup> must be built entirely from D<sup>(k&#8722;1)</sup>. With k outermost, every D[i][k] and D[k][j] is already final for &#8220;intermediate vertices 1&#8230;k&#8722;1&#8221; before any cell is updated through k. If k is innermost, D[i][j] is fixed before the paths it depends on are computed, giving wrong answers.</div></details>
+  <details><summary>Q4. Can Floyd&#8211;Warshall handle negative edges? Negative cycles?</summary><div class="ans">Negative edges: <b>yes</b>. Negative cycles: <b>no</b> &#8212; shortest paths are undefined, but the algorithm can <b>detect</b> them (some D[v][v] &lt; 0 at the end).</div></details>
+  <details><summary>Q5. When would you choose Dijkstra over Floyd&#8211;Warshall?</summary><div class="ans">When all weights are non-negative and you need distances from one (or a few) sources, especially in a large sparse graph. Dijkstra with a heap takes O((V + E) log V) per source, much less than &#920;(V&#179;).</div></details>
+
+  <h3>7.2 Trace-based question</h3>
+  <p>Trace Floyd&#8211;Warshall on the directed graph with vertices P, Q, R and edges P&#8594;Q (5), P&#8594;R (9), Q&#8594;R (2), R&#8594;P (&#8722;1), R&#8594;Q (4). Write D<sup>(0)</sup> to D<sup>(3)</sup>.</p>
+  <svg class="fw-graph" id="fw-trace-graph" viewBox="0 0 420 300" style="max-width:380px;margin:8px auto"></svg>
+  <details><summary>Show answer</summary><div class="ans">
+    <div class="fw-mats" id="fw-trace-ans"></div>
+    <p><b>Note:</b> D<sup>(1)</sup> is unchanged. Through P, R &#8594; P &#8594; Q costs &#8722;1 + 5 = 4, which <i>equals</i> the existing 4 &#8212; not strictly smaller, so no update. In phase Q, P &#8594; Q &#8594; R = 5 + 2 = 7 &lt; 9. In phase R, Q &#8594; R &#8594; P = 2 &#8722; 1 = 1 &lt; &#8734;.</p>
+  </div></details>
+
+  <h3>7.3 Output-prediction question</h3>
+  <div class="fw-code"><div class="fw-code-bar"><span>predict.py</span></div><pre><code class="py">INF = float('inf')
+D = [[0,   3,   INF],
+     [INF, 0,   -2 ],
+     [4,   INF, 0  ]]
+n = 3
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+print(D[0][2], D[2][1])</code></pre></div>
+  <details><summary>Show answer</summary><div class="ans"><p>Output: <code>1 7</code></p><p>D[0][2]: 0 &#8594; 1 &#8594; 2 costs 3 + (&#8722;2) = 1. D[2][1]: 2 &#8594; 0 &#8594; 1 costs 4 + 3 = 7. (Final matrix: [[0, 3, 1], [2, 0, &#8722;2], [4, 7, 0]].)</p></div></details>
+
+  <h3>7.4 Diagram-identification question</h3>
+  <p>Which of these two graphs will produce a <b>negative value on the diagonal</b> after running Floyd&#8211;Warshall? Explain why.</p>
+  <div class="fw-two">
+    <div><svg class="fw-graph" id="fw-g1" viewBox="0 0 420 300"></svg><p style="text-align:center;font-weight:700;margin-top:6px">Graph G1</p></div>
+    <div><svg class="fw-graph" id="fw-g2" viewBox="0 0 420 300"></svg><p style="text-align:center;font-weight:700;margin-top:6px">Graph G2</p></div>
+  </div>
+  <details><summary>Show answer</summary><div class="ans"><p><b>G2.</b> Its cycle 1 &#8594; 2 &#8594; 3 &#8594; 1 has weight 4 + (&#8722;3) + (&#8722;2) = <b>&#8722;1</b> &lt; 0, a negative cycle, so every diagonal entry becomes negative (we got &#8722;1, &#8722;1, &#8722;2).</p><p>G1's cycle weighs 4 &#8722; 3 + 1 = 2 &gt; 0. Even though it has a negative edge, there is no negative cycle, so its diagonal stays 0.</p></div></details>
+
+  <h3>7.5 Programming exercises</h3>
+  <ol>
+    <li>Modify Program 2 to print the full route for every pair in the <b>5-vertex road network</b> preset.</li>
+    <li><b>Graph centre:</b> after running Floyd&#8211;Warshall on an undirected road network, find the vertex whose largest distance to any other vertex is the smallest (best place for a hospital).</li>
+    <li>Extend Program 3 so that every pair (i, j) whose path can pass through a negative cycle is marked as <code>-inf</code>. <i>Hint: (i, j) is affected if some k has D[i][k] &lt; &#8734;, D[k][k] &lt; 0 and D[k][j] &lt; &#8734;.</i></li>
+    <li>Write a function that returns the <b>diameter</b> of a graph (the largest finite shortest-path distance).</li>
+    <li>Implement Floyd&#8211;Warshall that also counts how many cells were updated in each phase. Run it on the worked example and check you get 2, 2, 2, 3.</li>
+    <li>Use Python's <code>time</code> module to compare Floyd&#8211;Warshall with running Dijkstra from every vertex on random graphs of 50, 100 and 200 vertices (non-negative weights). Which is faster for dense graphs? For sparse graphs?</li>
+  </ol>
+
+  <h3>7.6 Quick quiz</h3>
+  <div id="fw-quiz"></div>
+  <div class="fw-score"><span id="fw-quiz-score">Score: 0 / 8</span><button class="fw-btn ghost" id="fw-quiz-reset">Try again</button></div>
+</section>
+
+<div class="fw-slide-foot"><button class="fw-btn ghost" id="fw-foot-prev">&#8592; Previous</button><button class="fw-btn" id="fw-foot-next">Next &#8594;</button></div>
+
+<p class="fw-foot">Next in the series: <b>Minimum Spanning Trees</b> &#8212; Prim's and Kruskal's algorithms.</p>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById("fwb");
+  if (!root) return;
+  var INF = Infinity;
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var LET = "ABCDEF";
+
+  function $(id){ return document.getElementById(id); }
+  function fmt(x){ return x === INF ? "\u221E" : (x === -INF ? "\u2212\u221E" : (x < 0 ? "\u2212" + (-x) : String(x))); }
+  function mk(tag, attrs, parent){
+    var el = document.createElementNS(SVGNS, tag);
+    for (var a in attrs) el.setAttribute(a, attrs[a]);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/[<]/g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ---------------- graph presets ---------------- */
+  function G(names, edges){
+    var n = names.length, W = [];
+    for (var i=0;i<n;i++){ W.push([]); for (var j=0;j<n;j++) W[i].push(i===j?0:INF); }
+    edges.forEach(function(e){ W[e[0]][e[1]] = Math.min(W[e[0]][e[1]], e[2]); });
+    return {n:n, names:names, W:W};
+  }
+  var PRESETS = {
+    ex:   function(){ return G(["A","B","C","D"], [[0,1,7],[0,3,1],[1,0,-1],[2,0,3],[2,1,1],[3,2,1]]); },
+    five: function(){ return G(["A","B","C","D","E"], [[0,1,2],[1,2,4],[2,3,1],[3,4,3],[4,0,2],[0,2,7],[1,4,9],[3,1,-2],[2,0,5]]); },
+    neg:  function(){ return G(["P","Q","R"], [[0,1,2],[1,2,3],[2,0,-6]]); },
+    disc: function(){ return G(["A","B","C","D"], [[0,1,4],[1,0,2],[2,3,1]]); }
+  };
+  function cloneG(g){ return {n:g.n, names:g.names.slice(), W:g.W.map(function(r){return r.slice();})}; }
+
+  /* ---------------- graph drawing ---------------- */
+  var uid = 0;
+  function drawGraph(svg, g, opt){
+    opt = opt || {};
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var vb = svg.viewBox.baseVal, Wd = vb.width, Ht = vb.height;
+    var cx = Wd/2, cy = Ht/2, R = Math.min(Wd, Ht)/2 - 48, r = 21;
+    var n = g.n, pos = [], id = "fwm" + (uid++);
+    for (var i=0;i<n;i++){
+      var ang = -Math.PI/2 - Math.PI/n + 2*Math.PI*i/n;
+      if (n === 3) ang = -Math.PI/2 + 2*Math.PI*i/n;
+      pos.push([cx + R*Math.cos(ang), cy + R*Math.sin(ang)]);
+    }
+    var defs = mk("defs", {}, svg);
+    [["n","#8d91a8"],["neg","#c92a2a"],["h","#f59f00"],["p","#0f766e"],["a","#2563eb"],["b","#15803d"],["c","#9aa0b8"]].forEach(function(m){
+      var mm = mk("marker", {id:id+m[0], viewBox:"0 0 10 10", refX:"9", refY:"5", markerWidth:"6.5", markerHeight:"6.5", orient:"auto-start-reverse"}, defs);
+      mk("path", {d:"M0 0L10 5L0 10z", fill:m[1]}, mm);
+    });
+    function curve(u, v, bend, shrinkEnd){
+      var x1=pos[u][0], y1=pos[u][1], x2=pos[v][0], y2=pos[v][1];
+      var dx=x2-x1, dy=y2-y1, L=Math.sqrt(dx*dx+dy*dy)||1, nx=-dy/L, ny=dx/L;
+      var mx=(x1+x2)/2+nx*bend, my=(y1+y2)/2+ny*bend;
+      var a1=Math.atan2(my-y1,mx-x1), a2=Math.atan2(my-y2,mx-x2);
+      var sx=x1+r*Math.cos(a1), sy=y1+r*Math.sin(a1);
+      var ex=x2+(r+(shrinkEnd||2))*Math.cos(a2), ey=y2+(r+(shrinkEnd||2))*Math.sin(a2);
+      return {d:"M"+sx.toFixed(1)+" "+sy.toFixed(1)+" Q"+mx.toFixed(1)+" "+my.toFixed(1)+" "+ex.toFixed(1)+" "+ey.toFixed(1),
+              lx:(x1+x2)/2+nx*(bend*0.5+ (bend>=0?14:-14)), ly:(y1+y2)/2+ny*(bend*0.5+(bend>=0?14:-14)), mx:mx, my:my};
+    }
+    var fade = opt.overlay && opt.overlay.length ? {"class":"faded"} : {};
+    var edgesG = mk("g", fade, svg), labG = mk("g", fade, svg), ovG = mk("g", {}, svg), vG = mk("g", {}, svg);
+    var edgeEls = {};
+    var pathSet = {};
+    (opt.path || []).forEach(function(v, idx, arr){ if (idx < arr.length-1) pathSet[v+"-"+arr[idx+1]] = true; });
+    for (var u=0;u<n;u++) for (var v=0;v<n;v++){
+      if (u===v || g.W[u][v]===INF) continue;
+      var both = g.W[v][u] !== INF;
+      var c = curve(u, v, both ? 22 : 0);
+      var neg = g.W[u][v] < 0;
+      var cls = "e" + (neg ? " neg":"") + (pathSet[u+"-"+v] ? " path" : "") + ((opt.path && opt.path.length && !pathSet[u+"-"+v]) ? " dim" : "");
+      var eg = mk("g", {"class":cls}, edgesG);
+      var mkr = pathSet[u+"-"+v] ? "p" : (neg ? "neg" : "n");
+      var p = mk("path", {d:c.d, "marker-end":"url(#"+id+mkr+")"}, eg);
+      edgeEls[u+"-"+v] = {g:eg, p:p, id:id, neg:neg};
+      var lg = mk("g", {"class":"elab"+(neg?" neg":"")}, labG);
+      var txt = fmt(g.W[u][v]);
+      var lx = both ? c.lx : (pos[u][0]+pos[v][0])/2, ly = both ? c.ly : (pos[u][1]+pos[v][1])/2;
+      var w = 10 + txt.length*8.5;
+      mk("rect", {x:(lx-w/2).toFixed(1), y:(ly-11).toFixed(1), width:w, height:22, rx:6}, lg);
+      var t = mk("text", {x:lx.toFixed(1), y:ly.toFixed(1)}, lg); t.textContent = txt;
+    }
+    if (opt.overlay){
+      opt.overlay.forEach(function(o){
+        if (o.from===o.to) return;
+        var c = curve(o.from, o.to, o.bend||0, 3);
+        var og = mk("g", {"class":"ov "+o.cls}, ovG);
+        mk("path", {d:c.d, "marker-end":"url(#"+id+o.cls+")"}, og);
+        var t = mk("text", {x:c.mx.toFixed(1), y:(c.my - 4).toFixed(1)}, og); t.textContent = o.label;
+        var bb; try { bb = t.getBBox(); } catch(e) { bb = null; }
+        if (bb){ var bg = mk("rect", {x:bb.x-4, y:bb.y-2, width:bb.width+8, height:bb.height+4, rx:5, fill:"#fff", opacity:".92"}); og.insertBefore(bg, t); }
+      });
+    }
+    for (var i2=0;i2<n;i2++){
+      var cl = "v";
+      if (opt.vcls && opt.vcls[i2]) cl += " " + opt.vcls[i2];
+      if (opt.path && opt.path.indexOf(i2) >= 0) cl += " onpath";
+      var vg = mk("g", {"class":cl}, vG);
+      mk("circle", {cx:pos[i2][0].toFixed(1), cy:pos[i2][1].toFixed(1), r:r}, vg);
+      var tt = mk("text", {x:pos[i2][0].toFixed(1), y:pos[i2][1].toFixed(1)}, vg); tt.textContent = g.names[i2];
+    }
+    return {edges:edgeEls};
+  }
+  function hoverEdge(ret, key, on){
+    var e = ret && ret.edges[key]; if (!e) return;
+    if (on){ e.g.setAttribute("class", e.g.getAttribute("class") + " hov"); e.p.setAttribute("marker-end","url(#"+e.id+"h)"); }
+    else { e.g.setAttribute("class", e.g.getAttribute("class").replace(/ hov/g,"")); e.p.setAttribute("marker-end","url(#"+e.id+(e.neg?"neg":"n")+")"); }
+  }
+
+  /* ---------------- Floyd\u2013Warshall core ---------------- */
+  function fwFull(g){
+    var n=g.n, D=g.W.map(function(r){return r.slice();});
+    for (var k=0;k<n;k++) for (var i=0;i<n;i++) for (var j=0;j<n;j++)
+      if (D[i][k] + D[k][j] < D[i][j]) D[i][j] = D[i][k] + D[k][j];
+    return D;
+  }
+  function fwPhases(g){
+    var n=g.n, D=g.W.map(function(r){return r.slice();}), out=[{D:D.map(function(r){return r.slice();}), chg:[]}];
+    for (var k=0;k<n;k++){
+      var chg=[];
+      for (var i=0;i<n;i++) for (var j=0;j<n;j++)
+        if (D[i][k] + D[k][j] < D[i][j]){ chg.push([i,j,D[i][j],D[i][k]+D[k][j]]); D[i][j] = D[i][k] + D[k][j]; }
+      out.push({D:D.map(function(r){return r.slice();}), chg:chg, k:k});
+    }
+    return out;
+  }
+  function matHTML(g, D, opt){
+    opt = opt || {};
+    var n=g.n, h = "<table class='fw-mat'><tr><th><\/th>";
+    for (var j=0;j<n;j++) h += "<th"+(opt.k===j?" class='kh'":"")+">"+g.names[j]+"<\/th>";
+    h += "<\/tr>";
+    for (var i=0;i<n;i++){
+      h += "<tr><th"+(opt.k===i?" class='kh'":"")+">"+g.names[i]+"<\/th>";
+      for (var j2=0;j2<n;j2++){
+        var cls = [];
+        if (opt.k!==undefined && opt.k!==null){ if (i===opt.k) cls.push("krow"); if (j2===opt.k) cls.push("kcol"); }
+        if (opt.chg && opt.chg[i+","+j2]) cls.push("chg");
+        if (opt.negd && i===j2 && D[i][j2] < 0) cls.push("negd");
+        if (opt.tgt && opt.tgt[0]===i && opt.tgt[1]===j2){ cls.push("tgt"); if (opt.upd) cls.push("upd"); }
+        if (opt.s && ((opt.s[0][0]===i && opt.s[0][1]===j2) || (opt.s[1][0]===i && opt.s[1][1]===j2))) cls.push("s1");
+        var inner = fmt(D[i][j2]);
+        if (opt.tgt && opt.upd && opt.tgt[0]===i && opt.tgt[1]===j2) inner = "<span class='old'>"+fmt(opt.old)+"<\/span>"+inner;
+        h += "<td class='"+cls.join(" ")+"'>"+inner+"<\/td>";
+      }
+      h += "<\/tr>";
+    }
+    return h + "<\/table>";
+  }
+
+  /* ---------------- static figures ---------------- */
+  drawGraph($("fw-intro-graph"), PRESETS.ex());
+  drawGraph($("fw-dij-graph"), G(["S","A","B"], [[0,1,2],[0,2,5],[2,1,-4]]));
+  var traceG = G(["P","Q","R"], [[0,1,5],[0,2,9],[1,2,2],[2,0,-1],[2,1,4]]);
+  drawGraph($("fw-trace-graph"), traceG);
+  (function(){
+    var ph = fwPhases(traceG), box = $("fw-trace-ans"), h = "";
+    ph.forEach(function(p, idx){
+      var chg = {}; p.chg.forEach(function(c){ chg[c[0]+","+c[1]] = 1; });
+      h += "<div class='fw-mat-card'><h4>D<sup>("+idx+")<\/sup><\/h4><div class='sub'>"+(idx===0?"Direct edges":"Through "+traceG.names[idx-1]+" \u2014 "+p.chg.length+" update(s)")+"<\/div>"+matHTML(traceG, p.D, {k: idx===0?null:idx-1, chg:chg})+"<\/div>";
+    });
+    box.innerHTML = h;
+  })();
+  drawGraph($("fw-g1"), G(["1","2","3"], [[0,1,4],[1,2,-3],[2,0,1]]));
+  drawGraph($("fw-g2"), G(["1","2","3"], [[0,1,4],[1,2,-3],[2,0,-2]]));
+
+  /* ---------------- LAB ---------------- */
+  var lab = {g: PRESETS.ex(), ret:null};
+  function parseW(s){
+    s = String(s).trim().toLowerCase().replace("\u2212","-");
+    if (s===""||s==="\u221E"||s==="inf"||s==="infinity"||s==="-") return INF;
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return NaN;
+    return parseFloat(s);
+  }
+  function labBuildTable(){
+    var g = lab.g, t = $("fw-lab-mat"), h = "<tr><th>\u2192<\/th>";
+    for (var j=0;j<g.n;j++) h += "<th>"+g.names[j]+"<\/th>";
+    h += "<\/tr>";
+    for (var i=0;i<g.n;i++){
+      h += "<tr><th>"+g.names[i]+"<\/th>";
+      for (var j2=0;j2<g.n;j2++){
+        var v = i===j2 ? "0" : (g.W[i][j2]===INF ? "" : String(g.W[i][j2]));
+        h += "<td><input type='text' data-i='"+i+"' data-j='"+j2+"' value='"+v+"'"+(i===j2?" disabled":"")+" placeholder='\u221E' aria-label='weight "+g.names[i]+" to "+g.names[j2]+"'><\/td>";
+      }
+      h += "<\/tr>";
+    }
+    t.innerHTML = h;
+    labRedraw();
+  }
+  function labRedraw(){
+    var g = lab.g;
+    lab.ret = drawGraph($("fw-lab-graph"), g);
+    var e=0, neg=0;
+    for (var i=0;i<g.n;i++) for (var j=0;j<g.n;j++) if (i!==j && g.W[i][j]!==INF){ e++; if (g.W[i][j]<0) neg++; }
+    var maxE = g.n*(g.n-1);
+    var D = fwFull(g), nc = false;
+    for (var v=0;v<g.n;v++) if (D[v][v]<0) nc = true;
+    $("fw-lab-stat").innerHTML = "V = "+g.n+",  E = "+e+",  density = "+(e/maxE*100).toFixed(0)+"%<br>negative edges: "+neg+
+      "<br>negative cycle: <b style='color:"+(nc?"#c92a2a":"#15803d")+"'>"+(nc?"YES \u2014 distances undefined":"no")+"<\/b>";
+  }
+  $("fw-lab-mat").addEventListener("input", function(ev){
+    var inp = ev.target; if (!inp.dataset) return;
+    var i = +inp.dataset.i, j = +inp.dataset.j, v = parseW(inp.value);
+    if (isNaN(v)){ inp.className = "bad"; return; }
+    inp.className = ""; lab.g.W[i][j] = v; labRedraw();
+  });
+  $("fw-lab-mat").addEventListener("mouseover", function(ev){
+    var t = ev.target; if (t.tagName!=="INPUT") return;
+    hoverEdge(lab.ret, t.dataset.i+"-"+t.dataset.j, true);
+  });
+  $("fw-lab-mat").addEventListener("mouseout", function(ev){
+    var t = ev.target; if (t.tagName!=="INPUT") return;
+    hoverEdge(lab.ret, t.dataset.i+"-"+t.dataset.j, false);
+  });
+  function emptyG(n){ return G(LET.slice(0,n).split(""), []); }
+  $("fw-lab-n").addEventListener("change", function(){
+    var n = +this.value, old = lab.g, g = emptyG(n);
+    for (var i=0;i<Math.min(n,old.n);i++) for (var j=0;j<Math.min(n,old.n);j++) g.W[i][j] = old.W[i][j];
+    lab.g = g; labBuildTable();
+  });
+  $("fw-lab-load").addEventListener("click", function(){
+    lab.g = PRESETS[$("fw-lab-preset").value](); $("fw-lab-n").value = String(lab.g.n); labBuildTable();
+  });
+  $("fw-lab-clear").addEventListener("click", function(){ lab.g = emptyG(lab.g.n); labBuildTable(); });
+  $("fw-lab-rand").addEventListener("click", function(){
+    var n = lab.g.n, g, tries = 0;
+    do {
+      g = emptyG(n);
+      for (var i=0;i<n;i++) for (var j=0;j<n;j++) if (i!==j && Math.random() < 0.4) g.W[i][j] = 1 + Math.floor(Math.random()*9);
+      var es = []; for (var a=0;a<n;a++) for (var b=0;b<n;b++) if (a!==b && g.W[a][b]!==INF) es.push([a,b]);
+      if (es.length){ var pick = es[Math.floor(Math.random()*es.length)]; g.W[pick[0]][pick[1]] = -(1+Math.floor(Math.random()*3)); }
+      var D = fwFull(g), bad=false; for (var v=0;v<n;v++) if (D[v][v]<0) bad=true;
+      tries++;
+    } while (bad && tries < 50);
+    lab.g = g; labBuildTable();
+  });
+  $("fw-lab-send").addEventListener("click", function(){
+    if (window.fwGoTo) window.fwGoTo(3, true);
+    $("fw-viz-preset").value = "lab"; vizLoad();
+    $("fw-viz").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  labBuildTable();
+
+  /* ---------------- VISUALIZER ---------------- */
+  var viz = {g:null, steps:[], pos:0, timer:null, D:null, nxt:null};
+  var CODE = [
+    ["for k in range(n):", 0],
+    ["    for i in range(n):", 0],
+    ["        for j in range(n):", 0],
+    ["            if D[i][k] + D[k][j] < D[i][j]:", 0],
+    ["                D[i][j] = D[i][k] + D[k][j]", 0],
+    ["                nxt[i][j] = nxt[i][k]", 0]
+  ];
+  function vizLoad(){
+    vizStop();
+    var p = $("fw-viz-preset").value;
+    viz.g = p === "lab" ? cloneG(lab.g) : PRESETS[p]();
+    var n = viz.g.n, Dsim = viz.g.W.map(function(r){return r.slice();});
+    viz.steps = []; viz.skipped = 0;
+    for (var k=0;k<n;k++){
+      /* Row k and column k cannot change in phase k when D[k][k] = 0:
+         D[i][k] + D[k][k] = D[i][k]. Skip them only in that case.     */
+      var kkZero = Dsim[k][k] === 0;
+      for (var i=0;i<n;i++) for (var j=0;j<n;j++){
+        if (kkZero && (i===k || j===k)){ viz.skipped++; continue; }
+        viz.steps.push([k,i,j]);
+        if (Dsim[i][k] + Dsim[k][j] < Dsim[i][j]) Dsim[i][j] = Dsim[i][k] + Dsim[k][j];
+      }
+    }
+    var f = $("fw-viz-from"), t = $("fw-viz-to"), o = "";
+    for (var v=0;v<n;v++) o += "<option value='"+v+"'>"+viz.g.names[v]+"<\/option>";
+    f.innerHTML = o; t.innerHTML = o; t.value = String(n-1);
+    $("fw-viz-pathres").style.display = "none";
+    viz.path = null;
+    vizGo(0);
+  }
+  /* compute state after executing the first p comparisons */
+  function vizCompute(p){
+    var g = viz.g, n = g.n, D = g.W.map(function(r){return r.slice();}), nxt = [], log = [];
+    for (var i=0;i<n;i++){ nxt.push([]); for (var j=0;j<n;j++) nxt[i].push(i===j ? j : (g.W[i][j]!==INF ? j : null)); }
+    var last = null;
+    for (var s=0;s<p;s++){
+      var st = viz.steps[s], k=st[0], a=st[1], b=st[2];
+      var via = D[a][k] + D[k][b], old = D[a][b], upd = via < old;
+      last = {k:k, i:a, j:b, dik:D[a][k], dkj:D[k][b], via:via, old:old, upd:upd};
+      if (upd){ D[a][b] = via; nxt[a][b] = nxt[a][k]; log.push({s:s, k:k, i:a, j:b, old:old, nw:via}); }
+    }
+    return {D:D, nxt:nxt, last:last, log:log};
+  }
+  function willUpdate(p){
+    if (p >= viz.steps.length) return false;
+    var st = viz.steps[p], r = vizCompute(p);
+    return r.D[st[1]][st[0]] + r.D[st[0]][st[2]] < r.D[st[1]][st[2]];
+  }
+  function vizGo(p){
+    var total = viz.steps.length;
+    viz.pos = Math.max(0, Math.min(total, p));
+    var g = viz.g, n = g.n, nm = g.names, st = vizCompute(viz.pos), L = st.last;
+    viz.D = st.D; viz.nxt = st.nxt;
+    var done = viz.pos === total;
+    var curK = L ? L.k : null;
+    if (done) curK = null;
+    $("fw-viz-count").textContent = "comparison " + viz.pos + " / " + total;
+    $("fw-viz-bar").style.width = (total ? viz.pos/total*100 : 100) + "%";
+    var msg = $("fw-viz-msg"), mopt = {}, vcls = {}, ov = [], codeOn = [];
+    var negCycle = false; for (var v=0;v<n;v++) if (st.D[v][v] < 0) negCycle = true;
+    if (viz.pos === 0){
+      $("fw-viz-phase-lbl").innerHTML = "Initial matrix D<sup>(0)<\/sup>";
+      msg.className = "fw-msg";
+      msg.innerHTML = "This is <b>D<sup>(0)<\/sup><\/b>: direct edge weights only (0 on the diagonal, \u221E where there is no edge). Press <b>Step<\/b> to start phase k = <b>"+nm[0]+"<\/b>.<span class='calc'>Row k and column k cannot change in phase k (because D[k][k] = 0), so the visualizer skips those "+viz.skipped+" cells and shows the remaining "+total+" comparisons for n = "+n+".<\/span>";
+      mopt = {};
+    } else if (done){
+      $("fw-viz-phase-lbl").innerHTML = "Finished \u2014 final matrix D<sup>("+n+")<\/sup>";
+      msg.className = "fw-msg" + (negCycle ? " bad" : "");
+      msg.innerHTML = negCycle
+        ? "<b>Negative cycle detected!<\/b> Some diagonal entries (red) are negative, so shortest distances are <b>not defined<\/b> for this graph."
+        : "<b>Done.<\/b> D now holds the shortest distance between every pair. All diagonal entries are 0, so there is no negative cycle. Total updates: <b>"+st.log.length+"<\/b>. Try the path finder below.";
+      mopt = {negd:true};
+    } else {
+      $("fw-viz-phase-lbl").innerHTML = "Phase k = <em>"+nm[L.k]+"<\/em> &nbsp;<span style='font-weight:500;font-size:14px;color:var(--muted)'>(paths may now pass through "+nm.slice(0,L.k+1).join(", ")+")<\/span>";
+      msg.className = "fw-msg" + (L.upd ? " upd" : "");
+      var isDiag = L.i === L.j;
+      var calc = "D["+nm[L.i]+"]["+nm[L.k]+"] + D["+nm[L.k]+"]["+nm[L.j]+"] = "+fmt(L.dik)+" + "+fmt(L.dkj)+" = "+fmt(L.via);
+      msg.innerHTML = (isDiag ? "Diagonal check: can <b>"+nm[L.i]+"<\/b> go to <b>"+nm[L.k]+"<\/b> and come back with total cost below "+fmt(L.old)+"? (Only possible on a negative cycle.)" : "Is <b>"+nm[L.i]+" \u2192 "+nm[L.k]+" \u2192 "+nm[L.j]+"<\/b> shorter than the current best <b>"+nm[L.i]+" \u2192 "+nm[L.j]+"<\/b> = "+fmt(L.old)+"?")+
+        "<span class='calc'>"+calc+(L.upd ? "  &lt;  "+fmt(L.old)+"  \u2714 UPDATE D["+nm[L.i]+"]["+nm[L.j]+"] = "+fmt(L.via) : "  \u2265  "+fmt(L.old)+"  \u2718 keep "+fmt(L.old))+"<\/span>";
+      mopt = {k:L.k, tgt:[L.i,L.j], s:[[L.i,L.k],[L.k,L.j]], upd:L.upd, old:L.old};
+      vcls[L.i] = "src"; vcls[L.j] = "dst"; vcls[L.k] = "pivot";
+      ov = [{from:L.i, to:L.k, label:fmt(L.dik), cls:"a", bend:-30},{from:L.k, to:L.j, label:fmt(L.dkj), cls:"b", bend:-30},{from:L.i, to:L.j, label:fmt(L.old), cls:"c", bend:38}];
+      codeOn = L.upd ? [3,4,5] : [3];
+    }
+    $("fw-viz-mat").innerHTML = matHTML(g, st.D, mopt);
+    drawGraph($("fw-viz-graph"), g, {vcls:vcls, overlay:ov, path: viz.path});
+    var ch = "";
+    CODE.forEach(function(c, idx){ ch += "<div"+(codeOn.indexOf(idx)>=0?" class='on'":"")+"><span class='ln'>"+(idx+1)+"<\/span>"+esc(c[0])+"<\/div>"; });
+    $("fw-viz-code").innerHTML = ch;
+    var lg = "";
+    if (!st.log.length) lg = "<div style='color:var(--muted)'>No updates yet.<\/div>";
+    st.log.forEach(function(e, idx){
+      lg += "<div"+(idx===st.log.length-1 && L && L.upd ? " class='cur'" : "")+">k="+nm[e.k]+": D["+nm[e.i]+"]["+nm[e.j]+"] "+fmt(e.old)+" \u2192 "+fmt(e.nw)+"   (via "+nm[e.k]+")<\/div>";
+    });
+    var logEl = $("fw-viz-log"); logEl.innerHTML = lg; logEl.scrollTop = logEl.scrollHeight;
+    $("fw-viz-back").disabled = viz.pos === 0;
+    ["fw-viz-step","fw-viz-nextupd","fw-viz-phase","fw-viz-end"].forEach(function(id){ $(id).disabled = done; });
+    if (done) vizStop();
+    vizPredictPrompt();
+  }
+  function vizPredictPrompt(){
+    var box = $("fw-viz-pq");
+    $("fw-viz-pq-fb").textContent = "";
+    if (!$("fw-viz-predict").checked || viz.pos >= viz.steps.length){ box.className = "fw-predict"; return; }
+    var st = viz.steps[viz.pos], nm = viz.g.names, D = viz.D;
+    $("fw-viz-pq-txt").innerHTML = "Next: will D["+nm[st[1]]+"]["+nm[st[2]]+"] = "+fmt(D[st[1]][st[2]])+" improve via "+nm[st[0]]+"? ("+fmt(D[st[1]][st[0]])+" + "+fmt(D[st[0]][st[2]])+")";
+    box.className = "fw-predict on";
+  }
+  function vizAnswer(yes){
+    var will = willUpdate(viz.pos), ok = yes === will, fb = $("fw-viz-pq-fb");
+    vizGo(viz.pos + 1);
+    $("fw-viz-pq-fb").textContent = ok ? "\u2714 Correct!" : "\u2718 Not quite \u2014 read the explanation.";
+    $("fw-viz-pq-fb").style.color = ok ? "#15803d" : "#c92a2a";
+  }
+  function vizStop(){ if (viz.timer){ clearInterval(viz.timer); viz.timer = null; } $("fw-viz-play").textContent = "\u25B6 Play"; }
+  function vizPlay(){
+    if (viz.timer){ vizStop(); return; }
+    if (viz.pos >= viz.steps.length) vizGo(0);
+    var sp = +$("fw-viz-speed").value, ms = 1700 - sp*150;
+    $("fw-viz-play").textContent = "\u23F8 Pause";
+    viz.timer = setInterval(function(){ if (viz.pos >= viz.steps.length){ vizStop(); return; } vizGo(viz.pos+1); }, ms);
+  }
+  $("fw-viz-preset").addEventListener("change", vizLoad);
+  $("fw-viz-reset").addEventListener("click", function(){ vizStop(); viz.path=null; $("fw-viz-pathres").style.display="none"; vizGo(0); });
+  $("fw-viz-back").addEventListener("click", function(){ vizStop(); vizGo(viz.pos-1); });
+  $("fw-viz-step").addEventListener("click", function(){ vizStop(); vizGo(viz.pos+1); });
+  $("fw-viz-play").addEventListener("click", vizPlay);
+  $("fw-viz-speed").addEventListener("input", function(){ if (viz.timer){ vizStop(); vizPlay(); } });
+  $("fw-viz-nextupd").addEventListener("click", function(){
+    vizStop(); var p = viz.pos;
+    while (p < viz.steps.length && !willUpdate(p)) p++;
+    vizGo(Math.min(p+1, viz.steps.length));
+  });
+  $("fw-viz-phase").addEventListener("click", function(){
+    vizStop(); var p = viz.pos;
+    if (p >= viz.steps.length) return;
+    var k = viz.steps[p][0];
+    while (p < viz.steps.length && viz.steps[p][0] === k) p++;
+    vizGo(p);
+  });
+  $("fw-viz-end").addEventListener("click", function(){ vizStop(); vizGo(viz.steps.length); });
+  $("fw-viz-predict").addEventListener("change", vizPredictPrompt);
+  $("fw-viz-pq-yes").addEventListener("click", function(){ vizAnswer(true); });
+  $("fw-viz-pq-no").addEventListener("click", function(){ vizAnswer(false); });
+  $("fw-viz-path").addEventListener("click", function(){
+    var u = +$("fw-viz-from").value, v = +$("fw-viz-to").value, g = viz.g, nm = g.names, res = $("fw-viz-pathres");
+    res.style.display = "block";
+    var negCycle = false; for (var x=0;x<g.n;x++) if (viz.D[x][x] < 0) negCycle = true;
+    var note = viz.pos < viz.steps.length ? " <i>(algorithm not finished yet \u2014 this is the best path found so far)<\/i>" : "";
+    if (negCycle && viz.pos === viz.steps.length){ res.innerHTML = "The graph has a negative cycle, so shortest paths are not defined."; viz.path=null; vizGo(viz.pos); return; }
+    if (viz.nxt[u][v] === null){ res.innerHTML = nm[v]+" is not reachable from "+nm[u]+" (distance \u221E)."+note; viz.path=null; vizGo(viz.pos); return; }
+    var path = [u], cur = u, guard = 0;
+    while (cur !== v && guard++ <= g.n){ cur = viz.nxt[cur][v]; path.push(cur); }
+    viz.path = path;
+    res.innerHTML = "Path: <b>"+path.map(function(q){return nm[q];}).join(" \u2192 ")+"<\/b> &nbsp; cost = <b>"+fmt(viz.D[u][v])+"<\/b>"+note;
+    vizGo(viz.pos);
+  });
+  vizLoad();
+
+  /* ---------------- code tabs, highlighting, copy ---------------- */
+  root.querySelectorAll(".fw-tabs").forEach(function(bar){
+    bar.addEventListener("click", function(ev){
+      var b = ev.target.closest(".fw-tab"); if (!b) return;
+      bar.querySelectorAll(".fw-tab").forEach(function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      bar.querySelectorAll(".fw-tab").forEach(function(x){ var p = $(x.dataset.pane); if (p) p.classList.toggle("on", x === b); });
+    });
+  });
+  var KW = /^(def|for|in|if|else|elif|return|while|not|and|or|is|None|True|False|import|from|as|with|lambda|pass|break|continue|class|try|except)$/;
+  var BI = /^(print|range|len|min|max|float|int|str|any|all|list|enumerate|join|abs|sum)$/;
+  function highlight(code){
+    var re = /(#[^\n]*)|("""[\s\S]*?"""|'(?:\\.|[^'\\\n])*'|"(?:\\.|[^"\\\n])*")|([A-Za-z_][A-Za-z_0-9]*)|(\d+(?:\.\d+)?)/g;
+    var out = "", last = 0, m, prevDef = false;
+    while ((m = re.exec(code))){
+      out += esc(code.slice(last, m.index));
+      if (m[1]) out += "<span class='py-com'>"+esc(m[1])+"<\/span>";
+      else if (m[2]) out += "<span class='py-str'>"+esc(m[2])+"<\/span>";
+      else if (m[3]){
+        var w = m[3];
+        if (prevDef) out += "<span class='py-fn'>"+w+"<\/span>";
+        else if (KW.test(w)) out += "<span class='py-kw'>"+w+"<\/span>";
+        else if (BI.test(w)) out += "<span class='py-bi'>"+w+"<\/span>";
+        else out += w;
+        prevDef = (w === "def");
+        last = re.lastIndex; continue;
+      }
+      else if (m[4]) out += "<span class='py-num'>"+m[4]+"<\/span>";
+      prevDef = false;
+      last = re.lastIndex;
+    }
+    return out + esc(code.slice(last));
+  }
+  root.querySelectorAll("code.py").forEach(function(c){
+    var raw = c.textContent; c.setAttribute("data-raw", "1"); c._raw = raw; c.innerHTML = highlight(raw);
+  });
+  root.querySelectorAll(".fw-copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var code = btn.closest(".fw-code").querySelector("code");
+      var text = code._raw || code.textContent;
+      function ok(){ btn.textContent = "Copied \u2713"; setTimeout(function(){ btn.textContent = "Copy"; }, 1500); }
+      function fallback(){
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch(e) { btn.textContent = "Press Ctrl+C"; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+  });
+
+  /* ---------------- QUIZ ---------------- */
+  var QUIZ = [
+    {q:"Which algorithm design technique does Floyd\u2013Warshall use?", o:["Greedy method","Divide and conquer","Dynamic programming","Backtracking"], a:2,
+     e:"It builds D<sup>(k)<\/sup> from the stored table D<sup>(k\u22121)<\/sup> \u2014 overlapping subproblems with optimal substructure, i.e. dynamic programming. (Dijkstra is the greedy one.)"},
+    {q:"What is the time complexity of Floyd\u2013Warshall on a graph with V vertices and E edges?", o:["O(E log V)","\u0398(V\u00B2)","\u0398(V\u00B3)","O(V \u00B7 E)"], a:2,
+     e:"Three nested loops of V iterations each, with O(1) work inside: \u0398(V\u00B3), independent of E, in the best, average and worst case."},
+    {q:"Which loop must be the outermost loop?", o:["The source loop i","The destination loop j","The intermediate-vertex loop k","Any order works"], a:2,
+     e:"All pairs must be updated for k before moving to k + 1. With k innermost, our worked example gives D[A][B] = 7 instead of 3."},
+    {q:"Floyd\u2013Warshall gives correct shortest distances for graphs with\u2026", o:["Only positive weights","Negative edges but no negative cycles","Negative cycles","Only unweighted edges"], a:1,
+     e:"Negative edges are fine. With a negative cycle, shortest paths are undefined; the algorithm can only detect the cycle."},
+    {q:"During phase k, D[i][j] = 9, D[i][k] = 3 and D[k][j] = 4. What is D[i][j] after this step?", o:["9","7","12","3"], a:1,
+     e:"min(9, 3 + 4) = min(9, 7) = 7. Going through k is shorter, so the cell is updated."},
+    {q:"In a graph with no negative cycle, which entries of D cannot change during phase k?", o:["Only the diagonal","Row k and column k","The first row and first column","All entries above the diagonal"], a:1,
+     e:"D[i][k] = min(D[i][k], D[i][k] + D[k][k]) and D[k][k] = 0, so row k and column k stay the same. That is why one matrix (in-place update) is enough."},
+    {q:"After running Floyd\u2013Warshall, how do you detect a negative cycle?", o:["Some D[i][j] is still \u221E","Some diagonal entry D[v][v] < 0","The matrix is not symmetric","The k loop ran more than n times"], a:1,
+     e:"A vertex on a negative cycle can return to itself with negative total cost, so its diagonal entry becomes negative."},
+    {q:"Warshall's algorithm for transitive closure replaces (min, +) with\u2026", o:["(max, \u00D7)","(OR, AND)","(AND, OR)","(min, \u00D7)"], a:1,
+     e:"R[i][j] = R[i][j] OR (R[i][k] AND R[k][j]). It answers \u201Cis there any path?\u201D instead of \u201Chow long is the shortest path?\u201D."}
+  ];
+  var score = 0, answered = 0;
+  function quizBuild(){
+    score = 0; answered = 0;
+    var box = $("fw-quiz"), h = "";
+    QUIZ.forEach(function(q, qi){
+      h += "<div class='fw-q' data-q='"+qi+"'><div class='qt'><span>Q"+(qi+1)+".<\/span>"+q.q+"<\/div>";
+      q.o.forEach(function(o, oi){ h += "<button class='fw-opt' data-o='"+oi+"'>"+String.fromCharCode(65+oi)+". "+o+"<\/button>"; });
+      h += "<div class='fw-exp'><\/div><\/div>";
+    });
+    box.innerHTML = h;
+    $("fw-quiz-score").textContent = "Score: 0 / " + QUIZ.length;
+  }
+  $("fw-quiz").addEventListener("click", function(ev){
+    var b = ev.target.closest(".fw-opt"); if (!b || b.disabled) return;
+    var qd = b.closest(".fw-q"), qi = +qd.dataset.q, oi = +b.dataset.o, q = QUIZ[qi];
+    qd.querySelectorAll(".fw-opt").forEach(function(x){ x.disabled = true; if (+x.dataset.o === q.a) x.classList.add("right"); });
+    var right = oi === q.a;
+    if (!right) b.classList.add("wrong"); else score++;
+    answered++;
+    var ex = qd.querySelector(".fw-exp"); ex.style.display = "block";
+    ex.innerHTML = (right ? "<b style='color:#15803d'>Correct!<\/b> " : "<b style='color:#c92a2a'>Not quite.<\/b> ") + q.e;
+    $("fw-quiz-score").textContent = "Score: " + score + " / " + QUIZ.length + (answered === QUIZ.length ? (score >= 7 ? "  \u2014 Excellent! \uD83C\uDF89" : score >= 5 ? "  \u2014 Good, review the explanations." : "  \u2014 Revisit Sections 2\u20135 and try again.") : "");
+  });
+  $("fw-quiz-reset").addEventListener("click", quizBuild);
+  quizBuild();
+
+  /* ---------------- SLIDE NAVIGATION ---------------- */
+  (function(){
+    var slides = [$("fw-home")]; for (var s=1;s<=7;s++) slides.push($("fw-s"+s));
+    var tabs = root.querySelectorAll(".fw-nav-tab");
+    var TOTAL = slides.length - 1, cur = 0, slideMode = true;
+    var nav = $("fw-nav");
+    function navTop(){
+      var r = root.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight) {
+        var fs = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fs === root) root.scrollTop = 0; else window.scrollTo(0, window.pageYOffset + r.top - 8);
+      }
+    }
+    function render(){
+      root.classList.toggle("fw-slides", slideMode);
+      slides.forEach(function(el, i){ el.classList.toggle("on", i === cur); });
+      tabs.forEach(function(t){ t.classList.toggle("on", +t.dataset.slide === cur); });
+      var title = slides[cur].getAttribute("data-title");
+      $("fw-nav-count").innerHTML = cur === 0 ? "<span>Home<\/span>" + title : "<span>" + cur + " / " + TOTAL + "<\/span>" + title;
+      ["fw-nav-prev","fw-foot-prev"].forEach(function(id){ $(id).disabled = cur === 0; });
+      ["fw-nav-next","fw-foot-next"].forEach(function(id){ $(id).disabled = cur === TOTAL; });
+      $("fw-nav-all").textContent = slideMode ? "Show all sections" : "One section at a time";
+      var on = root.querySelector(".fw-nav-tab.on");
+      if (on && on.scrollIntoView) { var bar = $("fw-nav-tabs"); bar.scrollLeft = on.offsetLeft - bar.clientWidth/2 + on.clientWidth/2; }
+    }
+    function goTo(i, noScroll){
+      i = Math.max(0, Math.min(TOTAL, i));
+      if (i !== 3 && typeof vizStop === "function") vizStop();
+      cur = i; render();
+      if (!slideMode) {
+        var y = slides[i].getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight - 10;
+        if (!noScroll) window.scrollTo({top:y, behavior:"smooth"});
+      } else if (!noScroll) navTop();
+    }
+    window.fwGoTo = goTo;
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ goTo(+t.dataset.slide); }); });
+    $("fw-nav-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("fw-nav-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("fw-foot-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("fw-foot-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("fw-nav-all").addEventListener("click", function(){ slideMode = !slideMode; render(); if (slideMode) navTop(); });
+    /* table-of-contents links jump to the matching slide */
+    root.addEventListener("click", function(ev){
+      var a = ev.target.closest && ev.target.closest("a[href^='#fw-s']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#fw-s(\d)$/); if (!m) return;
+      ev.preventDefault(); goTo(+m[1]);
+    });
+    /* keyboard: \u2190 / \u2192 change slides (ignored while typing in a field) */
+    document.addEventListener("keydown", function(ev){
+      if (!slideMode || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+      var tg = ev.target.tagName;
+      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || ev.target.isContentEditable) return;
+      var r = root.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (ev.key === "ArrowRight") { goTo(cur+1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { goTo(cur-1); ev.preventDefault(); }
+    });
+    /* fullscreen */
+    var fsBtn = $("fw-nav-fs");
+    var canFs = root.requestFullscreen || root.webkitRequestFullscreen;
+    if (!canFs) fsBtn.style.display = "none";
+    fsBtn.addEventListener("click", function(){
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); }
+      else { (root.requestFullscreen || root.webkitRequestFullscreen).call(root); }
+    });
+    function fsChange(){
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      fsBtn.textContent = fs === root ? "\u2715 Exit fullscreen" : "\u26F6 Fullscreen";
+    }
+    document.addEventListener("fullscreenchange", fsChange);
+    document.addEventListener("webkitfullscreenchange", fsChange);
+    /* open a section directly from the URL, e.g. ...#fw-s3 */
+    var h = (location.hash || "").match(/^#fw-s(\d)$/);
+    goTo(h ? +h[1] : 0, true);
+  })();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="dijkstra.html"><small>← Previous lesson</small><b>Dijkstra&#x27;s algorithm</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="minimum-spanning-tree.html"><small>Next lesson →</small><b>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AVL trees · Learn Data Structures with idontno</title>
+<meta name="description" content="Balance factor, the four rotations and why the height stays O(log n).">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="avl-trees">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="cur" data-lesson="avl-trees" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module III · Trees</span><span>›</span><span>Lesson 9 of 18</span></div>
+  <article class="idn-lesson">
+<style>
+#avx{--ink:#1c2033;--teal:#0b7a6f;--paper:#fbfaf6;--coral:#d9480f;--gold:#fcc419;--mint:#96f2d7;--amb:#ffec99;--red:#ffc9c9;--line:#e3dfd3;--ok:#0b7a6f;font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;max-width:1000px;margin:0 auto;border-radius:20px;overflow:hidden;box-sizing:border-box}
+#avx *{box-sizing:border-box}
+#avx .hero{background:var(--ink);color:#e6e8ef;padding:38px 28px 30px}
+#avx .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 10px;font-weight:800;color:#fff}
+#avx .hero h1 span{color:var(--gold)}
+#avx .hero p{margin:0;max-width:64ch;color:#c9cde0}
+#avx nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+#avx nav button,#avx .b{font:inherit;font-size:14px;border:1.5px solid var(--teal);background:#fff;color:var(--ink);padding:6px 13px;border-radius:99px;cursor:pointer}
+#avx nav button:hover,#avx .b:hover{background:var(--mint)}
+#avx .b.on{background:var(--teal);color:#fff}
+#avx .b.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+#avx .b:disabled{opacity:.45;cursor:default}
+#avx .b:focus-visible,#avx input:focus-visible{outline:3px solid var(--gold)}
+#avx section{padding:30px 22px;border-bottom:1px solid var(--line)}
+#avx h2{margin:0 0 4px;font-size:26px;font-weight:800;color:var(--ink)}
+#avx h3{margin:16px 0 4px;font-size:18px;color:var(--teal)}
+#avx .sub{margin:0 0 16px;color:#4a5068}
+#avx .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+#avx .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#avx .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){#avx .grid,#avx .g3{grid-template-columns:1fr}#avx section{padding:24px 14px}}
+#avx .card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--coral);border-radius:12px;padding:12px 14px}
+#avx .card.t{border-top-color:var(--teal)}
+#avx .card b{display:block;margin-bottom:2px}
+#avx svg.t{width:100%;height:auto;max-height:330px;display:block}
+#avx .nd circle{fill:#fff;stroke:var(--teal);stroke-width:2.2}
+#avx .nd.c0 circle{fill:var(--mint)}#avx .nd.c1 circle{fill:var(--amb)}#avx .nd.c2 circle{fill:var(--red);stroke:var(--coral)}
+#avx .nd.new circle{stroke:var(--ink);stroke-width:3.5}
+#avx .nd text{font:600 13px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink)}
+#avx .nd .bf{font-size:10px;fill:#4a5068}
+#avx .edge{stroke:#9aa0bb;stroke-width:2}
+#avx .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+#avx input[type=number]{font:inherit;width:100px;padding:6px 10px;border:1.5px solid var(--teal);border-radius:10px}
+#avx input[type=range]{accent-color:var(--teal);width:220px}
+#avx .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin:3px 4px 0 0;font:600 13px 'Fira Code',monospace}
+#avx .chip.r{background:var(--red)}#avx .chip.g{background:var(--mint)}
+#avx .legend{font-size:13px;color:#4a5068;margin-top:6px}
+#avx .res{background:var(--ink);color:#fff;border-radius:12px;padding:12px 16px;margin-top:10px;font-size:15px}
+#avx .res b{color:var(--gold)}
+#avx .msg{min-height:26px;font-weight:600}
+#avx .bad{color:var(--coral)}
+#avx ul.n{margin:14px 0 0;padding-left:20px}
+#avx ul.n li{margin:4px 0}
+#avx table{border-collapse:collapse;width:100%;font-size:14px;margin-top:12px;background:#fff}
+#avx th,#avx td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+#avx th{background:var(--mint)}
+#avx .wrap{overflow-x:auto}
+#avx pre{font:13px/1.5 'Fira Code',monospace;background:#1d2130;color:#e6e8ef;padding:14px;border-radius:12px;overflow-x:auto;margin:10px 0 0}
+#avx .stp{padding:8px 14px;border-left:4px solid var(--teal);background:#fff;margin:6px 0;border-radius:0 10px 10px 0}
+#avx .stp.last{border-color:var(--ok);background:#f3f1ea}
+#avx .stp .m{display:block;text-align:center;font:600 14px 'Fira Code',monospace;margin:5px 0;overflow-x:auto}
+#avx .note{background:#fdf5e3;border:1px solid #f0dcae;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:14px}
+#avx .q{margin:0 0 14px}
+#avx .q p{margin:0 0 6px;font-weight:600}
+#avx .q .b{display:block;width:100%;text-align:left;border-radius:10px;margin:4px 0}
+#avx .q .ok{background:#63e6be;border-color:var(--ok)}
+#avx .q .no{background:#ffc9c9;border-color:var(--coral)}
+#avx .q small{display:block;color:#4a5068;margin-top:2px}
+#avx footer{padding:18px 22px;font-size:13px;color:#4a5068}
+</style>
+
+<div id="avx">
+<div class="hero">
+  <h1>AVL trees: a BST that <span>Balances Itself</span></h1>
+  <p>A normal Binary Search Tree can become unbalanced and behave like a linked list. An AVL tree automatically balances itself after every insertion or deletion to keep searching fast.</p>
+</div>
+<nav><button data-go="v1">Why balance?</button><button data-go="v3">Balance Factor & Height of Tree</button><button data-go="v2">BST vs AVL lab</button><button data-go="v4">Rotations</button><button data-go="v5">Height proof</button><button data-go="v6">Compare</button><button data-go="v7">Code</button><button data-go="v8">Quiz</button></nav>
+
+<section id="v1">
+  <h2>1. The problem: drawbacks of a plain BST</h2>
+  <p class="sub">A Binary Search Tree (BST) allows fast searching in O(log n) time only when the tree is balanced. However, a normal BST does not automatically balance itself, so it can become unbalanced and make searching slower, taking O(n) time.</p>
+  <div class="g3">
+    <div class="card"><b>Sorted input makes a chain</b>Insert 1, 2, 3, 4, 5 and every key goes right. The tree becomes a linked list with height n.</div>
+    <div class="card"><b>Shape depends on insertion order</b>The same seven keys can give height 3 or height 7. You cannot control what order data arrives in.</div>
+    <div class="card"><b>No self-correction after insert or delete</b>Deleting nodes from the shorter side, or inserting into the taller side, makes the tree more unbalanced, and nothing repairs it.</div>
+    <div class="card"><b>Worst case is O(n)</b>Search, insert and delete all walk the longest path, so each can take n steps.</div>
+    <div class="card"><b>Deep recursion</b>Recursive operations on a skewed tree use n stack frames and can overflow for large n.</div>
+    <div class="card"><b>Unpredictable timing</b>Average performance is usually O(log n), but it is not guaranteed. Real-time systems and databases need a guaranteed maximum time for operations.</div>
+  </div>
+<div id="s4">
+  <h3>Hands-on: a plain Binary Search Tree lab</h3>
+  <p class="sub">
+    A Binary Search Tree (BST) is a binary tree in which all values in the left subtree are smaller than the node, and all values in the right subtree are larger.
+    Use the interactive lab to insert values, search for a number, and explore inorder traversal. Then press <b>Insert 1 to 6 in order</b> to see the skew problem for yourself.
+  </p>
+
+  <div class="box">
+    <svg class="t" id="bst"></svg>
+
+    <div class="row">
+      <input type="number" id="bv" placeholder="Enter number">
+      <button class="b pri" id="bins">Insert</button>
+      <button class="b" id="bsea">Search</button>
+      <button class="b" id="bino">Inorder</button>
+    </div>
+
+    <div class="row">
+      <button class="b" id="bpre">Load class example</button>
+      <button class="b" id="bskew">Insert 1 to 6 in order</button>
+      <button class="b" id="bclr">Clear tree</button>
+    </div>
+
+    <div class="msg" id="bmsg" aria-live="polite"></div>
+    <div class="stats" id="bstat"></div>
+  </div>
+
+  <h3>Time Complexity</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Operation</th>
+        <th>Balanced / Average</th>
+        <th>Skewed (Worst Case)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Search</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Insertion</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Deletion</td>
+        <td>O(log n)</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Inorder Traversal</td>
+        <td>O(n)</td>
+        <td>O(n)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ul class="n">
+    <li><b>Skewed BST:</b> Inserting sorted values creates a chain-like tree. Search may require O(n) time.</li>
+    <li><b>Balanced BST:</b> A tree with height proportional to log n supports efficient searching and insertion.</li>
+    <li><b>Self-balancing BSTs:</b> AVL trees and Red-Black trees use rotations to maintain balance.</li>
+    <li><b>Basic operations:</b> Insertion, searching, deletion, and traversal. (Deletion is available in the BST vs AVL lab below.)</li>
+  </ul>
+
+  <details>
+    <summary>Python: BST insertion and search</summary>
+    <pre id="bcode">class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+
+    if key &lt; root.data:
+        root.left = insert(root.left, key)
+    elif key &gt; root.data:
+        root.right = insert(root.right, key)
+
+    return root
+
+def search(root, key):
+    if root is None or root.data == key:
+        return root
+
+    if key &lt; root.data:
+        return search(root.left, key)
+
+    return search(root.right, key)
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=" ")
+        inorder(root.right)</pre>
+
+    <div class="row">
+      <button class="b" id="copy">Copy Python code</button>
+    </div>
+  </details>
+</div>
+
+<style>
+#s4 {
+  --ink: #1c2033;
+  --leaf: #0b7a6f;
+  --moss: #1c2033;
+  --paper: #fbfaf6;
+  --sun: #fcc419;
+  --mint: #96f2d7;
+  --line: #e3dfd3;
+  --rose: #d9480f;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: inherit;
+  line-height: 1.6;
+  padding: 24px;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+#s4 *,
+#s4 *::before,
+#s4 *::after {
+  box-sizing: border-box;
+}
+
+#s4 h2 {
+  color: var(--moss);
+  font-size: clamp(25px, 4vw, 32px);
+  margin: 0 0 8px;
+}
+
+#s4 h3 {
+  color: var(--moss);
+  margin-top: 24px;
+}
+
+#s4 .sub {
+  color: #4a5068;
+  margin-bottom: 18px;
+}
+
+#s4 .box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+#s4 svg.t {
+  width: 100%;
+  height: auto;
+  min-height: 60px;
+  max-height: 420px;
+  display: block;
+  overflow: visible;
+}
+
+#s4 .edge {
+  stroke: #9aa0bb;
+  stroke-width: 2;
+}
+
+#s4 .nd {
+  cursor: pointer;
+}
+
+#s4 .nd circle {
+  fill: #fff;
+  stroke: var(--leaf);
+  stroke-width: 2.2;
+  transition: fill .2s;
+}
+
+#s4 .nd text {
+  font: 600 14px monospace;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--ink);
+  pointer-events: none;
+}
+
+#s4 .nd.hit circle {
+  fill: var(--sun);
+}
+
+#s4 .nd.found circle {
+  fill: #8ce99a;
+}
+
+#s4 .nd.miss circle {
+  fill: #ffc9c9;
+}
+
+#s4 .nd.done circle {
+  fill: var(--mint);
+}
+
+#s4 .row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 12px 0;
+}
+
+#s4 .b {
+  font: inherit;
+  font-size: 14px;
+  border: 1.5px solid var(--leaf);
+  background: #fff;
+  color: var(--moss);
+  padding: 7px 13px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+#s4 .b:hover {
+  background: var(--mint);
+}
+
+#s4 .b.pri {
+  background: var(--moss);
+  color: #fff;
+  border-color: var(--moss);
+}
+
+#s4 .b:focus-visible,
+#s4 input:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+#s4 .b:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+#s4 input[type="number"] {
+  font: inherit;
+  width: 150px;
+  max-width: 100%;
+  padding: 7px 10px;
+  border: 1.5px solid var(--leaf);
+  border-radius: 10px;
+}
+
+#s4 .msg {
+  min-height: 28px;
+  font-weight: 600;
+  color: var(--moss);
+  overflow-wrap: anywhere;
+}
+
+#s4 .msg.warn {
+  color: var(--rose);
+}
+
+#s4 .stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+#s4 .chip {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font: 600 13px monospace;
+  overflow-wrap: anywhere;
+}
+
+#s4 table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  background: #fff;
+  font-size: 14px;
+}
+
+#s4 th,
+#s4 td {
+  border: 1px solid var(--line);
+  padding: 9px;
+  text-align: left;
+}
+
+#s4 th {
+  background: var(--mint);
+  color: var(--moss);
+}
+
+#s4 ul.n {
+  padding-left: 22px;
+}
+
+#s4 ul.n li {
+  margin: 7px 0;
+}
+
+#s4 details {
+  margin-top: 16px;
+}
+
+#s4 summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--leaf);
+}
+
+#s4 pre {
+  background: #1d2130;
+  color: #e6e8ef;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+  tab-size: 4;
+}
+
+@media (max-width: 600px) {
+  #s4 {
+    padding: 16px 12px;
+  }
+
+  #s4 .box {
+    padding: 10px;
+  }
+
+  #s4 table {
+    font-size: 12px;
+  }
+
+  #s4 th,
+  #s4 td {
+    padding: 6px;
+  }
+
+  #s4 input[type="number"] {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #s4 .nd circle {
+    transition: none;
+  }
+}
+</style>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.getElementById("s4");
+  if (!root || root.dataset.bstInitialized === "true") return;
+  root.dataset.bstInitialized = "true";
+
+  function $(id) {
+    return root.querySelector("#" + id);
+  }
+
+  var tree = null;
+  var marks = {};
+  var busy = false;
+  var searchTimers = [];
+  var nextId = 0;
+
+  function node(value) {
+    return {
+      v: value,
+      l: null,
+      r: null,
+      id: ++nextId
+    };
+  }
+
+  function count(n) {
+    if (!n) return 0;
+    return 1 + count(n.l) + count(n.r);
+  }
+
+  function height(n) {
+    if (!n) return 0;
+    return 1 + Math.max(height(n.l), height(n.r));
+  }
+
+  function insert(value) {
+    if (!tree) {
+      tree = node(value);
+      return true;
+    }
+
+    var current = tree;
+
+    while (true) {
+      if (value === current.v) return false;
+
+      if (value < current.v) {
+        if (!current.l) {
+          current.l = node(value);
+          return true;
+        }
+        current = current.l;
+      } else {
+        if (!current.r) {
+          current.r = node(value);
+          return true;
+        }
+        current = current.r;
+      }
+    }
+  }
+
+  function inorder(n, values) {
+    if (!n) return;
+    inorder(n.l, values);
+    values.push(n.v);
+    inorder(n.r, values);
+  }
+
+  function draw() {
+    var svg = $("bst");
+
+    if (!tree) {
+      svg.setAttribute("viewBox", "0 0 320 70");
+      svg.innerHTML =
+        '<text x="160" y="38" text-anchor="middle" ' +
+        'fill="#4a5068" font-size="14">' +
+        'Empty tree. Insert a number to begin.' +
+        '</text>';
+      updateStats();
+      return;
+    }
+
+    var nodes = [];
+    var edges = [];
+    var index = 0;
+    var maxDepth = 0;
+
+    function layout(n, depth) {
+      if (!n) return;
+
+      maxDepth = Math.max(maxDepth, depth);
+      layout(n.l, depth + 1);
+
+      n.x = index++;
+      n.y = depth;
+      nodes.push(n);
+
+      layout(n.r, depth + 1);
+    }
+
+    layout(tree, 0);
+
+    var width = Math.max(320, nodes.length * 58 + 30);
+    var heightPx = (maxDepth + 1) * 68 + 30;
+    var left = (width - (nodes.length - 1) * 58) / 2;
+
+    function x(n) {
+      return left + n.x * 58;
+    }
+
+    function y(n) {
+      return 28 + n.y * 68;
+    }
+
+    function collectEdges(n) {
+      if (!n) return;
+
+      if (n.l) {
+        edges.push(
+          '<line class="edge" x1="' + x(n) + '" y1="' + y(n) +
+          '" x2="' + x(n.l) + '" y2="' + y(n.l) + '"/>'
+        );
+        collectEdges(n.l);
+      }
+
+      if (n.r) {
+        edges.push(
+          '<line class="edge" x1="' + x(n) + '" y1="' + y(n) +
+          '" x2="' + x(n.r) + '" y2="' + y(n.r) + '"/>'
+        );
+        collectEdges(n.r);
+      }
+    }
+
+    collectEdges(tree);
+
+    var circles = nodes.map(function (n) {
+      var cls = marks[n.id] || "";
+
+      return '<g class="nd ' + cls + '" data-id="' + n.id + '">' +
+        '<circle cx="' + x(n) + '" cy="' + y(n) + '" r="20"/>' +
+        '<text x="' + x(n) + '" y="' + y(n) + '">' +
+        String(n.v) + '</text></g>';
+    });
+
+    svg.setAttribute("viewBox", "0 0 " + width + " " + heightPx);
+    svg.innerHTML = edges.join("") + circles.join("");
+
+    updateStats();
+  }
+
+  function updateStats() {
+    var n = count(tree);
+    var h = height(tree);
+    var skewed = n > 1 && h === n;
+
+    var items = [
+      "Nodes = " + n,
+      "Edges = " + Math.max(0, n - 1),
+      "Height = " + h
+    ];
+
+    if (skewed) {
+      items.push("Skewed tree: O(n) search");
+    } else if (n) {
+      items.push("Maximum possible comparisons = " + h);
+    }
+
+    $("bstat").innerHTML = items.map(function (value) {
+      return '<span class="chip">' + value + '</span>';
+    }).join("");
+  }
+
+  function message(text, warning) {
+    var el = $("bmsg");
+    el.textContent = text;
+    el.className = "msg" + (warning ? " warn" : "");
+  }
+
+  function getValue() {
+    var input = $("bv");
+    var raw = input.value.trim();
+
+    if (raw === "") {
+      message("Please enter a number first.", true);
+      input.focus();
+      return null;
+    }
+
+    var value = Number(raw);
+
+    if (!Number.isSafeInteger(value)) {
+      message("Enter a valid whole number within the safe integer range.", true);
+      input.focus();
+      return null;
+    }
+
+    return value;
+  }
+
+  function clearTimers() {
+    searchTimers.forEach(function (timer) {
+      clearTimeout(timer);
+    });
+
+    searchTimers = [];
+    busy = false;
+  }
+
+  function setBusy(value) {
+    busy = value;
+
+    ["bins", "bsea", "bino", "bpre", "bskew", "bclr"].forEach(function (id) {
+      $(id).disabled = value;
+    });
+  }
+
+  $("bins").addEventListener("click", function () {
+    if (busy) return;
+
+    var value = getValue();
+    if (value === null) return;
+
+    marks = {};
+
+    if (insert(value)) {
+      message(
+        "Inserted " + value +
+        ". Smaller values go left; larger values go right."
+      );
+    } else {
+      message(value + " already exists. Duplicate values are not inserted.", true);
+    }
+
+    draw();
+    $("bv").value = "";
+    $("bv").focus();
+  });
+
+  $("bv").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      $("bins").click();
+    }
+  });
+
+  $("bsea").addEventListener("click", function () {
+    if (busy) return;
+
+    var value = getValue();
+    if (value === null) return;
+
+    if (!tree) {
+      message("The tree is empty. Insert a value first.", true);
+      return;
+    }
+
+    clearTimers();
+    marks = {};
+
+    var current = tree;
+    var path = [];
+    var found = false;
+
+    while (current) {
+      path.push(current);
+
+      if (value === current.v) {
+        found = true;
+        break;
+      }
+
+      current = value < current.v ? current.l : current.r;
+    }
+
+    setBusy(true);
+
+    var index = 0;
+
+    function step() {
+      if (index < path.length) {
+        var currentNode = path[index];
+
+        marks[currentNode.id] = "hit";
+        draw();
+
+        if (value === currentNode.v) {
+          message("Comparing " + value + " with " + currentNode.v + ": match found.");
+        } else if (value < currentNode.v) {
+          message(value + " < " + currentNode.v + ": move to the left subtree.");
+        } else {
+          message(value + " > " + currentNode.v + ": move to the right subtree.");
+        }
+
+        index++;
+
+        var timer = setTimeout(step, 650);
+        searchTimers.push(timer);
+        return;
+      }
+
+      if (found) {
+        marks[path[path.length - 1].id] = "found";
+        message(
+          "Found " + value + " after " + path.length +
+          " comparison(s)."
+        );
+      } else {
+        if (path.length) {
+          marks[path[path.length - 1].id] = "miss";
+        }
+
+        message(
+          value + " was not found after " + path.length +
+          " comparison(s).", true
+        );
+      }
+
+      draw();
+      setBusy(false);
+      searchTimers = [];
+    }
+
+    step();
+  });
+
+  $("bino").addEventListener("click", function () {
+    if (busy) return;
+
+    var values = [];
+    inorder(tree, values);
+
+    marks = {};
+
+    function markDone(n) {
+      if (!n) return;
+      markDone(n.l);
+      marks[n.id] = "done";
+      markDone(n.r);
+    }
+
+    markDone(tree);
+    draw();
+
+    message(
+      "Inorder traversal (ascending order): " +
+      (values.length ? values.join(", ") : "tree is empty")
+    );
+  });
+
+  $("bpre").addEventListener("click", function () {
+    if (busy) return;
+
+    tree = null;
+    marks = {};
+
+    [20, 11, 23, 9, 13, 21, 30].forEach(insert);
+
+    draw();
+    message("Class example loaded. Try searching for 13 or 25.");
+  });
+
+  $("bskew").addEventListener("click", function () {
+    if (busy) return;
+
+    tree = null;
+    marks = {};
+
+    [1, 2, 3, 4, 5, 6].forEach(insert);
+
+    draw();
+    message(
+      "Inserted 1 through 6 in ascending order. " +
+      "The tree is right-skewed, with height 6 and O(n) search.",
+      true
+    );
+  });
+
+  $("bclr").addEventListener("click", function () {
+    if (busy) return;
+
+    tree = null;
+    marks = {};
+
+    draw();
+    message("Tree cleared. Insert a number to start again.");
+  });
+
+  $("bst").addEventListener("click", function (event) {
+    var target = event.target.closest(".nd");
+    if (!target || busy) return;
+
+    var id = Number(target.getAttribute("data-id"));
+    var current = tree;
+    var selected = null;
+
+    while (current) {
+      if (current.id === id) {
+        selected = current;
+        break;
+      }
+
+      var leftFound = findNode(current.l, id);
+
+      if (leftFound) {
+        selected = leftFound;
+        break;
+      }
+
+      current = current.r;
+    }
+
+    if (selected) {
+      marks = {};
+      marks[selected.id] = "found";
+      draw();
+      message("Selected node: " + selected.v + ".");
+    }
+  });
+
+  function findNode(n, id) {
+    if (!n) return null;
+    if (n.id === id) return n;
+    return findNode(n.l, id) || findNode(n.r, id);
+  }
+
+  $("copy").addEventListener("click", function () {
+    var code = $("bcode").textContent;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(function () {
+        message("Python code copied to clipboard.");
+      }).catch(function () {
+        message("Clipboard access failed. Please select and copy the code manually.", true);
+      });
+    } else {
+      message("Clipboard is not supported in this browser. Please copy the code manually.", true);
+    }
+  });
+
+  $("bpre").click();
+})();
+</script>  
+  
+  
+  
+  
+  <div class="note"><b>The solution:</b> keep the tree balanced automatically. An <b>AVL tree</b> (Adelson-Velsky and Landis, 1962, the first self-balancing BST) is a BST where, for <b>every</b> node, the heights of the left and right subtrees differ by at most 1. After any insert or delete that breaks this, it repairs the tree with <b>rotations</b>.</div>
+</section>
+  
+  
+<section id="v3">
+  <h2>2. Balance factor</h2>
+  <div class="f" style="background:#1c2033;color:#fff;border-radius:10px;padding:10px;text-align:center;font:600 14px 'Fira Code',monospace">BF(node) = height(left subtree) &minus; height(right subtree)</div>
+  <ul class="n">
+    <li><b>AVL rule:</b> &minus;1 &le; BF &le; +1 for <b>every</b> node, not just the root.</li>
+    <!--<li>BF = +1 means left-heavy by one, &minus;1 right-heavy by one, 0 perfectly even. An empty subtree has height 0 and a leaf has height 1. This post counts <b>nodes</b>; counting edges would shift every height by 1 and leave the balance factor unchanged.</li>
+    <li>A violation is BF = +2 (left side too tall) or &minus;2 (right side too tall). It appears at the <b>lowest ancestor</b> of the changed spot, found while walking back up.</li>
+    <li>Each node stores its height, so BF costs O(1) to compute.</li>
+    <li>In the lab, a tree is an AVL tree only if no node is red.</li> -->
+
+  <li>
+    <strong>Balance Factor (BF):</strong> It tells us whether a node is balanced or leaning to one side.
+    <ul>
+      <li><strong>BF = +1:</strong> The left subtree is taller by one.</li>
+      <li><strong>BF = -1:</strong> The right subtree is taller by one.</li>
+      <li><strong>BF = 0:</strong> Both subtrees have equal height.</li>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Height:</strong> Height is measured by counting edges along the longest path from a node to a leaf. An empty subtree has height -1, and a leaf node has height 0.
+  </li>
+
+  <li>
+    <strong>When is a tree unbalanced?</strong> If a node has a balance factor of +2 or -2, it is unbalanced and needs rebalancing.
+  </li>
+
+  <li>
+    <strong>Finding the problem:</strong> After inserting or deleting a node, move upward through its ancestors to find the first unbalanced node.
+  </li>
+
+  <li>
+    <strong>Fast calculation:</strong> Each node stores its height, allowing its balance factor to be calculated in O(1) time.
+  </li>
+
+  <li>
+    <strong>In the lab:</strong> A tree is an AVL tree only if every node has a balance factor of -1, 0, or +1. If any node is marked red, the tree is unbalanced.
+  </li>
+
+
+  </ul>
+  <p class="sub" style="margin-top:14px">Every balance factor depends on heights, so first make sure you know how a height is measured. Click the nodes below.</p>
+<style>
+#htb{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:#1c2033;background:#fbfaf6;border:1px solid #e3dfd3;border-radius:16px;padding:18px;max-width:900px;margin:16px auto;line-height:1.6;box-sizing:border-box}
+#htb *{box-sizing:border-box}
+#htb h3{margin:0 0 4px;font-size:22px;color:#1c2033}
+#htb p{margin:4px 0 10px;color:#4a5068}
+#htb .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+#htb .b{font:inherit;font-size:14px;border:1.5px solid #0b7a6f;background:#fff;color:#1c2033;padding:6px 13px;border-radius:99px;cursor:pointer}
+#htb .b:hover{background:#96f2d7}
+#htb .b.on{background:#0b7a6f;color:#fff}
+#htb .b:focus-visible{outline:3px solid #fcc419}
+#htb .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+@media(max-width:720px){#htb .grid{grid-template-columns:1fr}}
+#htb .box{background:#fff;border:1px solid #e3dfd3;border-radius:12px;padding:12px}
+#htb svg{width:100%;height:auto;max-height:320px;display:block}
+#htb .nd{cursor:pointer}
+#htb .nd circle{fill:#fff;stroke:#0b7a6f;stroke-width:2.2;transition:fill .2s}
+#htb .nd text{font:600 13px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:#1c2033;pointer-events:none}
+#htb .nd .hb{font-size:10px;fill:#0b7a6f}
+#htb .nd.sub circle{fill:#c8d6fa}
+#htb .nd.pth circle{fill:#fcc419;stroke:#1c2033}
+#htb .nd.sel circle{stroke:#d9480f;stroke-width:4}
+#htb .nd.anc circle{fill:#96f2d7}
+#htb .edge{stroke:#9aa0bb;stroke-width:2}
+#htb .edge.hot{stroke:#d9480f;stroke-width:4}
+#htb .info{background:#1c2033;color:#fff;border-radius:12px;padding:12px 16px;font-size:15px}
+#htb .info b{color:#fcc419}
+#htb .info div{padding:3px 0}
+#htb .lg{font-size:13px;color:#4a5068;margin-top:6px}
+#htb table{border-collapse:collapse;width:100%;font-size:14px;margin-top:10px;background:#fff}
+#htb th,#htb td{border:1px solid #e3dfd3;padding:5px 9px;text-align:left}
+#htb th{background:#96f2d7}
+</style>
+
+<div id="htb">
+  <h3>Height of a node and of a tree</h3>
+  <p>Click on any node. <b>Height</b> looks <i>down</i> to the deepest leaf below the selected node. <b>Depth</b> looks <i>up</i> to the root.</p>
+  <div class="row">
+    <button class="b on" data-v="h">Height (downward)</button><button class="b" data-v="d">Depth (upward)</button>
+    <span style="width:10px"></span>
+    <button class="b" data-c="e">Count edges</button><button class="b on" data-c="n">Count nodes</button>
+  </div>
+  <div class="grid">
+    <div class="box"><svg class="svg"></svg>
+      <div class="lg">Small blue-green numbers show the height of every node under the chosen counting rule. Amber nodes with a thick red path = the longest path down. Blue = the selected node's subtree.</div></div>
+    <div class="info"></div>
+  </div>
+  <table><tr><th></th><th>Count edges</th><th>Count nodes</th></tr>
+  <tr><td>Leaf</td><td>0</td><td>1</td></tr><tr><td>Empty subtree</td><td>&minus;1</td><td>0</td></tr><tr><td>Single-node tree</td><td>0</td><td>1</td></tr></table>
+</div>
+
+<script>
+(function(){
+var R=document.getElementById('htb'),svg=R.querySelector('.svg'),info=R.querySelector('.info');
+function N(v,l,r){return {v:v,l:l||null,r:r||null}}
+var T=N(20,N(11,N(9,N(5)),N(13)),N(23,null,N(30)));
+var mode='h',conv='n',sel=T,cnt=0,maxd=0,all=[];
+function hh(n){return n?1+Math.max(hh(n.l),hh(n.r)):-1}                 /* height in edges, empty = -1 */
+function kids(n){return [n.l,n.r].filter(Boolean)}
+(function lay(n,p,d){if(!n)return;n.p=p;n.d=d;lay(n.l,n,d+1);n.x=cnt++;maxd=Math.max(maxd,d);all.push(n);lay(n.r,n,d+1)})(T,null,0);
+function longest(n){var k=kids(n);if(!k.length)return [n];var c=k.length===2?(hh(k[1])>hh(k[0])?k[1]:k[0]):k[0];return [n].concat(longest(c))}
+function disp(e){return conv==='e'?e:e+1}                                 /* convert edge-count to chosen rule */
+function X(n){return 30+n.x*58}function Y(n){return 40+n.d*66}
+function subtree(n,a){a.push(n);kids(n).forEach(function(k){subtree(k,a)});return a}
+function draw(){
+  var P=[],S=[],A=[],s='',hot={};
+  if(mode==='h'){P=longest(sel);S=subtree(sel,[])}
+  else{var q=sel;while(q){A.push(q);q=q.p}}
+  var onp=mode==='h'?P:A;
+  onp.forEach(function(n){hot[n.v]=1});
+  all.forEach(function(n){kids(n).forEach(function(k){var h=hot[n.v]&&hot[k.v]&&(mode==='h'?S.indexOf(n)>-1:true);
+    s+='<line class="edge'+(h?' hot':'')+'" x1="'+X(n)+'" y1="'+Y(n)+'" x2="'+X(k)+'" y2="'+Y(k)+'"/>'})});
+  all.forEach(function(n){var c='nd';
+    if(mode==='h'){if(S.indexOf(n)>-1)c+=' sub';if(P.indexOf(n)>-1)c+=' pth'}else if(A.indexOf(n)>-1)c+=' anc';
+    if(n===sel)c+=' sel';
+    var lab=mode==='h'?'h='+disp(hh(n)):'d='+(conv==='e'?n.d:n.d+1);
+    s+='<g class="'+c+'" data-v="'+n.v+'"><circle cx="'+X(n)+'" cy="'+Y(n)+'" r="18"/><text x="'+X(n)+'" y="'+Y(n)+'">'+n.v+'</text><text class="hb" x="'+(X(n)+20)+'" y="'+(Y(n)-16)+'">'+lab+'</text></g>'});
+  svg.setAttribute('viewBox','0 0 '+(cnt*58+30)+' '+((maxd+1)*66+20));svg.innerHTML=s;
+  /* info panel */
+  var e=hh(sel),pa=longest(sel).map(function(n){return n.v}).join(' &rarr; '),hl=hh(sel.l),hr=hh(sel.r),u='',i='';
+  var dp=[];var q=sel;while(q){dp.unshift(q.v);q=q.p}
+  var unit=conv==='e'?'edge(s)':'node(s)';
+  i='<div>Selected node: <b>'+sel.v+'</b>'+(sel===T?' (the root, so its height is the height of the whole tree)':sel.l||sel.r?'':' (a leaf)')+'</div>';
+  if(mode==='h'){
+    i+='<div>Longest path down: '+pa+'</div><div>That path has '+(longest(sel).length-1)+' edge(s) and '+longest(sel).length+' node(s).</div>'+
+       '<div>Height of node '+sel.v+' = <b>'+disp(e)+'</b> counting '+(conv==='e'?'edges':'nodes')+'</div>'+
+       '<div>Left subtree height = '+disp(hl)+', right = '+disp(hr)+(sel.l||sel.r?'':' (both empty)')+'</div>'+
+       '<div>Balance factor = left &minus; right = <b>'+(hl-hr>0?'+':'')+(hl-hr)+'</b> (the same under either rule)</div>';
+  }else{
+    i+='<div>Path from the root: '+dp.join(' &rarr; ')+'</div><div>Depth of node '+sel.v+' = <b>'+(conv==='e'?sel.d:sel.d+1)+'</b> counting '+(conv==='e'?'edges':'nodes')+' from the root'+(conv==='e'&&sel===T?' (the root has depth 0)':'')+'</div>'+
+       '<div>Height of the whole tree = '+disp(hh(T))+' = depth of the deepest leaf</div>';
+  }
+  info.innerHTML=i;
+}
+svg.addEventListener('click',function(e){var g=e.target.closest('.nd');if(!g)return;var v=+g.getAttribute('data-v');all.forEach(function(n){if(n.v===v)sel=n});draw()});
+Array.prototype.forEach.call(R.querySelectorAll('.b'),function(b){b.onclick=function(){
+  if(b.getAttribute('data-v')){mode=b.getAttribute('data-v');Array.prototype.forEach.call(R.querySelectorAll('[data-v].b'),function(x){x.className='b'+(x===b?' on':'')})}
+  if(b.getAttribute('data-c')){conv=b.getAttribute('data-c');Array.prototype.forEach.call(R.querySelectorAll('[data-c]'),function(x){x.className='b'+(x===b?' on':'')})}
+  draw()}});
+draw();
+})();
+</script>
+</section>  
+
+<section id="v2">
+  <h2>2. BST vs AVL lab</h2>
+  <p class="sub">The same keys go into both trees. Try the presets, then insert and delete your own. Node colour shows the balance factor: green 0, yellow &plusmn;1, red 2 or more (violation).</p>
+  <div class="row" id="pre"></div>
+  <div class="row"><input type="number" id="kv" placeholder="key"><button class="b pri" id="ki">Insert</button><button class="b" id="kd">Delete</button><button class="b" id="ks">Search</button><button class="b" id="kc">Clear</button></div>
+  <div class="msg" id="lmsg"></div>
+  <div class="grid">
+    <div class="box"><b>Plain BST</b><svg class="t" id="sb"></svg><div id="stb"></div></div>
+    <div class="box"><b>AVL tree</b><svg class="t" id="sa"></svg><div id="sta"></div></div>
+  </div>
+  <div class="legend">Thick outline = most recently inserted key. Height here counts nodes on the longest path (a single node has height 1). Maximum 20 keys.</div>
+  <ul class="n"><li><b>Try this:</b> load "Sorted 1 to 7". The BST is a chain of height 7 while the AVL tree has height 3 after a series of rotations.</li>
+  <li><b>Deletion demo:</b> load it, then delete 40. The AVL tree rotates; the BST stays lopsided with a red node.</li></ul>
+</section>
+
+
+
+<section id="v4">
+  <h2>4. The four rotation cases</h2>
+  <p class="sub">A rotation re-links a few pointers in O(1). It never breaks the BST order (inorder sequence stays sorted). Choose a case and step through it.</p>
+  <div class="row" id="rcs"></div>
+  <div class="box"><svg class="t" id="rsv" style="max-height:240px"></svg><div class="res" id="rinfo"></div>
+    <div class="row"><button class="b" id="rp">Back</button><button class="b pri" id="rn">Next</button></div></div>
+  <div class="wrap"><table><tr><th>Case</th><th>Where the new node went</th><th>Imbalanced node</th><th>Fix</th></tr>
+  <tr><td>LL</td><td>left subtree of left child</td><td>BF = +2, left child BF &ge; 0</td><td>one <b>right</b> rotation</td></tr>
+  <tr><td>RR</td><td>right subtree of right child</td><td>BF = &minus;2, right child BF &le; 0</td><td>one <b>left</b> rotation</td></tr>
+  <tr><td>LR</td><td>right subtree of left child</td><td>BF = +2, left child BF &lt; 0</td><td><b>left</b> on the left child, then <b>right</b> on the node</td></tr>
+  <tr><td>RL</td><td>left subtree of right child</td><td>BF = &minus;2, right child BF &gt; 0</td><td><b>right</b> on the right child, then <b>left</b> on the node</td></tr></table></div>
+  <ul class="n"><li><b>Memory trick:</b> whichever case it is, the <b>middle value</b> of the three nodes involved becomes the new subtree root (20 in every example here).</li>
+  <li><b>Insertion:</b> after at most one rotation (single or double) the whole tree is balanced again.</li>
+  <li><b>Deletion:</b> a fix can shorten the subtree and cause a new violation higher up, so up to O(log n) rotations may be needed. This is why the doc compares AVL unfavourably with Red-Black trees on updates.</li></ul>
+</section>
+
+<section id="v5">
+  <h2>5. Why the height is always O(log n)</h2>
+  <p class="sub">Reveal the argument step by step, then use the calculator.</p>
+  <div class="box" id="dbox"></div>
+  <div class="row"><button class="b pri" id="dn">Next step</button><button class="b" id="da">Show all</button><button class="b" id="dr">Restart</button></div>
+  <div class="box" style="margin-top:12px"><b>Sparsest AVL tree of height h</b>
+    <div class="row"><input type="range" id="hs" min="1" max="12" value="5"><span class="chip" id="hv"></span></div>
+    <div id="hout" class="msg"></div>
+    <label>Number of keys n: <input type="number" id="nn" value="1000" min="1"></label>
+    <div class="res" id="nout"></div></div>
+</section>
+
+<section id="v6">
+  <h2>6. Complexity and comparison</h2>
+  <div class="wrap"><table><tr><th>Operation</th><th>BST average</th><th>BST worst</th><th>AVL (always)</th></tr>
+  <tr><td>Search</td><td>O(log n)</td><td>O(n)</td><td>O(log n)</td></tr>
+  <tr><td>Insert</td><td>O(log n)</td><td>O(n)</td><td>O(log n)</td></tr>
+  <tr><td>Delete</td><td>O(log n)</td><td>O(n)</td><td>O(log n)</td></tr>
+  <tr><td>Inorder traversal</td><td colspan="3">O(n), sorted output, as in any BST</td></tr>
+  <tr><td>Space</td><td colspan="3">O(n), plus one height field per node in AVL</td></tr></table></div>
+  <div class="wrap"><table><tr><th></th><th>Plain BST</th><th>AVL</th><th>Red-Black</th></tr>
+  <tr><td>Balance rule</td><td>none</td><td>strict: |BF| &le; 1</td><td>looser: colour rules</td></tr>
+  <tr><td>Max height</td><td>n</td><td>about 1.44 log<sub>2</sub> n</td><td>up to 2 log<sub>2</sub> n</td></tr>
+  <tr><td>Lookups</td><td>slowest worst case</td><td>fastest (shallowest)</td><td>slightly slower</td></tr>
+  <tr><td>Insert / delete</td><td>cheapest per op but no repair</td><td>more rotations</td><td>at most 2 / 3 rotations</td></tr></table></div>
+  <h3>Drawbacks of AVL trees</h3>
+  <ul class="n"><li>More rebalancing work on updates, especially deletion, than Red-Black trees. Libraries such as Java's TreeMap and C++ std::map use Red-Black trees for that reason.</li>
+  <li>Extra memory for a height (or balance factor) in every node, and more complex code, especially deletion.</li>
+  <li>Not the choice for disk-based indexes: databases use B-trees or B+ trees, which are wide and shallow to reduce disk reads. AVL suits in-memory, lookup-heavy data.</li>
+  <li>Best when reads greatly outnumber writes (dictionaries, lookup tables, in-memory indexes).</li></ul>
+</section>
+
+<section id="v7">
+  <h2>7. Python implementation</h2>
+<pre id="code">class Node:
+    def __init__(self, key):
+        self.key, self.left, self.right, self.h = key, None, None, 1
+
+def h(n):  return n.h if n else 0
+def bf(n): return h(n.left) - h(n.right) if n else 0
+def update(n): n.h = 1 + max(h(n.left), h(n.right))
+
+def rotate_right(y):
+    x = y.left
+    y.left, x.right = x.right, y
+    update(y); update(x)
+    return x                      # x is the new subtree root
+
+def rotate_left(x):
+    y = x.right
+    x.right, y.left = y.left, x
+    update(x); update(y)
+    return y
+
+def rebalance(n):
+    update(n)
+    b = bf(n)
+    if b &gt; 1:                     # left heavy
+        if bf(n.left) &lt; 0:        # LR case: first fix the child
+            n.left = rotate_left(n.left)
+        return rotate_right(n)    # LL case (or LR step 2)
+    if b &lt; -1:                    # right heavy
+        if bf(n.right) &gt; 0:       # RL case
+            n.right = rotate_right(n.right)
+        return rotate_left(n)     # RR case (or RL step 2)
+    return n
+
+def insert(n, key):
+    if n is None: return Node(key)
+    if key &lt; n.key:   n.left  = insert(n.left, key)
+    elif key &gt; n.key: n.right = insert(n.right, key)
+    else: return n
+    return rebalance(n)
+
+def delete(n, key):
+    if n is None: return None
+    if key &lt; n.key:   n.left  = delete(n.left, key)
+    elif key &gt; n.key: n.right = delete(n.right, key)
+    else:
+        if n.left is None:  return n.right
+        if n.right is None: return n.left
+        s = n.right                # inorder successor
+        while s.left: s = s.left
+        n.key = s.key
+        n.right = delete(n.right, s.key)
+    return rebalance(n)</pre>
+  <div class="row"><button class="b" id="cp">Copy code</button></div>
+  <ul class="n"><li>Insert and delete are ordinary BST operations followed by <code>rebalance</code> on the way back up the recursion.</li>
+  <li>Search is identical to BST search, so reuse it unchanged.</li></ul>
+</section>
+
+<section id="v8">
+  <h2>8. Check yourself</h2>
+  <div id="quiz"></div><div class="msg" id="score"></div>
+</section>
+<footer>Based on the AVL tree notes provided by the course instructor, extended with BST drawbacks, rotation walkthroughs and the height argument.</footer>
+</div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},uid=0;
+Array.prototype.forEach.call(document.querySelectorAll('#avx nav button'),function(b){b.onclick=function(){$(b.getAttribute('data-go')).scrollIntoView({behavior:'smooth'})}});
+function ht(n){return n?n.h:0}
+function upd(n){n.h=1+Math.max(ht(n.l),ht(n.r))}
+function bf(n){return n?ht(n.l)-ht(n.r):0}
+function mk(v,l,r){var n={v:v,l:l||null,r:r||null};upd(n);return n}
+function cl(n){return n?{v:n.v,l:cl(n.l),r:cl(n.r),h:n.h}:null}
+function rotR(y){var x=y.l;y.l=x.r;x.r=y;upd(y);upd(x);return x}
+function rotL(x){var y=x.r;x.r=y.l;y.l=x;upd(x);upd(y);return y}
+function walk(n,f){if(n){walk(n.l,f);f(n);walk(n.r,f)}}
+function sgn(b){return b>0?'+'+b:''+b}
+function draw(svg,rt,hi){
+  var cnt=0,md=0,s='';
+  if(!rt){svg.setAttribute('viewBox','0 0 300 60');svg.innerHTML='<text x="150" y="35" text-anchor="middle" fill="#4a5068" font-size="14">Empty tree</text>';return}
+  (function lay(n,d){if(!n)return;lay(n.l,d+1);n.x=cnt++;n.d=d;md=Math.max(md,d);lay(n.r,d+1)})(rt,0);
+  var W=Math.max(cnt*50+20,240),Hh=(md+1)*64+30,off=(W-(cnt-1)*50)/2;
+  function X(n){return off+n.x*50}function Y(n){return 42+n.d*64}
+  walk(rt,function(n){[n.l,n.r].forEach(function(k){if(k)s+='<line class="edge" x1="'+X(n)+'" y1="'+Y(n)+'" x2="'+X(k)+'" y2="'+Y(k)+'"/>'})});
+  walk(rt,function(n){var b=bf(n);s+='<g class="nd c'+Math.min(Math.abs(b),2)+(n.v===hi?' new':'')+'"><circle cx="'+X(n)+'" cy="'+Y(n)+'" r="17"/><text x="'+X(n)+'" y="'+Y(n)+'">'+n.v+'</text><text class="bf" x="'+(X(n)+17)+'" y="'+(Y(n)-17)+'">'+sgn(b)+'</text></g>'});
+  svg.setAttribute('viewBox','0 0 '+W+' '+Hh);svg.innerHTML=s;
+}
+
+/* ---- lab ---- */
+function PL(n){upd(n);return n}
+function reb(n,lg){upd(n);var b=bf(n);
+  if(b>1){if(bf(n.l)<0){lg.push('LR at '+n.v+' (BF +2): left rotation on '+n.l.v+', then right rotation on '+n.v);n.l=rotL(n.l)}else lg.push('LL at '+n.v+' (BF +2): right rotation on '+n.v);return rotR(n)}
+  if(b<-1){if(bf(n.r)>0){lg.push('RL at '+n.v+' (BF -2): right rotation on '+n.r.v+', then left rotation on '+n.v);n.r=rotR(n.r)}else lg.push('RR at '+n.v+' (BF -2): left rotation on '+n.v);return rotL(n)}
+  return n}
+function ins(n,v,R,lg){if(!n)return mk(v);if(v<n.v)n.l=ins(n.l,v,R,lg);else if(v>n.v)n.r=ins(n.r,v,R,lg);else return n;return R(n,lg)}
+function del(n,v,R,lg){if(!n)return null;
+  if(v<n.v)n.l=del(n.l,v,R,lg);else if(v>n.v)n.r=del(n.r,v,R,lg);
+  else{if(!n.l)return n.r;if(!n.r)return n.l;var s=n.r;while(s.l)s=s.l;n.v=s.v;n.r=del(n.r,s.v,R,lg)}
+  return R(n,lg)}
+function steps(n,v){var c=0;while(n){c++;if(v===n.v)return [c,1];n=v<n.v?n.l:n.r}return [c,0]}
+var BT=null,AT=null,rot=0,cnt=0;
+function stats(el,t,isA){var n=0,mx=0;walk(t,function(x){n++;mx=Math.max(mx,Math.abs(bf(x)))});
+  $(el).innerHTML='<span class="chip">nodes '+n+'</span><span class="chip">height '+ht(t)+'</span><span class="chip '+(mx>1?'r':'g')+'">max |BF| '+mx+'</span>'+(isA?'<span class="chip">rotations '+rot+'</span>':'')}
+function show(hi){draw($('sb'),BT,hi);draw($('sa'),AT,hi);stats('stb',BT,0);stats('sta',AT,1)}
+function say(t,w){$('lmsg').className='msg'+(w?' bad':'');$('lmsg').innerHTML=t}
+function val(){var s=$('kv').value;if(s===''){say('Type a number first.',1);return null}return parseInt(s,10)}
+function addKey(v,lg){BT=ins(BT,v,PL,[]);AT=ins(AT,v,reb,lg);cnt++}
+$('ki').onclick=function(){var v=val();if(v===null)return;if(steps(AT,v)[1]){say(v+' is already in both trees.',1);return}
+  if(cnt>=20){say('Limit of 20 keys reached. Press Clear.',1);return}
+  var lg=[];addKey(v,lg);rot+=lg.length;show(v);$('kv').value='';
+  say('Inserted '+v+'. '+(lg.length?'<b>AVL repaired itself:</b> '+lg.join('; ')+'.':'AVL needed no rotation.'),0)};
+$('kd').onclick=function(){var v=val();if(v===null)return;if(!steps(AT,v)[1]){say(v+' is not in the tree.',1);return}
+  var lg=[];BT=del(BT,v,PL,[]);AT=del(AT,v,reb,lg);cnt--;rot+=lg.length;show();$('kv').value='';
+  say('Deleted '+v+'. '+(lg.length?'<b>AVL rotated:</b> '+lg.join('; ')+'.':'AVL needed no rotation.')+(maxbf(BT)>1?' <span class="bad">The BST now has a node with |BF| of 2 or more and nothing repairs it.</span>':''),0)};
+function maxbf(t){var m=0;walk(t,function(x){m=Math.max(m,Math.abs(bf(x)))});return m}
+$('ks').onclick=function(){var v=val();if(v===null)return;var a=steps(BT,v),b=steps(AT,v);
+  say('Search '+v+': plain BST needed <b>'+a[0]+'</b> comparison(s), AVL needed <b>'+b[0]+'</b>. '+(a[1]?'Found.':'Not found.'),0)};
+function load(a,m){BT=null;AT=null;rot=0;cnt=0;var lg=[];a.forEach(function(v){addKey(v,lg)});rot=lg.length;show();say(m+' AVL used <b>'+lg.length+'</b> rotation(s) while loading.',0)}
+$('kc').onclick=function(){BT=null;AT=null;rot=0;cnt=0;show();say('',0)};
+[['Sorted 1 to 7',[1,2,3,4,5,6,7],'Sorted input: the BST is a chain.'],['Best-case order',[4,2,6,1,3,5,7],'Same keys, a lucky order: both trees are perfect.'],['Class example',[20,11,23,9,13,21,30],'A balanced BST.'],['Random 10',[50,17,72,12,23,54,76,9,14,19],'A mixed input.'],['Deletion demo',[30,20,40,10],'Both trees are balanced. Now delete 40.'],['Skewed 8 keys',[10,20,30,40,50,60,70,80],'Increasing keys again.']].forEach(function(p){
+  var b=document.createElement('button');b.className='b';b.textContent=p[0];b.onclick=function(){load(p[1],p[2])};$('pre').appendChild(b)});
+load([1,2,3,4,5,6,7],'Sorted input: the BST is a chain.');
+
+/* ---- rotation stepper ---- */
+var RC={
+ LL:{t:function(){return mk(30,mk(20,mk(10)))},s:[['Unbalanced: 30 has BF +2 and its left child 20 is left-heavy (LL case).',0],['Right rotation on 30: 20 becomes the root, 30 its right child.',function(t){return rotR(t)}]]},
+ RR:{t:function(){return mk(10,0,mk(20,0,mk(30)))},s:[['Unbalanced: 10 has BF -2 and its right child 20 is right-heavy (RR case).',0],['Left rotation on 10: 20 becomes the root, 10 its left child.',function(t){return rotL(t)}]]},
+ LR:{t:function(){return mk(30,mk(10,0,mk(20)))},s:[['Unbalanced: 30 has BF +2 but its left child 10 leans right (LR case). A single right rotation would not fix this.',0],['Step 1: left rotation on the left child 10. This turns it into an LL shape.',function(t){t.l=rotL(t.l);return t}],['Step 2: right rotation on 30. Balanced, with 20 at the top.',function(t){return rotR(t)}]]},
+ RL:{t:function(){return mk(10,0,mk(30,mk(20)))},s:[['Unbalanced: 10 has BF -2 but its right child 30 leans left (RL case).',0],['Step 1: right rotation on the right child 30. This turns it into an RR shape.',function(t){t.r=rotR(t.r);return t}],['Step 2: left rotation on 10. Balanced, with 20 at the top.',function(t){return rotL(t)}]]}
+},rk='LL',ri=0,RS=[];
+function rbuild(){var t=RC[rk].t();RS=[];RC[rk].s.forEach(function(s){if(s[1])t=s[1](t);RS.push([s[0],cl(t)])})}
+function rview(){Array.prototype.forEach.call($('rcs').children,function(b){b.className='b'+(b.textContent===rk?' on':'')});
+  draw($('rsv'),RS[ri][1],null);$('rinfo').innerHTML='<b>Step '+(ri+1)+' of '+RS.length+':</b> '+RS[ri][0];$('rp').disabled=ri===0;$('rn').disabled=ri===RS.length-1}
+Object.keys(RC).forEach(function(k){var b=document.createElement('button');b.className='b';b.textContent=k;b.onclick=function(){rk=k;ri=0;rbuild();rview()};$('rcs').appendChild(b)});
+$('rn').onclick=function(){ri++;rview()};$('rp').onclick=function(){ri--;rview()};rbuild();rview();
+
+/* ---- height proof ---- */
+function mm(t){return '<span class="m">'+t+'</span>'}
+var DV=[
+ 'Let <b>N(h)</b> be the fewest nodes an AVL tree of height h can have (empty tree height 0, single node height 1).'+mm('N(0) = 0, &nbsp; N(1) = 1'),
+ 'To be as sparse as possible, the root has one subtree of height h &minus; 1 and, since BF may be 1, a sibling subtree of only height h &minus; 2. Both must themselves be as sparse as possible.',
+ 'Count the nodes: both subtrees plus the root.'+mm('N(h) = N(h&minus;1) + N(h&minus;2) + 1'),
+ 'This is the Fibonacci recurrence (shifted by one). The sequence runs 1, 2, 4, 7, 12, 20, 33, 54, ...'+mm('N(h) = F(h+2) &minus; 1'),
+ 'Fibonacci numbers grow like &phi;<sup>h</sup> with &phi; = 1.618..., so n &ge; N(h) is about &phi;<sup>h</sup>. Take logs.'+mm('h &le; log<sub>&phi;</sub>(n) &asymp; 1.44 &middot; log<sub>2</sub>(n)'),
+ 'So the height is O(log n) always. A plain BST has no such argument: its height can be n.'
+],dk=1;
+function drv(){var h='',i;for(i=0;i<dk;i++)h+='<div class="stp'+(i===DV.length-1?' last':'')+'">'+(i+1)+'. '+DV[i]+'</div>';$('dbox').innerHTML=h;$('dn').disabled=dk>=DV.length}
+$('dn').onclick=function(){dk++;drv()};$('da').onclick=function(){dk=DV.length;drv()};$('dr').onclick=function(){dk=1;drv()};drv();
+function N(h){var a=0,b=1,i,t;if(h===0)return 0;for(i=2;i<=h;i++){t=a+b+1;a=b;b=t}return b}
+function hcalc(){var h=+$('hs').value;$('hv').textContent='h = '+h;$('hout').textContent='Fewest nodes N('+h+') = '+N(h)+'. Most nodes (perfect tree) = '+(Math.pow(2,h)-1)+'.';
+  var n=+$('nn').value,m=0;if(n>=1){while(N(m+1)<=n)m++;
+  $('nout').innerHTML='With <b>n = '+n+'</b> keys: an AVL tree has height at most <b>'+m+'</b> (the best possible is '+Math.ceil(Math.log(n+1)/Math.LN2)+'), while a plain BST can reach height <b>'+n+'</b>.'}}
+$('hs').oninput=hcalc;$('nn').oninput=hcalc;hcalc();
+$('cp').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText($('code').textContent);$('cp').textContent='Copied'};
+
+/* ---- quiz ---- */
+var Q=[
+ ['What is the balance factor of a node?',['height(left) - height(right)','height(right) - height(left) always','number of left nodes - right nodes','depth of the node'],0,'BF = left subtree height minus right subtree height, as in the notes. AVL needs it to be -1, 0 or +1.'],
+ ['You insert 10, 20, 30 into an empty AVL tree. What happens?',['LL case, right rotation','RR case, left rotation, 20 becomes root','LR case, double rotation','Nothing, it is already balanced'],1,'Each key goes right, so 10 gets BF -2. A single left rotation makes 20 the root.'],
+ ['You insert 30, 10, 20 into an empty AVL tree. Which case is it?',['LL','RR','LR','RL'],2,'20 lands in the right subtree of 30\'s left child: Left-Right. Rotate left on 10, then right on 30.'],
+ ['What is the fewest nodes in an AVL tree of height 4?',['5','7','8','15'],1,'N(4) = N(3) + N(2) + 1 = 4 + 2 + 1 = 7.'],
+ ['How many rotations (single or double counts as one fix) can one insertion need?',['At most one fix','Up to log n fixes','Exactly two','As many as the height'],0,'After the first repair the subtree returns to its old height, so no ancestor stays unbalanced.'],
+ ['Which is a real drawback of a plain BST?',['It cannot be traversed inorder','Sorted insertions give a chain with O(n) search','It stores heights','It needs rotations'],1,'Nothing rebalances a BST, so ordered input degrades it into a linked list.'],
+ ['Why do Java TreeMap and C++ map prefer Red-Black trees over AVL?',['They search faster','They use less memory per node and need fewer rotations on updates','They are not BSTs','They never rebalance'],1,'Red-Black trees limit rebalancing work (at most 2 rotations on insert, 3 on delete). AVL has shallower height but costlier updates.'],
+ ['After deleting a node from an AVL tree, how many rotations might be needed?',['Never any','Exactly one','Up to O(log n)','O(n)'],2,'A fix can shorten a subtree and unbalance an ancestor, so the repair may continue up the path.']
+],sc=0,an=0;
+Q.forEach(function(q,qi){var d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(qi+1)+'. '+q[0]+'</p>';
+  q[1].forEach(function(o,oi){var b=document.createElement('button');b.className='b';b.textContent=o;
+    b.onclick=function(){if(d.done)return;d.done=1;an++;var bs=d.querySelectorAll('button');
+      if(oi===q[2]){b.className='b ok';sc++}else{b.className='b no';bs[q[2]].className='b ok'}
+      d.insertAdjacentHTML('beforeend','<small>'+q[3]+'</small>');
+      $('score').textContent='Score: '+sc+' / '+an+(an===Q.length?(sc===Q.length?'. Perfect!':'. Revisit the sections you missed.'):'')};
+    d.appendChild(b)});$('quiz').appendChild(d)});
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="binary-trees.html"><small>← Previous lesson</small><b>Binary trees</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="heaps.html"><small>Next lesson →</small><b>Heaps &amp; heap sort</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

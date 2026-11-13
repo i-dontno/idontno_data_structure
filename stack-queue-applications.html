@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications of stacks &amp; queues · Learn Data Structures with idontno</title>
+<meta name="description" content="Expression evaluation, undo/redo and job scheduling.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="stack-queue-applications">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="cur" data-lesson="stack-queue-applications" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module II · Linear data structures</span><span>›</span><span>Lesson 6 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     APPLICATIONS OF STACKS AND QUEUES
+     Expression Evaluation, Undo Feature, Job Scheduling
+     MCA Data Structures Interactive Learning Blog
+     Paste this whole block into Blogger's HTML view.
+     ============================================================ -->
+<style>
+#dsa-ap{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-ap *,#dsa-ap *::before,#dsa-ap *::after{box-sizing:border-box}
+#dsa-ap h1,#dsa-ap h2,#dsa-ap h3,#dsa-ap h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-ap p{margin:0 0 14px}
+#dsa-ap a{color:var(--blue)}
+#dsa-ap code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-ap ul,#dsa-ap ol{margin:0 0 14px;padding-left:22px}
+#dsa-ap li{margin:4px 0}
+#dsa-ap strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-ap .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-ap .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-ap .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-ap .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-ap .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-ap .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-ap .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-ap .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-ap .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-ap .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-ap .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-ap .toc a{text-decoration:none;color:var(--ink)}
+#dsa-ap .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-ap section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-ap .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-ap .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-ap .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-ap h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-ap h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-ap .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-ap .box p:last-child,#dsa-ap .box ul:last-child{margin-bottom:0}
+#dsa-ap .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-ap .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-ap .def .box-title{color:var(--blue)}
+#dsa-ap .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-ap .tip .box-title{color:var(--teal)}
+#dsa-ap .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-ap .warn .box-title{color:var(--red)}
+#dsa-ap .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-ap .exam .box-title{color:var(--gold)}
+#dsa-ap .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-ap .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-ap .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-ap .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-ap .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-ap .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-ap .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-ap .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-ap .pro{border-left:4px solid var(--teal)}
+#dsa-ap .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-ap .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-ap table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-ap th,#dsa-ap td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-ap th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-ap tr:nth-child(even) td{background:#faf9f5}
+#dsa-ap td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-ap td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-ap .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-ap .mem .c{width:64px;text-align:center}
+#dsa-ap .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-ap .mem .c:last-child .v{border-right-width:2px}
+#dsa-ap .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-ap .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-ap .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-ap .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-ap .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-ap .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-ap .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-ap .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-ap pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-ap pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-ap pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-ap pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-ap .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-ap .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-ap .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-ap .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-ap .tab-pane{display:none;padding-top:10px}
+#dsa-ap .tab-pane.on{display:block}
+#dsa-ap .code-wrap{position:relative}
+#dsa-ap .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-ap .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-ap .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-ap .btn:hover{transform:translateY(-1px)}
+#dsa-ap .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-ap .btn.acc{background:var(--accent)}
+#dsa-ap .btn.tl{background:var(--teal)}
+#dsa-ap .btn.rd{background:var(--red)}
+#dsa-ap .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-ap input[type=number],#dsa-ap input[type=text],#dsa-ap select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-ap label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-ap .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-ap .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-ap .lab-head b{font-size:1.05em}
+#dsa-ap .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-ap .lab-body{padding:18px;background:#fff}
+#dsa-ap .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-ap .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-ap .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-ap .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-ap .cell:last-child .box-v{border-right-width:2px}
+#dsa-ap .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-ap .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-ap .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-ap .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-ap .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-ap .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-ap .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-ap .cell.done .box-v{background:var(--teal-soft)}
+#dsa-ap .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-ap .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-ap .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-ap .pc div{padding:1px 14px;white-space:pre}
+#dsa-ap .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-ap .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-ap .log div{margin:2px 0}
+#dsa-ap .log .ok{color:#8ce99a}
+#dsa-ap .log .bad{color:#ff8787}
+#dsa-ap .log .hd{color:#ffb48a}
+#dsa-ap .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-ap .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-ap .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-ap .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-ap .msg.bad{color:var(--red)}
+#dsa-ap .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-ap .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-ap .calc-out b{color:var(--accent)}
+#dsa-ap .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-ap .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-ap .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-ap .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-ap .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-ap .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-ap .mgrid div.tg small{color:#ffe3d3}
+#dsa-ap .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-ap .mgrid div.now{background:#ffd8a8}
+#dsa-ap .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-ap details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-ap details summary{cursor:pointer;font-weight:600}
+#dsa-ap details[open] summary{margin-bottom:8px}
+#dsa-ap .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-ap .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-ap .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-ap .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-ap .opt:hover{border-color:var(--ink2)}
+#dsa-ap .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-ap .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-ap .opt:disabled{cursor:default}
+#dsa-ap .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-ap .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-ap .score b{color:#ffb48a;font-size:1.3em}
+#dsa-ap .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-ap .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-ap .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-ap .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-ap .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-ap .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-ap .nav-tab.home{padding-left:14px}
+#dsa-ap .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-ap .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-ap .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-ap .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-ap .nb,#dsa-ap .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-ap .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-ap .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-ap .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-ap .crumb b{display:block;font-size:1.02em}
+#dsa-ap .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-ap .nav-tools{display:flex;gap:8px}
+#dsa-ap .nt{border-color:var(--line);font-size:.82em}
+#dsa-ap .nt:hover{border-color:var(--ink)}
+#dsa-ap .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-ap.paged .page{display:none}
+#dsa-ap.paged .page.active{display:block;animation:apFade .3s ease}
+@keyframes apFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-ap .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-ap .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-ap .pager button:hover{background:var(--accent-soft)}
+#dsa-ap .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-ap .pager button b{font-size:.95em}
+#dsa-ap .pager .nx{text-align:right;margin-left:auto}
+#dsa-ap:not(.paged) .pager{display:none}
+#dsa-ap .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-ap .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-ap .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-ap .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-ap .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-ap .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-ap .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-ap .ov b{display:block;font-size:1.02em}
+#dsa-ap .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-ap .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-ap:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-ap:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-ap.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-ap .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-ap .nav-bar{gap:6px}
+  #dsa-ap .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-ap .nb{flex:1}
+  #dsa-ap .nav-tools{flex-basis:100%}
+  #dsa-ap .nav-tools .nt{flex:1}
+  #dsa-ap .pager button{max-width:49%;font-size:.9em}
+  #dsa-ap{font-size:16px}
+  #dsa-ap section.sec{padding:22px 16px 10px}
+  #dsa-ap .hero{padding:28px 20px}
+  #dsa-ap .hero h1{font-size:1.9em}
+  #dsa-ap .grid2,#dsa-ap .grid3,#dsa-ap .viz-split{grid-template-columns:1fr}
+  #dsa-ap .toc ol{columns:1}
+  #dsa-ap .cell{width:44px}
+  #dsa-ap .cell .box-v{height:46px;font-size:.95em}
+  #dsa-ap .cell .adr{display:none}
+  #dsa-ap .mem .c{width:50px}
+  #dsa-ap .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- applications specific ---------- */
+#dsa-ap .grid2>div,#dsa-ap .grid3>div,#dsa-ap .ap-split>div,#dsa-ap .cols>div{min-width:0}
+#dsa-ap .pc{overflow-x:auto;min-height:0}
+#dsa-ap .hero-apps{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+#dsa-ap .hero-apps div{background:#ffffff14;border:1.5px solid #ffffff33;border-radius:12px;padding:10px 14px;min-width:170px;flex:1}
+#dsa-ap .hero-apps b{display:block;color:#fff;font-size:.95em}
+#dsa-ap .hero-apps span{font-family:'Fira Code',monospace;font-size:.78em;color:#ffb48a}
+#dsa-ap .hero-apps small{display:block;color:#c9cde0;font-size:.8em;margin-top:2px}
+#dsa-ap .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+#dsa-ap .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-ap .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-ap .seg button.on{background:var(--ink);color:#fff}
+#dsa-ap .seg button:disabled{opacity:.5;cursor:not-allowed}
+#dsa-ap .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-ap .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-ap .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-ap .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-ap .op p{font-size:.95em}
+#dsa-ap .lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin:10px 0 4px}
+#dsa-ap .toks{display:flex;flex-wrap:wrap;gap:4px;padding:8px 10px;background:var(--soft);border-radius:10px;min-height:46px;align-items:center}
+#dsa-ap .toks span{font-family:'Fira Code',monospace;background:#fff;border:1.5px solid var(--line);border-radius:7px;padding:5px 9px;min-width:30px;text-align:center}
+#dsa-ap .toks span.done{opacity:.35}
+#dsa-ap .toks span.cur{background:#ffd8a8;border-color:var(--accent);font-weight:600;transform:translateY(-3px)}
+#dsa-ap .toks span.opr{color:var(--accent)}
+#dsa-ap .toks em{font-style:normal;color:var(--ink2);font-size:.85em}
+#dsa-ap .ap-split{display:grid;grid-template-columns:150px 1fr 1.6fr;gap:12px;align-items:start;margin-top:10px}
+#dsa-ap .stackcol{background:var(--soft);border-radius:10px;padding:8px;min-height:230px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;border-bottom:4px solid var(--ink)}
+#dsa-ap .stackcol span{font-family:'Fira Code',monospace;background:#fff;border:1.5px solid var(--ink);border-radius:7px;padding:5px 8px;text-align:center;word-break:break-all}
+#dsa-ap .stackcol span.tp{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-ap .stackcol span.nw,#dsa-ap .stackcol span.tp.nw{background:#b2f2bb;color:var(--ink);border-color:#2b8a3e}
+#dsa-ap .stackcol em{font-style:normal;color:var(--ink2);font-size:.8em;text-align:center}
+#dsa-ap .stackcol .cap2{font-size:.7em;color:var(--ink2);text-align:center;font-weight:700;letter-spacing:.06em;margin-top:2px}
+#dsa-ap .trace td,#dsa-ap .trace th{font-family:'Fira Code',monospace;font-size:.8em;padding:5px 9px}
+#dsa-ap .trace tr.now td{background:#ffe8cc !important}
+#dsa-ap .trace-wrap{max-height:280px;overflow-y:auto;border:1px solid var(--line);border-radius:10px}
+#dsa-ap .trace-wrap table{margin:0}
+#dsa-ap .result{font-weight:700;margin-top:10px;font-size:1.02em;min-height:1.4em}
+#dsa-ap .result.ok{color:var(--teal)}
+#dsa-ap .result.bad{color:var(--red)}
+#dsa-ap .doc{font-family:'Fira Code',monospace;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:14px 16px;min-height:56px;font-size:1.05em;line-height:1.6}
+#dsa-ap .doc .w{padding:1px 3px;border-radius:4px}
+#dsa-ap .doc .w.nw{background:#b2f2bb}
+#dsa-ap .doc .caret{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-2px;animation:apBlink 1s steps(1) infinite}
+@keyframes apBlink{50%{opacity:0}}
+#dsa-ap .cols{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px;margin-top:12px;align-items:start}
+#dsa-ap .chips{display:flex;align-items:center;gap:5px;min-height:46px;padding:8px 10px;background:var(--soft);border-radius:10px;flex-wrap:wrap}
+#dsa-ap .chips span{font-family:'Fira Code',monospace;background:#fff;border:1.5px solid var(--ink);border-radius:7px;padding:5px 9px}
+#dsa-ap .chips span.f{background:#0b7a6f;border-color:#0b7a6f;color:#fff}
+#dsa-ap .chips em{font-style:normal;font-size:.8em;color:var(--ink2)}
+#dsa-ap .chips .end{font-size:.7em;font-weight:700;color:var(--ink2);font-family:'Fira Code',monospace}
+#dsa-ap .cpu{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+#dsa-ap .cpu .box{font-family:'Fira Code',monospace;border:2px solid var(--ink);border-radius:10px;padding:8px 14px;background:#fff;min-width:120px}
+#dsa-ap .cpu .box b{color:var(--accent)}
+#dsa-ap .gantt{position:relative;display:flex;min-height:46px;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;background:#fff}
+#dsa-ap .gantt div{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--ink);font-family:'Fira Code',monospace;font-size:.78em;position:relative;padding-bottom:12px;min-width:0}
+#dsa-ap .gantt div small{position:absolute;bottom:1px;left:2px;font-size:.78em;color:var(--ink2)}
+#dsa-ap .gantt div.idle{background:repeating-linear-gradient(45deg,#fff,#fff 4px,#eceae2 4px,#eceae2 8px);color:var(--ink2)}
+#dsa-ap .gantt .gend{position:absolute;right:3px;bottom:1px;font-family:'Fira Code',monospace;font-size:.62em;color:var(--ink2)}
+#dsa-ap .ap-pane{display:none}
+#dsa-ap .ap-pane.on{display:block}
+#dsa-ap .tr-out td{font-family:'Fira Code',monospace}
+@media (max-width:720px){
+  #dsa-ap .ap-split,#dsa-ap .cols{grid-template-columns:1fr}
+  #dsa-ap .stackcol{min-height:120px}
+  #dsa-ap .seg button{padding:7px 10px;font-size:.82em}
+}
+</style>
+
+<div id="dsa-ap">
+
+<!-- ======================= NAVIGATION MENU ======================= -->
+<div class="nav" id="ap-nav">
+  <div class="nav-tabs" id="ap-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="ap-prev">← Previous</button>
+    <div class="crumb"><b id="ap-crumb-t">Home</b><span id="ap-crumb-s">Overview</span></div>
+    <button class="nb" id="ap-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="ap-all">Show all sections</button>
+      <button class="nt" id="ap-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HOME ======================= -->
+<section class="page" id="ap-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">MCA · Data Structures · Unit: Stacks &amp; Queues</span>
+  <h1>Applications of Stacks and Queues</h1>
+  <p>Three classic uses, explained with algorithms and interactive simulators: evaluating expressions with a stack, building an undo/redo feature with two stacks, and scheduling jobs with a queue.</p>
+  <div class="hero-apps">
+    <div><span>STACK</span><b>Expression evaluation</b><small>infix → postfix, evaluate postfix &amp; prefix</small></div>
+    <div><span>TWO STACKS</span><b>Undo / Redo</b><small>latest change is reversed first</small></div>
+    <div><span>QUEUE</span><b>Job scheduling</b><small>FCFS, round robin, printer spooling</small></div>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>What is it</b><small>Why stacks and queues power real software</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Concepts &amp; lab</b><small>Notations, precedence, undo model, scheduling terms, notation translator</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Algorithms &amp; visualisers</b><small>Expression, undo/redo and scheduling simulators</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Complexity</b><small>Time &amp; space, FCFS vs RR, notation comparison</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Uses, pros &amp; cons</b><small>More applications, advantages, disadvantages, pitfalls</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Python</b><small>Four tested programs with output</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Practice</b><small>Conversions, traces, output prediction, 8-MCQ quiz</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sec page" id="ap-s1" data-label="What is it" data-sub="Stacks and queues in real software">
+  <div class="sec-head"><div class="sec-num">1</div><h2>Why Stacks and Queues Matter</h2></div>
+
+  <p>Stacks and queues are simple structures, but a large part of everyday software is built on them. The choice between them comes down to one question:</p>
+  <div class="grid2">
+    <div class="mini"><h4>Must the <em>latest</em> item be handled first?</h4><p>Use a <strong>stack</strong> (LIFO). Examples: the operator that appeared most recently, the edit you made last, the function that was called last.</p></div>
+    <div class="mini"><h4>Must the <em>oldest</em> item be handled first?</h4><p>Use a <strong>queue</strong> (FIFO). Examples: the job that arrived first, the oldest print request, the first customer in line.</p></div>
+  </div>
+
+  <h3>The three applications in this post</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Application</th><th>Structure</th><th>Why that structure?</th></tr>
+    <tr><td><strong>Expression evaluation</strong><br>(compilers, calculators, spreadsheets)</td><td>Stack</td><td>Operators and operands must be combined in the reverse order in which they wait: the most recently seen operand is the next one used.</td></tr>
+    <tr><td><strong>Undo / redo</strong><br>(editors, design tools, IDEs)</td><td>Two stacks</td><td>Undo reverses the most recent change first. Undone changes go to a second stack so they can be redone in reverse order.</td></tr>
+    <tr><td><strong>Job scheduling</strong><br>(operating systems, printers, servers)</td><td>Queue</td><td>Jobs should be served fairly, in order of arrival. Round robin cycles through jobs by sending unfinished ones to the back of the queue.</td></tr>
+  </table></div>
+
+  <h3>Where you meet them every day</h3>
+  <div class="grid3">
+    <div class="mini"><span class="ico">🧮</span><h4>Calculator apps</h4><p>Evaluate <code>3 + 4 × 2</code> correctly using operator precedence and a stack.</p></div>
+    <div class="mini"><span class="ico">📊</span><h4>Spreadsheet formulas</h4><p><code>=A1*(B1+C1)</code> is parsed and evaluated with stacks.</p></div>
+    <div class="mini"><span class="ico">⚙️</span><h4>Compilers</h4><p>Convert source expressions into postfix-like instructions for the machine.</p></div>
+    <div class="mini"><span class="ico">↩️</span><h4>Ctrl+Z / Ctrl+Y</h4><p>Every editor, from Word to VS Code, keeps an undo stack and a redo stack.</p></div>
+    <div class="mini"><span class="ico">🖨️</span><h4>Printer spooler</h4><p>Documents wait in a queue and print in the order they were sent.</p></div>
+    <div class="mini"><span class="ico">💻</span><h4>Your operating system</h4><p>Processes wait in a ready queue for their turn on the CPU.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sec page" id="ap-s2" data-label="Concepts &amp; lab" data-sub="Notations, precedence, undo model, scheduling terms">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Core Concepts</h2></div>
+
+  <h3>A. Expression notations</h3>
+  <p>An arithmetic expression is made of <strong>operands</strong> (values or variables such as 5 or A) and <strong>operators</strong> (+, −, *, /, ^). The position of the operator gives three notations:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Notation</th><th>Operator position</th><th>A + B</th><th>(A + B) * C</th><th>A + B * C</th></tr>
+    <tr><td><strong>Infix</strong></td><td>Between operands</td><td><code>A + B</code></td><td><code>(A + B) * C</code></td><td><code>A + B * C</code></td></tr>
+    <tr><td><strong>Prefix</strong> (Polish)</td><td>Before operands</td><td><code>+ A B</code></td><td><code>* + A B C</code></td><td><code>+ A * B C</code></td></tr>
+    <tr><td><strong>Postfix</strong> (Reverse Polish)</td><td>After operands</td><td><code>A B +</code></td><td><code>A B + C *</code></td><td><code>A B C * +</code></td></tr>
+  </table></div>
+  <div class="box def"><span class="box-title">Why do computers prefer postfix?</span>
+    <ul>
+      <li><strong>No parentheses needed</strong>: the order of operators already says what is computed first.</li>
+      <li><strong>No precedence rules needed</strong> during evaluation: just apply each operator when you reach it.</li>
+      <li><strong>One left-to-right scan</strong> with a stack evaluates it in O(n) time.</li>
+    </ul>
+    <p>Infix is easy for humans but needs precedence rules and brackets. So a compiler typically <strong>converts infix to postfix</strong> (with an operator stack) and then <strong>evaluates postfix</strong> (with an operand stack).</p></div>
+
+  <h4>Precedence and associativity</h4>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operator</th><th>Precedence</th><th>Associativity</th><th>Meaning</th></tr>
+    <tr><td><code>^</code></td><td>3 (highest)</td><td>Right to left</td><td><code>2^3^2</code> = 2^(3^2) = 512</td></tr>
+    <tr><td><code>*</code> <code>/</code> <code>%</code></td><td>2</td><td>Left to right</td><td><code>8/4/2</code> = (8/4)/2 = 1</td></tr>
+    <tr><td><code>+</code> <code>−</code></td><td>1 (lowest)</td><td>Left to right</td><td><code>9−4−2</code> = (9−4)−2 = 3</td></tr>
+  </table></div>
+  <p><strong>Associativity</strong> decides the order when two operators have the <em>same</em> precedence. This is why the conversion algorithm pops an operator of equal precedence for left-associative operators but not for <code>^</code>.</p>
+
+  <h4>Converting by hand (quick check method)</h4>
+  <ol>
+    <li>Fully parenthesise according to precedence: <code>A + B * C</code> → <code>(A + (B * C))</code>.</li>
+    <li>For postfix, move each operator to just before its closing bracket: <code>(A (B C *) +)</code> → <code>A B C * +</code>.</li>
+    <li>For prefix, move each operator to just after its opening bracket: <code>(+ A (* B C))</code> → <code>+ A * B C</code>.</li>
+  </ol>
+  <p>This is handy for checking answers. The stack algorithm in Section 3 does the same job mechanically.</p>
+
+  <h3>B. The undo / redo model</h3>
+  <ul>
+    <li>Every change (typing a word, deleting, formatting) is stored as an <strong>action record</strong> describing what was done, so it can be reversed.</li>
+    <li><strong>Undo stack</strong>: actions already performed. Undo pops the most recent one and reverses it.</li>
+    <li><strong>Redo stack</strong>: actions that were undone. Redo pops the most recently undone one and applies it again.</li>
+    <li>Doing a <strong>new</strong> action clears the redo stack, because the old "future" no longer fits the document.</li>
+    <li>Real editors limit history (for example, the last 100 actions). A <strong>deque</strong> is ideal: push at one end and drop the oldest from the other end.</li>
+  </ul>
+
+  <h3>C. Job scheduling terms</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td><strong>Job / process</strong></td><td>A unit of work waiting for a resource (CPU, printer).</td></tr>
+    <tr><td><strong>Arrival time</strong></td><td>When the job enters the ready queue.</td></tr>
+    <tr><td><strong>Burst time</strong></td><td>CPU time the job needs.</td></tr>
+    <tr><td><strong>Finish (completion) time</strong></td><td>When the job completes.</td></tr>
+    <tr><td><strong>Turnaround time (TAT)</strong></td><td>Finish − arrival: total time spent in the system.</td></tr>
+    <tr><td><strong>Waiting time (WT)</strong></td><td>TAT − burst: time spent waiting in the queue.</td></tr>
+    <tr><td><strong>Time quantum</strong></td><td>Maximum time a job runs before being sent to the back of the queue (round robin).</td></tr>
+    <tr><td><strong>Non-preemptive / preemptive</strong></td><td>FCFS runs each job to completion (non-preemptive). Round robin interrupts jobs after each quantum (preemptive).</td></tr>
+  </table></div>
+  <div class="grid2">
+    <div class="mini"><h4>FCFS: First Come, First Served</h4><p>A plain FIFO queue. Simple and fair by arrival, but one long job makes everyone behind it wait (<strong>convoy effect</strong>).</p></div>
+    <div class="mini"><h4>Round Robin (RR)</h4><p>A circular queue with a time quantum. Every job gets regular turns, giving good response time for interactive systems.</p></div>
+  </div>
+
+  <!-- ===== NOTATION TRANSLATOR LAB ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧪 Interactive Lab: Notation Translator</b><span>type an infix expression</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">Infix expression<input type="text" id="nt-in" value="A+(B*C-(D/E^F)*G)*H" style="width:300px"></label>
+        <button class="btn gh sm" id="nt-ex">Try another example</button>
+      </div>
+      <div class="cap">Use single letters or whole numbers as operands, operators + − * / % ^, and brackets. Results update as you type.</div>
+      <div class="tbl-wrap"><table class="tr-out">
+        <tr><th style="width:190px">Form</th><th>Result</th></tr>
+        <tr><td>Fully parenthesised</td><td id="nt-par"></td></tr>
+        <tr><td>Postfix (Reverse Polish)</td><td id="nt-post"></td></tr>
+        <tr><td>Prefix (Polish)</td><td id="nt-pre"></td></tr>
+        <tr><td>Order of operations</td><td id="nt-order"></td></tr>
+        <tr><td>Value</td><td id="nt-val"></td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sec page" id="ap-s3" data-label="Visualiser" data-sub="Algorithms &amp; simulators for all three applications">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Algorithms &amp; Visualisers</h2></div>
+  <p>Choose an application. Each tab gives the algorithms, a worked example, and an interactive simulator that runs those algorithms step by step.</p>
+
+  <div class="tabs" data-tabs="apps">
+    <button class="tab-btn on" data-pane="ap-t-exp">Expression evaluation</button>
+    <button class="tab-btn" data-pane="ap-t-undo">Undo / redo</button>
+    <button class="tab-btn" data-pane="ap-t-sch">Job scheduling</button>
+  </div>
+
+  <!-- ================= EXPRESSION ================= -->
+  <div class="tab-pane on" id="ap-t-exp">
+    <div class="op"><h4>1. Infix to postfix conversion <span class="bx">O(n)</span></h4>
+      <p>Operands go straight to the output. Operators wait on a stack until an operator of lower precedence (or a closing bracket) arrives, which tells us the waiting operator's operands are complete.</p>
+      <pre class="pseudo">ALGORITHM INFIX_TO_POSTFIX(infix)
+1. S ← empty stack;  postfix ← empty
+2. for each token t of infix, from left to right:
+3.     if t is an operand: append t to postfix
+4.     else if t = "(": PUSH(S, t)
+5.     else if t = ")":
+6.         while TOP(S) ≠ "(": append POP(S) to postfix
+7.         POP(S)    // discard the "("
+8.     else:    // t is an operator
+9.         while S not empty and TOP(S) ≠ "(" and POPS_BEFORE(TOP(S), t):
+10.             append POP(S) to postfix
+11.         PUSH(S, t)
+12. while S not empty: append POP(S) to postfix
+13. return postfix</pre>
+      <div class="box tip"><span class="box-title">POPS_BEFORE(top, t)</span><p>The operator on top of the stack is popped before pushing t if <strong>prec(top) &gt; prec(t)</strong>, or if <strong>prec(top) = prec(t) and t is left-associative</strong>. For right-associative <code>^</code>, an equal-precedence <code>^</code> stays on the stack.</p></div>
+      <div class="lbl">Worked example: A+(B*C-(D/E^F)*G)*H</div>
+      <div class="trace-wrap"><table class="trace"><tr><th>Symbol</th><th>Action</th><th>Stack</th><th>Postfix</th></tr><tr><td>A</td><td>operand → output</td><td>—</td><td>A</td></tr><tr><td>+</td><td>push +</td><td>+</td><td>A</td></tr><tr><td>(</td><td>push</td><td>+(</td><td>A</td></tr><tr><td>B</td><td>operand → output</td><td>+(</td><td>A B</td></tr><tr><td>*</td><td>push *</td><td>+(*</td><td>A B</td></tr><tr><td>C</td><td>operand → output</td><td>+(*</td><td>A B C</td></tr><tr><td>-</td><td>pop *, push -</td><td>+(-</td><td>A B C *</td></tr><tr><td>(</td><td>push</td><td>+(-(</td><td>A B C *</td></tr><tr><td>D</td><td>operand → output</td><td>+(-(</td><td>A B C * D</td></tr><tr><td>/</td><td>push /</td><td>+(-(/</td><td>A B C * D</td></tr><tr><td>E</td><td>operand → output</td><td>+(-(/</td><td>A B C * D E</td></tr><tr><td>^</td><td>push ^</td><td>+(-(/^</td><td>A B C * D E</td></tr><tr><td>F</td><td>operand → output</td><td>+(-(/^</td><td>A B C * D E F</td></tr><tr><td>)</td><td>pop ^ /, discard (</td><td>+(-</td><td>A B C * D E F ^ /</td></tr><tr><td>*</td><td>push *</td><td>+(-*</td><td>A B C * D E F ^ /</td></tr><tr><td>G</td><td>operand → output</td><td>+(-*</td><td>A B C * D E F ^ / G</td></tr><tr><td>)</td><td>pop * -, discard (</td><td>+</td><td>A B C * D E F ^ / G * -</td></tr><tr><td>*</td><td>push *</td><td>+*</td><td>A B C * D E F ^ / G * -</td></tr><tr><td>H</td><td>operand → output</td><td>+*</td><td>A B C * D E F ^ / G * - H</td></tr><tr><td>end</td><td>pop * +</td><td>—</td><td>A B C * D E F ^ / G * - H * +</td></tr></table></div>
+      <p style="margin-top:10px">Postfix: <code>A B C * D E F ^ / G * - H * +</code></p></div>
+
+    <div class="op"><h4>2. Evaluating a postfix expression <span class="bx">O(n)</span></h4>
+      <p>Scan left to right. Push operands. When an operator appears, its two operands are the top two stack values: pop the <strong>right</strong> operand first, then the left, compute, and push the result.</p>
+      <pre class="pseudo">ALGORITHM EVALUATE_POSTFIX(postfix)
+1. S ← empty stack
+2. for each token t of postfix, from left to right:
+3.     if t is an operand: PUSH(S, t)
+4.     else:    // t is an operator
+5.         B ← POP(S)    // right operand comes out first
+6.         A ← POP(S)    // left operand
+7.         PUSH(S, A t B)
+8. return POP(S)    // exactly one value must remain</pre>
+      <div class="lbl">Worked example: 5 6 2 + * 12 4 / −   (from 5*(6+2)−12/4)</div>
+      <div class="trace-wrap"><table class="trace"><tr><th>Symbol</th><th>Action</th><th>Stack (bottom → top)</th></tr><tr><td>5</td><td>push 5</td><td>5</td></tr><tr><td>6</td><td>push 6</td><td>5 6</td></tr><tr><td>2</td><td>push 2</td><td>5 6 2</td></tr><tr><td>+</td><td>B = 2, A = 6 (B popped first); 6 + 2 = 8</td><td>5 8</td></tr><tr><td>*</td><td>B = 8, A = 5 (B popped first); 5 * 8 = 40</td><td>40</td></tr><tr><td>12</td><td>push 12</td><td>40 12</td></tr><tr><td>4</td><td>push 4</td><td>40 12 4</td></tr><tr><td>/</td><td>B = 4, A = 12 (B popped first); 12 / 4 = 3</td><td>40 3</td></tr><tr><td>-</td><td>B = 3, A = 40 (B popped first); 40 - 3 = 37</td><td>37</td></tr></table></div></div>
+
+    <div class="op"><h4>3. Evaluating a prefix expression <span class="bx">O(n)</span></h4>
+      <p>Same idea, but scan <strong>right to left</strong>. Now the first value popped is the <strong>left</strong> operand.</p>
+      <pre class="pseudo">ALGORITHM EVALUATE_PREFIX(prefix)
+1. S ← empty stack
+2. for each token t of prefix, from RIGHT to LEFT:
+3.     if t is an operand: PUSH(S, t)
+4.     else:    // t is an operator
+5.         A ← POP(S)    // left operand comes out first
+6.         B ← POP(S)    // right operand
+7.         PUSH(S, A t B)
+8. return POP(S)</pre>
+      <div class="lbl">Worked example: − * 5 + 6 2 / 12 4</div>
+      <div class="trace-wrap"><table class="trace"><tr><th>Symbol</th><th>Action</th><th>Stack (bottom → top)</th></tr><tr><td>4</td><td>push 4</td><td>4</td></tr><tr><td>12</td><td>push 12</td><td>4 12</td></tr><tr><td>/</td><td>A = 12, B = 4 (A popped first); 12 / 4 = 3</td><td>3</td></tr><tr><td>2</td><td>push 2</td><td>3 2</td></tr><tr><td>6</td><td>push 6</td><td>3 2 6</td></tr><tr><td>+</td><td>A = 6, B = 2 (A popped first); 6 + 2 = 8</td><td>3 8</td></tr><tr><td>5</td><td>push 5</td><td>3 8 5</td></tr><tr><td>*</td><td>A = 5, B = 8 (A popped first); 5 * 8 = 40</td><td>3 40</td></tr><tr><td>-</td><td>A = 40, B = 3 (A popped first); 40 - 3 = 37</td><td>37</td></tr></table></div>
+      <p style="margin-top:10px">To convert infix to <strong>prefix</strong>: reverse the infix (swapping "(" and ")"), convert it to postfix while popping an equal-precedence operator only for <code>^</code>, then reverse the result. Program 2 in Section 6 does exactly this.</p></div>
+
+    <div class="lab">
+      <div class="lab-head"><b>🎬 Expression Visualiser</b><span>stack-based conversion and evaluation</span></div>
+      <div class="lab-body">
+        <div class="controls">
+          <div class="seg" id="ev-mode"><button class="on" data-m="i2p">Infix → Postfix</button><button data-m="evpost">Evaluate postfix</button><button data-m="evpre">Evaluate prefix</button></div>
+        </div>
+        <div class="controls">
+          <label class="fld">Expression<input type="text" id="ev-in" value="A+B*(C-D)/E" style="width:260px"></label>
+          <label class="fld">Speed<select id="ev-speed" style="width:96px"><option value="1100">Slow</option><option value="650" selected>Normal</option><option value="250">Fast</option></select></label>
+          <button class="btn acc sm" id="ev-run">▶ Run</button>
+          <button class="btn gh sm" id="ev-step">Step</button>
+          <button class="btn gh sm" id="ev-ex">Example</button>
+        </div>
+        <div class="cap" id="ev-help"></div>
+        <div class="lbl">Input tokens</div>
+        <div class="toks" id="ev-toks"></div>
+        <div class="ap-split">
+          <div><div class="lbl">Stack</div><div class="stackcol" id="ev-stack"><em>empty</em></div></div>
+          <div><div class="lbl" id="ev-outlbl">Postfix output</div><div class="toks" id="ev-out"><em>empty</em></div><div class="result" id="ev-res"></div></div>
+          <div><div class="lbl">Trace</div><div class="trace-wrap"><table class="trace" id="ev-trace"></table></div></div>
+        </div>
+        <div class="lbl">Algorithm</div><div class="pc" id="ev-pc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= UNDO ================= -->
+  <div class="tab-pane" id="ap-t-undo">
+    <div class="op"><h4>Undo / redo with two stacks <span class="bx">O(1) per operation</span></h4>
+      <p>DO_ACTION records every change. UNDO and REDO simply move the top action from one stack to the other, reversing or re-applying it on the way.</p>
+      <pre class="pseudo">ALGORITHM DO_ACTION(a)
+1. apply action a to the document
+2. PUSH(UndoStack, a)
+3. make RedoStack empty    // a new action cancels the redo history</pre>
+      <pre class="pseudo">ALGORITHM UNDO()
+1. if UndoStack is empty: print "Nothing to undo"; exit
+2. a ← POP(UndoStack)    // most recent action
+3. reverse action a on the document
+4. PUSH(RedoStack, a)</pre>
+      <pre class="pseudo">ALGORITHM REDO()
+1. if RedoStack is empty: print "Nothing to redo"; exit
+2. a ← POP(RedoStack)
+3. apply action a to the document again
+4. PUSH(UndoStack, a)</pre>
+      <div class="lbl">Worked example</div>
+      <div class="tbl-wrap"><table class="trace">
+        <tr><th>Command</th><th>Document</th><th>Undo stack (top on right)</th><th>Redo stack (top on right)</th></tr>
+        <tr><td>type Data, Structures, are</td><td>Data Structures are</td><td>+Data +Structures +are</td><td>—</td></tr>
+        <tr><td>type fun</td><td>Data Structures are fun</td><td>… +are +fun</td><td>—</td></tr>
+        <tr><td>delete last word</td><td>Data Structures are</td><td>… +fun −fun</td><td>—</td></tr>
+        <tr><td>undo</td><td>Data Structures are fun</td><td>… +are +fun</td><td>−fun</td></tr>
+        <tr><td>undo</td><td>Data Structures are</td><td>… +are</td><td>−fun +fun</td></tr>
+        <tr><td>redo</td><td>Data Structures are fun</td><td>… +are +fun</td><td>−fun</td></tr>
+        <tr><td>type useful</td><td>Data Structures are fun useful</td><td>… +fun +useful</td><td>— (cleared)</td></tr>
+      </table></div>
+      <p style="margin-top:10px">"+word" means a typing action and "−word" a deletion. Notice how the new action in the last row wipes out the redo stack.</p></div>
+
+    <div class="lab">
+      <div class="lab-head"><b>🎬 Undo / Redo Simulator</b><span>a tiny editor with two stacks</span></div>
+      <div class="lab-body">
+        <div class="controls">
+          <label class="fld">Word<input type="text" id="ur-word" value="Stacks" style="width:150px"></label>
+          <button class="btn tl sm" id="ur-type">Type word</button>
+          <button class="btn rd sm" id="ur-del">Delete last word</button>
+          <button class="btn sm" id="ur-undo">↶ Undo</button>
+          <button class="btn sm" id="ur-redo">↷ Redo</button>
+          <button class="btn gh sm" id="ur-clear">Reset</button>
+        </div>
+        <div class="lbl">Document</div>
+        <div class="doc" id="ur-doc"></div>
+        <div class="cols">
+          <div><div class="lbl">Undo stack</div><div class="stackcol" id="ur-us"></div></div>
+          <div><div class="lbl">Redo stack</div><div class="stackcol" id="ur-rs"></div></div>
+          <div><div class="lbl">Algorithm</div><div class="pc" id="ur-pc"></div><div class="lbl">Log</div><div class="log" id="ur-log" style="height:150px"></div></div>
+        </div>
+        <div class="msg" id="ur-msg">Type a few words, delete one, then undo and redo. Finally do a new action and watch the redo stack empty.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCHEDULING ================= -->
+  <div class="tab-pane" id="ap-t-sch">
+    <div class="op"><h4>FCFS scheduling with a queue <span class="bx">O(n) after sorting</span></h4>
+      <p>Jobs enter a FIFO queue in arrival order. The CPU always takes the job at the front and runs it to completion. If the next job hasn't arrived yet, the CPU is idle until it does.</p>
+      <pre class="pseudo">ALGORITHM FCFS(jobs)
+1. Q ← empty queue;  ENQUEUE every job in order of arrival
+2. time ← 0
+3. while Q not empty:
+4.     j ← DEQUEUE(Q)    // oldest job
+5.     if time &lt; j.arrival: time ← j.arrival    // CPU idle
+6.     j.start ← time;  time ← time + j.burst
+7.     j.finish ← time
+8. for each job: TAT ← finish − arrival;  WT ← TAT − burst</pre></div>
+    <div class="op"><h4>Round robin scheduling with a circular queue</h4>
+      <p>The CPU takes the front job and runs it for at most one time quantum q. Jobs that arrived during that slice join the rear first; then the interrupted job, if unfinished, joins the rear behind them.</p>
+      <pre class="pseudo">ALGORITHM ROUND_ROBIN(jobs, q)
+1. Q ← empty queue;  time ← 0;  ENQUEUE jobs with arrival ≤ time
+2. while Q not empty or some job has not arrived:
+3.     if Q empty: time ← next arrival; ENQUEUE arrived jobs    // idle
+4.     j ← DEQUEUE(Q)
+5.     run ← min(q, j.remaining);  time ← time + run
+6.     j.remaining ← j.remaining − run
+7.     ENQUEUE jobs that arrived up to time    // new arrivals first
+8.     if j.remaining &gt; 0: ENQUEUE(Q, j)    // back to the rear
+9.     else: j.finish ← time
+10. for each job: TAT ← finish − arrival;  WT ← TAT − burst</pre></div>
+    <div class="op"><h4>Worked example: J1(0, 5), J2(1, 3), J3(2, 8), J4(3, 2)</h4>
+      <p>Each job is written as (arrival, burst). Round robin uses q = 2.</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>Job</th><th>Arrival</th><th>Burst</th><th>FCFS finish</th><th>FCFS TAT</th><th>FCFS WT</th><th>RR finish</th><th>RR TAT</th><th>RR WT</th></tr>
+        <tr><td>J1</td><td>0</td><td>5</td><td>5</td><td>5</td><td>0</td><td>14</td><td>14</td><td>9</td></tr>
+        <tr><td>J2</td><td>1</td><td>3</td><td>8</td><td>7</td><td>4</td><td>11</td><td>10</td><td>7</td></tr>
+        <tr><td>J3</td><td>2</td><td>8</td><td>16</td><td>14</td><td>6</td><td>18</td><td>16</td><td>8</td></tr>
+        <tr><td>J4</td><td>3</td><td>2</td><td>18</td><td>15</td><td>13</td><td>10</td><td>7</td><td>5</td></tr>
+        <tr><td colspan="3"><b>Average</b></td><td></td><td><b>10.25</b></td><td><b>5.75</b></td><td></td><td><b>11.75</b></td><td><b>7.25</b></td></tr>
+      </table></div>
+      <p>FCFS Gantt: J1[0–5] J2[5–8] J3[8–16] J4[16–18]. RR Gantt: J1[0–2] J2[2–4] J3[4–6] J1[6–8] J4[8–10] J2[10–11] J3[11–13] J1[13–14] J3[14–18].</p>
+      <p>Here FCFS has a lower <em>average</em> waiting time, but the short job J4 waits 13 units behind the long J3 (convoy effect). Round robin lets J4 finish at time 10 instead of 18: better <strong>response</strong> for short and interactive jobs.</p></div>
+
+    <div class="lab">
+      <div class="lab-head"><b>🎬 Job Scheduling Simulator</b><span>ready queue · CPU · Gantt chart</span></div>
+      <div class="lab-body">
+        <div class="controls">
+          <div class="seg" id="js-mode"><button class="on" data-m="fcfs">FCFS</button><button data-m="rr">Round robin</button></div>
+          <label class="fld">Jobs (name:arrival:burst)<input type="text" id="js-in" value="J1:0:5, J2:1:3, J3:2:8, J4:3:2" style="width:250px"></label>
+          <label class="fld">Quantum<input type="number" id="js-q" value="2" min="1" style="width:70px"></label>
+        </div>
+        <div class="controls">
+          <button class="btn acc sm" id="js-run">▶ Run</button>
+          <button class="btn gh sm" id="js-step">Step</button>
+          <button class="btn gh sm" id="js-cmp">Compare FCFS vs RR</button>
+        </div>
+        <div class="cpu"><div class="box">time = <b id="js-time">0</b></div><div class="box">CPU: <b id="js-cpu">idle</b></div></div>
+        <div class="lbl">Ready queue (front → rear)</div>
+        <div class="chips" id="js-queue"><em>empty</em></div>
+        <div class="lbl">Gantt chart</div>
+        <div class="gantt" id="js-gantt"></div>
+        <div class="lbl">Algorithm</div>
+        <div class="pc" id="js-pc"></div>
+        <div class="tbl-wrap" id="js-res"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="sec page" id="ap-s4" data-label="Complexity" data-sub="Time, space &amp; comparisons">
+  <div class="sec-head"><div class="sec-num">4</div><h2>Complexity Analysis &amp; Comparison</h2></div>
+
+  <h3>Time and space complexity</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Algorithm</th><th>Time</th><th>Extra space</th><th>Reason</th></tr>
+    <tr><td>Infix → postfix</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Each token is pushed and popped at most once</td></tr>
+    <tr><td>Evaluate postfix / prefix</td><td class="on">O(n)</td><td class="on">O(n)</td><td>One scan; stack holds at most the operands waiting</td></tr>
+    <tr><td>DO_ACTION, UNDO, REDO</td><td class="o1">O(1)*</td><td class="on">O(h)</td><td>One push/pop each; h = number of stored actions</td></tr>
+    <tr><td>FCFS (n jobs)</td><td>O(n log n)</td><td class="on">O(n)</td><td>Sort by arrival, then each job is enqueued and dequeued once</td></tr>
+    <tr><td>Round robin</td><td>O(n log n + B/q)</td><td class="on">O(n)</td><td>B = total burst time; each quantum is one dequeue and enqueue</td></tr>
+  </table></div>
+  <p style="font-size:.88em;color:var(--ink2)">* Plus the cost of actually applying or reversing the action on the document, which depends on the action itself.</p>
+
+  <h3>Infix vs Prefix vs Postfix</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Infix</th><th>Prefix</th><th>Postfix</th></tr>
+    <tr><td>Readability for humans</td><td>Best</td><td>Poor</td><td>Poor</td></tr>
+    <tr><td>Parentheses needed?</td><td>Yes</td><td>No</td><td>No</td></tr>
+    <tr><td>Precedence rules during evaluation?</td><td>Yes</td><td>No</td><td>No</td></tr>
+    <tr><td>Evaluation scan</td><td>Needs two stacks or conversion</td><td>Right to left, one stack</td><td>Left to right, one stack</td></tr>
+    <tr><td>Used by</td><td>Programmers, maths</td><td>Lisp-style languages</td><td>Compilers, stack machines (JVM, Python bytecode), HP calculators</td></tr>
+  </table></div>
+
+  <h3>FCFS vs Round Robin</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>FCFS</th><th>Round Robin</th></tr>
+    <tr><td>Data structure</td><td>Simple FIFO queue</td><td>Circular queue + time quantum</td></tr>
+    <tr><td>Preemption</td><td>Non-preemptive</td><td>Preemptive</td></tr>
+    <tr><td>Response time</td><td>Can be very long behind a big job</td><td>Bounded: at most (n − 1) × q before your turn</td></tr>
+    <tr><td>Convoy effect</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Context-switch overhead</td><td>Minimal</td><td>Higher; grows as q gets smaller</td></tr>
+    <tr><td>Effect of q</td><td>—</td><td>Very large q behaves like FCFS; very small q wastes time switching</td></tr>
+    <tr><td>Best for</td><td>Batch jobs, printers</td><td>Time-sharing, interactive systems</td></tr>
+  </table></div>
+
+  <h3>Stack-based vs queue-based applications</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Stack applications</th><th>Queue applications</th></tr>
+    <tr><td>Order served</td><td>Most recent first (LIFO)</td><td>Oldest first (FIFO)</td></tr>
+    <tr><td>Typical goal</td><td>Reverse, nest, backtrack, undo</td><td>Fairness, buffering, level-by-level processing</td></tr>
+    <tr><td>Examples</td><td>Expression evaluation, undo/redo, function calls, bracket matching</td><td>Job scheduling, printer spooling, BFS, keyboard buffers</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sec page" id="ap-s5" data-label="Uses, pros &amp; cons" data-sub="More applications, advantages, disadvantages, pitfalls">
+  <div class="sec-head"><div class="sec-num">5</div><h2>More Applications, Advantages &amp; Disadvantages</h2></div>
+
+  <h3>More applications at a glance</h3>
+  <div class="grid2">
+    <div class="mini"><h4>Stacks</h4><p>Function calls and recursion (call stack) · bracket and tag matching · browser back button · backtracking (mazes, Sudoku, N-Queens) · depth-first search · string reversal · decimal-to-binary conversion · syntax parsing in compilers.</p></div>
+    <div class="mini"><h4>Queues</h4><p>CPU and disk scheduling · printer spooling · breadth-first search · keyboard and I/O buffers · network packet queues · call-centre systems · message queues between services · streaming media buffers.</p></div>
+  </div>
+
+  <h3>Advantages</h3>
+  <div class="grid2">
+    <div class="mini pro"><h4>✔ Postfix evaluation is fast and simple</h4><p>One scan, one stack, O(n), with no brackets or precedence checks at evaluation time.</p></div>
+    <div class="mini pro"><h4>✔ Conversion is mechanical</h4><p>The infix-to-postfix algorithm handles any depth of brackets and any mix of operators.</p></div>
+    <div class="mini pro"><h4>✔ Undo/redo in O(1)</h4><p>Two stacks give instant undo and redo, and naturally preserve the correct order.</p></div>
+    <div class="mini pro"><h4>✔ Undo history is easy to limit</h4><p>A deque can keep only the last k actions by dropping the oldest from the other end.</p></div>
+    <div class="mini pro"><h4>✔ Queues make scheduling fair</h4><p>FCFS serves in arrival order; RR guarantees every job a regular turn.</p></div>
+    <div class="mini pro"><h4>✔ Queues decouple producers and consumers</h4><p>A spooler accepts jobs instantly even while the printer is busy.</p></div>
+  </div>
+
+  <h3>Disadvantages and limitations</h3>
+  <div class="grid2">
+    <div class="mini con"><h4>✘ Postfix/prefix are hard to read</h4><p>Humans write infix, so a conversion step is always needed.</p></div>
+    <div class="mini con"><h4>✘ Basic algorithm skips unary minus</h4><p>Expressions like −5 + 3 or functions like sin(x) need extra handling.</p></div>
+    <div class="mini con"><h4>✘ Undo history costs memory</h4><p>Every stored action uses space; large documents may need snapshots or limits.</p></div>
+    <div class="mini con"><h4>✘ Linear undo only</h4><p>Two stacks can only undo in strict reverse order; you can't undo an older action alone.</p></div>
+    <div class="mini con"><h4>✘ FCFS convoy effect</h4><p>Short jobs can wait a long time behind one long job.</p></div>
+    <div class="mini con"><h4>✘ RR overhead</h4><p>A small quantum causes frequent context switches; a large one makes RR behave like FCFS.</p></div>
+  </div>
+
+  <h3>Special cases &amp; edge cases</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Situation</th><th>Correct behaviour</th></tr>
+    <tr><td>Mismatched brackets, e.g. <code>(A+B</code></td><td>"(" is left on the stack at the end (or a ")" finds no "("): report an invalid expression.</td></tr>
+    <tr><td>Postfix with too few operands, e.g. <code>5 +</code></td><td>POP on an empty stack during evaluation: invalid expression.</td></tr>
+    <tr><td>Postfix with too many operands, e.g. <code>5 6 7 +</code></td><td>More than one value left at the end: invalid expression.</td></tr>
+    <tr><td>Division by zero</td><td>Report an error instead of pushing a result.</td></tr>
+    <tr><td><code>a^b^c</code></td><td>Right-associative: postfix is <code>a b c ^ ^</code>, not <code>a b ^ c ^</code>.</td></tr>
+    <tr><td>Undo with an empty undo stack</td><td>"Nothing to undo"; the document is unchanged.</td></tr>
+    <tr><td>Scheduling: no job ready yet</td><td>CPU is idle until the next arrival; the Gantt chart shows an idle block.</td></tr>
+    <tr><td>RR: a job arrives exactly when a slice ends</td><td>The new arrival is enqueued before the interrupted job (the convention used in this post).</td></tr>
+  </table></div>
+
+  <h3>Common mistakes</h3>
+  <div class="box warn"><span class="box-title">Watch out</span>
+  <ul>
+    <li><strong>Popping operands in the wrong order</strong> in postfix evaluation: the first pop is the <em>right</em> operand. <code>8 2 −</code> is 8 − 2 = 6, not −6.</li>
+    <li>In <strong>prefix</strong> evaluation the order flips: the first pop is the <em>left</em> operand.</li>
+    <li><strong>Treating ^ as left-associative</strong>: <code>2^3^2</code> is 512, not 64.</li>
+    <li><strong>Pushing ")" onto the stack</strong>: a closing bracket is never pushed; it triggers popping until "(".</li>
+    <li><strong>Forgetting to empty the stack</strong> at the end of conversion: remaining operators must be appended.</li>
+    <li><strong>Not clearing the redo stack</strong> after a new action: redo would then re-apply a change that no longer makes sense.</li>
+    <li><strong>Using a stack for scheduling</strong>: the newest job would always run first, so old jobs could wait forever (starvation).</li>
+    <li><strong>Waiting time = finish − burst</strong> is only correct when arrival is 0. In general WT = finish − arrival − burst.</li>
+  </ul></div>
+
+  <h3>Important examination points</h3>
+  <div class="box exam"><span class="box-title">Remember for exams</span>
+  <ul>
+    <li>Infix → postfix uses an <strong>operator stack</strong>; postfix evaluation uses an <strong>operand stack</strong>.</li>
+    <li>Precedence: <code>^</code> &gt; <code>* / %</code> &gt; <code>+ −</code>; <code>^</code> is right-associative.</li>
+    <li>Postfix is evaluated <strong>left to right</strong> (pop B then A); prefix <strong>right to left</strong> (pop A then B).</li>
+    <li>Always show the <strong>symbol / stack / output</strong> table when converting: examiners award marks for it.</li>
+    <li>Undo/redo = <strong>two stacks</strong>; a new action <strong>clears</strong> the redo stack.</li>
+    <li>FCFS = simple queue, non-preemptive; RR = circular queue, preemptive, time quantum.</li>
+    <li>TAT = finish − arrival; WT = TAT − burst.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sec page" id="ap-s6" data-label="Python" data-sub="Implementation">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Python Implementation</h2></div>
+  <p>Four complete, tested programs. Each tab shows the code and its actual output. Use the <strong>Copy</strong> button to paste the program into your editor.</p>
+  <div class="tabs" data-tabs="code">
+    <button class="tab-btn on" data-pane="ap-c1">1 · Infix → postfix &amp; evaluation</button>
+    <button class="tab-btn" data-pane="ap-c2">2 · Prefix</button>
+    <button class="tab-btn" data-pane="ap-c3">3 · Undo / redo editor</button>
+    <button class="tab-btn" data-pane="ap-c4">4 · Job scheduling</button>
+  </div>
+  <div class="tab-pane on" id="ap-c1">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: Infix to postfix conversion and postfix evaluation using a stack
+
+PREC = {'+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '^': 3}
+RIGHT_ASSOC = {'^'}                     # a^b^c means a^(b^c)
+
+def tokenize(expr):
+    """Split an infix string into numbers, single-letter names, operators and brackets."""
+    tokens, i = [], 0
+    while i &lt; len(expr):
+        ch = expr[i]
+        if ch.isspace():
+            i += 1
+        elif ch.isdigit():
+            j = i
+            while j &lt; len(expr) and expr[j].isdigit():
+                j += 1
+            tokens.append(expr[i:j]); i = j
+        else:
+            tokens.append(ch); i += 1
+    return tokens
+
+def infix_to_postfix(expr, show=False):
+    stack, output = [], []
+    if show:
+        print(f"{'Symbol':8}{'Stack':14}Postfix")
+    for t in tokenize(expr):
+        if t.isalnum():                          # operand
+            output.append(t)
+        elif t == '(':
+            stack.append(t)
+        elif t == ')':
+            while stack[-1] != '(':
+                output.append(stack.pop())
+            stack.pop()                          # discard '('
+        else:                                    # operator
+            while (stack and stack[-1] != '(' and
+                   (PREC[stack[-1]] &gt; PREC[t] or
+                    (PREC[stack[-1]] == PREC[t] and t not in RIGHT_ASSOC))):
+                output.append(stack.pop())
+            stack.append(t)
+        if show:
+            print(f"{t:8}{''.join(stack):14}{' '.join(output)}")
+    while stack:
+        output.append(stack.pop())
+    if show:
+        print(f"{'(end)':8}{'':14}{' '.join(output)}")
+    return ' '.join(output)
+
+def apply(op, a, b):
+    if op == '+': return a + b
+    if op == '-': return a - b
+    if op == '*': return a * b
+    if op == '/':
+        r = a / b
+        return int(r) if r == int(r) else r     # keep whole results as integers
+    if op == '%': return a % b
+    if op == '^': return a ** b
+
+def evaluate_postfix(postfix, show=False):
+    stack = []
+    for t in postfix.split():
+        if t.isdigit():
+            stack.append(int(t))                 # operand: push
+        else:
+            b = stack.pop()                      # right operand comes out FIRST
+            a = stack.pop()
+            r = apply(t, a, b)
+            stack.append(r)
+            if show:
+                print(f"  {a} {t} {b} = {r:g}   stack: {stack}")
+    return stack.pop()
+
+
+print("Infix:  A+(B*C-(D/E^F)*G)*H")
+print("Postfix:", infix_to_postfix("A+(B*C-(D/E^F)*G)*H", show=True))
+print()
+for e in ["a+b*c", "(a+b)*c", "a-b+c", "a^b^c", "3+4*2/(1-5)^2"]:
+    print(f"{e:16} -&gt; {infix_to_postfix(e)}")
+print()
+pf = infix_to_postfix("5*(6+2)-12/4")
+print("5*(6+2)-12/4  -&gt;  postfix:", pf)
+result = evaluate_postfix(pf, show=True)
+print("Result =", f"{result:g}")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Infix:  A+(B*C-(D/E^F)*G)*H
+Symbol  Stack         Postfix
+A                     A
++       +             A
+(       +(            A
+B       +(            A B
+*       +(*           A B
+C       +(*           A B C
+-       +(-           A B C *
+(       +(-(          A B C *
+D       +(-(          A B C * D
+/       +(-(/         A B C * D
+E       +(-(/         A B C * D E
+^       +(-(/^        A B C * D E
+F       +(-(/^        A B C * D E F
+)       +(-           A B C * D E F ^ /
+*       +(-*          A B C * D E F ^ /
+G       +(-*          A B C * D E F ^ / G
+)       +             A B C * D E F ^ / G * -
+*       +*            A B C * D E F ^ / G * -
+H       +*            A B C * D E F ^ / G * - H
+(end)                 A B C * D E F ^ / G * - H * +
+Postfix: A B C * D E F ^ / G * - H * +
+
+a+b*c            -&gt; a b c * +
+(a+b)*c          -&gt; a b + c *
+a-b+c            -&gt; a b - c +
+a^b^c            -&gt; a b c ^ ^
+3+4*2/(1-5)^2    -&gt; 3 4 2 * 1 5 - 2 ^ / +
+
+5*(6+2)-12/4  -&gt;  postfix: 5 6 2 + * 12 4 / -
+  6 + 2 = 8   stack: [5, 8]
+  5 * 8 = 40   stack: [40]
+  12 / 4 = 3   stack: [40, 3]
+  40 - 3 = 37   stack: [37]
+Result = 37</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>tokenize</code> groups digits into whole numbers, so <code>12</code> is one operand.</li>
+      <li>The <code>while</code> condition in <code>infix_to_postfix</code> is POPS_BEFORE: higher precedence, or equal precedence for left-associative operators.</li>
+      <li><code>evaluate_postfix</code> pops <code>b</code> before <code>a</code>, so <code>12 4 /</code> gives 12 / 4.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="ap-c2">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: Infix to prefix conversion and prefix evaluation
+PREC = {'+': 1, '-': 1, '*': 2, '/': 2, '%': 2, '^': 3}
+RIGHT_ASSOC = {'^'}                     # a^b^c means a^(b^c)
+
+def tokenize(expr):
+    """Split an infix string into numbers, single-letter names, operators and brackets."""
+    tokens, i = [], 0
+    while i &lt; len(expr):
+        ch = expr[i]
+        if ch.isspace():
+            i += 1
+        elif ch.isdigit():
+            j = i
+            while j &lt; len(expr) and expr[j].isdigit():
+                j += 1
+            tokens.append(expr[i:j]); i = j
+        else:
+            tokens.append(ch); i += 1
+    return tokens
+
+def apply(op, a, b):
+    if op == '+': return a + b
+    if op == '-': return a - b
+    if op == '*': return a * b
+    if op == '/':
+        r = a / b
+        return int(r) if r == int(r) else r     # keep whole results as integers
+    if op == '%': return a % b
+    if op == '^': return a ** b
+
+
+def infix_to_prefix(expr):
+    """Reverse the infix, swap brackets, convert (with equal precedence popped only
+    for right-associative ^), then reverse the result."""
+    tokens = tokenize(expr)[::-1]
+    tokens = ['(' if t == ')' else ')' if t == '(' else t for t in tokens]
+    stack, output = [], []
+    for t in tokens:
+        if t.isalnum():
+            output.append(t)
+        elif t == '(':
+            stack.append(t)
+        elif t == ')':
+            while stack[-1] != '(':
+                output.append(stack.pop())
+            stack.pop()
+        else:
+            # In the reversed scan, pop equal precedence only for right-associative ^
+            while (stack and stack[-1] != '(' and
+                   (PREC[stack[-1]] &gt; PREC[t] or
+                    (PREC[stack[-1]] == PREC[t] and t in RIGHT_ASSOC))):
+                output.append(stack.pop())
+            stack.append(t)
+    while stack:
+        output.append(stack.pop())
+    return ' '.join(output[::-1])
+
+def evaluate_prefix(prefix, show=False):
+    stack = []
+    for t in reversed(prefix.split()):           # scan RIGHT to LEFT
+        if t.isdigit():
+            stack.append(int(t))
+        else:
+            a = stack.pop()                      # LEFT operand comes out first
+            b = stack.pop()
+            r = apply(t, a, b)
+            stack.append(r)
+            if show:
+                print(f"  {a} {t} {b} = {r:g}   stack: {stack}")
+    return stack.pop()
+
+
+for e in ["a+b*c", "(a+b)*c", "a-b+c", "a^b^c", "A+(B*C-(D/E^F)*G)*H"]:
+    print(f"{e:22} prefix: {infix_to_prefix(e)}")
+print()
+pre = infix_to_prefix("5*(6+2)-12/4")
+print("5*(6+2)-12/4  -&gt;  prefix:", pre)
+print("Result =", f"{evaluate_prefix(pre, show=True):g}")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">a+b*c                  prefix: + a * b c
+(a+b)*c                prefix: * + a b c
+a-b+c                  prefix: + - a b c
+a^b^c                  prefix: ^ a ^ b c
+A+(B*C-(D/E^F)*G)*H    prefix: + A * - * B C * / D ^ E F G H
+
+5*(6+2)-12/4  -&gt;  prefix: - * 5 + 6 2 / 12 4
+  12 / 4 = 3   stack: [3]
+  6 + 2 = 8   stack: [3, 8]
+  5 * 8 = 40   stack: [3, 40]
+  40 - 3 = 37   stack: [37]
+Result = 37</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>infix_to_prefix</code> reverses the tokens, swaps brackets, converts, and reverses back. In the reversed scan the associativity rule flips, which is why equal precedence pops only for <code>^</code>.</li>
+      <li><code>evaluate_prefix</code> scans right to left and pops the <em>left</em> operand first.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="ap-c3">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: Undo / Redo in a simple text editor using TWO stacks
+
+class TextEditor:
+    def __init__(self):
+        self.words = []             # the document, as a list of words
+        self.undo_stack = []        # actions that can be undone (latest on top)
+        self.redo_stack = []        # actions that were undone and can be redone
+
+    # --- applying and reversing a single action ---
+    def _apply(self, action):
+        kind, word = action
+        if kind == "type":
+            self.words.append(word)
+        else:                       # "delete": remove the last word
+            self.words.pop()
+
+    def _reverse(self, action):
+        kind, word = action
+        if kind == "type":
+            self.words.pop()
+        else:
+            self.words.append(word)
+
+    # --- user commands ---
+    def type_word(self, word):
+        self.do(("type", word))
+
+    def delete_last(self):
+        if not self.words:
+            print("  (nothing to delete)"); return
+        self.do(("delete", self.words[-1]))
+
+    def do(self, action):
+        self._apply(action)
+        self.undo_stack.append(action)      # remember it for undo
+        self.redo_stack.clear()             # a NEW action invalidates the redo history
+
+    def undo(self):
+        if not self.undo_stack:
+            print("  Nothing to undo"); return
+        action = self.undo_stack.pop()      # most recent action first (LIFO)
+        self._reverse(action)
+        self.redo_stack.append(action)
+
+    def redo(self):
+        if not self.redo_stack:
+            print("  Nothing to redo"); return
+        action = self.redo_stack.pop()
+        self._apply(action)
+        self.undo_stack.append(action)
+
+    def show(self, label):
+        fmt = lambda st: "[" + ", ".join(f"{k} '{w}'" for k, w in st) + "]"
+        print(f"{label}:")
+        print(f"   document   : {' '.join(self.words)!r}")
+        print(f"   undo stack : {fmt(self.undo_stack)}   &lt;- top is last")
+        print(f"   redo stack : {fmt(self.redo_stack)}")
+
+
+ed = TextEditor()
+ed.type_word("Data"); ed.type_word("Structures"); ed.type_word("are")
+ed.show("type x3")
+ed.type_word("fun"); ed.show("type 'fun'")
+ed.delete_last(); ed.show("delete last")
+ed.undo(); ed.show("undo")
+ed.undo(); ed.show("undo")
+ed.redo(); ed.show("redo")
+ed.type_word("useful"); ed.show("type 'useful'")
+ed.redo()
+ed.show("redo (nothing left)")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">type x3:
+   document   : 'Data Structures are'
+   undo stack : [type 'Data', type 'Structures', type 'are']   &lt;- top is last
+   redo stack : []
+type 'fun':
+   document   : 'Data Structures are fun'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun']   &lt;- top is last
+   redo stack : []
+delete last:
+   document   : 'Data Structures are'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun', delete 'fun']   &lt;- top is last
+   redo stack : []
+undo:
+   document   : 'Data Structures are fun'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun']   &lt;- top is last
+   redo stack : [delete 'fun']
+undo:
+   document   : 'Data Structures are'
+   undo stack : [type 'Data', type 'Structures', type 'are']   &lt;- top is last
+   redo stack : [delete 'fun', type 'fun']
+redo:
+   document   : 'Data Structures are fun'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun']   &lt;- top is last
+   redo stack : [delete 'fun']
+type 'useful':
+   document   : 'Data Structures are fun useful'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun', type 'useful']   &lt;- top is last
+   redo stack : []
+  Nothing to redo
+redo (nothing left):
+   document   : 'Data Structures are fun useful'
+   undo stack : [type 'Data', type 'Structures', type 'are', type 'fun', type 'useful']   &lt;- top is last
+   redo stack : []</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li>Each action is a tuple <code>(kind, word)</code> holding enough information to reverse it.</li>
+      <li><code>do()</code> clears <code>redo_stack</code>: the last command in the output finds nothing to redo.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="ap-c4">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: Job scheduling with queues
+#  (a) FCFS (First Come, First Served): a simple FIFO queue
+#  (b) Round Robin: a circular ready queue with a time quantum
+#  (c) Printer spooler: jobs printed in the order they were submitted
+from collections import deque
+
+JOBS = [("J1", 0, 5), ("J2", 1, 3), ("J3", 2, 8), ("J4", 3, 2)]   # (name, arrival, burst)
+
+def report(title, finish, gantt):
+    print(title)
+    print("  Gantt:", " ".join(gantt))
+    tw = tt = 0
+    for name, arr, burst in JOBS:
+        tat = finish[name] - arr                # turnaround = finish - arrival
+        wt = tat - burst                        # waiting = turnaround - burst
+        tw += wt; tt += tat
+        print(f"  {name}: arrival={arr} burst={burst} finish={finish[name]:2} TAT={tat:2} WT={wt:2}")
+    print(f"  Average TAT = {tt/len(JOBS):.2f}, Average WT = {tw/len(JOBS):.2f}\n")
+
+def fcfs(jobs):
+    q = deque(sorted(jobs, key=lambda j: j[1]))   # queue in arrival order
+    time, finish, gantt = 0, {}, []
+    while q:
+        name, arr, burst = q.popleft()            # dequeue the oldest job
+        if time &lt; arr:
+            gantt.append(f"idle[{time}-{arr}]")
+            time = arr                            # CPU waits for the job to arrive
+        gantt.append(f"{name}[{time}-{time+burst}]")
+        time += burst
+        finish[name] = time
+    return finish, gantt
+
+def round_robin(jobs, quantum):
+    pending = deque(sorted(jobs, key=lambda j: j[1]))  # not yet arrived
+    remaining = {n: b for n, a, b in jobs}
+    ready, time, finish, gantt = deque(), 0, {}, []
+
+    def admit(upto):
+        while pending and pending[0][1] &lt;= upto:
+            ready.append(pending.popleft()[0])     # newly arrived jobs join the rear
+
+    admit(time)
+    while ready or pending:
+        if not ready:                              # CPU idle until the next arrival
+            gantt.append(f"idle[{time}-{pending[0][1]}]")
+            time = pending[0][1]
+            admit(time)
+        job = ready.popleft()
+        run = min(quantum, remaining[job])
+        gantt.append(f"{job}[{time}-{time+run}]")
+        time += run
+        remaining[job] -= run
+        admit(time)                                # arrivals during this slice go first
+        if remaining[job] &gt; 0:
+            ready.append(job)                      # unfinished job goes to the rear
+        else:
+            finish[job] = time
+    return finish, gantt
+
+report("FCFS scheduling:", *fcfs(JOBS))
+report("Round Robin (quantum = 2):", *round_robin(JOBS, 2))
+
+spool = deque()
+for doc in ["report.pdf", "photo.png", "notes.txt"]:
+    spool.append(doc); print("Submitted:", doc)
+while spool:
+    print("Printing :", spool.popleft())</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">FCFS scheduling:
+  Gantt: J1[0-5] J2[5-8] J3[8-16] J4[16-18]
+  J1: arrival=0 burst=5 finish= 5 TAT= 5 WT= 0
+  J2: arrival=1 burst=3 finish= 8 TAT= 7 WT= 4
+  J3: arrival=2 burst=8 finish=16 TAT=14 WT= 6
+  J4: arrival=3 burst=2 finish=18 TAT=15 WT=13
+  Average TAT = 10.25, Average WT = 5.75
+
+Round Robin (quantum = 2):
+  Gantt: J1[0-2] J2[2-4] J3[4-6] J1[6-8] J4[8-10] J2[10-11] J3[11-13] J1[13-14] J3[14-16] J3[16-18]
+  J1: arrival=0 burst=5 finish=14 TAT=14 WT= 9
+  J2: arrival=1 burst=3 finish=11 TAT=10 WT= 7
+  J3: arrival=2 burst=8 finish=18 TAT=16 WT= 8
+  J4: arrival=3 burst=2 finish=10 TAT= 7 WT= 5
+  Average TAT = 11.75, Average WT = 7.25
+
+Submitted: report.pdf
+Submitted: photo.png
+Submitted: notes.txt
+Printing : report.pdf
+Printing : photo.png
+Printing : notes.txt</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>collections.deque</code> gives O(1) <code>append</code> (enqueue) and <code>popleft</code> (dequeue).</li>
+      <li>In <code>round_robin</code>, <code>admit(time)</code> runs <em>before</em> the interrupted job is re-queued, so new arrivals get ahead of it.</li>
+      <li>The results match the worked example and the simulator in Section 3.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sec page" id="ap-s7" data-label="Practice" data-sub="Questions &amp; quiz">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Practice &amp; Assessment</h2></div>
+
+  <h3>A. Conceptual questions</h3>
+  <details><summary>1. Why is postfix notation preferred for evaluation by computers?</summary><p>It needs no brackets and no precedence rules: a single left-to-right scan with a stack evaluates it in O(n) time.</p></details>
+  <details><summary>2. Why does the infix-to-postfix algorithm use a stack for operators?</summary><p>An operator must wait until its right operand is complete. The most recently seen operator is the first that can be completed, which is LIFO behaviour.</p></details>
+  <details><summary>3. Explain how undo and redo work with two stacks. Why is the redo stack cleared after a new action?</summary><p>Actions are pushed on the undo stack. Undo pops one, reverses it and pushes it on the redo stack; redo does the opposite. After a new action the undone actions no longer apply to the changed document, so the redo stack is cleared.</p></details>
+  <details><summary>4. Compare FCFS and round robin scheduling.</summary><p>FCFS uses a simple queue and runs each job to completion (non-preemptive), which can cause the convoy effect. RR uses a circular queue and a time quantum (preemptive), giving better response time at the cost of more context switches.</p></details>
+  <details><summary>5. Why would a stack be a bad choice for job scheduling?</summary><p>A stack always serves the newest job first. Under a steady stream of new jobs, older jobs could wait forever (starvation), which is unfair.</p></details>
+
+  <h3>B. Programming exercises</h3>
+  <ol>
+    <li>Extend the infix-to-postfix program to report mismatched brackets clearly.</li>
+    <li>Write a program to evaluate an infix expression directly using two stacks (one for operands, one for operators).</li>
+    <li>Convert a postfix expression to infix (hint: push strings and build "(A op B)").</li>
+    <li>Add a "replace word" action to the undo/redo editor.</li>
+    <li>Limit the undo history to the last 5 actions using <code>collections.deque(maxlen=5)</code>.</li>
+    <li>Add a third scheduling policy, Shortest Job First (non-preemptive), and compare the average waiting times.</li>
+  </ol>
+
+  <h3>C. Predict the output</h3>
+  <p>Snippets 1–2 use the functions from Program 1.</p>
+  <div class="grid2">
+    <div>
+<pre><code>print(infix_to_postfix("a*(b+c)/d"))</code></pre>
+      <details><summary>Show answer</summary><p><code>a b c + * d /</code><br>The bracket forces <code>b + c</code> first; <code>*</code> and <code>/</code> are equal and left-associative, so <code>*</code> is output before <code>/</code>.</p></details>
+    </div>
+    <div>
+<pre><code>print(evaluate_postfix("2 3 1 * + 9 -"))</code></pre>
+      <details><summary>Show answer</summary><p><code>-4</code><br>3 * 1 = 3; 2 + 3 = 5; 5 − 9 = −4.</p></details>
+    </div>
+    <div>
+<pre><code># using the TextEditor from Program 3
+ed = TextEditor()
+ed.type_word("A"); ed.type_word("B")
+ed.undo()
+ed.type_word("C")
+ed.redo()
+print(ed.words)</code></pre>
+      <details><summary>Show answer</summary><p>Prints <code>Nothing to redo</code>, then <code>['A', 'C']</code>.<br>Typing C after the undo cleared the redo stack, so B cannot come back.</p></details>
+    </div>
+    <div>
+<pre><code>from collections import deque
+q = deque(["J1", "J2", "J3"])
+q.append(q.popleft())   # J1's quantum ends
+q.popleft()             # J2 finishes
+print(list(q))</code></pre>
+      <details><summary>Show answer</summary><p><code>['J3', 'J1']</code><br>J1 went to the rear after its slice; J2 was dequeued and finished.</p></details>
+    </div>
+  </div>
+
+  <h3>D. Trace-based questions</h3>
+  <p><strong>Q1.</strong> Convert <code>(A+B)*C-D/E</code> to postfix, showing the stack after each symbol.</p>
+  <details><summary>Show solution</summary>
+    <div class="trace-wrap"><table class="trace"><tr><th>Symbol</th><th>Action</th><th>Stack</th><th>Postfix</th></tr><tr><td>(</td><td>push</td><td>(</td><td>—</td></tr><tr><td>A</td><td>operand → output</td><td>(</td><td>A</td></tr><tr><td>+</td><td>push +</td><td>(+</td><td>A</td></tr><tr><td>B</td><td>operand → output</td><td>(+</td><td>A B</td></tr><tr><td>)</td><td>pop +, discard (</td><td>—</td><td>A B +</td></tr><tr><td>*</td><td>push *</td><td>*</td><td>A B +</td></tr><tr><td>C</td><td>operand → output</td><td>*</td><td>A B + C</td></tr><tr><td>-</td><td>pop *, push -</td><td>-</td><td>A B + C *</td></tr><tr><td>D</td><td>operand → output</td><td>-</td><td>A B + C * D</td></tr><tr><td>/</td><td>push /</td><td>-/</td><td>A B + C * D</td></tr><tr><td>E</td><td>operand → output</td><td>-/</td><td>A B + C * D E</td></tr><tr><td>end</td><td>pop / -</td><td>—</td><td>A B + C * D E / -</td></tr></table></div>
+    <p style="margin-top:8px">Postfix: <code>A B + C * D E / -</code></p>
+  </details>
+  <p style="margin-top:14px"><strong>Q2.</strong> Evaluate the postfix expression <code>6 2 3 + − 3 8 2 / + * 2 ^ 3 +</code>.</p>
+  <details><summary>Show solution</summary>
+    <div class="trace-wrap"><table class="trace"><tr><th>Symbol</th><th>Action</th><th>Stack (bottom → top)</th></tr><tr><td>6</td><td>push 6</td><td>6</td></tr><tr><td>2</td><td>push 2</td><td>6 2</td></tr><tr><td>3</td><td>push 3</td><td>6 2 3</td></tr><tr><td>+</td><td>B = 3, A = 2 (B popped first); 2 + 3 = 5</td><td>6 5</td></tr><tr><td>-</td><td>B = 5, A = 6 (B popped first); 6 - 5 = 1</td><td>1</td></tr><tr><td>3</td><td>push 3</td><td>1 3</td></tr><tr><td>8</td><td>push 8</td><td>1 3 8</td></tr><tr><td>2</td><td>push 2</td><td>1 3 8 2</td></tr><tr><td>/</td><td>B = 2, A = 8 (B popped first); 8 / 2 = 4</td><td>1 3 4</td></tr><tr><td>+</td><td>B = 4, A = 3 (B popped first); 3 + 4 = 7</td><td>1 7</td></tr><tr><td>*</td><td>B = 7, A = 1 (B popped first); 1 * 7 = 7</td><td>7</td></tr><tr><td>2</td><td>push 2</td><td>7 2</td></tr><tr><td>^</td><td>B = 2, A = 7 (B popped first); 7 ^ 2 = 49</td><td>49</td></tr><tr><td>3</td><td>push 3</td><td>49 3</td></tr><tr><td>+</td><td>B = 3, A = 49 (B popped first); 49 + 3 = 52</td><td>52</td></tr></table></div>
+    <p style="margin-top:8px"><strong>Result: 52</strong></p>
+  </details>
+
+  <h3>E. Identify the structure</h3>
+  <p>For each scenario, should a stack or a queue be used?</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Scenario</th><th>Answer</th></tr>
+    <tr><td>Customers on hold in a call centre</td><td><details><summary>Show</summary>Queue: first caller is answered first.</details></td></tr>
+    <tr><td>Checking that every &lt;div&gt; tag in HTML is closed in the right order</td><td><details><summary>Show</summary>Stack: the most recently opened tag must close first.</details></td></tr>
+    <tr><td>Messages sent to a single printer by 20 users</td><td><details><summary>Show</summary>Queue (printer spooler).</details></td></tr>
+    <tr><td>Going back through previously visited folders in a file manager</td><td><details><summary>Show</summary>Stack: the last folder visited is the first one returned to.</details></td></tr>
+  </table></div>
+
+  <h3>F. Quiz: test yourself (8 MCQs)</h3>
+  <div id="ap-quiz"></div>
+  <div class="score" id="ap-quiz-score" style="display:none"><span>Your score: <b id="ap-quiz-num">0</b> / 8</span><button class="btn acc" id="ap-quiz-retry">Retry quiz</button></div>
+</section>
+
+<div class="footer">MCA Data Structures Series · Applications of Stacks &amp; Queues · Next topic: Recursion &amp; Tower of Hanoi</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-ap');
+  if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  var ALG = {"exp": {"i2p": ["ALGORITHM INFIX_TO_POSTFIX(infix)", "1. S \u2190 empty stack;  postfix \u2190 empty", "2. for each token t of infix, from left to right:", "3.     if t is an operand: append t to postfix", "4.     else if t = \"(\": PUSH(S, t)", "5.     else if t = \")\":", "6.         while TOP(S) \u2260 \"(\": append POP(S) to postfix", "7.         POP(S)    // discard the \"(\"", "8.     else:    // t is an operator", "9.         while S not empty and TOP(S) \u2260 \"(\" and POPS_BEFORE(TOP(S), t):", "10.             append POP(S) to postfix", "11.         PUSH(S, t)", "12. while S not empty: append POP(S) to postfix", "13. return postfix"], "evpost": ["ALGORITHM EVALUATE_POSTFIX(postfix)", "1. S \u2190 empty stack", "2. for each token t of postfix, from left to right:", "3.     if t is an operand: PUSH(S, t)", "4.     else:    // t is an operator", "5.         B \u2190 POP(S)    // right operand comes out first", "6.         A \u2190 POP(S)    // left operand", "7.         PUSH(S, A t B)", "8. return POP(S)    // exactly one value must remain"], "evpre": ["ALGORITHM EVALUATE_PREFIX(prefix)", "1. S \u2190 empty stack", "2. for each token t of prefix, from RIGHT to LEFT:", "3.     if t is an operand: PUSH(S, t)", "4.     else:    // t is an operator", "5.         A \u2190 POP(S)    // left operand comes out first", "6.         B \u2190 POP(S)    // right operand", "7.         PUSH(S, A t B)", "8. return POP(S)"]}, "undo": {"do": ["ALGORITHM DO_ACTION(a)", "1. apply action a to the document", "2. PUSH(UndoStack, a)", "3. make RedoStack empty    // a new action cancels the redo history"], "undo": ["ALGORITHM UNDO()", "1. if UndoStack is empty: print \"Nothing to undo\"; exit", "2. a \u2190 POP(UndoStack)    // most recent action", "3. reverse action a on the document", "4. PUSH(RedoStack, a)"], "redo": ["ALGORITHM REDO()", "1. if RedoStack is empty: print \"Nothing to redo\"; exit", "2. a \u2190 POP(RedoStack)", "3. apply action a to the document again", "4. PUSH(UndoStack, a)"]}, "sched": {"fcfs": ["ALGORITHM FCFS(jobs)", "1. Q \u2190 empty queue;  ENQUEUE every job in order of arrival", "2. time \u2190 0", "3. while Q not empty:", "4.     j \u2190 DEQUEUE(Q)    // oldest job", "5.     if time < j.arrival: time \u2190 j.arrival    // CPU idle", "6.     j.start \u2190 time;  time \u2190 time + j.burst", "7.     j.finish \u2190 time", "8. for each job: TAT \u2190 finish \u2212 arrival;  WT \u2190 TAT \u2212 burst"], "rr": ["ALGORITHM ROUND_ROBIN(jobs, q)", "1. Q \u2190 empty queue;  time \u2190 0;  ENQUEUE jobs with arrival \u2264 time", "2. while Q not empty or some job has not arrived:", "3.     if Q empty: time \u2190 next arrival; ENQUEUE arrived jobs    // idle", "4.     j \u2190 DEQUEUE(Q)", "5.     run \u2190 min(q, j.remaining);  time \u2190 time + run", "6.     j.remaining \u2190 j.remaining \u2212 run", "7.     ENQUEUE jobs that arrived up to time    // new arrivals first", "8.     if j.remaining > 0: ENQUEUE(Q, j)    // back to the rear", "9.     else: j.finish \u2190 time", "10. for each job: TAT \u2190 finish \u2212 arrival;  WT \u2190 TAT \u2212 burst"]}};
+
+  /* ---------------- tabs ---------------- */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){
+      b.addEventListener('click', function(){
+        each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+        b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+
+
+  function pseudo(box, lines, line){ box.innerHTML=''; (lines||[]).forEach(function(s,i){ var d=el('div', i===line&&line>0?'on':''); d.textContent=s; box.appendChild(d); }); }
+
+  /* =================================================================
+     EXPRESSION ENGINE (shared by the translator lab and the visualiser)
+     ================================================================= */
+  var PREC={'+':1,'-':1,'*':2,'/':2,'%':2,'^':3}, RIGHT={'^':1};
+  function isOp(t){ return PREC.hasOwnProperty(t); }
+  function isNum(t){ return /^\d+$/.test(t); }
+  function isOperand(t){ return /^(\d+|[A-Za-z])$/.test(t); }
+  function fmt(x){ if(typeof x!=='number') return String(x); if(Math.abs(x-Math.round(x))<1e-9) return String(Math.round(x)); return String(Math.round(x*10000)/10000); }
+  function tokenizeInfix(s){
+    var out=[], i=0;
+    while(i<s.length){
+      var c=s[i];
+      if(/\s/.test(c)){ i++; continue; }
+      if(/\d/.test(c)){ var j=i; while(j<s.length && /\d/.test(s[j])) j++; out.push(s.slice(i,j)); i=j; continue; }
+      if(/[A-Za-z]/.test(c) || isOp(c) || c==='(' || c===')'){ out.push(c); i++; continue; }
+      if(c==='\u2212'){ out.push('-'); i++; continue; }
+      throw new Error('Unexpected character "'+c+'".');
+    }
+    return out;
+  }
+  function validateInfix(toks){
+    if(!toks.length) throw new Error('The expression is empty.');
+    var expectOperand=true, depth=0;
+    toks.forEach(function(t){
+      if(isOperand(t)){ if(!expectOperand) throw new Error('Missing operator before "'+t+'".'); expectOperand=false; }
+      else if(t==='('){ if(!expectOperand) throw new Error('Missing operator before "(".'); depth++; }
+      else if(t===')'){ if(expectOperand) throw new Error('Missing operand before ")".'); depth--; if(depth<0) throw new Error('A ")" has no matching "(".'); }
+      else { if(expectOperand) throw new Error(t==='-'?'Unary minus is not supported: write (0-5) instead of -5.':'Operator "'+t+'" is missing its left operand.'); expectOperand=true; }
+    });
+    if(expectOperand) throw new Error('The expression ends with an operator.');
+    if(depth>0) throw new Error('A "(" is never closed.');
+  }
+  function popsBefore(top, t){ return PREC[top]>PREC[t] || (PREC[top]===PREC[t] && !RIGHT[t]); }
+  function apply(op,a,b){
+    if(op==='+') return a+b; if(op==='-') return a-b; if(op==='*') return a*b;
+    if(op==='/'){ if(b===0) throw new Error('Division by zero.'); return a/b; }
+    if(op==='%'){ if(b===0) throw new Error('Modulo by zero.'); return a%b; }
+    return Math.pow(a,b);
+  }
+  // Infix -> postfix with a full trace (frames)
+  function i2pFrames(src){
+    var toks=tokenizeInfix(src); validateInfix(toks);
+    var S=[], out=[], F=[];
+    function f(i,line,act,extra){ F.push({i:i, line:line, act:act, stack:S.slice(), out:out.slice(), extra:extra||{}}); }
+    toks.forEach(function(t,i){
+      if(isOperand(t)){ out.push(t); f(i,3,'"'+t+'" is an operand \u2192 append to postfix',{nw:'out'}); }
+      else if(t==='('){ S.push(t); f(i,4,'"(" \u2192 push',{nw:'stack'}); }
+      else if(t===')'){
+        f(i,5,'")" \u2192 pop until "("');
+        while(S[S.length-1]!=='('){ var x=S.pop(); out.push(x); f(i,6,'pop "'+x+'" \u2192 append',{nw:'out'}); }
+        S.pop(); f(i,7,'pop and discard "("');
+      } else {
+        f(i,8,'"'+t+'" is an operator (precedence '+PREC[t]+(RIGHT[t]?', right-assoc':'')+')');
+        while(S.length && S[S.length-1]!=='(' && popsBefore(S[S.length-1],t)){ var y=S.pop(); out.push(y); f(i,10,'top "'+y+'" '+(PREC[y]>PREC[t]?'has higher precedence':'has equal precedence, '+t+' is left-assoc')+' \u2192 pop "'+y+'"',{nw:'out'}); }
+        S.push(t); f(i,11,'push "'+t+'"',{nw:'stack'});
+      }
+    });
+    while(S.length){ var z=S.pop(); out.push(z); f(toks.length,12,'end of input: pop "'+z+'" \u2192 append',{nw:'out'}); }
+    f(toks.length,13,'done: postfix = '+out.join(' '),{fin:true});
+    return {toks:toks, frames:F, result:out.join(' ')};
+  }
+  function splitRPN(s){ s=s.trim().replace(/\u2212/g,'-'); if(!s) throw new Error('The expression is empty.'); var t = /\s/.test(s) ? s.split(/\s+/) : s.split(''); t.forEach(function(x){ if(!isNum(x) && !isOp(x)) throw new Error(/^[A-Za-z]$/.test(x)?'Evaluation needs numbers; "'+x+'" is a variable.':'Invalid token "'+x+'".'); }); return t; }
+  function evalFrames(src, prefix){
+    var toks=splitRPN(src), S=[], F=[];
+    function f(i,line,act,extra){ F.push({i:i, line:line, act:act, stack:S.map(fmt), extra:extra||{}}); }
+    var order=[]; for(var k=0;k<toks.length;k++) order.push(prefix? toks.length-1-k : k);
+    for(var n=0;n<order.length;n++){
+      var i=order[n], t=toks[i];
+      if(isNum(t)){ S.push(+t); f(i,3,'operand '+t+' \u2192 push',{nw:'stack'}); continue; }
+      f(i,4,'operator "'+t+'"');
+      if(S.length<2) throw {frames:F, msg:'Invalid expression: "'+t+'" needs two operands but the stack has '+S.length+'.'};
+      var a,b;
+      if(prefix){ a=S.pop(); f(i,5,'A \u2190 pop = '+fmt(a)+' (left operand)'); b=S.pop(); f(i,6,'B \u2190 pop = '+fmt(b)+' (right operand)'); }
+      else { b=S.pop(); f(i,5,'B \u2190 pop = '+fmt(b)+' (right operand)'); a=S.pop(); f(i,6,'A \u2190 pop = '+fmt(a)+' (left operand)'); }
+      var r; try{ r=apply(t,a,b); }catch(e){ throw {frames:F, msg:e.message}; }
+      S.push(r); f(i,7,fmt(a)+' '+t+' '+fmt(b)+' = '+fmt(r)+' \u2192 push',{nw:'stack'});
+    }
+    if(S.length!==1) throw {frames:F, msg:'Invalid expression: '+S.length+' values are left on the stack (there should be exactly one).'};
+    f(prefix?-1:toks.length,8,'result = '+fmt(S[0]),{fin:true});
+    return {toks:toks, frames:F, result:S[0]};
+  }
+  function infixToPrefix(src){
+    var toks=tokenizeInfix(src); validateInfix(toks);
+    var rev=toks.slice().reverse().map(function(t){ return t==='('?')':t===')'?'(':t; });
+    var S=[], out=[];
+    rev.forEach(function(t){
+      if(isOperand(t)) out.push(t);
+      else if(t==='(') S.push(t);
+      else if(t===')'){ while(S[S.length-1]!=='(') out.push(S.pop()); S.pop(); }
+      else { while(S.length && S[S.length-1]!=='(' && (PREC[S[S.length-1]]>PREC[t] || (PREC[S[S.length-1]]===PREC[t] && RIGHT[t]))) out.push(S.pop()); S.push(t); }
+    });
+    while(S.length) out.push(S.pop());
+    return out.reverse().join(' ');
+  }
+  function postfixToParen(post){
+    var S=[], order=[];
+    post.split(' ').forEach(function(t){ if(isOperand(t)) S.push(t); else { var b=S.pop(), a=S.pop(), e='('+a+' '+t+' '+b+')'; order.push(a+' '+t+' '+b); S.push(e); } });
+    return {paren:S[0], order:order};
+  }
+
+  /* ---------------- Notation translator (Section 2) ---------------- */
+  var NTEX=['A+(B*C-(D/E^F)*G)*H','a+b*c','(a+b)*c','a-b+c','a^b^c','5*(6+2)-12/4','3+4*2/(1-5)^2','(A+B)*C-D/E'], ntI=0;
+  function ntUpdate(){
+    var s=$('nt-in').value, ids=['nt-par','nt-post','nt-pre','nt-order','nt-val'];
+    try{
+      var r=i2pFrames(s), pp=postfixToParen(r.result);
+      $('nt-par').textContent = pp.paren;
+      $('nt-post').textContent=r.result; $('nt-pre').textContent=infixToPrefix(s);
+      var od=$('nt-order'); od.innerHTML=''; if(!pp.order.length) od.textContent='(no operators)'; pp.order.forEach(function(o,i){ var d=el('div'); d.textContent=(i+1)+') '+o; od.appendChild(d); });
+      if(r.toks.every(function(t){ return !/^[A-Za-z]$/.test(t); })){
+        try{ $('nt-val').textContent=fmt(evalFrames(r.result,false).result); }catch(e){ $('nt-val').textContent=e.msg||e.message; }
+      } else $('nt-val').textContent='(contains variables: use numbers to see a value)';
+      ids.forEach(function(id){ $(id).style.color=''; });
+    }catch(e){ ids.forEach(function(id){ $(id).textContent=''; }); $('nt-post').textContent=e.message; $('nt-post').style.color='#c92a2a'; }
+  }
+  $('nt-in').addEventListener('input', ntUpdate);
+  $('nt-ex').addEventListener('click', function(){ ntI=(ntI+1)%NTEX.length; $('nt-in').value=NTEX[ntI]; ntUpdate(); });
+  ntUpdate();
+
+  /* ---------------- Expression visualiser (Section 3) ---------------- */
+  var EV={mode:'i2p', data:null, k:0, running:false, err:null};
+  var EVEX={i2p:['A+B*(C-D)/E','A+(B*C-(D/E^F)*G)*H','a^b^c','(A+B)*C-D/E','2*(3+4)-10/5'], evpost:['5 6 2 + * 12 4 / -','2 3 1 * + 9 -','6 2 3 + - 3 8 2 / + * 2 ^ 3 +','5 3 2 * +','5 +'], evpre:['- * 5 + 6 2 / 12 4','+ 9 * 2 6','* + 2 3 - 7 4','/ 8 0']}, evI={i2p:0,evpost:0,evpre:0};
+  var EVHELP={i2p:'Letters or whole numbers, operators + \u2212 * / % ^ and brackets. The operator stack decides when each operator is output.',
+              evpost:'Separate tokens with spaces (e.g. 12 4 /). Scan left to right; on an operator pop B, then A.',
+              evpre:'Separate tokens with spaces. Scan right to left; on an operator pop A (left operand) first, then B.'};
+  function evBuild(){
+    var src=$('ev-in').value; EV.err=null; EV.k=0;
+    try{ EV.data = EV.mode==='i2p' ? i2pFrames(src) : evalFrames(src, EV.mode==='evpre'); }
+    catch(e){
+      if(e && e.frames){ var toks; try{ toks=splitRPN(src); }catch(x){ toks=[]; } EV.data={toks:toks, frames:e.frames, result:null}; EV.err=e.msg; }
+      else { EV.data=null; EV.err=e.message; }
+    }
+    $('ev-trace').innerHTML='<tr><th>#</th><th>Token</th><th>Action</th><th>Stack</th>'+(EV.mode==='i2p'?'<th>Postfix</th>':'')+'</tr>';
+    $('ev-res').textContent=''; $('ev-res').className='result';
+    evDraw(-1);
+    if(!EV.data){ $('ev-res').textContent=EV.err; $('ev-res').className='result bad'; }
+  }
+  function evDraw(k){
+    var d=EV.data, f = d && k>=0 ? d.frames[k] : null;
+    var tb=$('ev-toks'); tb.innerHTML='';
+    if(d){ d.toks.forEach(function(t,i){ var c=''; if(f){ var prefix=EV.mode==='evpre'; if(i===f.i) c='cur'; else if(prefix ? i>f.i : i<f.i) c='done'; } if(isOp(t)||t==='('||t===')') c+=' opr'; var sp=el('span',c); sp.textContent=t; tb.appendChild(sp); }); }
+    else tb.appendChild(el('em','','invalid input'));
+    var st=$('ev-stack'); st.innerHTML='';
+    var stack = f ? f.stack : [];
+    if(!stack.length) st.appendChild(el('em','','empty'));
+    else st.appendChild(el('div','cap2','TOP'));
+    for(var si=stack.length-1; si>=0; si--){ var sp=el('span', si===stack.length-1 ? (f && f.extra.nw==='stack' ? 'tp nw' : 'tp') : ''); sp.textContent=String(stack[si]); st.appendChild(sp); }
+    st.appendChild(el('div','cap2','BOTTOM'));
+    var ob=$('ev-out'); ob.innerHTML='';
+    if(EV.mode==='i2p'){ var out = f ? f.out : []; if(!out.length) ob.appendChild(el('em','','empty')); out.forEach(function(x,i){ var sp=el('span', (f && f.extra.nw==='out' && i===out.length-1)?'cur':''); sp.textContent=x; ob.appendChild(sp); }); }
+    else { ob.appendChild(el('em','', f && f.extra.fin ? 'final value = '+fmt(d.result) : (stack.length? 'top of stack = '+stack[stack.length-1] : '\u2014'))); }
+    pseudo($('ev-pc'), ALG.exp[EV.mode], f ? f.line : -1);
+    if(f){
+      var tr=$('ev-trace'); each(tr.querySelectorAll('tr.now'), function(r){ r.classList.remove('now'); });
+      var row=el('tr','now'), tok = f.i>=0 && f.i<d.toks.length ? d.toks[f.i] : 'end';
+      [String(k+1), tok, f.act, stack.join(' ')].concat(EV.mode==='i2p'?[f.out.join(' ')]:[]).forEach(function(t){ var td=el('td'); td.textContent=t; row.appendChild(td); });
+      tr.appendChild(row); row.scrollIntoView({block:'nearest'});
+      if(k===d.frames.length-1){
+        if(EV.err){ $('ev-res').textContent=EV.err; $('ev-res').className='result bad'; }
+        else { $('ev-res').textContent = EV.mode==='i2p' ? 'Postfix: '+d.result : 'Result = '+fmt(d.result); $('ev-res').className='result ok'; }
+      }
+    }
+  }
+  $('ev-run').addEventListener('click', async function(){
+    if(EV.running) return; EV.running=true; this.disabled=true; $('ev-step').disabled=true;
+    evBuild();
+    if(EV.data){ for(var k=0;k<EV.data.frames.length;k++){ evDraw(k); await sleep(parseInt($('ev-speed').value,10)); } EV.k=EV.data.frames.length; }
+    EV.running=false; this.disabled=false; $('ev-step').disabled=false;
+  });
+  $('ev-step').addEventListener('click', function(){
+    if(EV.running) return;
+    if(!EV.data || EV.k===0 || EV.k>=EV.data.frames.length){ evBuild(); if(!EV.data) return; }
+    evDraw(EV.k); EV.k++;
+  });
+  $('ev-ex').addEventListener('click', function(){ var m=EV.mode; evI[m]=(evI[m]+1)%EVEX[m].length; $('ev-in').value=EVEX[m][evI[m]]; evBuild(); });
+  $('ev-in').addEventListener('input', function(){ EV.k=0; });
+  each($('ev-mode').children, function(b){ b.addEventListener('click', function(){ if(EV.running) return; each($('ev-mode').children, function(x){ x.classList.toggle('on', x===b); }); EV.mode=b.getAttribute('data-m'); evI[EV.mode]=0; $('ev-in').value=EVEX[EV.mode][0]; $('ev-help').textContent=EVHELP[EV.mode]; $('ev-outlbl').textContent = EV.mode==='i2p' ? 'Postfix output' : 'Value'; evBuild(); }); });
+  $('ev-help').textContent=EVHELP.i2p; evBuild();
+
+  /* ---------------- Undo / redo simulator ---------------- */
+  var UR={words:[], us:[], rs:[], busy:false, lastNew:-1};
+  function urLabel(a){ return (a.k==='type'?'+':'\u2212')+a.w; }
+  function urDraw(hiU, hiR){
+    var doc=$('ur-doc'); doc.innerHTML='';
+    UR.words.forEach(function(w,i){ var sp=el('span','w'+(i===UR.lastNew?' nw':'')); sp.textContent=w; doc.appendChild(sp); doc.appendChild(document.createTextNode(' ')); });
+    doc.appendChild(el('span','caret'));
+    [['ur-us',UR.us,hiU],['ur-rs',UR.rs,hiR]].forEach(function(p){
+      var box=$(p[0]); box.innerHTML='';
+      if(!p[1].length) box.appendChild(el('em','','empty'));
+      else box.appendChild(el('div','cap2','TOP'));
+      for(var i=p[1].length-1; i>=0; i--){ var a=p[1][i], top=i===p[1].length-1; var sp=el('span', top ? 'tp'+(p[2]?' nw':'') : ''); sp.textContent=(a.k==='type'?'type "':'delete "')+a.w+'"'; box.appendChild(sp); }
+      box.appendChild(el('div','cap2','BOTTOM'));
+    });
+  }
+  function urLog(s,c){ var lg=$('ur-log'); var d=el('div',c||''); d.textContent=s; lg.appendChild(d); lg.scrollTop=lg.scrollHeight; }
+  function urMsg(s,c){ var m=$('ur-msg'); m.textContent=s; m.className='msg '+(c||''); }
+  function urBusy(b){ UR.busy=b; ['ur-type','ur-del','ur-undo','ur-redo','ur-clear'].forEach(function(id){ $(id).disabled=b; }); }
+  async function urSteps(alg, steps){
+    urBusy(true);
+    for(var i=0;i<steps.length;i++){ var s=steps[i]; if(s.fn) s.fn(); pseudo($('ur-pc'), ALG.undo[alg], s.line); urDraw(s.hu, s.hr); if(s.log) urLog(s.log, s.c); await sleep(420); }
+    urBusy(false);
+  }
+  function urDo(action){
+    var redoCount=UR.rs.length;
+    urLog((action.k==='type'?'TYPE "':'DELETE "')+action.w+'"','hd');
+    urSteps('do',[
+      {line:1, fn:function(){ if(action.k==='type'){ UR.words.push(action.w); UR.lastNew=UR.words.length-1; } else { UR.words.pop(); UR.lastNew=-1; } }, log:(action.k==='type'?'append "':'remove "')+action.w+'" in the document'},
+      {line:2, fn:function(){ UR.us.push(action); }, hu:true, log:'push '+urLabel(action)+' onto the undo stack'},
+      {line:3, fn:function(){ UR.rs=[]; }, log: redoCount ? 'redo stack cleared ('+redoCount+' action(s) discarded)' : 'redo stack is already empty', c: redoCount?'bad':''}
+    ]).then(function(){ urMsg(redoCount ? 'New action recorded. The redo history ('+redoCount+' action(s)) was discarded.' : 'Action recorded on the undo stack.', redoCount?'bad':'ok'); });
+  }
+  $('ur-type').addEventListener('click', function(){
+    if(UR.busy) return; var w=$('ur-word').value.trim();
+    if(!w){ urMsg('Type a word first.','bad'); return; }
+    if(w.length>24){ urMsg('Please use a word of at most 24 characters.','bad'); return; }
+    if(UR.words.length>=12){ urMsg('The demo document holds up to 12 words. Delete or undo some first.','bad'); return; }
+    urDo({k:'type', w:w});
+    var next={'Stacks':'and','and':'Queues','Queues':'are','are':'everywhere'}; $('ur-word').value = next[w] || '';
+  });
+  $('ur-del').addEventListener('click', function(){ if(UR.busy) return; if(!UR.words.length){ urMsg('The document is empty: nothing to delete.','bad'); return; } urDo({k:'delete', w:UR.words[UR.words.length-1]}); });
+  $('ur-undo').addEventListener('click', function(){
+    if(UR.busy) return;
+    urLog('UNDO','hd');
+    if(!UR.us.length){ pseudo($('ur-pc'), ALG.undo.undo, 1); urLog('undo stack empty \u2192 nothing to undo','bad'); urMsg('Nothing to undo.','bad'); return; }
+    var a=UR.us[UR.us.length-1];
+    urSteps('undo',[
+      {line:1, log:'undo stack not empty'},
+      {line:2, fn:function(){ UR.us.pop(); }, log:'pop '+urLabel(a)+' from the undo stack'},
+      {line:3, fn:function(){ if(a.k==='type'){ UR.words.pop(); UR.lastNew=-1; } else { UR.words.push(a.w); UR.lastNew=UR.words.length-1; } }, log:(a.k==='type'?'reverse: remove "':'reverse: put back "')+a.w+'"'},
+      {line:4, fn:function(){ UR.rs.push(a); }, hr:true, log:'push '+urLabel(a)+' onto the redo stack'}
+    ]).then(function(){ urMsg('Undid '+(a.k==='type'?'typing':'deleting')+' "'+a.w+'".','ok'); });
+  });
+  $('ur-redo').addEventListener('click', function(){
+    if(UR.busy) return;
+    urLog('REDO','hd');
+    if(!UR.rs.length){ pseudo($('ur-pc'), ALG.undo.redo, 1); urLog('redo stack empty \u2192 nothing to redo','bad'); urMsg('Nothing to redo.','bad'); return; }
+    var a=UR.rs[UR.rs.length-1];
+    urSteps('redo',[
+      {line:1, log:'redo stack not empty'},
+      {line:2, fn:function(){ UR.rs.pop(); }, log:'pop '+urLabel(a)+' from the redo stack'},
+      {line:3, fn:function(){ if(a.k==='type'){ UR.words.push(a.w); UR.lastNew=UR.words.length-1; } else { UR.words.pop(); UR.lastNew=-1; } }, log:'apply again: '+(a.k==='type'?'type "':'delete "')+a.w+'"'},
+      {line:4, fn:function(){ UR.us.push(a); }, hu:true, log:'push '+urLabel(a)+' onto the undo stack'}
+    ]).then(function(){ urMsg('Redid '+(a.k==='type'?'typing':'deleting')+' "'+a.w+'".','ok'); });
+  });
+  $('ur-clear').addEventListener('click', function(){ if(UR.busy) return; UR.words=[]; UR.us=[]; UR.rs=[]; UR.lastNew=-1; $('ur-log').innerHTML=''; $('ur-word').value='Stacks'; pseudo($('ur-pc'), ALG.undo['do'], -1); urDraw(); urMsg('Empty document, empty stacks.',''); });
+  pseudo($('ur-pc'), ALG.undo['do'], -1); urDraw();
+
+  /* ---------------- Job scheduling simulator ---------------- */
+  var JS={mode:'fcfs', steps:[], k:0, running:false, jobs:[], err:''};
+  var JCOL=['#ffd8a8','#b2f2bb','#a5d8ff','#eebefa','#ffec99','#c3fae8','#ffc9c9','#d0bfff'];
+  function jsParse(){
+    var parts=$('js-in').value.split(','), jobs=[], err='';
+    parts.forEach(function(p){ p=p.trim(); if(!p) return; var m=p.match(/^([A-Za-z0-9_]+)\s*[:\s]\s*(\d+)\s*[:\s]\s*(\d+)$/); if(!m || +m[3]<1){ err='Could not read "'+p+'". Use name:arrival:burst, e.g. J1:0:5.'; return; } jobs.push({n:m[1], a:+m[2], b:+m[3]}); });
+    if(!err && !jobs.length) err='Enter at least one job.';
+    if(jobs.length>8) err='Please use at most 8 jobs.';
+    var names={}; jobs.forEach(function(j){ if(names[j.n]) err='Job names must be different ("'+j.n+'" repeats).'; names[j.n]=1; });
+    var tot=jobs.reduce(function(s,j){ return s+j.b; },0); if(tot>60) err='Keep the total burst time at 60 or less for a readable chart.';
+    if(jobs.some(function(j){ return j.a>40; })) err='Keep arrival times at 40 or less.';
+    jobs.forEach(function(j,i){ j.color=JCOL[i%JCOL.length]; j.idx=i; });
+    return {jobs:jobs, err:err};
+  }
+  function simulate(jobs, mode, q){
+    var sorted=jobs.slice().sort(function(x,y){ return x.a-y.a || x.idx-y.idx; });
+    var steps=[], time=0, finish={};
+    if(mode==='fcfs'){
+      var Q=sorted.map(function(j){ return j.n; }), by={}; jobs.forEach(function(j){ by[j.n]=j; });
+      while(Q.length){
+        var j=by[Q[0]];
+        if(time<j.a){ steps.push({idle:true, start:time, end:j.a, line:5, queue:Q.slice(), note:'CPU idle until '+j.n+' arrives at '+j.a}); time=j.a; }
+        Q.shift(); var st=time; time+=j.b; finish[j.n]=time;
+        steps.push({job:j.n, color:j.color, start:st, end:time, line:6, queue:Q.filter(function(n){ return by[n].a<=time; }), note:j.n+' runs '+st+'\u2013'+time+' and finishes'});
+      }
+      return {steps:steps, finish:finish};
+    }
+    var pending=sorted.slice(), ready=[], rem={}, by2={}; jobs.forEach(function(j){ rem[j.n]=j.b; by2[j.n]=j; });
+    function admit(t){ var added=[]; while(pending.length && pending[0].a<=t){ var p=pending.shift(); ready.push(p.n); added.push(p.n); } return added; }
+    admit(time);
+    while(ready.length || pending.length){
+      if(!ready.length){ var na=pending[0].a; steps.push({idle:true, start:time, end:na, line:3, queue:[], note:'ready queue empty: CPU idle until '+na}); time=na; admit(time); }
+      var jn=ready.shift(), run=Math.min(q, rem[jn]), s0=time; time+=run; rem[jn]-=run;
+      var arrived=admit(time), note=jn+' runs '+s0+'\u2013'+time;
+      if(arrived.length) note+='; arrived meanwhile: '+arrived.join(', ');
+      if(rem[jn]>0){ ready.push(jn); note+='; '+jn+' has '+rem[jn]+' left \u2192 back to the rear'; } else { finish[jn]=time; note+='; '+jn+' finishes'; }
+      steps.push({job:jn, color:by2[jn].color, start:s0, end:time, line:rem[jn]>0?8:9, queue:ready.slice(), note:note});
+    }
+    return {steps:steps, finish:finish};
+  }
+  function averages(jobs, finish){ var tw=0, tt=0; jobs.forEach(function(j){ var t=finish[j.n]-j.a; tt+=t; tw+=t-j.b; }); return {tat:tt/jobs.length, wt:tw/jobs.length}; }
+  function jsChips(names){ var box=$('js-queue'); box.innerHTML=''; if(!names.length){ box.appendChild(el('em','','empty')); return; } box.appendChild(el('span','end','FRONT \u2192')); names.forEach(function(n,i){ var sp=el('span', i===0?'f':''); sp.textContent=n; box.appendChild(sp); }); box.appendChild(el('span','end','\u2190 REAR')); }
+  function jsBuild(){
+    var p=jsParse(), q=parseInt($('js-q').value,10);
+    JS.err=p.err; JS.jobs=p.jobs; JS.k=0;
+    if(!JS.err && JS.mode==='rr' && (isNaN(q)||q<1)) JS.err='Time quantum must be a positive whole number.';
+    $('js-gantt').innerHTML=''; $('js-res').innerHTML=''; $('js-time').textContent='0'; $('js-cpu').textContent='idle'; jsChips([]);
+    pseudo($('js-pc'), ALG.sched[JS.mode], -1);
+    if(JS.err){ $('js-res').innerHTML='<p style="color:#c92a2a;font-weight:600"></p>'; $('js-res').firstChild.textContent=JS.err; JS.steps=[]; return; }
+    var r=simulate(JS.jobs, JS.mode, q); JS.steps=r.steps; JS.finish=r.finish;
+    var first=JS.jobs.filter(function(j){ return j.a===0; }).map(function(j){ return j.n; });
+    jsChips(first);
+  }
+  function jsShow(k){
+    var s=JS.steps[k];
+    $('js-time').textContent=s.end; $('js-cpu').textContent = s.idle ? 'idle' : s.job+' ('+s.start+'\u2013'+s.end+')';
+    jsChips(s.queue);
+    pseudo($('js-pc'), ALG.sched[JS.mode], s.line);
+    var g=el('div', s.idle?'idle':''); g.style.flex=String(s.end-s.start); if(!s.idle) g.style.background=s.color;
+    var b=el('b'); b.textContent = s.idle ? 'idle' : s.job; g.appendChild(b); var sm=el('small'); sm.textContent=String(s.start); g.appendChild(sm); g.title=s.note;
+    var endT=$('js-gantt').querySelector('.gend'); if(endT) endT.parentNode.removeChild(endT);
+    $('js-gantt').appendChild(g);
+    var e2=el('span','gend'); e2.textContent=String(s.end); $('js-gantt').appendChild(e2);
+    var res=$('js-res'); var note=res.querySelector('.note'); if(!note){ res.innerHTML=''; note=el('p','note'); note.style.fontWeight='600'; res.appendChild(note); } note.textContent='Step '+(k+1)+': '+s.note;
+    if(k===JS.steps.length-1){
+      var h='<table><tr><th>Job</th><th>Arrival</th><th>Burst</th><th>Finish</th><th>TAT = finish \u2212 arrival</th><th>WT = TAT \u2212 burst</th></tr>';
+      JS.jobs.forEach(function(j){ var f=JS.finish[j.n], t=f-j.a; h+='<tr><td>'+j.n+'</td><td>'+j.a+'</td><td>'+j.b+'</td><td>'+f+'</td><td>'+t+'</td><td>'+(t-j.b)+'</td></tr>'; });
+      var av=averages(JS.jobs, JS.finish);
+      h+='<tr><td colspan="4"><b>Average</b></td><td><b>'+av.tat.toFixed(2)+'</b></td><td><b>'+av.wt.toFixed(2)+'</b></td></tr></table>';
+      res.innerHTML=h; $('js-cpu').textContent='all jobs done';
+      pseudo($('js-pc'), ALG.sched[JS.mode], JS.mode==='fcfs'?8:10);
+    }
+  }
+  $('js-run').addEventListener('click', async function(){
+    if(JS.running) return; JS.running=true; this.disabled=true; $('js-step').disabled=true;
+    jsBuild(); await sleep(350);
+    for(var k=0;k<JS.steps.length;k++){ jsShow(k); await sleep(750); }
+    JS.k=JS.steps.length; JS.running=false; this.disabled=false; $('js-step').disabled=false;
+  });
+  $('js-step').addEventListener('click', function(){ if(JS.running) return; if(JS.k===0 || JS.k>=JS.steps.length){ jsBuild(); if(JS.err) return; } jsShow(JS.k); JS.k++; });
+  $('js-cmp').addEventListener('click', function(){
+    if(JS.running) return;
+    var p=jsParse(), q=parseInt($('js-q').value,10);
+    if(p.err){ $('js-res').innerHTML='<p style="color:#c92a2a;font-weight:600"></p>'; $('js-res').firstChild.textContent=p.err; return; }
+    if(isNaN(q)||q<1) q=2;
+    var f=simulate(p.jobs,'fcfs',q), r=simulate(p.jobs,'rr',q), af=averages(p.jobs,f.finish), ar=averages(p.jobs,r.finish);
+    var h='<table><tr><th>Policy</th><th>Avg TAT</th><th>Avg WT</th><th>Finish times</th></tr>';
+    h+='<tr><td>FCFS</td><td>'+af.tat.toFixed(2)+'</td><td>'+af.wt.toFixed(2)+'</td><td>'+p.jobs.map(function(j){ return j.n+'='+f.finish[j.n]; }).join(', ')+'</td></tr>';
+    h+='<tr><td>Round robin (q = '+q+')</td><td>'+ar.tat.toFixed(2)+'</td><td>'+ar.wt.toFixed(2)+'</td><td>'+p.jobs.map(function(j){ return j.n+'='+r.finish[j.n]; }).join(', ')+'</td></tr></table>';
+    h+='<p style="font-size:.9em;color:var(--ink2)">Lower averages are better. Try a larger quantum: round robin starts to behave like FCFS.</p>';
+    $('js-res').innerHTML=h; JS.k=0;
+  });
+  each($('js-mode').children, function(b){ b.addEventListener('click', function(){ if(JS.running) return; each($('js-mode').children, function(x){ x.classList.toggle('on', x===b); }); JS.mode=b.getAttribute('data-m'); jsBuild(); }); });
+  ['js-in','js-q'].forEach(function(id){ $(id).addEventListener('input', function(){ JS.k=0; }); });
+  jsBuild();
+
+  /* ---------------- quiz ---------------- */
+  var QZ=[
+    {q:'What is the postfix form of (A + B) * C?', o:['A B C + *','A B + C *','+ A B * C','A + B C *'], a:1, e:'The bracket makes A + B a unit: "A B +". Then multiply by C: "A B + C *".'},
+    {q:'Which data structure is used to convert an infix expression to postfix?', o:['Queue','Stack','Linked list only','Binary search tree'], a:1, e:'Operators wait on a stack until an operator of lower precedence or a closing bracket releases them.'},
+    {q:'What is the value of the postfix expression 5 3 2 * + ?', o:['16','11','13','30'], a:1, e:'3 * 2 = 6, then 5 + 6 = 11.'},
+    {q:'While evaluating a postfix expression, an operator is found. The first value popped is:', o:['The left operand','The right operand','The result','Always the larger value'], a:1, e:'The right operand was pushed last, so it comes off first. For 8 2 \u2212, pop 2 (B), then 8 (A): 8 \u2212 2 = 6.'},
+    {q:'What is the postfix form of a ^ b ^ c?', o:['a b ^ c ^','a b c ^ ^','^ ^ a b c','a ^ b c ^'], a:1, e:'^ is right-associative: a ^ (b ^ c), so b c ^ is computed first.'},
+    {q:'An undo/redo feature is typically implemented with:', o:['One queue','Two stacks','One circular queue','A binary tree'], a:1, e:'Undo pops from the undo stack and pushes onto the redo stack; redo does the reverse.'},
+    {q:'What happens to the redo stack when the user performs a new action?', o:['It is unchanged','It is cleared','The new action is pushed onto it','It is reversed'], a:1, e:'The undone actions no longer fit the changed document, so they are discarded.'},
+    {q:'Which scheduling policy can suffer from the convoy effect?', o:['Round robin','First Come, First Served','Both equally','Neither'], a:1, e:'In FCFS a long job at the front makes every short job behind it wait until it completes.'}
+  ];
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('ap-quiz'); qz.innerHTML=''; answered=0; score=0; $('ap-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      var qt=el('div','qt'); qt.textContent=item.q; card.appendChild(qt);
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.appendChild(document.createTextNode(item.e)); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('ap-quiz-num').textContent=score; $('ap-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('ap-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+
+  /* ---------------- section navigation menu ---------------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('ap-nav'), tabsBox=$('ap-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('ap-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('ap-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('ap-prev').disabled = cur===0; $('ap-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('ap-prev').addEventListener('click', function(){ go(cur-1); });
+  $('ap-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('ap-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('ap-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="queue.html"><small>← Previous lesson</small><b>Queue</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="trees.html"><small>Next lesson →</small><b>Trees</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

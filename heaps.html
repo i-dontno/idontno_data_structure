@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heaps &amp; heap sort · Learn Data Structures with idontno</title>
+<meta name="description" content="Max/min heaps, sift-up, sift-down, heapify, heap sort and priority queues.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="heaps">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="cur" data-lesson="heaps" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module III · Trees</span><span>›</span><span>Lesson 10 of 18</span></div>
+  <article class="idn-lesson">
+<meta charset="utf-8">
+<style>
+#hpx{--ink:#1c2033;--ember:#d9480f;--sand:#fbfaf6;--sun:#fcc419;--blue:#2f5bd3;--line:#e3dfd3;--ok:#0b7a6f;--rose:#d6336c;--cream:#fff1e8;font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);background:var(--sand);line-height:1.6;max-width:1000px;margin:0 auto;border-radius:20px;overflow:hidden;box-sizing:border-box}
+#hpx *{box-sizing:border-box}
+#hpx .hero{background:var(--ink);color:#fff1e8;padding:38px 28px 30px}
+#hpx .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 10px;font-weight:800;color:#fff}
+#hpx .hero h1 span{color:var(--sun)}
+#hpx .hero p{margin:0;max-width:64ch;color:#9aa0bb}
+#hpx nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+#hpx nav button,#hpx .b{font:inherit;font-size:14px;border:1.5px solid var(--ember);background:#fff;color:var(--ink);padding:6px 13px;border-radius:99px;cursor:pointer}
+#hpx nav button:hover,#hpx .b:hover{background:var(--cream)}
+#hpx .b.on{background:var(--ember);color:#fff}
+#hpx .b.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+#hpx .b:disabled{opacity:.45;cursor:default}
+#hpx .b:focus-visible,#hpx input:focus-visible{outline:3px solid var(--sun)}
+#hpx section{padding:30px 22px;border-bottom:1px solid var(--line)}
+#hpx h2{margin:0 0 4px;font-size:26px;font-weight:800}
+#hpx h3{margin:18px 0 4px;font-size:18px;color:var(--ember)}
+#hpx .sub{margin:0 0 16px;color:#4a5068}
+#hpx .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}
+#hpx .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){#hpx .grid{grid-template-columns:1fr}#hpx section{padding:24px 14px}}
+#hpx .card{background:#fff;border:1px solid var(--line);border-top:4px solid var(--ember);border-radius:12px;padding:12px 14px}
+#hpx .card.min{border-top-color:var(--blue)}
+#hpx svg.t{width:100%;height:auto;max-height:340px;display:block}
+#hpx .nd circle{fill:#fff;stroke:var(--ember);stroke-width:2.2;transition:fill .25s}
+#hpx .nd{cursor:pointer}
+#hpx .nd.hi circle{fill:var(--sun)}
+#hpx .nd.sel circle{stroke:var(--ink);stroke-width:4}
+#hpx .nd.bad circle{fill:#fcc2d7;stroke:var(--rose)}
+#hpx .nd text{font:600 13px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
+#hpx .nd .ix{font-size:9px;fill:#7a809b}
+#hpx .edge{stroke:#9aa0bb;stroke-width:2}
+#hpx .arr{display:flex;flex-wrap:wrap;gap:3px;margin:10px 0 4px}
+#hpx .ac{width:40px;text-align:center;cursor:pointer}
+#hpx .cv{border:1.5px solid var(--line);border-radius:7px;background:#fff;font:600 13px 'Fira Code',monospace;height:34px;line-height:31px}
+#hpx .ci{font:10px 'Fira Code',monospace;color:#7a809b}
+#hpx .ac.hi .cv{background:var(--sun);border-color:var(--ember)}
+#hpx .ac.sel .cv{border-color:var(--ink);border-width:3px}
+#hpx .ac.srt .cv{background:#96f2d7;border-color:var(--ok)}
+#hpx .ac.bad .cv{background:#fcc2d7;border-color:var(--rose)}
+#hpx .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+#hpx input[type=number],#hpx input[type=text]{font:600 14px 'Fira Code',monospace;padding:6px 10px;border:1.5px solid var(--ember);border-radius:10px;width:140px}
+#hpx input[type=text].w{width:min(100%,300px)}
+#hpx input[type=range]{accent-color:var(--ember);width:220px}
+#hpx .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin:3px 4px 0 0;font:600 13px 'Fira Code',monospace}
+#hpx .chip.g{background:#96f2d7}#hpx .chip.r{background:#fcc2d7}
+#hpx .res{background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;margin-top:8px;font-size:15px;min-height:46px}
+#hpx .res b{color:var(--sun)}
+#hpx .msg{min-height:26px;font-weight:600}
+#hpx .bd{color:var(--rose)}
+#hpx ul.n,#hpx ol.n{margin:12px 0 0;padding-left:22px}
+#hpx ul.n li,#hpx ol.n li{margin:4px 0}
+#hpx table{border-collapse:collapse;width:100%;font-size:14px;margin-top:12px;background:#fff}
+#hpx th,#hpx td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+#hpx th{background:var(--cream)}
+#hpx .wrap{overflow-x:auto}
+#hpx pre{font:13px/1.5 'Fira Code',monospace;background:#1d2130;color:#fff1e8;padding:14px;border-radius:12px;overflow-x:auto;margin:10px 0 0}
+#hpx .fm{background:var(--ink);color:#fff;border-radius:10px;padding:9px 14px;font:600 14px 'Fira Code',monospace;text-align:center;overflow-x:auto;margin:8px 0}
+#hpx .note{background:#fdf5e3;border:1px solid #fcc419;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:14px}
+#hpx .q{margin:0 0 14px}
+#hpx .q p{margin:0 0 6px;font-weight:600}
+#hpx .q .b{display:block;width:100%;text-align:left;border-radius:10px;margin:4px 0}
+#hpx .q .ok{background:#8ce99a;border-color:var(--ok)}
+#hpx .q .no{background:#ffd8a8;border-color:var(--rose)}
+#hpx .q small{display:block;color:#4a5068;margin-top:2px}
+#hpx footer{padding:18px 22px;font-size:13px;color:#4a5068}
+#hpx{display:flex;flex-direction:column}
+#hpx .hero ul{margin:14px 0;padding-left:22px;font-size:17px}
+#hpx .hero li{margin:3px 0}#hpx .hero li b{color:var(--sun)}
+#hpx nav button.cur{background:var(--ember);color:#fff;border-color:var(--ember)}
+#hpx .dkt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 16px;background:var(--cream);border-bottom:1px solid var(--line)}
+#hpx .dkm{flex:1;min-width:120px}
+#hpx .dkc{font:600 13px 'Fira Code',monospace}
+#hpx .dkp{height:6px;background:#fff;border-radius:99px;overflow:hidden;margin-top:3px;border:1px solid var(--line)}
+#hpx .dkp i{display:block;height:100%;background:var(--ember);width:0;transition:width .3s}
+#hpx .dkb{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 22px;border-top:1px solid var(--line);background:#fff;flex-wrap:wrap}
+#hpx .dkb .b{max-width:46%;white-space:normal;text-align:left}
+#hpx .dkh{font-size:12px;color:#7a809b}
+#hpx.deck nav,#hpx.deck .dkt{order:-1}
+#hpx.deck .slide{display:none}
+#hpx.deck .slide.cur{display:block}
+#hpx.deck .slide.cur.fwd{animation:hpf .35s ease}
+#hpx.deck .slide.cur.back{animation:hpb .35s ease}
+#hpx:not(.deck) .dkb,#hpx:not(.deck) .dkn,#hpx:not(.deck) .dkm{display:none}
+@keyframes hpf{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes hpb{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+#hpx:fullscreen{max-width:none;border-radius:0;overflow-y:auto;height:100%}
+#hpx:-webkit-full-screen{max-width:none;border-radius:0;overflow-y:auto;height:100%}
+@media(max-width:700px){#hpx .dkh{display:none}#hpx .dkb .b{max-width:48%}}
+@media(prefers-reduced-motion:reduce){#hpx.deck .slide.cur{animation:none!important}}
+@media print{#hpx.deck .slide{display:block!important}#hpx .dkt,#hpx .dkb,#hpx nav{display:none}}
+</style>
+
+<div id="hpx">
+<div class="hero" id="hhero">
+  <h1>Heaps: always <span>one step</span> from the top</h1>
+  <p>In a heap, you can quickly reach the most important value, because it is always at the top.</p>
+  <ul><li><b>Max heap:</b> the biggest number is at the top.</li><li><b>Min heap:</b> the smallest number is at the top.</li></ul>
+  <p>A heap always keeps the biggest (or smallest) value at the top. Build one, change it, and watch each step happen.</p>
+</div>
+<nav><button data-go="hhero">Home</button><button data-go="h1">What is a heap</button><button data-go="h2">Properties</button><button data-go="h3">Array form</button><button data-go="h4">Playground</button><button data-go="h5">Insert</button><button data-go="h6">Delete</button><button data-go="h7">Heapify</button><button data-go="h8">Heap sort</button><button data-go="h9">Code</button><button data-go="h10">Complexity</button><button data-go="h10b">Applications, Pros &amp; Cons</button><button data-go="h11">Quiz</button></nav>
+
+<section id="h1">
+  <h2>1. What is a heap?</h2>
+  <p class="sub">A heap is a tree that follows <b>two</b> rules.</p>
+  <div class="grid">
+    <div class="card"><b>Shape rule</b><br>It is a type of <b>complete binary tree</b>. Every level is full, except maybe the last level. The last level is filled from left to right.</div>
+    <div class="card"><b>Order rule (how the nodes are arranged)</b><br>A parent is always bigger than or equal to its children (max heap), or always smaller than or equal to its children (min heap).</div>
+  </div>
+  <div class="grid" style="margin-top:14px">
+    <div class="card"><b>Max heap</b> &nbsp;<span class="chip">90, 70, 80, 40, 50, 60</span><br>The biggest value is at the top.</div>
+    <div class="card min"><b>Min heap</b> &nbsp;<span class="chip">10, 20, 15, 30, 40, 25</span><br>The smallest value is at the top.</div>
+  </div>
+  <div class="note"><b>A heap is not a BST.</b> In a BST, everything on the left is smaller and everything on the right is bigger than the parent. In a heap, only a parent and its own children are compared. Example: in the max heap above, 80 is on the right side of 90 even though 80 is smaller. That is fine in a heap, but not in a BST.</div>
+  <ul class="n"><li>A heap is usually stored in an <b>array</b>. No pointers are needed (see section 3).</li>
+  <li>Heaps are used for priority queues, heap sort, shortest-path algorithms and scheduling.</li></ul>
+</section>
+
+<section id="h2">
+  <h2>2. Properties of a heap</h2>
+  <div class="wrap"><table><tr><th>#</th><th>Property</th><th>Meaning</th></tr>
+  <tr><td>1</td><td>Complete binary tree</td><td>All levels are full, except maybe the last. The last level fills from left to right.</td></tr>
+  <tr><td>2</td><td>Heap-order</td><td>Parent &ge; children (max) or parent &le; children (min)</td></tr>
+  <tr><td>3</td><td>Root property</td><td>The top is the biggest (max heap) or the smallest (min heap)</td></tr>
+  <tr><td>4</td><td>No order between siblings</td><td>The left child can be bigger or smaller than the right child</td></tr>
+  <tr><td>5</td><td>Small height</td><td>With n nodes, the height is &lfloor;log<sub>2</sub> n&rfloor;</td></tr>
+  <tr><td>6</td><td>Array-friendly</td><td>Complete shape means no gaps in the array</td></tr>
+  <tr><td>7</td><td>Not fully sorted</td><td>Only a parent and its children are in order. The whole heap is not sorted.</td></tr>
+  <tr><td>8</td><td>Duplicates allowed</td><td>The same value can appear more than once</td></tr></table></div>
+  <h3>Height calculator</h3>
+  <div class="box"><div class="fm">h = &lfloor;log&#8322; n&rfloor; &nbsp; (height is counted in edges; the root is at level 0)</div>
+    <div class="row"><label>Number of nodes n <input type="number" id="hn" value="15" min="1" max="100000"></label></div>
+    <div class="res" id="hout"></div></div>
+  <ul class="n"><li>A binary tree of height h has at most 2<sup>h+1</sup> &minus; 1 nodes. Level l holds at most 2<sup>l</sup> nodes. A <b>complete</b> tree of height h has at least 2<sup>h</sup> nodes.</li>
+  <li>These formulas count height in edges and need at least one node.</li>
+  <li>If there is a gap on the left of the last level but a node on its right, the tree is <b>not</b> complete. So it cannot be a heap.</li></ul>
+</section>
+
+<section id="h3">
+  <h2>3. Array representation</h2>
+  <p class="sub">Type some numbers. The page draws them as a tree and checks if they form a heap. Click any cell to explore.</p>
+  <div class="row"><input type="text" class="w" id="exin" value="90, 70, 80, 40, 50, 60"><button class="b on" id="b0">0-based index</button><button class="b" id="b1">1-based index</button></div>
+  <div class="grid"><div class="box"><svg class="t" id="exsv"></svg><div class="arr" id="exar"></div></div>
+  <div><div class="box" id="exinfo"></div><div class="box" id="exchk"></div></div></div>
+  <div class="wrap"><table><tr><th>Relation</th><th>0-based</th><th>1-based</th></tr>
+  <tr><td>Parent</td><td>&lfloor;(i &minus; 1)/2&rfloor; (if i &gt; 0)</td><td>&lfloor;i/2&rfloor;</td></tr>
+  <tr><td>Left child</td><td>2i + 1</td><td>2i</td></tr>
+  <tr><td>Right child</td><td>2i + 2</td><td>2i + 1</td></tr></table></div>
+  <ul class="n"><li>Click a node or a cell to see its parent and children. Pink nodes show a parent and child that break the heap rule.</li>
+  <li>Any list of numbers forms a complete tree. It is a <i>heap</i> only if the order rule also holds.</li></ul>
+</section>
+
+<section id="h4">
+  <h2>4. Heap playground</h2>
+  <p class="sub">Insert a value, remove the top, or build a heap. Then go through the steps with <b>Back</b> and <b>Next</b>, or press Auto-play. The tree and the array always show the same data.</p>
+  <div class="row"><button class="b on" id="mx">Max heap</button><button class="b" id="mn">Min heap</button>
+    <input type="number" id="pv" placeholder="value"><button class="b pri" id="pi">Insert</button><button class="b" id="pd">Remove top</button></div>
+  <div class="row"><input type="text" class="w" id="pb" placeholder="build from: 4, 10, 3, 5, 1"><button class="b" id="pbb">Build heap</button><button class="b" id="pr">Random 8</button><button class="b" id="pc">Clear</button></div>
+  <div class="box"><svg class="t" id="psv"></svg><div class="arr" id="par"></div><div class="res" id="pnote">Insert a value to start.</div>
+    <div class="row"><button class="b" id="pbk">&larr; Back</button><button class="b pri" id="pnx">Next &rarr;</button><button class="b" id="pap">Auto-play</button><button class="b" id="pend">Skip to result</button><span class="chip" id="pst"></span></div><div class="legend" id="pinfo" style="font-size:13px;margin-top:6px;color:#4a5068">Click a node or cell to see its parent and children (up to 31 values).</div></div>
+  <ul class="n"><li><b>How to use:</b> choose an operation, then press Next to see each comparison and swap. Press Back to read an earlier step again. A new operation starts from the result of the last one.</li>
+  <li><b>Try this:</b> insert 10, 20, 30, 40, 50 into a max heap and watch each value move up. Then press Remove top again and again. The values come out from biggest to smallest. This is the idea of heap sort.</li>
+  <li>If you switch between Max and Min, the page rearranges your numbers to match.</li></ul>
+</section>
+
+<section id="h5">
+  <h2>5. Insertion (sift-up)</h2>
+  <p class="sub">Put the new value at the end, then move it up until the order is correct.</p>
+  <ol class="n"><li>Put the new value at the end of the array.</li><li>Find its parent at index &lfloor;(i &minus; 1)/2&rfloor;.</li><li>If the new value is bigger than its parent (max heap), swap them.</li><li>Repeat until the parent is bigger or equal, or the value reaches the top.</li></ol>
+  <h3>Worked example: insert 60 into [50, 30, 40, 10, 20]</h3>
+  <div class="sx" data-k="ins"></div>
+  <div class="note"><b>Time:</b> O(log n), because the value moves up at most as many levels as the height. This is also called sift-up or bubble-up.</div>
+</section>
+
+<section id="h6">
+  <h2>6. Deleting the top (sift-down)</h2>
+  <p class="sub">When the top is removed, there is an empty place. Move the last value to the top, then push it down.</p>
+  <ol class="n"><li>Check that the heap is not empty. Save the top value.</li><li>Move the last value to the top and remove the last place.</li><li>Compare the new top with its two children.</li><li>Swap it with the <b>bigger</b> child (max heap) if that child is bigger.</li><li>Keep moving down until the order is correct. Then return the saved value.</li></ol>
+  <h3>Worked example: delete 90 from [90, 70, 80, 40, 50, 60]</h3>
+  <div class="sx" data-k="del"></div>
+  <div class="wrap"><table><tr><th></th><th>Insertion</th><th>Delete root</th></tr>
+  <tr><td>First action</td><td>Add at the end</td><td>Move last value to the top</td></tr><tr><td>Direction</td><td>Upward (sift-up)</td><td>Downward (sift-down)</td></tr>
+  <tr><td>Worst case</td><td>O(log n)</td><td>O(log n)</td></tr></table></div>
+</section>
+
+<section id="h7">
+  <h2>7. Heapify and building a heap</h2>
+  <p class="sub">Heapify fixes one node when both of its subtrees are already heaps. Build-heap uses heapify on many nodes to turn any list into a heap.</p>
+  <h3>Max-heapify of [40, 70, 60, 10, 20]</h3>
+  <ol class="n"><li>Assume the node itself is the biggest: <code>largest = i</code>. Find the left child (2i + 1) and the right child (2i + 2).</li><li>If the left child exists and is bigger, it becomes <code>largest</code>. Do the same for the right child.</li><li>If <code>largest</code> is not i, swap them. Then repeat for the child that changed.</li></ol>
+  <div class="sx" data-k="hfy"></div>
+  <h3>Building a heap from [4, 10, 3, 5, 1]</h3>
+  <p>Start at the <b>last node that has children</b>, index &lfloor;n/2&rfloor; &minus; 1 (here 1). Then go backwards to index 0. Leaves have no children, so they are already fine. Working from the bottom up means the subtrees below are already heaps when we fix a parent.</p>
+  <div class="sx" data-k="bld"></div>
+  <div class="note"><b>Build-heap takes O(n) time, not O(n log n).</b> Most nodes are near the bottom, so they move very little. See the calculator in section 10.</div>
+  <h3>Two ways to build a heap from an array</h3>
+  <div class="wrap"><table><tr><th></th><th>Method 1: insert one by one</th><th>Method 2: bottom-up build-heap</th></tr>
+  <tr><td>Idea</td><td>Start with an empty heap. Insert each value, and move it up (sift-up).</td><td>Treat the whole array as a tree. Fix the nodes from index &lfloor;n/2&rfloor; &minus; 1 back to 0, moving values down (sift-down).</td></tr>
+  <tr><td>Time</td><td>O(n log n)</td><td><b>O(n)</b></td></tr>
+  <tr><td>Extra space</td><td>A new heap is built</td><td>None (done in place)</td></tr>
+  <tr><td>Why</td><td>Many nodes are near the bottom and can move up a long way</td><td>Many nodes are near the bottom and can move down only a little</td></tr></table></div>
+  <p>Type an array and press <b>Compare</b>. Step through both methods and look at the final arrays.</p>
+  <div class="row"><input type="text" class="w" id="tw" value="1, 2, 3, 4, 5"><button class="b on" id="tmx">Max heap</button><button class="b" id="tmn">Min heap</button><button class="b pri" id="tgo">Compare</button></div>
+  <div class="grid"><div><b>Method 1: insert one by one</b><div id="twa"></div></div><div><b>Method 2: bottom-up build-heap</b><div id="twb"></div></div></div>
+  <div class="res" id="twr"></div>
+  <ul class="n"><li>Both results are <b>valid heaps</b>, but the arrays can be different. A heap is not unique for the same numbers. Only the shape rule and the order rule must hold.</li>
+  <li>Sorting the array also gives a heap (an ascending array is a valid min heap), but sorting costs O(n log n), so it is not a good way to build one.</li></ul>
+</section>
+
+<section id="h8">
+  <h2>8. Heap sort</h2>
+  <p class="sub">First build a max heap. Then swap the top with the last value of the heap, and make the heap one smaller. The sorted part (green) grows from the right.</p>
+  <ol class="n"><li>Build a max heap.</li><li>Swap the top (the biggest) with the last value in the heap.</li><li>Make the heap one smaller.</li><li>Fix the top using heapify.</li><li>Repeat until one value is left.</li></ol>
+  <div class="sx" data-k="srt"></div>
+  <div class="wrap"><table><tr><th>Case</th><th>Time</th></tr><tr><td>Best / average / worst</td><td>O(n log n)</td></tr><tr><td>Extra space (done in place)</td><td>O(1)</td></tr></table></div>
+  <ul class="n"><li>For small-to-big order, use a max heap. For big-to-small order, use a min heap.</li><li>Heap sort works in place, but it is <b>not stable</b>. Equal values may change their order.</li></ul>
+</section>
+
+<section id="h9">
+  <h2>9. Python programs</h2>
+  <p class="sub">These programs use plain Python lists and index formulas, so you can see how it works.</p>
+  <div class="row"><button class="b on" data-t="0">Max heap class</button><button class="b" data-t="1">Build and heap sort</button><button class="b" data-t="2">Using heapq</button><button class="b pri" id="cp">Copy</button></div>
+<pre id="c0">class MaxHeap:
+    def __init__(self):
+        self.heap = []
+
+    def insert(self, value):
+        self.heap.append(value)                  # add at the end
+        i = len(self.heap) - 1
+        while i &gt; 0:                             # sift up
+            parent = (i - 1) // 2
+            if self.heap[i] &gt; self.heap[parent]:
+                self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
+                i = parent
+            else:
+                break
+
+    def heapify_down(self, i):
+        n = len(self.heap)
+        while True:
+            largest = i
+            left, right = 2 * i + 1, 2 * i + 2
+            if left &lt; n and self.heap[left] &gt; self.heap[largest]:
+                largest = left
+            if right &lt; n and self.heap[right] &gt; self.heap[largest]:
+                largest = right
+            if largest == i:
+                break
+            self.heap[i], self.heap[largest] = self.heap[largest], self.heap[i]
+            i = largest
+
+    def delete_max(self):
+        if not self.heap:
+            raise IndexError("heap is empty")
+        root = self.heap[0]
+        last = self.heap.pop()
+        if self.heap:
+            self.heap[0] = last                  # last element becomes root
+            self.heapify_down(0)                 # sift down
+        return root
+
+h = MaxHeap()
+for x in [50, 30, 40, 10, 20, 60]:
+    h.insert(x)
+print("After insertion:")
+print("Heap array:", h.heap)            # [60, 30, 50, 10, 20, 40]
+print("Deleted maximum:", h.delete_max())   # 60
+print("After deletion:")
+print("Heap array:", h.heap)            # [50, 30, 40, 10, 20]</pre>
+<pre id="c1" style="display:none">def heapify(arr, n, i):
+    largest = i
+    left, right = 2 * i + 1, 2 * i + 2
+    if left &lt; n and arr[left] &gt; arr[largest]:
+        largest = left
+    if right &lt; n and arr[right] &gt; arr[largest]:
+        largest = right
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def build_max_heap(arr):
+    n = len(arr)
+    for i in range(n // 2 - 1, -1, -1):          # from the last node with children up to the top
+        heapify(arr, n, i)
+
+def heap_sort(arr):
+    n = len(arr)
+    build_max_heap(arr)
+    print("Max heap:", arr)
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]          # move the biggest value to its final place
+        heapify(arr, i, 0)                       # active heap is now size i
+        print("After extraction:", arr)
+    print("Sorted array:", arr)
+
+heap_sort([4, 10, 3, 5, 1])
+# Max heap: [10, 5, 3, 4, 1]
+# After extraction: [5, 4, 3, 1, 10]
+# After extraction: [4, 1, 3, 5, 10]
+# After extraction: [3, 1, 4, 5, 10]
+# After extraction: [1, 3, 4, 5, 10]
+# Sorted array: [1, 3, 4, 5, 10]</pre>
+<pre id="c2" style="display:none">import heapq                       # Python's built-in heap is a MIN heap
+
+h = []
+for x in [50, 30, 40, 10, 20, 60]:
+    heapq.heappush(h, x)
+print(heapq.heappop(h))            # 10, the smallest
+
+# Trick for a max heap: store negatives
+m = []
+for x in [50, 30, 40, 10, 20, 60]:
+    heapq.heappush(m, -x)
+print(-heapq.heappop(m))           # 60, the largest
+
+heapq.heapify([4, 10, 3, 5, 1])    # build a min heap in O(n)</pre>
+</section>
+
+<section id="h10">
+  <h2>10. Complexity</h2>
+  <div class="wrap"><table><tr><th>Operation</th><th>Time</th><th>Reason</th></tr>
+  <tr><td>Find max (max heap) / min (min heap)</td><td>O(1)</td><td>It is at the top</td></tr>
+  <tr><td>Insert</td><td>O(log n)</td><td>May move up from the bottom to the top</td></tr>
+  <tr><td>Delete root</td><td>O(log n)</td><td>May move down from the top to the bottom</td></tr>
+  <tr><td>Heapify one node</td><td>O(log n)</td><td>At most the height</td></tr>
+  <tr><td>Build heap</td><td>O(n)</td><td>Bottom-up, most nodes barely move</td></tr>
+  <tr><td>Search an arbitrary value</td><td>O(n)</td><td>The heap is not fully sorted</td></tr>
+  <tr><td>Heap sort</td><td>O(n log n)</td><td>n removals, each O(log n)</td></tr></table></div>
+  <h3>Why is build-heap O(n)?</h3>
+  <p>Look at a full tree of height h. A node at level l can move down at most h &minus; l levels, and level l has 2<sup>l</sup> nodes. Drag the slider to see the total work.</p>
+  <div class="box"><div class="row"><input type="range" id="bh" min="1" max="8" value="4"><span class="chip" id="bhv"></span></div>
+    <div class="wrap"><table id="bht"></table></div><div class="res" id="bho"></div></div>
+</section>
+
+<section id="h10b">
+  <h2>11. Applications, advantages and disadvantages of heap</h2>
+  <p class="sub">A heap is used when you need the <b>biggest or smallest value again and again</b>, quickly. Click an application to see how a heap helps.</p>
+  <div class="row" id="aptabs"></div>
+  <div class="box" id="apdet" style="border-left:6px solid var(--ember)"></div>
+
+  <h3>Summary of applications</h3>
+  <div class="wrap"><table>
+    <tr><th>Application</th><th>Type of heap</th><th>Time</th></tr>
+    <tr><td>Priority queue</td><td>Max or min</td><td>O(log n) per insert or remove</td></tr>
+    <tr><td>Heap sort</td><td>Max heap</td><td>O(n log n)</td></tr>
+    <tr><td>Dijkstra and Prim</td><td>Min heap</td><td>O(E log V)</td></tr>
+    <tr><td>Top k biggest values</td><td>Min heap of size k</td><td>O(n log k)</td></tr>
+    <tr><td>Median of a stream</td><td>One max heap and one min heap</td><td>O(log n) per new number</td></tr>
+    <tr><td>Merge k sorted lists</td><td>Min heap of size k</td><td>O(N log k)</td></tr>
+    <tr><td>Huffman coding</td><td>Min heap</td><td>O(n log n)</td></tr>
+  </table></div>
+
+  <h3>Advantages and disadvantages</h3>
+  <div class="grid">
+    <div class="card" style="border-top-color:var(--ok)"><b style="color:var(--ok)">Advantages</b>
+      <ul class="n">
+        <li><b>Fast access to the top.</b> The biggest (max heap) or smallest (min heap) value is always at index 0. Time: O(1).</li>
+        <li><b>Fast insert and remove-top.</b> Both take O(log n) because the tree is short.</li>
+        <li><b>Fast build.</b> Any array becomes a heap in O(n) time with bottom-up build-heap.</li>
+        <li><b>Saves memory.</b> It is stored in an array. No pointers are needed and there are no gaps.</li>
+        <li><b>Always balanced.</b> The shape is a complete binary tree, so it can never turn into a long chain like a BST can.</li>
+        <li><b>Safe heap sort.</b> Heap sort is O(n log n) even in the worst case, and it needs no extra array.</li>
+        <li><b>Easy to write.</b> You only need index formulas and a swap.</li>
+      </ul></div>
+    <div class="card" style="border-top-color:var(--rose)"><b style="color:var(--rose)">Disadvantages</b>
+      <ul class="n">
+        <li><b>Slow search.</b> Finding a given value takes O(n), because only a parent and its children are in order.</li>
+        <li><b>Not sorted.</b> To get the values in sorted order, you must remove them one by one, which costs O(n log n).</li>
+        <li><b>Only one end is fast.</b> A min heap gives the minimum quickly, but finding its maximum takes O(n).</li>
+        <li><b>Changing a value in the middle is hard.</b> You must first find its index. Updating priorities needs extra index tracking.</li>
+        <li><b>Not good for neighbours or ranges.</b> Questions like "next bigger value" or "all values between 10 and 20" suit a BST better.</li>
+        <li><b>Heap sort is not stable.</b> Equal values may change their order. It is also often slower than quicksort in practice, because it jumps around the array.</li>
+        <li><b>Resizing cost.</b> With a fixed array, growing it means copying all the values.</li>
+      </ul></div>
+  </div>
+
+  <h3>Heap vs other structures</h3>
+  <div class="wrap"><table>
+    <tr><th>Task</th><th>Heap</th><th>Balanced BST</th><th>Sorted array</th></tr>
+    <tr><td>Find min or max</td><td>O(1) (one of them)</td><td>O(log n)</td><td>O(1)</td></tr>
+    <tr><td>Insert</td><td>O(log n)</td><td>O(log n)</td><td>O(n)</td></tr>
+    <tr><td>Remove min or max</td><td>O(log n)</td><td>O(log n)</td><td>O(1) at one end, O(n) at the other</td></tr>
+    <tr><td>Search any value</td><td>O(n)</td><td>O(log n)</td><td>O(log n)</td></tr>
+    <tr><td>Output in sorted order</td><td>O(n log n)</td><td>O(n)</td><td>O(n)</td></tr>
+  </table></div>
+
+  <h3>Heap or not? Test yourself</h3>
+  <div id="apquiz"></div><div class="msg" id="apscore"></div>
+</section>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var A=[
+ ['Priority queue','Some jobs must be handled before others, such as the most urgent patient or the next task for the CPU.','A max heap (or min heap) keeps the highest-priority item at the top. A new job is inserted in O(log n). The top job is removed in O(log n).','Operating system schedulers, hospital waiting lists, print queues.','insert O(log n) | remove top O(log n)'],
+ ['Heap sort','We want to sort an array without using extra memory.','Build a max heap. Then swap the top with the last value, make the heap one smaller, and fix the top. Repeat. The biggest values move to the end.','Sorting when the worst-case time must be guaranteed.','O(n log n) | extra space O(1)'],
+ ['Dijkstra and Prim','Find the shortest path, or the cheapest network, in a graph.','A min heap holds the candidate nodes or edges. At every step the smallest one is removed in O(log n), and its neighbours are inserted.','GPS routes, computer networks, cable planning.','O(E log V)'],
+ ['Top k values','Find the k biggest values in a very long list, for example the top 10 scores out of a million.','Keep a min heap of size k. For each new value, if it is bigger than the top (the smallest of the k), replace the top. At the end the heap holds the k biggest values.','Leaderboards, trending items, most frequent words.','O(n log k) | space O(k)'],
+ ['Median of a stream','Numbers keep arriving and we need the middle value at any time.','Use two heaps. A max heap holds the smaller half and a min heap holds the bigger half. Keep their sizes equal (or different by one). The median is at the top of one heap, or the average of both tops.','Live statistics, sensor data.','O(log n) per new value | median in O(1)'],
+ ['Merge k sorted lists','Combine many sorted lists or files into one sorted list.','Put the first value of each list in a min heap. Remove the smallest, write it to the output, and insert the next value from the same list.','Sorting very large files, merging search results.','O(N log k) for N total values'],
+ ['Huffman coding','Compress text by giving short codes to common letters.','Put all letter frequencies in a min heap. Remove the two smallest, join them into one node, and insert it back. Repeat until one tree is left.','File compression such as ZIP.','O(n log n)']
+];
+function show(i){var a=A[i];Array.prototype.forEach.call($('aptabs').children,function(b,k){b.className='b'+(k===i?' on':'')});
+  $('apdet').innerHTML='<b style="font-size:18px">'+a[0]+'</b><p style="margin:6px 0"><b>Problem:</b> '+a[1]+'</p><p style="margin:6px 0"><b>How a heap helps:</b> '+a[2]+'</p><p style="margin:6px 0"><b>Real uses:</b> '+a[3]+'</p><span class="chip">'+a[4]+'</span>'}
+A.forEach(function(a,i){var b=document.createElement('button');b.className='b';b.textContent=a[0];b.onclick=function(){show(i)};$('aptabs').appendChild(b)});
+show(0);
+
+var Q=[
+ ['Always process the most urgent task first.',0,'Yes. A heap gives the top-priority task in O(1) and removes it in O(log n).'],
+ ['Check if the value 42 is stored in the data.',1,'Use something else. A heap searches in O(n). A hash table, a BST or binary search on a sorted array is better.'],
+ ['Find the 10 biggest numbers out of one million numbers.',0,'Yes. Keep a min heap of size 10. The cost is about n log 10.'],
+ ['Find the next bigger value after 50 (the successor).',1,'Use something else. A heap has no order between neighbours. A balanced BST finds the successor in O(log n).'],
+ ['Get both the smallest and the largest value quickly at the same time.',1,'Not with one simple heap. A balanced BST works, or you can keep a min heap and a max heap together.'],
+ ['Keep removing the smallest value while new values keep arriving.',0,'Yes. This is exactly what a min heap does: remove the top and insert, each in O(log n).']
+],O=['Use a heap','Use something else'],sc=0,an=0;
+Q.forEach(function(q,qi){var d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(qi+1)+'. '+q[0]+'</p>';
+  O.forEach(function(o,oi){var b=document.createElement('button');b.className='b';b.textContent=o;
+    b.onclick=function(){if(d.done)return;d.done=1;an++;var bs=d.querySelectorAll('button');
+      if(oi===q[1]){b.className='b ok';sc++}else{b.className='b no';bs[q[1]].className='b ok'}
+      d.insertAdjacentHTML('beforeend','<small>'+q[2]+'</small>');
+      $('apscore').textContent='Score: '+sc+' / '+an+(an===Q.length?(sc===Q.length?'. Perfect!':'. Read the advantages and disadvantages again.'):'')};
+    d.appendChild(b)});$('apquiz').appendChild(d)});
+})();
+</script>
+
+<section id="h11">
+  <h2>12. Max heap vs min heap, mistakes, and quiz</h2>
+  <div class="wrap"><table><tr><th></th><th>Max heap</th><th>Min heap</th></tr>
+  <tr><td>Order</td><td>Parent &ge; children</td><td>Parent &le; children</td></tr><tr><td>Root</td><td>Maximum</td><td>Minimum</td></tr>
+  <tr><td>Insert moves up if</td><td>greater than parent</td><td>smaller than parent</td></tr><tr><td>Delete swaps with</td><td>larger child</td><td>smaller child</td></tr>
+  <tr><td>Priority queue</td><td>Highest first</td><td>Lowest first</td></tr><tr><td>Heap sort gives</td><td>Ascending</td><td>Descending</td></tr></table></div>
+  <h3>Common mistakes</h3>
+  <ul class="n"><li>Thinking a heap is a BST. The two children of a node can be in any order.</li><li>Breaking the shape. Always insert at the end, and move the last value to the top when removing.</li>
+  <li>Using wrong child formulas. With 0-based indexing, left = 2i + 1 and right = 2i + 2.</li><li>Swapping with the wrong child. Choose the bigger child (max heap) or the smaller child (min heap).</li>
+  <li>Starting build-heap from the top. Start from index n // 2 &minus; 1 instead.</li><li>Forgetting to make the heap smaller in heap sort.</li><li>Thinking a heap is sorted. Only parents and children are in order.</li></ul>
+  <h3>Where heaps are used</h3>
+  <ul class="n"><li><b>Priority queues:</b> the operating system picks the next task, and a hospital sees the most urgent patient first.</li><li><b>Graph algorithms:</b> Dijkstra and Prim pick the smallest option at each step.</li>
+  <li><b>Top-k:</b> keep a min heap of size k to find the k biggest values in a list.</li><li><b>Middle value (median):</b> use a max heap for the smaller half and a min heap for the bigger half.</li></ul>
+  <h3>Quiz</h3>
+  <div id="quiz"></div><div class="msg" id="score"></div>
+</section>
+<footer>Prepared by Prof. Abhijeet Jadhav</footer>
+</div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+Array.prototype.forEach.call(document.querySelectorAll('#hpx nav button'),function(b){b.onclick=function(){$(b.getAttribute('data-go')).scrollIntoView({behavior:'smooth'})}});
+function dp(i){var d=0,x=i+1;while(x>1){x=x>>1;d++}return d}
+function lg(n){var k=0;while(Math.pow(2,k+1)<=n)k++;return k}
+
+/* ---- drawing ---- */
+function drawHeap(svg,a,n,o){
+  o=o||{};var hi=o.hi||[],bad=o.bad||[],ofs=o.base||0,s='',i,D,W,Hh,p,x,y,pp;
+  if(!n){svg.setAttribute('viewBox','0 0 300 70');svg.innerHTML='<text x="150" y="38" text-anchor="middle" fill="#7a809b" font-size="14">Empty heap</text>';return}
+  D=dp(n-1);W=Math.max((1<<D)*58+20,260);Hh=(D+1)*62+26;
+  function P(i){var d=dp(i),k=i+1-(1<<d);return [(k+0.5)*W/(1<<d),28+d*62]}
+  for(i=1;i<n;i++){p=P((i-1)>>1);x=P(i);s+='<line class="edge" x1="'+p[0]+'" y1="'+p[1]+'" x2="'+x[0]+'" y2="'+x[1]+'"/>'}
+  for(i=0;i<n;i++){x=P(i);s+='<g class="nd'+(hi.indexOf(i)>-1?' hi':'')+(o.sel===i?' sel':'')+(bad.indexOf(i)>-1?' bad':'')+'" data-i="'+i+'"><circle cx="'+x[0]+'" cy="'+x[1]+'" r="18"/><text x="'+x[0]+'" y="'+x[1]+'">'+a[i]+'</text><text class="ix" x="'+(x[0]+19)+'" y="'+(x[1]+20)+'">'+(i+ofs)+'</text></g>'}
+  svg.setAttribute('viewBox','0 0 '+W+' '+Hh);svg.innerHTML=s;
+}
+function drawArr(el,a,n,o){o=o||{};var hi=o.hi||[],bad=o.bad||[],ofs=o.base||0,h='',i;
+  for(i=0;i<a.length;i++)h+='<div class="ac'+(i>=n?' srt':'')+(hi.indexOf(i)>-1?' hi':'')+(o.sel===i?' sel':'')+(bad.indexOf(i)>-1?' bad':'')+'" data-i="'+i+'"><div class="cv">'+a[i]+'</div><div class="ci">'+(i+ofs)+'</div></div>';
+  el.innerHTML=h}
+
+/* ---- frame generators (the real algorithms) ---- */
+function bt(a,b,M){return M==='max'?a>b:a<b}
+function sdF(a,n,i,F,M){var l,r,lg2,kids,rel=M==='max'?'bigger':'smaller';
+  for(;;){l=2*i+1;r=2*i+2;lg2=i;
+    if(l<n&&bt(a[l],a[lg2],M))lg2=l;if(r<n&&bt(a[r],a[lg2],M))lg2=r;
+    kids=l>=n?'no children':'children '+a[l]+(r<n?' and '+a[r]:'');
+    if(lg2===i){F.push({a:a.slice(),n:n,hi:[i],note:'Node <b>'+a[i]+'</b> (index '+i+') has '+kids+'. It is already in the right place, so we stop.'});break}
+    var v=a[i],c=a[lg2];a[i]=c;a[lg2]=v;
+    F.push({a:a.slice(),n:n,hi:[i,lg2],note:'Node <b>'+v+'</b> (index '+i+') has '+kids+'. The '+rel+' child is <b>'+c+'</b>, so swap them.'});i=lg2}}
+function insF(a0,v,M,first){var a=a0.slice(),F=[],n,i=a.length,p,old;
+  if(first)F.push({a:a.slice(),n:a.length,hi:[],note:'Starting heap.'});
+  a.push(v);n=a.length;
+  F.push({a:a.slice(),n:n,hi:[i],note:'Insert <b>'+v+'</b> at the end (index '+i+')'+(i>0?'. Its parent index is &lfloor;('+i+' &minus; 1)/2&rfloor; = '+((i-1)>>1)+', holding '+a[(i-1)>>1]+'.':'. It is the only node.')});
+  while(i>0){p=(i-1)>>1;
+    if(bt(a[i],a[p],M)){old=a[p];a[p]=a[i];a[i]=old;F.push({a:a.slice(),n:n,hi:[p,i],note:'Compare <b>'+v+'</b> with parent <b>'+old+'</b>: '+v+' is '+(M==='max'?'greater':'smaller')+', so swap.'});i=p}
+    else{F.push({a:a.slice(),n:n,hi:[i],note:'Parent <b>'+a[p]+'</b> is '+(M==='max'?'bigger than or equal to':'smaller than or equal to')+' <b>'+v+'</b>, so the order is correct. Stop.'});break}}
+  if(i===0&&n>1)F.push({a:a.slice(),n:n,hi:[0],note:'<b>'+v+'</b> reached the top (root).'});
+  F.push({a:a.slice(),n:n,hi:[],note:'Insertion complete. The heap is correct again.'});return F}
+function delF(a0,M){var a=a0.slice(),F=[],root=a[0],last;
+  F.push({a:a.slice(),n:a.length,hi:[0],note:'The top value <b>'+root+'</b> is the '+(M==='max'?'maximum':'minimum')+', and we will remove it.'});
+  last=a.pop();
+  if(a.length){a[0]=last;F.push({a:a.slice(),n:a.length,hi:[0],note:'Move the last value <b>'+last+'</b> to the top and make the array one smaller. Now move it down.'});sdF(a,a.length,0,F,M)}
+  F.push({a:a.slice(),n:a.length,hi:[],note:'Deletion complete. Removed <b>'+root+'</b>.'});return {F:F,root:root}}
+function bldF(a0,M,first,x){var a=a0.slice(),F=[],n=a.length,i;
+  F.push({a:a.slice(),n:n,hi:[],note:x||'This array will be turned into a '+M+' heap. We start from index &lfloor;'+n+'/2&rfloor; &minus; 1 = '+((n>>1)-1)+', the last node that has children.'});
+  for(i=(n>>1)-1;i>=0;i--){F.push({a:a.slice(),n:n,hi:[i],note:'Heapify index <b>'+i+'</b> (value '+a[i]+').'});sdF(a,n,i,F,M)}
+  F.push({a:a.slice(),n:n,hi:[],note:'Done: the array is now a valid '+M+' heap.'});return F}
+function srtF(a0){var a=a0.slice(),F=bldF(a,'max'),n=a.length,i,t;
+  a=F[F.length-1].a.slice();
+  for(i=n-1;i>0;i--){t=a[0];a[0]=a[i];a[i]=t;
+    F.push({a:a.slice(),n:i,hi:[0],note:'Swap the top value <b>'+a[i]+'</b> with the last value of the heap. <b>'+a[i]+'</b> is now in its final place (green).'});
+    sdF(a,i,0,F,'max')}
+  F.push({a:a.slice(),n:1,hi:[],note:'Sorted array: <b>'+a.join(', ')+'</b>'});return F}
+function hfyF(){var a=[40,70,60,10,20],F=[];
+  F.push({a:a.slice(),n:5,hi:[0],note:'The top value <b>40</b> breaks the max-heap rule because its child 70 is bigger. Both subtrees below are already heaps, so heapify can fix it.'});
+  sdF(a,5,0,F,'max');F.push({a:a.slice(),n:5,hi:[],note:'Final max heap: '+a.join(', ')});return F}
+
+/* ---- stepper component ---- */
+function stepper(el,F){
+  el.innerHTML='<div class="box"><svg class="t"></svg><div class="arr"></div><div class="res"></div><div class="row"><button class="b">Back</button><button class="b pri">Next</button><button class="b">Auto-play</button><button class="b">Restart</button><span class="chip"></span></div></div>';
+  var sv=el.querySelector('svg'),ar=el.querySelector('.arr'),rs=el.querySelector('.res'),bs=el.querySelectorAll('button'),ch=el.querySelector('.chip'),i=0,tm=null;
+  function go(){var f=F[i];drawHeap(sv,f.a,f.n,{hi:f.hi});drawArr(ar,f.a,f.n,{hi:f.hi});rs.innerHTML='<b>Step '+(i+1)+' of '+F.length+':</b> '+f.note;ch.textContent=(i+1)+' / '+F.length;bs[0].disabled=i===0;bs[1].disabled=i===F.length-1}
+  function stop(){clearInterval(tm);bs[2].textContent='Auto-play'}
+  bs[0].onclick=function(){stop();if(i>0){i--;go()}};bs[1].onclick=function(){stop();if(i<F.length-1){i++;go()}};
+  bs[3].onclick=function(){stop();i=0;go()};
+  bs[2].onclick=function(){if(bs[2].textContent==='Pause'){stop();return}if(i>=F.length-1)i=0;bs[2].textContent='Pause';go();tm=setInterval(function(){if(i<F.length-1){i++;go()}else stop()},1300)};
+  go()}
+var EX={ins:function(){return insF([50,30,40,10,20],60,'max',true)},del:function(){return delF([90,70,80,40,50,60],'max').F},hfy:hfyF,bld:function(){return bldF([4,10,3,5,1],'max')},srt:function(){return srtF([4,10,3,5,1])}};
+Array.prototype.forEach.call(document.querySelectorAll('#hpx .sx'),function(el){stepper(el,EX[el.getAttribute('data-k')]())});
+
+/* ---- height calculator ---- */
+function hcalc(){var n=parseInt($('hn').value,10);if(!(n>=1)){$('hout').textContent='Enter n of at least 1.';return}
+  var h=lg(n);$('hout').innerHTML='h = &lfloor;log&#8322; '+n+'&rfloor; = <b>'+h+'</b> &middot; levels = '+(h+1)+'<br>Last level (level '+h+') holds '+(n-(Math.pow(2,h)-1))+' of its possible '+Math.pow(2,h)+' nodes.<br>A tree of height '+h+' has between <b>'+Math.pow(2,h)+'</b> (complete) and <b>'+(Math.pow(2,h+1)-1)+'</b> (perfect) nodes.'}
+$('hn').oninput=hcalc;hcalc();
+
+/* ---- array explorer ---- */
+var ex=[],exSel=0,base=0;
+function parse(s,max){return s.split(/[\s,]+/).filter(function(x){return x!==''}).map(Number).filter(function(x){return !isNaN(x)}).slice(0,max)}
+function viol(a,M){var b=[],i,p;for(i=1;i<a.length;i++){p=(i-1)>>1;if(M==='max'?a[p]<a[i]:a[p]>a[i]){b.push(p);b.push(i)}}return b}
+function exr(){
+  ex=parse($('exin').value,15);var mx=viol(ex,'max'),mn=viol(ex,'min'),bad=mx.length&&mn.length?mx:[];
+  if(exSel>=ex.length)exSel=0;
+  var o={sel:exSel,bad:bad,base:base};drawHeap($('exsv'),ex,ex.length,o);drawArr($('exar'),ex,ex.length,o);
+  var i=exSel,k=i+base,v=ex[i],h='',p,l,r;
+  if(ex.length){
+    p=base?(k>>1):((i-1)>>1);l=base?2*k:2*i+1;r=base?2*k+1:2*i+2;
+    function nm(idx){var j=idx-base;return j>=0&&j<ex.length?'index '+idx+' (value <b>'+ex[j]+'</b>)':'none (outside the array)'}
+    h='<b>Selected: index '+k+', value '+v+'</b><br>Parent = '+(base?'&lfloor;'+k+'/2&rfloor;':'&lfloor;('+k+' &minus; 1)/2&rfloor;')+' = '+(i===0?'none (root)':nm(p))+'<br>Left = '+(base?'2&times;'+k:'2&times;'+k+' + 1')+' = '+nm(l)+'<br>Right = '+(base?'2&times;'+k+' + 1':'2&times;'+k+' + 2')+' = '+nm(r)}
+  else h='Enter some numbers.';
+  $('exinfo').innerHTML=h;
+  $('exchk').innerHTML=ex.length?'<span class="chip '+(mx.length?'r':'g')+'">max heap: '+(mx.length?'NO':'YES')+'</span><span class="chip '+(mn.length?'r':'g')+'">min heap: '+(mn.length?'NO':'YES')+'</span>'+(bad.length?'<div style="margin-top:6px;font-size:14px">Pink nodes show parent-child pairs that break the max-heap rule.</div>':''):'';
+}
+function exClick(e){var g=e.target.closest('.nd,.ac');if(g){exSel=+g.getAttribute('data-i');exr()}}
+$('exsv').addEventListener('click',exClick);$('exar').addEventListener('click',exClick);$('exin').oninput=function(){exSel=0;exr()};
+$('b0').onclick=function(){base=0;$('b0').className='b on';$('b1').className='b';exr()};$('b1').onclick=function(){base=1;$('b1').className='b on';$('b0').className='b';exr()};exr();
+
+/* ---- playground (step by step) ---- */
+var H=[],M='max',sel=-1,PF=[],PI=0,ptm=null;
+function pshow(a,n,hi,note){drawHeap($('psv'),a,n,{hi:hi,sel:sel});drawArr($('par'),a,n,{hi:hi,sel:sel});if(note!==undefined)$('pnote').innerHTML=note}
+function pinfo(){var f=PF[PI];if(!f||sel<0||sel>=f.a.length)return;var i=sel,a=f.a;function nm(j){return j>=0&&j<f.n?j+' ('+a[j]+')':'none'}
+  $('pinfo').innerHTML='<b>Index '+i+' = '+a[i]+'</b> &middot; parent '+(i?nm((i-1)>>1):'none (root)')+' &middot; left '+nm(2*i+1)+' &middot; right '+nm(2*i+2)}
+function pctl(){var n=PF.length;$('pbk').disabled=!n||PI===0;$('pnx').disabled=!n||PI===n-1;$('pend').disabled=!n||PI===n-1;$('pap').disabled=!n;$('pst').textContent=n?(PI+1)+' / '+n:''}
+function pgo(){var f=PF[PI];pshow(f.a,f.n,f.hi,'<b>Step '+(PI+1)+' of '+PF.length+':</b> '+f.note);pctl();pinfo()}
+function pstop(){clearInterval(ptm);$('pap').textContent='Auto-play'}
+function run(F){pstop();PF=F;PI=0;H=F[F.length-1].a.slice();pgo()}
+$('pnx').onclick=function(){pstop();if(PI<PF.length-1){PI++;pgo()}};
+$('pbk').onclick=function(){pstop();if(PI>0){PI--;pgo()}};
+$('pend').onclick=function(){pstop();PI=PF.length-1;pgo()};
+$('pap').onclick=function(){if($('pap').textContent==='Pause'){pstop();return}if(PI>=PF.length-1){PI=0;pgo()}$('pap').textContent='Pause';ptm=setInterval(function(){if(PI<PF.length-1){PI++;pgo()}else pstop()},1300)};
+function pclick(e){var g=e.target.closest('.nd,.ac');if(!g||!PF.length)return;sel=+g.getAttribute('data-i');var f=PF[PI];pshow(f.a,f.n,f.hi);pinfo()}
+$('psv').addEventListener('click',pclick);$('par').addEventListener('click',pclick);
+$('pi').onclick=function(){var v=parseInt($('pv').value,10);if(isNaN(v)){$('pnote').textContent='Type a number first.';return}if(H.length>=31){$('pnote').textContent='Limit of 31 values reached.';return}sel=-1;run(insF(H,v,M,true));$('pv').value=''};
+$('pd').onclick=function(){if(!H.length){$('pnote').textContent='The heap is empty.';return}sel=-1;run(delF(H,M).F)};
+function bload(a,t){if(!a.length)return;sel=-1;run(bldF(a,M,true,t))}
+$('pbb').onclick=function(){var a=parse($('pb').value,31);if(!a.length){$('pnote').textContent='Enter numbers separated by commas.';return}bload(a)};
+$('pr').onclick=function(){var a=[],i;for(i=0;i<8;i++)a.push(1+Math.floor(Math.random()*99));bload(a,'A random array. Step through to see build-heap turn it into a '+M+' heap.')};
+$('pc').onclick=function(){pstop();H=[];PF=[];PI=0;sel=-1;pshow([],0,[],'Cleared. Insert a value to start.');pctl();$('pinfo').textContent='Click a node or cell to see its parent and children (up to 31 values).'};
+function setM(m){M=m;$('mx').className='b'+(m==='max'?' on':'');$('mn').className='b'+(m==='min'?' on':'');if(H.length>1)bload(H.slice(),'Switched to a '+m+' heap: the numbers are rearranged to match.')}
+$('mx').onclick=function(){setM('max')};$('mn').onclick=function(){setM('min')};
+pshow([],0,[]);pctl();
+
+/* ---- tabs for code ---- */
+var curT=0;Array.prototype.forEach.call(document.querySelectorAll('#hpx [data-t]'),function(b){b.onclick=function(){curT=+b.getAttribute('data-t');[0,1,2].forEach(function(k){$('c'+k).style.display=k===curT?'block':'none'});Array.prototype.forEach.call(document.querySelectorAll('#hpx [data-t]'),function(x){x.className='b'+(x===b?' on':'')})}});
+$('cp').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText($('c'+curT).textContent);$('cp').textContent='Copied'};
+
+/* ---- why O(n) ---- */
+function bh(){var h=+$('bh').value,l,t='<tr><th>Level l</th><th>Nodes 2^l</th><th>Most moves down (h &minus; l)</th><th>Work</th></tr>',dn=0,up=0,n=Math.pow(2,h+1)-1;
+  for(l=0;l<=h;l++){t+='<tr><td>'+l+'</td><td>'+Math.pow(2,l)+'</td><td>'+(h-l)+'</td><td>'+Math.pow(2,l)*(h-l)+'</td></tr>';dn+=Math.pow(2,l)*(h-l);up+=Math.pow(2,l)*l}
+  $('bhv').textContent='h = '+h+', n = '+n;$('bht').innerHTML=t;
+  $('bho').innerHTML='Building the heap bottom-up: at most <b>'+dn+'</b> swaps (close to n = '+n+').<br>Inserting the same '+n+' values one by one: up to <b>'+up+'</b> swaps (close to n log n).'}
+$('bh').oninput=bh;bh();
+
+/* ---- two ways to build ---- */
+var TM='max';
+function oneByOne(arr,M){var F=[{a:[],n:0,hi:[],note:'Start with an empty heap. Insert the values one by one, from left to right.'}],cur=[];
+  arr.forEach(function(v,i){var t=insF(cur,v,M,false);t.forEach(function(f){f.note='<b>Value '+(i+1)+' of '+arr.length+':</b> '+f.note});F=F.concat(t);cur=t[t.length-1].a.slice()});return F}
+function sw(F){return F.filter(function(f){return f.hi.length===2}).length}
+function twoWays(){var a=parse($('tw').value,15);if(a.length<2){$('twr').textContent='Enter at least two numbers.';return}
+  var FA=oneByOne(a,TM),FB=bldF(a,TM,false,'This array will be turned into a '+TM+' heap in place. We start from index &lfloor;'+a.length+'/2&rfloor; &minus; 1 = '+((a.length>>1)-1)+', the last node that has children.');
+  stepper($('twa'),FA);stepper($('twb'),FB);
+  var ra=FA[FA.length-1].a,rb=FB[FB.length-1].a,same=ra.join()===rb.join();
+  $('twr').innerHTML='Method 1 result: <b>['+ra.join(', ')+']</b> with '+sw(FA)+' swap(s).<br>Method 2 result: <b>['+rb.join(', ')+']</b> with '+sw(FB)+' swap(s).<br>'+(same?'Both methods gave the same array this time.':'The arrays are different, but <b>both are valid '+TM+' heaps</b>.')}
+function setT(m){TM=m;$('tmx').className='b'+(m==='max'?' on':'');$('tmn').className='b'+(m==='min'?' on':'');twoWays()}
+$('tmx').onclick=function(){setT('max')};$('tmn').onclick=function(){setT('min')};$('tgo').onclick=twoWays;twoWays();
+
+/* ---- quiz ---- */
+var Q=[
+ ['Which value is always at the top (root) of a max heap?',['Minimum','Maximum','Median','Last inserted'],1,'Every parent is bigger than or equal to its children, so the biggest value is at the top.'],
+ ['Worst-case time to insert into a heap?',['O(1)','O(n)','O(log n)','O(n log n)'],2,'The new value can move up at most as many levels as the height, which is floor(log2 n).'],
+ ['Left child index in a 0-based heap array?',['2*i','2*i + 1','2*i + 2','(i - 1)//2'],1,'Left = 2i + 1, right = 2i + 2, parent = (i - 1)//2.'],
+ ['Time to build a heap bottom-up from an array?',['O(log n)','O(n)','O(n log n)','O(n^2)'],1,'Most nodes are near the bottom and move very little, so the total work is about n.'],
+ ['Why does array storage work so well for heaps?',['Every node has two children','The tree is complete, so there are no gaps','Values are sorted','Each node has a pointer'],1,'A complete tree fills positions 0, 1, 2, ... without holes.'],
+ ['Is [50, 30, 60, 10] a valid max heap?',['Yes','No, 60 is larger than its parent 50','No, it is not complete','Yes, but only as a min heap'],1,'Index 2 (60) has parent index 0 (50). A max heap needs parent >= child.'],
+ ['After deleting the root, which element replaces it first?',['The smaller child','The larger child','The last element of the array','A random leaf'],2,'The last value keeps the shape complete. Then sift-down fixes the order.'],
+ ['In heap sort for ascending order, which heap do we build?',['Min heap','Max heap','BST','Either, with no change'],1,'The biggest value is moved to the end again and again, so the sorted part grows from the right.']
+],sc=0,an=0;
+Q.forEach(function(q,qi){var d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(qi+1)+'. '+q[0]+'</p>';
+  q[1].forEach(function(o,oi){var b=document.createElement('button');b.className='b';b.textContent=o;
+    b.onclick=function(){if(d.done)return;d.done=1;an++;var bs=d.querySelectorAll('button');
+      if(oi===q[2]){b.className='b ok';sc++}else{b.className='b no';bs[q[2]].className='b ok'}
+      d.insertAdjacentHTML('beforeend','<small>'+q[3]+'</small>');
+      $('score').textContent='Score: '+sc+' / '+an+(an===Q.length?(sc===Q.length?'. Perfect!':'. Revisit the sections you missed.'):'')};
+    d.appendChild(b)});$('quiz').appendChild(d)});
+})();
+</script>
+
+<script>
+(function(){
+var R=document.getElementById('hpx'),hero=R.querySelector('.hero'),nav=R.querySelector('nav');
+var secs=Array.prototype.filter.call(R.children,function(e){return e.tagName==='SECTION'});
+var slides=[hero].concat(secs),idx={},cur=0,deck=true,dir='fwd',i;
+slides.forEach(function(s,k){s.classList.add('slide');idx[s.id]=k});
+function title(k){if(k===0)return 'Introduction';var h=slides[k].querySelector('h2');return h?h.textContent.replace(/^\d+\.\s*/,''):'Section'}
+var top=document.createElement('div');top.className='dkt';
+top.innerHTML='<button class="b dkn" data-d="-1">&larr; Prev</button><div class="dkm"><span class="dkc"></span><div class="dkp"><i></i></div></div><button class="b pri dkn" data-d="1">Next &rarr;</button><button class="b" data-m="notes">Show all sections</button><button class="b" data-m="fs">Fullscreen</button>';
+nav.parentNode.insertBefore(top,nav.nextSibling);
+var bot=document.createElement('div');bot.className='dkb';
+bot.innerHTML='<button class="b" data-d="-1"></button><span class="dkh">Tip: use the &larr; and &rarr; keys</span><button class="b pri" data-d="1"></button>';
+R.insertBefore(bot,R.querySelector('footer'));
+var navBtns=Array.prototype.slice.call(nav.querySelectorAll('button'));
+function render(){
+  R.classList.toggle('deck',deck);
+  slides.forEach(function(s,k){s.classList.remove('cur','fwd','back');if(k===cur)s.classList.add('cur',dir)});
+  navBtns.forEach(function(b){b.className=idx[b.getAttribute('data-go')]===cur?'cur':''});
+  top.querySelector('.dkc').textContent=(cur+1)+' / '+slides.length+'  '+title(cur);
+  top.querySelector('.dkp i').style.width=((cur+1)/slides.length*100)+'%';
+  var bs=bot.querySelectorAll('[data-d]'),tb=top.querySelectorAll('.dkn');
+  bs[0].textContent=cur>0?'\u2190 '+title(cur-1):'';bs[0].style.visibility=cur>0?'visible':'hidden';
+  bs[1].textContent=cur<slides.length-1?'Next: '+title(cur+1)+' \u2192':'';bs[1].style.visibility=cur<slides.length-1?'visible':'hidden';
+  tb[0].disabled=cur===0;tb[1].disabled=cur===slides.length-1;
+  top.querySelector('[data-m="notes"]').textContent=deck?'Show all sections':'Show one at a time';
+}
+function toTop(){try{if(document.fullscreenElement===R||document.webkitFullscreenElement===R){R.scrollTop=0}else{var y=R.getBoundingClientRect().top+(window.pageYOffset||0)-8;if(y<(window.pageYOffset||0))window.scrollTo(0,Math.max(0,y))}}catch(e){}}
+function go(k,d){if(k<0||k>=slides.length)return;dir=(d||(k>=cur?1:-1))>0?'fwd':'back';cur=k;render();toTop();try{history.replaceState(null,'','#'+slides[cur].id)}catch(e){}}
+navBtns.forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-go'),k=idx[id];if(deck){go(k)}else{cur=k;render();var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}}});
+Array.prototype.forEach.call(R.querySelectorAll('[data-d]'),function(b){b.onclick=function(){go(cur+parseInt(b.getAttribute('data-d'),10))}});
+top.querySelector('[data-m="notes"]').onclick=function(){deck=!deck;render()};
+var fsb=top.querySelector('[data-m="fs"]');
+if(!(R.requestFullscreen||R.webkitRequestFullscreen))fsb.style.display='none';
+fsb.onclick=function(){if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(R.requestFullscreen||R.webkitRequestFullscreen).call(R)}};
+document.addEventListener('fullscreenchange',function(){fsb.textContent=document.fullscreenElement?'Exit fullscreen':'Fullscreen'});
+document.addEventListener('keydown',function(e){if(!deck)return;var t=e.target.tagName;if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;
+  if(e.key==='ArrowRight')go(cur+1,1);else if(e.key==='ArrowLeft')go(cur-1,-1)});
+var tx=0,ty=0,ok=false;
+R.addEventListener('touchstart',function(e){var t=e.touches[0];tx=t.clientX;ty=t.clientY;ok=!e.target.closest('.wrap,pre,input,.strip,.arr')},{passive:true});
+R.addEventListener('touchend',function(e){if(!deck||!ok)return;var t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>70&&Math.abs(dy)<45)go(cur+(dx<0?1:-1))},{passive:true});
+var h=(location.hash||'').replace('#','');if(h&&idx[h]!==undefined)cur=idx[h];
+render();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="avl-trees.html"><small>← Previous lesson</small><b>AVL trees</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="graphs.html"><small>Next lesson →</small><b>Graphs</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

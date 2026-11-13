@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack · Learn Data Structures with idontno</title>
+<meta name="description" content="List and linked-list implementations, operations, applications.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="stack">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="cur" data-lesson="stack" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module II · Linear data structures</span><span>›</span><span>Lesson 4 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     STACK: Implementation using List and Linked List,
+     Operations, Applications, Advantages & Disadvantages
+     MCA Data Structures Interactive Learning Blog
+     Paste this whole block into Blogger's HTML view.
+     ============================================================ -->
+<style>
+#dsa-st{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-st *,#dsa-st *::before,#dsa-st *::after{box-sizing:border-box}
+#dsa-st h1,#dsa-st h2,#dsa-st h3,#dsa-st h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-st p{margin:0 0 14px}
+#dsa-st a{color:var(--blue)}
+#dsa-st code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-st ul,#dsa-st ol{margin:0 0 14px;padding-left:22px}
+#dsa-st li{margin:4px 0}
+#dsa-st strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-st .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-st .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-st .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-st .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-st .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-st .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-st .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-st .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-st .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-st .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-st .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-st .toc a{text-decoration:none;color:var(--ink)}
+#dsa-st .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-st section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-st .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-st .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-st .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-st h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-st h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-st .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-st .box p:last-child,#dsa-st .box ul:last-child{margin-bottom:0}
+#dsa-st .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-st .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-st .def .box-title{color:var(--blue)}
+#dsa-st .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-st .tip .box-title{color:var(--teal)}
+#dsa-st .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-st .warn .box-title{color:var(--red)}
+#dsa-st .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-st .exam .box-title{color:var(--gold)}
+#dsa-st .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-st .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-st .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-st .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-st .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-st .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-st .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-st .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-st .pro{border-left:4px solid var(--teal)}
+#dsa-st .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-st .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-st table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-st th,#dsa-st td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-st th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-st tr:nth-child(even) td{background:#faf9f5}
+#dsa-st td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-st td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-st .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-st .mem .c{width:64px;text-align:center}
+#dsa-st .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-st .mem .c:last-child .v{border-right-width:2px}
+#dsa-st .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-st .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-st .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-st .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-st .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-st .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-st .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-st .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-st pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-st pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-st pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-st pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-st .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-st .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-st .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-st .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-st .tab-pane{display:none;padding-top:10px}
+#dsa-st .tab-pane.on{display:block}
+#dsa-st .code-wrap{position:relative}
+#dsa-st .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-st .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-st .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-st .btn:hover{transform:translateY(-1px)}
+#dsa-st .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-st .btn.acc{background:var(--accent)}
+#dsa-st .btn.tl{background:var(--teal)}
+#dsa-st .btn.rd{background:var(--red)}
+#dsa-st .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-st input[type=number],#dsa-st input[type=text],#dsa-st select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-st label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-st .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-st .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-st .lab-head b{font-size:1.05em}
+#dsa-st .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-st .lab-body{padding:18px;background:#fff}
+#dsa-st .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-st .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-st .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-st .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-st .cell:last-child .box-v{border-right-width:2px}
+#dsa-st .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-st .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-st .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-st .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-st .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-st .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-st .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-st .cell.done .box-v{background:var(--teal-soft)}
+#dsa-st .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-st .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-st .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-st .pc div{padding:1px 14px;white-space:pre}
+#dsa-st .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-st .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-st .log div{margin:2px 0}
+#dsa-st .log .ok{color:#8ce99a}
+#dsa-st .log .bad{color:#ff8787}
+#dsa-st .log .hd{color:#ffb48a}
+#dsa-st .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-st .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-st .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-st .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-st .msg.bad{color:var(--red)}
+#dsa-st .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-st .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-st .calc-out b{color:var(--accent)}
+#dsa-st .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-st .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-st .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-st .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-st .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-st .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-st .mgrid div.tg small{color:#ffe3d3}
+#dsa-st .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-st .mgrid div.now{background:#ffd8a8}
+#dsa-st .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-st details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-st details summary{cursor:pointer;font-weight:600}
+#dsa-st details[open] summary{margin-bottom:8px}
+#dsa-st .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-st .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-st .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-st .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-st .opt:hover{border-color:var(--ink2)}
+#dsa-st .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-st .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-st .opt:disabled{cursor:default}
+#dsa-st .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-st .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-st .score b{color:#ffb48a;font-size:1.3em}
+#dsa-st .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-st .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-st .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-st .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-st .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-st .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-st .nav-tab.home{padding-left:14px}
+#dsa-st .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-st .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-st .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-st .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-st .nb,#dsa-st .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-st .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-st .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-st .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-st .crumb b{display:block;font-size:1.02em}
+#dsa-st .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-st .nav-tools{display:flex;gap:8px}
+#dsa-st .nt{border-color:var(--line);font-size:.82em}
+#dsa-st .nt:hover{border-color:var(--ink)}
+#dsa-st .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-st.paged .page{display:none}
+#dsa-st.paged .page.active{display:block;animation:stFade .3s ease}
+@keyframes stFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-st .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-st .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-st .pager button:hover{background:var(--accent-soft)}
+#dsa-st .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-st .pager button b{font-size:.95em}
+#dsa-st .pager .nx{text-align:right;margin-left:auto}
+#dsa-st:not(.paged) .pager{display:none}
+#dsa-st .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-st .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-st .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-st .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-st .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-st .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-st .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-st .ov b{display:block;font-size:1.02em}
+#dsa-st .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-st .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-st:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-st:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-st.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-st .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-st .nav-bar{gap:6px}
+  #dsa-st .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-st .nb{flex:1}
+  #dsa-st .nav-tools{flex-basis:100%}
+  #dsa-st .nav-tools .nt{flex:1}
+  #dsa-st .pager button{max-width:49%;font-size:.9em}
+  #dsa-st{font-size:16px}
+  #dsa-st section.sec{padding:22px 16px 10px}
+  #dsa-st .hero{padding:28px 20px}
+  #dsa-st .hero h1{font-size:1.9em}
+  #dsa-st .grid2,#dsa-st .grid3,#dsa-st .viz-split{grid-template-columns:1fr}
+  #dsa-st .toc ol{columns:1}
+  #dsa-st .cell{width:44px}
+  #dsa-st .cell .box-v{height:46px;font-size:.95em}
+  #dsa-st .cell .adr{display:none}
+  #dsa-st .mem .c{width:50px}
+  #dsa-st .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- stack specific ---------- */
+#dsa-st .hero-wrap{display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#dsa-st .hero-wrap>div:first-child{flex:1;min-width:260px}
+#dsa-st .hero-stack{display:flex;flex-direction:column;align-items:center;gap:5px;padding:0 14px 8px;border:3px solid #ffffff55;border-top:0;border-radius:0 0 12px 12px;min-width:150px;position:relative;margin-right:76px}
+#dsa-st .hero-stack div{width:120px;height:36px;border-radius:7px;background:#ffffff1a;border:1.5px solid #ffffff44;color:#fff;font-family:'Fira Code',monospace;display:flex;align-items:center;justify-content:center}
+#dsa-st .hero-stack div.hot{background:var(--accent);border-color:var(--accent)}
+#dsa-st .hero-stack span{position:absolute;right:-66px;top:34px;font-family:'Fira Code',monospace;font-size:.8em;color:#ffb48a}
+#dsa-st .hero-stack i{font-style:normal;font-family:'Fira Code',monospace;font-size:.75em;color:#9aa0bb;margin-bottom:2px}
+#dsa-st .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden}
+#dsa-st .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-st .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-st .seg button.on{background:var(--ink);color:#fff}
+#dsa-st .seg button:disabled{opacity:.5;cursor:not-allowed}
+#dsa-st .btn-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+#dsa-st .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-st .chk{display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)}
+#dsa-st .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.78em;color:var(--ink2);margin-top:8px}
+#dsa-st .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid #0002}
+#dsa-st .st-split{display:grid;grid-template-columns:1fr 1.15fr;gap:14px;align-items:start}
+#dsa-st .st-stage{background:var(--soft);border-radius:12px;padding:6px}
+#dsa-st .st-stage svg{display:block;width:100%;height:auto}
+#dsa-st .st-side .pc{min-height:0;margin-bottom:10px}
+#dsa-st .st-side .log{height:220px}
+#dsa-st .sbs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#dsa-st .sbs h4{margin:0 0 6px;font-size:.95em;text-align:center}
+#dsa-st .sbs .note{font-size:.8em;color:var(--ink2);text-align:center;margin-top:6px;font-family:'Fira Code',monospace}
+#dsa-st .fig{background:var(--soft);border-radius:12px;padding:6px;margin:10px 0 4px}
+#dsa-st .fig svg{display:block;width:100%;height:auto;margin:0 auto}
+#dsa-st .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-st .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-st .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-st .op h4 .bx.slow{background:var(--red-soft);color:var(--red)}
+#dsa-st .op p{font-size:.95em}
+#dsa-st .op-row{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;align-items:center}
+#dsa-st .chips{display:flex;align-items:flex-end;gap:5px;min-height:52px;padding:8px 10px;background:var(--soft);border-radius:10px;border-left:4px solid var(--ink);flex-wrap:wrap}
+#dsa-st .chips span{font-family:'Fira Code',monospace;background:#fff;border:1.5px solid var(--ink);border-radius:7px;padding:6px 10px;min-width:34px;text-align:center}
+#dsa-st .chips span.tp{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-st .chips em{font-style:normal;font-size:.8em;color:var(--ink2);align-self:center}
+#dsa-st .trace td,#dsa-st .trace th{font-family:'Fira Code',monospace;font-size:.82em;padding:6px 10px}
+#dsa-st .trace tr.now td{background:#ffe8cc !important}
+#dsa-st .trace-wrap{max-height:300px;overflow-y:auto;margin-top:10px;border:1px solid var(--line);border-radius:10px}
+#dsa-st .trace-wrap table{margin:0}
+#dsa-st .verdict{font-weight:700;margin-top:10px;font-size:1.05em}
+@media (max-width:720px){
+  #dsa-st .st-split,#dsa-st .sbs,#dsa-st .op-row{grid-template-columns:1fr}
+  #dsa-st .seg button{padding:7px 10px;font-size:.82em}
+  #dsa-st .hero-stack{margin:0 auto 0 30px}
+}
+</style>
+
+<div id="dsa-st">
+
+<!-- ======================= NAVIGATION MENU ======================= -->
+<div class="nav" id="st-nav">
+  <div class="nav-tabs" id="st-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="st-prev">← Previous</button>
+    <div class="crumb"><b id="st-crumb-t">Home</b><span id="st-crumb-s">Overview</span></div>
+    <button class="nb" id="st-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="st-all">Show all sections</button>
+      <button class="nt" id="st-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HOME ======================= -->
+<section class="page" id="st-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <div class="hero-wrap">
+    <div>
+      <span class="tag">MCA · Data Structures · Unit: Stacks</span>
+      <h1>Stack: Last In, First Out</h1>
+      <p>What a stack is, its operations (push, pop, peek, isEmpty, isFull), and how to implement it with a Python list and with a linked list. Includes animated visualizers, a bracket-checking lab, applications, advantages, disadvantages and exam practice.</p>
+    </div>
+    <div class="hero-stack"><span>← top</span><i>push ↓ ↑ pop</i><div class="hot">40</div><div>30</div><div>20</div><div>10</div></div>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>What is it</b><small>LIFO idea, need, importance, real-world examples</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Concepts &amp; lab</b><small>Terminology, stack ADT, two representations side by side</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Algorithms &amp; visualiser</b><small>Push, pop, peek, isEmpty, isFull, display</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Complexity</b><small>Time &amp; space, list vs linked list implementation</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Uses, pros &amp; cons</b><small>Applications with a live lab, advantages, disadvantages</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Python</b><small>Four tested programs with output</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Practice</b><small>Questions, traces, output prediction, 8-MCQ quiz</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sec page" id="st-s1" data-label="What is it" data-sub="Introduction to stacks">
+  <div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Stacks</h2></div>
+
+  <div class="box def">
+    <span class="box-title">Definition</span>
+    <p>A <strong>stack</strong> is a <strong>linear data structure</strong> in which elements are inserted and deleted at <strong>only one end</strong>, called the <strong>top</strong>. The element inserted last is the first one to be removed. This principle is called <strong>LIFO: Last In, First Out</strong> (equivalently, FILO: First In, Last Out).</p>
+  </div>
+
+  <p>Picture a pile of plates in a canteen. You put a clean plate on the top of the pile, and you also take a plate from the top. You can't pull a plate out from the middle or the bottom without first removing everything above it. That restriction, <em>one entry point that is also the exit point</em>, is exactly what defines a stack.</p>
+
+  <div class="fig"><svg id="st-fig1" role="img" aria-label="Stack of four plates with push and pop at the top"></svg></div>
+  <div class="cap">Figure 1: A stack holding 10, 20, 30, 40. Push adds on top; pop removes from the top. 40 went in last, so it comes out first.</div>
+
+  <h3>Why do we need a stack?</h3>
+  <p>Many problems naturally need to <strong>remember things and come back to them in reverse order</strong>:</p>
+  <ul>
+    <li>When function A calls B, and B calls C, the computer must return to B first, then A: the most recent call finishes first.</li>
+    <li>When you press Undo, the <em>latest</em> change is reversed first.</li>
+    <li>When checking <code>{ [ ( ) ] }</code>, the most recently opened bracket must be the first one closed.</li>
+  </ul>
+  <p>A stack gives exactly this behaviour with very simple, very fast operations.</p>
+
+  <h3>Why are stacks important?</h3>
+  <ul>
+    <li>Every running program uses a <strong>call stack</strong> to manage function calls, local variables and recursion.</li>
+    <li>Compilers use stacks to <strong>parse and evaluate expressions</strong> and to check syntax.</li>
+    <li>All core operations take <strong>O(1)</strong> time, so stacks are among the most efficient data structures.</li>
+    <li>Stacks are a classic example of an <strong>Abstract Data Type (ADT)</strong>: defined by behaviour, implementable in several ways.</li>
+  </ul>
+
+  <h3>Real-world examples</h3>
+  <div class="grid3">
+    <div class="mini"><span class="ico">🍽️</span><h4>Pile of plates</h4><p>Last plate placed is the first one taken.</p></div>
+    <div class="mini"><span class="ico">↩️</span><h4>Undo in editors</h4><p>Ctrl+Z reverses the most recent action first.</p></div>
+    <div class="mini"><span class="ico">🌐</span><h4>Browser back button</h4><p>Visited pages are pushed; Back pops the latest one.</p></div>
+    <div class="mini"><span class="ico">📚</span><h4>Stack of books</h4><p>You reach the bottom book only after lifting the ones on top.</p></div>
+    <div class="mini"><span class="ico">💍</span><h4>Bangles on a wrist</h4><p>The last bangle worn is the first one removed.</p></div>
+    <div class="mini"><span class="ico">🧮</span><h4>Calculators</h4><p>Expressions are evaluated using operand and operator stacks.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sec page" id="st-s2" data-label="Concepts &amp; lab" data-sub="Terminology, ADT &amp; representations">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Core Concepts &amp; Representations</h2></div>
+
+  <h3>Terminology</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td><strong>Top</strong></td><td>The end where all insertions and deletions happen. In an array it is an <em>index</em>; in a linked list it is a <em>pointer</em> to the first node.</td></tr>
+    <tr><td><strong>Push</strong></td><td>Insert an element on top of the stack.</td></tr>
+    <tr><td><strong>Pop</strong></td><td>Remove and return the top element.</td></tr>
+    <tr><td><strong>Peek / Top</strong></td><td>Return the top element <em>without</em> removing it.</td></tr>
+    <tr><td><strong>isEmpty</strong></td><td>True if the stack has no elements.</td></tr>
+    <tr><td><strong>isFull</strong></td><td>True if a fixed-size (array) stack has no free space. A linked stack is full only when memory runs out.</td></tr>
+    <tr><td><strong>Overflow</strong></td><td>Error: trying to push onto a full stack.</td></tr>
+    <tr><td><strong>Underflow</strong></td><td>Error: trying to pop (or peek) from an empty stack.</td></tr>
+    <tr><td><strong>MAX / capacity</strong></td><td>The maximum number of elements an array stack can hold.</td></tr>
+  </table></div>
+
+  <h3>Stack as an Abstract Data Type (ADT)</h3>
+  <p>An <strong>ADT</strong> specifies <em>what</em> operations a data type supports and how they behave, without saying <em>how</em> they are implemented. The Stack ADT is:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operation</th><th>Description</th><th>Error condition</th></tr>
+    <tr><td><code>push(x)</code></td><td>Place x on top</td><td>Overflow if full</td></tr>
+    <tr><td><code>pop()</code></td><td>Remove and return top element</td><td>Underflow if empty</td></tr>
+    <tr><td><code>peek()</code></td><td>Return top element, stack unchanged</td><td>Empty stack</td></tr>
+    <tr><td><code>isEmpty()</code></td><td>Is the stack empty?</td><td>none</td></tr>
+    <tr><td><code>isFull()</code></td><td>Is the stack full? (array version)</td><td>none</td></tr>
+    <tr><td><code>size()</code></td><td>Number of elements</td><td>none</td></tr>
+  </table></div>
+  <p>The same ADT can be implemented in two standard ways, with an <strong>array / list</strong> or with a <strong>linked list</strong>.</p>
+
+  <h3>1. Array (list) representation</h3>
+  <p>The elements are stored in an array <code>S[0 … MAX−1]</code> and an integer variable <code>top</code> holds the index of the top element.</p>
+  <ul>
+    <li>Empty stack: <code>top = −1</code></li>
+    <li>Full stack: <code>top = MAX − 1</code></li>
+    <li>Number of elements: <code>top + 1</code></li>
+    <li>The bottom element is always <code>S[0]</code>; the stack grows toward higher indices.</li>
+  </ul>
+  <p>In Python, a list can play this role directly: <code>append()</code> pushes and <code>pop()</code> pops at the end of the list, and <code>len(list) − 1</code> is the top index. Because a Python list grows automatically, a <em>list stack</em> never overflows; to study overflow, Program 2 uses a fixed-capacity list.</p>
+
+  <h3>2. Linked list representation</h3>
+  <p>Each element is a node [data | next]. A pointer <code>top</code> points to the first node, which is the top of the stack.</p>
+  <ul>
+    <li>Push = <strong>insert at beginning</strong> of the linked list.</li>
+    <li>Pop = <strong>delete at beginning</strong> of the linked list.</li>
+    <li>Empty stack: <code>top = NULL</code>. There is no fixed MAX: the stack grows until memory is exhausted.</li>
+  </ul>
+  <div class="box tip"><span class="box-title">Why the beginning, not the end?</span><p>In a singly linked list, inserting and deleting at the <strong>beginning</strong> are O(1). Deleting at the <strong>end</strong> needs the second-last node, which costs O(n). So the head of the list is always used as the top of the stack.</p></div>
+
+  <!-- ===== SIDE-BY-SIDE LAB ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧪 Interactive Lab: One Stack, Two Representations</b><span>array (MAX = 6) vs linked list</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">Value<input type="number" id="sb-val" value="10"></label>
+        <button class="btn tl" id="sb-push">Push</button>
+        <button class="btn rd" id="sb-pop">Pop</button>
+        <button class="btn" id="sb-peek">Peek</button>
+        <button class="btn gh" id="sb-reset">Reset</button>
+      </div>
+      <div class="sbs">
+        <div><h4>Array / list representation</h4><div class="st-stage"><svg id="sb-arr"></svg></div><div class="note" id="sb-arr-note"></div></div>
+        <div><h4>Linked list representation</h4><div class="st-stage"><svg id="sb-ll"></svg></div><div class="note" id="sb-ll-note"></div></div>
+      </div>
+      <div class="msg" id="sb-msg">Push a few values and compare: the array moves an index up and down inside a fixed block, while the linked list creates and frees nodes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sec page" id="st-s3" data-label="Visualiser" data-sub="Algorithms for push, pop, peek &amp; more">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Operations &amp; Algorithms</h2></div>
+
+  <p>Below are the algorithms for every stack operation, for both implementations. Array algorithms use <strong>0-based indexing</strong> with <code>top = −1</code> for an empty stack. <code>GETNODE()</code> allocates a node and <code>FREE(p)</code> releases one.</p>
+
+  <div class="tabs" data-tabs="impl">
+    <button class="tab-btn on" data-pane="st-op-arr">Using array / list</button>
+    <button class="tab-btn" data-pane="st-op-ll">Using linked list</button>
+  </div>
+
+  <!-- ---------- ARRAY ---------- -->
+  <div class="tab-pane on" id="st-op-arr">
+    <div class="op"><h4>PUSH <span class="bx">O(1)</span></h4>
+      <div class="op-row"><div>
+      <p>First check for <strong>overflow</strong>. Then move <code>top</code> up by one and store the item in that cell. The order matters: increment first, then store. (Storing at <code>S[top]</code> before incrementing would overwrite the current top.)</p>
+      <pre class="pseudo">ALGORITHM PUSH(S, top, MAX, item)          // array / list
+1. if top = MAX − 1: print "OVERFLOW"; exit
+2. top ← top + 1
+3. S[top] ← item
+4. exit</pre></div>
+      <div class="fig"><svg class="stfig" data-k="arr" data-v="10,20,30" data-new="1" data-cap="After push(30): top moves from 1 to 2"></svg></div></div></div>
+
+    <div class="op"><h4>POP <span class="bx">O(1)</span></h4>
+      <div class="op-row"><div>
+      <p>First check for <strong>underflow</strong>. Read the top item, then move <code>top</code> down by one. The value is not physically erased; the cell is simply treated as free and will be overwritten by the next push.</p>
+      <pre class="pseudo">ALGORITHM POP(S, top)                      // array / list
+1. if top = −1: print "UNDERFLOW"; exit
+2. item ← S[top]
+3. top ← top − 1
+4. return item</pre></div>
+      <div class="fig"><svg class="stfig" data-k="arr" data-v="10,20,30" data-del="1"></svg></div></div></div>
+
+    <div class="op"><h4>PEEK (TOP) <span class="bx">O(1)</span></h4>
+      <p>Return <code>S[top]</code> without changing <code>top</code>. Useful when you need to look at the latest element before deciding what to do, for example comparing operator precedence during expression conversion.</p>
+      <pre class="pseudo">ALGORITHM PEEK(S, top)                     // array / list
+1. if top = −1: print "STACK EMPTY"; exit
+2. return S[top]</pre></div>
+
+    <div class="op"><h4>IS_EMPTY and IS_FULL <span class="bx">O(1)</span></h4>
+      <p>Both just compare <code>top</code> with a boundary value.</p>
+      <pre class="pseudo">ALGORITHM IS_EMPTY(top)                   // array / list
+1. if top = −1: return TRUE
+2. else: return FALSE</pre>
+      <pre class="pseudo">ALGORITHM IS_FULL(top, MAX)                // array / list
+1. if top = MAX − 1: return TRUE
+2. else: return FALSE</pre></div>
+
+    <div class="op"><h4>DISPLAY (traversal) <span class="bx slow">O(n)</span></h4>
+      <p>Print elements from <code>top</code> down to index 0, so the output shows the stack in pop order.</p>
+      <pre class="pseudo">ALGORITHM DISPLAY(S, top)                  // array / list
+1. if top = −1: print "STACK EMPTY"; exit
+2. i ← top
+3. while i ≥ 0:
+4.     print S[i]
+5.     i ← i − 1</pre></div>
+
+    <h4>Worked example (MAX = 4)</h4>
+    <div class="tbl-wrap"><table>
+      <tr><th>Operation</th><th>top after</th><th>Stack (bottom → top)</th><th>Returned / message</th></tr>
+      <tr><td>push(5)</td><td>0</td><td>5</td><td></td></tr>
+      <tr><td>push(15)</td><td>1</td><td>5, 15</td><td></td></tr>
+      <tr><td>push(25)</td><td>2</td><td>5, 15, 25</td><td></td></tr>
+      <tr><td>pop()</td><td>1</td><td>5, 15</td><td>25</td></tr>
+      <tr><td>push(35)</td><td>2</td><td>5, 15, 35</td><td></td></tr>
+      <tr><td>push(45)</td><td>3</td><td>5, 15, 35, 45</td><td>stack now full</td></tr>
+      <tr><td>push(55)</td><td>3</td><td>5, 15, 35, 45</td><td>OVERFLOW</td></tr>
+      <tr><td>peek()</td><td>3</td><td>5, 15, 35, 45</td><td>45</td></tr>
+    </table></div>
+  </div>
+
+  <!-- ---------- LINKED LIST ---------- -->
+  <div class="tab-pane" id="st-op-ll">
+    <div class="op"><h4>PUSH <span class="bx">O(1)</span></h4>
+      <div class="op-row"><div>
+      <p>Create a node, make it point to the current top, then move <code>top</code> to the new node. This is "insert at beginning" of a singly linked list. Overflow happens only if no memory is available.</p>
+      <pre class="pseudo">ALGORITHM PUSH(top, item)                  // linked list
+1. newNode ← GETNODE()
+2. if newNode = NULL: print "OVERFLOW (no free memory)"; exit
+3. newNode.data ← item
+4. newNode.next ← top
+5. top ← newNode</pre></div>
+      <div class="fig"><svg class="stfig" data-k="ll" data-v="10,20,30" data-new="1"></svg></div></div></div>
+
+    <div class="op"><h4>POP <span class="bx">O(1)</span></h4>
+      <div class="op-row"><div>
+      <p>Check for underflow, remember the top node in <code>temp</code>, move <code>top</code> to the next node, then free the old node. This is "delete at beginning".</p>
+      <pre class="pseudo">ALGORITHM POP(top)                         // linked list
+1. if top = NULL: print "UNDERFLOW"; exit
+2. temp ← top
+3. item ← temp.data
+4. top ← top.next
+5. FREE(temp)
+6. return item</pre></div>
+      <div class="fig"><svg class="stfig" data-k="ll" data-v="10,20,30" data-del="1"></svg></div></div></div>
+
+    <div class="op"><h4>PEEK (TOP) <span class="bx">O(1)</span></h4>
+      <pre class="pseudo">ALGORITHM PEEK(top)                        // linked list
+1. if top = NULL: print "STACK EMPTY"; exit
+2. return top.data</pre></div>
+
+    <div class="op"><h4>IS_EMPTY <span class="bx">O(1)</span></h4>
+      <p>A linked stack has no IS_FULL operation in the usual sense: it is full only when GETNODE fails.</p>
+      <pre class="pseudo">ALGORITHM IS_EMPTY(top)                    // linked list
+1. if top = NULL: return TRUE
+2. else: return FALSE</pre></div>
+
+    <div class="op"><h4>DISPLAY (traversal) <span class="bx slow">O(n)</span></h4>
+      <pre class="pseudo">ALGORITHM DISPLAY(top)                     // linked list
+1. if top = NULL: print "STACK EMPTY"; exit
+2. temp ← top
+3. while temp ≠ NULL:
+4.     print temp.data
+5.     temp ← temp.next</pre></div>
+
+    <h4>Worked example</h4>
+    <div class="tbl-wrap"><table>
+      <tr><th>Operation</th><th>Linked list after (top first)</th><th>Returned</th></tr>
+      <tr><td>push('A')</td><td>top → A → NULL</td><td></td></tr>
+      <tr><td>push('B')</td><td>top → B → A → NULL</td><td></td></tr>
+      <tr><td>push('C')</td><td>top → C → B → A → NULL</td><td></td></tr>
+      <tr><td>pop()</td><td>top → B → A → NULL</td><td>C</td></tr>
+      <tr><td>peek()</td><td>top → B → A → NULL</td><td>B</td></tr>
+    </table></div>
+  </div>
+
+  <!-- ===== OPERATIONS VISUALIZER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🎬 Stack Operations Visualizer</b><span>runs the algorithms above, line by line</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="sv-impl"><button class="on" data-k="arr">Array / list (MAX = 6)</button><button data-k="ll">Linked list</button></div>
+        <label class="fld">Value<input type="number" id="sv-val" value="50"></label>
+        <label class="fld">Speed<select id="sv-speed" style="width:96px"><option value="1300">Slow</option><option value="800" selected>Normal</option><option value="320">Fast</option></select></label>
+        <label class="chk"><input type="checkbox" id="sv-stepmode"> Step mode</label>
+        <button class="btn acc sm" id="sv-step" style="display:none">Next step ▶</button>
+      </div>
+      <div class="btn-grid">
+        <button class="btn tl sm" data-op="push">Push</button>
+        <button class="btn rd sm" data-op="pop">Pop</button>
+        <button class="btn sm" data-op="peek">Peek</button>
+        <button class="btn sm" data-op="isEmpty">isEmpty</button>
+        <button class="btn sm" data-op="isFull" id="sv-isfull">isFull</button>
+        <button class="btn sm" data-op="display">Display</button>
+        <button class="btn gh sm" id="sv-rand">Random stack</button>
+        <button class="btn gh sm" id="sv-reset">Reset</button>
+      </div>
+      <div class="st-split">
+        <div class="st-stage"><svg id="sv-svg"></svg></div>
+        <div class="st-side">
+          <div class="pc" id="sv-pc"></div>
+          <div class="log" id="sv-log"></div>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:#b2f2bb"></i>pushed</span><span><i style="background:#ffc9c9"></i>popped</span><span><i style="background:#ffd8a8"></i>current / top read</span><span><b style="color:#d9480f">orange arrow</b> = pointer just changed</span></div>
+      <div class="msg" id="sv-msg">Push until the array stack overflows, then switch to the linked list and notice it keeps growing.</div>
+      <div class="stats">
+        <div class="stat">Size = <b id="sv-n">3</b></div>
+        <div class="stat">top = <b id="sv-top">2</b></div>
+        <div class="stat">Steps executed = <b id="sv-steps">0</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="sec page" id="st-s4" data-label="Complexity" data-sub="Time, space &amp; comparisons">
+  <div class="sec-head"><div class="sec-num">4</div><h2>Complexity Analysis &amp; Comparison</h2></div>
+
+  <h3>Time complexity</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operation</th><th>Array (fixed size)</th><th>Python list</th><th>Linked list</th><th>Why</th></tr>
+    <tr><td>push</td><td class="o1">O(1)</td><td class="o1">O(1) amortised*</td><td class="o1">O(1)</td><td>Works only at the top</td></tr>
+    <tr><td>pop</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td>Works only at the top</td></tr>
+    <tr><td>peek</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td>Top is directly known</td></tr>
+    <tr><td>isEmpty / isFull</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td>A single comparison</td></tr>
+    <tr><td>display</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Visits every element</td></tr>
+    <tr><td>search for a value</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Not a stack operation; needs scanning</td></tr>
+  </table></div>
+  <p style="font-size:.88em;color:var(--ink2)">* When a Python list runs out of reserved space, <code>append</code> copies all elements to a bigger block (O(n)). This happens rarely, so the average cost per push stays O(1): this is called <strong>amortised</strong> O(1).</p>
+  <p>There are no best/average/worst-case differences for push, pop and peek: they always do a fixed amount of work.</p>
+
+  <h3>Space complexity</h3>
+  <ul>
+    <li><strong>Array stack</strong>: O(MAX) memory is reserved up front, even when the stack holds fewer elements.</li>
+    <li><strong>Linked stack</strong>: O(n) memory for n elements, plus one pointer per node.</li>
+    <li>Each operation uses <strong>O(1) auxiliary space</strong>.</li>
+  </ul>
+
+  <h3>Array (list) implementation vs Linked list implementation</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Array / list stack</th><th>Linked list stack</th></tr>
+    <tr><td>Top is</td><td>An index (<code>top</code>, −1 when empty)</td><td>A pointer to the first node (NULL when empty)</td></tr>
+    <tr><td>Size</td><td>Fixed MAX (array) or auto-growing (Python list)</td><td>Dynamic: no limit except memory</td></tr>
+    <tr><td>Overflow</td><td>When top = MAX − 1</td><td>Only when memory is exhausted</td></tr>
+    <tr><td>Memory per element</td><td>Just the data</td><td>Data + one next pointer</td></tr>
+    <tr><td>Unused memory</td><td>Free cells above top are wasted</td><td>None: nodes exist only for stored items</td></tr>
+    <tr><td>Cache performance</td><td>Better (contiguous)</td><td>Poorer (scattered nodes)</td></tr>
+    <tr><td>Implementation</td><td>Simplest</td><td>Needs node creation and freeing</td></tr>
+    <tr><td>Best when</td><td>Maximum size is known in advance</td><td>Size is unpredictable or very variable</td></tr>
+  </table></div>
+
+  <h3>Stack vs Queue (preview)</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Stack</th><th>Queue</th></tr>
+    <tr><td>Principle</td><td>LIFO</td><td>FIFO (First In, First Out)</td></tr>
+    <tr><td>Ends used</td><td>One end (top) for both insert and delete</td><td>Insert at rear, delete at front</td></tr>
+    <tr><td>Operations</td><td>push, pop, peek</td><td>enqueue, dequeue, front</td></tr>
+    <tr><td>Example</td><td>Undo, function calls</td><td>Printer jobs, ticket counter</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sec page" id="st-s5" data-label="Uses, pros &amp; cons" data-sub="Applications, advantages, disadvantages, edge cases">
+  <div class="sec-head"><div class="sec-num">5</div><h2>Applications, Advantages &amp; Disadvantages</h2></div>
+
+  <h3>Applications of stacks</h3>
+  <div class="grid2">
+    <div class="mini"><h4>1. Function calls &amp; recursion</h4><p>Each call pushes an <strong>activation record</strong> (parameters, local variables, return address) onto the call stack; returning pops it. Too deep recursion causes a <em>stack overflow</em>.</p></div>
+    <div class="mini"><h4>2. Balanced brackets / syntax checking</h4><p>Compilers and editors push opening brackets and pop on closing ones to verify that <code>( ) [ ] { }</code> match.</p></div>
+    <div class="mini"><h4>3. Expression conversion</h4><p>Infix expressions (<code>a + b * c</code>) are converted to postfix (<code>a b c * +</code>) or prefix using an operator stack.</p></div>
+    <div class="mini"><h4>4. Expression evaluation</h4><p>Postfix expressions are evaluated with an operand stack: push numbers, and on an operator pop two, compute, push the result.</p></div>
+    <div class="mini"><h4>5. Undo / redo</h4><p>Each action is pushed; Undo pops the latest. A second stack holds actions for Redo.</p></div>
+    <div class="mini"><h4>6. Browser back / forward</h4><p>Back pops from the history stack and pushes onto a forward stack.</p></div>
+    <div class="mini"><h4>7. Reversing data</h4><p>Push all characters of a word, then pop them: they come out reversed.</p></div>
+    <div class="mini"><h4>8. Backtracking</h4><p>Maze solving, puzzles (N-Queens) and depth-first search remember choices on a stack so they can go back.</p></div>
+    <div class="mini"><h4>9. Number conversion</h4><p>Decimal to binary: push remainders of division by 2, then pop to read the binary digits in the correct order.</p></div>
+    <div class="mini"><h4>10. Memory management</h4><p>Local variables of functions are allocated on the program's stack memory and released automatically on return.</p></div>
+  </div>
+  <div class="box tip"><span class="box-title">Coming up</span><p>Infix, prefix and postfix conversion is covered in detail in its own post. Here the lab below shows the core idea through bracket matching, string reversal and postfix evaluation.</p></div>
+
+  <!-- ===== APPLICATION LAB ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧩 Application Lab: Stacks at Work</b><span>watch the stack while the input is scanned</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="ap-mode"><button class="on" data-m="br">Balanced brackets</button><button data-m="rev">Reverse a string</button><button data-m="pf">Evaluate postfix</button></div>
+      </div>
+      <div class="controls">
+        <label class="fld">Input<input type="text" id="ap-in" value="{[a+b]*(c-d)}" style="width:260px"></label>
+        <button class="btn acc" id="ap-run">▶ Run</button>
+        <button class="btn gh" id="ap-stepb">Step</button>
+        <button class="btn gh" id="ap-ex">Try another example</button>
+      </div>
+      <div class="cap" id="ap-help"></div>
+      <div><b style="font-size:.85em;color:var(--ink2)">STACK (bottom → top)</b></div>
+      <div class="chips" id="ap-stack"><em>empty</em></div>
+      <div class="trace-wrap"><table class="trace" id="ap-trace"></table></div>
+      <div class="verdict" id="ap-verdict"></div>
+    </div>
+  </div>
+
+  <h3>Advantages of stacks</h3>
+  <div class="grid2">
+    <div class="mini pro"><h4>✔ Very fast operations</h4><p>push, pop, peek, isEmpty all run in O(1) time.</p></div>
+    <div class="mini pro"><h4>✔ Simple to implement</h4><p>An array with a top index, or a linked list with a top pointer, is enough.</p></div>
+    <div class="mini pro"><h4>✔ Natural for reversal and nesting</h4><p>Matches problems where the latest item must be handled first.</p></div>
+    <div class="mini pro"><h4>✔ Controlled access</h4><p>Only the top is reachable, which prevents accidental changes to other elements.</p></div>
+    <div class="mini pro"><h4>✔ Automatic memory handling</h4><p>The call stack allocates and frees local variables without programmer effort.</p></div>
+    <div class="mini pro"><h4>✔ Backbone of many algorithms</h4><p>Recursion, DFS, parsing and expression evaluation rely on stacks.</p></div>
+  </div>
+
+  <h3>Disadvantages of stacks</h3>
+  <div class="grid2">
+    <div class="mini con"><h4>✘ No random access</h4><p>To reach an element in the middle, everything above it must be popped first.</p></div>
+    <div class="mini con"><h4>✘ Fixed size (array version)</h4><p>Overflow occurs at MAX; reserving too much wastes memory.</p></div>
+    <div class="mini con"><h4>✘ Extra memory (linked version)</h4><p>Each node needs a pointer in addition to the data.</p></div>
+    <div class="mini con"><h4>✘ Searching is slow</h4><p>Finding a value requires scanning (and, strictly, popping) elements: O(n).</p></div>
+    <div class="mini con"><h4>✘ Stack overflow in recursion</h4><p>Very deep or infinite recursion exhausts the call stack and crashes the program.</p></div>
+    <div class="mini con"><h4>✘ Limited operations</h4><p>Not suitable when elements must be inserted or removed in the middle.</p></div>
+  </div>
+
+  <h3>Special cases &amp; edge cases</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Situation</th><th>Correct behaviour</th></tr>
+    <tr><td>Pop or peek on an empty stack</td><td>Report UNDERFLOW / STACK EMPTY; do not change top.</td></tr>
+    <tr><td>Push when top = MAX − 1 (array)</td><td>Report OVERFLOW; the stack is unchanged.</td></tr>
+    <tr><td>Stack with one element</td><td>After pop, top becomes −1 (array) or NULL (linked list).</td></tr>
+    <tr><td>Python list stack</td><td>Never overflows (it resizes), but pop() on an empty list raises IndexError: check isEmpty first.</td></tr>
+    <tr><td>MAX = 0</td><td>Every push overflows: the stack is always both empty and full.</td></tr>
+  </table></div>
+
+  <h3>Common mistakes</h3>
+  <div class="box warn"><span class="box-title">Watch out</span>
+  <ul>
+    <li><strong>Wrong order in PUSH</strong>: writing <code>S[top] ← item</code> before <code>top ← top + 1</code> overwrites the current top element.</li>
+    <li><strong>Wrong order in POP</strong>: decrementing top before reading <code>S[top]</code> returns the wrong element.</li>
+    <li><strong>Starting top at 0</strong> while also using the "top = −1 means empty" checks: the first element is lost or the empty test fails.</li>
+    <li><strong>Using the front of a Python list</strong> (<code>insert(0, x)</code> / <code>pop(0)</code>) as the top: still LIFO, but each operation becomes O(n).</li>
+    <li><strong>Using the tail of a singly linked list as top</strong>: pop becomes O(n). Always push and pop at the head.</li>
+    <li><strong>Forgetting the underflow / overflow checks</strong> in algorithms: examiners expect both.</li>
+  </ul></div>
+
+  <h3>Important examination points</h3>
+  <div class="box exam"><span class="box-title">Remember for exams</span>
+  <ul>
+    <li>Stack = <strong>LIFO</strong>; all insertions and deletions at the <strong>top</strong>.</li>
+    <li>Array stack: empty when <strong>top = −1</strong>, full when <strong>top = MAX − 1</strong>, size = <strong>top + 1</strong>.</li>
+    <li>Linked stack: push = insert at beginning, pop = delete at beginning, empty when <strong>top = NULL</strong>.</li>
+    <li>push, pop, peek, isEmpty are all <strong>O(1)</strong> in both implementations.</li>
+    <li>For a sequence of pushes and pops, a value can only be popped after everything pushed after it has been popped. This rule decides which output orders are possible.</li>
+    <li>The system call stack is why recursion works and why infinite recursion causes "stack overflow".</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sec page" id="st-s6" data-label="Python" data-sub="Implementation">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Python Implementation</h2></div>
+  <p>Four complete, tested programs. Each tab shows the code and its actual output. Use the <strong>Copy</strong> button to paste the program into your editor.</p>
+
+  <div class="tabs" data-tabs="code">
+    <button class="tab-btn on" data-pane="st-c1">1 · Using Python list</button>
+    <button class="tab-btn" data-pane="st-c2">2 · Fixed-size array (overflow)</button>
+    <button class="tab-btn" data-pane="st-c3">3 · Using linked list</button>
+    <button class="tab-btn" data-pane="st-c4">4 · Applications</button>
+  </div>
+
+  <div class="tab-pane on" id="st-c1">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: Stack using a Python list (dynamic size)
+# The END of the list is the TOP of the stack, so push and pop are O(1).
+
+class ListStack:
+    def __init__(self):
+        self.items = []                 # empty stack
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def push(self, item):
+        self.items.append(item)         # add on top
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Underflow: stack is empty")
+        return self.items.pop()         # remove from top
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.items[-1]           # read top without removing
+
+    def size(self):
+        return len(self.items)
+
+    def display(self):
+        if self.is_empty():
+            print("  (empty stack)")
+            return
+        print("  TOP -&gt;", " | ".join(str(x) for x in reversed(self.items)), "&lt;- BOTTOM")
+
+
+s = ListStack()
+print("Empty?", s.is_empty())
+for x in [10, 20, 30]:
+    s.push(x)
+    print(f"push({x})")
+s.display()
+print("peek() -&gt;", s.peek())
+print("pop()  -&gt;", s.pop())
+s.display()
+print("size() -&gt;", s.size())
+s.pop(); s.pop()
+print("Empty?", s.is_empty())
+try:
+    s.pop()
+except IndexError as e:
+    print("pop() -&gt;", e)</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Empty? True
+push(10)
+push(20)
+push(30)
+  TOP -&gt; 30 | 20 | 10 &lt;- BOTTOM
+peek() -&gt; 30
+pop()  -&gt; 30
+  TOP -&gt; 20 | 10 &lt;- BOTTOM
+size() -&gt; 2
+Empty? True
+pop() -&gt; Underflow: stack is empty</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li>The <strong>end</strong> of the list is the top, so <code>append</code> and <code>pop()</code> are O(1).</li>
+      <li><code>self.items[-1]</code> reads the top without removing it.</li>
+      <li>The list grows automatically, so there is no overflow check, but <code>pop</code> still checks for underflow.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="st-c2">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: Stack using a fixed-size array (list of fixed capacity)
+# This follows the textbook algorithms exactly: a 'top' index that starts at -1,
+# with OVERFLOW when the array is full and UNDERFLOW when it is empty.
+
+class ArrayStack:
+    def __init__(self, max_size):
+        self.MAX = max_size
+        self.S = [None] * max_size      # reserve all cells up front
+        self.top = -1                   # -1 means the stack is empty
+
+    def is_empty(self):
+        return self.top == -1
+
+    def is_full(self):
+        return self.top == self.MAX - 1
+
+    def push(self, item):
+        if self.is_full():
+            print(f"  push({item}) -&gt; OVERFLOW: stack is full")
+            return
+        self.top += 1                   # 1. move top up
+        self.S[self.top] = item         # 2. store the item there
+        print(f"  push({item}) -&gt; top = {self.top}")
+
+    def pop(self):
+        if self.is_empty():
+            print("  pop() -&gt; UNDERFLOW: stack is empty")
+            return None
+        item = self.S[self.top]         # 1. read the top item
+        self.S[self.top] = None         #    (optional: clear the cell)
+        self.top -= 1                   # 2. move top down
+        print(f"  pop() -&gt; {item}, top = {self.top}")
+        return item
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.S[self.top]
+
+    def display(self):
+        if self.is_empty():
+            print("  (empty stack)")
+            return
+        for i in range(self.top, -1, -1):          # from top down to 0
+            marker = "  &lt;- top" if i == self.top else ""
+            print(f"  S[{i}] = {self.S[i]}{marker}")
+
+
+st = ArrayStack(4)
+for x in [5, 15, 25, 35, 45]:          # the 5th push overflows
+    st.push(x)
+print("Stack contents:")
+st.display()
+print("peek() -&gt;", st.peek())
+for _ in range(5):                     # the 5th pop underflows
+    st.pop()
+print("is_empty() -&gt;", st.is_empty())</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">  push(5) -&gt; top = 0
+  push(15) -&gt; top = 1
+  push(25) -&gt; top = 2
+  push(35) -&gt; top = 3
+  push(45) -&gt; OVERFLOW: stack is full
+Stack contents:
+  S[3] = 35  &lt;- top
+  S[2] = 25
+  S[1] = 15
+  S[0] = 5
+peek() -&gt; 35
+  pop() -&gt; 35, top = 2
+  pop() -&gt; 25, top = 1
+  pop() -&gt; 15, top = 0
+  pop() -&gt; 5, top = -1
+  pop() -&gt; UNDERFLOW: stack is empty
+is_empty() -&gt; True</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li>This program follows the PUSH and POP algorithms of Section 3 line by line, including <code>top = −1</code> for empty.</li>
+      <li>The 5th push into a 4-cell stack shows OVERFLOW; the 5th pop shows UNDERFLOW.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="st-c3">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: Stack using a singly linked list
+# 'top' plays the role of head: push = insert at beginning, pop = delete at beginning.
+# Both are O(1), and there is no fixed capacity.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedStack:
+    def __init__(self):
+        self.top = None                 # empty stack
+        self.count = 0
+
+    def is_empty(self):
+        return self.top is None
+
+    def push(self, item):
+        new_node = Node(item)           # GETNODE (Python raises MemoryError if none)
+        new_node.next = self.top        # new node points to the old top
+        self.top = new_node             # top now points to the new node
+        self.count += 1
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Underflow: stack is empty")
+        temp = self.top
+        self.top = temp.next            # second node becomes the top
+        self.count -= 1
+        return temp.data                # temp is freed automatically
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.top.data
+
+    def size(self):
+        return self.count
+
+    def display(self):
+        temp, parts = self.top, []
+        while temp:
+            parts.append(str(temp.data))
+            temp = temp.next
+        print("  top -&gt; " + " -&gt; ".join(parts + ["NULL"]))
+
+
+ls = LinkedStack()
+for x in ["A", "B", "C", "D"]:
+    ls.push(x)
+    print(f"push({x!r})")
+ls.display()
+print("peek() -&gt;", ls.peek(), "| size() -&gt;", ls.size())
+print("pop()  -&gt;", ls.pop())
+print("pop()  -&gt;", ls.pop())
+ls.display()
+print("size() -&gt;", ls.size())
+while not ls.is_empty():
+    ls.pop()
+ls.display()
+try:
+    ls.peek()
+except IndexError as e:
+    print("peek() -&gt;", e)</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">push('A')
+push('B')
+push('C')
+push('D')
+  top -&gt; D -&gt; C -&gt; B -&gt; A -&gt; NULL
+peek() -&gt; D | size() -&gt; 4
+pop()  -&gt; D
+pop()  -&gt; C
+  top -&gt; B -&gt; A -&gt; NULL
+size() -&gt; 2
+  top -&gt; NULL
+peek() -&gt; Stack is empty</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>push</code> is "insert at beginning": two pointer assignments.</li>
+      <li><code>pop</code> is "delete at beginning": top moves to <code>top.next</code>; Python frees the old node automatically.</li>
+      <li><code>count</code> keeps size() at O(1) instead of counting nodes each time.</li>
+    </ul></div>
+  </div>
+  <div class="tab-pane" id="st-c4">
+    <p>Four classic stack applications: bracket matching, string reversal, decimal-to-binary conversion and postfix evaluation.</p>
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: Applications of stacks
+#  (a) Balanced brackets checker
+#  (b) Reverse a string
+#  (c) Decimal to binary conversion
+#  (d) Evaluate a postfix expression
+
+def is_balanced(expr):
+    pairs = {')': '(', ']': '[', '}': '{'}
+    stack = []
+    for ch in expr:
+        if ch in '([{':
+            stack.append(ch)                    # opening bracket: push
+        elif ch in ')]}':
+            if not stack or stack[-1] != pairs[ch]:
+                return False                    # nothing to match, or wrong type
+            stack.pop()                         # matched: pop its partner
+    return len(stack) == 0                      # leftovers mean unmatched '('
+
+def reverse_string(text):
+    stack = []
+    for ch in text:
+        stack.append(ch)                        # push every character
+    out = ""
+    while stack:
+        out += stack.pop()                      # pop gives them back in reverse
+    return out
+
+def to_binary(n):
+    if n == 0:
+        return "0"
+    stack = []
+    while n &gt; 0:
+        stack.append(n % 2)                     # push remainders
+        n //= 2
+    return "".join(str(stack.pop()) for _ in range(len(stack)))
+
+def eval_postfix(tokens):
+    stack = []
+    for tok in tokens.split():
+        if tok.lstrip('-').isdigit():
+            stack.append(int(tok))              # operand: push
+        else:
+            b = stack.pop()                     # right operand comes off first
+            a = stack.pop()
+            if tok == '+': stack.append(a + b)
+            elif tok == '-': stack.append(a - b)
+            elif tok == '*': stack.append(a * b)
+            elif tok == '/': stack.append(a // b)
+    return stack.pop()
+
+
+for e in ["{[a+b]*(c-d)}", "(a+b))", "([)]", "((a)"]:
+    print(f"{e:16} balanced? {is_balanced(e)}")
+print("reverse('STACK')  =", reverse_string("STACK"))
+print("binary of 13      =", to_binary(13))
+print("postfix 2 3 4 * + =", eval_postfix("2 3 4 * +"))
+print("postfix 5 1 2 + 4 * + 3 - =", eval_postfix("5 1 2 + 4 * + 3 -"))</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">{[a+b]*(c-d)}    balanced? True
+(a+b))           balanced? False
+([)]             balanced? False
+((a)             balanced? False
+reverse('STACK')  = KCATS
+binary of 13      = 1101
+postfix 2 3 4 * + = 14
+postfix 5 1 2 + 4 * + 3 - = 14</pre>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sec page" id="st-s7" data-label="Practice" data-sub="Questions &amp; quiz">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Practice &amp; Assessment</h2></div>
+
+  <h3>A. Conceptual questions</h3>
+  <details><summary>1. Define a stack. Why is it called a LIFO structure?</summary><p>A stack is a linear data structure where insertion and deletion happen only at one end, the top. The last element inserted is the first removed, hence Last In, First Out.</p></details>
+  <details><summary>2. What are overflow and underflow? When does each occur in array and linked implementations?</summary><p>Overflow: pushing onto a full stack (array: top = MAX − 1; linked list: no free memory, GETNODE returns NULL). Underflow: popping from an empty stack (array: top = −1; linked list: top = NULL).</p></details>
+  <details><summary>3. Why is the head of a singly linked list used as the top of a stack?</summary><p>Insertion and deletion at the head are O(1). Using the tail would make pop O(n), because the second-last node must be found.</p></details>
+  <details><summary>4. Explain how a stack is used in function calls.</summary><p>Each call pushes an activation record (parameters, locals, return address) onto the call stack. When the function returns, its record is popped and control goes back to the caller, whose record is now on top.</p></details>
+  <details><summary>5. Compare the array and linked list implementations of a stack.</summary><p>Array: fixed size, overflow at MAX, no pointer overhead, better cache use, possible wasted space. Linked list: dynamic size, no overflow until memory runs out, extra pointer per node. Both give O(1) push and pop.</p></details>
+
+  <h3>B. Programming exercises</h3>
+  <ol>
+    <li>Add a <code>size()</code> and <code>clear()</code> method to the <code>ArrayStack</code> class in Program 2.</li>
+    <li>Use a stack to check whether a word is a palindrome.</li>
+    <li>Implement two stacks in a single array of size MAX (one growing from each end).</li>
+    <li>Sort a stack using only one additional temporary stack.</li>
+    <li>Implement a "min-stack" that returns the minimum element in O(1) along with push and pop.</li>
+    <li>Convert a decimal number to any base from 2 to 16 using a stack.</li>
+  </ol>
+
+  <h3>C. Predict the output</h3>
+  <div class="grid2">
+    <div>
+<pre><code>s = []
+s.append(1); s.append(2)
+s.pop()
+s.append(3); s.append(4)
+print(s.pop(), s[-1], len(s))</code></pre>
+      <details><summary>Show answer</summary><p><code>4 3 2</code><br>After the operations the stack is [1, 3, 4]; pop returns 4, then the top is 3 and 2 elements remain.</p></details>
+    </div>
+    <div>
+<pre><code>s = []
+for ch in "DATA":
+    s.append(ch)
+print("".join(s.pop() for _ in range(len(s))))</code></pre>
+      <details><summary>Show answer</summary><p><code>ATAD</code><br>Pushing then popping reverses the string.</p></details>
+    </div>
+    <div>
+<pre><code>s = []
+s.insert(0, 'x')
+s.insert(0, 'y')
+print(s.pop(0), s)</code></pre>
+      <details><summary>Show answer</summary><p><code>y ['x']</code><br>Still LIFO (the front of the list is used as top), but each insert(0)/pop(0) costs O(n).</p></details>
+    </div>
+    <div>
+<pre><code>s = [1, 2, 3]
+t = s
+t.pop()
+print(s, len(t))</code></pre>
+      <details><summary>Show answer</summary><p><code>[1, 2] 2</code><br><code>t = s</code> doesn't copy the stack; both names refer to the same list.</p></details>
+    </div>
+  </div>
+
+  <h3>D. Trace-based question</h3>
+  <p>An array stack has MAX = 4 and is initially empty. Trace: push(10), push(20), pop(), push(30), push(40), push(50), push(60), pop(), peek(). Give top and the contents after each step.</p>
+  <details><summary>Show solution</summary>
+    <div class="tbl-wrap"><table>
+      <tr><th>Operation</th><th>top</th><th>Stack (bottom → top)</th><th>Output</th></tr>
+      <tr><td>push(10)</td><td>0</td><td>10</td><td></td></tr>
+      <tr><td>push(20)</td><td>1</td><td>10, 20</td><td></td></tr>
+      <tr><td>pop()</td><td>0</td><td>10</td><td>20</td></tr>
+      <tr><td>push(30)</td><td>1</td><td>10, 30</td><td></td></tr>
+      <tr><td>push(40)</td><td>2</td><td>10, 30, 40</td><td></td></tr>
+      <tr><td>push(50)</td><td>3</td><td>10, 30, 40, 50</td><td>stack full</td></tr>
+      <tr><td>push(60)</td><td>3</td><td>10, 30, 40, 50</td><td>OVERFLOW</td></tr>
+      <tr><td>pop()</td><td>2</td><td>10, 30, 40</td><td>50</td></tr>
+      <tr><td>peek()</td><td>2</td><td>10, 30, 40</td><td>40</td></tr>
+    </table></div>
+  </details>
+
+  <h3>E. Diagram identification</h3>
+  <p><strong>Q1.</strong> Which representation is shown, and what is the value of top? Is the stack full?</p>
+  <div class="fig" style="max-width:340px"><svg class="stfig" data-k="arr" data-v="7,14,21,28,35,42"></svg></div>
+  <details><summary>Show answer</summary><p>Array representation with MAX = 6. top = 5 = MAX − 1, so the stack is <strong>full</strong>: the next push causes OVERFLOW.</p></details>
+
+  <p style="margin-top:16px"><strong>Q2.</strong> A stack's output order is to be "3 2 1" after pushing 1, 2, 3 in that order. Is "3 1 2" also possible?</p>
+  <details><summary>Show answer</summary><p>"3 2 1": push 1, 2, 3, then pop three times. "3 1 2" is <strong>not</strong> possible: to pop 3 first, 1 and 2 must still be in the stack with 2 above 1, so 2 must come out before 1.</p></details>
+
+  <h3>F. Quiz: test yourself (8 MCQs)</h3>
+  <div id="st-quiz"></div>
+  <div class="score" id="st-quiz-score" style="display:none"><span>Your score: <b id="st-quiz-num">0</b> / 8</span><button class="btn acc" id="st-quiz-retry">Retry quiz</button></div>
+</section>
+
+<div class="footer">MCA Data Structures Series · Stacks · Next topic: Queues</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-st');
+  if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  function cl(o){ return JSON.parse(JSON.stringify(o)); }
+  var ALG = {"arr": {"push": ["ALGORITHM PUSH(S, top, MAX, item)          // array / list", "1. if top = MAX \u2212 1: print \"OVERFLOW\"; exit", "2. top \u2190 top + 1", "3. S[top] \u2190 item", "4. exit"], "pop": ["ALGORITHM POP(S, top)                      // array / list", "1. if top = \u22121: print \"UNDERFLOW\"; exit", "2. item \u2190 S[top]", "3. top \u2190 top \u2212 1", "4. return item"], "peek": ["ALGORITHM PEEK(S, top)                     // array / list", "1. if top = \u22121: print \"STACK EMPTY\"; exit", "2. return S[top]"], "isEmpty": ["ALGORITHM IS_EMPTY(top)                   // array / list", "1. if top = \u22121: return TRUE", "2. else: return FALSE"], "isFull": ["ALGORITHM IS_FULL(top, MAX)                // array / list", "1. if top = MAX \u2212 1: return TRUE", "2. else: return FALSE"], "display": ["ALGORITHM DISPLAY(S, top)                  // array / list", "1. if top = \u22121: print \"STACK EMPTY\"; exit", "2. i \u2190 top", "3. while i \u2265 0:", "4.     print S[i]", "5.     i \u2190 i \u2212 1"]}, "ll": {"push": ["ALGORITHM PUSH(top, item)                  // linked list", "1. newNode \u2190 GETNODE()", "2. if newNode = NULL: print \"OVERFLOW (no free memory)\"; exit", "3. newNode.data \u2190 item", "4. newNode.next \u2190 top", "5. top \u2190 newNode"], "pop": ["ALGORITHM POP(top)                         // linked list", "1. if top = NULL: print \"UNDERFLOW\"; exit", "2. temp \u2190 top", "3. item \u2190 temp.data", "4. top \u2190 top.next", "5. FREE(temp)", "6. return item"], "peek": ["ALGORITHM PEEK(top)                        // linked list", "1. if top = NULL: print \"STACK EMPTY\"; exit", "2. return top.data"], "isEmpty": ["ALGORITHM IS_EMPTY(top)                    // linked list", "1. if top = NULL: return TRUE", "2. else: return FALSE"], "display": ["ALGORITHM DISPLAY(top)                     // linked list", "1. if top = NULL: print \"STACK EMPTY\"; exit", "2. temp \u2190 top", "3. while temp \u2260 NULL:", "4.     print temp.data", "5.     temp \u2190 temp.next"]}};
+
+  /* ---------------- tabs ---------------- */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){
+      b.addEventListener('click', function(){
+        each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+        b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+
+
+  /* =================================================================
+     SVG STACK RENDERERS
+     ================================================================= */
+  var NS='http://www.w3.org/2000/svg', UID=0;
+  var C={ink:'#1c2033', ink2:'#4a5068', blue:'#2f5bd3', acc:'#d9480f', line:'#c9c4b6'};
+  var FILL={cur:'#ffd8a8', 'new':'#b2f2bb', del:'#ffc9c9', found:'#96f2d7'};
+  function S(tag, at, par){ var e=document.createElementNS(NS, tag); for(var k in at){ if(at[k]!==null && at[k]!==undefined) e.setAttribute(k, at[k]); } if(par) par.appendChild(e); return e; }
+  function TX(par, x, y, s, at){ at=at||{}; at.x=x; at.y=y; var e=S('text', at, par); e.textContent=s; return e; }
+  function clear(svg){ while(svg.firstChild) svg.removeChild(svg.firstChild); }
+  function markers(svg){ var uid='stm'+(++UID), defs=S('defs',{},svg);
+    [['k',C.ink],['o',C.acc]].forEach(function(p){ var m=S('marker',{id:uid+p[0],viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs); S('path',{d:'M0,0 L10,5 L0,10 z',fill:p[1]},m); });
+    return uid; }
+  var MONO='Fira Code, monospace';
+
+  /* Array stack: st = {S:[...MAX], top, hl:{i:cls}, fly:{v, i, out}, topHot, max} */
+  function drawArr(svg, st){
+    clear(svg); var uid=markers(svg);
+    var MAX=st.S.length, cw=124, ch=42, cx=150, y0=30;
+    var W=420, H=y0+MAX*ch+58;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    function yOf(i){ return y0+(MAX-1-i)*ch; }
+    // container (open at top)
+    S('path',{d:'M'+(cx-8)+','+(y0-6)+' L'+(cx-8)+','+(y0+MAX*ch+6)+' L'+(cx+cw+8)+','+(y0+MAX*ch+6)+' L'+(cx+cw+8)+','+(y0-6),fill:'none',stroke:C.ink,'stroke-width':3,'stroke-linejoin':'round'},svg);
+    for(var i=0;i<MAX;i++){
+      var y=yOf(i), used=i<=st.top || (st.hl && st.hl[i]), v=st.S[i];
+      var fill = (st.hl && FILL[st.hl[i]]) || (i<=st.top ? '#fff' : 'none');
+      S('rect',{x:cx,y:y+3,width:cw,height:ch-6,rx:6,fill:fill,stroke:i<=st.top||(st.hl&&st.hl[i])?C.ink:C.line,'stroke-width':i<=st.top?1.8:1,'stroke-dasharray':i<=st.top||(st.hl&&st.hl[i])?null:'4 3'},svg);
+      if(v!==null && v!==undefined && (i<=st.top || (st.hl&&st.hl[i]))) TX(svg,cx+cw/2,y+ch/2+6,String(v),{'text-anchor':'middle','font-size':17,'font-family':MONO,'font-weight':500,fill:C.ink});
+      else if(v!==null && v!==undefined) TX(svg,cx+cw/2,y+ch/2+5,String(v),{'text-anchor':'middle','font-size':13,'font-family':MONO,fill:'#b9b4a6'});
+      TX(svg,cx+7,y+ch/2+4,'['+i+']',{'font-size':10.5,'font-family':MONO,fill:C.acc});
+    }
+    // top pointer
+    var ty = st.top>=0 ? yOf(st.top)+ch/2 : y0+MAX*ch+22;
+    var hot=!!st.topHot;
+    S('rect',{x:8,y:ty-15,width:96,height:30,rx:7,fill:hot?C.acc:C.ink},svg);
+    TX(svg,56,ty+5,'top = '+st.top,{'text-anchor':'middle','font-size':12.5,fill:'#fff','font-family':MONO,'font-weight':600});
+    S('path',{d:'M104,'+ty+' L'+(cx-10)+','+ty,stroke:hot?C.acc:C.ink,'stroke-width':hot?2.6:1.7,'marker-end':'url(#'+uid+(hot?'o':'k')+')'},svg);
+    TX(svg,cx+cw/2,y0+MAX*ch+26,'MAX = '+MAX,{'text-anchor':'middle','font-size':11.5,fill:C.ink2,'font-family':MONO});
+    if(st.top===MAX-1) TX(svg,cx+cw/2,y0-12,'FULL',{'text-anchor':'middle','font-size':11,fill:C.red||'#c92a2a','font-family':MONO,'font-weight':600});
+    if(st.top===-1) TX(svg,cx+cw/2,y0+MAX*ch-ch/2,'EMPTY',{'text-anchor':'middle','font-size':11,fill:C.ink2,'font-family':MONO});
+    // flying item
+    if(st.fly){
+      var fy = st.fly.i>=0 && st.fly.i<MAX ? yOf(st.fly.i) : y0-4;
+      var fx=cx+cw+48;
+      S('rect',{x:fx,y:fy+3,width:72,height:ch-6,rx:6,fill:st.fly.out?FILL.del:FILL['new'],stroke:C.ink,'stroke-width':1.8},svg);
+      TX(svg,fx+36,fy+ch/2+6,String(st.fly.v),{'text-anchor':'middle','font-size':16,'font-family':MONO,'font-weight':500,fill:C.ink});
+      TX(svg,fx+36,fy-2,st.fly.out?'returned':'item',{'text-anchor':'middle','font-size':10.5,fill:C.ink2,'font-family':MONO});
+      if(st.fly.arrow) S('path',{d:st.fly.out?('M'+(cx+cw)+','+(fy+ch/2)+' L'+fx+','+(fy+ch/2)):('M'+fx+','+(fy+ch/2)+' L'+(cx+cw+2)+','+(fy+ch/2)),stroke:C.acc,'stroke-width':2.2,'marker-end':'url(#'+uid+'o)'},svg);
+    }
+  }
+
+  /* Linked stack: st = {nodes:{id:{v,a,next}}, order:[ids top->bottom], top, fl:id|null, hl, ptrs:{name:id}, he:[...]} */
+  function drawLL(svg, st){
+    clear(svg); var uid=markers(svg);
+    var w=132, h=40, nf=44, x=150, gap=64, y0=34, fx=300;
+    var n=st.order.length;
+    var W=460, H=Math.max(y0+Math.max(n,1)*gap+44, 200);
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var he={}; (st.he||[]).forEach(function(k){ he[k]=1; });
+    var pos={};
+    st.order.forEach(function(id,i){ pos[id]={x:x, y:y0+i*gap, row:true, i:i}; });
+    var shiftDown = st.fl && !pos[st.fl];
+    if(shiftDown){ st.order.forEach(function(id,i){ pos[id].y += gap; }); pos[st.fl]={x:fx-20, y:y0, row:false}; H+=gap; svg.setAttribute('viewBox','0 0 '+W+' '+H); }
+    var E=S('g',{},svg), N=S('g',{},svg);
+    function line(d, key){ var hot=!!he[key]; S('path',{d:d,fill:'none',stroke:hot?C.acc:C.ink,'stroke-width':hot?2.6:1.7,'marker-end':'url(#'+uid+(hot?'o':'k')+')'},E); }
+    // top pointer box sits beside the first row
+    var firstY = n ? pos[st.order[0]].y : y0 + (shiftDown?gap:0);
+    var tby = firstY + h/2;
+    var hotTop=!!he.top;
+    S('rect',{x:8,y:tby-15,width:76,height:30,rx:7,fill:hotTop?C.acc:C.ink},N);
+    TX(N,46,tby+5,'top',{'text-anchor':'middle','font-size':13,fill:'#fff','font-family':MONO,'font-weight':600});
+    if(st.top===null || st.top===undefined){ TX(N,46,tby+34,'NULL',{'text-anchor':'middle','font-size':11,fill:C.ink2,'font-family':MONO}); }
+    else if(pos[st.top]){
+      var T=pos[st.top];
+      if(T.row) line('M84,'+tby+' L118,'+tby+' L118,'+(T.y+h/2)+' L'+T.x+','+(T.y+h/2),'top');
+      else line('M46,'+(tby-15)+' L46,'+(T.y+h/2)+' L'+T.x+','+(T.y+h/2),'top');
+    }
+    // next edges
+    Object.keys(pos).forEach(function(id){
+      var A=pos[id], nd=st.nodes[id]; if(nd.next===null || !pos[nd.next]) return;
+      var B=pos[nd.next], sx=A.x+w-nf/2;
+      var d = (A.row && B.row) ? ('M'+sx+','+(A.y+h)+' L'+sx+','+B.y) : ('M'+sx+','+(A.y+h)+' C'+sx+','+(B.y-10)+' '+(B.x+w-nf/2)+','+(B.y-26)+' '+(B.x+w-nf/2+2)+','+B.y);
+      if(!A.row) d='M'+sx+','+(A.y+h)+' L'+(B.x+w-12)+','+B.y;
+      line(d, id+':next');
+    });
+    // nodes
+    Object.keys(pos).forEach(function(id){
+      var A=pos[id], nd=st.nodes[id];
+      var fill=FILL[(st.hl||{})[id]]||'#fff';
+      S('rect',{x:A.x,y:A.y,width:w,height:h,rx:6,fill:fill,stroke:C.ink,'stroke-width':2},N);
+      S('line',{x1:A.x+w-nf,y1:A.y,x2:A.x+w-nf,y2:A.y+h,stroke:C.ink,'stroke-width':1.4},N);
+      TX(N,A.x+(w-nf)/2,A.y+h/2+6,String(nd.v),{'text-anchor':'middle','font-size':17,'font-family':MONO,'font-weight':500,fill:C.ink});
+      if(nd.next===null){ S('line',{x1:A.x+w-nf+6,y1:A.y+h-6,x2:A.x+w-6,y2:A.y+6,stroke:C.ink2,'stroke-width':1.3},N); if(A.row) TX(N,A.x+w+8,A.y+h/2+4,'NULL',{'font-size':11,fill:C.ink2,'font-family':MONO}); }
+      else S('circle',{cx:A.x+w-nf/2,cy:A.y+h/2,r:3.2,fill:C.ink},N);
+      TX(N,A.x+4,A.y+h+12,'@'+nd.a,{'font-size':10,fill:C.ink2,'font-family':MONO});
+    });
+    // pointer tags (temp/newNode) to the right
+    var tagsBy={}; Object.keys(st.ptrs||{}).forEach(function(nm){ var id=st.ptrs[nm]; if(id && pos[id]) (tagsBy[id]=tagsBy[id]||[]).push(nm); });
+    Object.keys(tagsBy).forEach(function(id){
+      var A=pos[id];
+      tagsBy[id].forEach(function(nm,j){
+        var tw=12+nm.length*7.4, tx = A.row ? A.x+w+(st.nodes[id].next===null?48:12) : A.x+w+10, ty=A.y+h/2-9+j*20;
+        if(!A.row){ tx=A.x+w-tw; ty=A.y-22; }
+        S('rect',{x:tx,y:ty,width:tw,height:17,rx:8,fill:C.acc},N);
+        TX(N,tx+tw/2,ty+12.5,nm,{'text-anchor':'middle','font-size':11,fill:'#fff','font-family':MONO,'font-weight':600});
+      });
+    });
+  }
+
+  /* ---------------- figure 1 (section 1) ---------------- */
+  (function(){
+    var svg=$('st-fig1'); if(!svg) return; var uid=markers(svg);
+    svg.setAttribute('viewBox','0 0 520 250'); svg.style.maxWidth='520px';
+    var cx=190, cw=140, ch=38, vals=[10,20,30,40];
+    S('path',{d:'M'+(cx-8)+',50 L'+(cx-8)+','+(60+4*ch+10)+' L'+(cx+cw+8)+','+(60+4*ch+10)+' L'+(cx+cw+8)+',50',fill:'none',stroke:C.ink,'stroke-width':3},svg);
+    vals.forEach(function(v,i){ var y=60+(3-i)*ch; S('rect',{x:cx,y:y+3,width:cw,height:ch-6,rx:6,fill:i===3?FILL.cur:'#fff',stroke:C.ink,'stroke-width':1.8},svg); TX(svg,cx+cw/2,y+ch/2+6,String(v),{'text-anchor':'middle','font-size':16,'font-family':MONO,fill:C.ink}); });
+    S('path',{d:'M110,20 Q150,20 '+(cx+30)+',56',fill:'none',stroke:'#0b7a6f','stroke-width':2.4,'marker-end':'url(#'+uid+'k)'},svg);
+    TX(svg,40,24,'push(50)',{'font-size':13,'font-family':MONO,fill:'#0b7a6f','font-weight':600});
+    S('path',{d:'M'+(cx+cw-30)+',56 Q'+(cx+cw+40)+',20 420,20',fill:'none',stroke:C.acc,'stroke-width':2.4,'marker-end':'url(#'+uid+'o)'},svg);
+    TX(svg,428,24,'pop() \u2192 40',{'font-size':13,'font-family':MONO,fill:C.acc,'font-weight':600});
+    TX(svg,cx+cw+20,60+ch/2+5,'\u2190 top',{'font-size':13,'font-family':MONO,fill:C.acc,'font-weight':600});
+    TX(svg,cx+cw+20,60+3*ch+ch/2+5,'\u2190 bottom',{'font-size':12,'font-family':MONO,fill:C.ink2});
+  })();
+
+  /* ---------------- static figures in Section 3 / 7 ---------------- */
+  var FIXED=[2048,1296,3520,1760,2832,1104,3184];
+  each(root.querySelectorAll('svg.stfig'), function(svg){
+    var k=svg.getAttribute('data-k'), vals=svg.getAttribute('data-v').split(',').map(function(s){ return s.trim(); });
+    var isNew=svg.getAttribute('data-new')==='1', isDel=svg.getAttribute('data-del')==='1';
+    if(k==='arr'){
+      var MAX=svg.closest && svg.closest('#st-s7') ? 6 : 5, Sx=[]; for(var i=0;i<MAX;i++) Sx.push(i<vals.length?vals[i]:null);
+      var top=vals.length-1, hl={};
+      if(isNew) hl[top]='new';
+      if(isDel){ hl[top]='del'; drawArr(svg,{S:Sx, top:top-1, hl:hl, fly:{v:vals[top], i:top, out:true, arrow:true}, topHot:true}); }
+      else drawArr(svg,{S:Sx, top:top, hl:hl, topHot:isNew});
+      svg.style.maxWidth='340px';
+    } else {
+      var nodes={}, order=[];
+      for(var j=vals.length-1;j>=0;j--){ var id='f'+j; nodes[id]={v:vals[j], a:FIXED[j], next: j>0 ? 'f'+(j-1) : null}; order.push(id); }
+      var st={nodes:nodes, order:order, top:order[0], hl:{}, ptrs:{}, he:[]};
+      if(isNew){ st.hl[order[0]]='new'; st.he=['top', order[0]+':next']; st.ptrs={newNode:order[0]}; }
+      if(isDel){ st.hl[order[0]]='del'; st.top=order[1]; st.he=['top']; st.ptrs={temp:order[0]}; }
+      drawLL(svg, st); svg.style.maxWidth='380px';
+    }
+  });
+
+  /* =================================================================
+     OPERATIONS VISUALIZER
+     ================================================================= */
+  var IMPL='arr', MAXA=6, MAXL=6, busy=false, stepResolve=null, frames=[], RESULT=null;
+  var A=null, L=null;  // models
+  var ADDR={};
+  function randAddr(){ var a; do{ a=1000+16*Math.floor(Math.random()*560); }while(ADDR[a]); ADDR[a]=1; return a; }
+  function initModels(vals){
+    A={S:[], top:vals.length-1}; for(var i=0;i<MAXA;i++) A.S.push(i<vals.length?vals[i]:null);
+    ADDR={}; L={nodes:{}, order:[], top:null, seq:0};
+    for(var j=0;j<vals.length;j++){ var id='n'+(L.seq++); L.nodes[id]={v:vals[j], a:randAddr(), next:L.top}; L.top=id; L.order.unshift(id); }
+  }
+  function F(alg, line, log, view, cls){ frames.push({alg:alg, line:line, log:log, view:view, cls:cls||''}); }
+  function done(t, c){ RESULT={text:t, cls:c||'ok'}; }
+  function vA(o){ var v=cl(A); for(var k in o) v[k]=o[k]; return v; }
+  function vL(o){ var v={nodes:cl(L.nodes), order:L.order.slice(), top:L.top}; for(var k in o) v[k]=o[k]; return v; }
+
+  function arrOp(op, val){
+    var MAX=A.S.length;
+    if(op==='push'){
+      if(A.top===MAX-1){ F('push',1,'top = '+A.top+' = MAX \u2212 1 \u2192 OVERFLOW',vA({fly:{v:val,i:MAX,out:false}}),'bad'); done('Overflow! The array stack is full (top = MAX \u2212 1 = '+(MAX-1)+').','bad'); return; }
+      F('push',1,'top = '+A.top+' \u2260 MAX \u2212 1 = '+(MAX-1)+': space available',vA({fly:{v:val,i:A.top+1,out:false}}));
+      A.top++; F('push',2,'top \u2190 top + 1 = '+A.top,vA({topHot:true, fly:{v:val,i:A.top,out:false}}));
+      A.S[A.top]=val; var h={}; h[A.top]='new'; F('push',3,'S['+A.top+'] \u2190 '+val,vA({hl:h, fly:{v:val,i:A.top,out:false,arrow:true}}));
+      F('push',4,'exit',vA({hl:h})); done('Pushed '+val+'. top is now '+A.top+'.'); return;
+    }
+    if(op==='pop'){
+      if(A.top===-1){ F('pop',1,'top = \u22121 \u2192 UNDERFLOW',vA({}),'bad'); done('Underflow! The stack is empty (top = \u22121).','bad'); return; }
+      F('pop',1,'top = '+A.top+' \u2260 \u22121: stack not empty',vA({}));
+      var item=A.S[A.top], h2={}; h2[A.top]='cur';
+      F('pop',2,'item \u2190 S['+A.top+'] = '+item,vA({hl:h2, fly:{v:item,i:A.top,out:true,arrow:true}}));
+      var old=A.top; A.top--; var h3={}; h3[old]='del';
+      F('pop',3,'top \u2190 top \u2212 1 = '+A.top,vA({hl:h3, topHot:true, fly:{v:item,i:old,out:true}}));
+      F('pop',4,'return '+item,vA({fly:{v:item,i:old,out:true}}));
+      done('Popped '+item+'. top is now '+A.top+'. (S['+old+'] still holds '+item+' but is treated as free.)'); return;
+    }
+    if(op==='peek'){
+      if(A.top===-1){ F('peek',1,'top = \u22121 \u2192 STACK EMPTY',vA({}),'bad'); done('The stack is empty: nothing to peek.','bad'); return; }
+      F('peek',1,'top = '+A.top+' \u2260 \u22121',vA({})); var h4={}; h4[A.top]='cur';
+      F('peek',2,'return S['+A.top+'] = '+A.S[A.top],vA({hl:h4})); done('Top element is '+A.S[A.top]+'. The stack is unchanged.'); return;
+    }
+    if(op==='isEmpty'){
+      if(A.top===-1){ F('isEmpty',1,'top = \u22121 \u2192 TRUE',vA({}),'ok'); done('isEmpty() = TRUE'); }
+      else { F('isEmpty',1,'top = '+A.top+' \u2260 \u22121',vA({})); F('isEmpty',2,'return FALSE',vA({})); done('isEmpty() = FALSE (the stack holds '+(A.top+1)+' element(s)).'); } return;
+    }
+    if(op==='isFull'){
+      if(A.top===MAX-1){ F('isFull',1,'top = '+A.top+' = MAX \u2212 1 \u2192 TRUE',vA({}),'ok'); done('isFull() = TRUE: the next push would overflow.'); }
+      else { F('isFull',1,'top = '+A.top+' \u2260 MAX \u2212 1 = '+(MAX-1),vA({})); F('isFull',2,'return FALSE',vA({})); done('isFull() = FALSE: '+(MAX-1-A.top)+' free cell(s) left.'); } return;
+    }
+    if(op==='display'){
+      if(A.top===-1){ F('display',1,'top = \u22121 \u2192 STACK EMPTY',vA({}),'bad'); done('The stack is empty.','bad'); return; }
+      F('display',1,'top \u2260 \u22121',vA({})); var i=A.top, out=[];
+      F('display',2,'i \u2190 top = '+i,vA({hl:(function(){var o={};o[i]='cur';return o;})()}));
+      while(i>=0){ var hh={}; hh[i]='cur'; F('display',3,'i = '+i+' \u2265 0',vA({hl:hh})); out.push(A.S[i]); F('display',4,'print S['+i+'] = '+A.S[i],vA({hl:hh}),'ok'); i--; F('display',5,'i \u2190 '+i,vA({hl:(function(){var o={}; if(i>=0)o[i]='cur'; return o;})()})); }
+      F('display',3,'i = \u22121 \u2192 stop',vA({})); done('Display (top \u2192 bottom): '+out.join(', ')); return;
+    }
+  }
+
+  function llOp(op, val){
+    if(op==='push'){
+      var id='n'+(L.seq++); L.nodes[id]={v:val, a:randAddr(), next:null};
+      F('push',1,'GETNODE() \u2192 new node @'+L.nodes[id].a,vL({fl:id, hl:hl1(id,'new'), ptrs:{newNode:id}}));
+      F('push',2,'newNode \u2260 NULL: memory available',vL({fl:id, hl:hl1(id,'new'), ptrs:{newNode:id}}));
+      F('push',3,'newNode.data \u2190 '+val,vL({fl:id, hl:hl1(id,'new'), ptrs:{newNode:id}}));
+      L.nodes[id].next=L.top; F('push',4,'newNode.next \u2190 top ('+(L.top?L.nodes[L.top].v:'NULL')+')',vL({fl:id, hl:hl1(id,'new'), ptrs:{newNode:id}, he:[id+':next']}));
+      L.top=id; L.order.unshift(id); F('push',5,'top \u2190 newNode',vL({hl:hl1(id,'new'), ptrs:{newNode:id}, he:['top']}));
+      done('Pushed '+val+' as a new node at the top. No size limit (only memory).'); return;
+    }
+    if(op==='pop'){
+      if(L.top===null){ F('pop',1,'top = NULL \u2192 UNDERFLOW',vL({}),'bad'); done('Underflow! The stack is empty (top = NULL).','bad'); return; }
+      F('pop',1,'top \u2260 NULL',vL({}));
+      var t=L.top, item=L.nodes[t].v;
+      F('pop',2,'temp \u2190 top',vL({hl:hl1(t,'cur'), ptrs:{temp:t}}));
+      F('pop',3,'item \u2190 temp.data = '+item,vL({hl:hl1(t,'cur'), ptrs:{temp:t}}));
+      L.top=L.nodes[t].next; F('pop',4,'top \u2190 top.next ('+(L.top?L.nodes[L.top].v:'NULL')+')',vL({hl:hl1(t,'del'), ptrs:{temp:t}, he:['top']}));
+      delete ADDR[L.nodes[t].a]; delete L.nodes[t]; L.order.shift();
+      F('pop',5,'FREE(temp)',vL({}));
+      F('pop',6,'return '+item,vL({}),'ok'); done('Popped '+item+'. Its node was freed.'); return;
+    }
+    if(op==='peek'){
+      if(L.top===null){ F('peek',1,'top = NULL \u2192 STACK EMPTY',vL({}),'bad'); done('The stack is empty: nothing to peek.','bad'); return; }
+      F('peek',1,'top \u2260 NULL',vL({})); F('peek',2,'return top.data = '+L.nodes[L.top].v,vL({hl:hl1(L.top,'cur')})); done('Top element is '+L.nodes[L.top].v+'. The stack is unchanged.'); return;
+    }
+    if(op==='isEmpty'){
+      if(L.top===null){ F('isEmpty',1,'top = NULL \u2192 TRUE',vL({})); done('isEmpty() = TRUE'); }
+      else { F('isEmpty',1,'top \u2260 NULL',vL({})); F('isEmpty',2,'return FALSE',vL({})); done('isEmpty() = FALSE ('+L.order.length+' node(s)).'); } return;
+    }
+    if(op==='display'){
+      if(L.top===null){ F('display',1,'top = NULL \u2192 STACK EMPTY',vL({}),'bad'); done('The stack is empty.','bad'); return; }
+      F('display',1,'top \u2260 NULL',vL({})); var p=L.top, out=[];
+      F('display',2,'temp \u2190 top',vL({hl:hl1(p,'cur'), ptrs:{temp:p}}));
+      while(p!==null){ F('display',3,'temp \u2260 NULL',vL({hl:hl1(p,'cur'), ptrs:{temp:p}})); out.push(L.nodes[p].v); F('display',4,'print '+L.nodes[p].v,vL({hl:hl1(p,'cur'), ptrs:{temp:p}}),'ok'); p=L.nodes[p].next; F('display',5,'temp \u2190 temp.next ('+(p?L.nodes[p].v:'NULL')+')',vL({hl:p?hl1(p,'cur'):{}, ptrs:p?{temp:p}:{}})); }
+      F('display',3,'temp = NULL \u2192 stop',vL({})); done('Display (top \u2192 bottom): '+out.join(', ')); return;
+    }
+  }
+  function hl1(id, c){ var o={}; o[id]=c; return o; }
+
+  var svgV=$('sv-svg');
+  function render(view){ if(IMPL==='arr') drawArr(svgV, view||vA({})); else drawLL(svgV, view||vL({})); updStats(); }
+  function updStats(){ if(IMPL==='arr'){ $('sv-n').textContent=A.top+1; $('sv-top').textContent=A.top; } else { $('sv-n').textContent=L.order.length; $('sv-top').textContent=L.top?('@'+L.nodes[L.top].a):'NULL'; } }
+  function pseudo(alg, line){ var pc=$('sv-pc'); pc.innerHTML=''; (ALG[IMPL][alg]||[]).forEach(function(s,i){ var d=el('div', i===line&&line>0?'on':''); d.textContent=s; pc.appendChild(d); }); }
+  function log(s, cls){ var lg=$('sv-log'); var d=el('div',cls||''); d.textContent=s; lg.appendChild(d); lg.scrollTop=lg.scrollHeight; }
+  function msg(s, cls){ var m=$('sv-msg'); m.textContent=s; m.className='msg '+(cls||''); }
+  function wait(){ if($('sv-stepmode').checked) return new Promise(function(r){ stepResolve=r; }); return sleep(parseInt($('sv-speed').value,10)); }
+  $('sv-step').addEventListener('click', function(){ if(stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  $('sv-stepmode').addEventListener('change', function(){ $('sv-step').style.display=this.checked?'':'none'; if(!this.checked && stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  function setBusy(b){ busy=b; each(root.querySelectorAll('#st-s3 [data-op], #sv-rand, #sv-reset'), function(x){ x.disabled=b; }); each($('sv-impl').children, function(x){ x.disabled=b; }); if(!b) $('sv-isfull').disabled = IMPL!=='arr'; }
+
+  async function run(op){
+    if(busy) return;
+    var val=parseInt($('sv-val').value,10);
+    if(op==='push'){
+      if(isNaN(val)){ msg('Enter a whole-number value to push.','bad'); return; }
+      if(val>9999 || val<-999){ msg('Please use values between \u2212999 and 9999.','bad'); return; }
+      if(IMPL==='ll' && L.order.length>=MAXL){ msg('The drawing shows at most '+MAXL+' nodes. A real linked stack keeps growing until memory runs out: that is its advantage over the array.','bad'); return; }
+    }
+    frames=[]; RESULT=null;
+    var before = IMPL==='arr' ? cl(A) : null;
+    if(IMPL==='arr') arrOp(op,val); else llOp(op,val);
+    setBusy(true); $('sv-log').innerHTML=''; msg('Running\u2026','');
+    log({push:'PUSH('+val+')',pop:'POP()',peek:'PEEK()',isEmpty:'IS_EMPTY()',isFull:'IS_FULL()',display:'DISPLAY()'}[op]+'   ['+(IMPL==='arr'?'array':'linked list')+']','hd');
+    for(var i=0;i<frames.length;i++){
+      var f=frames[i]; pseudo(f.alg,f.line);
+      if(IMPL==='arr') drawArr(svgV,f.view); else drawLL(svgV,f.view);
+      log(f.log, f.cls); $('sv-steps').textContent=i+1;
+      await wait();
+    }
+    render(); if(RESULT) msg(RESULT.text, RESULT.cls); setBusy(false);
+  }
+  each(root.querySelectorAll('#st-s3 [data-op]'), function(b){ b.addEventListener('click', function(){ run(b.getAttribute('data-op')); }); });
+  function currentVals(){ if(IMPL==='arr') return A.S.slice(0,A.top+1); var o=[]; for(var i=L.order.length-1;i>=0;i--) o.push(L.nodes[L.order[i]].v); return o; }
+  each($('sv-impl').children, function(b){
+    b.addEventListener('click', function(){
+      if(busy) return; var vals=currentVals();
+      each($('sv-impl').children, function(x){ x.classList.toggle('on', x===b); });
+      IMPL=b.getAttribute('data-k'); initModels(vals.slice(0, MAXA));
+      $('sv-isfull').disabled = IMPL!=='arr';
+      $('sv-isfull').title = IMPL==='arr' ? '' : 'A linked stack is full only when memory runs out';
+      pseudo('push',-1); render(); $('sv-log').innerHTML='';
+      msg(IMPL==='arr' ? 'Array stack: top is an index; MAX = 6 cells are reserved.' : 'Linked stack: top is a pointer to the first node. isFull does not apply.','');
+    });
+  });
+  $('sv-reset').addEventListener('click', function(){ initModels([10,20,30]); render(); pseudo('push',-1); $('sv-log').innerHTML=''; $('sv-steps').textContent='0'; msg('Stack reset to 10, 20, 30 (30 on top).',''); });
+  $('sv-rand').addEventListener('click', function(){ var n=1+Math.floor(Math.random()*5), v=[]; for(var i=0;i<n;i++) v.push(5+Math.floor(Math.random()*95)); initModels(v); render(); $('sv-log').innerHTML=''; msg('New random stack with '+n+' element(s).',''); });
+  initModels([10,20,30]); pseudo('push',-1); render();
+
+  /* =================================================================
+     SIDE-BY-SIDE LAB (Section 2)
+     ================================================================= */
+  var SB={A:null, L:null, next:10};
+  var SBADDR={};
+  function sbAddr(){ var a; do{ a=1000+16*Math.floor(Math.random()*560); }while(SBADDR[a]); SBADDR[a]=1; return a; }
+  function sbReset(){ SB.A={S:[null,null,null,null,null,null], top:-1}; SB.L={nodes:{}, order:[], top:null, seq:0}; SBADDR={}; SB.next=10; $('sb-val').value=10; }
+  function sbDraw(hlA, hlL, flyA, heL, topHot){
+    drawArr($('sb-arr'), {S:SB.A.S, top:SB.A.top, hl:hlA||{}, fly:flyA||null, topHot:!!topHot});
+    drawLL($('sb-ll'), {nodes:SB.L.nodes, order:SB.L.order, top:SB.L.top, hl:hlL||{}, ptrs:{}, he:heL||[]});
+    var n=SB.A.top+1;
+    $('sb-arr-note').textContent='top = '+SB.A.top+' | memory: '+SB.A.S.length+' cells reserved, '+n+' used';
+    $('sb-ll-note').textContent='top \u2192 '+(SB.L.top?'@'+SB.L.nodes[SB.L.top].a:'NULL')+' | memory: '+n+' node(s) \u00d7 (data + next)';
+  }
+  function sbMsg(t,c){ var m=$('sb-msg'); m.textContent=t; m.className='msg '+(c||''); }
+  $('sb-push').addEventListener('click', function(){
+    var v=parseInt($('sb-val').value,10); if(isNaN(v)){ sbMsg('Enter a whole number.','bad'); return; }
+    if(SB.A.top===SB.A.S.length-1){ sbDraw({},{},{v:v,i:6,out:false}); sbMsg('Array: OVERFLOW (top = MAX \u2212 1 = 5). The linked list could keep growing, but this demo keeps both in step, so the push is cancelled.','bad'); return; }
+    SB.A.top++; SB.A.S[SB.A.top]=v;
+    var id='s'+(SB.L.seq++); SB.L.nodes[id]={v:v, a:sbAddr(), next:SB.L.top}; SB.L.top=id; SB.L.order.unshift(id);
+    var hA={}; hA[SB.A.top]='new'; var hL={}; hL[id]='new';
+    sbDraw(hA,hL,null,['top',id+':next'],true);
+    sbMsg('push('+v+'): array does top \u2190 top + 1 and S[top] \u2190 '+v+'; linked list creates a node, links it to the old top, and moves top.','ok');
+    SB.next=v+10; $('sb-val').value=SB.next;
+  });
+  $('sb-pop').addEventListener('click', function(){
+    if(SB.A.top===-1){ sbDraw(); sbMsg('UNDERFLOW in both: the stack is empty (top = \u22121 / top = NULL).','bad'); return; }
+    var v=SB.A.S[SB.A.top], old=SB.A.top; SB.A.top--;
+    var t=SB.L.top; SB.L.top=SB.L.nodes[t].next; delete SBADDR[SB.L.nodes[t].a]; delete SB.L.nodes[t]; SB.L.order.shift();
+    var hA={}; hA[old]='del';
+    sbDraw(hA,{},{v:v,i:old,out:true,arrow:true},['top'],true);
+    sbMsg('pop() \u2192 '+v+': array only moves top down (the old value stays in S['+old+'] as garbage); linked list frees the node.','ok');
+  });
+  $('sb-peek').addEventListener('click', function(){
+    if(SB.A.top===-1){ sbMsg('Stack is empty: nothing to peek.','bad'); return; }
+    var hA={}; hA[SB.A.top]='cur'; var hL={}; hL[SB.L.top]='cur';
+    sbDraw(hA,hL); sbMsg('peek() \u2192 '+SB.A.S[SB.A.top]+': read S[top] / top.data without changing anything.','ok');
+  });
+  $('sb-reset').addEventListener('click', function(){ sbReset(); sbDraw(); sbMsg('Both stacks are empty again.',''); });
+  sbReset(); [10,20,30].forEach(function(v){ SB.A.top++; SB.A.S[SB.A.top]=v; var id='s'+(SB.L.seq++); SB.L.nodes[id]={v:v,a:sbAddr(),next:SB.L.top}; SB.L.top=id; SB.L.order.unshift(id); }); $('sb-val').value=40; sbDraw();
+
+  /* =================================================================
+     APPLICATION LAB (Section 5)
+     ================================================================= */
+  var AP={mode:'br', steps:[], k:0, running:false};
+  var EX={br:['{[a+b]*(c-d)}','(a+b))','([)]','((a)','{[()()]}'], rev:['STACK','MCA2026','racecar'], pf:['2 3 4 * +','5 1 2 + 4 * + 3 -','6 2 / 3 *','8 2 -']};
+  var HELP={br:'Push every opening bracket. On a closing bracket, the top of the stack must be its matching opener: pop it. At the end the stack must be empty.',
+            rev:'Push every character, then pop them all: they come out in reverse order.',
+            pf:'Tokens separated by spaces. Push numbers. On an operator, pop the right operand, then the left operand, compute, and push the result.'};
+  var exI={br:0,rev:0,pf:0};
+  function apBuild(){
+    var s=$('ap-in').value, st=[], steps=[], m=AP.mode;
+    function add(sym, act, cls){ steps.push({sym:sym, act:act, st:st.slice(), cls:cls||''}); }
+    if(m==='br'){
+      var pairs={')':'(', ']':'[', '}':'{'}, ok=true;
+      for(var i=0;i<s.length;i++){
+        var ch=s[i];
+        if('([{'.indexOf(ch)>=0){ st.push(ch); add(ch,'opening \u2192 push'); }
+        else if(')]}'.indexOf(ch)>=0){
+          if(st.length===0){ add(ch,'closing, but stack is empty \u2192 NOT balanced','bad'); ok=false; break; }
+          if(st[st.length-1]!==pairs[ch]){ add(ch,'closing, top is '+st[st.length-1]+' (needs '+pairs[ch]+') \u2192 NOT balanced','bad'); ok=false; break; }
+          st.pop(); add(ch,'matches top '+pairs[ch]+' \u2192 pop');
+        } else add(ch,'not a bracket \u2192 ignore');
+      }
+      if(ok){ if(st.length===0) add('end','stack empty \u2192 BALANCED','ok'); else add('end','stack still has '+st.join('')+' \u2192 NOT balanced (unclosed)','bad'); }
+    } else if(m==='rev'){
+      for(var j=0;j<s.length;j++){ st.push(s[j]); add(s[j],'push'); }
+      var out='';
+      while(st.length){ var c=st.pop(); out+=c; add('\u2014','pop '+c+' \u2192 output "'+out+'"'); }
+      add('end','reversed string = "'+out+'"','ok');
+    } else {
+      var toks=s.trim().split(/\s+/), bad=false;
+      for(var t=0;t<toks.length && !bad;t++){
+        var tk=toks[t];
+        if(/^-?\d+$/.test(tk)){ st.push(parseInt(tk,10)); add(tk,'operand \u2192 push'); }
+        else if('+-*/'.indexOf(tk)>=0 && tk.length===1){
+          if(st.length<2){ add(tk,'operator needs 2 operands, stack has '+st.length+' \u2192 INVALID expression','bad'); bad=true; break; }
+          var b=st.pop(), a=st.pop(), r;
+          if(tk==='/' && b===0){ add(tk,'division by zero \u2192 ERROR','bad'); bad=true; break; }
+          r = tk==='+'?a+b : tk==='-'?a-b : tk==='*'?a*b : Math.trunc(a/b);
+          st.push(r); add(tk,'pop '+b+' and '+a+'; '+a+' '+tk+' '+b+' = '+r+' \u2192 push');
+        } else { add(tk,'unknown token \u2192 INVALID','bad'); bad=true; }
+      }
+      if(!bad){ if(st.length===1) add('end','result = '+st[0],'ok'); else add('end','stack has '+st.length+' values left \u2192 INVALID expression','bad'); }
+    }
+    return steps;
+  }
+  function apStack(arr){
+    var box=$('ap-stack'); box.innerHTML='';
+    if(!arr.length){ box.appendChild(el('em','','empty')); return; }
+    arr.forEach(function(x,i){ var sp=el('span', i===arr.length-1?'tp':''); sp.textContent=String(x); box.appendChild(sp); });
+  }
+  function apRow(i){
+    var s=AP.steps[i], tb=$('ap-trace');
+    each(tb.querySelectorAll('tr.now'), function(r){ r.classList.remove('now'); });
+    var tr=el('tr','now'); [String(i+1), s.sym, s.act, s.st.length? s.st.join(' ') : '(empty)'].forEach(function(t){ var td=el('td'); td.textContent=t; tr.appendChild(td); });
+    if(s.cls==='bad') tr.style.color='#c92a2a'; if(s.cls==='ok') tr.style.color='#0b7a6f';
+    tb.appendChild(tr); tr.scrollIntoView({block:'nearest'});
+    apStack(s.st);
+    if(i===AP.steps.length-1){ var v=$('ap-verdict'); v.textContent=s.act.replace(/^.*\u2192\s*/,'').replace(/^reversed/,'Reversed').replace(/^result/,'Result'); v.style.color=s.cls==='bad'?'#c92a2a':'#0b7a6f'; }
+  }
+  function apStart(){ AP.steps=apBuild(); AP.k=0; $('ap-trace').innerHTML='<tr><th>#</th><th>Symbol</th><th>Action</th><th>Stack (bottom \u2192 top)</th></tr>'; $('ap-verdict').textContent=''; apStack([]); }
+  $('ap-run').addEventListener('click', async function(){
+    if(AP.running) return; AP.running=true; this.disabled=true; $('ap-stepb').disabled=true;
+    apStart();
+    for(var i=0;i<AP.steps.length;i++){ apRow(i); await sleep(650); }
+    AP.k=AP.steps.length; AP.running=false; this.disabled=false; $('ap-stepb').disabled=false;
+  });
+  $('ap-stepb').addEventListener('click', function(){
+    if(AP.running) return;
+    if(AP.k===0 || AP.k>=AP.steps.length){ apStart(); }
+    apRow(AP.k); AP.k++;
+  });
+  $('ap-ex').addEventListener('click', function(){ var m=AP.mode; exI[m]=(exI[m]+1)%EX[m].length; $('ap-in').value=EX[m][exI[m]]; apStart(); });
+  $('ap-in').addEventListener('input', function(){ AP.k=0; });
+  each($('ap-mode').children, function(b){
+    b.addEventListener('click', function(){
+      if(AP.running) return;
+      each($('ap-mode').children, function(x){ x.classList.toggle('on', x===b); });
+      AP.mode=b.getAttribute('data-m'); exI[AP.mode]=0; $('ap-in').value=EX[AP.mode][0]; $('ap-help').textContent=HELP[AP.mode]; apStart();
+    });
+  });
+  $('ap-help').textContent=HELP.br; apStart();
+
+  /* ---------------- quiz ---------------- */
+  var QZ=[
+    {q:'A stack works on which principle?', o:['FIFO','LIFO','Random access','Priority order'], a:1, e:'Last In, First Out: the most recently pushed element is the first to be popped.'},
+    {q:'An array stack has MAX = 5 and top = 4 (0-based). What happens on push(9)?', o:['9 is stored in S[5]','9 replaces S[4]','OVERFLOW is reported','UNDERFLOW is reported'], a:2, e:'top = MAX \u2212 1 = 4 means the stack is full, so PUSH reports overflow and changes nothing.'},
+    {q:'In a 0-based array implementation, what is the value of top for an empty stack?', o:['0','\u22121','MAX','NULL'], a:1, e:'top = \u22121 means no element is stored; the first push makes top 0.'},
+    {q:'In a linked list implementation of a stack, push corresponds to:', o:['Insert at the end','Insert at the beginning','Insert after the middle node','Delete at the beginning'], a:1, e:'The head of the list is the top, because insertion and deletion there are O(1).'},
+    {q:'What is the time complexity of push and pop in both array and linked list implementations?', o:['O(1)','O(log n)','O(n)','O(n log n)'], a:0, e:'Both operations only touch the top: a fixed number of steps regardless of n.'},
+    {q:'push(1), push(2), pop(), push(3), pop(), pop(): in what order are values popped?', o:['1, 2, 3','2, 3, 1','3, 2, 1','2, 1, 3'], a:1, e:'pop() removes 2; then 3 is pushed and popped; finally 1 is popped.'},
+    {q:'Which of these is NOT a typical application of a stack?', o:['Checking balanced parentheses','Undo in a text editor','Printer job scheduling on a first-come, first-served basis','Evaluating postfix expressions'], a:2, e:'First-come, first-served is FIFO: that is a queue, not a stack.'},
+    {q:'When a Python list is used as a stack, why should push/pop use append() and pop() instead of insert(0, x) and pop(0)?', o:['insert(0, x) breaks LIFO order','append()/pop() at the end are O(1), while working at the front is O(n)','pop(0) is not allowed on lists','append() uses less memory per element'], a:1, e:'Working at the front shifts every element. Both versions are LIFO, but the end of the list gives O(1) operations.'}
+  ];
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('st-quiz'); qz.innerHTML=''; answered=0; score=0; $('st-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      var qt=el('div','qt'); qt.textContent=item.q; card.appendChild(qt);
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.appendChild(document.createTextNode(item.e)); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('st-quiz-num').textContent=score; $('st-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('st-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+
+  /* ---------------- section navigation menu ---------------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('st-nav'), tabsBox=$('st-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('st-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('st-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('st-prev').disabled = cur===0; $('st-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('st-prev').addEventListener('click', function(){ go(cur-1); });
+  $('st-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('st-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('st-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="linked-lists.html"><small>← Previous lesson</small><b>Linked lists</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="queue.html"><small>Next lesson →</small><b>Queue</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

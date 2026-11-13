@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binary trees · Learn Data Structures with idontno</title>
+<meta name="description" content="Node counts, height formulas and their derivations.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="binary-trees">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="cur" data-lesson="binary-trees" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module III · Trees</span><span>›</span><span>Lesson 8 of 18</span></div>
+  <article class="idn-lesson">
+<style>
+#btx{--ink:#1c2033;--blue:#2f5bd3;--navy:#1c2033;--paper:#fbfaf6;--sun:#fcc419;--mint:#b2f2bb;--sky:#c8d6fa;--line:#e3dfd3;--rose:#d9480f;--ok:#2b8a3e;font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;max-width:980px;margin:0 auto;border-radius:20px;overflow:hidden;box-sizing:border-box}
+#btx *{box-sizing:border-box}
+#btx .hero{background:var(--navy);color:#e9effd;padding:38px 28px 30px}
+#btx .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 10px;font-weight:800;color:#fff}
+#btx .hero p{margin:0;max-width:62ch;color:#9aa0bb}
+#btx nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+#btx nav button,#btx .b{font:inherit;font-size:14px;border:1.5px solid var(--blue);background:#fff;color:var(--navy);padding:6px 13px;border-radius:99px;cursor:pointer}
+#btx nav button:hover,#btx .b:hover{background:var(--sky)}
+#btx .b.on{background:var(--blue);color:#fff}
+#btx .b.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+#btx .b:focus-visible,#btx input:focus-visible{outline:3px solid var(--sun)}
+#btx section{padding:30px 22px;border-bottom:1px solid var(--line)}
+#btx h2{margin:0 0 4px;font-size:26px;font-weight:800;color:var(--navy)}
+#btx .sub{margin:0 0 16px;color:#4a5068}
+#btx .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+#btx svg.t{width:100%;height:auto;max-height:340px;display:block}
+#btx .nd circle{fill:#fff;stroke:var(--blue);stroke-width:2.2}
+#btx .nd{cursor:pointer}
+#btx .nd text{font:600 13px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
+#btx .gh circle{fill:none;stroke:#9aa0bb;stroke-dasharray:4 3}
+#btx .gh text{fill:#9aa0bb;font-size:18px}
+#btx .edge{stroke:#9aa0bb;stroke-width:2}
+#btx .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:16px}
+#btx .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media(max-width:720px){#btx .grid,#btx .two{grid-template-columns:1fr}#btx section{padding:24px 14px}}
+#btx .info div{padding:4px 0;border-bottom:1px dashed var(--line);font-size:15px}
+#btx .badge{display:inline-block;font:600 12px 'Fira Code',monospace;padding:1px 9px;border-radius:99px;margin-right:6px;color:#fff}
+#btx .y{background:var(--ok)}#btx .n{background:var(--rose)}
+#btx .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin:3px 4px 0 0;font:600 13px 'Fira Code',monospace}
+#btx .legend{font-size:13px;color:#4a5068;margin-top:6px}
+#btx ul.n{margin:14px 0 0;padding-left:20px}
+#btx ul.n li{margin:4px 0}
+#btx pre{font:13px/1.5 'Fira Code',monospace;background:#1d2130;color:#c8d6fa;padding:14px;border-radius:12px;overflow-x:auto;margin:10px 0 0}
+#btx .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+#btx input[type=number]{font:inherit;width:110px;padding:6px 10px;border:1.5px solid var(--blue);border-radius:10px}
+#btx .res{background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;margin-top:10px}
+#btx .res b{color:var(--sun)}
+#btx .res div{padding:3px 0}
+#btx .msg{min-height:26px;font-weight:600;color:var(--navy)}
+#btx .bad{color:var(--rose)}
+#btx .wrap{overflow-x:auto}
+#btx table{border-collapse:collapse;width:100%;font-size:14px;margin-top:12px;background:#fff}
+#btx th,#btx td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+#btx th{background:var(--sky)}
+#btx details{margin-top:12px}
+#btx summary{cursor:pointer;font-weight:600;color:var(--blue)}
+#btx .q{margin:0 0 14px}
+#btx .q p{margin:0 0 6px;font-weight:600}
+#btx .q .b{display:block;width:100%;text-align:left;border-radius:10px;margin:4px 0}
+#btx .q .ok{background:#8ce99a;border-color:var(--ok)}
+#btx .q .no{background:#ffc9c9;border-color:var(--rose)}
+#btx .q small{display:block;color:#4a5068;margin-top:2px}
+#btx .stp{padding:8px 14px;border-left:4px solid var(--blue);background:#fff;margin:6px 0;border-radius:0 10px 10px 0}
+#btx .stp.last{border-color:var(--ok);background:#f3f1ea}
+#btx .stp .m{display:block;text-align:center;font:600 15px 'Fira Code',monospace;margin:5px 0;color:var(--navy);overflow-x:auto}
+#btx .stp small{color:#4a5068}
+#btx footer{padding:18px 22px;font-size:13px;color:#4a5068}
+</style>
+
+<div id="btx">
+<div class="hero">
+  <h1>Binary trees: count the nodes, find the height</h1>
+  <p>Data Structures with Python &middot; MCA. Build trees, let the page classify them, then use the calculator to see why each formula works.</p>
+</div>
+<nav><button data-go="a1">Basics</button><button data-go="a2">Classifier lab</button><button data-go="a3">Formula lab</button><button data-go="a3d">Derivations</button><button data-go="a4">Cheat sheet</button><button data-go="a5">Quiz</button></nav>
+
+<section id="a1">
+  <h2>1. What is a binary tree?</h2>
+  <p class="sub">A hierarchical, non-linear structure where every node has at most two children: a left child and a right child. It may also be empty.</p>
+  <ul class="n">
+    <li>A node may have 0, 1 or 2 children. A node with no children is a <b>leaf</b>. The topmost node is the <b>root</b>.</li>
+    <li>A tree with n nodes (n &ge; 1) has exactly n &minus; 1 edges.</li>
+    <li><b>Conventions used here:</b> root is at level 0. <b>Height h</b> = edges on the longest root-to-leaf path, so a lone root has h = 0 and a tree has h + 1 levels. Some books count levels instead; use the toggle in the Formula lab to switch.</li>
+    <li>N = total number of nodes. Level i can hold at most <b>2<sup>i</sup></b> nodes, because the maximum doubles at each level.</li>
+  </ul>
+  <div class="grid" style="margin-top:14px"><div class="box info">
+    <div><span class="badge y">Full</span>Every node has 0 or 2 children. Never exactly one.</div>
+    <div><span class="badge y">Complete</span>Every level is full except possibly the last, which is filled left to right.</div>
+    <div><span class="badge y">Perfect</span>Every internal node has 2 children and all leaves are on one level.</div></div>
+    <div class="box info"><div>Perfect &#8658; full and complete.</div><div>Full and complete together do <b>not</b> always give perfect. Try it in the lab.</div></div></div>
+</section>
+
+<section id="a2">
+  <h2>2. Classifier lab</h2>
+  <p class="sub">Tap a dashed + to add a node. Tap a node to remove it and everything below it. The page classifies your tree instantly.</p>
+  <div class="row" id="pre"></div>
+  <div class="grid">
+    <div class="box"><svg class="t" id="bsv" viewBox="0 0 800 300"></svg>
+      <div class="legend">Numbers are level-order positions: the children of position k are 2k and 2k+1.</div></div>
+    <div class="box info" id="cls"></div>
+  </div>
+  <div class="box" style="margin-top:12px"><b>Nodes per level</b> (filled / maximum 2<sup>i</sup>)<div id="lvl"></div></div>
+  <ul class="n"><li><b>Trick:</b> a tree is <b>complete</b> exactly when its filled positions are 1, 2, 3 ... N with no gaps. That is why complete trees fit neatly into arrays (heaps).</li></ul>
+</section>
+
+<section id="a3">
+  <h2>3. Formula lab</h2>
+  <p class="sub">Choose a tree type, then ask either "I know the height" or "I know the number of nodes".</p>
+  <div class="row" id="ctype"></div>
+  <div class="row" id="cmode"></div>
+  <div class="row"><label><span id="clab">Height h</span> <input type="number" id="cv" value="3" min="0" max="2000"></label>
+    <button class="b" id="cconv">Height counted in: edges</button></div>
+  <div class="res" id="cres"></div>
+  <div class="two" id="cdraw"><div class="box"><b>Fewest nodes</b><svg class="t" id="cmin"></svg></div><div class="box"><b>Most nodes</b><svg class="t" id="cmax"></svg></div></div>
+  <ul class="n"><li>Max nodes for height h: 1 + 2 + 4 + &hellip; + 2<sup>h</sup> = 2<sup>h+1</sup> &minus; 1 (geometric series).</li>
+  <li>Min nodes: general h + 1 (a chain) &middot; full 2h + 1 (a spine with one leaf hanging off each internal node) &middot; complete 2<sup>h</sup> (levels 0 to h&minus;1 full, plus one node at level h) &middot; perfect 2<sup>h+1</sup> &minus; 1.</li></ul>
+</section>
+
+<section id="a3d">
+  <h2>4. Where the formulas come from</h2>
+  <p class="sub">Pick a result, then reveal the proof one step at a time. Try to guess the next line before you click.</p>
+  <div class="row" id="dtop"></div>
+  <div class="box" id="dbox"></div>
+  <div class="row"><button class="b pri" id="dnext">Next step</button><button class="b" id="dall">Show all</button><button class="b" id="dreset">Restart</button></div>
+</section>
+
+<section id="a4">
+  <h2>5. Cheat sheet</h2>
+  <p class="sub">Height in edges, non-empty tree.</p>
+  <div class="wrap"><table><tr><th>Property</th><th>General</th><th>Full</th><th>Complete</th><th>Perfect</th></tr>
+  <tr><td>Max nodes at level i</td><td>2<sup>i</sup></td><td>2<sup>i</sup></td><td>2<sup>i</sup></td><td>2<sup>i</sup> (exactly)</td></tr>
+  <tr><td>Max nodes, height h</td><td>2<sup>h+1</sup>&minus;1</td><td>2<sup>h+1</sup>&minus;1</td><td>2<sup>h+1</sup>&minus;1</td><td>2<sup>h+1</sup>&minus;1</td></tr>
+  <tr><td>Min nodes, height h</td><td>h+1</td><td>2h+1</td><td>2<sup>h</sup></td><td>2<sup>h+1</sup>&minus;1</td></tr></table></div>
+  <div class="wrap"><table><tr><th>Given N nodes</th><th>Min height</th><th>Max height</th></tr>
+  <tr><td>General</td><td>&lceil;log<sub>2</sub>(N+1)&rceil; &minus; 1 = &lfloor;log<sub>2</sub>N&rfloor;</td><td>N &minus; 1</td></tr>
+  <tr><td>Full (N odd)</td><td>&lfloor;log<sub>2</sub>N&rfloor;</td><td>&lfloor;(N&minus;1)/2&rfloor;</td></tr>
+  <tr><td>Complete</td><td>&lfloor;log<sub>2</sub>N&rfloor;</td><td>&lfloor;log<sub>2</sub>N&rfloor;</td></tr>
+  <tr><td>Perfect (N+1 is a power of 2)</td><td>log<sub>2</sub>(N+1) &minus; 1</td><td>same</td></tr></table></div>
+  <ul class="n"><li><b>Exam traps:</b> a full tree always has an odd N. If N = 10 there is no perfect tree; the tallest perfect tree that fits has h = 2 (7 nodes). A complete tree's height is fixed by N alone.</li></ul>
+  <details><summary>Python: test the three types</summary>
+<pre>def count(n):  return 0 if n is None else 1 + count(n.left) + count(n.right)
+def height(n): return -1 if n is None else 1 + max(height(n.left), height(n.right))
+
+def is_full(n):
+    if n is None: return True
+    if (n.left is None) != (n.right is None): return False
+    return is_full(n.left) and is_full(n.right)
+
+def is_complete(n, i, total):          # call: is_complete(root, 0, count(root))
+    if n is None: return True
+    if i &gt;= total: return False
+    return is_complete(n.left, 2*i+1, total) and is_complete(n.right, 2*i+2, total)
+
+def is_perfect(n): return count(n) == 2**(height(n) + 1) - 1</pre></details>
+</section>
+
+<section id="a5">
+  <h2>6. Check yourself</h2>
+  <p class="sub">Six questions, height measured in edges.</p>
+  <div id="quiz"></div><div class="msg" id="score"></div>
+</section>
+<footer>Based on the Binary Tree notes provided by the course instructor.</footer>
+</div>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},P=Math.pow;
+function B(v,l,r){return {v:v,l:l,r:r}}
+function kids(n){return [n.l,n.r].filter(Boolean)}
+function walk(n,f){f(n);kids(n).forEach(function(k){walk(k,f)})}
+function lg(n){var k=0;while(P(2,k+1)<=n)k++;return k}
+function dep(i){var d=0;while(i>1){i=Math.floor(i/2);d++}return d}
+function draw(svg,rt){
+  var cnt=0,md=0,s='';
+  (function lay(n,d){if(!n)return;lay(n.l,d+1);n.x=cnt++;n.d=d;md=Math.max(md,d);lay(n.r,d+1)})(rt,0);
+  var W=Math.max(cnt*54+20,260),Hh=(md+1)*62+10,off=(W-(cnt-1)*54)/2;
+  function X(n){return off+n.x*54}function Y(n){return 30+n.d*62}
+  walk(rt,function(n){kids(n).forEach(function(k){s+='<line class="edge" x1="'+X(n)+'" y1="'+Y(n)+'" x2="'+X(k)+'" y2="'+Y(k)+'"/>'})});
+  walk(rt,function(n){s+='<g class="nd"><circle cx="'+X(n)+'" cy="'+Y(n)+'" r="18"/><text x="'+X(n)+'" y="'+Y(n)+'">'+n.v+'</text></g>'});
+  svg.setAttribute('viewBox','0 0 '+W+' '+Hh);svg.innerHTML=s;
+}
+Array.prototype.forEach.call(document.querySelectorAll('#btx nav button'),function(b){b.onclick=function(){$(b.getAttribute('data-go')).scrollIntoView({behavior:'smooth'})}});
+
+/* ---- Classifier lab: nodes stored by level-order position ---- */
+var BN={1:1},MX=31,PR=[['Full, not complete',[1,2,3,6,7]],['Complete, not full',[1,2,3,4,5,6]],['Full + complete, not perfect',[1,2,3,4,5]],['Perfect',[1,2,3,4,5,6,7]],['Skewed chain',[1,3,7,15]]];
+function px(i){var d=dep(i),k=i-P(2,d);return [(k+0.5)*800/P(2,d),28+d*62]}
+function setT(a){BN={};a.forEach(function(i){BN[i]=1});bdraw()}
+function rem(i){if(!BN[i])return;delete BN[i];rem(2*i);rem(2*i+1)}
+function bdraw(){
+  var s='',ids=Object.keys(BN).map(Number),g=[];
+  ids.forEach(function(i){var a=px(i);[2*i,2*i+1].forEach(function(c){if(c>MX)return;var b=px(c);
+    if(BN[c])s+='<line class="edge" x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'"/>';else g.push(c)})});
+  if(!ids.length)g.push(1);
+  g.forEach(function(c){var b=px(c);s+='<g class="nd gh" data-g="'+c+'"><circle cx="'+b[0]+'" cy="'+b[1]+'" r="15"/><text x="'+b[0]+'" y="'+b[1]+'">+</text></g>'});
+  ids.forEach(function(i){var b=px(i);s+='<g class="nd" data-n="'+i+'"><circle cx="'+b[0]+'" cy="'+b[1]+'" r="18"/><text x="'+b[0]+'" y="'+b[1]+'">'+i+'</text></g>'});
+  $('bsv').innerHTML=s;classify(ids);
+}
+function badge(ok,name,why){return '<div><span class="badge '+(ok?'y':'n')+'">'+(ok?'YES':'NO')+'</span><b>'+name+'</b>'+(why?'<br><small>'+why+'</small>':'')+'</div>'}
+function classify(ids){
+  if(!ids.length){$('cls').innerHTML='<div>Empty tree. Tap + to add a root.</div>';$('lvl').innerHTML='';return}
+  var N=ids.length,h=0,bad=0,gap=0,k;
+  ids.forEach(function(i){h=Math.max(h,dep(i));if(!!BN[2*i]!==!!BN[2*i+1]&&!bad)bad=i});
+  ids.sort(function(a,b){return a-b});
+  for(k=1;k<=ids[N-1];k++){if(!BN[k]){gap=k;break}}
+  var full=!bad,comp=!gap,perf=N===P(2,h+1)-1;
+  $('cls').innerHTML='<div><b>N = '+N+'</b> nodes &middot; <b>h = '+h+'</b> &middot; edges = '+(N-1)+'</div>'+
+   badge(full,'Full',full?'':'Position '+bad+' has exactly one child.')+
+   badge(comp,'Complete',comp?'':'Position '+gap+' is empty but a later position is filled.')+
+   badge(perf,'Perfect',perf?'':'N is '+N+', a perfect tree of height '+h+' needs '+(P(2,h+1)-1)+'.');
+  var c=[],d,t;for(d=0;d<=h;d++){t=0;ids.forEach(function(i){if(dep(i)===d)t++});c.push('<span class="chip">level '+d+': '+t+' / '+P(2,d)+'</span>')}
+  $('lvl').innerHTML=c.join('');
+}
+$('bsv').addEventListener('click',function(e){var g=e.target.closest('.nd');if(!g)return;
+  if(g.getAttribute('data-g'))BN[+g.getAttribute('data-g')]=1;else rem(+g.getAttribute('data-n'));bdraw()});
+PR.forEach(function(p){var b=document.createElement('button');b.className='b';b.textContent=p[0];b.onclick=function(){setT(p[1])};$('pre').appendChild(b)});
+var cb=document.createElement('button');cb.className='b pri';cb.textContent='Clear';cb.onclick=function(){setT([])};$('pre').appendChild(cb);
+setT(PR[0][1]);
+
+/* ---- Formula lab ---- */
+var ty='General',md='h',lv=false,TY=['General','Full','Complete','Perfect'];
+function perf(h){return h<0?null:B(0,perf(h-1),perf(h-1))}
+function chain(h){return h===0?B(0):B(0,0,chain(h-1))}
+function fmin(h){return h===0?B(0):B(0,fmin(h-1),B(0))}
+function cmin(h){if(h===0)return B(0);var t=perf(h-1),c=t,i;for(i=0;i<h-1;i++)c=c.l;c.l=B(0);return t}
+function num(t){var q=[t],k=1,n;while(q.length){n=q.shift();n.v=k++;if(n.l)q.push(n.l);if(n.r)q.push(n.r)}return t}
+function mk(b,t,h){return t==='General'?chain(h):t==='Full'?fmin(h):t==='Complete'?cmin(h):perf(h)}
+function show(a){return a+(lv?1:0)}
+function calc(){
+  var v=parseInt($('cv').value,10),r=$('cres'),o='',hh,max,mn,w,i,f;
+  Array.prototype.forEach.call($('ctype').children,function(b){b.className='b'+(b.textContent===ty?' on':'')});
+  Array.prototype.forEach.call($('cmode').children,function(b){b.className='b'+(b.getAttribute('data-m')===md?' on':'')});
+  $('clab').textContent=md==='h'?(lv?'Number of levels':'Height h'):'Nodes N';
+  $('cconv').textContent='Height counted in: '+(lv?'levels':'edges');
+  if(isNaN(v)||v<(md==='h'&&!lv?0:1)){r.innerHTML='<div class="bad">Enter a valid number.</div>';return}
+  if(md==='h'){
+    hh=v-(lv?1:0);if(hh>40){r.innerHTML='<div class="bad">Use a height up to 40.</div>';return}
+    max=P(2,hh+1)-1;
+    mn=ty==='General'?hh+1:ty==='Full'?2*hh+1:ty==='Complete'?P(2,hh):max;
+    w=[];for(i=0;i<=Math.min(hh,6);i++)w.push(P(2,i));
+    o='<div>'+ty+' tree, h = '+hh+' ('+(hh+1)+' levels)</div><div>Most nodes: '+w.join(' + ')+(hh>6?' + &hellip;':'')+' = 2<sup>'+(hh+1)+'</sup> &minus; 1 = <b>'+max+'</b></div>'+
+      '<div>Fewest nodes: '+(ty==='General'?'one node per level, h + 1 = ':ty==='Full'?'spine (h+1) + one leaf per internal node (h) = 2h + 1 = ':ty==='Complete'?'full levels 0 to h&minus;1 (2<sup>h</sup> &minus; 1) + 1 node = 2<sup>h</sup> = ':'every level full, 2<sup>h+1</sup> &minus; 1 = ')+'<b>'+mn+'</b></div>';
+    $('cdraw').style.display=hh<=4?'grid':'none';
+    if(hh<=4){draw($('cmin'),num(mk(0,ty,hh)));draw($('cmax'),num(perf(hh)))}
+  }else{
+    $('cdraw').style.display='none';f=lg(v);
+    o='<div>'+ty+' tree with N = '+v+' nodes</div>';
+    if(ty==='General')o+='<div>Smallest height: N &le; 2<sup>h+1</sup> &minus; 1, so h = &lceil;log<sub>2</sub>('+(v+1)+')&rceil; &minus; 1 = <b>'+show(f)+'</b></div><div>Tallest: a chain, N &minus; 1 = <b>'+show(v-1)+'</b></div>';
+    if(ty==='Full'){if(v%2===0)o+='<div class="bad">Invalid: a full tree always has an odd number of nodes.</div>';else o+='<div>Smallest height: &lceil;log<sub>2</sub>('+(v+1)+')&rceil; &minus; 1 = <b>'+show(f)+'</b></div><div>Tallest: N &ge; 2h + 1, so h = &lfloor;('+v+' &minus; 1)/2&rfloor; = <b>'+show((v-1)/2)+'</b></div>'}
+    if(ty==='Complete')o+='<div>Height is fixed: h = &lfloor;log<sub>2</sub>'+v+'&rfloor; = <b>'+show(f)+'</b> (smallest and tallest are the same)</div>';
+    if(ty==='Perfect'){var g=lg(v+1);if(P(2,g)===v+1)o+='<div>N + 1 = '+(v+1)+' = 2<sup>'+g+'</sup>, so h = log<sub>2</sub>(N+1) &minus; 1 = <b>'+show(g-1)+'</b></div>';
+      else o+='<div class="bad">No perfect tree has exactly '+v+' nodes because N + 1 = '+(v+1)+' is not a power of 2.</div><div>Tallest perfect tree that fits: h = &lfloor;log<sub>2</sub>(N+1)&rfloor; &minus; 1 = <b>'+show(g-1)+'</b> ('+(P(2,g)-1)+' nodes)</div>'}
+  }
+  r.innerHTML=o;
+}
+TY.forEach(function(t){var b=document.createElement('button');b.className='b';b.textContent=t;b.onclick=function(){ty=t;calc()};$('ctype').appendChild(b)});
+[['h','Given height'],['n','Given N nodes']].forEach(function(m){var b=document.createElement('button');b.className='b';b.textContent=m[1];b.setAttribute('data-m',m[0]);b.onclick=function(){md=m[0];$('cv').value=md==='h'?3:15;calc()};$('cmode').appendChild(b)});
+$('cv').oninput=calc;$('cconv').onclick=function(){lv=!lv;calc()};calc();
+
+/* ---- Derivations ---- */
+function m(t){return '<span class="m">'+t+'</span>'}
+var DV=[
+ ['Edges = n &minus; 1',[
+  'Every node except the root has exactly one parent, so exactly one edge joins it to that parent.',
+  'There are n &minus; 1 non-root nodes, and each owns one edge.'+m('edges = n &minus; 1')]],
+ ['Max nodes at level i',[
+  'Level 0 holds only the root.'+m('1 = 2<sup>0</sup>'),
+  'Each node has at most 2 children, so level i+1 holds at most twice as many nodes as level i.'+m('1, 2, 4, 8, 16, ...'),
+  'Induction: if level i has at most 2<sup>i</sup> nodes, level i+1 has at most 2 &times; 2<sup>i</sup> = 2<sup>i+1</sup>.'+m('N<sub>i</sub><sup>max</sup> = 2<sup>i</sup>')]],
+ ['Max nodes for height h',[
+  'The most nodes occur when every level from 0 to h is completely full.'+m('S = 1 + 2 + 4 + ... + 2<sup>h</sup>'),
+  'Multiply both sides by 2.'+m('2S = 2 + 4 + 8 + ... + 2<sup>h+1</sup>'),
+  'Subtract the first line from the second. Almost every term cancels.'+m('2S &minus; S = 2<sup>h+1</sup> &minus; 1'),
+  'So S = 2<sup>h+1</sup> &minus; 1. (This is the geometric series with ratio 2 and h+1 terms.)'+m('N<sub>max</sub> = 2<sup>h+1</sup> &minus; 1'),
+  '<small>Check, h = 3: 1 + 2 + 4 + 8 = 15 = 2<sup>4</sup> &minus; 1.</small>']],
+ ['Min nodes for height h',[
+  '<b>General:</b> a path of height h has h + 1 nodes (h edges). A chain uses nothing else.'+m('N<sub>min</sub> = h + 1'),
+  '<b>Full:</b> the path has h + 1 nodes and h of them are internal. A full tree gives each internal node 2 children: one continues the path, the other must be an extra leaf.'+m('N<sub>min</sub> = (h + 1) + h = 2h + 1'),
+  '<b>Complete:</b> levels 0 to h &minus; 1 must be full, and level h needs at least one node. Same geometric series, now with h terms.'+m('(1 + 2 + ... + 2<sup>h-1</sup>) + 1 = (2<sup>h</sup> &minus; 1) + 1 = 2<sup>h</sup>'),
+  '<b>Perfect:</b> every level is full, so min equals max.'+m('N = 2<sup>h+1</sup> &minus; 1'),
+  '<small>Check, h = 3: 4, 7, 8 and 15. These match the minimum-trees drawn in the Formula lab.</small>']],
+ ['Height from N: smallest and tallest',[
+  'Smallest height: N nodes must fit in a tree whose capacity is 2<sup>h+1</sup> &minus; 1.'+m('N &le; 2<sup>h+1</sup> &minus; 1'),
+  'Add 1 to both sides.'+m('N + 1 &le; 2<sup>h+1</sup>'),
+  'Take log<sub>2</sub> of both sides. It keeps the inequality because log<sub>2</sub> is increasing.'+m('h &ge; log<sub>2</sub>(N+1) &minus; 1'),
+  'Height must be a whole number, so take the smallest integer allowed.'+m('h<sub>min</sub> = &lceil;log<sub>2</sub>(N+1)&rceil; &minus; 1 = &lfloor;log<sub>2</sub>N&rfloor;'),
+  'Tallest: use the minimum-node formulas. General needs N &ge; h + 1. Full needs N &ge; 2h + 1.'+m('h<sub>max</sub> = N &minus; 1 (general) &nbsp; h<sub>max</sub> = &lfloor;(N &minus; 1)/2&rfloor; (full)'),
+  '<small>Check, N = 10: &lceil;log<sub>2</sub>11&rceil; &minus; 1 = 3 and 10 &minus; 1 = 9. Full, N = 15: &lfloor;14/2&rfloor; = 7.</small>']],
+ ['Complete tree: height is fixed',[
+  'From the earlier results, a complete tree of height h has between 2<sup>h</sup> and 2<sup>h+1</sup> &minus; 1 nodes.'+m('2<sup>h</sup> &le; N &lt; 2<sup>h+1</sup>'),
+  'Take log<sub>2</sub> of all three parts.'+m('h &le; log<sub>2</sub>N &lt; h + 1'),
+  'Exactly one whole number h satisfies this, so the smallest and tallest heights coincide.'+m('h = &lfloor;log<sub>2</sub>N&rfloor;'),
+  '<small>Check, N = 10: 8 &le; 10 &lt; 16, so h = 3.</small>']],
+ ['Perfect tree: height from N',[
+  'Start from the node count of a perfect tree.'+m('N = 2<sup>h+1</sup> &minus; 1'),
+  'Add 1, then take log<sub>2</sub>.'+m('N + 1 = 2<sup>h+1</sup> &nbsp;&rArr;&nbsp; h = log<sub>2</sub>(N+1) &minus; 1'),
+  'This only works when N + 1 is a power of 2, so N is one of 1, 3, 7, 15, 31, ...',
+  'If N is only a budget, find the largest h with 2<sup>h+1</sup> &minus; 1 &le; N.'+m('h<sub>max</sub> = &lfloor;log<sub>2</sub>(N+1)&rfloor; &minus; 1'),
+  '<small>Check, N = 10: no perfect tree has 10 nodes. The tallest that fits has h = &lfloor;log<sub>2</sub>11&rfloor; &minus; 1 = 2 (7 nodes).</small>']]
+],dk=0,ds=1;
+function drv(){
+  Array.prototype.forEach.call($('dtop').children,function(b,i){b.className='b'+(i===dk?' on':'')});
+  var st=DV[dk][1],h='<b>'+DV[dk][0]+'</b>',i;
+  for(i=0;i<ds;i++)h+='<div class="stp'+(i===st.length-1?' last':'')+'">'+(i+1)+'. '+st[i]+'</div>';
+  $('dbox').innerHTML=h;$('dnext').disabled=ds>=st.length;
+}
+DV.forEach(function(d,i){var b=document.createElement('button');b.className='b';b.innerHTML=d[0];b.onclick=function(){dk=i;ds=1;drv()};$('dtop').appendChild(b)});
+$('dnext').onclick=function(){if(ds<DV[dk][1].length){ds++;drv()}};
+$('dall').onclick=function(){ds=DV[dk][1].length;drv()};
+$('dreset').onclick=function(){ds=1;drv()};
+drv();
+
+/* ---- Quiz ---- */
+var Q=[
+ ['What is the maximum number of nodes at level 5 of a binary tree?',['16','32','31','63'],1,'Level i holds at most 2^i nodes, so 2^5 = 32.'],
+ ['Minimum nodes in a full binary tree of height 4?',['5','8','9','16'],2,'2h + 1 = 9: a spine of 5 nodes plus 4 leaves hanging off it.'],
+ ['Minimum nodes in a complete binary tree of height 4?',['9','15','16','31'],2,'Levels 0 to 3 are full (15 nodes) plus one node at level 4, so 2^4 = 16.'],
+ ['A complete binary tree has 10 nodes. Its height is:',['2','3','4','Can be 3 or 9'],1,'h = floor(log2 10) = 3. Complete trees have exactly one possible height.'],
+ ['Can a perfect binary tree have exactly 10 nodes?',['Yes, height 3','Yes, height 2','No, N + 1 = 11 is not a power of 2','Yes, if it is full'],2,'Perfect trees have 2^(h+1) - 1 nodes: 1, 3, 7, 15, ...'],
+ ['Which statement is true?',['Full and complete together always mean perfect','A full tree can have an even number of nodes','Every perfect tree is full and complete','Every complete tree is full'],2,'A 5-node tree with positions 1 to 5 is full and complete but not perfect.']
+];
+var sc=0,an=0;
+Q.forEach(function(q,qi){var d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(qi+1)+'. '+q[0]+'</p>';
+  q[1].forEach(function(o,oi){var b=document.createElement('button');b.className='b';b.textContent=o;
+    b.onclick=function(){if(d.done)return;d.done=1;an++;var bs=d.querySelectorAll('button');
+      if(oi===q[2]){b.className='b ok';sc++}else{b.className='b no';bs[q[2]].className='b ok'}
+      d.insertAdjacentHTML('beforeend','<small>'+q[3]+'</small>');
+      $('score').textContent='Score: '+sc+' / '+an+(an===Q.length?(sc===Q.length?'. Perfect!':'. Revisit the sections you missed.'):'')};
+    d.appendChild(b)});$('quiz').appendChild(d)});
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="trees.html"><small>← Previous lesson</small><b>Trees</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="avl-trees.html"><small>Next lesson →</small><b>AVL trees</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

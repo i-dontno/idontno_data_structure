@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications of graphs · Learn Data Structures with idontno</title>
+<meta name="description" content="Social network analysis and routing algorithms.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="graph-applications">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="cur" data-lesson="graph-applications" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module IV · Graphs</span><span>›</span><span>Lesson 16 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+  Applications of Graphs: Social Network Analysis & Routing Algorithms
+  Interactive learning blog for MCA Data Structures
+  Paste this whole file into Blogger: New Post &#8594; "HTML view".
+  Do not switch back to "Compose view" after pasting.
+============================================================= -->
+<style>
+
+#gab{
+  --ink:#1c1f33; --ink2:#454a66; --muted:#6b7090; --paper:#fbfaf6; --card:#ffffff;
+  --line:#e4e2d9; --soft:#f3f1ea;
+  --accent:#0f766e; --accent-soft:#e1f3f0;
+  --pivot:#e8590c; --pivot-soft:#fff0e6;
+  --src:#2563eb; --src-soft:#e8efff;
+  --dst:#15803d; --dst-soft:#e6f6ea;
+  --upd:#f59f00; --upd-soft:#fff6d6;
+  --bad:#c92a2a; --bad-soft:#ffe9e9;
+  --codebg:#1e2235;
+  font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink); background:var(--paper); line-height:1.65; font-size:17px;
+  max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+#gab *,#gab *::before,#gab *::after{box-sizing:border-box}
+#gab p{margin:0 0 14px}
+#gab a{color:var(--accent)}
+#gab h2,#gab h3,#gab h4{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1.25;margin:0}
+#gab code,#gab .mono{font-family:'Fira Code',ui-monospace,monospace;font-size:.88em}
+#gab :not(pre)>code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+#gab ul,#gab ol{margin:0 0 14px;padding-left:24px}
+#gab li{margin:4px 0}
+#gab table{border-collapse:collapse}
+#gab img{max-width:100%}
+#gab button{font-family:inherit}
+
+/* ---------- hero ---------- */
+#gab .ga-hero{background:linear-gradient(135deg,#14213d 0%,#1f3a5f 55%,#0f766e 100%);color:#fff;border-radius:18px;padding:38px 34px 30px;margin:0 0 26px;position:relative;overflow:hidden}
+#gab .ga-hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,4.4vw,44px);font-weight:800;line-height:1.08;margin:6px 0 12px;color:#fff;letter-spacing:-.5px}
+#gab .ga-hero p{color:#d8e4f0;max-width:620px;font-size:17px}
+#gab .ga-kicker{font-family:'Fira Code',monospace;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fe3d7}
+#gab .ga-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#gab .ga-hero-tags span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:3px 12px}
+#gab .ga-hero svg{position:absolute;right:-20px;top:10px;opacity:.22;width:300px;height:220px}
+
+/* ---------- toc ---------- */
+#gab .ga-toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:28px}
+#gab .ga-toc h4{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:8px}
+#gab .ga-toc ol{columns:2;column-gap:30px;margin:0;padding-left:22px}
+#gab .ga-toc a{text-decoration:none;color:var(--ink2);font-weight:500}
+#gab .ga-toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#gab .ga-sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:26px}
+#gab .ga-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#gab .ga-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}
+#gab .ga-sec-head h2{font-size:clamp(22px,3vw,29px);font-weight:800;letter-spacing:-.3px}
+#gab h3{font-size:21px;font-weight:700;margin:26px 0 10px}
+#gab h4{font-size:17px;font-weight:700;margin:18px 0 8px}
+
+/* callouts */
+#gab .ga-box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#gab .ga-box b.t{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+#gab .ga-box p:last-child,#gab .ga-box ul:last-child{margin-bottom:0}
+#gab .ga-def{background:var(--accent-soft);border-color:#b5e0d8}
+#gab .ga-def b.t{color:var(--accent)}
+#gab .ga-exam{background:var(--upd-soft);border-color:#f5d97a}
+#gab .ga-exam b.t{color:#a36200}
+#gab .ga-warn{background:var(--bad-soft);border-color:#f4b9b9}
+#gab .ga-warn b.t{color:var(--bad)}
+#gab .ga-tip{background:var(--src-soft);border-color:#c3d4fb}
+#gab .ga-tip b.t{color:var(--src)}
+
+/* grids & cards */
+#gab .ga-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
+#gab .ga-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+#gab .ga-card h4{margin:0 0 6px;font-size:16px}
+#gab .ga-card p{font-size:15px;margin:0;color:var(--ink2)}
+#gab .ga-card .ga-pill{display:inline-block;font-family:'Fira Code',monospace;font-size:11.5px;padding:1px 8px;border-radius:99px;background:var(--ink);color:#fff;margin-bottom:6px}
+#gab .ga-card.hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* generic table */
+#gab .ga-tbl-wrap{overflow-x:auto;margin:14px 0}
+#gab table.ga-tbl{width:100%;font-size:15px;background:#fff}
+#gab table.ga-tbl th,#gab table.ga-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+#gab table.ga-tbl th{background:var(--soft);font-weight:700}
+#gab table.ga-tbl tr.hl td{background:var(--accent-soft)}
+
+/* formula */
+#gab .ga-formula{font-family:'Fira Code',monospace;background:var(--ink);color:#f1f3ff;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:15px;overflow-x:auto;line-height:1.9}
+#gab .ga-formula .k{color:#ffb37a}#gab .ga-formula .i{color:#8fb5ff}#gab .ga-formula .c{color:#8a91b4}
+
+/* distance matrices (worked example + visualizer) */
+#gab .ga-mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:16px 0}
+#gab .ga-mat-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto}
+#gab .ga-mat-card h4{margin:0 0 4px;font-size:16px}
+#gab .ga-mat-card .sub{font-size:13px;color:var(--muted);margin-bottom:8px}
+#gab table.ga-mat{font-family:'Fira Code',monospace;font-size:14.5px;margin:0 auto}
+#gab table.ga-mat th,#gab table.ga-mat td{width:44px;height:38px;text-align:center;border:1px solid var(--line);padding:0;background:#fff}
+#gab table.ga-mat th{background:var(--soft);color:var(--ink2);font-weight:600}
+#gab table.ga-mat td.krow,#gab table.ga-mat td.kcol{background:var(--pivot-soft)}
+#gab table.ga-mat td.chg{background:var(--upd-soft);font-weight:700;color:#8a4b00;box-shadow:inset 0 0 0 2px var(--upd)}
+#gab table.ga-mat th.kh{background:var(--pivot);color:#fff}
+#gab .ga-mat-card .chgs{font-size:13px;margin-top:8px;color:var(--ink2);font-family:'Fira Code',monospace;line-height:1.6}
+
+/* legend */
+#gab .ga-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px;color:var(--ink2);margin:8px 0}
+#gab .ga-legend span{display:inline-flex;align-items:center;gap:6px}
+#gab .ga-legend i{display:inline-block;width:14px;height:14px;border-radius:4px}
+
+/* code */
+#gab .ga-code{background:var(--codebg);border-radius:12px;margin:14px 0;overflow:hidden}
+#gab .ga-code-bar{display:flex;align-items:center;justify-content:space-between;background:#151827;padding:8px 14px;color:#a7adcf;font-family:'Fira Code',monospace;font-size:12.5px}
+#gab .ga-code pre{margin:0;padding:16px 18px;overflow-x:auto;color:#e6e8f5;font-family:'Fira Code',monospace;font-size:13.8px;line-height:1.65;background:transparent;border:0;white-space:pre}
+#gab .ga-code pre code{background:none;border:0;padding:0;font-size:inherit;color:inherit}
+#gab .ga-out pre{background:#0d1020;color:#b8f5c8}
+#gab .py-kw{color:#ff9ac1}#gab .py-str{color:#ffd88a}#gab .py-com{color:#7f88b0;font-style:italic}
+#gab .py-num{color:#9ee8ff}#gab .py-bi{color:#8fd3a5}#gab .py-fn{color:#8fb5ff}
+#gab .ga-copy{background:#2b3050;color:#e6e8f5;border:1px solid #3d4370;border-radius:7px;padding:4px 12px;font-size:12.5px;cursor:pointer;font-family:'Fira Code',monospace}
+#gab .ga-copy:hover{background:#3a4170}
+#gab .ga-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+#gab .ga-tab{border:1px solid var(--line);background:var(--soft);padding:8px 14px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink2)}
+#gab .ga-tab.on{background:var(--codebg);color:#fff;border-color:var(--codebg)}
+#gab .ga-pane{display:none}
+#gab .ga-pane.on{display:block}
+#gab .ga-pane > .ga-code:first-child{margin-top:0;border-top-left-radius:0}
+
+/* pseudocode */
+#gab .ga-pseudo{font-family:'Fira Code',monospace;font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 0;margin:12px 0;line-height:1.75;overflow-x:auto}
+#gab .ga-pseudo div{padding:0 16px;white-space:pre;border-left:3px solid transparent}
+#gab .ga-pseudo div .ln{display:inline-block;width:26px;color:#a0a4bd}
+#gab .ga-pseudo div.on{background:var(--upd-soft);border-left-color:var(--upd)}
+#gab .ga-pseudo .kw{color:#7c3aed;font-weight:600}
+#gab .ga-pseudo .cm{color:#8a8fa8;font-style:italic}
+
+/* buttons / inputs */
+#gab .ga-btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:8px 14px;border-radius:9px;font-weight:600;font-size:14.5px;cursor:pointer;line-height:1.2}
+#gab .ga-btn:hover{filter:brightness(1.25)}
+#gab .ga-btn.ghost{background:#fff;color:var(--ink)}
+#gab .ga-btn.ghost:hover{background:var(--soft);filter:none}
+#gab .ga-btn.acc{background:var(--accent);border-color:var(--accent)}
+#gab .ga-btn:disabled{opacity:.4;cursor:not-allowed}
+#gab select,#gab input[type=text]{font-family:inherit;font-size:14.5px;border:1px solid #cfccc0;border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+#gab .ga-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+#gab .ga-row label{font-size:14px;color:var(--ink2);font-weight:600}
+
+/* lab + visualizer layout */
+#gab .ga-lab{border:2px solid var(--ink);border-radius:16px;padding:18px;margin:18px 0;background:#fff}
+#gab .ga-lab-title{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#gab .ga-lab-title span{font-family:'Fira Code',monospace;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:var(--pivot);color:#fff;border-radius:6px;padding:2px 8px}
+#gab .ga-lab-title h3{margin:0;font-size:20px}
+#gab .ga-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+#gab .ga-two > *{min-width:0}
+#gab .ga-graph{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block}
+#gab .ga-graph .v circle{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+#gab .ga-graph .v text{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#gab .ga-graph .v.pivot circle{fill:var(--pivot);stroke:var(--pivot)}#gab .ga-graph .v.pivot text{fill:#fff}
+#gab .ga-graph .v.src circle{fill:var(--src);stroke:var(--src)}#gab .ga-graph .v.src text{fill:#fff}
+#gab .ga-graph .v.dst circle{fill:var(--dst);stroke:var(--dst)}#gab .ga-graph .v.dst text{fill:#fff}
+#gab .ga-graph .v.onpath circle{stroke:var(--accent);stroke-width:4}
+#gab .ga-graph .e path{fill:none;stroke:#8d91a8;stroke-width:2}
+#gab .ga-graph .e.neg path{stroke:var(--bad)}
+#gab .ga-graph .e.hov path{stroke:var(--upd);stroke-width:4}
+#gab .ga-graph .e.path path{stroke:var(--accent);stroke-width:4.5}
+#gab .ga-graph .e.dim{opacity:.35}
+#gab .ga-graph g.faded{opacity:.28}
+#gab .ga-graph .elab rect{fill:#fff;stroke:var(--line)}
+#gab .ga-graph .elab text{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#gab .ga-graph .elab.neg text{fill:var(--bad)}
+#gab .ga-graph .ov path{fill:none;stroke-width:2.5;stroke-dasharray:7 5}
+#gab .ga-graph .ov.a path{stroke:var(--src)}#gab .ga-graph .ov.b path{stroke:var(--dst)}#gab .ga-graph .ov.c path{stroke:#9aa0b8}
+#gab .ga-graph .ov text{font-family:'Fira Code',monospace;font-size:12.5px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+#gab .ga-graph .ov.a text{fill:var(--src)}#gab .ga-graph .ov.b text{fill:var(--dst)}#gab .ga-graph .ov.c text{fill:#6b7090}
+
+#gab table.ga-in{font-family:'Fira Code',monospace;font-size:14px;margin:6px 0}
+#gab table.ga-in th{background:var(--soft);width:46px;height:34px;border:1px solid var(--line);text-align:center}
+#gab table.ga-in td{border:1px solid var(--line);padding:0;width:56px;height:38px}
+#gab table.ga-in input{width:100%;height:38px;border:0;border-radius:0;text-align:center;font-family:'Fira Code',monospace;font-size:14px;padding:0;background:#fff}
+#gab table.ga-in input:focus{outline:2px solid var(--upd);background:var(--upd-soft)}
+#gab table.ga-in input:disabled{background:var(--soft);color:var(--muted)}
+#gab table.ga-in input.bad{background:var(--bad-soft);color:var(--bad)}
+#gab .ga-stat{font-size:14px;color:var(--ink2);background:var(--paper);border:1px dashed #cfccc0;border-radius:10px;padding:8px 12px;margin-top:8px;font-family:'Fira Code',monospace;line-height:1.6}
+
+#gab .ga-viz-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+#gab .ga-phase{font-weight:800;font-size:17px}
+#gab .ga-phase em{font-style:normal;color:var(--pivot)}
+#gab .ga-prog{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+#gab .ga-prog div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pivot));transition:width .25s}
+#gab .ga-msg{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:15.5px;min-height:78px;margin:10px 0}
+#gab .ga-msg.upd{border-left-color:var(--upd);background:#fffbea}
+#gab .ga-msg.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+#gab .ga-msg .calc{font-family:'Fira Code',monospace;font-size:14px;display:block;margin-top:4px}
+#gab .ga-vmat td{transition:background .2s}
+#gab table.ga-mat td.tgt{box-shadow:inset 0 0 0 3px var(--dst)}
+#gab table.ga-mat td.s1{box-shadow:inset 0 0 0 3px var(--src)}
+#gab table.ga-mat td.tgt.upd{background:var(--upd-soft);font-weight:700}
+#gab table.ga-mat td .old{display:block;font-size:10.5px;color:var(--muted);text-decoration:line-through;line-height:1}
+#gab table.ga-mat td.negd{background:var(--bad-soft);color:var(--bad);font-weight:700}
+#gab .ga-log{max-height:170px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 12px;line-height:1.7}
+#gab .ga-log div.cur{background:var(--upd-soft);border-radius:4px}
+#gab .ga-predict{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:var(--src-soft);border:1px solid #c3d4fb;border-radius:10px;padding:10px 12px;margin:8px 0}
+#gab .ga-predict.on{display:flex}
+#gab .ga-predict b{font-size:15px}
+#gab .ga-pathres{font-family:'Fira Code',monospace;font-size:14.5px;margin-top:6px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);display:none}
+
+/* details (answers) */
+#gab details{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+#gab details summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style:none}
+#gab details summary::-webkit-details-marker{display:none}
+#gab details summary::before{content:"\0025B8  ";color:var(--accent)}
+#gab details[open] summary::before{content:"\0025BE  "}
+#gab details .ans{padding:0 16px 12px;border-top:1px dashed var(--line);padding-top:10px}
+
+/* quiz */
+#gab .ga-q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--paper)}
+#gab .ga-q .qt{font-weight:700;margin-bottom:10px}
+#gab .ga-q .qt span{color:var(--accent);margin-right:6px}
+#gab .ga-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;margin:6px 0;cursor:pointer;font-size:15.5px;color:var(--ink)}
+#gab .ga-opt:hover:not(:disabled){border-color:var(--ink2)}
+#gab .ga-opt.right{border-color:var(--dst);background:var(--dst-soft)}
+#gab .ga-opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+#gab .ga-opt:disabled{cursor:default;opacity:1}
+#gab .ga-exp{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:9px;background:var(--src-soft)}
+#gab .ga-score{font-size:18px;font-weight:800;padding:14px 16px;border-radius:12px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* ---------- slide navigation ---------- */
+#gab .ga-nav{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 18px;box-shadow:0 4px 14px rgba(28,31,51,.06)}
+#gab .ga-nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:2px}
+#gab .ga-nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;padding:5px 10px 5px 7px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;line-height:1.2}
+#gab .ga-nav-tab b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:var(--soft);color:var(--ink);font-size:12.5px}
+#gab .ga-nav-tab:hover{border-color:var(--ink2)}
+#gab .ga-nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#gab .ga-nav-tab.on b{background:var(--pivot);color:#fff}
+#gab .ga-nav-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+#gab .ga-nav-count{flex:1 1 200px;text-align:center;font-weight:700;font-size:15px;color:var(--ink)}
+#gab .ga-nav-count span{font-family:'Fira Code',monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin-right:8px;color:var(--ink2)}
+#gab .ga-nav-bar .ga-btn{padding:7px 12px;font-size:14px}
+#gab .ga-nav-tools{display:flex;gap:8px;margin-left:auto}
+#gab.ga-slides .ga-slide{display:none}
+#gab.ga-slides .ga-slide.on{display:block;animation:gaFade .25s ease}
+@keyframes gaFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#gab .ga-slide-foot{display:none;justify-content:space-between;gap:10px;margin:-8px 0 26px}
+#gab.ga-slides .ga-slide-foot{display:flex}
+#gab:fullscreen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#gab:-webkit-full-screen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#gab:fullscreen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+#gab:-webkit-full-screen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+@media (max-width:760px){
+  #gab .ga-nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
+  #gab .ga-nav-count{order:-1;flex-basis:100%}
+  #gab .ga-nav-tools{margin-left:0}
+}
+#gab .ga-foot{text-align:center;color:var(--muted);font-size:14px;margin-top:10px}
+
+@media (max-width:760px){
+  #gab{font-size:16px}
+  #gab .ga-sec{padding:20px 16px}
+  #gab .ga-two{grid-template-columns:1fr}
+  #gab .ga-toc ol{columns:1}
+  #gab .ga-hero{padding:28px 20px}
+  #gab .ga-hero svg{display:none}
+  #gab .ga-lab{padding:12px}
+  #gab table.ga-mat th,#gab table.ga-mat td{width:38px;height:34px;font-size:13px}
+}
+
+/* ---------- topic-specific ---------- */
+#gab .ga-hero{background:linear-gradient(135deg,#1d1838 0%,#3b2a6b 50%,#0e7490 100%)}
+#gab .ga-hero .ga-kicker{color:#b9e6f5}
+#gab .ga-nav-tabs{gap:4px}
+#gab .ga-nav-tab{padding:5px 7px 5px 4px;font-size:12.5px;gap:4px}
+#gab .ga-nav-tab b{min-width:19px;height:19px;font-size:12px}
+#gab .ga-toc li{margin:0 0 6px;break-inside:avoid}
+#gab .ga-net{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block;user-select:none}
+#gab .ga-net .e line{stroke:#a3a7bd;stroke-width:2.5;stroke-linecap:round}
+#gab .ga-net .e.hl line{stroke:var(--accent);stroke-width:5.5}
+#gab .ga-net .e.path line{stroke:var(--pivot);stroke-width:6}
+#gab .ga-net .e.tree line{stroke:var(--dst);stroke-width:5}
+#gab .ga-net .e.relax line{stroke:var(--upd);stroke-width:5}
+#gab .ga-net .e.down line{stroke:var(--bad);stroke-width:3;stroke-dasharray:6 6}
+#gab .ga-net .e.faint{opacity:.28}
+#gab .ga-net .e.hov line{stroke:var(--upd);stroke-width:6}
+#gab .ga-net .elab rect{fill:#fff;stroke:var(--line)}
+#gab .ga-net .elab text{font-family:'Fira Code',monospace;font-size:12.5px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#gab .ga-net .elab.down text{fill:var(--bad)}
+#gab .ga-net .v{cursor:pointer}
+#gab .ga-net .v rect{fill:#fff;stroke:var(--ink);stroke-width:2}
+#gab .ga-net .v text{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;fill:var(--ink);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#gab .ga-net .v.focus rect{fill:var(--pivot);stroke:var(--pivot)}#gab .ga-net .v.focus text{fill:#fff}
+#gab .ga-net .v.friend rect{fill:var(--dst-soft);stroke:var(--dst);stroke-width:2.5}
+#gab .ga-net .v.sugg rect{fill:var(--upd-soft);stroke:var(--upd);stroke-width:2.5}
+#gab .ga-net .v.target rect{fill:var(--src);stroke:var(--src)}#gab .ga-net .v.target text{fill:#fff}
+#gab .ga-net .v.onpath rect{fill:var(--pivot-soft);stroke:var(--pivot);stroke-width:2.5}
+#gab .ga-net .v.cur rect{fill:var(--upd);stroke:#b37400}
+#gab .ga-net .v.done rect{fill:var(--dst-soft);stroke:var(--dst)}
+#gab .ga-net .v.inq rect{fill:var(--src-soft);stroke:var(--src);stroke-dasharray:4 3}
+#gab .ga-net .v.faint{opacity:.35}
+#gab .ga-net .v.dark text{fill:#fff}
+#gab .ga-net .badge{font-family:'Fira Code',monospace;font-size:11.5px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:central}
+#gab .ga-net .badgebg{fill:var(--ink)}
+#gab .ga-net .badgebg.o{fill:#b36200}
+#gab .ga-net .v rect.badgebg{fill:var(--ink);stroke:#fff;stroke-width:1.5}
+#gab .ga-net .v rect.badgebg.o{fill:#b36200}
+#gab .ga-net .v text.badge{fill:#fff;font-size:11.5px}
+#gab .ga-net .pkt{fill:var(--pivot);stroke:#fff;stroke-width:2}
+#gab .ga-modes{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+#gab .ga-mode{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:7px 12px;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink2)}
+#gab .ga-mode.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#gab .ga-side{font-size:14.5px}
+#gab .ga-side h4{margin:4px 0 6px}
+#gab .ga-side table{width:100%}
+#gab table.ga-t{font-family:'Fira Code',monospace;font-size:13px}
+#gab table.ga-t td,#gab table.ga-t th{text-align:center;white-space:nowrap;padding:6px 7px}
+#gab table.ga-t td.l,#gab table.ga-t th.l{text-align:left}
+#gab table.ga-t td.upd{background:var(--upd-soft);font-weight:700}
+#gab table.ga-t td.done{color:var(--dst);font-weight:700}
+#gab table.ga-t td.inf{color:var(--bad)}
+#gab table.ga-t tr.me td{background:var(--pivot-soft)}
+#gab table.ga-t td small{color:var(--muted);font-size:10.5px;display:block;line-height:1.1}
+#gab .ga-chip{display:inline-block;font-family:'Fira Code',monospace;font-size:13px;border-radius:8px;padding:2px 9px;border:1.5px solid var(--line);background:#fff;margin:2px 3px 2px 0}
+#gab .ga-chip.g{border-color:var(--dst);background:var(--dst-soft)}
+#gab .ga-chip.o{border-color:var(--upd);background:var(--upd-soft)}
+#gab .ga-chip.b{border-color:var(--src);background:var(--src-soft)}
+#gab .ga-sugg{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:10px;padding:7px 10px;margin:6px 0;background:#fff}
+#gab .ga-sugg .ms{font-size:13px;color:var(--ink2)}
+#gab .ga-sugg .ga-btn{padding:5px 10px;font-size:13px}
+#gab .ga-meter{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;min-width:60px}
+#gab .ga-meter div{height:100%;background:var(--accent)}
+#gab .ga-scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin:12px 0}
+#gab .ga-scen .ga-card{display:flex;flex-direction:column;gap:8px}
+#gab .ga-scen select{font-size:13.5px;padding:5px 6px}
+#gab .ga-scen .fb{font-size:14px;min-height:20px}
+#gab .ga-memo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+#gab .ga-memo .ga-card b.big{display:block;font-size:24px;font-family:'Fira Code',monospace}
+#gab .ga-vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#gab .ga-vs > div{border-radius:14px;padding:16px;border:1.5px solid}
+#gab .ga-vs .p{background:#eef4ff;border-color:#bcd0fb}
+#gab .ga-vs .k{background:#fff3e8;border-color:#f6c79d}
+#gab .ga-vs h4{margin:0 0 8px;font-size:18px}
+#gab .ga-pktres{font-family:'Fira Code',monospace;font-size:14px;margin-top:6px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);display:none}
+#gab .ga-pktres.bad{background:var(--bad-soft);color:var(--bad)}
+@media (max-width:760px){
+  #gab .ga-vs,#gab .ga-memo{grid-template-columns:1fr}
+}
+</style>
+
+<div id="gab">
+
+<!-- ======================= SLIDE NAVIGATION ======================= -->
+<nav class="ga-nav" id="ga-nav" aria-label="Blog sections">
+  <div class="ga-nav-tabs" id="ga-nav-tabs">
+    <button class="ga-nav-tab" data-slide="0" style="padding-left:11px">Home</button>
+    <button class="ga-nav-tab" data-slide="1"><b>1</b>What is it</button>
+    <button class="ga-nav-tab" data-slide="2"><b>2</b>Concepts &amp; lab</button>
+    <button class="ga-nav-tab" data-slide="3"><b>3</b>Social networks</button>
+    <button class="ga-nav-tab" data-slide="4"><b>3B</b>Routing</button>
+    <button class="ga-nav-tab" data-slide="5"><b>4</b>Complexity</button>
+    <button class="ga-nav-tab" data-slide="6"><b>5</b>Special cases</button>
+    <button class="ga-nav-tab" data-slide="7"><b>6</b>Python</button>
+    <button class="ga-nav-tab" data-slide="8"><b>7</b>Practice</button>
+  </div>
+  <div class="ga-nav-bar">
+    <button class="ga-btn ghost" id="ga-nav-prev">&#8592; Previous</button>
+    <div class="ga-nav-count" id="ga-nav-count"></div>
+    <button class="ga-btn" id="ga-nav-next">Next &#8594;</button>
+    <div class="ga-nav-tools">
+      <button class="ga-btn ghost" id="ga-nav-all">Show all sections</button>
+      <button class="ga-btn ghost" id="ga-nav-fs">&#9974; Fullscreen</button>
+    </div>
+  </div>
+</nav>
+
+<div class="ga-slide" id="ga-home" data-title="Overview" data-num="Home">
+<header class="ga-hero">
+  <svg viewBox="0 0 300 220" aria-hidden="true">
+    <g stroke="#fff" stroke-width="3" fill="none"><path d="M40 60 L110 40 L90 120 Z"/><path d="M110 40 L180 90"/><path d="M90 120 L180 90"/><path d="M180 90 L250 50"/><path d="M180 90 L240 160"/><path d="M250 50 L240 160"/><path d="M90 120 L120 190"/></g>
+    <g fill="#fff"><circle cx="40" cy="60" r="13"/><circle cx="110" cy="40" r="13"/><circle cx="90" cy="120" r="13"/><circle cx="180" cy="90" r="17"/><circle cx="250" cy="50" r="13"/><circle cx="240" cy="160" r="13"/><circle cx="120" cy="190" r="13"/></g>
+  </svg>
+  <div class="ga-kicker">Graphs in the real world &#183; BFS &#183; Dijkstra &#183; Bellman&#8211;Ford</div>
+  <h1>Applications of Graphs: Social Network Analysis &amp; Routing Algorithms</h1>
+  <p>The same data structure answers &#8220;who should I add as a friend?&#8221; and &#8220;which way should this Internet packet go?&#8221;. Explore a friendship network and a router network, and see graph algorithms at work.</p>
+  <div class="ga-hero-tags"><span>MCA &#183; Data Structures</span><span>Centrality</span><span>Degrees of separation</span><span>Link-state &amp; Distance-vector</span><span>Python</span></div>
+</header>
+
+<nav class="ga-toc">
+  <h4>In this post</h4>
+  <ol>
+    <li><a href="#ga-s1">Graphs in the Real World</a></li>
+    <li><a href="#ga-s2">Core Concepts &amp; Modelling Lab</a></li>
+    <li><a href="#ga-s3">Social Network Analysis + Visualiser</a></li>
+    <li><a href="#ga-s3b">3B. Routing Algorithms + Visualiser</a></li>
+    <li><a href="#ga-s4">Comparison &amp; Complexity</a></li>
+    <li><a href="#ga-s5">Special Cases &amp; Common Mistakes</a></li>
+    <li><a href="#ga-s6">Python Implementation</a></li>
+    <li><a href="#ga-s7">Practice &amp; Quiz</a></li>
+  </ol>
+</nav>
+</div>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s1" data-title="Graphs in the real world" data-num="1">
+  <div class="ga-sec-head"><div class="ga-num">1</div><h2>Graphs in the Real World</h2></div>
+
+  <p>A <b>graph</b> G = (V, E) is a set of <b>vertices</b> (nodes) connected by <b>edges</b> (links). Whenever a problem is about <i>things</i> and the <i>relationships between them</i>, a graph is usually the right data structure. In the earlier posts of this series we learned BFS, DFS, Dijkstra's, Floyd&#8211;Warshall, Prim's and Kruskal's algorithms. In this post we see where they are actually used.</p>
+
+  <div class="ga-box ga-def"><b class="t">Why graphs?</b>
+  <ul>
+    <li>Arrays, lists and trees store data in a fixed shape (sequence or hierarchy). Real relationships are messier: anyone can be friends with anyone, any router can link to any other.</li>
+    <li>A graph stores <b>arbitrary connections</b> directly, so questions like &#8220;how are these two connected?&#8221; become standard graph algorithms.</li>
+  </ul></div>
+
+  <h3>One graph, two worlds</h3>
+  <div class="ga-vs">
+    <div class="p"><h4>&#128101; Social network</h4>
+      <ul style="margin:0;font-size:15px"><li><b>Vertex</b> = a person (user account)</li><li><b>Edge</b> = friendship / follow / message</li><li><b>Question</b>: Who is influential? Whom should I befriend? How far apart are two people?</li></ul></div>
+    <div class="k"><h4>&#127760; Computer network</h4>
+      <ul style="margin:0;font-size:15px"><li><b>Vertex</b> = a router (or computer)</li><li><b>Edge</b> = a physical/logical link, with a <b>cost</b></li><li><b>Question</b>: Which way should a packet go? What if a link fails?</li></ul></div>
+  </div>
+
+  <h3>Application &#8594; graph question &#8594; algorithm</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Real-world question</th><th>Graph question</th><th>Algorithm</th></tr>
+    <tr><td>How many &#8220;handshakes&#8221; separate me from a celebrity?</td><td>Shortest path in an <b>unweighted</b> graph</td><td>BFS</td></tr>
+    <tr><td>People you may know</td><td>Vertices sharing many neighbours</td><td>Neighbour-set intersection</td></tr>
+    <tr><td>Who connects two communities?</td><td>Vertex on many shortest paths</td><td>Betweenness centrality (BFS from every vertex)</td></tr>
+    <tr><td>Is everyone reachable from everyone?</td><td>Connected components</td><td>BFS / DFS</td></tr>
+    <tr><td>Best route for a data packet</td><td>Shortest path in a <b>weighted</b> graph</td><td>Dijkstra's (link-state), Bellman&#8211;Ford (distance-vector)</td></tr>
+    <tr><td>Distance table between all cities / routers</td><td>All-pairs shortest paths</td><td>Floyd&#8211;Warshall</td></tr>
+    <tr><td>Cheapest way to cable all offices</td><td>Minimum spanning tree</td><td>Prim's / Kruskal's</td></tr>
+  </table></div>
+
+  <h3>Other important applications</h3>
+  <div class="ga-grid">
+    <div class="ga-card"><h4>&#128506;&#65039; Maps &amp; GPS</h4><p>Road junctions are vertices, roads are weighted edges; navigation apps run shortest-path algorithms.</p></div>
+    <div class="ga-card"><h4>&#128270; Web search</h4><p>Web pages are vertices and hyperlinks are directed edges; ranking algorithms such as PageRank work on this graph.</p></div>
+    <div class="ga-card"><h4>&#128722; Recommendations</h4><p>Users and products form a graph; &#8220;people who bought this also bought&#8230;&#8221; follows edges.</p></div>
+    <div class="ga-card"><h4>&#129440; Epidemiology</h4><p>Contact graphs show how a disease (or a rumour) spreads, and who should be vaccinated or informed first.</p></div>
+    <div class="ga-card"><h4>&#128230; Dependencies</h4><p>Package managers and build tools use directed acyclic graphs and topological sorting to decide installation order.</p></div>
+    <div class="ga-card"><h4>&#129516; Biology &amp; chemistry</h4><p>Molecules (atoms + bonds) and protein-interaction networks are graphs.</p></div>
+  </div>
+  <p>In this post we study the two named applications in depth: <b>Social Network Analysis</b> (Section 3) and <b>Routing Algorithms</b> (Section 3B).</p>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s2" data-title="Core concepts &amp; modelling lab" data-num="2">
+  <div class="ga-sec-head"><div class="ga-num">2</div><h2>Core Concepts</h2></div>
+
+  <h3>2.1 Modelling a social network</h3>
+  <ul>
+    <li><b>Undirected graph</b> when the relationship is mutual: Facebook friends, LinkedIn connections.</li>
+    <li><b>Directed graph</b> when it is one-way: Instagram / X followers. A &#8594; B means &#8220;A follows B&#8221;. Then we talk about <b>in-degree</b> (followers) and <b>out-degree</b> (following).</li>
+    <li><b>Weighted graph</b> when the strength matters: number of messages exchanged, years of friendship.</li>
+    <li>Vertices can carry <b>attributes</b> (age, city, interests) &#8212; useful for recommendations.</li>
+  </ul>
+
+  <h3>2.2 Modelling a computer network</h3>
+  <ul>
+    <li>Vertices are <b>routers</b>; edges are <b>links</b> between them.</li>
+    <li>Each link has a <b>cost</b> (also called metric): hop count (every link = 1), delay, or a value based on bandwidth (faster link &#8594; lower cost). Costs are never negative.</li>
+    <li>Links usually work in both directions, so we use an <b>undirected weighted graph</b> (or a directed one if costs differ by direction).</li>
+  </ul>
+
+  <h3>2.3 Social network analysis (SNA) terminology</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th style="width:27%">Term</th><th>Meaning</th></tr>
+    <tr><td><b>Degree</b></td><td>Number of friends (edges) of a person.</td></tr>
+    <tr><td><b>Neighbourhood N(v)</b></td><td>The set of v's friends.</td></tr>
+    <tr><td><b>Mutual friends</b></td><td>N(u) &#8745; N(v) &#8212; people who are friends with both u and v.</td></tr>
+    <tr><td><b>Distance / degrees of separation</b></td><td>Number of edges on the shortest path between two people.</td></tr>
+    <tr><td><b>Diameter</b></td><td>The largest distance between any two people in the network.</td></tr>
+    <tr><td><b>Connected component</b></td><td>A group in which everyone can reach everyone else.</td></tr>
+    <tr><td><b>Triadic closure</b></td><td>If A&#8211;B and B&#8211;C are friends, A&#8211;C are likely to become friends (closing the triangle). The basis of friend suggestions.</td></tr>
+    <tr><td><b>Clustering coefficient</b></td><td>Fraction of pairs of a person's friends who are friends with each other: how &#8220;tight&#8221; their circle is.</td></tr>
+    <tr><td><b>Centrality</b></td><td>A score for how important a vertex is: degree, closeness, betweenness, &#8230;</td></tr>
+    <tr><td><b>Bridge / broker</b></td><td>A person (or edge) linking otherwise separate groups.</td></tr>
+    <tr><td><b>Small-world network</b></td><td>Most people are tightly clustered, yet any two are connected by a short path.</td></tr>
+  </table></div>
+
+  <h3>2.4 Routing terminology</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th style="width:27%">Term</th><th>Meaning</th></tr>
+    <tr><td><b>Routing</b></td><td>Deciding the path packets should take (building the routing tables).</td></tr>
+    <tr><td><b>Forwarding</b></td><td>Sending an arriving packet out on the correct link, using the routing table.</td></tr>
+    <tr><td><b>Routing table</b></td><td>For each destination: total cost and the <b>next hop</b> (the neighbour to send the packet to).</td></tr>
+    <tr><td><b>Link-state routing</b></td><td>Every router learns the <b>whole map</b> and runs <b>Dijkstra's</b> algorithm itself (e.g. OSPF, IS-IS).</td></tr>
+    <tr><td><b>Distance-vector routing</b></td><td>Routers only exchange distance lists with <b>neighbours</b> and apply the <b>Bellman&#8211;Ford</b> equation (e.g. RIP).</td></tr>
+    <tr><td><b>Convergence</b></td><td>The state in which all routing tables are correct and stop changing.</td></tr>
+    <tr><td><b>Count-to-infinity</b></td><td>A distance-vector problem: after a failure, routers keep raising each other's costs slowly instead of declaring the destination unreachable.</td></tr>
+  </table></div>
+
+  <h3>2.5 Which representation?</h3>
+  <p>A social network is huge but <b>sparse</b>: each person has a few hundred friends out of billions of users. An <b>adjacency matrix</b> needs V&#178; cells, almost all of them 0. An <b>adjacency list</b> stores only the existing edges (V + 2E entries for an undirected graph). For router networks (tens to thousands of routers) both work, but link-state databases are stored as lists of links.</p>
+
+  <!-- LAB -->
+  <div class="ga-lab" id="ga-lab">
+    <div class="ga-lab-title"><span>Interactive Lab</span><h3>Graph Modelling Lab</h3></div>
+    <h4>Part A &#8212; Choose the right kind of graph</h4>
+    <p style="font-size:15px;color:var(--ink2)">For each scenario, pick the graph type, then press <b>Check</b>.</p>
+    <div class="ga-scen" id="ga-scen"></div>
+    <div class="ga-row"><button class="ga-btn" id="ga-scen-check">Check answers</button><button class="ga-btn ghost" id="ga-scen-reset">Reset</button><span id="ga-scen-score" style="font-weight:700"></span></div>
+
+    <h4 style="margin-top:22px">Part B &#8212; Matrix or list? Memory calculator</h4>
+    <div class="ga-row"><label>Users V</label><select id="ga-mem-v"><option value="1000">1 thousand</option><option value="1000000">1 million</option><option value="100000000">100 million</option><option value="1000000000" selected>1 billion</option><option value="3000000000">3 billion</option></select>
+      <label>Average friends</label><input type="range" id="ga-mem-k" min="10" max="1000" step="10" value="200"><span class="mono" id="ga-mem-kv"></span></div>
+    <div class="ga-memo">
+      <div class="ga-card"><h4>Adjacency matrix (1 bit per cell)</h4><b class="big" id="ga-mem-mat"></b><p>V&#178; cells &#8212; almost all zeros.</p></div>
+      <div class="ga-card hl"><h4>Adjacency list (8 bytes per entry)</h4><b class="big" id="ga-mem-list"></b><p>V + 2E entries &#8212; only real friendships.</p></div>
+    </div>
+    <p id="ga-mem-note" style="font-size:15px;margin-top:10px"></p>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s3" data-title="Social network analysis" data-num="3">
+  <div class="ga-sec-head"><div class="ga-num">3</div><h2>Social Network Analysis</h2></div>
+
+  <p><b>Social Network Analysis (SNA)</b> studies relationships between people using graph theory. Platforms use it to suggest friends, rank posts, detect fake accounts and find communities; sociologists use it to study how information and opinions spread. We use the friendship network below: a <b>college group</b> (left) and an <b>office group</b> (right), linked through Rohan and Neha.</p>
+  <svg class="ga-net" id="ga-soc-static" viewBox="0 0 600 340" style="max-width:600px;margin:8px auto"></svg>
+  <p style="text-align:center;font-size:14px;color:var(--muted)">Figure &#8212; Example friendship network: 10 people, 14 friendships (undirected, unweighted).</p>
+
+  <h3>3.1 Friends and mutual friends</h3>
+  <p>With an adjacency list of <b>sets</b>, a person's friends are <code>graph[p]</code> and their <b>degree</b> is <code>len(graph[p])</code>. Mutual friends are a <b>set intersection</b>: <code>graph[a] &amp; graph[b]</code>. Example: Sara's friends are {Neha, Vikram, Isha}; Sara and Arjun have mutual friends {Isha, Vikram}.</p>
+
+  <h3>3.2 Friend recommendation (&#8220;People you may know&#8221;)</h3>
+  <p>Based on <b>triadic closure</b>: friends-of-friends are likely future friends. A simple and widely taught method:</p>
+  <ol>
+    <li>For every friend f of the person p, look at f's friends.</li>
+    <li>Skip p itself and people who are already p's friends.</li>
+    <li>Count how many times each remaining person appears = number of <b>mutual friends</b>.</li>
+    <li>Recommend in decreasing order of the count.</li>
+  </ol>
+  <p>For Sara: Arjun (2 mutual friends: Isha, Vikram), then Rohan (1: Neha). A refinement, the <b>Jaccard coefficient</b> |N(u) &#8745; N(v)| / |N(u) &#8746; N(v)|, divides by the size of both friend lists so that very popular people do not dominate.</p>
+
+  <h3>3.3 Degrees of separation with BFS</h3>
+  <p>In an <b>unweighted</b> graph, the shortest path is the one with the fewest edges, and <b>Breadth-First Search</b> finds it: BFS visits everyone at distance 1, then distance 2, and so on, like ripples in water.</p>
+  <div class="ga-pseudo">
+<div><span class="ln">1</span><span class="kw">BFS-DISTANCES</span>(G, s)</div>
+<div><span class="ln">2</span>   dist[s] &#8592; 0;  Q &#8592; queue containing s</div>
+<div><span class="ln">3</span>   <span class="kw">while</span> Q not empty:</div>
+<div><span class="ln">4</span>      u &#8592; DEQUEUE(Q)</div>
+<div><span class="ln">5</span>      <span class="kw">for each</span> friend v of u:</div>
+<div><span class="ln">6</span>         <span class="kw">if</span> v not visited:   dist[v] &#8592; dist[u] + 1;  parent[v] &#8592; u;  ENQUEUE(Q, v)</div>
+<div><span class="ln">7</span>   <span class="kw">return</span> dist      <span class="cm">// follow parent[] back to get the actual chain of friends</span></div>
+  </div>
+  <h4>Worked example &#8212; BFS from Aarav</h4>
+  <div class='ga-tbl-wrap'><table class='ga-tbl ga-t'><tr><th>Step</th><th>Dequeue</th><th class='l'>Newly discovered (distance)</th><th class='l'>Queue after</th></tr><tr><td>0</td><td>&#8212;</td><td class='l'>start: dist[Aarav] = 0</td><td class='l'>Aarav</td></tr><tr><td>1</td><td><b>Aarav</b></td><td class='l'>Diya (1), Kabir (1), Meera (1)</td><td class='l'>Diya, Kabir, Meera</td></tr><tr><td>2</td><td><b>Diya</b></td><td class='l'>&#8212;</td><td class='l'>Kabir, Meera</td></tr><tr><td>3</td><td><b>Kabir</b></td><td class='l'>&#8212;</td><td class='l'>Meera</td></tr><tr><td>4</td><td><b>Meera</b></td><td class='l'>Rohan (2)</td><td class='l'>Rohan</td></tr><tr><td>5</td><td><b>Rohan</b></td><td class='l'>Neha (3)</td><td class='l'>Neha</td></tr><tr><td>6</td><td><b>Neha</b></td><td class='l'>Sara (4), Isha (4)</td><td class='l'>Sara, Isha</td></tr><tr><td>7</td><td><b>Sara</b></td><td class='l'>Vikram (5)</td><td class='l'>Isha, Vikram</td></tr><tr><td>8</td><td><b>Isha</b></td><td class='l'>Arjun (5)</td><td class='l'>Vikram, Arjun</td></tr><tr><td>9</td><td><b>Vikram</b></td><td class='l'>&#8212;</td><td class='l'>Arjun</td></tr><tr><td>10</td><td><b>Arjun</b></td><td class='l'>&#8212;</td><td class='l'>empty</td></tr></table></div>
+  <p>Result: Aarav's friends are at distance 1, Rohan at 2, Neha at 3, Sara and Isha at 4, and Vikram and Arjun at <b>5</b>. A shortest chain to Arjun is Aarav &#8594; Meera &#8594; Rohan &#8594; Neha &#8594; Isha &#8594; Arjun. The largest distance in the whole network (its <b>diameter</b>) is 6, between Diya and Arjun.</p>
+  <div class="ga-box ga-tip"><b class="t">Small-world in real life</b>
+  <p>The &#8220;six degrees of separation&#8221; idea dates back to Frigyes Karinthy (1929) and Stanley Milgram's letter-forwarding experiments in the 1960s. In 2016, Facebook estimated the separation between its 1.59 billion active users at an average of only <b>3.57</b>. Careful: Facebook counted the <i>people in between</i>, so 3.57 degrees means an average shortest path of 4.57 friendship links. Always state which convention you use; in this post, distance = number of edges.</p></div>
+
+  <h3>3.4 Clustering coefficient</h3>
+  <div class="ga-formula">C(v) = (number of links among v's friends) / ( k(k &#8722; 1) / 2 )        <span class="c">// k = degree of v, k &#8805; 2</span></div>
+  <p>Isha has 4 friends (Neha, Sara, Vikram, Arjun) &#8594; 6 possible pairs. Three pairs are friends (Neha&#8211;Sara, Sara&#8211;Vikram, Vikram&#8211;Arjun), so C(Isha) = 3/6 = <b>0.50</b>. Diya's two friends know each other: C = 1. Rohan's two friends (Meera, Neha) do not: C = 0 &#8212; a typical <b>bridge</b>.</p>
+
+  <h3>3.5 Centrality: who is most important?</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Measure</th><th>Formula (n people)</th><th>Meaning</th><th>Algorithm</th></tr>
+    <tr><td><b>Degree centrality</b></td><td>deg(v) / (n &#8722; 1)</td><td>Popularity: many direct friends</td><td>Count neighbours, O(1) with lists</td></tr>
+    <tr><td><b>Closeness centrality</b></td><td>(n &#8722; 1) / &#931; dist(v, u)</td><td>Can reach everyone quickly (good spreader)</td><td>BFS from v, O(V + E)</td></tr>
+    <tr><td><b>Betweenness centrality</b></td><td>&#931; &#963;<sub>st</sub>(v) / &#963;<sub>st</sub> over pairs s, t</td><td>Lies on many shortest paths: a broker or bridge</td><td>Brandes' algorithm, O(V&#183;E)</td></tr>
+  </table></div>
+  <p style="font-size:15px">(&#963;<sub>st</sub> = number of shortest paths from s to t; &#963;<sub>st</sub>(v) = how many of them pass through v.)</p>
+  <h4>Results for our network</h4>
+  <div class='ga-tbl-wrap'><table class='ga-tbl ga-t'><tr><th class='l'>Person</th><th>Friends</th><th>Degree c.</th><th>Closeness</th><th>Betweenness</th><th>Clustering</th></tr><tr><td class='l'><b>Neha</b></td><td>3</td><td>0.33</td><td>0.474</td><td>20.0</td><td>0.33</td></tr><tr><td class='l'><b>Rohan</b></td><td>2</td><td>0.22</td><td>0.474</td><td>20.0</td><td>0.00</td></tr><tr><td class='l'><b>Meera</b></td><td>3</td><td>0.33</td><td>0.429</td><td>18.0</td><td>0.33</td></tr><tr><td class='l'><b>Isha</b></td><td>4</td><td>0.44</td><td>0.409</td><td>9.5</td><td>0.50</td></tr><tr><td class='l'><b>Aarav</b></td><td>3</td><td>0.33</td><td>0.346</td><td>3.5</td><td>0.67</td></tr><tr><td class='l'><b>Kabir</b></td><td>3</td><td>0.33</td><td>0.346</td><td>3.5</td><td>0.67</td></tr><tr><td class='l'><b>Sara</b></td><td>3</td><td>0.33</td><td>0.391</td><td>3.0</td><td>0.67</td></tr><tr><td class='l'><b>Vikram</b></td><td>3</td><td>0.33</td><td>0.321</td><td>0.5</td><td>0.67</td></tr><tr><td class='l'><b>Arjun</b></td><td>2</td><td>0.22</td><td>0.310</td><td>0.0</td><td>1.00</td></tr><tr><td class='l'><b>Diya</b></td><td>2</td><td>0.22</td><td>0.273</td><td>0.0</td><td>1.00</td></tr></table></div>
+  <p><b>Isha</b> is the most popular (4 friends), but <b>Rohan</b> and <b>Neha</b>, with only 2&#8211;3 friends, have the highest closeness and betweenness: every message between the two groups must pass through them. Remove Rohan and the network splits in two. Different questions, different &#8220;most important&#8221; person.</p>
+
+  <h3>3.6 Communities</h3>
+  <p>A <b>community</b> is a group with many links inside and few links outside (here: college vs office). The simplest grouping is by <b>connected components</b> (BFS/DFS). For connected networks, methods such as Girvan&#8211;Newman repeatedly remove the edge with the highest betweenness &#8212; in our network that is Rohan&#8211;Neha, which immediately separates the two groups.</p>
+
+  <!-- SOCIAL VISUALISER -->
+  <div class="ga-lab" id="ga-sv">
+    <div class="ga-lab-title"><span>Visualiser</span><h3>Social Network Explorer</h3></div>
+    <p style="font-size:15px;color:var(--ink2);margin-bottom:4px">Click any person in the graph (or use the menu) to make them the focus. Then choose a tool.</p>
+    <div class="ga-row"><label>Person</label><select id="ga-sv-person"></select>
+      <button class="ga-btn ghost" id="ga-sv-resetnet">Reset network</button></div>
+    <div class="ga-modes" id="ga-sv-modes">
+      <button class="ga-mode on" data-m="profile">&#128100; Profile &amp; suggestions</button>
+      <button class="ga-mode" data-m="bfs">&#127754; BFS: degrees of separation</button>
+      <button class="ga-mode" data-m="path">&#128279; Connection path</button>
+      <button class="ga-mode" data-m="cent">&#11088; Centrality</button>
+    </div>
+    <div class="ga-row" id="ga-sv-bfsctl" style="display:none">
+      <button class="ga-btn ghost" id="ga-sv-b-reset">&#10226; Reset</button><button class="ga-btn ghost" id="ga-sv-b-back">&#9664; Back</button>
+      <button class="ga-btn" id="ga-sv-b-step">Step &#9654;</button><button class="ga-btn acc" id="ga-sv-b-play">&#9654; Play</button><button class="ga-btn ghost" id="ga-sv-b-end">Run to end &#9197;</button>
+    </div>
+    <div class="ga-row" id="ga-sv-pathctl" style="display:none"><label>Connect to</label><select id="ga-sv-target"></select></div>
+    <div class="ga-row" id="ga-sv-centctl" style="display:none"><label>Measure</label>
+      <select id="ga-sv-metric"><option value="deg">Degree centrality</option><option value="clo">Closeness centrality</option><option value="bet">Betweenness centrality</option><option value="clu">Clustering coefficient</option></select></div>
+    <div class="ga-msg" id="ga-sv-msg"></div>
+    <div class="ga-two">
+      <div><svg class="ga-net" id="ga-sv-graph" viewBox="0 0 500 380"></svg><div class="ga-legend" id="ga-sv-legend"></div></div>
+      <div class="ga-side ga-mat-card" id="ga-sv-side"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3B ======================= -->
+<section class="ga-sec ga-slide" id="ga-s3b" data-title="Routing algorithms" data-num="3B">
+  <div class="ga-sec-head"><div class="ga-num" style="font-size:16px">3B</div><h2>Routing Algorithms</h2></div>
+
+  <p>The Internet is a graph of millions of routers. When you open a web page, your data is split into <b>packets</b>, and every router on the way must decide which neighbour to pass each packet to. A <b>routing algorithm</b> computes these decisions so that packets travel along low-cost paths. Routing is the shortest-path problem, solved <b>by many computers working together</b>.</p>
+  <svg class="ga-net" id="ga-rt-static" viewBox="0 0 600 320" style="max-width:600px;margin:8px auto"></svg>
+  <p style="text-align:center;font-size:14px;color:var(--muted)">Figure &#8212; Example network: 6 routers, 8 links with costs.</p>
+
+  <h3>3B.1 Routing tables and forwarding</h3>
+  <p>A router does <b>not</b> store whole paths. It stores, for every destination, only the <b>cost</b> and the <b>next hop</b>. Each router forwards the packet to its next hop, which looks at <i>its own</i> table, and so on &#8212; the full path emerges hop by hop. For this to work, the tables of all routers must agree (be <b>consistent</b>).</p>
+  <p>There are two classic families of routing algorithms:</p>
+  <div class="ga-vs">
+    <div class="p"><h4>&#128506;&#65039; Link-state (global)</h4><p style="margin:0;font-size:15px">Every router gets the <b>complete map</b> and computes shortest paths <b>itself</b> with Dijkstra's algorithm. Used by OSPF and IS-IS.</p></div>
+    <div class="k"><h4>&#128227; Distance-vector (decentralised)</h4><p style="margin:0;font-size:15px">Every router knows only its neighbours and repeatedly shares its <b>distance list</b> with them, using the Bellman&#8211;Ford equation. Used by RIP.</p></div>
+  </div>
+
+  <h3>3B.2 Link-state routing (Dijkstra's algorithm)</h3>
+  <ol>
+    <li><b>Discover neighbours</b> and measure the cost of each attached link.</li>
+    <li>Build a <b>Link-State Advertisement (LSA)</b>: &#8220;I am R3; my links: R1 cost 4, R2 cost 2, R4 cost 3, R5 cost 6&#8221;.</li>
+    <li><b>Flood</b> the LSA to every router. Now every router has the same <b>link-state database</b> = the whole graph.</li>
+    <li>Each router runs <b>Dijkstra's algorithm</b> with itself as the source and fills its routing table (next hop = first router on each shortest path).</li>
+    <li>When a link changes, new LSAs are flooded and Dijkstra is re-run.</li>
+  </ol>
+  <h4>Worked example &#8212; Dijkstra at router R1</h4>
+  <div class='ga-tbl-wrap'><table class='ga-tbl ga-t'><tr><th>Step</th><th>Finalise</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th><th>R6</th></tr><tr><td>1</td><td><b>R1</b></td><td class=''>0</td><td class='upd'>1<small>R1</small></td><td class='upd'>4<small>R1</small></td><td class=''>&#8734;</td><td class=''>&#8734;</td><td class=''>&#8734;</td></tr><tr><td>2</td><td><b>R2</b></td><td class='done'>0</td><td class=''>1<small>R1</small></td><td class='upd'>3<small>R2</small></td><td class='upd'>8<small>R2</small></td><td class=''>&#8734;</td><td class=''>&#8734;</td></tr><tr><td>3</td><td><b>R3</b></td><td class='done'>0</td><td class='done'>1<small>R1</small></td><td class=''>3<small>R2</small></td><td class='upd'>6<small>R3</small></td><td class='upd'>9<small>R3</small></td><td class=''>&#8734;</td></tr><tr><td>4</td><td><b>R4</b></td><td class='done'>0</td><td class='done'>1<small>R1</small></td><td class='done'>3<small>R2</small></td><td class=''>6<small>R3</small></td><td class='upd'>7<small>R4</small></td><td class=''>&#8734;</td></tr><tr><td>5</td><td><b>R5</b></td><td class='done'>0</td><td class='done'>1<small>R1</small></td><td class='done'>3<small>R2</small></td><td class='done'>6<small>R3</small></td><td class=''>7<small>R4</small></td><td class='upd'>9<small>R5</small></td></tr><tr><td>6</td><td><b>R6</b></td><td class='done'>0</td><td class='done'>1<small>R1</small></td><td class='done'>3<small>R2</small></td><td class='done'>6<small>R3</small></td><td class='done'>7<small>R4</small></td><td class=''>9<small>R5</small></td></tr></table></div><p style='font-size:14px;color:var(--muted)'>Each cell: distance from R1, with the previous router (prev) underneath. Yellow = improved in this step; green = already final.</p>
+  <p>R1's routing table: every destination has next hop <b>R2</b>, even R3. The direct link R1&#8211;R3 costs 4, but R1 &#8594; R2 &#8594; R3 costs only 1 + 2 = 3.</p>
+  <div class='ga-tbl-wrap' style='max-width:360px'><table class='ga-tbl ga-t'><tr><th class='l'>Destination</th><th>Cost</th><th>Next hop</th></tr><tr><td class='l'>R2</td><td>1</td><td>R2</td></tr><tr><td class='l'>R3</td><td>3</td><td>R2</td></tr><tr><td class='l'>R4</td><td>6</td><td>R2</td></tr><tr><td class='l'>R5</td><td>7</td><td>R2</td></tr><tr><td class='l'>R6</td><td>9</td><td>R2</td></tr></table></div>
+
+  <h3>3B.3 Distance-vector routing (Bellman&#8211;Ford)</h3>
+  <p>Each router x keeps a <b>distance vector</b> D<sub>x</sub>(y) = its current estimate of the cost to every destination y. Periodically (RIP: every 30 seconds) it sends this vector to its neighbours and updates itself with the <b>Bellman&#8211;Ford equation</b>:</p>
+  <div class="ga-formula">D<sub>x</sub>(y) = min<sub>v &#8712; neighbours(x)</sub> { cost(x, v) + D<sub>v</sub>(y) }        <span class="c">// next hop = the v that gives the minimum</span></div>
+  <p>Initially each router knows only its direct neighbours. After round 1, it knows routes of 2 hops; after round k, routes of up to k + 1 hops. Here is R1's vector, round by round (each round, all routers update at the same time):</p>
+  <div class='ga-tbl-wrap'><table class='ga-tbl ga-t'><tr><th>Round</th><th>R1&#8594;R2</th><th>R1&#8594;R3</th><th>R1&#8594;R4</th><th>R1&#8594;R5</th><th>R1&#8594;R6</th></tr><tr><td>0</td><td class=''>1<small>via R2</small></td><td class=''>4<small>via R3</small></td><td class='inf'>&#8734;</td><td class='inf'>&#8734;</td><td class='inf'>&#8734;</td></tr><tr><td>1</td><td class=''>1<small>via R2</small></td><td class='upd'>3<small>via R2</small></td><td class='upd'>7<small>via R3</small></td><td class='upd'>10<small>via R3</small></td><td class='inf'>&#8734;</td></tr><tr><td>2</td><td class=''>1<small>via R2</small></td><td class=''>3<small>via R2</small></td><td class='upd'>6<small>via R2</small></td><td class='upd'>8<small>via R3</small></td><td class='upd'>12<small>via R3</small></td></tr><tr><td>3</td><td class=''>1<small>via R2</small></td><td class=''>3<small>via R2</small></td><td class=''>6<small>via R2</small></td><td class='upd'>7<small>via R2</small></td><td class='upd'>10<small>via R3</small></td></tr><tr><td>4</td><td class=''>1<small>via R2</small></td><td class=''>3<small>via R2</small></td><td class=''>6<small>via R2</small></td><td class=''>7<small>via R2</small></td><td class='upd'>9<small>via R2</small></td></tr></table></div>
+  <p>All tables stop changing after 4 rounds: the network has <b>converged</b>, with the same result as Dijkstra's &#8212; as it must be.</p>
+
+  <h4>The count-to-infinity problem</h4>
+  <p>&#8220;Good news travels fast, bad news travels slowly.&#8221; Suppose the link R5&#8211;R6 fails. R5 loses its route to R6, but R4 still advertises &#8220;R6 at cost 3&#8221; (R4 learned it <i>through R5</i>, but R5 doesn't know that). R5 believes it can reach R6 via R4 for 1 + 3 = 4. R4 then updates to 1 + 4 = 5, R5 to 6, and so on, two by two. The route bounces between R4 and R5 (a <b>routing loop</b>) while the cost slowly climbs. That is why RIP defines <b>16 = infinity</b> (so the largest usable route is 15 hops). In our simulation, this takes <b>14 rounds</b>. Try it in the visualiser below.</p>
+  <div class="ga-box ga-tip"><b class="t">Fixes</b>
+  <ul>
+    <li><b>Maximum metric</b> (16 in RIP): the count stops at a finite &#8220;infinity&#8221;.</li>
+    <li><b>Split horizon</b>: do not advertise a route back to the neighbour you learned it from.</li>
+    <li><b>Poisoned reverse</b>: advertise it back with cost &#8734;. Stops 2-router loops. In our example it cuts 14 rounds to 7 &#8212; not to 1, because a <b>3-router loop</b> (R5 &#8594; R3 &#8594; R4 &#8594; R5) still forms. Poisoned reverse cannot stop loops of three or more routers.</li>
+    <li><b>Triggered updates</b> and <b>hold-down timers</b> spread bad news faster and ignore suspicious good news.</li>
+  </ul></div>
+
+  <h3>3B.4 Link-state vs distance-vector</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Basis</th><th style="background:#eef4ff">Link-state</th><th style="background:#fff3e8">Distance-vector</th></tr>
+    <tr><td>Knowledge</td><td>Whole network map</td><td>Only neighbours' distance vectors</td></tr>
+    <tr><td>Algorithm</td><td>Dijkstra's (each router)</td><td>Bellman&#8211;Ford (distributed, iterative)</td></tr>
+    <tr><td>Information sent</td><td>Own links only, to <b>all</b> routers (flooding)</td><td>Whole distance table, to <b>neighbours</b> only</td></tr>
+    <tr><td>Convergence</td><td>Fast</td><td>Slow; count-to-infinity possible</td></tr>
+    <tr><td>Routing loops</td><td>Rare (only briefly while LSAs spread)</td><td>Possible after failures</td></tr>
+    <tr><td>Memory / CPU</td><td>Higher (stores map, runs Dijkstra)</td><td>Lower</td></tr>
+    <tr><td>Scale</td><td>Large networks (split into areas)</td><td>Small networks (RIP: at most 15 hops)</td></tr>
+    <tr><td>Examples</td><td>OSPF, IS-IS</td><td>RIP</td></tr>
+  </table></div>
+  <p style="font-size:14.5px;color:var(--muted)">Between different organisations' networks (autonomous systems), the Internet uses BGP, a <i>path-vector</i> protocol &#8212; a distance-vector relative that sends whole paths to avoid loops. It is beyond this syllabus.</p>
+
+  <!-- ROUTING VISUALISER -->
+  <div class="ga-lab" id="ga-rv">
+    <div class="ga-lab-title"><span>Visualiser</span><h3>Routing Simulator</h3></div>
+    <div class="ga-row">
+      <label>Algorithm</label><select id="ga-rv-algo"><option value="ls">Link-state (Dijkstra)</option><option value="dv">Distance-vector (Bellman&#8211;Ford)</option></select>
+      <label id="ga-rv-src-lbl">Router</label><select id="ga-rv-src"></select>
+      <label>Link failure</label><select id="ga-rv-fail"></select>
+      <label id="ga-rv-poison-lbl"><input type="checkbox" id="ga-rv-poison"> Poisoned reverse</label>
+    </div>
+    <div class="ga-row">
+      <button class="ga-btn ghost" id="ga-rv-reset">&#10226; Reset</button><button class="ga-btn ghost" id="ga-rv-back">&#9664; Back</button>
+      <button class="ga-btn" id="ga-rv-step">Step &#9654;</button><button class="ga-btn acc" id="ga-rv-play">&#9654; Play</button>
+      <button class="ga-btn ghost" id="ga-rv-end">Run to end &#9197;</button>
+      <label>Speed <input type="range" id="ga-rv-speed" min="1" max="10" value="5" style="vertical-align:middle"></label>
+    </div>
+    <div class="ga-viz-top"><div class="ga-phase" id="ga-rv-phase"></div><div class="mono" style="font-size:13px;color:var(--muted)" id="ga-rv-count"></div></div>
+    <div class="ga-prog"><div id="ga-rv-bar"></div></div>
+    <div class="ga-msg" id="ga-rv-msg"></div>
+    <div class="ga-two">
+      <div>
+        <svg class="ga-net" id="ga-rv-graph" viewBox="0 0 440 330"></svg>
+        <div class="ga-legend" id="ga-rv-legend"></div>
+        <h4>Send a packet (uses the current tables)</h4>
+        <div class="ga-row"><label>From</label><select id="ga-rv-pf"></select><label>To</label><select id="ga-rv-pt"></select><button class="ga-btn acc" id="ga-rv-send">Send packet</button></div>
+        <div class="ga-pktres" id="ga-rv-pktres"></div>
+      </div>
+      <div class="ga-side ga-mat-card" id="ga-rv-side"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s4" data-title="Comparison &amp; complexity" data-num="4">
+  <div class="ga-sec-head"><div class="ga-num">4</div><h2>Comparison &amp; Complexity Analysis</h2></div>
+
+  <h3>4.1 Social network operations (adjacency list of sets)</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Operation</th><th>Time</th><th>Notes</th></tr>
+    <tr><td>Are u and v friends?</td><td>O(1) average</td><td>Set lookup (O(V) with plain lists, O(1) with a matrix)</td></tr>
+    <tr><td>Degree of v</td><td>O(1)</td><td><code>len(graph[v])</code></td></tr>
+    <tr><td>Mutual friends of u, v</td><td>O(min(d<sub>u</sub>, d<sub>v</sub>))</td><td>Set intersection</td></tr>
+    <tr><td>Friend suggestions for v</td><td>O(&#931; degrees of v's friends)</td><td>Friends-of-friends scan</td></tr>
+    <tr><td>Degrees of separation from v</td><td>O(V + E)</td><td>One BFS</td></tr>
+    <tr><td>Clustering coefficient of v</td><td>O(d<sub>v</sub>&#178;)</td><td>Check every pair of friends</td></tr>
+    <tr><td>Closeness of one vertex</td><td>O(V + E)</td><td>One BFS</td></tr>
+    <tr><td>Betweenness of all vertices</td><td>O(V &#183; E)</td><td>Brandes: one BFS per vertex (weighted: O(V&#183;E + V&#178; log V))</td></tr>
+    <tr><td>Diameter / all distances</td><td>O(V &#183; (V + E))</td><td>BFS from every vertex &#8212; infeasible for billions of users, so platforms use approximations</td></tr>
+    <tr><td>Connected components</td><td>O(V + E)</td><td>BFS / DFS</td></tr>
+  </table></div>
+  <p><b>Space:</b> adjacency list O(V + E); adjacency matrix O(V&#178;) &#8212; impossible at social-network scale (see the lab in Section 2).</p>
+
+  <h3>4.2 Routing algorithms</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Approach</th><th>Computation per router</th><th>Messages</th><th>Convergence</th></tr>
+    <tr><td><b>Link-state</b> (Dijkstra)</td><td>O(E log V) with a heap (O(V&#178;) with an array)</td><td>Each LSA flooded over every link: O(V &#183; E) per full update</td><td>One flooding round + one Dijkstra run</td></tr>
+    <tr><td><b>Distance-vector</b> (Bellman&#8211;Ford)</td><td>O(deg(x) &#183; V) per round</td><td>Each router sends its V-entry vector to its neighbours every round</td><td>At most V &#8722; 1 rounds when costs drop; can take up to &#8220;infinity&#8221; rounds after failures</td></tr>
+    <tr><td>Centralised Floyd&#8211;Warshall</td><td>O(V&#179;) on one controller</td><td>Collect map, distribute tables</td><td>Used in some software-defined or small networks</td></tr>
+  </table></div>
+
+  <h3>4.3 Which algorithm for which application?</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th>Algorithm</th><th>Graph type</th><th>Time</th><th>Typical application</th></tr>
+    <tr><td>BFS</td><td>Unweighted</td><td>O(V + E)</td><td>Degrees of separation, components, betweenness (unweighted)</td></tr>
+    <tr><td>DFS</td><td>Any</td><td>O(V + E)</td><td>Components, cycle detection, bridges / articulation points</td></tr>
+    <tr><td>Dijkstra's</td><td>Non-negative weights</td><td>O(E log V)</td><td>Link-state routing (OSPF), GPS navigation</td></tr>
+    <tr><td>Bellman&#8211;Ford</td><td>Weights may be negative</td><td>O(V &#183; E)</td><td>Distance-vector routing (RIP), detecting negative cycles</td></tr>
+    <tr><td>Floyd&#8211;Warshall</td><td>Dense, small</td><td>O(V&#179;)</td><td>All-pairs distance tables</td></tr>
+    <tr><td>Prim's / Kruskal's</td><td>Undirected weighted</td><td>O(E log V)</td><td>Network design (cabling), clustering</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s5" data-title="Special cases &amp; common mistakes" data-num="5">
+  <div class="ga-sec-head"><div class="ga-num">5</div><h2>Special Cases &amp; Common Mistakes</h2></div>
+
+  <h3>5.1 Special cases &#8212; social networks</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th style="width:25%">Situation</th><th>What happens / what to do</th></tr>
+    <tr><td><b>Disconnected network</b></td><td>People in different components have distance &#8734;. Closeness must use only reachable people (scaled by the fraction reachable).</td></tr>
+    <tr><td><b>Directed (follower) graphs</b></td><td>Distance is not symmetric: A may reach B in 1 step while B needs 3 to reach A. Use in-degree for popularity (followers).</td></tr>
+    <tr><td><b>Hubs / celebrities</b></td><td>Real networks have a few vertices with huge degree. Counting mutual friends with a celebrity is meaningless; Jaccard or weighting by 1/log(degree) helps.</td></tr>
+    <tr><td><b>Weighted ties</b></td><td>&#8220;Strong&#8221; vs &#8220;weak&#8221; friendships: use Dijkstra instead of BFS if distance should depend on tie strength.</td></tr>
+    <tr><td><b>Ties in recommendations</b></td><td>Several people with the same number of mutual friends &#8212; break ties consistently (e.g. by Jaccard, then by name).</td></tr>
+    <tr><td><b>Privacy</b></td><td>SNA reveals a lot about people (friends, groups, influence). Real systems must respect privacy settings and laws.</td></tr>
+  </table></div>
+
+  <h3>5.2 Special cases &#8212; routing</h3>
+  <div class="ga-tbl-wrap"><table class="ga-tbl">
+    <tr><th style="width:25%">Situation</th><th>What happens / what to do</th></tr>
+    <tr><td><b>Link failure</b></td><td>Link-state: new LSAs, everyone re-runs Dijkstra. Distance-vector: slow re-convergence, possible count-to-infinity.</td></tr>
+    <tr><td><b>Unreachable destination</b></td><td>Cost becomes &#8734; (16 in RIP); the route is removed.</td></tr>
+    <tr><td><b>Equal-cost paths</b></td><td>Several next hops have the same cost. Routers may split traffic among them (equal-cost multipath, ECMP).</td></tr>
+    <tr><td><b>Asymmetric costs</b></td><td>If cost(A&#8594;B) &#8800; cost(B&#8594;A), use a directed graph; the path back may differ from the path there.</td></tr>
+    <tr><td><b>Negative costs</b></td><td>Do not occur in routing; that is why Dijkstra's is safe for link-state routing.</td></tr>
+    <tr><td><b>Inconsistent tables</b></td><td>While tables are updating, packets can loop. IP packets carry a TTL (time-to-live) counter so looping packets are eventually dropped.</td></tr>
+  </table></div>
+
+  <h3>5.3 Advantages and disadvantages of graph-based modelling</h3>
+  <div class="ga-two">
+    <div class="ga-card" style="border-color:#a7dcb5;background:var(--dst-soft)"><h4>&#9989; Advantages</h4>
+      <ul style="margin:0;font-size:15.5px"><li>Natural model for relationships of any shape.</li><li>Reuses well-known algorithms (BFS, Dijkstra, &#8230;) with proven correctness and complexity.</li><li>Adjacency lists scale to billions of vertices.</li><li>Same toolbox works for people, routers, roads, web pages.</li></ul></div>
+    <div class="ga-card" style="border-color:#f4b9b9;background:var(--bad-soft)"><h4>&#10060; Disadvantages</h4>
+      <ul style="margin:0;font-size:15.5px"><li>Some measures (betweenness, diameter) are too slow for huge graphs and must be approximated.</li><li>Graphs change constantly (new friends, link failures): results go stale.</li><li>Distributed algorithms (distance-vector) can misbehave temporarily.</li><li>Graph data can be very privacy-sensitive.</li></ul></div>
+  </div>
+
+  <h3>5.4 Common mistakes</h3>
+  <div class="ga-box ga-warn"><b class="t">Mistake 1 &#8212; Using DFS to find degrees of separation</b>
+  <p>DFS finds <i>a</i> path, not the shortest. From Aarav, DFS might reach Kabir via Diya (2 edges) although they are direct friends (1 edge). Use BFS for unweighted shortest paths.</p></div>
+  <div class="ga-box ga-warn"><b class="t">Mistake 2 &#8212; Forgetting the visited check in BFS</b>
+  <p>Friendships are mutual, so the graph is full of cycles. Without marking vertices as visited, BFS loops forever (A &#8594; B &#8594; A &#8594; &#8230;).</p></div>
+  <div class="ga-box ga-warn"><b class="t">Mistake 3 &#8212; Recommending yourself or existing friends</b>
+  <p>When scanning friends-of-friends, skip the person themself and anyone already in their friend set.</p></div>
+  <div class="ga-box ga-warn"><b class="t">Mistake 4 &#8212; Mixing up &#8220;links&#8221; and &#8220;people in between&#8221;</b>
+  <p>A path A &#8594; B &#8594; C has 2 links but 1 intermediary. Facebook's 3.57 counts intermediaries (4.57 links). State your convention.</p></div>
+  <div class="ga-box ga-warn"><b class="t">Mistake 5 &#8212; Storing whole paths in routing tables / wrong next hop</b>
+  <p>A routing table stores only the <b>next hop</b>. When reconstructing it from Dijkstra's prev[] array, walk back from the destination until the vertex whose prev is the source &#8212; not the vertex just before the destination.</p></div>
+  <div class="ga-box ga-warn"><b class="t">Mistake 6 &#8212; No &#8220;infinity&#8221; cap in distance-vector code</b>
+  <p>Without a maximum cost, a simulated count-to-infinity never terminates. Cap the cost (e.g. 16) and treat it as unreachable.</p></div>
+
+  <h3>5.5 Important examination points</h3>
+  <div class="ga-box ga-exam"><b class="t">Remember for exams</b>
+  <ul>
+    <li>Social network &#8594; vertices = people, edges = relationships; undirected (friends) or directed (followers).</li>
+    <li>Degrees of separation = BFS (unweighted shortest path), O(V + E).</li>
+    <li>Friend suggestion = friends-of-friends ranked by mutual friends (triadic closure).</li>
+    <li>Centralities: degree (popularity), closeness (1 / average distance), betweenness (bridge). Clustering coefficient = links among friends / k(k&#8722;1)/2.</li>
+    <li>Link-state = full map + Dijkstra (OSPF). Distance-vector = neighbours + Bellman&#8211;Ford (RIP, 16 = &#8734;).</li>
+    <li>Count-to-infinity happens in distance-vector routing; split horizon / poisoned reverse reduce it.</li>
+    <li>Huge sparse graphs &#8594; adjacency lists.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s6" data-title="Python implementation" data-num="6">
+  <div class="ga-sec-head"><div class="ga-num">6</div><h2>Python Implementation</h2></div>
+  <p>All four programs are complete and runnable (Python 3.6+, standard library only). The outputs are their real outputs and match the worked examples and visualisers above.</p>
+
+  <div class="ga-tabs">
+    <button class="ga-tab on" data-pane="ga-p1">1 &#183; Social network analysis</button>
+    <button class="ga-tab" data-pane="ga-p2">2 &#183; Centrality measures</button>
+    <button class="ga-tab" data-pane="ga-p3">3 &#183; Link-state routing</button>
+    <button class="ga-tab" data-pane="ga-p4">4 &#183; Distance-vector routing</button>
+  </div>
+
+  <div class="ga-pane on" id="ga-p1">
+    <div class="ga-code"><div class="ga-code-bar"><span>social_network.py</span><button class="ga-copy">Copy</button></div><pre><code class="py"># Social Network Analysis with a Graph (adjacency list of sets)
+# Friends, mutual friends, friend suggestions, degrees of separation (BFS)
+# and the clustering coefficient.
+
+from collections import deque
+
+friendships = [("Aarav", "Diya"), ("Aarav", "Kabir"), ("Aarav", "Meera"),
+               ("Diya", "Kabir"), ("Kabir", "Meera"), ("Meera", "Rohan"),
+               ("Rohan", "Neha"), ("Neha", "Sara"), ("Neha", "Isha"),
+               ("Sara", "Vikram"), ("Sara", "Isha"), ("Vikram", "Isha"),
+               ("Isha", "Arjun"), ("Vikram", "Arjun")]
+
+# Build an undirected graph: friendship works both ways
+graph = {}
+for a, b in friendships:
+    graph.setdefault(a, set()).add(b)
+    graph.setdefault(b, set()).add(a)
+
+
+def mutual_friends(a, b):
+    return graph[a] &amp; graph[b]                 # set intersection
+
+
+def suggest_friends(person):
+    """Friends-of-friends who are not already friends, ranked by mutual friends."""
+    scores = {}
+    for friend in graph[person]:
+        for fof in graph[friend]:
+            if fof != person and fof not in graph[person]:
+                scores[fof] = scores.get(fof, 0) + 1
+    return sorted(scores.items(), key=lambda x: (-x[1], x[0]))
+
+
+def degrees_of_separation(start):
+    """BFS: number of friendship links from start to everyone else."""
+    dist = {start: 0}
+    queue = deque([start])
+    while queue:
+        u = queue.popleft()
+        for v in sorted(graph[u]):
+            if v not in dist:
+                dist[v] = dist[u] + 1
+                queue.append(v)
+    return dist
+
+
+def connection_path(start, goal):
+    """Shortest chain of friends from start to goal (BFS with parents)."""
+    parent = {start: None}
+    queue = deque([start])
+    while queue:
+        u = queue.popleft()
+        if u == goal:
+            break
+        for v in sorted(graph[u]):
+            if v not in parent:
+                parent[v] = u
+                queue.append(v)
+    if goal not in parent:
+        return None
+    path = []
+    while goal is not None:
+        path.append(goal)
+        goal = parent[goal]
+    return path[::-1]
+
+
+def clustering_coefficient(person):
+    """Fraction of pairs of this person's friends who are friends themselves."""
+    f = list(graph[person])
+    k = len(f)
+    if k &lt; 2:
+        return 0.0
+    links = sum(1 for i in range(k) for j in range(i + 1, k) if f[j] in graph[f[i]])
+    return links / (k * (k - 1) / 2)
+
+
+if __name__ == "__main__":
+    print("Friends of Sara  :", sorted(graph["Sara"]), "-&gt; degree", len(graph["Sara"]))
+    print("Mutual(Sara, Arjun):", sorted(mutual_friends("Sara", "Arjun")))
+    print("Suggestions for Sara:", suggest_friends("Sara"))
+    d = degrees_of_separation("Aarav")
+    print("Distances from Aarav:", dict(sorted(d.items(), key=lambda x: (x[1], x[0]))))
+    print("Aarav -&gt; Arjun path :", " -&gt; ".join(connection_path("Aarav", "Arjun")))
+    for p in ["Diya", "Isha", "Rohan"]:
+        print(f"Clustering coefficient of {p}: {clustering_coefficient(p):.2f}")</code></pre></div>
+    <div class="ga-code ga-out"><div class="ga-code-bar"><span>Output</span></div><pre>Friends of Sara  : ['Isha', 'Neha', 'Vikram'] -&gt; degree 3
+Mutual(Sara, Arjun): ['Isha', 'Vikram']
+Suggestions for Sara: [('Arjun', 2), ('Rohan', 1)]
+Distances from Aarav: {'Aarav': 0, 'Diya': 1, 'Kabir': 1, 'Meera': 1, 'Rohan': 2, 'Neha': 3, 'Isha': 4, 'Sara': 4, 'Arjun': 5, 'Vikram': 5}
+Aarav -&gt; Arjun path : Aarav -&gt; Meera -&gt; Rohan -&gt; Neha -&gt; Isha -&gt; Arjun
+Clustering coefficient of Diya: 1.00
+Clustering coefficient of Isha: 0.50
+Clustering coefficient of Rohan: 0.00</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>The graph is a <b>dictionary of sets</b>: friendship lookup and mutual friends (<code>&amp;</code>) are fast.</li>
+      <li><code>suggest_friends</code> counts how often each friend-of-friend appears = number of mutual friends.</li>
+      <li><code>degrees_of_separation</code> and <code>connection_path</code> are BFS with a <code>deque</code> as the queue.</li>
+    </ul>
+  </div>
+  <div class="ga-pane" id="ga-p2">
+    <div class="ga-code"><div class="ga-code-bar"><span>centrality.py</span><button class="ga-copy">Copy</button></div><pre><code class="py"># Who is the most "important" person? Three centrality measures.
+#   Degree centrality      : how many friends (popularity)
+#   Closeness centrality   : how near to everyone (fast spreader)
+#   Betweenness centrality : how often on shortest paths (bridge / broker)
+# Betweenness uses Brandes' algorithm: one BFS per vertex -&gt; O(V * E).
+
+from collections import deque
+
+friendships = [("Aarav", "Diya"), ("Aarav", "Kabir"), ("Aarav", "Meera"),
+               ("Diya", "Kabir"), ("Kabir", "Meera"), ("Meera", "Rohan"),
+               ("Rohan", "Neha"), ("Neha", "Sara"), ("Neha", "Isha"),
+               ("Sara", "Vikram"), ("Sara", "Isha"), ("Vikram", "Isha"),
+               ("Isha", "Arjun"), ("Vikram", "Arjun")]
+graph = {}
+for a, b in friendships:
+    graph.setdefault(a, set()).add(b)
+    graph.setdefault(b, set()).add(a)
+people = sorted(graph)
+n = len(people)
+
+
+def bfs_dist(s):
+    dist = {s: 0}
+    q = deque([s])
+    while q:
+        u = q.popleft()
+        for v in graph[u]:
+            if v not in dist:
+                dist[v] = dist[u] + 1
+                q.append(v)
+    return dist
+
+
+def degree_centrality(p):
+    return len(graph[p]) / (n - 1)
+
+
+def closeness_centrality(p):
+    d = bfs_dist(p)
+    return (len(d) - 1) / sum(d.values())       # (reachable people) / (total distance)
+
+
+def betweenness_all():
+    bc = {p: 0.0 for p in people}
+    for s in people:
+        # BFS that also counts shortest paths (sigma) and records predecessors
+        stack, pred = [], {p: [] for p in people}
+        sigma = {p: 0 for p in people}; sigma[s] = 1
+        dist = {s: 0}
+        q = deque([s])
+        while q:
+            u = q.popleft(); stack.append(u)
+            for v in graph[u]:
+                if v not in dist:
+                    dist[v] = dist[u] + 1; q.append(v)
+                if dist[v] == dist[u] + 1:
+                    sigma[v] += sigma[u]; pred[v].append(u)
+        # accumulate dependencies in reverse BFS order
+        delta = {p: 0.0 for p in people}
+        while stack:
+            w = stack.pop()
+            for u in pred[w]:
+                delta[u] += sigma[u] / sigma[w] * (1 + delta[w])
+            if w != s:
+                bc[w] += delta[w]
+    return {p: bc[p] / 2 for p in people}       # undirected: each pair counted twice
+
+
+if __name__ == "__main__":
+    bc = betweenness_all()
+    print(f"{'Person':8}{'Friends':&gt;8}{'Degree':&gt;9}{'Closeness':&gt;11}{'Betweenness':&gt;13}")
+    for p in sorted(people, key=lambda p: -bc[p]):
+        print(f"{p:8}{len(graph[p]):&gt;8}{degree_centrality(p):&gt;9.2f}"
+              f"{closeness_centrality(p):&gt;11.3f}{bc[p]:&gt;13.1f}")</code></pre></div>
+    <div class="ga-code ga-out"><div class="ga-code-bar"><span>Output</span></div><pre>Person   Friends   Degree  Closeness  Betweenness
+Neha           3     0.33      0.474         20.0
+Rohan          2     0.22      0.474         20.0
+Meera          3     0.33      0.429         18.0
+Isha           4     0.44      0.409          9.5
+Aarav          3     0.33      0.346          3.5
+Kabir          3     0.33      0.346          3.5
+Sara           3     0.33      0.391          3.0
+Vikram         3     0.33      0.321          0.5
+Arjun          2     0.22      0.310          0.0
+Diya           2     0.22      0.273          0.0</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>Closeness uses one BFS per person.</li>
+      <li>Betweenness uses <b>Brandes' algorithm</b>: a BFS from each source counts shortest paths (<code>sigma</code>) and then, in reverse order, adds up how much each vertex lies &#8220;between&#8221; others (<code>delta</code>). We divide by 2 because each undirected pair is counted from both ends.</li>
+      <li>We cross-checked these values with the NetworkX library: they match exactly.</li>
+    </ul>
+  </div>
+  <div class="ga-pane" id="ga-p3">
+    <div class="ga-code"><div class="ga-code-bar"><span>link_state.py</span><button class="ga-copy">Copy</button></div><pre><code class="py"># Link-State Routing (as in OSPF): every router knows the whole network map
+# and runs Dijkstra's algorithm to build its own routing table.
+# Routing table entry: destination -&gt; (total cost, next hop)
+
+import heapq
+
+INF = float('inf')
+links = [("R1", "R2", 1), ("R1", "R3", 4), ("R2", "R3", 2), ("R2", "R4", 7),
+         ("R3", "R4", 3), ("R3", "R5", 6), ("R4", "R5", 1), ("R5", "R6", 2)]
+
+network = {}
+for a, b, cost in links:                      # links work in both directions
+    network.setdefault(a, []).append((b, cost))
+    network.setdefault(b, []).append((a, cost))
+
+
+def dijkstra(source):
+    dist = {r: INF for r in network}
+    prev = {r: None for r in network}
+    dist[source] = 0
+    heap = [(0, source)]
+    while heap:
+        d, u = heapq.heappop(heap)
+        if d &gt; dist[u]:
+            continue                          # stale heap entry
+        for v, cost in network[u]:
+            if d + cost &lt; dist[v]:
+                dist[v] = d + cost
+                prev[v] = u
+                heapq.heappush(heap, (dist[v], v))
+    return dist, prev
+
+
+def routing_table(source):
+    dist, prev = dijkstra(source)
+    table = {}
+    for dest in sorted(network):
+        if dest == source or dist[dest] == INF:
+            continue
+        hop = dest                            # walk back until the hop after source
+        while prev[hop] != source:
+            hop = prev[hop]
+        table[dest] = (dist[dest], hop)
+    return table
+
+
+def forward_packet(src, dst):
+    """Each router looks only at ITS OWN table to choose the next hop."""
+    tables = {r: routing_table(r) for r in network}
+    path = [src]
+    while path[-1] != dst:
+        path.append(tables[path[-1]][dst][1])
+    return path
+
+
+if __name__ == "__main__":
+    for r in ["R1", "R3"]:
+        print(f"Routing table of {r}")
+        print("  Dest  Cost  Next hop")
+        for dest, (cost, hop) in routing_table(r).items():
+            print(f"  {dest:5} {cost:&gt;4}  {hop}")
+    print("Packet R1 -&gt; R6 travels:", " -&gt; ".join(forward_packet("R1", "R6")))</code></pre></div>
+    <div class="ga-code ga-out"><div class="ga-code-bar"><span>Output</span></div><pre>Routing table of R1
+  Dest  Cost  Next hop
+  R2       1  R2
+  R3       3  R2
+  R4       6  R2
+  R5       7  R2
+  R6       9  R2
+Routing table of R3
+  Dest  Cost  Next hop
+  R1       3  R2
+  R2       2  R2
+  R4       3  R4
+  R5       4  R4
+  R6       6  R4
+Packet R1 -&gt; R6 travels: R1 -&gt; R2 -&gt; R3 -&gt; R4 -&gt; R5 -&gt; R6</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>Every router has the full <code>network</code> (the link-state database) and runs Dijkstra with a min-heap.</li>
+      <li><code>routing_table</code> walks back along <code>prev</code> to find the <b>first hop</b> of each shortest path.</li>
+      <li><code>forward_packet</code> shows hop-by-hop forwarding: each router consults only its own table.</li>
+    </ul>
+  </div>
+  <div class="ga-pane" id="ga-p4">
+    <div class="ga-code"><div class="ga-code-bar"><span>distance_vector.py</span><button class="ga-copy">Copy</button></div><pre><code class="py"># Distance-Vector Routing (as in RIP): routers only talk to NEIGHBOURS.
+# Each round, every router updates its table with the Bellman-Ford equation
+#       D_x(y) = min over neighbours v of ( cost(x, v) + D_v(y) )
+# INF = 16 means "unreachable" (the RIP convention).
+# Shows convergence and the count-to-infinity problem after a link failure.
+
+INF = 16
+routers = ["R1", "R2", "R3", "R4", "R5", "R6"]
+
+
+def make_links(failed=None):
+    links = {("R1", "R2"): 1, ("R1", "R3"): 4, ("R2", "R3"): 2, ("R2", "R4"): 7,
+             ("R3", "R4"): 3, ("R3", "R5"): 6, ("R4", "R5"): 1, ("R5", "R6"): 2}
+    if failed:
+        links.pop(failed)
+    cost = {r: {} for r in routers}
+    for (a, b), c in links.items():
+        cost[a][b] = c
+        cost[b][a] = c
+    return cost
+
+
+def initial_tables(cost):
+    # each router only knows itself and its direct neighbours
+    return {x: {y: ((0, x) if y == x else ((cost[x][y], y) if y in cost[x] else (INF, None)))
+                for y in routers} for x in routers}
+
+
+def one_round(tables, cost, poison=False):
+    new = {}
+    for x in routers:
+        new[x] = {}
+        for y in routers:
+            if y == x:
+                new[x][y] = (0, x)
+                continue
+            best = (INF, None)
+            for v, c in cost[x].items():
+                d_v, hop_v = tables[v][y]         # v's advertised distance
+                if poison and hop_v == x:
+                    d_v = INF                     # poisoned reverse
+                if min(INF, c + d_v) &lt; best[0]:
+                    best = (min(INF, c + d_v), v)
+            new[x][y] = best
+    return new
+
+
+def run(tables, cost, poison=False, label=""):
+    rounds = 0
+    while True:
+        nxt = one_round(tables, cost, poison)
+        if nxt == tables:
+            return tables, rounds
+        tables = nxt
+        rounds += 1
+        if label:
+            print(f"  round {rounds:2}: R5's cost to R6 = {tables['R5']['R6'][0]:&gt;2},"
+                  f"  R4's cost to R6 = {tables['R4']['R6'][0]:&gt;2}")
+
+
+if __name__ == "__main__":
+    cost = make_links()
+    tables, r = run(initial_tables(cost), cost)
+    print(f"Converged after {r} rounds. Table of R1 (dest: cost via next hop):")
+    print("  " + ", ".join(f"{y}: {d} via {h}" for y, (d, h) in tables["R1"].items() if y != "R1"))
+
+    print("\nLink R5-R6 fails (R6 becomes unreachable). Without poisoned reverse:")
+    broken = make_links(failed=("R5", "R6"))
+    _, r1 = run(tables, broken, poison=False, label="x")
+    print(f"  -&gt; took {r1} rounds to reach 'infinity' (16): count-to-infinity!")
+
+    print("With poisoned reverse:")
+    _, r2 = run(tables, broken, poison=True, label="x")
+    print(f"  -&gt; took {r2} rounds")</code></pre></div>
+    <div class="ga-code ga-out"><div class="ga-code-bar"><span>Output</span></div><pre>Converged after 4 rounds. Table of R1 (dest: cost via next hop):
+  R2: 1 via R2, R3: 3 via R2, R4: 6 via R2, R5: 7 via R2, R6: 9 via R2
+
+Link R5-R6 fails (R6 becomes unreachable). Without poisoned reverse:
+  round  1: R5's cost to R6 =  4,  R4's cost to R6 =  3
+  round  2: R5's cost to R6 =  4,  R4's cost to R6 =  5
+  round  3: R5's cost to R6 =  6,  R4's cost to R6 =  5
+  round  4: R5's cost to R6 =  6,  R4's cost to R6 =  7
+  round  5: R5's cost to R6 =  8,  R4's cost to R6 =  7
+  round  6: R5's cost to R6 =  8,  R4's cost to R6 =  9
+  round  7: R5's cost to R6 = 10,  R4's cost to R6 =  9
+  round  8: R5's cost to R6 = 10,  R4's cost to R6 = 11
+  round  9: R5's cost to R6 = 12,  R4's cost to R6 = 11
+  round 10: R5's cost to R6 = 12,  R4's cost to R6 = 13
+  round 11: R5's cost to R6 = 14,  R4's cost to R6 = 13
+  round 12: R5's cost to R6 = 14,  R4's cost to R6 = 15
+  round 13: R5's cost to R6 = 16,  R4's cost to R6 = 15
+  round 14: R5's cost to R6 = 16,  R4's cost to R6 = 16
+  -&gt; took 14 rounds to reach 'infinity' (16): count-to-infinity!
+With poisoned reverse:
+  round  1: R5's cost to R6 = 12,  R4's cost to R6 =  3
+  round  2: R5's cost to R6 = 12,  R4's cost to R6 = 13
+  round  3: R5's cost to R6 = 12,  R4's cost to R6 = 13
+  round  4: R5's cost to R6 = 16,  R4's cost to R6 = 13
+  round  5: R5's cost to R6 = 16,  R4's cost to R6 = 16
+  round  6: R5's cost to R6 = 16,  R4's cost to R6 = 16
+  round  7: R5's cost to R6 = 16,  R4's cost to R6 = 16
+  -&gt; took 7 rounds</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>Each round, every router recomputes its table from its neighbours' tables of the previous round (synchronous Bellman&#8211;Ford).</li>
+      <li>After R5&#8211;R6 fails, R4 and R5 keep learning bad routes from each other: the cost rises 2 at a time until 16 (= &#8734;).</li>
+      <li>Poisoned reverse (a neighbour advertises &#8734; for routes that go through you) halves the time here, but a 3-router loop R5 &#8594; R3 &#8594; R4 still slows it down.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="ga-sec ga-slide" id="ga-s7" data-title="Practice &amp; quiz" data-num="7">
+  <div class="ga-sec-head"><div class="ga-num">7</div><h2>Practice &amp; Assessment</h2></div>
+  <p>Try each question yourself first, then open the answer.</p>
+
+  <h3>7.1 Conceptual questions</h3>
+  <details><summary>Q1. How is a social network represented as a graph? When is it directed?</summary><div class="ans">People are vertices and relationships are edges. Mutual relationships (friendship) give an undirected graph; one-way relationships (following) give a directed graph. Interaction strength can be stored as edge weights.</div></details>
+  <details><summary>Q2. Why is BFS (not Dijkstra) used for degrees of separation?</summary><div class="ans">Friendship graphs are unweighted: every edge counts as 1. BFS visits vertices in order of distance and finds all shortest distances in O(V + E), faster and simpler than Dijkstra's O(E log V).</div></details>
+  <details><summary>Q3. Explain the difference between degree and betweenness centrality with an example.</summary><div class="ans">Degree counts direct friends (popularity); betweenness counts how many shortest paths pass through a person (brokerage). In our network Isha has the highest degree (4), but Rohan (degree 2) has the highest betweenness because all paths between the college and office groups pass through him.</div></details>
+  <details><summary>Q4. Compare link-state and distance-vector routing.</summary><div class="ans">Link-state: every router learns the full map by flooding and runs Dijkstra; fast convergence, more memory (OSPF). Distance-vector: routers exchange distance vectors with neighbours and apply Bellman&#8211;Ford; simple, but slow convergence and count-to-infinity (RIP).</div></details>
+  <details><summary>Q5. What is count-to-infinity and how can it be reduced?</summary><div class="ans">After a failure, routers in distance-vector routing learn stale routes from each other and increase the cost step by step until a maximum (&#8220;infinity&#8221;) is reached. Reduced by a small maximum metric (16), split horizon, poisoned reverse, triggered updates and hold-down timers.</div></details>
+
+  <h3>7.2 Trace-based questions</h3>
+  <p><b>(a)</b> Run BFS from A on the graph below. Give the distance of every vertex and the order in which they are dequeued (neighbours in alphabetical order).</p>
+  <svg class="ga-net" id="ga-trace-graph" viewBox="0 0 520 260" style="max-width:480px;margin:8px auto"></svg>
+  <details><summary>Show answer</summary><div class="ans">
+    <p>Dequeue order: A, B, C, D, F, E, G.</p>
+    <p>Distances: A 0; B 1, C 1; D 2, F 2; E 3, G 3.</p>
+    <p>(A discovers B, C. B discovers D. C discovers F (D already seen). D discovers E. F discovers G.)</p>
+  </div></details>
+  <p><b>(b)</b> Three routers X, Y, Z with links X&#8211;Y = 2, Y&#8211;Z = 1, X&#8211;Z = 7. Show X's distance vector at round 0 and after round 1 of distance-vector routing.</p>
+  <details><summary>Show answer</summary><div class="ans">
+    <p>Round 0 (direct links only): X &#8594; Y = 2 (via Y), X &#8594; Z = 7 (via Z).</p>
+    <p>Round 1: D<sub>X</sub>(Z) = min(cost(X,Y) + D<sub>Y</sub>(Z), cost(X,Z) + D<sub>Z</sub>(Z)) = min(2 + 1, 7 + 0) = <b>3 via Y</b>. D<sub>X</sub>(Y) stays 2 via Y. The network has converged.</p>
+  </div></details>
+
+  <h3>7.3 Output-prediction question</h3>
+  <div class="ga-code"><div class="ga-code-bar"><span>predict.py</span></div><pre><code class="py">graph = {"A": {"B", "C"}, "B": {"A", "C", "D"},
+         "C": {"A", "B", "D"}, "D": {"B", "C", "E"}, "E": {"D"}}
+scores = {}
+for f in graph["A"]:
+    for fof in graph[f]:
+        if fof != "A" and fof not in graph["A"]:
+            scores[fof] = scores.get(fof, 0) + 1
+print(scores, len(graph["B"] &amp; graph["C"]))</code></pre></div>
+  <details><summary>Show answer</summary><div class="ans"><p>Output: <code>{'D': 2} 2</code></p><p>A's friends are B and C. Their friends (excluding A, B, C themselves) are only D, reached once via B and once via C, so D has 2 mutual friends with A. B and C have 2 mutual friends: A and D.</p></div></details>
+
+  <h3>7.4 Diagram-identification question</h3>
+  <p>In the network below, which person has the <b>highest degree</b>? Which has the <b>highest betweenness centrality</b>? Who would you remove to split the network into two groups?</p>
+  <svg class="ga-net" id="ga-id-graph" viewBox="0 0 560 260" style="max-width:520px;margin:8px auto"></svg>
+  <details><summary>Show answer</summary><div class="ans"><ul>
+    <li><b>Highest degree:</b> S and T (4 friends each).</li>
+    <li><b>Highest betweenness:</b> X (12), even though X has only 3 friends: every shortest path between the left group {P, Q, R} and the right group {S, T, U, V} passes through X. (R has 10; S and T only 4 each.)</li>
+    <li>Removing <b>X</b> (or R) disconnects the network: X and R are <i>articulation points</i>.</li>
+  </ul></div></details>
+
+  <h3>7.5 Programming exercises</h3>
+  <ol>
+    <li>Extend Program 1 to rank suggestions by the <b>Jaccard coefficient</b> instead of the raw mutual-friend count.</li>
+    <li>Modify the BFS to work on a <b>directed follower graph</b> and show that dist(A, B) &#8800; dist(B, A) for some pair.</li>
+    <li>Write a function that finds all <b>connected components</b> of a social network and prints the size of each.</li>
+    <li>Compute the <b>diameter</b> and the average distance of the example network (answers: 6 and about 2.73).</li>
+    <li>Add <b>split horizon</b> (without poisoning: simply do not advertise the route to the next hop) to Program 4 and compare the number of rounds after the R5&#8211;R6 failure.</li>
+    <li>Using Program 3, make link R3&#8211;R4 fail and print the new routing table of R1. Which entries change?</li>
+  </ol>
+
+  <h3>7.6 Quick quiz</h3>
+  <div id="ga-quiz"></div>
+  <div class="ga-score"><span id="ga-quiz-score">Score: 0 / 8</span><button class="ga-btn ghost" id="ga-quiz-reset">Try again</button></div>
+</section>
+
+<div class="ga-slide-foot"><button class="ga-btn ghost" id="ga-foot-prev">&#8592; Previous</button><button class="ga-btn" id="ga-foot-next">Next &#8594;</button></div>
+
+<p class="ga-foot">Previous in the series: <b>Minimum Spanning Trees &#8212; Prim's and Kruskal's Algorithms</b>.</p>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById("gab");
+  if (!root) return;
+  var INF = Infinity, SVGNS = "http://www.w3.org/2000/svg";
+  function $(id){ return document.getElementById(id); }
+  function fmt(x){ return x === INF ? "\u221E" : String(x); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/[<]/g,"&lt;").replace(/>/g,"&gt;"); }
+  function mk(tag, attrs, parent){
+    var el = document.createElementNS(SVGNS, tag);
+    for (var a in attrs) el.setAttribute(a, attrs[a]);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+
+  /* ---------------- data ---------------- */
+  var PEOPLE = ["Aarav","Diya","Kabir","Meera","Rohan","Neha","Sara","Vikram","Isha","Arjun"];
+  var PPOS = [[.25,.1],[.07,.3],[.12,.72],[.33,.55],[.45,.86],[.6,.55],[.74,.14],[.95,.34],[.78,.66],[.95,.9]];
+  var FRIENDS = [[0,1],[0,2],[0,3],[1,2],[2,3],[3,4],[4,5],[5,6],[5,8],[6,7],[6,8],[7,8],[8,9],[7,9]];
+  var ROUTERS = ["R1","R2","R3","R4","R5","R6"];
+  var RPOS = [[.05,.5],[.3,.12],[.3,.88],[.62,.3],[.7,.86],[.96,.6]];
+  var LINKS = [[0,1,1],[0,2,4],[1,2,2],[1,3,7],[2,3,3],[2,4,6],[3,4,1],[4,5,2]];
+
+  /* ---------------- drawing ---------------- */
+  function drawNet(svg, net, opt){
+    opt = opt || {};
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var vb = svg.viewBox.baseVal, Wd = vb.width, Ht = vb.height, padX = 48, padY = 26, pos = [];
+    net.names.forEach(function(_, i){ pos.push([padX + net.pos[i][0]*(Wd-2*padX), padY + net.pos[i][1]*(Ht-2*padY)]); });
+    var eG = mk("g", {}, svg), lG = mk("g", {}, svg), oG = mk("g", {}, svg), vG = mk("g", {}, svg), ret = {edges:[], pos:pos, overlay:oG};
+    net.edges.forEach(function(e, i){
+      var cls = opt.ecls ? (opt.ecls(e, i) || "") : "";
+      var g = mk("g", {"class":"e " + cls}, eG);
+      mk("line", {x1:pos[e[0]][0].toFixed(1), y1:pos[e[0]][1].toFixed(1), x2:pos[e[1]][0].toFixed(1), y2:pos[e[1]][1].toFixed(1)}, g);
+      ret.edges.push(g);
+      if (e.length > 2 && opt.weights !== false){
+        var lx = (pos[e[0]][0]+pos[e[1]][0])/2, ly = (pos[e[0]][1]+pos[e[1]][1])/2, t = (cls.indexOf("down") >= 0 ? "\u2715 " : "") + e[2], w = 12 + t.length*8;
+        var lg = mk("g", {"class":"elab " + cls}, lG);
+        mk("rect", {x:(lx-w/2).toFixed(1), y:(ly-11).toFixed(1), width:w, height:22, rx:6}, lg);
+        var tt = mk("text", {x:lx.toFixed(1), y:ly.toFixed(1)}, lg); tt.textContent = t;
+      }
+    });
+    net.names.forEach(function(nm, i){
+      var c = "v" + (opt.vcls && opt.vcls[i] ? " " + opt.vcls[i] : "");
+      var g = mk("g", {"class":c, "data-v":i}, vG);
+      var w = 16 + nm.length*8.4, h = 30;
+      var r = mk("rect", {x:(pos[i][0]-w/2).toFixed(1), y:(pos[i][1]-h/2).toFixed(1), width:w.toFixed(1), height:h, rx:15}, g);
+      if (opt.vfill && opt.vfill[i]) r.setAttribute("style", "fill:" + opt.vfill[i]);
+      var t = mk("text", {x:pos[i][0].toFixed(1), y:pos[i][1].toFixed(1)}, g); t.textContent = nm;
+      if (opt.badge && opt.badge[i] !== undefined && opt.badge[i] !== null){
+        var bt = String(opt.badge[i]), bw = 12 + bt.length*7.2, bx = pos[i][0] + w/2 - 4, by = pos[i][1] - h/2 - 2;
+        mk("rect", {"class":"badgebg" + (opt.badgeCls ? " " + opt.badgeCls : ""), x:(bx-bw/2).toFixed(1), y:(by-9).toFixed(1), width:bw.toFixed(1), height:18, rx:9}, g);
+        var b = mk("text", {"class":"badge", x:bx.toFixed(1), y:by.toFixed(1)}, g); b.textContent = bt;
+      }
+      if (opt.onClick) g.addEventListener("click", function(){ opt.onClick(i); });
+    });
+    return ret;
+  }
+
+  /* ---------------- graph helpers ---------------- */
+  function adjSets(n, edges){ var a = []; for (var i=0;i<n;i++) a.push({}); edges.forEach(function(e){ a[e[0]][e[1]] = 1; a[e[1]][e[0]] = 1; }); return a; }
+  function nbrs(adj, v){ return Object.keys(adj[v]).map(Number).sort(function(a,b){ return a-b; }); }
+  function bfs(adj, s){
+    var n = adj.length, dist = [], par = [], q = [s], order = [];
+    for (var i=0;i<n;i++){ dist.push(INF); par.push(-1); }
+    dist[s] = 0;
+    while (q.length){ var u = q.shift(); order.push(u); nbrs(adj, u).forEach(function(v){ if (dist[v] === INF){ dist[v] = dist[u] + 1; par[v] = u; q.push(v); } }); }
+    return {dist:dist, par:par, order:order};
+  }
+  function centrality(adj){
+    var n = adj.length, deg = [], clo = [], bet = [], clu = [];
+    for (var v=0; v<n; v++){
+      var nb = nbrs(adj, v), k = nb.length; deg.push(k / (n-1));
+      var d = bfs(adj, v).dist, reach = 0, sum = 0;
+      d.forEach(function(x, i){ if (i !== v && x !== INF){ reach++; sum += x; } });
+      clo.push(sum ? (reach / sum) * (reach / (n-1)) : 0);
+      var links = 0; for (var a=0;a<k;a++) for (var b=a+1;b<k;b++) if (adj[nb[a]][nb[b]]) links++;
+      clu.push(k < 2 ? 0 : links / (k*(k-1)/2));
+      bet.push(0);
+    }
+    for (var s=0; s<n; s++){   /* Brandes */
+      var stack = [], pred = [], sigma = [], dist = [], q = [s];
+      for (var i=0;i<n;i++){ pred.push([]); sigma.push(0); dist.push(-1); }
+      sigma[s] = 1; dist[s] = 0;
+      while (q.length){
+        var u = q.shift(); stack.push(u);
+        nbrs(adj, u).forEach(function(w){
+          if (dist[w] < 0){ dist[w] = dist[u] + 1; q.push(w); }
+          if (dist[w] === dist[u] + 1){ sigma[w] += sigma[u]; pred[w].push(u); }
+        });
+      }
+      var delta = []; for (var j=0;j<n;j++) delta.push(0);
+      while (stack.length){
+        var w = stack.pop();
+        pred[w].forEach(function(u){ delta[u] += sigma[u] / sigma[w] * (1 + delta[w]); });
+        if (w !== s) bet[w] += delta[w];
+      }
+    }
+    bet = bet.map(function(x){ return x / 2; });
+    return {deg:deg, clo:clo, bet:bet, clu:clu};
+  }
+
+  /* ---------------- static figures ---------------- */
+  var SOC0 = {names:PEOPLE, pos:PPOS, edges:FRIENDS.map(function(e){ return e.slice(); })};
+  var RT0 = {names:ROUTERS, pos:RPOS, edges:LINKS};
+  drawNet($("ga-soc-static"), SOC0);
+  drawNet($("ga-rt-static"), RT0);
+  drawNet($("ga-trace-graph"), {names:"ABCDEFG".split(""), pos:[[.05,.5],[.3,.12],[.3,.88],[.58,.3],[.82,.15],[.62,.88],[.95,.6]],
+    edges:[[0,1],[0,2],[1,3],[2,3],[3,4],[2,5],[4,6],[5,6]]});
+  drawNet($("ga-id-graph"), {names:["P","Q","R","X","S","T","U","V"], pos:[[.03,.15],[.03,.85],[.25,.5],[.45,.5],[.65,.15],[.65,.85],[.95,.15],[.95,.85]],
+    edges:[[0,1],[1,2],[0,2],[2,3],[3,4],[3,5],[4,5],[4,6],[4,7],[5,6],[5,7],[6,7]]});
+
+  /* ---------------- LAB A: modelling ---------------- */
+  var SCEN = [
+    ["Facebook friendships", "U", "N", "Friendship is mutual; no weight needed."],
+    ["Instagram / X followers", "D", "N", "A can follow B without B following A."],
+    ["Number of messages each person sends to another", "D", "W", "Direction (sender \u2192 receiver) and a count both matter."],
+    ["Internet routers and link costs", "U", "W", "Links work both ways and have a cost."],
+    ["City map with one-way streets and travel times", "D", "W", "One-way streets need direction; times are weights."],
+    ["LinkedIn connections", "U", "N", "A connection is accepted by both people."]
+  ];
+  function scenBuild(){
+    var h = "";
+    SCEN.forEach(function(s, i){
+      h += "<div class='ga-card'><h4 style='margin:0'>"+(i+1)+". "+s[0]+"<\/h4><div style='display:flex;gap:6px;flex-wrap:wrap'>"+
+        "<select data-q='"+i+"' data-k='d'><option value=''>Direction\u2026<\/option><option value='U'>Undirected<\/option><option value='D'>Directed<\/option><\/select>"+
+        "<select data-q='"+i+"' data-k='w'><option value=''>Weights\u2026<\/option><option value='N'>Unweighted<\/option><option value='W'>Weighted<\/option><\/select><\/div><div class='fb' id='ga-scen-fb"+i+"'><\/div><\/div>";
+    });
+    $("ga-scen").innerHTML = h; $("ga-scen-score").textContent = "";
+  }
+  $("ga-scen-check").addEventListener("click", function(){
+    var ok = 0;
+    SCEN.forEach(function(s, i){
+      var d = root.querySelector("#ga-scen select[data-q='"+i+"'][data-k='d']").value, w = root.querySelector("#ga-scen select[data-q='"+i+"'][data-k='w']").value;
+      var good = d === s[1] && w === s[2]; if (good) ok++;
+      $("ga-scen-fb"+i).innerHTML = (good ? "<b style='color:#15803d'>\u2714 Correct.<\/b> " : "<b style='color:#c92a2a'>\u2718 "+(s[1]==="U"?"Undirected":"Directed")+", "+(s[2]==="W"?"weighted":"unweighted")+".<\/b> ") + s[3];
+    });
+    $("ga-scen-score").textContent = ok + " / " + SCEN.length + " correct";
+  });
+  $("ga-scen-reset").addEventListener("click", scenBuild);
+  scenBuild();
+
+  /* ---------------- LAB B: memory ---------------- */
+  function human(bytes){
+    var u = ["bytes","KB","MB","GB","TB","PB","EB"], i = 0;
+    while (bytes >= 1000 && i < u.length-1){ bytes /= 1000; i++; }
+    return (bytes >= 100 ? bytes.toFixed(0) : bytes.toFixed(1)) + " " + u[i];
+  }
+  function memo(){
+    var V = +$("ga-mem-v").value, k = +$("ga-mem-k").value, E = V*k/2;
+    $("ga-mem-kv").textContent = k;
+    var mat = V*V/8, list = (V + 2*E) * 8;
+    $("ga-mem-mat").textContent = human(mat); $("ga-mem-list").textContent = human(list);
+    $("ga-mem-note").innerHTML = "The matrix would be about <b>" + Math.round(mat/list).toLocaleString() + "\u00D7<\/b> larger. With V = " + V.toLocaleString() + " and " + k +
+      " friends each, only " + (k/(V-1)*100 < 0.01 ? (k/(V-1)*100).toExponential(1) : (k/(V-1)*100).toFixed(2)) + "% of matrix cells would be 1. Sparse graphs \u2192 adjacency lists.";
+  }
+  $("ga-mem-v").addEventListener("change", memo); $("ga-mem-k").addEventListener("input", memo); memo();
+
+  /* ---------------- SOCIAL VISUALISER ---------------- */
+  var sv = {net: null, focus: 0, mode: "profile", bfsSnaps: [], bfsPos: 0, timer: null};
+  function svResetNet(){ sv.net = {names:PEOPLE, pos:PPOS, edges:FRIENDS.map(function(e){ return e.slice(); })}; }
+  svResetNet();
+  (function(){
+    var o = ""; PEOPLE.forEach(function(p, i){ o += "<option value='"+i+"'>"+p+"<\/option>"; });
+    $("ga-sv-person").innerHTML = o; $("ga-sv-target").innerHTML = o; $("ga-sv-target").value = "9";
+  })();
+  function svAdj(){ return adjSets(PEOPLE.length, sv.net.edges); }
+  function suggestions(adj, p){
+    var sc = {};
+    nbrs(adj, p).forEach(function(f){ nbrs(adj, f).forEach(function(q){ if (q !== p && !adj[p][q]){ (sc[q] = sc[q] || []).push(f); } }); });
+    return Object.keys(sc).map(Number).map(function(q){ return {q:q, via:sc[q]}; }).sort(function(a,b){ return b.via.length - a.via.length || (PEOPLE[a.q] < PEOPLE[b.q] ? -1 : 1); });
+  }
+  function svStopPlay(){ if (sv.timer){ clearInterval(sv.timer); sv.timer = null; } $("ga-sv-b-play").textContent = "\u25B6 Play"; }
+  function svSetFocus(i){ sv.focus = i; $("ga-sv-person").value = String(i); if (sv.mode === "bfs") svBuildBfs(); svRender(); }
+  function svBuildBfs(){
+    svStopPlay();
+    var adj = svAdj(), s = sv.focus, n = PEOPLE.length, dist = [], q = [s], snaps = [];
+    for (var i=0;i<n;i++) dist.push(INF);
+    dist[s] = 0;
+    snaps.push({dist:dist.slice(), q:q.slice(), cur:-1, found:[], msg:"Start: distance["+PEOPLE[s]+"] = 0 and "+PEOPLE[s]+" is put in the queue."});
+    while (q.length){
+      var u = q.shift(), found = [];
+      nbrs(adj, u).forEach(function(v){ if (dist[v] === INF){ dist[v] = dist[u] + 1; q.push(v); found.push(v); } });
+      snaps.push({dist:dist.slice(), q:q.slice(), cur:u, found:found,
+        msg:"Dequeue <b>"+PEOPLE[u]+"<\/b> (distance "+dist[u]+"). "+(found.length ? "New people found at distance <b>"+(dist[u]+1)+"<\/b>: "+found.map(function(v){ return PEOPLE[v]; }).join(", ")+"." : "All of "+PEOPLE[u]+"'s friends are already visited.")});
+    }
+    var mx = Math.max.apply(null, dist.filter(function(x){ return x !== INF; }));
+    snaps[snaps.length-1].msg += " <b>Queue empty \u2014 BFS finished.<\/b> The farthest people are " + mx + " links away.";
+    sv.bfsSnaps = snaps; sv.bfsPos = 0;
+  }
+  function svRender(){
+    var adj = svAdj(), p = sv.focus, nm = PEOPLE, side = "", msg = "", opt = {onClick: svSetFocus}, legend = "";
+    ["ga-sv-bfsctl","ga-sv-pathctl","ga-sv-centctl"].forEach(function(id){ $(id).style.display = "none"; });
+    if (sv.mode === "profile"){
+      var fr = nbrs(adj, p), sug = suggestions(adj, p), c = centrality(adj), vcls = {}, badge = {};
+      vcls[p] = "focus"; fr.forEach(function(f){ vcls[f] = "friend"; }); sug.forEach(function(s){ vcls[s.q] = "sugg"; badge[s.q] = s.via.length; });
+      PEOPLE.forEach(function(_, i){ if (!vcls[i]) vcls[i] = "faint"; });
+      opt.vcls = vcls; opt.badge = badge; opt.badgeCls = "o";
+      opt.ecls = function(e){ return (e[0] === p || e[1] === p) ? "hl" : ((vcls[e[0]] === "faint" || vcls[e[1]] === "faint") ? "faint" : ""); };
+      var k = fr.length, links = Math.round(c.clu[p] * k*(k-1)/2);
+      msg = "<b>"+nm[p]+"<\/b> has <b>"+k+"<\/b> friends (degree "+k+"). Orange people are friends-of-friends; the badge shows the number of mutual friends.";
+      side = "<h4>"+nm[p]+"'s friends<\/h4><div>"+(fr.length ? fr.map(function(f){ return "<span class='ga-chip g'>"+nm[f]+"<\/span>"; }).join("") : "<i>none<\/i>")+"<\/div>"+
+        "<h4 style='margin-top:12px'>Clustering coefficient<\/h4><div>"+(k < 2 ? "Needs at least 2 friends \u2192 0." : links+" of "+(k*(k-1)/2)+" pairs of friends know each other \u2192 <b>"+c.clu[p].toFixed(2)+"<\/b>")+"<\/div>"+
+        "<h4 style='margin-top:12px'>People you may know<\/h4>";
+      if (!sug.length) side += "<i>No friends-of-friends left to suggest.<\/i>";
+      sug.forEach(function(s){
+        var uni = {}; nbrs(adj, p).concat(nbrs(adj, s.q)).forEach(function(x){ uni[x] = 1; });
+        side += "<div class='ga-sugg'><div><b>"+nm[s.q]+"<\/b><div class='ms'>"+s.via.length+" mutual: "+s.via.map(function(v){ return nm[v]; }).join(", ")+" \u00B7 Jaccard "+(s.via.length/Object.keys(uni).length).toFixed(2)+"<\/div><\/div><button class='ga-btn ghost' data-add='"+s.q+"'>+ Add friend<\/button><\/div>";
+      });
+      legend = "<span><i style='background:var(--pivot)'><\/i>focus<\/span><span><i style='background:var(--dst-soft);border:2px solid var(--dst)'><\/i>friend<\/span><span><i style='background:var(--upd-soft);border:2px solid var(--upd)'><\/i>suggestion (badge = mutual friends)<\/span>";
+    } else if (sv.mode === "bfs"){
+      $("ga-sv-bfsctl").style.display = "";
+      var s = sv.bfsSnaps[sv.bfsPos], vc = {}, bd = {};
+      PEOPLE.forEach(function(_, i){
+        if (s.dist[i] !== INF) bd[i] = s.dist[i];
+        if (i === s.cur) vc[i] = "cur"; else if (s.q.indexOf(i) >= 0) vc[i] = "inq"; else if (s.dist[i] !== INF) vc[i] = "done"; else vc[i] = "faint";
+      });
+      vc[p] = s.cur === p ? "cur" : (vc[p] === "inq" ? "inq" : "focus");
+      opt.vcls = vc; opt.badge = bd;
+      opt.ecls = function(e){ return (s.cur >= 0 && ((e[0] === s.cur && s.found.indexOf(e[1]) >= 0) || (e[1] === s.cur && s.found.indexOf(e[0]) >= 0))) ? "relax" : ""; };
+      msg = s.msg;
+      var levels = {}; s.dist.forEach(function(d, i){ if (d !== INF) (levels[d] = levels[d] || []).push(nm[i]); });
+      side = "<h4>Queue (front \u2192 back)<\/h4><div>"+(s.q.length ? s.q.map(function(v){ return "<span class='ga-chip b'>"+nm[v]+"<\/span>"; }).join("") : "<i>empty<\/i>")+"<\/div><h4 style='margin-top:12px'>Distance levels so far<\/h4><table class='ga-tbl ga-t'><tr><th>Distance<\/th><th class='l'>People<\/th><\/tr>";
+      Object.keys(levels).forEach(function(d){ side += "<tr><td>"+d+"<\/td><td class='l'>"+levels[d].join(", ")+"<\/td><\/tr>"; });
+      var unreached = PEOPLE.filter(function(_, i){ return s.dist[i] === INF; });
+      side += "<\/table>"+(unreached.length ? "<div style='margin-top:6px;font-size:13.5px;color:var(--muted)'>Not reached yet: "+unreached.join(", ")+"<\/div>" : "");
+      $("ga-sv-b-back").disabled = sv.bfsPos === 0;
+      $("ga-sv-b-step").disabled = $("ga-sv-b-end").disabled = sv.bfsPos === sv.bfsSnaps.length - 1;
+      legend = "<span><i style='background:var(--upd)'><\/i>being processed<\/span><span><i style='background:var(--src-soft);border:2px dashed var(--src)'><\/i>in queue<\/span><span><i style='background:var(--dst-soft);border:2px solid var(--dst)'><\/i>finished<\/span><span>badge = distance<\/span>";
+    } else if (sv.mode === "path"){
+      $("ga-sv-pathctl").style.display = "";
+      var t = +$("ga-sv-target").value, r = bfs(adj, p), path = [];
+      if (r.dist[t] !== INF){ for (var x = t; x !== -1; x = r.par[x]) path.unshift(x); }
+      var vc2 = {}; PEOPLE.forEach(function(_, i){ vc2[i] = path.indexOf(i) >= 0 ? "onpath" : "faint"; });
+      vc2[p] = "focus"; vc2[t] = t === p ? "focus" : "target";
+      opt.vcls = vc2;
+      opt.ecls = function(e){ var a = path.indexOf(e[0]), b = path.indexOf(e[1]); return (a >= 0 && b >= 0 && Math.abs(a-b) === 1) ? "path" : "faint"; };
+      if (t === p) msg = "Choose a different person to connect to.";
+      else if (!path.length) msg = "<b>"+nm[t]+"<\/b> cannot be reached from <b>"+nm[p]+"<\/b>: they are in different components (distance \u221E).";
+      else msg = "Shortest chain: <b>"+path.map(function(v){ return nm[v]; }).join(" \u2192 ")+"<\/b><span class='calc'>Distance = "+(path.length-1)+" links = "+(path.length-2)+" people in between (Facebook-style \u201Cdegrees\u201D).<\/span>";
+      side = "<h4>BFS distances from "+nm[p]+"<\/h4><table class='ga-tbl ga-t'><tr><th class='l'>Person<\/th><th>Links<\/th><th class='l'>Reached via<\/th><\/tr>";
+      PEOPLE.map(function(_, i){ return i; }).filter(function(i){ return i !== p; }).sort(function(a,b){ return r.dist[a]-r.dist[b] || (nm[a] < nm[b] ? -1 : 1); }).forEach(function(i){
+        side += "<tr"+(i === t ? " class='me'" : "")+"><td class='l'>"+nm[i]+"<\/td><td>"+fmt(r.dist[i])+"<\/td><td class='l'>"+(r.par[i] >= 0 ? nm[r.par[i]] : "\u2014")+"<\/td><\/tr>";
+      });
+      side += "<\/table>";
+      legend = "<span><i style='background:var(--pivot)'><\/i>from<\/span><span><i style='background:var(--src)'><\/i>to<\/span><span><i style='background:var(--pivot-soft);border:2px solid var(--pivot)'><\/i>on the chain<\/span>";
+    } else {
+      $("ga-sv-centctl").style.display = "";
+      var c2 = centrality(adj), mt = $("ga-sv-metric").value, vals = c2[mt], mx2 = Math.max.apply(null, vals) || 1, vf = {}, vc3 = {}, bd2 = {};
+      PEOPLE.forEach(function(_, i){
+        var a = vals[i] / mx2;
+        vf[i] = "rgba(15,118,110," + (0.08 + 0.85*a).toFixed(2) + ")";
+        if (a > 0.55) vc3[i] = "dark";
+        bd2[i] = mt === "bet" ? vals[i].toFixed(1) : vals[i].toFixed(2);
+      });
+      vc3[p] = (vc3[p] ? vc3[p] + " " : "") ;
+      opt.vfill = vf; opt.vcls = vc3; opt.badge = bd2;
+      var names = {deg:"Degree centrality = friends / (n \u2212 1)", clo:"Closeness centrality = (n \u2212 1) / sum of distances", bet:"Betweenness = shortest paths passing through the person", clu:"Clustering coefficient = links among friends / possible links"};
+      var order = PEOPLE.map(function(_, i){ return i; }).sort(function(a,b){ return vals[b]-vals[a] || (nm[a] < nm[b] ? -1 : 1); });
+      msg = "<b>"+names[mt]+"<\/b>. Darker = higher. Top: <b>"+order.filter(function(i){ return Math.abs(vals[i]-vals[order[0]]) < 1e-9; }).map(function(i){ return nm[i]; }).join(" &amp; ")+"<\/b>." +
+        (mt === "bet" ? "<span class='calc'>Bridges between groups score highest, even with few friends.<\/span>" : (mt === "deg" ? "<span class='calc'>Most friends = most popular, but not necessarily most important.<\/span>" : ""));
+      side = "<h4>Leaderboard<\/h4><table class='ga-tbl ga-t'><tr><th>#<\/th><th class='l'>Person<\/th><th>Friends<\/th><th>Score<\/th><th style='width:35%'><\/th><\/tr>";
+      order.forEach(function(i, r2){ side += "<tr"+(i === p ? " class='me'" : "")+"><td>"+(r2+1)+"<\/td><td class='l'>"+nm[i]+"<\/td><td>"+nbrs(adj, i).length+"<\/td><td>"+bd2[i]+"<\/td><td><div class='ga-meter'><div style='width:"+(vals[i]/mx2*100).toFixed(0)+"%'><\/div><\/div><\/td><\/tr>"; });
+      side += "<\/table>";
+      legend = "<span>badge = score<\/span><span>darker fill = more central<\/span>";
+    }
+    $("ga-sv-msg").className = "ga-msg"; $("ga-sv-msg").innerHTML = msg;
+    $("ga-sv-side").innerHTML = side; $("ga-sv-legend").innerHTML = legend;
+    drawNet($("ga-sv-graph"), sv.net, opt);
+  }
+  $("ga-sv-modes").addEventListener("click", function(ev){
+    var b = ev.target.closest(".ga-mode"); if (!b) return;
+    svStopPlay();
+    sv.mode = b.getAttribute("data-m");
+    root.querySelectorAll("#ga-sv-modes .ga-mode").forEach(function(x){ x.classList.toggle("on", x === b); });
+    if (sv.mode === "bfs") svBuildBfs();
+    svRender();
+  });
+  $("ga-sv-person").addEventListener("change", function(){ svSetFocus(+this.value); });
+  $("ga-sv-target").addEventListener("change", svRender);
+  $("ga-sv-metric").addEventListener("change", svRender);
+  $("ga-sv-side").addEventListener("click", function(ev){
+    var b = ev.target.closest("button[data-add]"); if (!b) return;
+    var q = +b.getAttribute("data-add"); sv.net.edges.push([sv.focus, q]); svRender();
+    $("ga-sv-msg").innerHTML = "Friendship <b>"+PEOPLE[sv.focus]+" \u2013 "+PEOPLE[q]+"<\/b> added. Notice how suggestions, clustering and centralities change. (Use <b>Reset network<\/b> to undo.)";
+  });
+  $("ga-sv-resetnet").addEventListener("click", function(){ svResetNet(); if (sv.mode === "bfs") svBuildBfs(); svRender(); });
+  $("ga-sv-b-reset").addEventListener("click", function(){ svStopPlay(); sv.bfsPos = 0; svRender(); });
+  $("ga-sv-b-back").addEventListener("click", function(){ svStopPlay(); sv.bfsPos = Math.max(0, sv.bfsPos-1); svRender(); });
+  $("ga-sv-b-step").addEventListener("click", function(){ svStopPlay(); sv.bfsPos = Math.min(sv.bfsSnaps.length-1, sv.bfsPos+1); svRender(); });
+  $("ga-sv-b-end").addEventListener("click", function(){ svStopPlay(); sv.bfsPos = sv.bfsSnaps.length-1; svRender(); });
+  $("ga-sv-b-play").addEventListener("click", function(){
+    if (sv.timer){ svStopPlay(); return; }
+    if (sv.bfsPos >= sv.bfsSnaps.length-1) sv.bfsPos = 0;
+    $("ga-sv-b-play").textContent = "\u23F8 Pause"; svRender(); $("ga-sv-b-play").textContent = "\u23F8 Pause";
+    sv.timer = setInterval(function(){
+      if (sv.bfsPos >= sv.bfsSnaps.length-1){ svStopPlay(); return; }
+      sv.bfsPos++; svRender(); $("ga-sv-b-play").textContent = sv.timer ? "\u23F8 Pause" : "\u25B6 Play";
+    }, 1100);
+  });
+  svRender();
+
+  /* ---------------- ROUTING VISUALISER ---------------- */
+  var DVINF = 16;
+  var rv = {snaps:[], pos:0, timer:null};
+  (function(){
+    var o = ""; ROUTERS.forEach(function(r, i){ o += "<option value='"+i+"'>"+r+"<\/option>"; });
+    $("ga-rv-src").innerHTML = o; $("ga-rv-pf").innerHTML = o; $("ga-rv-pt").innerHTML = o; $("ga-rv-pt").value = "5";
+    var f = "<option value='-1'>None<\/option>"; LINKS.forEach(function(l, i){ f += "<option value='"+i+"'>"+ROUTERS[l[0]]+"\u2013"+ROUTERS[l[1]]+" fails<\/option>"; });
+    $("ga-rv-fail").innerHTML = f;
+  })();
+  function linkAdj(failed){
+    var a = ROUTERS.map(function(){ return []; });
+    LINKS.forEach(function(l, i){ if (i === failed) return; a[l[0]].push([l[1], l[2]]); a[l[1]].push([l[0], l[2]]); });
+    return a;
+  }
+  function buildLS(src, failed){
+    var n = ROUTERS.length, adj = linkAdj(failed), dist = [], prev = [], done = [], snaps = [], nm = ROUTERS;
+    for (var i=0;i<n;i++){ dist.push(INF); prev.push(-1); done.push(false); }
+    dist[src] = 0;
+    function snap(o){ o.dist = dist.slice(); o.prev = prev.slice(); o.done = done.slice(); snaps.push(o); }
+    snap({msg:(failed >= 0 ? "Link <b>"+nm[LINKS[failed][0]]+"\u2013"+nm[LINKS[failed][1]]+"<\/b> is down, so it is not in the link-state database. " : "")+
+      "<b>"+nm[src]+"<\/b> has the full map (from flooded LSAs) and runs Dijkstra with itself as the source: dist["+nm[src]+"] = 0, all others \u221E.", cur:-1, relax:[]});
+    for (var step=0; step<n; step++){
+      var u = -1; for (var v=0; v<n; v++) if (!done[v] && dist[v] !== INF && (u === -1 || dist[v] < dist[u])) u = v;
+      if (u === -1) break;
+      done[u] = true;
+      var rel = [], txt = [];
+      adj[u].forEach(function(e){ var v2 = e[0], w = e[1]; if (!done[v2] && dist[u] + w < dist[v2]){ txt.push(nm[v2]+": "+fmt(dist[v2])+" \u2192 "+(dist[u]+w)); dist[v2] = dist[u] + w; prev[v2] = u; rel.push(v2); } });
+      snap({msg:"Closest unfinished router: <b>"+nm[u]+"<\/b> (cost "+dist[u]+"). Mark it final and relax its links."+"<span class='calc'>"+(txt.length ? "Updates: "+txt.join(",  ") : "No improvements.")+"<\/span>", cur:u, relax:rel});
+    }
+    var last = snaps[snaps.length-1];
+    var unreach = ROUTERS.filter(function(_, i){ return dist[i] === INF; });
+    last.msg += " <b>Dijkstra finished \u2014 routing table of "+nm[src]+" is ready.<\/b>" + (unreach.length ? " Unreachable: " + unreach.join(", ") + "." : "");
+    last.final = true;
+    return snaps;
+  }
+  function nextHop(prev, src, d){
+    if (d === src || prev[d] === -1) return -1;
+    var h = d; while (prev[h] !== src) h = prev[h]; return h;
+  }
+  function dvInit(adj){
+    return ROUTERS.map(function(_, x){ return ROUTERS.map(function(_, y){
+      if (x === y) return [0, x];
+      for (var k=0; k<adj[x].length; k++) if (adj[x][k][0] === y) return [adj[x][k][1], y];
+      return [DVINF, -1];
+    }); });
+  }
+  function dvRound(T, adj, poison){
+    return ROUTERS.map(function(_, x){ return ROUTERS.map(function(_, y){
+      if (x === y) return [0, x];
+      var best = [DVINF, -1];
+      adj[x].forEach(function(e){
+        var v = e[0], c = e[1], dv = T[v][y][0];
+        if (poison && T[v][y][1] === x) dv = DVINF;
+        var tot = Math.min(DVINF, c + dv);
+        if (tot < best[0]) best = [tot, v];
+      });
+      return best;
+    }); });
+  }
+  function same(A, B){ for (var i=0;i<A.length;i++) for (var j=0;j<A.length;j++) if (A[i][j][0] !== B[i][j][0] || A[i][j][1] !== B[i][j][1]) return false; return true; }
+  function buildDV(failed, poison){
+    var snaps = [], adj = linkAdj(-1), T = dvInit(adj), r = 0, nm = ROUTERS;
+    snaps.push({T:T, prevT:null, failed:-1, round:0, msg:"Round 0: each router knows only its <b>direct neighbours<\/b> (other destinations = \u221E, shown as 16 in RIP)."});
+    while (r < 40){
+      var N = dvRound(T, adj, poison); if (same(N, T)) break;
+      r++; snaps.push({T:N, prevT:T, failed:-1, round:r, msg:"Round "+r+": every router receives its neighbours' vectors and applies D<sub>x<\/sub>(y) = min(cost(x,v) + D<sub>v<\/sub>(y))."}); T = N;
+    }
+    snaps[snaps.length-1].msg += " <b>No table changes in the next round \u2014 converged after "+r+" rounds.<\/b>";
+    snaps[snaps.length-1].conv = true;
+    if (failed < 0) return snaps;
+    var L = LINKS[failed], adj2 = linkAdj(failed);
+    snaps.push({T:T, prevT:null, failed:failed, round:r, msg:"\uD83D\uDCA5 Link <b>"+nm[L[0]]+"\u2013"+nm[L[1]]+"<\/b> fails! "+nm[L[0]]+" and "+nm[L[1]]+" notice it, but their tables still contain the old routes. Watch how the bad news spreads."});
+    var r0 = r, start = r;
+    while (r < r0 + 40){
+      var N2 = dvRound(T, adj2, poison); if (same(N2, T)) break;
+      r++;
+      var bad = []; N2.forEach(function(row, x){ row.forEach(function(c, y){ if (c[0] !== T[x][y][0]) bad.push(nm[x]+"\u2192"+nm[y]+" "+fmt(T[x][y][0] === DVINF ? INF : T[x][y][0])+"\u2192"+(c[0] === DVINF ? "\u221E" : c[0])); }); });
+      snaps.push({T:N2, prevT:T, failed:failed, round:r, msg:"Round "+r+" after the failure. Changes: <span class='calc'>"+bad.join(",  ")+"<\/span>"}); T = N2;
+    }
+    var unreachable = []; T.forEach(function(row, x){ row.forEach(function(c, y){ if (c[0] >= DVINF && x !== y) unreachable.push(1); }); });
+    snaps[snaps.length-1].msg += " <b>Converged again after "+(r-start)+" rounds"+(unreachable.length ? " \u2014 some destinations are now unreachable (16 = \u221E)" : "")+".<\/b>";
+    snaps[snaps.length-1].conv = true;
+    return snaps;
+  }
+  function rvBuild(){
+    rvStop();
+    var algo = $("ga-rv-algo").value, failed = +$("ga-rv-fail").value;
+    $("ga-rv-src").style.display = $("ga-rv-src-lbl").style.display = algo === "ls" ? "" : "none";
+    $("ga-rv-poison-lbl").style.display = algo === "dv" ? "" : "none";
+    rv.algo = algo;
+    rv.snaps = algo === "ls" ? buildLS(+$("ga-rv-src").value, failed) : buildDV(failed, $("ga-rv-poison").checked);
+    $("ga-rv-pktres").style.display = "none"; rv.pkt = null;
+    $("ga-rv-legend").innerHTML = algo === "ls"
+      ? "<span><i style='background:var(--pivot)'><\/i>source<\/span><span><i style='background:var(--upd)'><\/i>just finalised<\/span><span><i style='background:var(--dst)'><\/i>shortest-path tree<\/span><span><i style='background:var(--bad)'><\/i>failed link<\/span><span>badge = distance<\/span>"
+      : "<span><i style='background:var(--upd)'><\/i>router whose table changed<\/span><span><i style='background:var(--bad)'><\/i>failed link<\/span><span>badge = cost to the selected destination (packet \u201CTo\u201D)<\/span>";
+    rvGo(0);
+  }
+  function rvTables(s){
+    /* routing tables (cost, next hop) of all routers for the current snapshot */
+    if (rv.algo === "dv") return s.T.map(function(row){ return row.map(function(c){ return [c[0] >= DVINF ? INF : c[0], c[0] >= DVINF ? -1 : c[1]]; }); });
+    return null;
+  }
+  function rvGo(p){
+    var total = rv.snaps.length - 1; rv.pos = Math.max(0, Math.min(total, p));
+    var s = rv.snaps[rv.pos], nm = ROUTERS, n = nm.length, failed = +$("ga-rv-fail").value, opt = {}, side = "";
+    $("ga-rv-count").textContent = "step " + rv.pos + " / " + total;
+    $("ga-rv-bar").style.width = (total ? rv.pos/total*100 : 100) + "%";
+    $("ga-rv-msg").className = "ga-msg" + (s.failed >= 0 && !s.conv ? " bad" : (s.cur >= 0 || (s.round && !s.conv) ? " upd" : ""));
+    $("ga-rv-msg").innerHTML = s.msg;
+    var pktEdges = {};
+    if (rv.pkt) for (var i=0;i<rv.pkt.length-1;i++){ pktEdges[Math.min(rv.pkt[i],rv.pkt[i+1])+"-"+Math.max(rv.pkt[i],rv.pkt[i+1])] = 1; }
+    if (rv.algo === "ls"){
+      var src = +$("ga-rv-src").value, vc = {}, bd = {};
+      $("ga-rv-phase").innerHTML = "Link-state at <em>"+nm[src]+"<\/em>" + (rv.pos ? " \u2014 Dijkstra step "+rv.pos : "");
+      nm.forEach(function(_, i){ if (s.dist[i] !== INF) bd[i] = s.dist[i]; if (s.done[i]) vc[i] = "done"; });
+      vc[src] = "focus"; if (s.cur >= 0 && s.cur !== src) vc[s.cur] = "cur";
+      opt.vcls = vc; opt.badge = bd;
+      opt.ecls = function(e, i){
+        if (i === failed) return "down";
+        var k = Math.min(e[0],e[1])+"-"+Math.max(e[0],e[1]);
+        if (pktEdges[k]) return "path";
+        if ((s.prev[e[1]] === e[0] && s.relax.indexOf(e[1]) >= 0 && s.cur === e[0]) || (s.prev[e[0]] === e[1] && s.relax.indexOf(e[0]) >= 0 && s.cur === e[1])) return "relax";
+        if (s.prev[e[1]] === e[0] || s.prev[e[0]] === e[1]) return "tree";
+        return "";
+      };
+      side = "<h4>Dijkstra table at "+nm[src]+"<\/h4><table class='ga-tbl ga-t'><tr><th class='l'>Router<\/th><th>dist<\/th><th>prev<\/th><th>final?<\/th><\/tr>";
+      nm.forEach(function(r, i){ side += "<tr"+(i === s.cur ? " class='me'" : "")+"><td class='l'>"+r+"<\/td><td class='"+(s.relax.indexOf(i) >= 0 ? "upd" : "")+"'>"+fmt(s.dist[i])+"<\/td><td>"+(s.prev[i] >= 0 ? nm[s.prev[i]] : "\u2014")+"<\/td><td class='done'>"+(s.done[i] ? "\u2714" : "")+"<\/td><\/tr>"; });
+      side += "<\/table>";
+      if (s.final){
+        side += "<h4 style='margin-top:12px'>Routing table of "+nm[src]+"<\/h4><table class='ga-tbl ga-t'><tr><th class='l'>Destination<\/th><th>Cost<\/th><th>Next hop<\/th><\/tr>";
+        nm.forEach(function(r, d){ if (d === src) return; var h = nextHop(s.prev, src, d); side += "<tr><td class='l'>"+r+"<\/td><td class='"+(s.dist[d] === INF ? "inf" : "")+"'>"+fmt(s.dist[d])+"<\/td><td>"+(h >= 0 ? nm[h] : "\u2014")+"<\/td><\/tr>"; });
+        side += "<\/table>";
+      }
+    } else {
+      var dst = +$("ga-rv-pt").value, vc2 = {}, bd2 = {};
+      $("ga-rv-phase").innerHTML = "Distance-vector \u2014 round <em>"+s.round+"<\/em>" + (s.failed >= 0 ? " <span style='color:var(--bad);font-size:14px'>(after failure)<\/span>" : "") + ($("ga-rv-poison").checked ? " <span style='font-size:13px;color:var(--muted)'>\u00B7 poisoned reverse<\/span>" : "");
+      nm.forEach(function(_, x){
+        var c = s.T[x][dst][0]; bd2[x] = c >= DVINF ? "\u221E" : c;
+        if (s.prevT && s.T[x].some(function(cell, y){ return cell[0] !== s.prevT[x][y][0] || cell[1] !== s.prevT[x][y][1]; })) vc2[x] = "cur";
+      });
+      vc2[dst] = "target";
+      opt.vcls = vc2; opt.badge = bd2;
+      opt.ecls = function(e, i){
+        if (i === s.failed || (i === failed && s.failed >= 0)) return "down";
+        var k = Math.min(e[0],e[1])+"-"+Math.max(e[0],e[1]);
+        return pktEdges[k] ? "path" : "";
+      };
+      side = "<h4>All distance vectors<\/h4><div class='sub' style='font-size:12.5px;color:var(--muted);margin-bottom:6px'>Row = router, column = destination. Cell = cost / next hop. Yellow = changed this round.<\/div><div class='ga-tbl-wrap' style='margin:0'><table class='ga-tbl ga-t'><tr><th><\/th>";
+      nm.forEach(function(r){ side += "<th>"+r+"<\/th>"; }); side += "<\/tr>";
+      nm.forEach(function(r, x){
+        side += "<tr><th>"+r+"<\/th>";
+        nm.forEach(function(_, y){
+          var c = s.T[x][y], ch = s.prevT && (c[0] !== s.prevT[x][y][0] || c[1] !== s.prevT[x][y][1]);
+          side += "<td class='"+(ch ? "upd" : (c[0] >= DVINF ? "inf" : ""))+"'>"+(x === y ? "0" : (c[0] >= DVINF ? "\u221E" : c[0]+"<small>"+nm[c[1]]+"<\/small>"))+"<\/td>";
+        });
+        side += "<\/tr>";
+      });
+      side += "<\/table><\/div>";
+    }
+    $("ga-rv-side").innerHTML = side;
+    drawNet($("ga-rv-graph"), RT0, opt);
+    $("ga-rv-back").disabled = rv.pos === 0;
+    $("ga-rv-step").disabled = $("ga-rv-end").disabled = rv.pos === total;
+    if (rv.pos === total) rvStop();
+  }
+  function rvStop(){ if (rv.timer){ clearInterval(rv.timer); rv.timer = null; } $("ga-rv-play").textContent = "\u25B6 Play"; }
+  function rvPlay(){
+    if (rv.timer){ rvStop(); return; }
+    if (rv.pos >= rv.snaps.length-1) rvGo(0);
+    var ms = 2200 - (+$("ga-rv-speed").value)*190;
+    $("ga-rv-play").textContent = "\u23F8 Pause";
+    rv.timer = setInterval(function(){ if (rv.pos >= rv.snaps.length-1){ rvStop(); return; } rvGo(rv.pos+1); }, ms);
+  }
+  $("ga-rv-algo").addEventListener("change", rvBuild);
+  $("ga-rv-src").addEventListener("change", rvBuild);
+  $("ga-rv-fail").addEventListener("change", rvBuild);
+  $("ga-rv-poison").addEventListener("change", rvBuild);
+  $("ga-rv-pt").addEventListener("change", function(){ rv.pkt = null; $("ga-rv-pktres").style.display = "none"; rvGo(rv.pos); });
+  $("ga-rv-reset").addEventListener("click", function(){ rvStop(); rvGo(0); });
+  $("ga-rv-back").addEventListener("click", function(){ rvStop(); rvGo(rv.pos-1); });
+  $("ga-rv-step").addEventListener("click", function(){ rvStop(); rvGo(rv.pos+1); });
+  $("ga-rv-end").addEventListener("click", function(){ rvStop(); rvGo(rv.snaps.length-1); });
+  $("ga-rv-play").addEventListener("click", rvPlay);
+  $("ga-rv-speed").addEventListener("input", function(){ if (rv.timer){ rvStop(); rvPlay(); } });
+  $("ga-rv-send").addEventListener("click", function(){
+    var a = +$("ga-rv-pf").value, b = +$("ga-rv-pt").value, nm = ROUTERS, res = $("ga-rv-pktres"), s = rv.snaps[rv.pos], failed = +$("ga-rv-fail").value;
+    res.style.display = "block"; res.className = "ga-pktres";
+    if (a === b){ res.textContent = "Choose two different routers."; return; }
+    var hopOf;
+    if (rv.algo === "ls"){
+      /* every router runs its own Dijkstra on the same (current) map */
+      var tabs = nm.map(function(_, r){ var sn = buildLS(r, failed); return sn[sn.length-1]; });
+      hopOf = function(x){ var h = nextHop(tabs[x].prev, x, b); return h; };
+    } else {
+      hopOf = function(x){ var c = s.T[x][b]; return c[0] >= DVINF ? -1 : c[1]; };
+    }
+    var path = [a], seen = {}, cur = a, loop = false;
+    seen[a] = 1;
+    while (cur !== b){
+      var h = hopOf(cur);
+      if (h < 0){ break; }
+      path.push(h);
+      if (seen[h]){ loop = true; break; }
+      seen[h] = 1; cur = h;
+      if (path.length > 20){ loop = true; break; }
+    }
+    rv.pkt = path;
+    if (loop){ res.className = "ga-pktres bad"; res.innerHTML = "\uD83D\uDD01 <b>Routing loop!<\/b> "+path.map(function(x){ return nm[x]; }).join(" \u2192 ")+" \u2026 The packet bounces until its TTL expires."; }
+    else if (cur !== b){ res.className = "ga-pktres bad"; res.innerHTML = "\u274C Dropped at <b>"+nm[cur]+"<\/b>: no route to "+nm[b]+" (path so far: "+path.map(function(x){ return nm[x]; }).join(" \u2192 ")+")."; }
+    else {
+      var cost = 0; for (var i=0;i<path.length-1;i++){ LINKS.forEach(function(l){ if ((l[0]===path[i]&&l[1]===path[i+1])||(l[1]===path[i]&&l[0]===path[i+1])) cost += l[2]; }); }
+      res.innerHTML = "\uD83D\uDCE6 Delivered: <b>"+path.map(function(x){ return nm[x]; }).join(" \u2192 ")+"<\/b>  (total cost "+cost+")" + (rv.algo === "ls" ? " \u2014 each router used its own Dijkstra table." : "");
+    }
+    rvGo(rv.pos);
+  });
+  rvBuild();
+
+  /* ---------------- code tabs, highlighting, copy ---------------- */
+  root.querySelectorAll(".ga-tabs").forEach(function(bar){
+    bar.addEventListener("click", function(ev){
+      var b = ev.target.closest(".ga-tab"); if (!b) return;
+      bar.querySelectorAll(".ga-tab").forEach(function(x){ x.classList.toggle("on", x === b); var p = $(x.dataset.pane); if (p) p.classList.toggle("on", x === b); });
+    });
+  });
+  var KW = /^(def|for|in|if|else|elif|return|while|not|and|or|is|None|True|False|import|from|as|with|lambda|pass|break|continue|class|try|except|self)$/;
+  var BI = /^(print|range|len|min|max|float|int|str|any|all|list|enumerate|sorted|sum|set|dict|abs|deque)$/;
+  function highlight(code){
+    var re = /(#[^\n]*)|("""[\s\S]*?"""|'(?:\\.|[^'\\\n])*'|"(?:\\.|[^"\\\n])*")|([A-Za-z_][A-Za-z_0-9]*)|(\d+(?:\.\d+)?)/g;
+    var out = "", last = 0, m, prevDef = false;
+    while ((m = re.exec(code))){
+      out += esc(code.slice(last, m.index));
+      if (m[1]) { out += "<span class='py-com'>"+esc(m[1])+"<\/span>"; prevDef = false; }
+      else if (m[2]) { out += "<span class='py-str'>"+esc(m[2])+"<\/span>"; prevDef = false; }
+      else if (m[3]){
+        var w = m[3];
+        if (prevDef) out += "<span class='py-fn'>"+w+"<\/span>";
+        else if (KW.test(w)) out += "<span class='py-kw'>"+w+"<\/span>";
+        else if (BI.test(w)) out += "<span class='py-bi'>"+w+"<\/span>";
+        else out += w;
+        prevDef = (w === "def" || w === "class");
+      }
+      else if (m[4]) { out += "<span class='py-num'>"+m[4]+"<\/span>"; prevDef = false; }
+      last = re.lastIndex;
+    }
+    return out + esc(code.slice(last));
+  }
+  root.querySelectorAll("code.py").forEach(function(c){ var raw = c.textContent; c._raw = raw; c.innerHTML = highlight(raw); });
+  root.querySelectorAll(".ga-copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var code = btn.closest(".ga-code").querySelector("code"), text = code._raw || code.textContent;
+      function ok(){ btn.textContent = "Copied \u2713"; setTimeout(function(){ btn.textContent = "Copy"; }, 1500); }
+      function fallback(){
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch(e) { btn.textContent = "Press Ctrl+C"; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+  });
+
+  /* ---------------- QUIZ ---------------- */
+  var QUIZ = [
+    {q:"Which algorithm finds the degrees of separation between people in an unweighted friendship graph?", o:["DFS","BFS","Prim's","Kruskal's"], a:1,
+     e:"BFS explores level by level, so the first time it reaches a person is along a shortest path. DFS can find longer paths."},
+    {q:"Suggesting friends-of-friends who share many mutual friends is based on which idea?", o:["Triadic closure","Count-to-infinity","Topological sorting","Path compression"], a:0,
+     e:"If A\u2013B and B\u2013C are friends, A and C are likely to become friends, closing the triangle."},
+    {q:"A person with few friends who lies on many shortest paths between groups has high\u2026", o:["Degree centrality","Clustering coefficient","Betweenness centrality","In-degree"], a:2,
+     e:"Betweenness counts shortest paths passing through a vertex \u2014 bridges such as Rohan score highest."},
+    {q:"A person has 4 friends, and exactly 3 pairs of those friends are friends with each other. Clustering coefficient?", o:["0.75","0.50","0.33","3"], a:1,
+     e:"Possible pairs = 4 \u00D7 3 / 2 = 6. C = 3 / 6 = 0.50 (Isha in our example)."},
+    {q:"OSPF is a ___ routing protocol that uses ___ algorithm.", o:["distance-vector, Bellman\u2013Ford","link-state, Dijkstra's","link-state, Kruskal's","path-vector, BFS"], a:1,
+     e:"In link-state routing every router floods its links, builds the full map and runs Dijkstra's algorithm."},
+    {q:"In RIP, which hop count means \u201Cunreachable\u201D (infinity)?", o:["8","15","16","255"], a:2,
+     e:"RIP allows at most 15 hops; a metric of 16 means infinity, which also stops count-to-infinity."},
+    {q:"The count-to-infinity problem occurs in\u2026", o:["Link-state routing","Distance-vector routing","BFS on social graphs","Floyd\u2013Warshall"], a:1,
+     e:"Routers that only know neighbours' distance vectors can keep learning stale routes from each other after a failure."},
+    {q:"Which representation is suitable for a social network with a billion users and ~200 friends each?", o:["Adjacency matrix","Adjacency list","Incidence matrix","Edge list sorted by weight"], a:1,
+     e:"The graph is extremely sparse; a matrix would need about 125 PB, an adjacency list about 1.6 TB."}
+  ];
+  var score = 0, answered = 0;
+  function quizBuild(){
+    score = 0; answered = 0; var h = "";
+    QUIZ.forEach(function(q, qi){
+      h += "<div class='ga-q' data-q='"+qi+"'><div class='qt'><span>Q"+(qi+1)+".<\/span>"+q.q+"<\/div>";
+      q.o.forEach(function(o, oi){ h += "<button class='ga-opt' data-o='"+oi+"'>"+String.fromCharCode(65+oi)+". "+o+"<\/button>"; });
+      h += "<div class='ga-exp'><\/div><\/div>";
+    });
+    $("ga-quiz").innerHTML = h; $("ga-quiz-score").textContent = "Score: 0 / " + QUIZ.length;
+  }
+  $("ga-quiz").addEventListener("click", function(ev){
+    var b = ev.target.closest(".ga-opt"); if (!b || b.disabled) return;
+    var qd = b.closest(".ga-q"), q = QUIZ[+qd.dataset.q], oi = +b.dataset.o;
+    qd.querySelectorAll(".ga-opt").forEach(function(x){ x.disabled = true; if (+x.dataset.o === q.a) x.classList.add("right"); });
+    var right = oi === q.a; if (!right) b.classList.add("wrong"); else score++;
+    answered++;
+    var ex = qd.querySelector(".ga-exp"); ex.style.display = "block";
+    ex.innerHTML = (right ? "<b style='color:#15803d'>Correct!<\/b> " : "<b style='color:#c92a2a'>Not quite.<\/b> ") + q.e;
+    $("ga-quiz-score").textContent = "Score: " + score + " / " + QUIZ.length + (answered === QUIZ.length ? (score >= 7 ? "  \u2014 Excellent! \uD83C\uDF89" : score >= 5 ? "  \u2014 Good, review the explanations." : "  \u2014 Revisit Sections 2\u20135 and try again.") : "");
+  });
+  $("ga-quiz-reset").addEventListener("click", quizBuild);
+  quizBuild();
+
+  /* ---------------- SLIDE NAVIGATION ---------------- */
+  (function(){
+    var slides = [].slice.call(root.querySelectorAll(".ga-slide"));
+    var tabs = root.querySelectorAll(".ga-nav-tab"), TOTAL = slides.length - 1, cur = 0, slideMode = true, nav = $("ga-nav");
+    var NUMBERED = slides.length - 2;   /* 3B is shown as part of section 3 in the counter */
+    function navTop(){
+      var r = root.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight){
+        var fs = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fs === root) root.scrollTop = 0; else window.scrollTo(0, window.pageYOffset + r.top - 8);
+      }
+    }
+    function render(){
+      root.classList.toggle("ga-slides", slideMode);
+      slides.forEach(function(el, i){ el.classList.toggle("on", i === cur); });
+      tabs.forEach(function(t){ t.classList.toggle("on", +t.dataset.slide === cur); });
+      var title = slides[cur].getAttribute("data-title"), num = slides[cur].getAttribute("data-num");
+      $("ga-nav-count").innerHTML = (cur === 0 ? "<span>Home<\/span>" : "<span>" + num + " / " + NUMBERED + "<\/span>") + title;
+      ["ga-nav-prev","ga-foot-prev"].forEach(function(id){ $(id).disabled = cur === 0; });
+      ["ga-nav-next","ga-foot-next"].forEach(function(id){ $(id).disabled = cur === TOTAL; });
+      $("ga-nav-all").textContent = slideMode ? "Show all sections" : "One section at a time";
+      var on = root.querySelector(".ga-nav-tab.on"), bar = $("ga-nav-tabs");
+      if (on) bar.scrollLeft = on.offsetLeft - bar.clientWidth/2 + on.clientWidth/2;
+    }
+    function goTo(i, noScroll){
+      i = Math.max(0, Math.min(TOTAL, i));
+      if (slides[i].id !== "ga-s3") svStopPlay();
+      if (slides[i].id !== "ga-s3b") rvStop();
+      cur = i; render();
+      if (!slideMode){
+        if (!noScroll) window.scrollTo({top: slides[i].getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight - 10, behavior:"smooth"});
+      } else if (!noScroll) navTop();
+    }
+    function indexOfId(id){ for (var i=0;i<slides.length;i++) if (slides[i].id === id) return i; return -1; }
+    window.gaGoTo = goTo;
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ goTo(+t.dataset.slide); }); });
+    $("ga-nav-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("ga-nav-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("ga-foot-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("ga-foot-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("ga-nav-all").addEventListener("click", function(){ slideMode = !slideMode; render(); if (slideMode) navTop(); });
+    root.addEventListener("click", function(ev){
+      var a = ev.target.closest && ev.target.closest("a[href^='#ga-s']"); if (!a) return;
+      var i = indexOfId(a.getAttribute("href").slice(1)); if (i < 0) return;
+      ev.preventDefault(); goTo(i);
+    });
+    document.addEventListener("keydown", function(ev){
+      if (!slideMode || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+      var tg = ev.target.tagName;
+      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || ev.target.isContentEditable) return;
+      var r = root.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (ev.key === "ArrowRight"){ goTo(cur+1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft"){ goTo(cur-1); ev.preventDefault(); }
+    });
+    var fsBtn = $("ga-nav-fs");
+    if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsBtn.style.display = "none";
+    fsBtn.addEventListener("click", function(){
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+    });
+    function fsChange(){ var fs = document.fullscreenElement || document.webkitFullscreenElement; fsBtn.textContent = fs === root ? "\u2715 Exit fullscreen" : "\u26F6 Fullscreen"; }
+    document.addEventListener("fullscreenchange", fsChange);
+    document.addEventListener("webkitfullscreenchange", fsChange);
+    var h = indexOfId((location.hash || "").slice(1));
+    goTo(h > 0 ? h : 0, true);
+  })();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="minimum-spanning-tree.html"><small>← Previous lesson</small><b>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="searching.html"><small>Next lesson →</small><b>Linear &amp; binary search</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

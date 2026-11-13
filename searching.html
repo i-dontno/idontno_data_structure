@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear &amp; binary search · Learn Data Structures with idontno</title>
+<meta name="description" content="Both searches, their complexity, special cases and common mistakes.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="searching">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="cur" data-lesson="searching" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module V · Searching, sorting &amp; hashing</span><span>›</span><span>Lesson 17 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+  Searching Algorithms: Linear Search and Binary Search
+  Interactive learning blog for MCA Data Structures
+  Paste this whole file into Blogger: New Post &#8594; "HTML view".
+  Do not switch back to "Compose view" after pasting.
+============================================================= -->
+<style>
+
+#srb{
+  --ink:#1c1f33; --ink2:#454a66; --muted:#6b7090; --paper:#fbfaf6; --card:#ffffff;
+  --line:#e4e2d9; --soft:#f3f1ea;
+  --accent:#0f766e; --accent-soft:#e1f3f0;
+  --pivot:#e8590c; --pivot-soft:#fff0e6;
+  --src:#2563eb; --src-soft:#e8efff;
+  --dst:#15803d; --dst-soft:#e6f6ea;
+  --upd:#f59f00; --upd-soft:#fff6d6;
+  --bad:#c92a2a; --bad-soft:#ffe9e9;
+  --codebg:#1e2235;
+  font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink); background:var(--paper); line-height:1.65; font-size:17px;
+  max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+#srb *,#srb *::before,#srb *::after{box-sizing:border-box}
+#srb p{margin:0 0 14px}
+#srb a{color:var(--accent)}
+#srb h2,#srb h3,#srb h4{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1.25;margin:0}
+#srb code,#srb .mono{font-family:'Fira Code',ui-monospace,monospace;font-size:.88em}
+#srb :not(pre)>code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+#srb ul,#srb ol{margin:0 0 14px;padding-left:24px}
+#srb li{margin:4px 0}
+#srb table{border-collapse:collapse}
+#srb img{max-width:100%}
+#srb button{font-family:inherit}
+
+/* ---------- hero ---------- */
+#srb .sr-hero{background:linear-gradient(135deg,#14213d 0%,#1f3a5f 55%,#0f766e 100%);color:#fff;border-radius:18px;padding:38px 34px 30px;margin:0 0 26px;position:relative;overflow:hidden}
+#srb .sr-hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,4.4vw,44px);font-weight:800;line-height:1.08;margin:6px 0 12px;color:#fff;letter-spacing:-.5px}
+#srb .sr-hero p{color:#d8e4f0;max-width:620px;font-size:17px}
+#srb .sr-kicker{font-family:'Fira Code',monospace;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fe3d7}
+#srb .sr-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#srb .sr-hero-tags span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:3px 12px}
+#srb .sr-hero svg{position:absolute;right:-20px;top:10px;opacity:.22;width:300px;height:220px}
+
+/* ---------- toc ---------- */
+#srb .sr-toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:28px}
+#srb .sr-toc h4{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:8px}
+#srb .sr-toc ol{columns:2;column-gap:30px;margin:0;padding-left:22px}
+#srb .sr-toc a{text-decoration:none;color:var(--ink2);font-weight:500}
+#srb .sr-toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#srb .sr-sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:26px}
+#srb .sr-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#srb .sr-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}
+#srb .sr-sec-head h2{font-size:clamp(22px,3vw,29px);font-weight:800;letter-spacing:-.3px}
+#srb h3{font-size:21px;font-weight:700;margin:26px 0 10px}
+#srb h4{font-size:17px;font-weight:700;margin:18px 0 8px}
+
+/* callouts */
+#srb .sr-box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#srb .sr-box b.t{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+#srb .sr-box p:last-child,#srb .sr-box ul:last-child{margin-bottom:0}
+#srb .sr-def{background:var(--accent-soft);border-color:#b5e0d8}
+#srb .sr-def b.t{color:var(--accent)}
+#srb .sr-exam{background:var(--upd-soft);border-color:#f5d97a}
+#srb .sr-exam b.t{color:#a36200}
+#srb .sr-warn{background:var(--bad-soft);border-color:#f4b9b9}
+#srb .sr-warn b.t{color:var(--bad)}
+#srb .sr-tip{background:var(--src-soft);border-color:#c3d4fb}
+#srb .sr-tip b.t{color:var(--src)}
+
+/* grids & cards */
+#srb .sr-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
+#srb .sr-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+#srb .sr-card h4{margin:0 0 6px;font-size:16px}
+#srb .sr-card p{font-size:15px;margin:0;color:var(--ink2)}
+#srb .sr-card .sr-pill{display:inline-block;font-family:'Fira Code',monospace;font-size:11.5px;padding:1px 8px;border-radius:99px;background:var(--ink);color:#fff;margin-bottom:6px}
+#srb .sr-card.hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* generic table */
+#srb .sr-tbl-wrap{overflow-x:auto;margin:14px 0}
+#srb table.sr-tbl{width:100%;font-size:15px;background:#fff}
+#srb table.sr-tbl th,#srb table.sr-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+#srb table.sr-tbl th{background:var(--soft);font-weight:700}
+#srb table.sr-tbl tr.hl td{background:var(--accent-soft)}
+
+/* formula */
+#srb .sr-formula{font-family:'Fira Code',monospace;background:var(--ink);color:#f1f3ff;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:15px;overflow-x:auto;line-height:1.9}
+#srb .sr-formula .k{color:#ffb37a}#srb .sr-formula .i{color:#8fb5ff}#srb .sr-formula .c{color:#8a91b4}
+
+/* distance matrices (worked example + visualizer) */
+#srb .sr-mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:16px 0}
+#srb .sr-mat-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto}
+#srb .sr-mat-card h4{margin:0 0 4px;font-size:16px}
+#srb .sr-mat-card .sub{font-size:13px;color:var(--muted);margin-bottom:8px}
+#srb table.sr-mat{font-family:'Fira Code',monospace;font-size:14.5px;margin:0 auto}
+#srb table.sr-mat th,#srb table.sr-mat td{width:44px;height:38px;text-align:center;border:1px solid var(--line);padding:0;background:#fff}
+#srb table.sr-mat th{background:var(--soft);color:var(--ink2);font-weight:600}
+#srb table.sr-mat td.krow,#srb table.sr-mat td.kcol{background:var(--pivot-soft)}
+#srb table.sr-mat td.chg{background:var(--upd-soft);font-weight:700;color:#8a4b00;box-shadow:inset 0 0 0 2px var(--upd)}
+#srb table.sr-mat th.kh{background:var(--pivot);color:#fff}
+#srb .sr-mat-card .chgs{font-size:13px;margin-top:8px;color:var(--ink2);font-family:'Fira Code',monospace;line-height:1.6}
+
+/* legend */
+#srb .sr-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px;color:var(--ink2);margin:8px 0}
+#srb .sr-legend span{display:inline-flex;align-items:center;gap:6px}
+#srb .sr-legend i{display:inline-block;width:14px;height:14px;border-radius:4px}
+
+/* code */
+#srb .sr-code{background:var(--codebg);border-radius:12px;margin:14px 0;overflow:hidden}
+#srb .sr-code-bar{display:flex;align-items:center;justify-content:space-between;background:#151827;padding:8px 14px;color:#a7adcf;font-family:'Fira Code',monospace;font-size:12.5px}
+#srb .sr-code pre{margin:0;padding:16px 18px;overflow-x:auto;color:#e6e8f5;font-family:'Fira Code',monospace;font-size:13.8px;line-height:1.65;background:transparent;border:0;white-space:pre}
+#srb .sr-code pre code{background:none;border:0;padding:0;font-size:inherit;color:inherit}
+#srb .sr-out pre{background:#0d1020;color:#b8f5c8}
+#srb .py-kw{color:#ff9ac1}#srb .py-str{color:#ffd88a}#srb .py-com{color:#7f88b0;font-style:italic}
+#srb .py-num{color:#9ee8ff}#srb .py-bi{color:#8fd3a5}#srb .py-fn{color:#8fb5ff}
+#srb .sr-copy{background:#2b3050;color:#e6e8f5;border:1px solid #3d4370;border-radius:7px;padding:4px 12px;font-size:12.5px;cursor:pointer;font-family:'Fira Code',monospace}
+#srb .sr-copy:hover{background:#3a4170}
+#srb .sr-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+#srb .sr-tab{border:1px solid var(--line);background:var(--soft);padding:8px 14px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink2)}
+#srb .sr-tab.on{background:var(--codebg);color:#fff;border-color:var(--codebg)}
+#srb .sr-pane{display:none}
+#srb .sr-pane.on{display:block}
+#srb .sr-pane > .sr-code:first-child{margin-top:0;border-top-left-radius:0}
+
+/* pseudocode */
+#srb .sr-pseudo{font-family:'Fira Code',monospace;font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 0;margin:12px 0;line-height:1.75;overflow-x:auto}
+#srb .sr-pseudo div{padding:0 16px;white-space:pre;border-left:3px solid transparent}
+#srb .sr-pseudo div .ln{display:inline-block;width:26px;color:#a0a4bd}
+#srb .sr-pseudo div.on{background:var(--upd-soft);border-left-color:var(--upd)}
+#srb .sr-pseudo .kw{color:#7c3aed;font-weight:600}
+#srb .sr-pseudo .cm{color:#8a8fa8;font-style:italic}
+
+/* buttons / inputs */
+#srb .sr-btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:8px 14px;border-radius:9px;font-weight:600;font-size:14.5px;cursor:pointer;line-height:1.2}
+#srb .sr-btn:hover{filter:brightness(1.25)}
+#srb .sr-btn.ghost{background:#fff;color:var(--ink)}
+#srb .sr-btn.ghost:hover{background:var(--soft);filter:none}
+#srb .sr-btn.acc{background:var(--accent);border-color:var(--accent)}
+#srb .sr-btn:disabled{opacity:.4;cursor:not-allowed}
+#srb select,#srb input[type=text]{font-family:inherit;font-size:14.5px;border:1px solid #cfccc0;border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+#srb .sr-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+#srb .sr-row label{font-size:14px;color:var(--ink2);font-weight:600}
+
+/* lab + visualizer layout */
+#srb .sr-lab{border:2px solid var(--ink);border-radius:16px;padding:18px;margin:18px 0;background:#fff}
+#srb .sr-lab-title{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#srb .sr-lab-title span{font-family:'Fira Code',monospace;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:var(--pivot);color:#fff;border-radius:6px;padding:2px 8px}
+#srb .sr-lab-title h3{margin:0;font-size:20px}
+#srb .sr-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+#srb .sr-two > *{min-width:0}
+#srb .sr-graph{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block}
+#srb .sr-graph .v circle{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+#srb .sr-graph .v text{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#srb .sr-graph .v.pivot circle{fill:var(--pivot);stroke:var(--pivot)}#srb .sr-graph .v.pivot text{fill:#fff}
+#srb .sr-graph .v.src circle{fill:var(--src);stroke:var(--src)}#srb .sr-graph .v.src text{fill:#fff}
+#srb .sr-graph .v.dst circle{fill:var(--dst);stroke:var(--dst)}#srb .sr-graph .v.dst text{fill:#fff}
+#srb .sr-graph .v.onpath circle{stroke:var(--accent);stroke-width:4}
+#srb .sr-graph .e path{fill:none;stroke:#8d91a8;stroke-width:2}
+#srb .sr-graph .e.neg path{stroke:var(--bad)}
+#srb .sr-graph .e.hov path{stroke:var(--upd);stroke-width:4}
+#srb .sr-graph .e.path path{stroke:var(--accent);stroke-width:4.5}
+#srb .sr-graph .e.dim{opacity:.35}
+#srb .sr-graph g.faded{opacity:.28}
+#srb .sr-graph .elab rect{fill:#fff;stroke:var(--line)}
+#srb .sr-graph .elab text{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#srb .sr-graph .elab.neg text{fill:var(--bad)}
+#srb .sr-graph .ov path{fill:none;stroke-width:2.5;stroke-dasharray:7 5}
+#srb .sr-graph .ov.a path{stroke:var(--src)}#srb .sr-graph .ov.b path{stroke:var(--dst)}#srb .sr-graph .ov.c path{stroke:#9aa0b8}
+#srb .sr-graph .ov text{font-family:'Fira Code',monospace;font-size:12.5px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+#srb .sr-graph .ov.a text{fill:var(--src)}#srb .sr-graph .ov.b text{fill:var(--dst)}#srb .sr-graph .ov.c text{fill:#6b7090}
+
+#srb table.sr-in{font-family:'Fira Code',monospace;font-size:14px;margin:6px 0}
+#srb table.sr-in th{background:var(--soft);width:46px;height:34px;border:1px solid var(--line);text-align:center}
+#srb table.sr-in td{border:1px solid var(--line);padding:0;width:56px;height:38px}
+#srb table.sr-in input{width:100%;height:38px;border:0;border-radius:0;text-align:center;font-family:'Fira Code',monospace;font-size:14px;padding:0;background:#fff}
+#srb table.sr-in input:focus{outline:2px solid var(--upd);background:var(--upd-soft)}
+#srb table.sr-in input:disabled{background:var(--soft);color:var(--muted)}
+#srb table.sr-in input.bad{background:var(--bad-soft);color:var(--bad)}
+#srb .sr-stat{font-size:14px;color:var(--ink2);background:var(--paper);border:1px dashed #cfccc0;border-radius:10px;padding:8px 12px;margin-top:8px;font-family:'Fira Code',monospace;line-height:1.6}
+
+#srb .sr-viz-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+#srb .sr-phase{font-weight:800;font-size:17px}
+#srb .sr-phase em{font-style:normal;color:var(--pivot)}
+#srb .sr-prog{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+#srb .sr-prog div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pivot));transition:width .25s}
+#srb .sr-msg{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:15.5px;min-height:78px;margin:10px 0}
+#srb .sr-msg.upd{border-left-color:var(--upd);background:#fffbea}
+#srb .sr-msg.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+#srb .sr-msg .calc{font-family:'Fira Code',monospace;font-size:14px;display:block;margin-top:4px}
+#srb .sr-vmat td{transition:background .2s}
+#srb table.sr-mat td.tgt{box-shadow:inset 0 0 0 3px var(--dst)}
+#srb table.sr-mat td.s1{box-shadow:inset 0 0 0 3px var(--src)}
+#srb table.sr-mat td.tgt.upd{background:var(--upd-soft);font-weight:700}
+#srb table.sr-mat td .old{display:block;font-size:10.5px;color:var(--muted);text-decoration:line-through;line-height:1}
+#srb table.sr-mat td.negd{background:var(--bad-soft);color:var(--bad);font-weight:700}
+#srb .sr-log{max-height:170px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 12px;line-height:1.7}
+#srb .sr-log div.cur{background:var(--upd-soft);border-radius:4px}
+#srb .sr-predict{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:var(--src-soft);border:1px solid #c3d4fb;border-radius:10px;padding:10px 12px;margin:8px 0}
+#srb .sr-predict.on{display:flex}
+#srb .sr-predict b{font-size:15px}
+#srb .sr-pathres{font-family:'Fira Code',monospace;font-size:14.5px;margin-top:6px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);display:none}
+
+/* details (answers) */
+#srb details{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+#srb details summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style:none}
+#srb details summary::-webkit-details-marker{display:none}
+#srb details summary::before{content:"\0025B8  ";color:var(--accent)}
+#srb details[open] summary::before{content:"\0025BE  "}
+#srb details .ans{padding:0 16px 12px;border-top:1px dashed var(--line);padding-top:10px}
+
+/* quiz */
+#srb .sr-q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--paper)}
+#srb .sr-q .qt{font-weight:700;margin-bottom:10px}
+#srb .sr-q .qt span{color:var(--accent);margin-right:6px}
+#srb .sr-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;margin:6px 0;cursor:pointer;font-size:15.5px;color:var(--ink)}
+#srb .sr-opt:hover:not(:disabled){border-color:var(--ink2)}
+#srb .sr-opt.right{border-color:var(--dst);background:var(--dst-soft)}
+#srb .sr-opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+#srb .sr-opt:disabled{cursor:default;opacity:1}
+#srb .sr-exp{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:9px;background:var(--src-soft)}
+#srb .sr-score{font-size:18px;font-weight:800;padding:14px 16px;border-radius:12px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* ---------- slide navigation ---------- */
+#srb .sr-nav{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 18px;box-shadow:0 4px 14px rgba(28,31,51,.06)}
+#srb .sr-nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:2px}
+#srb .sr-nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;padding:5px 10px 5px 7px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;line-height:1.2}
+#srb .sr-nav-tab b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:var(--soft);color:var(--ink);font-size:12.5px}
+#srb .sr-nav-tab:hover{border-color:var(--ink2)}
+#srb .sr-nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#srb .sr-nav-tab.on b{background:var(--pivot);color:#fff}
+#srb .sr-nav-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+#srb .sr-nav-count{flex:1 1 200px;text-align:center;font-weight:700;font-size:15px;color:var(--ink)}
+#srb .sr-nav-count span{font-family:'Fira Code',monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin-right:8px;color:var(--ink2)}
+#srb .sr-nav-bar .sr-btn{padding:7px 12px;font-size:14px}
+#srb .sr-nav-tools{display:flex;gap:8px;margin-left:auto}
+#srb.sr-slides .sr-slide{display:none}
+#srb.sr-slides .sr-slide.on{display:block;animation:srFade .25s ease}
+@keyframes srFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#srb .sr-slide-foot{display:none;justify-content:space-between;gap:10px;margin:-8px 0 26px}
+#srb.sr-slides .sr-slide-foot{display:flex}
+#srb:fullscreen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#srb:-webkit-full-screen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#srb:fullscreen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+#srb:-webkit-full-screen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+@media (max-width:760px){
+  #srb .sr-nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
+  #srb .sr-nav-count{order:-1;flex-basis:100%}
+  #srb .sr-nav-tools{margin-left:0}
+}
+#srb .sr-foot{text-align:center;color:var(--muted);font-size:14px;margin-top:10px}
+
+@media (max-width:760px){
+  #srb{font-size:16px}
+  #srb .sr-sec{padding:20px 16px}
+  #srb .sr-two{grid-template-columns:1fr}
+  #srb .sr-toc ol{columns:1}
+  #srb .sr-hero{padding:28px 20px}
+  #srb .sr-hero svg{display:none}
+  #srb .sr-lab{padding:12px}
+  #srb table.sr-mat th,#srb table.sr-mat td{width:38px;height:34px;font-size:13px}
+}
+
+/* ---------- topic-specific ---------- */
+#srb .sr-hero{background:linear-gradient(135deg,#2a1530 0%,#5b2346 50%,#b8562b 100%)}
+#srb .sr-hero .sr-kicker{color:#ffd3b0}
+#srb .sr-nav-tabs{gap:4px}
+#srb .sr-nav-tab{padding:5px 7px 5px 4px;font-size:12.5px;gap:4px}
+#srb .sr-nav-tab b{min-width:19px;height:19px;font-size:12px}
+#srb .sr-toc li{margin:0 0 6px;break-inside:avoid}
+#srb .sr-arr{display:flex;flex-wrap:nowrap;gap:4px;overflow-x:auto;padding:22px 2px 30px;margin:6px 0}
+#srb .sr-cell{flex:0 0 auto;width:46px;position:relative;text-align:center}
+#srb .sr-cell .v{height:46px;border:2px solid var(--ink2);border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-weight:600;font-size:15px;transition:all .2s}
+#srb .sr-cell .i{font-family:'Fira Code',monospace;font-size:11.5px;color:var(--muted);margin-top:3px}
+#srb .sr-cell.out .v{background:var(--soft);color:#b4b6c6;border-color:#d6d4cb}
+#srb .sr-cell.chk .v{background:#f1f1f1;color:#9a9db2;border-color:#cfcfd8;text-decoration:line-through}
+#srb .sr-cell.cur .v{background:var(--upd-soft);border-color:var(--upd);box-shadow:0 0 0 3px rgba(245,159,0,.35);transform:translateY(-4px)}
+#srb .sr-cell.found .v{background:var(--dst);border-color:var(--dst);color:#fff;transform:translateY(-4px)}
+#srb .sr-cell.range .v{border-color:var(--src)}
+#srb .sr-cell .ptr{position:absolute;left:0;right:0;bottom:-26px;display:flex;justify-content:center;gap:2px}
+#srb .sr-cell .ptr span{font-family:'Fira Code',monospace;font-size:10.5px;font-weight:700;border-radius:4px;padding:0 4px;color:#fff}
+#srb .sr-cell .ptr .L{background:var(--src)}#srb .sr-cell .ptr .M{background:var(--pivot)}#srb .sr-cell .ptr .H{background:#7c3aed}#srb .sr-cell .ptr .I{background:var(--pivot)}
+#srb .sr-cell .top{position:absolute;left:0;right:0;top:-20px;font-size:12px;font-weight:700;color:var(--pivot)}
+#srb .sr-arr.dense{gap:3px}
+#srb .sr-arr.dense .sr-cell{width:25px}
+#srb .sr-arr.dense .sr-cell .v{height:34px;font-size:11px;border-radius:6px;border-width:1.5px}
+#srb .sr-arr.dense .sr-cell .i{font-size:9.5px}
+#srb .sr-arr.dense .sr-cell .ptr span{font-size:9px;padding:0 2px}
+#srb .sr-rowlbl{font-weight:800;font-size:15px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+#srb .sr-rowlbl .cnt{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:2px 9px}
+#srb .sr-input{width:100%;font-family:'Fira Code',monospace !important}
+#srb .sr-warn{display:none;background:var(--bad-soft);border:1px solid #f4b9b9;color:var(--bad);border-radius:10px;padding:8px 12px;font-size:14.5px;margin:8px 0}
+#srb .sr-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}
+#srb .sr-stats div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;color:var(--ink2)}
+#srb .sr-stats b{display:block;font-family:'Fira Code',monospace;font-size:18px;color:var(--ink)}
+#srb .sr-tree{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block}
+#srb .sr-tree line{stroke:#a3a7bd;stroke-width:2}
+#srb .sr-tree line.on{stroke:var(--pivot);stroke-width:4}
+#srb .sr-tree circle{fill:#fff;stroke:var(--ink);stroke-width:2}
+#srb .sr-tree circle.on{fill:var(--pivot-soft);stroke:var(--pivot);stroke-width:3}
+#srb .sr-tree circle.hit{fill:var(--dst);stroke:var(--dst)}
+#srb .sr-tree text{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;text-anchor:middle;dominant-baseline:central;fill:var(--ink)}
+#srb .sr-tree text.hit{fill:#fff}
+#srb .sr-tree text.idx{font-size:10.5px;fill:var(--muted);font-weight:500}
+#srb .sr-tree text.lvl{font-size:11.5px;fill:var(--muted);text-anchor:start}
+#srb .sr-game{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#srb .sr-game input{width:90px}
+#srb .sr-hist{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;min-height:30px}
+#srb .sr-hist span{font-family:'Fira Code',monospace;font-size:13px;border-radius:8px;padding:3px 9px;border:1.5px solid}
+#srb .sr-hist .hi{background:var(--bad-soft);border-color:#f4b9b9;color:var(--bad)}
+#srb .sr-hist .lo{background:var(--src-soft);border-color:#c3d4fb;color:var(--src)}
+#srb .sr-hist .ok{background:var(--dst-soft);border-color:var(--dst);color:var(--dst);font-weight:700}
+#srb .sr-line{height:16px;background:var(--soft);border-radius:99px;position:relative;margin:10px 0 4px;overflow:hidden}
+#srb .sr-line div{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--accent),#22b8a5);border-radius:99px;transition:all .3s}
+#srb .sr-bars{margin:12px 0}
+#srb .sr-bar{display:grid;grid-template-columns:150px 1fr 120px;gap:10px;align-items:center;margin:8px 0;font-size:14.5px}
+#srb .sr-bar .track{height:18px;background:var(--soft);border-radius:99px;overflow:hidden}
+#srb .sr-bar .fill{height:100%;border-radius:99px;transition:width .3s}
+#srb .sr-bar .num{font-family:'Fira Code',monospace;font-size:13px;text-align:right}
+#srb .sr-rec{background:var(--accent-soft);border:1px solid #b5e0d8;border-radius:10px;padding:10px 14px;font-weight:600}
+#srb .sr-vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#srb .sr-vs > div{border-radius:14px;padding:16px;border:1.5px solid}
+#srb .sr-vs .p{background:#eef4ff;border-color:#bcd0fb}
+#srb .sr-vs .k{background:#fff3e8;border-color:#f6c79d}
+#srb .sr-vs h4{margin:0 0 8px;font-size:18px}
+#srb table.sr-t{font-family:'Fira Code',monospace;font-size:13.5px}
+#srb table.sr-t td,#srb table.sr-t th{text-align:center;white-space:nowrap}
+#srb table.sr-t td.l,#srb table.sr-t th.l{text-align:left;white-space:normal;font-family:'Bricolage Grotesque',sans-serif}
+#srb table.sr-t tr.ok td{background:var(--dst-soft)}
+#srb table.sr-t tr.no td{background:var(--bad-soft)}
+#srb .sr-mini{display:flex;gap:3px;flex-wrap:wrap;margin:4px 0}
+#srb .sr-mini span{font-family:'Fira Code',monospace;font-size:13px;border:1.5px solid var(--ink2);border-radius:6px;padding:2px 7px;background:#fff}
+@media (max-width:760px){
+  #srb .sr-vs{grid-template-columns:1fr}
+  #srb .sr-cell{width:38px}
+  #srb .sr-cell .v{height:40px;font-size:13px}
+  #srb .sr-bar{grid-template-columns:100px 1fr 80px;font-size:13px}
+}
+</style>
+
+<div id="srb">
+
+<!-- ======================= SLIDE NAVIGATION ======================= -->
+<nav class="sr-nav" id="sr-nav" aria-label="Blog sections">
+  <div class="sr-nav-tabs" id="sr-nav-tabs">
+    <button class="sr-nav-tab" data-slide="0" style="padding-left:11px">Home</button>
+    <button class="sr-nav-tab" data-slide="1"><b>1</b>What is it</button>
+    <button class="sr-nav-tab" data-slide="2"><b>2</b>Concepts &amp; lab</button>
+    <button class="sr-nav-tab" data-slide="3"><b>3</b>Visualiser</button>
+    <button class="sr-nav-tab" data-slide="4"><b>4</b>Complexity</button>
+    <button class="sr-nav-tab" data-slide="5"><b>5</b>Linear vs Binary</button>
+    <button class="sr-nav-tab" data-slide="6"><b>6</b>Special cases</button>
+    <button class="sr-nav-tab" data-slide="7"><b>7</b>Python</button>
+    <button class="sr-nav-tab" data-slide="8"><b>8</b>Practice</button>
+  </div>
+  <div class="sr-nav-bar">
+    <button class="sr-btn ghost" id="sr-nav-prev">&#8592; Previous</button>
+    <div class="sr-nav-count" id="sr-nav-count"></div>
+    <button class="sr-btn" id="sr-nav-next">Next &#8594;</button>
+    <div class="sr-nav-tools">
+      <button class="sr-btn ghost" id="sr-nav-all">Show all sections</button>
+      <button class="sr-btn ghost" id="sr-nav-fs">&#9974; Fullscreen</button>
+    </div>
+  </div>
+</nav>
+
+<div class="sr-slide" id="sr-home" data-title="Overview">
+<header class="sr-hero">
+  <svg viewBox="0 0 300 220" aria-hidden="true">
+    <g fill="none" stroke="#fff" stroke-width="3"><rect x="20" y="90" width="34" height="34" rx="6"/><rect x="58" y="90" width="34" height="34" rx="6"/><rect x="96" y="90" width="34" height="34" rx="6"/><rect x="134" y="90" width="34" height="34" rx="6" stroke-width="6"/><rect x="172" y="90" width="34" height="34" rx="6"/><rect x="210" y="90" width="34" height="34" rx="6"/><rect x="248" y="90" width="34" height="34" rx="6"/></g>
+    <circle cx="151" cy="50" r="22" fill="none" stroke="#fff" stroke-width="5"/><path d="M167 66 L185 84" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <div class="sr-kicker">Searching &#183; Arrays &#183; Divide and Conquer</div>
+  <h1>Searching Algorithms: Linear Search &amp; Binary Search</h1>
+  <p>Check every element one by one, or halve the search space at every step? Learn both classic searching algorithms, race them against each other, and see why binary search finds one item among a billion in just 30 comparisons.</p>
+  <div class="sr-hero-tags"><span>MCA &#183; Data Structures</span><span>O(n) vs O(log n)</span><span>Iterative &amp; recursive</span><span>Python</span></div>
+</header>
+
+<nav class="sr-toc">
+  <h4>In this post</h4>
+  <ol>
+    <li><a href="#sr-s1">What is Searching?</a></li>
+    <li><a href="#sr-s2">Core Concepts &amp; Lab</a></li>
+    <li><a href="#sr-s3">Linear &amp; Binary Search + Visualiser</a></li>
+    <li><a href="#sr-s4">Complexity Analysis</a></li>
+    <li><a href="#sr-s5">Difference between Linear and Binary Search</a></li>
+    <li><a href="#sr-s6">Special Cases &amp; Common Mistakes</a></li>
+    <li><a href="#sr-s7">Python Implementation</a></li>
+    <li><a href="#sr-s8">Practice &amp; Quiz</a></li>
+  </ol>
+</nav>
+</div>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s1" data-title="What is searching?">
+  <div class="sr-sec-head"><div class="sr-num">1</div><h2>What is Searching?</h2></div>
+
+  <p>Every day we look for things: a name in our phone contacts, a word in a dictionary, a roll number in a results list. In computing, <b>searching</b> is the process of finding whether a given value is present in a collection of data and, if it is, <b>where</b> it is.</p>
+
+  <div class="sr-box sr-def"><b class="t">Definitions</b>
+  <ul>
+    <li>The value we are looking for is called the <b>key</b> (or <i>target</i>).</li>
+    <li>The collection being searched is the <b>search space</b> &#8212; here, an array (Python list) of n elements.</li>
+    <li>A <b>successful search</b> finds the key and returns its position (index).</li>
+    <li>An <b>unsuccessful search</b> finds that the key is not present; by convention it returns <b>&#8722;1</b>.</li>
+    <li>The cost of a search is usually measured by the number of <b>key comparisons</b>.</li>
+  </ul></div>
+
+  <h3>Two strategies</h3>
+  <div class="sr-vs">
+    <div class="p"><h4>&#128694; Linear search</h4><p style="margin:0;font-size:15px">Start at the first element and check each one in turn until the key is found or the list ends. Like reading every name in an unsorted attendance sheet. Works on <b>any</b> list.</p></div>
+    <div class="k"><h4>&#9986;&#65039; Binary search</h4><p style="margin:0;font-size:15px">Look at the <b>middle</b> element of a <b>sorted</b> list. If the key is smaller, throw away the right half; if larger, throw away the left half. Repeat. Like opening a dictionary in the middle.</p></div>
+  </div>
+
+  <h3>A simple example</h3>
+  <p>Find <b>56</b> in the sorted list below (11 elements):</p>
+  <div class="sr-mini"><span>5</span><span>12</span><span>18</span><span>23</span><span>31</span><span>39</span><span>47</span><span>56</span><span>64</span><span>72</span><span>88</span></div>
+  <ul>
+    <li><b>Linear search</b> checks 5, 12, 18, 23, 31, 39, 47, 56 &#8594; found after <b>8</b> comparisons.</li>
+    <li><b>Binary search</b> checks 39 (middle; 56 is larger &#8594; go right), then 64 (go left), then 47 (go right), then 56 &#8594; found after <b>4</b> comparisons.</li>
+  </ul>
+  <p>For 11 elements the difference is small. For a million elements, linear search may need 1,000,000 comparisons, binary search at most <b>20</b>.</p>
+
+  <h3>Real-world applications</h3>
+  <div class="sr-grid">
+    <div class="sr-card"><h4>&#128210; Dictionaries &amp; phone books</h4><p>Alphabetical order lets us &#8220;binary search&#8221; by opening near the middle and moving left or right.</p></div>
+    <div class="sr-card"><h4>&#128452;&#65039; Databases</h4><p>Indexes keep keys sorted (in B-trees) so records are found in logarithmic time instead of scanning every row.</p></div>
+    <div class="sr-card"><h4>&#128030; Debugging</h4><p><code>git bisect</code> binary-searches the commit history to find the commit that introduced a bug.</p></div>
+    <div class="sr-card"><h4>&#128722; Shopping lists &amp; small data</h4><p>For a short, unsorted list (a cart, a menu), a simple linear scan is fastest to write and fast enough.</p></div>
+    <div class="sr-card"><h4>&#127918; Games</h4><p>&#8220;Guess my number between 1 and 100&#8221; &#8212; the best strategy is binary search: never more than 7 guesses.</p></div>
+    <div class="sr-card"><h4>&#128200; Answer searching</h4><p>Binary search on a numeric answer: square roots, the smallest capacity that works, the first bad version.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s2" data-title="Core concepts &amp; lab">
+  <div class="sr-sec-head"><div class="sr-num">2</div><h2>Core Concepts</h2></div>
+
+  <h3>2.1 Terminology</h3>
+  <div class="sr-tbl-wrap"><table class="sr-tbl">
+    <tr><th style="width:27%">Term</th><th>Meaning</th></tr>
+    <tr><td><b>Sequential search</b></td><td>Another name for linear search: elements are examined in sequence.</td></tr>
+    <tr><td><b>Interval search</b></td><td>Searches that repeatedly shrink an interval of a sorted list, e.g. binary search.</td></tr>
+    <tr><td><b>low, high</b></td><td>Indices marking the current search interval [low, high] in binary search.</td></tr>
+    <tr><td><b>mid</b></td><td>The middle index: <code>mid = (low + high) // 2</code> (integer division).</td></tr>
+    <tr><td><b>Sentinel</b></td><td>A copy of the key placed at the end of the array so that linear search's loop needs no end-of-array test.</td></tr>
+    <tr><td><b>Random access</b></td><td>Reaching any element by index in O(1) time &#8212; true for arrays, false for linked lists. Binary search needs it.</td></tr>
+    <tr><td><b>Divide and conquer</b></td><td>Solving a problem by reducing it to smaller sub-problems. Binary search reduces the problem to <b>one</b> half each time (also called <i>decrease and conquer</i>).</td></tr>
+    <tr><td><b>Internal vs external search</b></td><td>Internal: data fits in main memory (this post). External: data on disk, where structures such as B-trees are used.</td></tr>
+  </table></div>
+
+  <h3>2.2 Preconditions</h3>
+  <div class="sr-two">
+    <div class="sr-box sr-def" style="margin:0"><b class="t">Linear search needs&#8230;</b><ul><li>Nothing special &#8212; sorted or unsorted.</li><li>Works on arrays <b>and</b> linked lists (only needs &#8220;next element&#8221;).</li></ul></div>
+    <div class="sr-box sr-warn" style="margin:0"><b class="t">Binary search needs&#8230;</b><ul><li>The data must be <b>sorted</b> (ascending in this post).</li><li><b>Random access</b> to the middle element (an array / Python list).</li><li>A way to compare keys (&lt;, =, &gt;).</li></ul></div>
+  </div>
+
+  <h3>2.3 Why does halving give log n?</h3>
+  <p>After each comparison, binary search keeps at most half of the remaining elements:</p>
+  <div class="sr-formula">n &#8594; n/2 &#8594; n/4 &#8594; n/8 &#8594; &#8230; &#8594; 1    after k steps: n / 2<sup>k</sup> = 1  &#8658;  <span class="k">k = log&#8322; n</span></div>
+  <p>So the number of comparisons grows like <b>log&#8322; n</b>. Precisely, binary search makes at most <b>&#8970;log&#8322; n&#8971; + 1</b> comparisons (counting each three-way test &#8220;=, &lt;, &gt;&#8221; as one comparison). Doubling the data adds just <b>one</b> extra comparison.</p>
+  <div class="sr-tbl-wrap"><table class="sr-tbl sr-t">
+    <tr><th>n</th><th>10</th><th>100</th><th>1,000</th><th>1 million</th><th>1 billion</th></tr>
+    <tr><td class="l"><b>Linear (worst)</b></td><td>10</td><td>100</td><td>1,000</td><td>1,000,000</td><td>1,000,000,000</td></tr>
+    <tr><td class="l"><b>Binary (worst)</b></td><td>4</td><td>7</td><td>10</td><td>20</td><td>30</td></tr>
+  </table></div>
+
+  <!-- LAB -->
+  <div class="sr-lab" id="sr-lab">
+    <div class="sr-lab-title"><span>Interactive Lab</span><h3>Guess the Number</h3></div>
+    <p style="font-size:15px;color:var(--ink2)">I am thinking of a whole number from <b>1 to 100</b>. After each guess I will say &#8220;too high&#8221; or &#8220;too low&#8221;. Can you find it in <b>7 guesses or fewer</b>? (Hint: always guess the middle of the range that is still possible.)</p>
+    <div class="sr-game">
+      <input type="text" id="sr-g-in" inputmode="numeric" placeholder="1&#8211;100" aria-label="your guess">
+      <button class="sr-btn" id="sr-g-go">Guess</button>
+      <button class="sr-btn ghost" id="sr-g-auto">Let binary search play</button>
+      <button class="sr-btn ghost" id="sr-g-new">New number</button>
+    </div>
+    <div class="sr-line"><div id="sr-g-range"></div></div>
+    <div class="mono" style="font-size:13px;color:var(--ink2)" id="sr-g-rtxt"></div>
+    <div class="sr-hist" id="sr-g-hist"></div>
+    <div class="sr-msg" id="sr-g-msg"></div>
+
+    <div class="sr-lab-title" style="margin-top:20px"><span>Interactive Lab</span><h3>How Many Comparisons?</h3></div>
+    <div class="sr-row"><label>Array size n</label><input type="range" id="sr-c-n" min="1" max="90" value="30" style="flex:1;min-width:180px"><span class="mono" id="sr-c-nv" style="min-width:120px"></span></div>
+    <div class="sr-bars" id="sr-c-bars"></div>
+    <p id="sr-c-note" style="font-size:15px"></p>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s3" data-title="Linear &amp; binary search step by step">
+  <div class="sr-sec-head"><div class="sr-num">3</div><h2>Linear Search and Binary Search</h2></div>
+
+  <h3>3.1 Linear search</h3>
+  <h4>Step-by-step working</h4>
+  <ol>
+    <li>Start with the first element (index 0).</li>
+    <li>Compare it with the key. If they are equal, return the index &#8212; <b>success</b>.</li>
+    <li>Otherwise move to the next element and repeat.</li>
+    <li>If the end of the array is reached, return &#8722;1 &#8212; <b>unsuccessful</b>.</li>
+  </ol>
+  <h4>Algorithm (pseudocode)</h4>
+  <div class="sr-pseudo">
+<div><span class="ln">1</span><span class="kw">LINEAR-SEARCH</span>(A, n, key)</div>
+<div><span class="ln">2</span>   <span class="kw">for</span> i &#8592; 0 <span class="kw">to</span> n &#8722; 1 <span class="kw">do</span></div>
+<div><span class="ln">3</span>      <span class="kw">if</span> A[i] = key <span class="kw">then</span></div>
+<div><span class="ln">4</span>         <span class="kw">return</span> i                 <span class="cm">// successful search</span></div>
+<div><span class="ln">5</span>   <span class="kw">return</span> &#8722;1                    <span class="cm">// unsuccessful search</span></div>
+  </div>
+  <h4>Worked example</h4>
+  <p>A = [34, 7, 23, 32, 5, 62, 14] (unsorted).</p>
+  <div class='sr-two'><div><p><b>Search key = 5</b> (successful)</p><div class='sr-tbl-wrap'><table class='sr-tbl sr-t'><tr><th>Comp.</th><th>i</th><th>A[i]</th><th class='l'>Result</th></tr><tr class=''><td>1</td><td>0</td><td>34</td><td class='l'>34 &#8800; 5, continue</td></tr><tr class=''><td>2</td><td>1</td><td>7</td><td class='l'>7 &#8800; 5, continue</td></tr><tr class=''><td>3</td><td>2</td><td>23</td><td class='l'>23 &#8800; 5, continue</td></tr><tr class=''><td>4</td><td>3</td><td>32</td><td class='l'>32 &#8800; 5, continue</td></tr><tr class='ok'><td>5</td><td>4</td><td>5</td><td class='l'>equal &#8594; found at index 4</td></tr></table></div></div><div><p><b>Search key = 40</b> (unsuccessful)</p><div class='sr-tbl-wrap'><table class='sr-tbl sr-t'><tr><th>Comp.</th><th>i</th><th>A[i]</th><th class='l'>Result</th></tr><tr class=''><td>1</td><td>0</td><td>34</td><td class='l'>34 &#8800; 40, continue</td></tr><tr class=''><td>2</td><td>1</td><td>7</td><td class='l'>7 &#8800; 40, continue</td></tr><tr class=''><td>3</td><td>2</td><td>23</td><td class='l'>23 &#8800; 40, continue</td></tr><tr class=''><td>4</td><td>3</td><td>32</td><td class='l'>32 &#8800; 40, continue</td></tr><tr class=''><td>5</td><td>4</td><td>5</td><td class='l'>5 &#8800; 40, continue</td></tr><tr class=''><td>6</td><td>5</td><td>62</td><td class='l'>62 &#8800; 40, continue</td></tr><tr class=''><td>7</td><td>6</td><td>14</td><td class='l'>14 &#8800; 40, continue</td></tr><tr class='no'><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td><td class='l'>End of array reached &#8594; return &#8722;1 (not found)</td></tr></table></div></div></div><p>Key 5 is found after <b>5</b> comparisons; key 40 needs all <b>7</b> comparisons before we can say it is absent.</p>
+  <div class="sr-box sr-tip"><b class="t">Variant: sentinel linear search</b>
+  <p>The normal loop does two tests per element: &#8220;is i &lt; n?&#8221; and &#8220;is A[i] = key?&#8221;. Placing the key itself at the end (the <b>sentinel</b>) guarantees the loop stops, so the first test can be dropped. Same O(n) complexity, but fewer operations per element. After the loop, check whether we stopped at a real element or at the sentinel.</p></div>
+
+  <h3>3.2 Binary search</h3>
+  <h4>Step-by-step working</h4>
+  <ol>
+    <li>Set <code>low = 0</code> and <code>high = n &#8722; 1</code>.</li>
+    <li>While <code>low &#8804; high</code>: compute <code>mid = (low + high) // 2</code>.</li>
+    <li>If <code>A[mid] = key</code> &#8594; return mid (<b>found</b>).</li>
+    <li>If <code>key &lt; A[mid]</code> &#8594; the key can only be on the left: <code>high = mid &#8722; 1</code>.</li>
+    <li>If <code>key &gt; A[mid]</code> &#8594; the key can only be on the right: <code>low = mid + 1</code>.</li>
+    <li>If the loop ends (<code>low &gt; high</code>), the interval is empty &#8594; return &#8722;1.</li>
+  </ol>
+  <h4>Algorithm &#8212; iterative</h4>
+  <div class="sr-pseudo">
+<div><span class="ln">1</span><span class="kw">BINARY-SEARCH</span>(A, n, key)</div>
+<div><span class="ln">2</span>   low &#8592; 0;  high &#8592; n &#8722; 1</div>
+<div><span class="ln">3</span>   <span class="kw">while</span> low &#8804; high <span class="kw">do</span></div>
+<div><span class="ln">4</span>      mid &#8592; &#8970;(low + high) / 2&#8971;</div>
+<div><span class="ln">5</span>      <span class="kw">if</span> A[mid] = key <span class="kw">then return</span> mid</div>
+<div><span class="ln">6</span>      <span class="kw">else if</span> key &lt; A[mid] <span class="kw">then</span> high &#8592; mid &#8722; 1     <span class="cm">// discard right half</span></div>
+<div><span class="ln">7</span>      <span class="kw">else</span> low &#8592; mid + 1                          <span class="cm">// discard left half</span></div>
+<div><span class="ln">8</span>   <span class="kw">return</span> &#8722;1</div>
+  </div>
+  <h4>Algorithm &#8212; recursive</h4>
+  <div class="sr-pseudo">
+<div><span class="ln">1</span><span class="kw">BIN-SEARCH-REC</span>(A, key, low, high)</div>
+<div><span class="ln">2</span>   <span class="kw">if</span> low &gt; high <span class="kw">then return</span> &#8722;1                   <span class="cm">// base case</span></div>
+<div><span class="ln">3</span>   mid &#8592; &#8970;(low + high) / 2&#8971;</div>
+<div><span class="ln">4</span>   <span class="kw">if</span> A[mid] = key <span class="kw">then return</span> mid</div>
+<div><span class="ln">5</span>   <span class="kw">if</span> key &lt; A[mid] <span class="kw">then return</span> BIN-SEARCH-REC(A, key, low, mid &#8722; 1)</div>
+<div><span class="ln">6</span>   <span class="kw">return</span> BIN-SEARCH-REC(A, key, mid + 1, high)</div>
+  </div>
+
+  <h4>Worked example 1 &#8212; successful search for 56</h4>
+  <p>A = [5, 12, 18, 23, 31, 39, 47, 56, 64, 72, 88], indices 0&#8211;10.</p>
+  <div class='sr-tbl-wrap'><table class='sr-tbl sr-t'><tr><th>Step</th><th>low</th><th>high</th><th>mid = (low+high)//2</th><th>A[mid]</th><th class='l'>Decision</th></tr><tr><td>1</td><td>0</td><td>10</td><td>5</td><td>39</td><td class='l'>56 &gt; 39 &#8594; low = 6</td></tr><tr><td>2</td><td>6</td><td>10</td><td>8</td><td>64</td><td class='l'>56 &lt; 64 &#8594; high = 7</td></tr><tr><td>3</td><td>6</td><td>7</td><td>6</td><td>47</td><td class='l'>56 &gt; 47 &#8594; low = 7</td></tr><tr class='ok'><td>4</td><td>7</td><td>7</td><td>7</td><td>56</td><td class='l'>56 = 56 &#8594; <b>found at index 7</b></td></tr></table></div>
+  <h4>Worked example 2 &#8212; unsuccessful search for 20</h4>
+  <div class='sr-tbl-wrap'><table class='sr-tbl sr-t'><tr><th>Step</th><th>low</th><th>high</th><th>mid = (low+high)//2</th><th>A[mid]</th><th class='l'>Decision</th></tr><tr><td>1</td><td>0</td><td>10</td><td>5</td><td>39</td><td class='l'>20 &lt; 39 &#8594; high = 4</td></tr><tr><td>2</td><td>0</td><td>4</td><td>2</td><td>18</td><td class='l'>20 &gt; 18 &#8594; low = 3</td></tr><tr><td>3</td><td>3</td><td>4</td><td>3</td><td>23</td><td class='l'>20 &lt; 23 &#8594; high = 2</td></tr><tr class='no'><td>&#8212;</td><td>3</td><td>2</td><td>&#8212;</td><td>&#8212;</td><td class='l'>low &gt; high &#8594; interval empty &#8594; return &#8722;1</td></tr></table></div>
+  <p>When the search fails, <code>low</code> ends at <b>3</b> &#8212; exactly the position where 20 would have to be inserted to keep the list sorted. This &#8220;insertion point&#8221; is what Python's <code>bisect</code> module returns.</p>
+
+  <h4>The comparison (decision) tree</h4>
+  <p>Every possible run of binary search on 11 elements follows one path in this tree. Its height (4 levels) is the worst-case number of comparisons, &#8970;log&#8322; 11&#8971; + 1 = 4. The highlighted path is the search for 56.</p>
+  <svg class="sr-tree" id="sr-dtree" viewBox="0 0 640 250"></svg>
+
+  <!-- VISUALISER -->
+  <div class="sr-lab" id="sr-viz">
+    <div class="sr-lab-title"><span>Visualiser</span><h3>Linear vs Binary Search</h3></div>
+    <div class="sr-row">
+      <label>Algorithm</label><select id="sr-v-algo"><option value="race">&#127937; Race: both</option><option value="lin">Linear search</option><option value="bin">Binary search</option></select>
+      <label>Preset</label><select id="sr-v-preset">
+        <option value="a">Sorted, 11 elements</option>
+        <option value="big">Sorted, 31 elements</option>
+        <option value="uns">Unsorted, 10 elements</option>
+        <option value="dup">Sorted with duplicates</option>
+      </select>
+      <button class="sr-btn ghost" id="sr-v-rand">Random sorted</button>
+    </div>
+    <div class="sr-row" style="flex-wrap:nowrap">
+      <label style="white-space:nowrap">Array</label><input type="text" class="sr-input" id="sr-v-arr">
+      <label>Key</label><input type="text" id="sr-v-key" style="width:80px">
+      <button class="sr-btn acc" id="sr-v-apply">Search</button>
+    </div>
+    <div class="sr-warn" id="sr-v-warn"></div>
+    <div class="sr-row">
+      <button class="sr-btn ghost" id="sr-v-reset">&#10226; Reset</button><button class="sr-btn ghost" id="sr-v-back">&#9664; Back</button>
+      <button class="sr-btn" id="sr-v-step">Step &#9654;</button><button class="sr-btn acc" id="sr-v-play">&#9654; Play</button>
+      <button class="sr-btn ghost" id="sr-v-end">Run to end &#9197;</button>
+      <label><input type="checkbox" id="sr-v-predict"> Predict mode</label>
+      <label>Speed <input type="range" id="sr-v-speed" min="1" max="10" value="5" style="vertical-align:middle"></label>
+    </div>
+    <div class="sr-predict" id="sr-v-pq"><b id="sr-v-pq-txt"></b><span id="sr-v-pq-btns" style="display:flex;gap:6px;flex-wrap:wrap"></span><span id="sr-v-pq-fb" style="font-weight:700"></span></div>
+    <div class="sr-msg" id="sr-v-msg"></div>
+    <div id="sr-v-rows"></div>
+    <div class="sr-legend"><span><i style="background:var(--upd)"></i>being compared</span><span><i style="background:var(--dst)"></i>found</span><span><i style="background:#fff;border:2px solid var(--src)"></i>binary: still in [low, high]</span><span><i style="background:var(--soft)"></i>eliminated / already checked</span><span><b style="color:var(--src)">L</b> low &#183; <b style="color:var(--pivot)">M</b> mid &#183; <b style="color:#7c3aed">H</b> high</span></div>
+    <div class="sr-pseudo" id="sr-v-code" style="font-size:12.5px"></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s4" data-title="Complexity analysis">
+  <div class="sr-sec-head"><div class="sr-num">4</div><h2>Complexity Analysis</h2></div>
+
+  <h3>4.1 Linear search</h3>
+  <ul>
+    <li><b>Best case:</b> key is the first element &#8594; 1 comparison &#8594; <b>O(1)</b>.</li>
+    <li><b>Worst case:</b> key is the last element or absent &#8594; n comparisons &#8594; <b>O(n)</b>.</li>
+    <li><b>Average case (successful):</b> if the key is equally likely to be at any of the n positions, the expected number of comparisons is</li>
+  </ul>
+  <div class="sr-formula">(1 + 2 + 3 + &#8230; + n) / n = n(n + 1) / 2n = <span class="k">(n + 1) / 2</span>  &#8658;  O(n)</div>
+  <ul><li><b>Unsuccessful search:</b> always n comparisons. <b>Space:</b> O(1).</li></ul>
+
+  <h3>4.2 Binary search</h3>
+  <p>Each comparison halves the problem, giving the recurrence:</p>
+  <div class="sr-formula">T(n) = T(n/2) + 1,  T(1) = 1<br>T(n) = T(n/4) + 2 = T(n/8) + 3 = &#8230; = T(n/2<sup>k</sup>) + k<br>With n/2<sup>k</sup> = 1  &#8658;  k = log&#8322; n  &#8658;  <span class="k">T(n) = log&#8322; n + 1 = O(log n)</span></div>
+  <ul>
+    <li><b>Best case:</b> key is at the first middle &#8594; <b>O(1)</b>.</li>
+    <li><b>Worst case:</b> &#8970;log&#8322; n&#8971; + 1 comparisons &#8594; <b>O(log n)</b> (both successful and unsuccessful).</li>
+    <li><b>Average case:</b> about log&#8322; n &#8722; 1 comparisons &#8594; <b>O(log n)</b>.</li>
+    <li><b>Space:</b> iterative O(1); recursive O(log n) for the call stack.</li>
+  </ul>
+
+  <h3>4.3 Measured comparison counts</h3>
+  <p>Program 4 (Section 7) searches for every element of sorted arrays and counts comparisons. These are its real results:</p>
+  <div class='sr-tbl-wrap'><table class='sr-tbl sr-t'><tr><th>n</th><th>Linear worst</th><th>Linear average</th><th>Binary worst</th><th>Binary average</th></tr><tr><td>10</td><td>10</td><td>5.5</td><td>4</td><td>2.90</td></tr><tr><td>100</td><td>100</td><td>50.5</td><td>7</td><td>5.80</td></tr><tr><td>1,000</td><td>1,000</td><td>500.5</td><td>10</td><td>8.99</td></tr><tr><td>10,000</td><td>10,000</td><td>5,000.5</td><td>14</td><td>12.36</td></tr></table></div>
+  <p>The averages agree with the theory: linear &#8776; (n + 1)/2, binary &#8776; log&#8322; n &#8722; 1 (for example log&#8322; 10,000 &#8722; 1 &#8776; 12.3).</p>
+
+  <h3>4.4 Summary table</h3>
+  <div class="sr-tbl-wrap"><table class="sr-tbl">
+    <tr><th>Case</th><th>Linear search</th><th>Binary search</th></tr>
+    <tr><td>Best</td><td>O(1)</td><td>O(1)</td></tr>
+    <tr><td>Average</td><td>O(n) &#8212; (n + 1)/2 comparisons</td><td>O(log n)</td></tr>
+    <tr><td>Worst</td><td>O(n) &#8212; n comparisons</td><td>O(log n) &#8212; &#8970;log&#8322; n&#8971; + 1 comparisons</td></tr>
+    <tr><td>Unsuccessful</td><td>O(n)</td><td>O(log n)</td></tr>
+    <tr><td>Space</td><td>O(1)</td><td>O(1) iterative, O(log n) recursive</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s5" data-title="Difference between linear and binary search">
+  <div class="sr-sec-head"><div class="sr-num">5</div><h2>Difference between Linear Search and Binary Search</h2></div>
+
+  <h3>5.1 Point-by-point comparison</h3>
+  <div class="sr-tbl-wrap"><table class="sr-tbl">
+    <tr><th style="width:22%">Basis</th><th style="background:#eef4ff">Linear search</th><th style="background:#fff3e8">Binary search</th></tr>
+    <tr><td><b>Also called</b></td><td>Sequential search</td><td>Half-interval / logarithmic search</td></tr>
+    <tr><td><b>Data requirement</b></td><td>Sorted or unsorted</td><td>Must be sorted</td></tr>
+    <tr><td><b>Data structure</b></td><td>Array or linked list</td><td>Array (needs random access)</td></tr>
+    <tr><td><b>Approach</b></td><td>Check elements one after another</td><td>Divide and conquer: compare with middle, discard half</td></tr>
+    <tr><td><b>Elements examined</b></td><td>Up to all n</td><td>At most &#8970;log&#8322; n&#8971; + 1</td></tr>
+    <tr><td><b>Time (worst)</b></td><td>O(n)</td><td>O(log n)</td></tr>
+    <tr><td><b>Time (best)</b></td><td>O(1) &#8212; first element</td><td>O(1) &#8212; middle element</td></tr>
+    <tr><td><b>Space</b></td><td>O(1)</td><td>O(1) iterative / O(log n) recursive</td></tr>
+    <tr><td><b>Comparison type</b></td><td>Equality only (=)</td><td>Ordering needed (&lt;, =, &gt;)</td></tr>
+    <tr><td><b>Implementation</b></td><td>Very simple</td><td>Simple, but easy to get off-by-one errors</td></tr>
+    <tr><td><b>Best suited for</b></td><td>Small or unsorted data, one-off searches, linked lists</td><td>Large sorted data, many repeated searches</td></tr>
+    <tr><td><b>Insertions / deletions</b></td><td>Easy (no order to maintain)</td><td>Must keep the array sorted: O(n) per insertion</td></tr>
+  </table></div>
+
+  <h3>5.2 Similarities</h3>
+  <ul>
+    <li>Both find whether a key is present and return its index (or &#8722;1).</li>
+    <li>Both have best case O(1) and use O(1) extra space when written iteratively.</li>
+    <li>Both work on arrays / Python lists and can be written iteratively or recursively.</li>
+  </ul>
+
+  <h3>5.3 Is sorting first worth it?</h3>
+  <p>Binary search needs sorted data. Sorting costs about n log&#8322; n operations once. If you will search <b>many</b> times, the investment pays off; for a single search, linear search is cheaper.</p>
+  <div class="sr-lab" id="sr-be">
+    <div class="sr-lab-title"><span>Interactive</span><h3>Break-even Calculator</h3></div>
+    <div class="sr-row"><label>Array size n</label><select id="sr-be-n"><option value="100">100</option><option value="1000">1,000</option><option value="100000" selected>100,000</option><option value="1000000">1,000,000</option></select>
+      <label>Number of searches k</label><input type="range" id="sr-be-k" min="0" max="40" value="10" style="flex:1;min-width:160px"><span class="mono" id="sr-be-kv"></span></div>
+    <div class="sr-bars" id="sr-be-bars"></div>
+    <div class="sr-rec" id="sr-be-rec"></div>
+  </div>
+
+  <h3>5.4 Memory trick</h3>
+  <div class="sr-box sr-tip"><b class="t">Remember</b>
+  <p><b>Linear</b> = reading a <b>line</b> of people one by one. <b>Binary</b> = <b>bi</b> = two: split in <b>two</b> halves every time &#8212; but only works when the line is ordered by height.</p></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s6" data-title="Special cases &amp; common mistakes">
+  <div class="sr-sec-head"><div class="sr-num">6</div><h2>Special Cases &amp; Common Mistakes</h2></div>
+
+  <h3>6.1 Special cases</h3>
+  <div class="sr-tbl-wrap"><table class="sr-tbl">
+    <tr><th style="width:25%">Situation</th><th>Linear search</th><th>Binary search</th></tr>
+    <tr><td><b>Empty array</b></td><td>Loop does not run &#8594; &#8722;1</td><td>low = 0 &gt; high = &#8722;1 &#8594; &#8722;1 immediately</td></tr>
+    <tr><td><b>One element</b></td><td>1 comparison</td><td>1 comparison (mid = 0)</td></tr>
+    <tr><td><b>Key smaller / larger than all</b></td><td>n comparisons, &#8722;1</td><td>&#8970;log&#8322; n&#8971; + 1 or fewer; low ends at 0 or n (insertion point)</td></tr>
+    <tr><td><b>Duplicates</b></td><td>Returns the first occurrence</td><td>Returns <i>some</i> occurrence. Use first/last-occurrence variants (Program 3) if a specific one is needed.</td></tr>
+    <tr><td><b>Unsorted data</b></td><td>Works</td><td><b>Wrong answers</b>: it may report &#8220;not found&#8221; for a key that is present. Try the &#8220;Unsorted&#8221; preset with key 91.</td></tr>
+    <tr><td><b>Descending order</b></td><td>Works</td><td>Swap the directions: go left when key &gt; A[mid].</td></tr>
+    <tr><td><b>Linked list</b></td><td>Works, O(n)</td><td>Reaching the middle takes O(n) &#8594; no benefit. Use a balanced BST or skip list instead.</td></tr>
+  </table></div>
+
+  <h3>6.2 Advantages and disadvantages</h3>
+  <div class="sr-two">
+    <div class="sr-card" style="border-color:#bcd0fb;background:#eef4ff"><h4>Linear search</h4>
+      <p><b>&#9989;</b> Works on any data and any structure; no preprocessing; simplest code; good for small n; finds all occurrences easily.</p>
+      <p><b>&#10060;</b> Slow for large n (O(n)); every unsuccessful search scans the whole list.</p></div>
+    <div class="sr-card" style="border-color:#f6c79d;background:#fff3e8"><h4>Binary search</h4>
+      <p><b>&#9989;</b> Extremely fast, O(log n); predictable worst case; also gives the insertion point; basis of many algorithms (bisect, lower bound, answer search).</p>
+      <p><b>&#10060;</b> Needs sorted data and random access; keeping data sorted makes insertion/deletion O(n); easy to write with off-by-one bugs.</p></div>
+  </div>
+
+  <h3>6.3 Common mistakes</h3>
+  <div class="sr-box sr-warn"><b class="t">Mistake 1 &#8212; Binary search on unsorted data</b>
+  <p>In [42, 7, 91, 15, 63, 28, 3, 77, 50, 19], searching 91: mid = 4 (63) and 91 &gt; 63, so binary search goes right &#8212; but 91 is at index 2 on the left. It reports &#8220;not found&#8221;. Always sort first (or use linear search).</p></div>
+  <div class="sr-box sr-warn"><b class="t">Mistake 2 &#8212; Writing low = mid or high = mid</b>
+  <p>With <code>while low &lt;= high</code>, the update must be <code>mid + 1</code> / <code>mid &#8722; 1</code>. With <code>low = mid</code>, when low = high &#8722; 1 and the key is larger, mid equals low forever &#8594; <b>infinite loop</b>.</p></div>
+  <div class="sr-box sr-warn"><b class="t">Mistake 3 &#8212; Off-by-one in the loop condition</b>
+  <p><code>while low &lt; high</code> (instead of &#8804;) skips the last remaining element: searching for 88 in our 11-element list would fail. The condition and the initial <code>high</code> (n &#8722; 1 vs n) must match: [low, high] closed interval &#8658; <code>high = n &#8722; 1</code> and <code>low &#8804; high</code>.</p></div>
+  <div class="sr-box sr-warn"><b class="t">Mistake 4 &#8212; Integer overflow in mid</b>
+  <p>In C/Java, <code>(low + high) / 2</code> can overflow when low + high exceeds the int range (a famous bug in Java's library, found in 2006). Write <code>mid = low + (high &#8722; low) / 2</code>. Python integers do not overflow, but the safe form is good practice.</p></div>
+  <div class="sr-box sr-warn"><b class="t">Mistake 5 &#8212; Returning too early in linear search</b>
+  <p>Writing <code>else: return -1</code> inside the loop returns after checking only the first element. Return &#8722;1 only <b>after</b> the loop finishes.</p></div>
+
+  <h3>6.4 Important examination points</h3>
+  <div class="sr-box sr-exam"><b class="t">Remember for exams</b>
+  <ul>
+    <li>Linear: best O(1), average (n + 1)/2 comparisons, worst n &#8594; O(n). Works on unsorted data.</li>
+    <li>Binary: requires sorted data + random access; mid = &#8970;(low + high)/2&#8971;; worst &#8970;log&#8322; n&#8971; + 1 comparisons &#8594; O(log n).</li>
+    <li>Binary search recurrence: T(n) = T(n/2) + 1 &#8658; O(log n).</li>
+    <li>Recursive binary search uses O(log n) stack space; iterative uses O(1).</li>
+    <li>When tracing binary search, write a table of low, high, mid, A[mid] and the decision at each step.</li>
+    <li>On failure, low is the insertion point.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s7" data-title="Python implementation">
+  <div class="sr-sec-head"><div class="sr-num">7</div><h2>Python Implementation</h2></div>
+  <p>All four programs are complete and runnable (Python 3.6+). The outputs shown are their real outputs.</p>
+  <div class="sr-tabs">
+    <button class="sr-tab on" data-pane="sr-p1">1 &#183; Linear search</button>
+    <button class="sr-tab" data-pane="sr-p2">2 &#183; Binary search</button>
+    <button class="sr-tab" data-pane="sr-p3">3 &#183; Duplicates &amp; bisect</button>
+    <button class="sr-tab" data-pane="sr-p4">4 &#183; Comparison experiment</button>
+  </div>
+  <div class="sr-pane on" id="sr-p1">
+    <div class="sr-code"><div class="sr-code-bar"><span>linear_search.py</span><button class="sr-copy">Copy</button></div><pre><code class="py"># Linear (Sequential) Search &#8212; works on ANY list, sorted or not.
+
+def linear_search(arr, key):
+    """Return (index of first match or -1, number of comparisons)."""
+    comparisons = 0
+    for i in range(len(arr)):
+        comparisons += 1
+        if arr[i] == key:
+            return i, comparisons
+    return -1, comparisons
+
+
+def sentinel_linear_search(arr, key):
+    """Put the key at the end so the loop needs no 'i &lt; n' check."""
+    n = len(arr)
+    if n == 0:
+        return -1
+    last = arr[-1]
+    arr[-1] = key                    # sentinel
+    i = 0
+    while arr[i] != key:             # guaranteed to stop at the sentinel
+        i += 1
+    arr[-1] = last                   # restore the original last element
+    if i &lt; n - 1 or last == key:
+        return i
+    return -1
+
+
+def find_all(arr, key):
+    """Indices of ALL occurrences of key."""
+    return [i for i, x in enumerate(arr) if x == key]
+
+
+if __name__ == "__main__":
+    data = [34, 7, 23, 32, 5, 62, 14]
+    for key in [5, 34, 40]:
+        idx, comp = linear_search(data, key)
+        status = f"found at index {idx}" if idx != -1 else "not found"
+        print(f"Search {key:&gt;2}: {status:&lt;20} comparisons = {comp}")
+    print("Sentinel search for 62 -&gt;", sentinel_linear_search(data, 62))
+    print("Sentinel search for 99 -&gt;", sentinel_linear_search(data, 99))
+    print("All positions of 3 in [3, 1, 3, 4, 3]:", find_all([3, 1, 3, 4, 3], 3))</code></pre></div>
+    <div class="sr-code sr-out"><div class="sr-code-bar"><span>Output</span></div><pre>Search  5: found at index 4     comparisons = 5
+Search 34: found at index 0     comparisons = 1
+Search 40: not found            comparisons = 7
+Sentinel search for 62 -&gt; 5
+Sentinel search for 99 -&gt; -1
+All positions of 3 in [3, 1, 3, 4, 3]: [0, 2, 4]</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li><code>linear_search</code> returns the index and the number of comparisons, matching the worked example in Section 3.</li>
+      <li><code>sentinel_linear_search</code> temporarily replaces the last element with the key, so the <code>while</code> loop needs only one test. The original value is restored before returning.</li>
+      <li><code>find_all</code> collects every index where the key occurs.</li>
+    </ul>
+  </div>
+  <div class="sr-pane" id="sr-p2">
+    <div class="sr-code"><div class="sr-code-bar"><span>binary_search.py</span><button class="sr-copy">Copy</button></div><pre><code class="py"># Binary Search &#8212; the list MUST be sorted.
+# Iterative version (prints a trace) and recursive version.
+
+def binary_search(arr, key, trace=False):
+    low, high = 0, len(arr) - 1
+    step = 0
+    while low &lt;= high:
+        mid = low + (high - low) // 2        # same as (low + high) // 2, no overflow
+        step += 1
+        if trace:
+            print(f"  step {step}: low={low:&gt;2} high={high:&gt;2} mid={mid:&gt;2} A[mid]={arr[mid]:&gt;2}", end="  ")
+        if arr[mid] == key:
+            if trace:
+                print("-&gt; FOUND")
+            return mid
+        elif key &lt; arr[mid]:
+            if trace:
+                print("-&gt; key is smaller, search LEFT half")
+            high = mid - 1
+        else:
+            if trace:
+                print("-&gt; key is larger, search RIGHT half")
+            low = mid + 1
+    if trace:
+        print(f"  low={low} &gt; high={high}: search space empty -&gt; NOT FOUND")
+    return -1
+
+
+def binary_search_recursive(arr, key, low, high):
+    if low &gt; high:                            # base case: empty range
+        return -1
+    mid = (low + high) // 2
+    if arr[mid] == key:
+        return mid
+    if key &lt; arr[mid]:
+        return binary_search_recursive(arr, key, low, mid - 1)
+    return binary_search_recursive(arr, key, mid + 1, high)
+
+
+if __name__ == "__main__":
+    A = [5, 12, 18, 23, 31, 39, 47, 56, 64, 72, 88]
+    print("A =", A)
+    for key in [56, 20]:
+        print(f"Search {key}:")
+        print("  result:", binary_search(A, key, trace=True))
+    print("Recursive search for 5  -&gt;", binary_search_recursive(A, 5, 0, len(A) - 1))
+    print("Recursive search for 88 -&gt;", binary_search_recursive(A, 88, 0, len(A) - 1))</code></pre></div>
+    <div class="sr-code sr-out"><div class="sr-code-bar"><span>Output</span></div><pre>A = [5, 12, 18, 23, 31, 39, 47, 56, 64, 72, 88]
+Search 56:
+  step 1: low= 0 high=10 mid= 5 A[mid]=39  -&gt; key is larger, search RIGHT half
+  step 2: low= 6 high=10 mid= 8 A[mid]=64  -&gt; key is smaller, search LEFT half
+  step 3: low= 6 high= 7 mid= 6 A[mid]=47  -&gt; key is larger, search RIGHT half
+  step 4: low= 7 high= 7 mid= 7 A[mid]=56  -&gt; FOUND
+  result: 7
+Search 20:
+  step 1: low= 0 high=10 mid= 5 A[mid]=39  -&gt; key is smaller, search LEFT half
+  step 2: low= 0 high= 4 mid= 2 A[mid]=18  -&gt; key is larger, search RIGHT half
+  step 3: low= 3 high= 4 mid= 3 A[mid]=23  -&gt; key is smaller, search LEFT half
+  low=3 &gt; high=2: search space empty -&gt; NOT FOUND
+  result: -1
+Recursive search for 5  -&gt; 0
+Recursive search for 88 -&gt; 10</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>The iterative version keeps the closed interval [low, high] and prints a trace identical to the worked examples.</li>
+      <li><code>mid = low + (high - low) // 2</code> is the overflow-safe form of the midpoint.</li>
+      <li>The recursive version passes the new bounds to itself; the base case is an empty interval (low &gt; high).</li>
+    </ul>
+  </div>
+  <div class="sr-pane" id="sr-p3">
+    <div class="sr-code"><div class="sr-code-bar"><span>binary_variants.py</span><button class="sr-copy">Copy</button></div><pre><code class="py"># Binary search variants for lists WITH DUPLICATES,
+# and Python's built-in bisect module.
+
+import bisect
+
+
+def first_occurrence(arr, key):
+    low, high, ans = 0, len(arr) - 1, -1
+    while low &lt;= high:
+        mid = (low + high) // 2
+        if arr[mid] == key:
+            ans = mid
+            high = mid - 1          # keep looking on the LEFT
+        elif key &lt; arr[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return ans
+
+
+def last_occurrence(arr, key):
+    low, high, ans = 0, len(arr) - 1, -1
+    while low &lt;= high:
+        mid = (low + high) // 2
+        if arr[mid] == key:
+            ans = mid
+            low = mid + 1           # keep looking on the RIGHT
+        elif key &lt; arr[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return ans
+
+
+def lower_bound(arr, key):
+    """First index i with arr[i] &gt;= key (insertion point)."""
+    low, high = 0, len(arr)        # note: high = len(arr), loop while low &lt; high
+    while low &lt; high:
+        mid = (low + high) // 2
+        if arr[mid] &lt; key:
+            low = mid + 1
+        else:
+            high = mid
+    return low
+
+
+if __name__ == "__main__":
+    B = [2, 4, 4, 4, 7, 9, 9, 12]
+    print("B =", B)
+    f, l = first_occurrence(B, 4), last_occurrence(B, 4)
+    print(f"4: first at {f}, last at {l}, count = {l - f + 1}")
+    print("first occurrence of 5:", first_occurrence(B, 5))
+    for key in [4, 5, 13]:
+        print(f"lower_bound({key}) = {lower_bound(B, key)}   bisect_left = {bisect.bisect_left(B, key)}")
+    i = bisect.bisect_left(B, 9)
+    print("Using bisect to test membership of 9:", i &lt; len(B) and B[i] == 9)</code></pre></div>
+    <div class="sr-code sr-out"><div class="sr-code-bar"><span>Output</span></div><pre>B = [2, 4, 4, 4, 7, 9, 9, 12]
+4: first at 1, last at 3, count = 3
+first occurrence of 5: -1
+lower_bound(4) = 1   bisect_left = 1
+lower_bound(5) = 4   bisect_left = 4
+lower_bound(13) = 8   bisect_left = 8
+Using bisect to test membership of 9: True</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>On a match, <code>first_occurrence</code> remembers the index and keeps searching <b>left</b>; <code>last_occurrence</code> keeps searching <b>right</b>. Count = last &#8722; first + 1, still O(log n).</li>
+      <li><code>lower_bound</code> uses a half-open interval [low, high) and returns the insertion point &#8212; the same value as <code>bisect.bisect_left</code>.</li>
+    </ul>
+  </div>
+  <div class="sr-pane" id="sr-p4">
+    <div class="sr-code"><div class="sr-code-bar"><span>compare_searches.py</span><button class="sr-copy">Copy</button></div><pre><code class="py"># Experiment: count comparisons of linear vs binary search.
+# One "comparison" = one look at an element (a three-way test counts once).
+
+def linear_count(arr, key):
+    for i, x in enumerate(arr):
+        if x == key:
+            return i + 1
+    return len(arr)
+
+
+def binary_count(arr, key):
+    low, high, c = 0, len(arr) - 1, 0
+    while low &lt;= high:
+        mid = (low + high) // 2
+        c += 1
+        if arr[mid] == key:
+            return c
+        if key &lt; arr[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return c
+
+
+print(f"{'n':&gt;9} | {'linear worst':&gt;12} {'linear avg':&gt;10} | {'binary worst':&gt;12} {'binary avg':&gt;10}")
+for n in [10, 100, 1000, 10000]:
+    arr = list(range(0, 2 * n, 2))              # sorted, even numbers
+    lin = [linear_count(arr, k) for k in arr]   # every successful search
+    bin_ = [binary_count(arr, k) for k in arr]
+    print(f"{n:&gt;9} | {max(lin):&gt;12} {sum(lin) / n:&gt;10.1f} | {max(bin_):&gt;12} {sum(bin_) / n:&gt;10.2f}")</code></pre></div>
+    <div class="sr-code sr-out"><div class="sr-code-bar"><span>Output</span></div><pre>        n | linear worst linear avg | binary worst binary avg
+       10 |           10        5.5 |            4       2.90
+      100 |          100       50.5 |            7       5.80
+     1000 |         1000      500.5 |           10       8.99
+    10000 |        10000     5000.5 |           14      12.36</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>For every n, it searches for every element once and records the number of comparisons of each algorithm.</li>
+      <li>The worst case of binary search is &#8970;log&#8322; n&#8971; + 1 (4, 7, 10, 14) and the average is close to log&#8322; n &#8722; 1.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= SECTION 8 ======================= -->
+<section class="sr-sec sr-slide" id="sr-s8" data-title="Practice &amp; quiz">
+  <div class="sr-sec-head"><div class="sr-num">8</div><h2>Practice &amp; Assessment</h2></div>
+  <p>Try each question yourself first, then open the answer.</p>
+
+  <h3>8.1 Conceptual questions</h3>
+  <details><summary>Q1. Why can binary search not be applied to an unsorted array?</summary><div class="ans">Binary search discards half of the array after comparing with the middle element. That is only valid if all smaller elements are on the left and all larger ones on the right &#8212; i.e. the array is sorted. On unsorted data it may discard the half that contains the key.</div></details>
+  <details><summary>Q2. Derive the average number of comparisons for a successful linear search.</summary><div class="ans">If the key is equally likely at positions 1&#8230;n, finding it at position i costs i comparisons. Average = (1 + 2 + &#8230; + n)/n = (n + 1)/2, which is O(n).</div></details>
+  <details><summary>Q3. What is the maximum number of comparisons binary search needs for 1,000 elements? For 1,000,000?</summary><div class="ans">&#8970;log&#8322; 1000&#8971; + 1 = 9 + 1 = <b>10</b>. &#8970;log&#8322; 1,000,000&#8971; + 1 = 19 + 1 = <b>20</b>.</div></details>
+  <details><summary>Q4. Why is binary search not useful on a linked list?</summary><div class="ans">A linked list has no random access: reaching the middle node takes O(n) steps of following links, so each &#8220;halving&#8221; already costs linear time and the total becomes O(n).</div></details>
+  <details><summary>Q5. When would you prefer linear search even though binary search is faster?</summary><div class="ans">When the data is unsorted and will be searched only once or a few times (sorting would cost more), when n is very small, when the data is in a linked list, or when the data changes very often.</div></details>
+
+  <h3>8.2 Trace-based question</h3>
+  <p>Trace binary search for key <b>47</b> in A = [3, 9, 14, 21, 30, 47, 52, 68, 75]. Show low, high, mid and A[mid] at each step.</p>
+  <details><summary>Show answer</summary><div class="ans">
+    <div class="sr-tbl-wrap"><table class="sr-tbl sr-t"><tr><th>Step</th><th>low</th><th>high</th><th>mid</th><th>A[mid]</th><th class="l">Decision</th></tr>
+    <tr><td>1</td><td>0</td><td>8</td><td>4</td><td>30</td><td class="l">47 &gt; 30 &#8594; low = 5</td></tr>
+    <tr><td>2</td><td>5</td><td>8</td><td>6</td><td>52</td><td class="l">47 &lt; 52 &#8594; high = 5</td></tr>
+    <tr class="ok"><td>3</td><td>5</td><td>5</td><td>5</td><td>47</td><td class="l">Found at index 5</td></tr></table></div>
+    <p>3 comparisons. (Linear search would need 6.)</p>
+  </div></details>
+
+  <h3>8.3 Output-prediction question</h3>
+  <div class="sr-code"><div class="sr-code-bar"><span>predict.py</span></div><pre><code class="py">A = [10, 20, 30, 40, 50, 60, 70]
+key = 65
+low, high, steps = 0, len(A) - 1, 0
+while low &lt;= high:
+    mid = (low + high) // 2
+    steps += 1
+    if A[mid] == key:
+        break
+    elif A[mid] &lt; key:
+        low = mid + 1
+    else:
+        high = mid - 1
+print(steps, low, high)</code></pre></div>
+  <details><summary>Show answer</summary><div class="ans"><p>Output: <code>3 6 5</code></p>
+  <p>mid = 3 (40 &lt; 65 &#8594; low = 4), mid = 5 (60 &lt; 65 &#8594; low = 6), mid = 6 (70 &gt; 65 &#8594; high = 5). The loop stops after 3 steps with low = 6, high = 5. 65 is not present; low = 6 is where it would be inserted.</p></div></details>
+
+  <h3>8.4 Diagram-identification question</h3>
+  <p>(a) On which of these arrays can binary search (as written in Section 3) be used directly?</p>
+  <div class="sr-tbl-wrap"><table class="sr-tbl sr-t">
+    <tr><td class="l"><b>P</b></td><td class="l">[2, 5, 9, 14, 20, 31]</td></tr>
+    <tr><td class="l"><b>Q</b></td><td class="l">[31, 20, 14, 9, 5, 2]</td></tr>
+    <tr><td class="l"><b>R</b></td><td class="l">[4, 8, 8, 8, 15, 23]</td></tr>
+    <tr><td class="l"><b>S</b></td><td class="l">[3, 7, 12, 10, 18, 25]</td></tr>
+  </table></div>
+  <p>(b) In the decision tree of Section 3 (11 elements), how many comparisons are needed to find 72? Which elements are compared?</p>
+  <details><summary>Show answer</summary><div class="ans">
+    <p><b>(a)</b> <b>P</b> and <b>R</b> are sorted ascending (duplicates are fine; R returns one of the 8s). <b>Q</b> is sorted in <i>descending</i> order &#8212; the directions must be reversed. <b>S</b> is not sorted (12 &gt; 10), so binary search may fail.</p>
+    <p><b>(b)</b> 72 is at index 9. Path: 39 (index 5) &#8594; 64 (index 8) &#8594; 72 (index 9): <b>3 comparisons</b>.</p>
+  </div></details>
+
+  <h3>8.5 Programming exercises</h3>
+  <ol>
+    <li>Write a linear search that returns the <b>last</b> occurrence of the key.</li>
+    <li>Implement binary search on a list sorted in <b>descending</b> order.</li>
+    <li>Using binary search, find the integer square root of n (the largest x with x&#178; &#8804; n) without using <code>math.sqrt</code>.</li>
+    <li>Given a sorted list of student roll numbers, count how many roll numbers lie between a and b using two binary searches.</li>
+    <li>Modify Program 4 to also count comparisons for <b>unsuccessful</b> searches. Compare the averages.</li>
+    <li>Write a recursive linear search and explain why its space complexity is O(n).</li>
+  </ol>
+
+  <h3>8.6 Quick quiz</h3>
+  <div id="sr-quiz"></div>
+  <div class="sr-score"><span id="sr-quiz-score">Score: 0 / 8</span><button class="sr-btn ghost" id="sr-quiz-reset">Try again</button></div>
+</section>
+
+<div class="sr-slide-foot"><button class="sr-btn ghost" id="sr-foot-prev">&#8592; Previous</button><button class="sr-btn" id="sr-foot-next">Next &#8594;</button></div>
+
+<p class="sr-foot">More in the series: <b>Sorting algorithms</b> &#8212; the step that makes binary search possible.</p>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById("srb");
+  if (!root) return;
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/[<]/g,"&lt;").replace(/>/g,"&gt;"); }
+  function mk(tag, attrs, parent){ var el = document.createElementNS(SVGNS, tag); for (var a in attrs) el.setAttribute(a, attrs[a]); if (parent) parent.appendChild(el); return el; }
+  function log2floor(n){ var k = 0; while ((n >> 1) > 0 && k < 60){ n = Math.floor(n / 2); k++; } return k; }
+  function binWorst(n){ return n <= 0 ? 0 : Math.floor(Math.log(n) / Math.LN2 + 1e-9) + 1; }
+
+  var A11 = [5, 12, 18, 23, 31, 39, 47, 56, 64, 72, 88];
+  var PRESETS = {
+    a:   {arr: A11, key: 56},
+    big: {arr: [3,8,11,15,19,24,27,31,36,40,44,49,52,58,61,66,70,73,79,82,85,90,94,97,101,106,110,115,119,124,128], key: 115},
+    uns: {arr: [42, 7, 91, 15, 63, 28, 3, 77, 50, 19], key: 91},
+    dup: {arr: [2, 4, 4, 4, 7, 9, 9, 12, 15], key: 9}
+  };
+
+  /* ---------------- decision tree (11 elements) ---------------- */
+  (function(){
+    var svg = $("sr-dtree"), nodes = [], path = [];
+    function build(lo, hi, depth, x0, x1, parent){
+      if (lo > hi) return;
+      var mid = Math.floor((lo + hi) / 2), x = (x0 + x1) / 2, y = 34 + depth * 58;
+      var id = nodes.length; nodes.push({mid:mid, x:x, y:y, parent:parent, depth:depth});
+      build(lo, mid - 1, depth + 1, x0, x, id);
+      build(mid + 1, hi, depth + 1, x, x1, id);
+    }
+    build(0, 10, 0, 40, 640, -1);
+    var lo = 0, hi = 10, key = 56;
+    while (lo <= hi){ var m = Math.floor((lo + hi) / 2); path.push(m); if (A11[m] === key) break; if (key < A11[m]) hi = m - 1; else lo = m + 1; }
+    nodes.forEach(function(nd){ if (nd.parent >= 0){ var p = nodes[nd.parent]; mk("line", {x1:p.x, y1:p.y, x2:nd.x, y2:nd.y, "class": path.indexOf(nd.mid) >= 0 && path.indexOf(p.mid) >= 0 ? "on" : ""}, svg); } });
+    for (var d = 0; d < 4; d++){ var t = mk("text", {x:4, y:34 + d*58, "class":"lvl"}, svg); t.textContent = "L" + (d+1); }
+    nodes.forEach(function(nd){
+      var hit = nd.mid === path[path.length-1], on = path.indexOf(nd.mid) >= 0;
+      mk("circle", {cx:nd.x, cy:nd.y, r:19, "class": hit ? "hit" : (on ? "on" : "")}, svg);
+      var t = mk("text", {x:nd.x, y:nd.y, "class": hit ? "hit" : ""}, svg); t.textContent = A11[nd.mid];
+      var ti = mk("text", {x:nd.x, y:nd.y + 28, "class":"idx"}, svg); ti.textContent = "[" + nd.mid + "]";
+    });
+  })();
+
+  /* ---------------- LAB: guess the number ---------------- */
+  var game = {};
+  function gameNew(){ game = {secret: 1 + Math.floor(Math.random()*100), lo: 1, hi: 100, hist: [], done: false}; gameRender("New number chosen. Make your first guess!"); }
+  function gameRender(msg, cls){
+    $("sr-g-range").style.left = ((game.lo-1)) + "%"; $("sr-g-range").style.width = ((game.hi-game.lo+1)) + "%";
+    $("sr-g-rtxt").textContent = game.done ? "Found!" : "Still possible: " + game.lo + " to " + game.hi + "  (" + (game.hi-game.lo+1) + " numbers)";
+    $("sr-g-hist").innerHTML = game.hist.map(function(h){ return "<span class='"+h[1]+"'>"+h[0]+(h[1]==="hi"?" \u2193":h[1]==="lo"?" \u2191":" \u2714")+"<\/span>"; }).join("");
+    var m = $("sr-g-msg"); m.className = "sr-msg" + (cls ? " " + cls : ""); m.innerHTML = msg;
+  }
+  function gameGuess(g){
+    if (game.done) return;
+    if (!(g >= 1 && g <= 100) || Math.floor(g) !== g){ gameRender("Please enter a whole number from 1 to 100."); return; }
+    if (g === game.secret){ game.hist.push([g, "ok"]); game.done = true; game.lo = game.hi = g;
+      var n = game.hist.length; gameRender("\uD83C\uDF89 Correct! <b>"+g+"<\/b> found in <b>"+n+"<\/b> guess"+(n>1?"es":"")+". "+(n <= 7 ? "Within binary search's limit of 7." : "Binary search never needs more than 7 \u2014 try always guessing the middle."), "upd"); return; }
+    if (g > game.secret){ game.hist.push([g, "hi"]); game.hi = Math.min(game.hi, g-1); gameRender("<b>"+g+"<\/b> is too high."); }
+    else { game.hist.push([g, "lo"]); game.lo = Math.max(game.lo, g+1); gameRender("<b>"+g+"<\/b> is too low."); }
+  }
+  $("sr-g-go").addEventListener("click", function(){ gameGuess(+$("sr-g-in").value); $("sr-g-in").select(); });
+  $("sr-g-in").addEventListener("keydown", function(e){ if (e.key === "Enter"){ gameGuess(+this.value); this.select(); } });
+  $("sr-g-new").addEventListener("click", gameNew);
+  $("sr-g-auto").addEventListener("click", function(){
+    if (game.done || game.hist.length) gameNew();
+    var steps = [];
+    (function next(){
+      if (game.done){ $("sr-g-msg").innerHTML += "<span class='calc'>Binary strategy: guesses "+steps.join(" \u2192 ")+". Always the middle of the remaining range.<\/span>"; return; }
+      var g = Math.floor((game.lo + game.hi) / 2); steps.push(g); gameGuess(g);
+      setTimeout(next, 650);
+    })();
+  });
+  gameNew();
+
+  /* ---------------- LAB: comparisons chart ---------------- */
+  function sliderN(v){ return Math.max(1, Math.round(Math.pow(10, v / 10))); }
+  function compChart(){
+    var n = sliderN(+$("sr-c-n").value), lin = n, bin = binWorst(n);
+    $("sr-c-nv").textContent = "n = " + n.toLocaleString();
+    var mx = Math.max(lin, bin);
+    $("sr-c-bars").innerHTML =
+      "<div class='sr-bar'><span>Linear (worst)<\/span><div class='track'><div class='fill' style='width:"+(lin/mx*100).toFixed(2)+"%;background:#2563eb'><\/div><\/div><span class='num'>"+lin.toLocaleString()+"<\/span><\/div>"+
+      "<div class='sr-bar'><span>Binary (worst)<\/span><div class='track'><div class='fill' style='width:"+Math.max(0.6, bin/mx*100).toFixed(2)+"%;background:#e8590c'><\/div><\/div><span class='num'>"+bin+"<\/span><\/div>";
+    $("sr-c-note").innerHTML = n > 1 ? "Binary search needs <b>"+(lin/bin).toLocaleString(undefined,{maximumFractionDigits:0})+"\u00D7<\/b> fewer comparisons in the worst case. \u230Alog\u2082 "+n.toLocaleString()+"\u230B + 1 = "+bin+"." : "With one element both need 1 comparison.";
+  }
+  $("sr-c-n").addEventListener("input", compChart); compChart();
+
+  /* ---------------- VISUALISER ---------------- */
+  var V = {arr: [], key: 0, lin: [], bin: [], pos: 0, timer: null};
+  function isSorted(a){ for (var i=1;i<a.length;i++) if (a[i] < a[i-1]) return false; return true; }
+  function buildLin(a, key){
+    var s = [{cur:-1, checked:0, found:-1, comps:0, done:false, code:[], msg:"Linear search starts at index 0 and checks each element in order."}];
+    for (var i=0;i<a.length;i++){
+      var hit = a[i] === key;
+      s.push({cur:i, checked:i, found: hit ? i : -1, comps:i+1, done:hit, code: hit ? [2,3] : [1,2],
+        msg: "Compare A["+i+"] = "+a[i]+" with "+key+": "+(hit ? "<b>equal \u2192 found at index "+i+"<\/b> after "+(i+1)+" comparison"+(i?"s":"")+"." : "not equal, move on.")});
+      if (hit) return s;
+    }
+    s.push({cur:-1, checked:a.length, found:-1, comps:a.length, done:true, code:[4], msg:"Reached the end of the array: <b>"+key+" not found<\/b> (\u22121) after "+a.length+" comparisons."});
+    return s;
+  }
+  function buildBin(a, key){
+    var lo = 0, hi = a.length - 1, comps = 0;
+    var s = [{lo:lo, hi:hi, mid:-1, found:-1, comps:0, done:false, code:[0], msg:"Binary search starts with low = 0 and high = "+hi+" (the whole array)."}];
+    while (lo <= hi){
+      var mid = Math.floor((lo + hi) / 2); comps++;
+      if (a[mid] === key){ s.push({lo:lo, hi:hi, mid:mid, found:mid, comps:comps, done:true, dec:"found", code:[1,2,3], msg:"mid = ("+lo+" + "+hi+") // 2 = "+mid+". A["+mid+"] = "+a[mid]+" = key \u2192 <b>found at index "+mid+"<\/b> after "+comps+" comparison"+(comps>1?"s":"")+"."}); return s; }
+      if (key < a[mid]){ s.push({lo:lo, hi:hi, mid:mid, found:-1, comps:comps, done:false, dec:"left", nlo:lo, nhi:mid-1, code:[1,2,4], msg:"mid = ("+lo+" + "+hi+") // 2 = "+mid+". "+key+" &lt; A["+mid+"] = "+a[mid]+" \u2192 discard the right half: <b>high = "+(mid-1)+"<\/b>."}); hi = mid - 1; }
+      else { s.push({lo:lo, hi:hi, mid:mid, found:-1, comps:comps, done:false, dec:"right", nlo:mid+1, nhi:hi, code:[1,2,5], msg:"mid = ("+lo+" + "+hi+") // 2 = "+mid+". "+key+" &gt; A["+mid+"] = "+a[mid]+" \u2192 discard the left half: <b>low = "+(mid+1)+"<\/b>."}); lo = mid + 1; }
+    }
+    s.push({lo:lo, hi:hi, mid:-1, found:-1, comps:comps, done:true, code:[6], msg:"low = "+lo+" &gt; high = "+hi+": the interval is empty \u2192 <b>"+key+" not found<\/b> (\u22121) after "+comps+" comparisons. Insertion point = "+lo+"."});
+    return s;
+  }
+  var CODE = {
+    lin: ["for i in range(n):", "    if A[i] == key:", "        return i", "return -1"],
+    bin: ["low, high = 0, n - 1", "while low <= high:", "    mid = (low + high) // 2", "    if A[mid] == key: return mid", "    elif key < A[mid]: high = mid - 1", "    else: low = mid + 1", "return -1"]
+  };
+  function parseArr(txt){
+    var parts = txt.split(/[\s,]+/).filter(function(x){ return x.length; });
+    if (!parts.length) return {err:"Enter at least one number."};
+    if (parts.length > 31) return {err:"Please use at most 31 numbers so the array fits on screen."};
+    var out = [];
+    for (var i=0;i<parts.length;i++){ var v = Number(parts[i].replace("\u2212","-")); if (!isFinite(v)) return {err:"\u201C"+parts[i]+"\u201D is not a number."}; out.push(v); }
+    return {arr:out};
+  }
+  function vLoad(arr, key){
+    vStop();
+    V.arr = arr; V.key = key; V.lin = buildLin(arr, key); V.bin = buildBin(arr, key); V.pos = 0;
+    $("sr-v-arr").value = arr.join(", "); $("sr-v-key").value = key;
+    var w = $("sr-v-warn"), algo = $("sr-v-algo").value;
+    if (!isSorted(arr) && algo !== "lin"){ w.style.display = "block"; w.innerHTML = "\u26A0\uFE0F This array is <b>not sorted<\/b>. Binary search's answer may be wrong \u2014 watch what happens!"; }
+    else w.style.display = "none";
+    vGo(0);
+  }
+  function vTotal(){ var a = $("sr-v-algo").value; return a === "lin" ? V.lin.length - 1 : a === "bin" ? V.bin.length - 1 : Math.max(V.lin.length, V.bin.length) - 1; }
+  function rowHTML(kind, s){
+    var a = V.arr, h = "<div class='sr-arr" + (a.length > 17 ? " dense" : "") + "'>";
+    for (var i=0;i<a.length;i++){
+      var cls = "sr-cell", ptr = "";
+      if (kind === "lin"){
+        if (i === s.found) cls += " found"; else if (i === s.cur) cls += " cur"; else if (i < s.checked) cls += " chk";
+        if (i === s.cur) ptr = "<span class='I'>i<\/span>";
+      } else {
+        var inR = i >= s.lo && i <= s.hi;
+        if (i === s.found) cls += " found"; else if (i === s.mid) cls += " cur"; else if (!inR) cls += " out"; else cls += " range";
+        if (i === s.lo && s.lo <= s.hi) ptr += "<span class='L'>L<\/span>";
+        if (i === s.mid) ptr += "<span class='M'>M<\/span>";
+        if (i === s.hi && s.lo <= s.hi) ptr += "<span class='H'>H<\/span>";
+      }
+      h += "<div class='"+cls+"'>"+(i === s.found ? "<div class='top'>\u2714<\/div>" : "")+"<div class='v'>"+a[i]+"<\/div><div class='i'>"+i+"<\/div><div class='ptr'>"+ptr+"<\/div><\/div>";
+    }
+    return h + "<\/div>";
+  }
+  function vGo(p){
+    var algo = $("sr-v-algo").value, total = vTotal();
+    V.pos = Math.max(0, Math.min(total, p));
+    var li = V.lin[Math.min(V.pos, V.lin.length-1)], bi = V.bin[Math.min(V.pos, V.bin.length-1)], rows = "", msg = "", code = "";
+    function stat(s, name){ return s.done ? (s.found >= 0 ? "\u2714 found at "+s.found : "\u2718 not found") : (name === "lin" ? "searching\u2026" : "searching\u2026"); }
+    if (algo !== "bin"){
+      rows += "<div class='sr-rowlbl'><span>\uD83D\uDEB6 Linear search<\/span><span class='cnt'>comparisons: "+li.comps+" \u00B7 "+stat(li,"lin")+"<\/span><\/div>" + rowHTML("lin", li);
+    }
+    if (algo !== "lin"){
+      rows += "<div class='sr-rowlbl'><span>\u2702\uFE0F Binary search<\/span><span class='cnt'>comparisons: "+bi.comps+" \u00B7 "+(bi.lo <= bi.hi ? "interval size "+(bi.hi-bi.lo+1)+" \u00B7 " : "")+stat(bi,"bin")+"<\/span><\/div>" + rowHTML("bin", bi);
+    }
+    $("sr-v-rows").innerHTML = rows;
+    [].forEach.call(root.querySelectorAll("#sr-v-rows .sr-arr"), function(box){
+      var c = box.querySelector(".sr-cell.found") || box.querySelector(".sr-cell.cur");
+      if (!c) return;
+      var l = c.offsetLeft - box.offsetLeft, r = l + c.offsetWidth;
+      if (l < box.scrollLeft || r > box.scrollLeft + box.clientWidth) box.scrollLeft = l - box.clientWidth / 2 + c.offsetWidth / 2;
+    });
+    if (algo === "lin") msg = li.msg;
+    else if (algo === "bin") msg = bi.msg;
+    else {
+      msg = "<b>Linear:<\/b> " + li.msg + "<br><b>Binary:<\/b> " + bi.msg;
+      if (V.pos === total) msg += "<span class='calc'>Result: linear used "+li.comps+" comparison"+(li.comps===1?"":"s")+", binary used "+bi.comps+".<\/span>";
+    }
+    var m = $("sr-v-msg"); m.innerHTML = msg;
+    var last = algo === "lin" ? li : bi;
+    m.className = "sr-msg" + ((algo === "race" ? (li.done && bi.done) : last.done) ? ((algo === "lin" ? li.found : bi.found) >= 0 ? " upd" : " bad") : "");
+    var lines = algo === "lin" ? CODE.lin : CODE.bin, on = algo === "lin" ? li.code : bi.code;
+    lines.forEach(function(l, i){ code += "<div"+(on.indexOf(algo === "lin" ? i+1 : i) >= 0 ? " class='on'" : "")+"><span class='ln'>"+(i+1)+"<\/span>"+esc(l)+"<\/div>"; });
+    $("sr-v-code").innerHTML = code;
+    $("sr-v-code").style.display = algo === "race" ? "none" : "";
+    $("sr-v-back").disabled = V.pos === 0;
+    $("sr-v-step").disabled = $("sr-v-end").disabled = V.pos === total;
+    if (V.pos === total) vStop();
+    vPredict();
+  }
+  function vPredict(){
+    var box = $("sr-v-pq"), algo = $("sr-v-algo").value;
+    $("sr-v-pq-fb").textContent = "";
+    if (!$("sr-v-predict").checked || algo === "lin" || V.pos >= V.bin.length - 1){ box.className = "sr-predict"; return; }
+    var nxt = V.bin[V.pos + 1];
+    if (nxt.mid < 0){ box.className = "sr-predict"; return; }
+    $("sr-v-pq-txt").textContent = "Next mid = " + nxt.mid + " (A[mid] = " + V.arr[nxt.mid] + "), key = " + V.key + ". What happens?";
+    $("sr-v-pq-btns").innerHTML = "<button class='sr-btn ghost' data-a='found'>Found<\/button><button class='sr-btn ghost' data-a='left'>Go left<\/button><button class='sr-btn ghost' data-a='right'>Go right<\/button>";
+    box.className = "sr-predict on";
+  }
+  $("sr-v-pq-btns").addEventListener("click", function(ev){
+    var b = ev.target.closest("button"); if (!b) return;
+    var ok = b.getAttribute("data-a") === V.bin[V.pos + 1].dec;
+    vGo(V.pos + 1);
+    var fb = $("sr-v-pq-fb"); fb.textContent = ok ? "\u2714 Correct!" : "\u2718 Not quite \u2014 read the explanation."; fb.style.color = ok ? "#15803d" : "#c92a2a";
+    $("sr-v-pq").className = "sr-predict on";
+  });
+  function vStop(){ if (V.timer){ clearInterval(V.timer); V.timer = null; } $("sr-v-play").textContent = "\u25B6 Play"; }
+  function vPlay(){
+    if (V.timer){ vStop(); return; }
+    if (V.pos >= vTotal()) vGo(0);
+    $("sr-v-play").textContent = "\u23F8 Pause";
+    V.timer = setInterval(function(){ if (V.pos >= vTotal()){ vStop(); return; } vGo(V.pos + 1); }, 1700 - (+$("sr-v-speed").value)*140);
+  }
+  function vApply(){
+    var r = parseArr($("sr-v-arr").value), w = $("sr-v-warn");
+    if (r.err){ w.style.display = "block"; w.textContent = r.err; return; }
+    var k = Number(String($("sr-v-key").value).replace("\u2212","-"));
+    if (!isFinite(k) || $("sr-v-key").value.trim() === ""){ w.style.display = "block"; w.textContent = "Enter a numeric key."; return; }
+    vLoad(r.arr, k);
+  }
+  $("sr-v-apply").addEventListener("click", vApply);
+  $("sr-v-key").addEventListener("keydown", function(e){ if (e.key === "Enter") vApply(); });
+  $("sr-v-preset").addEventListener("change", function(){ var p = PRESETS[this.value]; vLoad(p.arr.slice(), p.key); });
+  $("sr-v-algo").addEventListener("change", function(){ vLoad(V.arr, V.key); });
+  $("sr-v-rand").addEventListener("click", function(){
+    var n = 12 + Math.floor(Math.random()*10), a = [], x = Math.floor(Math.random()*5);
+    for (var i=0;i<n;i++){ x += 1 + Math.floor(Math.random()*9); a.push(x); }
+    vLoad(a, Math.random() < 0.75 ? a[Math.floor(Math.random()*n)] : a[Math.floor(Math.random()*n)] + 1);
+  });
+  $("sr-v-reset").addEventListener("click", function(){ vStop(); vGo(0); });
+  $("sr-v-back").addEventListener("click", function(){ vStop(); vGo(V.pos - 1); });
+  $("sr-v-step").addEventListener("click", function(){ vStop(); vGo(V.pos + 1); });
+  $("sr-v-end").addEventListener("click", function(){ vStop(); vGo(vTotal()); });
+  $("sr-v-play").addEventListener("click", vPlay);
+  $("sr-v-speed").addEventListener("input", function(){ if (V.timer){ vStop(); vPlay(); } });
+  $("sr-v-predict").addEventListener("change", vPredict);
+  vLoad(A11.slice(), 56);
+
+  /* ---------------- break-even calculator ---------------- */
+  function kVal(v){ return v === 0 ? 1 : Math.round(Math.pow(10, v / 8)); }
+  function breakEven(){
+    var n = +$("sr-be-n").value, k = kVal(+$("sr-be-k").value), lg = Math.log(n)/Math.LN2;
+    $("sr-be-kv").textContent = "k = " + k.toLocaleString();
+    var lin = k * (n + 1) / 2, bs = n * lg + k * binWorst(n), mx = Math.max(lin, bs);
+    function f(x){ return x >= 1e9 ? (x/1e9).toFixed(1)+" B" : x >= 1e6 ? (x/1e6).toFixed(1)+" M" : Math.round(x).toLocaleString(); }
+    $("sr-be-bars").innerHTML =
+      "<div class='sr-bar'><span>k linear searches<\/span><div class='track'><div class='fill' style='width:"+(lin/mx*100).toFixed(1)+"%;background:#2563eb'><\/div><\/div><span class='num'>"+f(lin)+"<\/span><\/div>"+
+      "<div class='sr-bar'><span>sort + k binary<\/span><div class='track'><div class='fill' style='width:"+(bs/mx*100).toFixed(1)+"%;background:#e8590c'><\/div><\/div><span class='num'>"+f(bs)+"<\/span><\/div>";
+    var be = Math.ceil(n * lg / ((n + 1)/2 - binWorst(n)));
+    $("sr-be-rec").innerHTML = (lin < bs ? "For only <b>"+k.toLocaleString()+"<\/b> search"+(k>1?"es":"")+", plain <b>linear search<\/b> is cheaper." : "With <b>"+k.toLocaleString()+"<\/b> searches, <b>sorting once + binary search<\/b> wins.") +
+      " Break-even \u2248 <b>"+be.toLocaleString()+"<\/b> searches for n = "+n.toLocaleString()+" (\u2248 2\u00B7log\u2082 n). <span style='font-weight:400;color:var(--ink2)'>(Estimates: linear \u2248 (n+1)/2 comparisons per search, sorting \u2248 n\u00B7log\u2082 n.)<\/span>";
+  }
+  $("sr-be-n").addEventListener("change", breakEven); $("sr-be-k").addEventListener("input", breakEven); breakEven();
+
+  /* ---------------- code tabs, highlighting, copy ---------------- */
+  root.querySelectorAll(".sr-tabs").forEach(function(bar){
+    bar.addEventListener("click", function(ev){
+      var b = ev.target.closest(".sr-tab"); if (!b) return;
+      bar.querySelectorAll(".sr-tab").forEach(function(x){ x.classList.toggle("on", x === b); var p = $(x.dataset.pane); if (p) p.classList.toggle("on", x === b); });
+    });
+  });
+  var KW = /^(def|for|in|if|else|elif|return|while|not|and|or|is|None|True|False|import|from|as|with|lambda|pass|break|continue|class|try|except)$/;
+  var BI = /^(print|range|len|min|max|float|int|str|any|all|list|enumerate|sorted|sum|set|dict|abs)$/;
+  function highlight(code){
+    var re = /(#[^\n]*)|("""[\s\S]*?"""|f?'(?:\\.|[^'\\\n])*'|f?"(?:\\.|[^"\\\n])*")|([A-Za-z_][A-Za-z_0-9]*)|(\d+(?:\.\d+)?)/g;
+    var out = "", last = 0, m, prevDef = false;
+    while ((m = re.exec(code))){
+      out += esc(code.slice(last, m.index));
+      if (m[1]) { out += "<span class='py-com'>"+esc(m[1])+"<\/span>"; prevDef = false; }
+      else if (m[2]) { out += "<span class='py-str'>"+esc(m[2])+"<\/span>"; prevDef = false; }
+      else if (m[3]){
+        var w = m[3];
+        if (prevDef) out += "<span class='py-fn'>"+w+"<\/span>";
+        else if (KW.test(w)) out += "<span class='py-kw'>"+w+"<\/span>";
+        else if (BI.test(w)) out += "<span class='py-bi'>"+w+"<\/span>";
+        else out += w;
+        prevDef = (w === "def" || w === "class");
+      }
+      else if (m[4]) { out += "<span class='py-num'>"+m[4]+"<\/span>"; prevDef = false; }
+      last = re.lastIndex;
+    }
+    return out + esc(code.slice(last));
+  }
+  root.querySelectorAll("code.py").forEach(function(c){ var raw = c.textContent; c._raw = raw; c.innerHTML = highlight(raw); });
+  root.querySelectorAll(".sr-copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var code = btn.closest(".sr-code").querySelector("code"), text = code._raw || code.textContent;
+      function ok(){ btn.textContent = "Copied \u2713"; setTimeout(function(){ btn.textContent = "Copy"; }, 1500); }
+      function fallback(){
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch(e) { btn.textContent = "Press Ctrl+C"; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+  });
+
+  /* ---------------- QUIZ ---------------- */
+  var QUIZ = [
+    {q:"What is the worst-case time complexity of linear search on n elements?", o:["O(1)","O(log n)","O(n)","O(n log n)"], a:2,
+     e:"In the worst case (key last or absent) every one of the n elements is compared."},
+    {q:"Which condition must hold before binary search can be applied?", o:["The array must have even length","The array must be sorted","The array must have no duplicates","The key must be present"], a:1,
+     e:"Binary search relies on order to discard half of the elements after each comparison. Duplicates and odd/even length are fine."},
+    {q:"What is the maximum number of comparisons binary search makes on 1,000 elements?", o:["10","100","500","1000"], a:0,
+     e:"\u230Alog\u2082 1000\u230B + 1 = 9 + 1 = 10."},
+    {q:"Average number of comparisons in a successful linear search (key equally likely anywhere)?", o:["n","n / 2","(n + 1) / 2","log\u2082 n"], a:2,
+     e:"(1 + 2 + \u2026 + n) / n = (n + 1) / 2."},
+    {q:"In binary search on A = [5, 12, 18, 23, 31, 39, 47], what is the first mid and the first element compared?", o:["mid = 3, A[mid] = 23","mid = 4, A[mid] = 31","mid = 2, A[mid] = 18","mid = 3, A[mid] = 31"], a:0,
+     e:"low = 0, high = 6 \u2192 mid = (0 + 6) // 2 = 3 \u2192 A[3] = 23."},
+    {q:"The recurrence T(n) = T(n/2) + c describes\u2026", o:["Linear search","Binary search","Merge sort","Sentinel search"], a:1,
+     e:"Binary search does constant work and then recurses on one half: T(n) = T(n/2) + c \u21D2 O(log n)."},
+    {q:"Why is binary search inefficient on a singly linked list?", o:["Linked lists cannot be sorted","Reaching the middle node takes O(n) time","Linked lists store only integers","Recursion is not allowed"], a:1,
+     e:"There is no random access; finding the middle means walking through the nodes."},
+    {q:"Space complexity of RECURSIVE binary search?", o:["O(1)","O(log n)","O(n)","O(n\u00B2)"], a:1,
+     e:"Each recursive call adds a stack frame, and there are at most \u230Alog\u2082 n\u230B + 1 calls. The iterative version uses O(1)."}
+  ];
+  var score = 0, answered = 0;
+  function quizBuild(){
+    score = 0; answered = 0; var h = "";
+    QUIZ.forEach(function(q, qi){
+      h += "<div class='sr-q' data-q='"+qi+"'><div class='qt'><span>Q"+(qi+1)+".<\/span>"+q.q+"<\/div>";
+      q.o.forEach(function(o, oi){ h += "<button class='sr-opt' data-o='"+oi+"'>"+String.fromCharCode(65+oi)+". "+o+"<\/button>"; });
+      h += "<div class='sr-exp'><\/div><\/div>";
+    });
+    $("sr-quiz").innerHTML = h; $("sr-quiz-score").textContent = "Score: 0 / " + QUIZ.length;
+  }
+  $("sr-quiz").addEventListener("click", function(ev){
+    var b = ev.target.closest(".sr-opt"); if (!b || b.disabled) return;
+    var qd = b.closest(".sr-q"), q = QUIZ[+qd.dataset.q], oi = +b.dataset.o;
+    qd.querySelectorAll(".sr-opt").forEach(function(x){ x.disabled = true; if (+x.dataset.o === q.a) x.classList.add("right"); });
+    var right = oi === q.a; if (!right) b.classList.add("wrong"); else score++;
+    answered++;
+    var ex = qd.querySelector(".sr-exp"); ex.style.display = "block";
+    ex.innerHTML = (right ? "<b style='color:#15803d'>Correct!<\/b> " : "<b style='color:#c92a2a'>Not quite.<\/b> ") + q.e;
+    $("sr-quiz-score").textContent = "Score: " + score + " / " + QUIZ.length + (answered === QUIZ.length ? (score >= 7 ? "  \u2014 Excellent! \uD83C\uDF89" : score >= 5 ? "  \u2014 Good, review the explanations." : "  \u2014 Revisit Sections 2\u20136 and try again.") : "");
+  });
+  $("sr-quiz-reset").addEventListener("click", quizBuild);
+  quizBuild();
+
+  /* ---------------- SLIDE NAVIGATION ---------------- */
+  (function(){
+    var slides = [].slice.call(root.querySelectorAll(".sr-slide"));
+    var tabs = root.querySelectorAll(".sr-nav-tab"), TOTAL = slides.length - 1, cur = 0, slideMode = true, nav = $("sr-nav");
+    function navTop(){
+      var r = root.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight){
+        var fs = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fs === root) root.scrollTop = 0; else window.scrollTo(0, window.pageYOffset + r.top - 8);
+      }
+    }
+    function render(){
+      root.classList.toggle("sr-slides", slideMode);
+      slides.forEach(function(el, i){ el.classList.toggle("on", i === cur); });
+      tabs.forEach(function(t){ t.classList.toggle("on", +t.dataset.slide === cur); });
+      $("sr-nav-count").innerHTML = (cur === 0 ? "<span>Home<\/span>" : "<span>" + cur + " / " + TOTAL + "<\/span>") + slides[cur].getAttribute("data-title");
+      ["sr-nav-prev","sr-foot-prev"].forEach(function(id){ $(id).disabled = cur === 0; });
+      ["sr-nav-next","sr-foot-next"].forEach(function(id){ $(id).disabled = cur === TOTAL; });
+      $("sr-nav-all").textContent = slideMode ? "Show all sections" : "One section at a time";
+      var on = root.querySelector(".sr-nav-tab.on"), bar = $("sr-nav-tabs");
+      if (on) bar.scrollLeft = on.offsetLeft - bar.clientWidth/2 + on.clientWidth/2;
+    }
+    function goTo(i, noScroll){
+      i = Math.max(0, Math.min(TOTAL, i));
+      if (slides[i].id !== "sr-s3") vStop();
+      cur = i; render();
+      if (!slideMode){
+        if (!noScroll) window.scrollTo({top: slides[i].getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight - 10, behavior:"smooth"});
+      } else if (!noScroll) navTop();
+    }
+    function indexOfId(id){ for (var i=0;i<slides.length;i++) if (slides[i].id === id) return i; return -1; }
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ goTo(+t.dataset.slide); }); });
+    $("sr-nav-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("sr-nav-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("sr-foot-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("sr-foot-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("sr-nav-all").addEventListener("click", function(){ slideMode = !slideMode; render(); if (slideMode) navTop(); });
+    root.addEventListener("click", function(ev){
+      var a = ev.target.closest && ev.target.closest("a[href^='#sr-s']"); if (!a) return;
+      var i = indexOfId(a.getAttribute("href").slice(1)); if (i < 0) return;
+      ev.preventDefault(); goTo(i);
+    });
+    document.addEventListener("keydown", function(ev){
+      if (!slideMode || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+      var tg = ev.target.tagName;
+      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || ev.target.isContentEditable) return;
+      var r = root.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (ev.key === "ArrowRight"){ goTo(cur+1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft"){ goTo(cur-1); ev.preventDefault(); }
+    });
+    var fsBtn = $("sr-nav-fs");
+    if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsBtn.style.display = "none";
+    fsBtn.addEventListener("click", function(){
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+    });
+    function fsChange(){ var fs = document.fullscreenElement || document.webkitFullscreenElement; fsBtn.textContent = fs === root ? "\u2715 Exit fullscreen" : "\u26F6 Fullscreen"; }
+    document.addEventListener("fullscreenchange", fsChange);
+    document.addEventListener("webkitfullscreenchange", fsChange);
+    var h = indexOfId((location.hash || "").slice(1));
+    goTo(h > 0 ? h : 0, true);
+  })();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="graph-applications.html"><small>← Previous lesson</small><b>Applications of graphs</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="sorting.html"><small>Next lesson →</small><b>Sorting algorithms</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

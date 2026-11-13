@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trees · Learn Data Structures with idontno</title>
+<meta name="description" content="Terminology, binary tree types, traversals and binary search trees.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="trees">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="cur" data-lesson="trees" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module III · Trees</span><span>›</span><span>Lesson 7 of 18</span></div>
+  <article class="idn-lesson">
+<style>
+#dsx{--ink:#1c2033;--leaf:#0b7a6f;--moss:#1c2033;--paper:#fbfaf6;--sun:#fcc419;--sky:#c8d6fa;--mint:#b2f2bb;--line:#e3dfd3;--rose:#d9480f;font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;max-width:980px;margin:0 auto;border-radius:20px;overflow:hidden;box-sizing:border-box}
+#dsx *{box-sizing:border-box}
+#dsx .hero{background:var(--moss);color:#f3f1ea;padding:38px 28px 30px}
+#dsx .hero h1{font-size:clamp(28px,5vw,46px);line-height:1.1;margin:0 0 10px;font-weight:800;color:#fff}
+#dsx .hero p{margin:0;max-width:60ch;color:#9aa0bb}
+#dsx nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+#dsx nav button,#dsx .b{font:inherit;font-size:14px;border:1.5px solid var(--leaf);background:#fff;color:var(--moss);padding:6px 13px;border-radius:99px;cursor:pointer}
+#dsx nav button:hover,#dsx .b:hover{background:var(--mint)}
+#dsx .b.on{background:var(--leaf);color:#fff}
+#dsx .b.pri{background:var(--moss);color:#fff;border-color:var(--moss)}
+#dsx .b:focus-visible,#dsx input:focus-visible{outline:3px solid var(--sun)}
+#dsx section{padding:30px 22px;border-bottom:1px solid var(--line)}
+#dsx h2{margin:0 0 4px;font-size:26px;font-weight:800;color:var(--moss)}
+#dsx .sub{margin:0 0 16px;color:#4a5068}
+#dsx .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+#dsx svg.t{width:100%;height:auto;max-height:330px;display:block}
+#dsx .nd{cursor:pointer}
+#dsx .nd circle{fill:#fff;stroke:var(--leaf);stroke-width:2.2;transition:fill .25s}
+#dsx .nd text{font:600 14px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
+#dsx .edge{stroke:#9aa0bb;stroke-width:2}
+#dsx .nd.sel circle,#dsx .nd.cur circle,#dsx .nd.hit circle{fill:var(--sun)}
+#dsx .nd.anc circle,#dsx .nd.done circle{fill:var(--mint)}
+#dsx .nd.des circle{fill:var(--sky)}
+#dsx .nd.sib circle{stroke-dasharray:4 3;stroke:var(--rose)}
+#dsx .nd.found circle{fill:#8ce99a}
+#dsx .nd.miss circle{fill:#ffc9c9}
+#dsx .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
+@media(max-width:720px){#dsx .grid{grid-template-columns:1fr}#dsx section{padding:24px 14px}}
+#dsx .info{font-size:15px}
+#dsx .info b{color:var(--leaf)}
+#dsx .info div{padding:3px 0;border-bottom:1px dashed var(--line)}
+#dsx .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+#dsx .chip{background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 10px;font:600 13px 'Fira Code',monospace}
+#dsx .chip.o{background:var(--sun);border-color:var(--sun)}
+#dsx .legend{font-size:13px;color:#4a5068;margin-top:6px}
+#dsx ul.n{margin:14px 0 0;padding-left:20px}
+#dsx ul.n li{margin:4px 0}
+#dsx code,#dsx pre{font-family:'Fira Code',monospace;font-size:13px}
+#dsx pre{background:#1d2130;color:#e6e8ef;padding:14px;border-radius:12px;overflow-x:auto;margin:10px 0 0;line-height:1.5}
+#dsx .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+#dsx input[type=number]{font:inherit;width:100px;padding:6px 10px;border:1.5px solid var(--leaf);border-radius:10px}
+#dsx input[type=range]{accent-color:var(--leaf);width:200px}
+#dsx .msg{min-height:26px;font-weight:600;color:var(--moss)}
+#dsx .warn{color:var(--rose)}
+#dsx table{border-collapse:collapse;width:100%;font-size:14px;margin-top:12px;background:#fff}
+#dsx th,#dsx td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+#dsx th{background:var(--mint)}
+#dsx details{margin-top:12px}
+#dsx summary{cursor:pointer;font-weight:600;color:var(--leaf)}
+#dsx .q{margin:0 0 14px}
+#dsx .q p{margin:0 0 6px;font-weight:600}
+#dsx .q .b{display:block;width:100%;text-align:left;border-radius:10px;margin:4px 0}
+#dsx .q .ok{background:#8ce99a;border-color:#2b8a3e}
+#dsx .q .no{background:#ffc9c9;border-color:var(--rose)}
+#dsx .q small{display:block;color:#4a5068;margin-top:2px}
+#dsx footer{padding:18px 22px;font-size:13px;color:#4a5068}
+@media(prefers-reduced-motion:reduce){#dsx .nd circle{transition:none}}
+</style>
+
+<div id="dsx">
+<div class="hero">
+  <h1>Trees: data that branches</h1>
+  <p>Data Structures with Python &middot; MCA &middot; Module III. Click, step through and break the trees below. Then test yourself with the quiz at the end.</p>
+</div>
+<nav>
+  <button data-go="s1">Terms</button><button data-go="s2">Tree types</button><button data-go="s3">Traversals</button><button data-go="s4">BST lab</button><button data-go="s5">Quiz</button>
+</nav>
+
+<section id="s1">
+  <h2>1. Meet the Tree Data Structure</h2>
+  <p class="sub">A tree is a non-linear structure of nodes joined by edges, with exactly one path between any two nodes. Click any node to inspect it.</p>
+  <div class="grid">
+    <div class="box"><svg class="t" id="lab"></svg>
+      <div class="legend">Yellow = selected &middot; green = ancestors &middot; blue = descendants &middot; red dashed = siblings</div></div>
+    <div class="box info" id="labinfo"></div>
+  </div>
+  <div class="stats" id="labstats"></div>
+  <ul class="n">
+    <li><b>Edges:</b> a tree with N nodes always has N &minus; 1 edges.</li>
+    <li><b>Level / depth</b> of a node = number of edges from the root (root is level 0). <b>Height</b> of the tree = depth of its deepest node.</li>
+    <li><b>Degree</b> of a node = number of children. Degree of the tree = largest node degree. Leaf degree = 0.</li>
+    <li><b>Ancestors</b> of a node are every node on the path up to the root (its parent, grandparent, ...). <b>Subtree</b> = a node plus all its descendants.</li>
+    <li><b>Where trees appear:</b> file systems, the HTML DOM, organisation charts, database indexes.</li>
+  </ul>
+  <details><summary>Python: a node of a general tree</summary>
+<pre>class Node:
+    def __init__(self, x):
+        self.data = x
+        self.children = []   # any number of children</pre></details>
+</section>
+
+<section id="s2">
+  <h2>2. Kinds of binary trees</h2>
+  <p class="sub">A binary tree allows every node at most 2 children (left and right). Pick a type to see it and its rules.</p>
+  <div class="row" id="tabs"></div>
+  <div class="grid">
+    <div class="box"><svg class="t" id="typesvg"></svg></div>
+    <div class="box info" id="typeinfo"></div>
+  </div>
+  <div class="box" style="margin-top:16px">
+    <b>Formula playground: perfect tree of height h</b>
+    <div class="row"><input type="range" id="hs" min="0" max="6" value="2"><span class="chip" id="hv"></span></div>
+    <div class="msg" id="hout"></div>
+  </div>
+  <p class="legend"><b>Note:</b> perfect &#8658; complete &#8658; (not necessarily full). A complete tree fills levels top to bottom, left to right. All leaves on one level describes a <i>perfect</i> tree, not a complete one.</p>
+</section>
+
+<section id="s3">
+  <h2>3. Tree traversal, step by step</h2>
+  <p class="sub">Traversal = visiting every node exactly once. DFS goes deep first (pre, in, post). BFS goes level by level.</p>
+  <div class="row" id="tmodes"></div>
+  <div class="grid">
+    <div class="box"><svg class="t" id="trav"></svg>
+      <div class="row"><button class="b pri" id="tstep">Step</button><button class="b" id="tplay">Play</button><button class="b" id="treset">Reset</button></div>
+      <div class="msg" id="tmsg"></div>
+      <div class="stats" id="tout"></div></div>
+    <div class="box info"><div id="tdesc"></div><pre id="tcode"></pre></div>
+  </div>
+  <table><tr><th>Traversal</th><th>Order</th><th>Typical use</th></tr>
+  <tr><td>Preorder</td><td>Root, Left, Right</td><td>Copy a tree, prefix expression</td></tr>
+  <tr><td>Inorder</td><td>Left, Root, Right</td><td>BST keys in sorted order, infix expression</td></tr>
+  <tr><td>Postorder</td><td>Left, Right, Root</td><td>Delete a tree, postfix expression, evaluate an expression tree</td></tr>
+  <tr><td>Level order</td><td>Level by level (queue)</td><td>Shortest path in a tree, printing by level</td></tr></table>
+</section>
+
+<section id="s4">
+  <h2>4. Binary Search Tree lab</h2>
+  <p class="sub">BST rule: for <b>every</b> node, all keys in its left subtree are smaller and all keys in its right subtree are larger (not just its direct children).</p>
+  <div class="box"><svg class="t" id="bst"></svg>
+    <div class="row"><input type="number" id="bv" placeholder="number">
+      <button class="b pri" id="bins">Insert</button><button class="b" id="bsea">Search</button><button class="b" id="bino">Inorder</button></div>
+    <div class="row"><button class="b" id="bpre">Load class example</button><button class="b" id="bskew">Insert 1 to 6 in order</button><button class="b" id="bclr">Clear</button></div>
+    <div class="msg" id="bmsg"></div><div class="stats" id="bstat"></div></div>
+  <table><tr><th>Operation</th><th>Balanced / average</th><th>Skewed (worst)</th></tr>
+  <tr><td>Search</td><td>O(log n)</td><td>O(n)</td></tr><tr><td>Insert</td><td>O(log n)</td><td>O(n)</td></tr><tr><td>Inorder traversal</td><td>O(n)</td><td>O(n)</td></tr></table>
+  <ul class="n">
+    <li><b>Skewed tree:</b> sorted input makes the tree a linked list, so search drops to O(n). Try the button above.</li>
+    <li><b>Balanced BST:</b> height difference of left and right subtrees is 0, 1 or &minus;1 at <b>every</b> node. Fixed by rotations: LL, RR, LR, RL.</li>
+    <li><b>Self-balancing BSTs:</b> AVL, Red-Black, Splay. (B and B+ trees are balanced search trees but are multiway, not binary.)</li>
+    <li><b>Basic operations:</b> create, insert, search, delete, traversal.</li>
+  </ul>
+  <details><summary>Python: BST insert and search</summary>
+<pre id="bcode">class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    if key &lt; root.data:
+        root.left = insert(root.left, key)
+    elif key &gt; root.data:
+        root.right = insert(root.right, key)
+    return root
+
+def search(root, key):
+    if root is None or root.data == key:
+        return root
+    if key &lt; root.data:
+        return search(root.left, key)
+    return search(root.right, key)</pre>
+  <div class="row"><button class="b" id="copy">Copy code</button></div></details>
+</section>
+
+<section id="s5">
+  <h2>5. Check yourself</h2>
+  <p class="sub">Six quick questions. Tap an answer.</p>
+  <div id="quiz"></div><div class="msg" id="score"></div>
+</section>
+<footer>Prof. Abhijeet Jadhav</footer>
+</div>
+
+<script>
+(function(){
+var R=document.getElementById('dsx'),$=function(i){return document.getElementById(i)},uid=0;
+function kids(n){return n.c||[n.l,n.r].filter(Boolean)}
+function walk(n,f,p){f(n,p);kids(n).forEach(function(k){walk(k,f,n)})}
+function B(v,l,r){return {v:v,l:l,r:r}}
+function draw(svg,rt,bin,cls){
+  var cnt=0,md=0,s='';
+  function lay(n,d){n.d=d;md=Math.max(md,d);var k=kids(n);if(!k.length){n.x=cnt++;return}k.forEach(function(c){lay(c,d+1)});n.x=(k[0].x+k[k.length-1].x)/2}
+  function layB(n,d){if(!n)return;layB(n.l,d+1);n.x=cnt++;n.d=d;md=Math.max(md,d);layB(n.r,d+1)}
+  if(!rt){svg.innerHTML='';svg.setAttribute('viewBox','0 0 300 60');svg.innerHTML='<text x="150" y="35" text-anchor="middle" fill="#4a5068" font-size="14">Empty tree. Insert a number.</text>';return}
+  bin?layB(rt,0):lay(rt,0);
+  var W=Math.max(cnt*54+20,260),H=(md+1)*62+10,off=(W-(cnt-1)*54)/2;
+  function X(n){return off+n.x*54}function Y(n){return 30+n.d*62}
+  svg._m={};
+  walk(rt,function(n){if(!n.id)n.id=++uid;svg._m[n.id]=n;kids(n).forEach(function(k){s+='<line class="edge" x1="'+X(n)+'" y1="'+Y(n)+'" x2="'+X(k)+'" y2="'+Y(k)+'"/>'})});
+  walk(rt,function(n){s+='<g class="nd '+(cls(n)||'')+'" data-i="'+n.id+'"><circle cx="'+X(n)+'" cy="'+Y(n)+'" r="19"/><text x="'+X(n)+'" y="'+Y(n)+'">'+n.v+'</text></g>'});
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML=s;
+}
+function pick(svg,fn){svg.addEventListener('click',function(e){var g=e.target.closest('.nd');if(g)fn(svg._m[g.getAttribute('data-i')])})}
+function chips(el,a,o){el.innerHTML=a.map(function(x){return '<span class="chip'+(o?' o':'')+'">'+x+'</span>'}).join('')}
+function H(n){return n?1+Math.max(H(n.l),H(n.r)):-1}
+function N(n){return n?1+N(n.l)+N(n.r):0}
+
+/* nav */
+Array.prototype.forEach.call(R.querySelectorAll('nav button'),function(b){b.onclick=function(){$(b.getAttribute('data-go')).scrollIntoView({behavior:'smooth'})}});
+
+/* 1. Tree lab */
+var lab=B(15);delete lab.l;delete lab.r;
+function G(v,c){return {v:v,c:c}}
+lab=G(15,[G(35,[G(3,[G(1),G(10)]),G(6)]),G(9),G(40,[G(5,[G(8),G(4),G(41)]),G(7)])]);
+walk(lab,function(n,p){n.p=p||null});
+var selN=null,cnt=0,mx=0,deg=0,svgL=$('lab');
+walk(lab,function(n){cnt++;mx=Math.max(mx,0);deg=Math.max(deg,kids(n).length)});
+function dep(n){var d=0;while(n.p){d++;n=n.p}return d}
+function ht(n){var k=kids(n);return k.length?1+Math.max.apply(null,k.map(ht)):0}
+function anc(n){var a=[];while(n.p){n=n.p;a.push(n)}return a}
+function des(n){var a=[];walk(n,function(x){if(x!==n)a.push(x)});return a}
+function vs(a){return a.length?a.map(function(x){return x.v}).join(', '):'none'}
+function labDraw(){
+  var A=selN?anc(selN):[],D=selN?des(selN):[],S=selN&&selN.p?kids(selN.p).filter(function(x){return x!==selN}):[];
+  draw(svgL,lab,false,function(n){return n===selN?'sel':A.indexOf(n)>-1?'anc':D.indexOf(n)>-1?'des':S.indexOf(n)>-1?'sib':''});
+  var h=selN?('<div><b>Node '+selN.v+'</b> is a '+(!selN.p?'root':kids(selN).length?'internal node':'leaf node')+'</div><div><b>Parent:</b> '+(selN.p?selN.p.v:'none')+'</div><div><b>Children:</b> '+vs(kids(selN))+'</div><div><b>Siblings:</b> '+vs(S)+'</div><div><b>Level (depth):</b> '+dep(selN)+'</div><div><b>Degree:</b> '+kids(selN).length+'</div><div><b>Ancestors:</b> '+vs(A)+'</div><div><b>Descendants:</b> '+vs(D)+'</div><div><b>Height of its subtree:</b> '+ht(selN)+'</div>'):'<div>Tap a node to see its parent, children, siblings, level, degree, ancestors and descendants.</div>';
+  $('labinfo').innerHTML=h;
+}
+chips($('labstats'),['Nodes N = '+cnt,'Edges = N-1 = '+(cnt-1),'Height = '+ht(lab),'Degree of tree = '+deg]);
+pick(svgL,function(n){selN=n;labDraw()});labDraw();
+
+/* 2. Types */
+var T={
+ Full:{t:B(12,B(8,B(5),B(11)),B(18)),d:'Every node has 0 or 2 children. No node has exactly one child.',f:['If there are n internal nodes, there are n + 1 leaves.','Total nodes = 2n + 1.','Leaves may sit on different levels.']},
+ Complete:{t:B(1,B(2,B(4),B(5)),B(3,B(6))),d:'Every level is completely filled except possibly the last, and the last level is filled from left to right.',f:['At most one node has exactly one child.','Height = floor(log2 n).','Stored compactly in an array: children of index i are 2i+1 and 2i+2. Heaps use this.']},
+ Perfect:{t:B(1,B(2,B(4),B(5)),B(3,B(6),B(7))),d:'Every internal node has 2 children and all leaves are on the same level. No gaps at all.',f:['Height h: 2^h leaves.','Total nodes = 2^(h+1) - 1.','Height = log2(N + 1) - 1.']},
+ Skewed:{t:B(1,0,B(2,0,B(3,0,B(4)))),d:'Every node has only one child, so the tree behaves like a linked list.',f:['Height = n - 1.','Search takes O(n).','This is the worst case a BST can degrade to.']}
+};
+var tk=Object.keys(T);
+function showT(k){
+  Array.prototype.forEach.call($('tabs').children,function(b){b.className='b'+(b.textContent===k?' on':'')});
+  draw($('typesvg'),T[k].t,true,function(){return ''});
+  $('typeinfo').innerHTML='<div><b>'+k+' binary tree</b></div><div>'+T[k].d+'</div>'+T[k].f.map(function(x){return '<div>&bull; '+x+'</div>'}).join('');
+}
+tk.forEach(function(k){var b=document.createElement('button');b.className='b';b.textContent=k;b.onclick=function(){showT(k)};$('tabs').appendChild(b)});
+showT('Full');
+function hcalc(){var h=+$('hs').value;$('hv').textContent='h = '+h;$('hout').innerHTML='Leaves = 2^'+h+' = '+Math.pow(2,h)+' &middot; Internal = '+(Math.pow(2,h)-1)+' &middot; Total = 2^'+(h+1)+' - 1 = '+(Math.pow(2,h+1)-1)+'. Check: leaves = internal + 1.'}
+$('hs').oninput=hcalc;hcalc();
+
+/* 3. Traversals */
+var TT=B(1,B(2,B(4),B(5)),B(3,B(6),B(7))),tm='Preorder',seq=[],ti=0,tmr=null;
+var MD={
+ Preorder:['Root, Left, Right','def preorder(n):\n    if n:\n        print(n.data)\n        preorder(n.left)\n        preorder(n.right)'],
+ Inorder:['Left, Root, Right. On a BST this prints keys in sorted order.','def inorder(n):\n    if n:\n        inorder(n.left)\n        print(n.data)\n        inorder(n.right)'],
+ Postorder:['Left, Right, Root. Children are always visited before their parent.','def postorder(n):\n    if n:\n        postorder(n.left)\n        postorder(n.right)\n        print(n.data)'],
+ 'Level order':['BFS: visit nodes level by level using a queue.','from collections import deque\ndef level_order(root):\n    q = deque([root])\n    while q:\n        n = q.popleft()\n        print(n.data)\n        if n.left: q.append(n.left)\n        if n.right: q.append(n.right)']
+};
+function mkSeq(m){var o=[];function r(n){if(!n)return;if(m==='Preorder')o.push(n);r(n.l);if(m==='Inorder')o.push(n);r(n.r);if(m==='Postorder')o.push(n)}
+  if(m==='Level order'){var q=[TT];while(q.length){var n=q.shift();o.push(n);if(n.l)q.push(n.l);if(n.r)q.push(n.r)}}else r(TT);return o}
+function tdraw(){
+  var done=seq.slice(0,ti);
+  draw($('trav'),TT,true,function(n){return ti&&seq[ti-1]===n?'cur':done.indexOf(n)>-1?'done':''});
+  chips($('tout'),done.map(function(n){return n.v}),true);
+  $('tmsg').textContent=ti?('Visited node '+seq[ti-1].v+' ('+ti+' of '+seq.length+')'):'Press Step or Play. The yellow node is being visited.';
+}
+function tset(m){tm=m;clearInterval(tmr);$('tplay').textContent='Play';seq=mkSeq(m);ti=0;
+  Array.prototype.forEach.call($('tmodes').children,function(b){b.className='b'+(b.textContent===m?' on':'')});
+  $('tdesc').innerHTML='<b>'+m+':</b> '+MD[m][0];$('tcode').textContent=MD[m][1];tdraw()}
+Object.keys(MD).forEach(function(m){var b=document.createElement('button');b.className='b';b.textContent=m;b.onclick=function(){tset(m)};$('tmodes').appendChild(b)});
+function tnext(){if(ti<seq.length){ti++;tdraw()}else{clearInterval(tmr);$('tplay').textContent='Play'}}
+$('tstep').onclick=tnext;
+$('treset').onclick=function(){tset(tm)};
+$('tplay').onclick=function(){if($('tplay').textContent==='Pause'){clearInterval(tmr);$('tplay').textContent='Play';return}
+  if(ti>=seq.length){ti=0}$('tplay').textContent='Pause';tmr=setInterval(tnext,800)};
+pick($('trav'),function(){});
+tset('Preorder');
+
+/* 4. BST lab */
+var BT=null,mark={},busy=false;
+function bdraw(){draw($('bst'),BT,true,function(n){return mark[n.id]||''});
+  var n=N(BT),h=H(BT);
+  chips($('bstat'),['Nodes = '+n,'Height = '+h,(n>3&&h===n-1)?'SKEWED: acts like a linked list, O(n)':'Search steps at most '+(h+1)]);}
+function say(t,w){$('bmsg').className='msg'+(w?' warn':'');$('bmsg').innerHTML=t}
+function ins(v){if(!BT){BT=B(v);return true}var c=BT;for(;;){if(v===c.v)return false;if(v<c.v){if(!c.l){c.l=B(v);return true}c=c.l}else{if(!c.r){c.r=B(v);return true}c=c.r}}}
+function val(){var s=$('bv').value;if(s===''){say('Type a number first.',1);return null}return parseInt(s,10)}
+$('bins').onclick=function(){var v=val();if(v===null||busy)return;mark={};say(ins(v)?'Inserted '+v+'. Compare with each node: smaller goes left, larger goes right.':v+' is already in the tree. A BST holds distinct keys here.',0);bdraw();$('bv').value=''};
+$('bv').onkeydown=function(e){if(e.key==='Enter')$('bins').onclick()};
+$('bsea').onclick=function(){var v=val();if(v===null||busy)return;if(!BT){say('The tree is empty.',1);return}
+  mark={};bdraw();var c=BT,path=[],log=[];
+  while(c){path.push(c);if(v===c.v){log.push(c.v+' = '+v+' found');break}if(v<c.v){log.push(v+' &lt; '+c.v+', go left');c=c.l}else{log.push(v+' &gt; '+c.v+', go right');c=c.r}}
+  var hit=c!==null&&c!==undefined,i=0;busy=true;
+  (function step(){if(i<path.length){mark[path[i].id]='hit';bdraw();say(log[i],0);i++;setTimeout(step,650)}
+   else{if(hit)mark[path[path.length-1].id]='found';else path.forEach(function(n){mark[n.id]='miss'});bdraw();say(hit?'Found '+v+' after '+path.length+' comparison(s).':v+' not found after '+path.length+' comparison(s).',!hit);busy=false}})();
+};
+$('bino').onclick=function(){if(busy)return;var o=[];(function r(n){if(n){r(n.l);o.push(n.v);r(n.r)}})(BT);say('Inorder (sorted): '+(o.join(', ')||'empty'),0)};
+$('bpre').onclick=function(){if(busy)return;BT=null;mark={};[20,11,23,9,13,21,30].forEach(ins);say('Class example loaded. Try searching 13, then 25.',0);bdraw()};
+$('bskew').onclick=function(){if(busy)return;BT=null;mark={};[1,2,3,4,5,6].forEach(ins);say('Sorted input gave a right-skewed tree. Height equals n - 1, so search is O(n).',1);bdraw()};
+$('bclr').onclick=function(){if(busy)return;BT=null;mark={};say('',0);bdraw()};
+$('bpre').onclick();
+$('copy').onclick=function(){var t=$('bcode').textContent;if(navigator.clipboard){navigator.clipboard.writeText(t)}$('copy').textContent='Copied'};
+
+/* 5. Quiz */
+var Q=[
+ ['A tree has 20 nodes. How many edges does it have?',['19','20','21','Depends on shape'],0,'N nodes always give N - 1 edges.'],
+ ['Which traversal prints the keys of a BST in sorted order?',['Preorder','Inorder','Postorder','Level order'],1,'Left, Root, Right visits keys in ascending order.'],
+ ['A full binary tree has 7 internal nodes. How many leaves?',['7','6','8','15'],2,'Leaves = internal + 1 = 8, total nodes 2n + 1 = 15.'],
+ ['Postorder of a tree with root 1, children 2 and 3, and 2 has children 4 and 5:',['4 5 2 3 1','1 2 4 5 3','4 2 5 1 3','1 2 3 4 5'],0,'Left subtree (4 5 2), right subtree (3), then root 1.'],
+ ['You insert 10, 20, 30, 40 into an empty BST. The result is:',['Perfect tree','Balanced tree','Right-skewed chain, height 3','Left-skewed chain'],2,'Each key is larger than all before it, so it always goes right.'],
+ ['Which statement is true?',['Every complete tree is perfect','Every perfect tree is complete','Complete means all leaves on one level','A BST only compares a node with its parent'],1,'Perfect trees have no gaps, so they are complete. The reverse is false.']
+];
+var sc=0,ans=0;
+Q.forEach(function(q,qi){var d=document.createElement('div');d.className='q';d.innerHTML='<p>'+(qi+1)+'. '+q[0]+'</p>';
+  q[1].forEach(function(o,oi){var b=document.createElement('button');b.className='b';b.textContent=o;
+    b.onclick=function(){if(d.done)return;d.done=1;ans++;var bs=d.querySelectorAll('button');
+      if(oi===q[2]){b.className='b ok';sc++}else{b.className='b no';bs[q[2]].className='b ok'}
+      d.insertAdjacentHTML('beforeend','<small>'+q[3]+'</small>');
+      $('score').textContent='Score: '+sc+' / '+ans+(ans===Q.length?(sc===Q.length?'. Perfect!':'. Revisit the sections you missed.'):'')};
+    d.appendChild(b)});$('quiz').appendChild(d)});
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="stack-queue-applications.html"><small>← Previous lesson</small><b>Applications of stacks &amp; queues</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="binary-trees.html"><small>Next lesson →</small><b>Binary trees</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data structures &amp; complexity · Learn Data Structures with idontno</title>
+<meta name="description" content="Classification, time and space complexity, Big-O, Omega and Theta, best/average/worst case.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="introduction">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="cur" data-lesson="introduction" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module I · Foundations</span><span>›</span><span>Lesson 1 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     OVERVIEW OF DATA STRUCTURES & COMPLEXITY ANALYSIS
+     Classification, Time and Space Complexity,
+     Big-O, Omega and Theta Notation
+     MCA Data Structures Interactive Learning Blog
+     Paste this whole block into Blogger's HTML view.
+     ============================================================ -->
+<style>
+#dsa-in{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-in *,#dsa-in *::before,#dsa-in *::after{box-sizing:border-box}
+#dsa-in h1,#dsa-in h2,#dsa-in h3,#dsa-in h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-in p{margin:0 0 14px}
+#dsa-in a{color:var(--blue)}
+#dsa-in code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-in ul,#dsa-in ol{margin:0 0 14px;padding-left:22px}
+#dsa-in li{margin:4px 0}
+#dsa-in strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-in .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-in .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-in .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-in .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-in .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-in .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-in .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-in .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-in .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-in .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-in .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-in .toc a{text-decoration:none;color:var(--ink)}
+#dsa-in .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-in section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-in .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-in .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-in .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-in h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-in h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-in .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-in .box p:last-child,#dsa-in .box ul:last-child{margin-bottom:0}
+#dsa-in .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-in .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-in .def .box-title{color:var(--blue)}
+#dsa-in .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-in .tip .box-title{color:var(--teal)}
+#dsa-in .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-in .warn .box-title{color:var(--red)}
+#dsa-in .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-in .exam .box-title{color:var(--gold)}
+#dsa-in .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-in .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-in .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-in .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-in .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-in .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-in .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-in .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-in .pro{border-left:4px solid var(--teal)}
+#dsa-in .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-in .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-in table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-in th,#dsa-in td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-in th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-in tr:nth-child(even) td{background:#faf9f5}
+#dsa-in td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-in td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-in .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-in .mem .c{width:64px;text-align:center}
+#dsa-in .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-in .mem .c:last-child .v{border-right-width:2px}
+#dsa-in .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-in .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-in .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-in .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-in .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-in .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-in .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-in .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-in pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-in pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-in pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-in pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-in .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-in .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-in .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-in .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-in .tab-pane{display:none;padding-top:10px}
+#dsa-in .tab-pane.on{display:block}
+#dsa-in .code-wrap{position:relative}
+#dsa-in .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-in .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-in .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-in .btn:hover{transform:translateY(-1px)}
+#dsa-in .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-in .btn.acc{background:var(--accent)}
+#dsa-in .btn.tl{background:var(--teal)}
+#dsa-in .btn.rd{background:var(--red)}
+#dsa-in .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-in input[type=number],#dsa-in input[type=text],#dsa-in select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-in label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-in .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-in .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-in .lab-head b{font-size:1.05em}
+#dsa-in .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-in .lab-body{padding:18px;background:#fff}
+#dsa-in .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-in .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-in .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-in .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-in .cell:last-child .box-v{border-right-width:2px}
+#dsa-in .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-in .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-in .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-in .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-in .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-in .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-in .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-in .cell.done .box-v{background:var(--teal-soft)}
+#dsa-in .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-in .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-in .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-in .pc div{padding:1px 14px;white-space:pre}
+#dsa-in .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-in .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-in .log div{margin:2px 0}
+#dsa-in .log .ok{color:#8ce99a}
+#dsa-in .log .bad{color:#ff8787}
+#dsa-in .log .hd{color:#ffb48a}
+#dsa-in .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-in .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-in .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-in .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-in .msg.bad{color:var(--red)}
+#dsa-in .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-in .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-in .calc-out b{color:var(--accent)}
+#dsa-in .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-in .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-in .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-in .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-in .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-in .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-in .mgrid div.tg small{color:#ffe3d3}
+#dsa-in .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-in .mgrid div.now{background:#ffd8a8}
+#dsa-in .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-in details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-in details summary{cursor:pointer;font-weight:600}
+#dsa-in details[open] summary{margin-bottom:8px}
+#dsa-in .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-in .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-in .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-in .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-in .opt:hover{border-color:var(--ink2)}
+#dsa-in .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-in .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-in .opt:disabled{cursor:default}
+#dsa-in .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-in .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-in .score b{color:#ffb48a;font-size:1.3em}
+#dsa-in .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-in .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-in .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-in .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-in .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-in .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-in .nav-tab.home{padding-left:14px}
+#dsa-in .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-in .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-in .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-in .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-in .nb,#dsa-in .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-in .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-in .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-in .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-in .crumb b{display:block;font-size:1.02em}
+#dsa-in .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-in .nav-tools{display:flex;gap:8px}
+#dsa-in .nt{border-color:var(--line);font-size:.82em}
+#dsa-in .nt:hover{border-color:var(--ink)}
+#dsa-in .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-in.paged .page{display:none}
+#dsa-in.paged .page.active{display:block;animation:inFade .3s ease}
+@keyframes inFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-in .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-in .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-in .pager button:hover{background:var(--accent-soft)}
+#dsa-in .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-in .pager button b{font-size:.95em}
+#dsa-in .pager .nx{text-align:right;margin-left:auto}
+#dsa-in:not(.paged) .pager{display:none}
+#dsa-in .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-in .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-in .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-in .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-in .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-in .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-in .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-in .ov b{display:block;font-size:1.02em}
+#dsa-in .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-in .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-in:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-in:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-in.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-in .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-in .nav-bar{gap:6px}
+  #dsa-in .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-in .nb{flex:1}
+  #dsa-in .nav-tools{flex-basis:100%}
+  #dsa-in .nav-tools .nt{flex:1}
+  #dsa-in .pager button{max-width:49%;font-size:.9em}
+  #dsa-in{font-size:16px}
+  #dsa-in section.sec{padding:22px 16px 10px}
+  #dsa-in .hero{padding:28px 20px}
+  #dsa-in .hero h1{font-size:1.9em}
+  #dsa-in .grid2,#dsa-in .grid3,#dsa-in .viz-split{grid-template-columns:1fr}
+  #dsa-in .toc ol{columns:1}
+  #dsa-in .cell{width:44px}
+  #dsa-in .cell .box-v{height:46px;font-size:.95em}
+  #dsa-in .cell .adr{display:none}
+  #dsa-in .mem .c{width:50px}
+  #dsa-in .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- overview / complexity specific ---------- */
+#dsa-in .nav-tab{font-size:.8em;padding:5px 8px 5px 5px}
+#dsa-in .nav-tabs{gap:3px}
+#dsa-in .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+#dsa-in .case{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+#dsa-in .case h5{margin:0 0 2px;font-size:.78em;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}
+#dsa-in .case .big{font-size:1.9em;font-weight:800;line-height:1.1;color:var(--ink)}
+#dsa-in .case .fx{font-family:'Fira Code',monospace;font-size:.78em;color:var(--ink2);margin-top:2px}
+#dsa-in .case .ex{font-family:'Fira Code',monospace;font-size:.78em;margin-top:6px;word-break:break-word}
+#dsa-in .case .ok{color:var(--teal);font-weight:600;font-size:.8em;margin-top:4px}
+#dsa-in .grid2>div,#dsa-in .grid3>div,#dsa-in .two>div{min-width:0}
+#dsa-in .pc{overflow-x:auto}
+#dsa-in{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--grid:#e9e6dc}
+#dsa-in .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+#dsa-in .hero-tags span{font-family:'Fira Code',monospace;font-size:.85em;color:#fff;background:#ffffff14;border:1.5px solid #ffffff33;border-radius:30px;padding:6px 14px}
+#dsa-in .hero-tags span b{color:#ffb48a;font-weight:500}
+#dsa-in .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+#dsa-in .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-in .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-in .seg button.on{background:var(--ink);color:#fff}
+#dsa-in .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-in .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-in .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-in .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-in .lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin:10px 0 4px}
+#dsa-in .two{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;align-items:start}
+/* classification tree */
+#dsa-in .tree-wrap{overflow-x:auto;background:var(--soft);border-radius:12px;padding:8px}
+#dsa-in .tree-wrap svg{display:block;width:100%;min-width:640px;height:auto}
+#dsa-in .tnode{cursor:pointer}
+#dsa-in .tnode rect{transition:fill .15s}
+#dsa-in .tnode:hover rect{fill:#ffe8cc}
+#dsa-in .tnode.root:hover rect,#dsa-in .tnode.root.on rect{fill:#1c2033}
+#dsa-in .tnode.on rect{fill:var(--accent)}
+#dsa-in .tnode.on text{fill:#fff}
+#dsa-in .tnode:focus{outline:none}
+#dsa-in .tnode:focus rect{stroke:var(--accent);stroke-width:3}
+#dsa-in .info{background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:14px 18px;margin-top:12px;min-height:120px}
+#dsa-in .info h4{margin:0 0 6px}
+#dsa-in .info p{margin:0 0 8px;font-size:.95em}
+#dsa-in .classify{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+#dsa-in .citem{font-family:'Fira Code',monospace;font-size:1.15em;background:#fff;border:2px solid var(--ink);border-radius:10px;padding:10px 18px}
+#dsa-in .copts{display:flex;gap:8px;flex-wrap:wrap}
+/* step counter */
+#dsa-in .codecount{width:100%;border-collapse:collapse;font-size:.9em}
+#dsa-in .codecount td,#dsa-in .codecount th{padding:6px 10px;border:1px solid var(--line);vertical-align:middle}
+#dsa-in .codecount td.code{font-family:'Fira Code',monospace;white-space:pre;background:var(--code-bg);color:var(--code-ink);font-size:.86em}
+#dsa-in .codecount td.cnt{font-family:'Fira Code',monospace;text-align:right;color:var(--accent);font-weight:500}
+#dsa-in .codecount td.sym{font-family:'Fira Code',monospace;color:var(--ink2)}
+#dsa-in .codecount tr.tot td{font-weight:700;background:var(--soft)}
+#dsa-in input[type=range]{width:220px;accent-color:var(--accent)}
+/* charts */
+#dsa-in .chart{position:relative;background:#fcfcfb;border:1px solid var(--line);border-radius:12px;padding:8px}
+#dsa-in .chart svg{display:block;width:100%;height:auto}
+#dsa-in .chart .ax text{font-family:'Fira Code',monospace;font-size:11px;fill:var(--ink2)}
+#dsa-in .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82em;color:var(--ink);margin:4px 2px 8px}
+#dsa-in .legend i{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+#dsa-in .tip{position:absolute;pointer-events:none;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 14px #0002;padding:8px 10px;font-size:.8em;display:none;min-width:150px;z-index:5}
+#dsa-in .tip b{display:block;margin-bottom:4px}
+#dsa-in .tip div{display:flex;justify-content:space-between;gap:12px;font-family:'Fira Code',monospace;font-size:.95em}
+#dsa-in .tip div span:first-child i{display:inline-block;width:10px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+#dsa-in .verdict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+#dsa-in .verdict span{font-weight:700;border-radius:8px;padding:6px 12px;font-size:.9em}
+#dsa-in .verdict .yes{background:var(--teal-soft);color:var(--teal)}
+#dsa-in .verdict .no{background:var(--red-soft);color:var(--red)}
+#dsa-in .verdict .na{background:var(--soft);color:var(--ink2)}
+#dsa-in .vt td,#dsa-in .vt th{font-family:'Fira Code',monospace;font-size:.8em;padding:4px 8px;text-align:right}
+#dsa-in .vt td.ok{color:var(--teal)}
+#dsa-in .vt td.bad{color:var(--red);font-weight:600}
+#dsa-in .notation{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+#dsa-in .notation .mini h4{font-size:1.1em}
+#dsa-in .notation .mini .formula{font-size:.78em;white-space:normal}
+#dsa-in .order{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Fira Code',monospace;font-size:.92em;margin:10px 0}
+#dsa-in .order span{background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:5px 10px}
+#dsa-in .order em{font-style:normal;color:var(--ink2)}
+@media (max-width:720px){
+  #dsa-in .two,#dsa-in .notation,#dsa-in .cases{grid-template-columns:1fr}
+  #dsa-in .seg button{padding:7px 10px;font-size:.82em}
+  #dsa-in input[type=range]{width:160px}
+  #dsa-in .chart{overflow-x:auto}
+  #dsa-in .chart svg{min-width:540px}
+}
+</style>
+
+<div id="dsa-in">
+
+<!-- ======================= NAVIGATION MENU ======================= -->
+<div class="nav" id="in-nav">
+  <div class="nav-tabs" id="in-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="in-prev">← Previous</button>
+    <div class="crumb"><b id="in-crumb-t">Home</b><span id="in-crumb-s">Overview</span></div>
+    <button class="nb" id="in-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="in-all">Show all sections</button>
+      <button class="nt" id="in-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HOME ======================= -->
+<section class="page" id="in-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">MCA · Data Structures · Unit 1: Introduction</span>
+  <h1>Data Structures &amp; Complexity: The Foundations</h1>
+  <p>What data structures are and how they are classified, how we measure an algorithm's time and space, and how Big-O, Omega and Theta notation describe growth. Includes a classification explorer, a step counter, a bounds explorer and a growth-rate chart.</p>
+  <div class="hero-tags">
+    <span><b>O</b>(g) upper bound</span><span><b>Ω</b>(g) lower bound</span><span><b>Θ</b>(g) tight bound</span>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>What is it</b><small>Data structures, operations, ADT, why they matter</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Classification &amp; lab</b><small>Primitive, linear, non-linear, static, dynamic, explorer and quiz</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Analysis &amp; notations</b><small>Time &amp; space complexity, cases, O / Ω / Θ, two visualisers</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Best / avg / worst</b><small>How to calculate each case, with a case analyser</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Growth &amp; comparison</b><small>Growth-rate chart, rules, complexity of common structures</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Uses, pros &amp; cons</b><small>Choosing structures, limits of asymptotic analysis</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Python</b><small>Five tested programs with output</small></button>
+    <button class="ov" data-go="8"><span class="ov-n">8</span><b>Practice</b><small>Find-the-complexity, proofs, output prediction, 8-MCQ quiz</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sec page" id="in-s1" data-label="What is it" data-sub="Introduction to data structures">
+  <div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Data Structures</h2></div>
+
+  <div class="box def"><span class="box-title">Definition</span>
+    <p>A <strong>data structure</strong> is a particular way of <strong>organising, storing and accessing data</strong> in a computer's memory so that it can be used <strong>efficiently</strong>. It defines both the arrangement of the data and the operations allowed on it.</p></div>
+
+  <p><strong>Data</strong> is a raw value (e.g. 72). <strong>Information</strong> is data with meaning (e.g. "Asha scored 72 in DSA"). A data structure decides how many such values are arranged: in a row, in a chain, in a hierarchy, or in a network. The same data can be stored in different structures, and the choice changes how fast we can search, insert or delete.</p>
+
+  <h3>Why do we need data structures?</h3>
+  <ul>
+    <li><strong>Efficiency</strong>: finding a name among a million in a sorted array takes about 20 comparisons with binary search, but up to a million with a plain scan.</li>
+    <li><strong>Organisation</strong>: real problems have natural shapes: a family tree is a hierarchy, a road map is a network, a printer line is a queue.</li>
+    <li><strong>Reusability</strong>: a well-defined structure (stack, queue, tree) can be reused across many programs.</li>
+    <li><strong>Managing large data</strong>: databases, search engines and operating systems handle data that is far too large to process naïvely.</li>
+  </ul>
+  <div class="box tip"><span class="box-title">A famous equation</span><p>Niklaus Wirth, the creator of Pascal, titled his classic book <em>Algorithms + Data Structures = Programs</em>. An algorithm is only as fast as the structure it works on allows.</p></div>
+
+  <h3>Basic operations on data structures</h3>
+  <div class="grid3">
+    <div class="mini"><h4>Traversing</h4><p>Visiting every element once (e.g. printing all marks).</p></div>
+    <div class="mini"><h4>Searching</h4><p>Finding the location of an element with a given value.</p></div>
+    <div class="mini"><h4>Inserting</h4><p>Adding a new element.</p></div>
+    <div class="mini"><h4>Deleting</h4><p>Removing an element.</p></div>
+    <div class="mini"><h4>Sorting</h4><p>Arranging elements in order.</p></div>
+    <div class="mini"><h4>Merging</h4><p>Combining two structures into one.</p></div>
+  </div>
+
+  <h3>Abstract Data Type (ADT)</h3>
+  <p>An <strong>ADT</strong> specifies <em>what</em> a data type does (its values and operations) without saying <em>how</em> it is implemented. A data structure is a concrete <em>implementation</em> of an ADT.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>ADT</th><th>Operations (the "what")</th><th>Possible data structures (the "how")</th></tr>
+    <tr><td>Stack</td><td>push, pop, peek, isEmpty</td><td>Array with a top index, or a linked list</td></tr>
+    <tr><td>Queue</td><td>enqueue, dequeue, front, isEmpty</td><td>Circular array, or a linked list with front and rear</td></tr>
+    <tr><td>List</td><td>insert, delete, get(i), length</td><td>Dynamic array (Python list) or a linked list</td></tr>
+    <tr><td>Dictionary / Map</td><td>put(key, value), get(key), remove(key)</td><td>Hash table or a balanced search tree</td></tr>
+  </table></div>
+
+  <h3>Where data structures are used</h3>
+  <div class="grid3">
+    <div class="mini"><span class="ico">🗄️</span><h4>Databases</h4><p>B-trees and hash indexes find records quickly.</p></div>
+    <div class="mini"><span class="ico">🗺️</span><h4>Maps &amp; GPS</h4><p>Road networks are graphs; shortest routes use graph algorithms.</p></div>
+    <div class="mini"><span class="ico">💻</span><h4>Operating systems</h4><p>Queues for scheduling, stacks for function calls, trees for file systems.</p></div>
+    <div class="mini"><span class="ico">🔍</span><h4>Search engines</h4><p>Inverted indexes map words to pages using hash tables and lists.</p></div>
+    <div class="mini"><span class="ico">⚙️</span><h4>Compilers</h4><p>Symbol tables (hash tables) and syntax trees.</p></div>
+    <div class="mini"><span class="ico">🌐</span><h4>Social networks</h4><p>Friends and followers form a graph.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sec page" id="in-s2" data-label="Classification" data-sub="How data structures are classified">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Classification of Data Structures</h2></div>
+
+  <p>Data structures are classified in several ways. The most common classification is shown below. <strong>Click any box</strong> to see its definition and examples.</p>
+
+  <div class="lab">
+    <div class="lab-head"><b>🧪 Interactive Lab: Classification Explorer</b><span>click a box</span></div>
+    <div class="lab-body">
+      <div class="tree-wrap"><svg id="cl-svg" role="img" aria-label="Classification tree of data structures"></svg></div>
+      <div class="info" id="cl-info"></div>
+    </div>
+  </div>
+
+  <h3>1. Primitive vs Non-primitive</h3>
+  <div class="grid2">
+    <div class="mini"><h4>Primitive data structures</h4><p>Basic types directly supported by the machine or language, holding a <strong>single value</strong>: <code>int</code>, <code>float</code>, <code>char</code>, <code>bool</code>, pointers. Operated on directly by machine instructions.</p></div>
+    <div class="mini"><h4>Non-primitive data structures</h4><p>Built from primitive types to hold a <strong>collection</strong> of values and the relationships between them: arrays, lists, stacks, queues, trees, graphs.</p></div>
+  </div>
+
+  <h3>2. Linear vs Non-linear</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Linear</th><th>Non-linear</th></tr>
+    <tr><td>Arrangement</td><td>Elements form a sequence; each has at most one predecessor and one successor</td><td>An element can connect to many others (hierarchy or network)</td></tr>
+    <tr><td>Levels</td><td>Single level</td><td>Multiple levels (trees) or none (graphs)</td></tr>
+    <tr><td>Traversal</td><td>All elements in one run</td><td>Needs special methods (tree traversals, BFS, DFS)</td></tr>
+    <tr><td>Implementation</td><td>Simpler</td><td>More complex</td></tr>
+    <tr><td>Examples</td><td>Array, linked list, stack, queue</td><td>Tree, graph, heap</td></tr>
+    <tr><td>Real-world</td><td>Queue at a counter, playlist</td><td>Family tree, road network</td></tr>
+  </table></div>
+
+  <h3>3. Static vs Dynamic</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Static</th><th>Dynamic</th></tr>
+    <tr><td>Size</td><td>Fixed when created</td><td>Grows and shrinks at run time</td></tr>
+    <tr><td>Memory allocation</td><td>Compile time / once</td><td>Run time, as needed</td></tr>
+    <tr><td>Example</td><td>Array (<code>int a[10]</code> in C)</td><td>Linked list, Python list, dynamically allocated trees</td></tr>
+    <tr><td>Risk</td><td>Overflow or wasted space</td><td>Pointer overhead, allocation cost</td></tr>
+  </table></div>
+
+  <h3>4. Homogeneous vs Heterogeneous</h3>
+  <p><strong>Homogeneous</strong> structures store elements of the same type (a C array of <code>int</code>). <strong>Heterogeneous</strong> structures store elements of different types (a C <code>struct</code>, a Python list such as <code>[1, "two", 3.0]</code>, a database record).</p>
+
+  <div class="box exam"><span class="box-title">Exam tip</span><p>When asked to "classify data structures", draw the tree (Data structures → Primitive / Non-primitive → Linear / Non-linear) and give two examples for each leaf. Then mention static/dynamic and homogeneous/heterogeneous as other bases of classification.</p></div>
+
+  <div class="lab">
+    <div class="lab-head"><b>🎯 Quick Check: Classify It</b><span>primitive, linear or non-linear?</span></div>
+    <div class="lab-body">
+      <div class="classify">
+        <div class="citem" id="cq-item"></div>
+        <div class="copts">
+          <button class="btn sm" data-c="P">Primitive</button>
+          <button class="btn sm" data-c="L">Linear</button>
+          <button class="btn sm" data-c="N">Non-linear</button>
+        </div>
+        <div class="msg" id="cq-msg"></div>
+        <div class="stats"><div class="stat">Score <b id="cq-score">0 / 0</b></div><button class="btn gh sm" id="cq-next">Next item →</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sec page" id="in-s3" data-label="Visualiser" data-sub="Time &amp; space complexity, O / Ω / Θ">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Algorithm Analysis &amp; Asymptotic Notations</h2></div>
+
+  <h3>What is an algorithm?</h3>
+  <p>An <strong>algorithm</strong> is a finite sequence of well-defined steps that solves a problem. Every algorithm must satisfy five properties:</p>
+  <div class="grid3">
+    <div class="mini"><h4>Input</h4><p>Zero or more quantities are supplied.</p></div>
+    <div class="mini"><h4>Output</h4><p>At least one result is produced.</p></div>
+    <div class="mini"><h4>Definiteness</h4><p>Every step is clear and unambiguous.</p></div>
+    <div class="mini"><h4>Finiteness</h4><p>It ends after a finite number of steps.</p></div>
+    <div class="mini"><h4>Effectiveness</h4><p>Every step is basic enough to be carried out exactly.</p></div>
+  </div>
+
+  <h3>Why analyse algorithms?</h3>
+  <p>Two correct algorithms can differ enormously in speed. Running them and timing them depends on the computer, language and input, so instead we count <strong>how the number of basic steps grows with the input size n</strong>. This gives a measure that is independent of the machine.</p>
+
+  <h3>Time complexity</h3>
+  <p>The <strong>time complexity</strong> T(n) of an algorithm is the number of basic operations (assignments, comparisons, arithmetic) it performs as a function of the input size n.</p>
+  <h4>Frequency count (step count) method</h4>
+  <p>Count how many times each statement executes and add them up. A loop header such as <code>for i in range(n)</code> is counted <strong>n + 1</strong> times: n successful tests plus the final test that ends the loop.</p>
+
+  <div class="op"><h4>Example 1: Sum of an array <span class="bx">T(n) = 2n + 3 → O(n)</span></h4>
+    <table class="codecount">
+      <tr><th>Statement</th><th>Frequency</th></tr>
+      <tr><td class="code">s = 0</td><td class="sym">1</td></tr>
+      <tr><td class="code">for i in range(n):</td><td class="sym">n + 1</td></tr>
+      <tr><td class="code">    s = s + a[i]</td><td class="sym">n</td></tr>
+      <tr><td class="code">return s</td><td class="sym">1</td></tr>
+      <tr class="tot"><td>Total</td><td class="sym">2n + 3</td></tr>
+    </table></div>
+
+  <div class="op"><h4>Example 2: Nested loops <span class="bx">T(n) = 2n² + 2n + 2 → O(n²)</span></h4>
+    <table class="codecount">
+      <tr><th>Statement</th><th>Frequency</th></tr>
+      <tr><td class="code">count = 0</td><td class="sym">1</td></tr>
+      <tr><td class="code">for i in range(n):</td><td class="sym">n + 1</td></tr>
+      <tr><td class="code">    for j in range(n):</td><td class="sym">n(n + 1)</td></tr>
+      <tr><td class="code">        count = count + 1</td><td class="sym">n²</td></tr>
+      <tr class="tot"><td>Total</td><td class="sym">2n² + 2n + 2</td></tr>
+    </table></div>
+
+  <div class="op"><h4>Example 3: Doubling loop <span class="bx">T(n) = 2⌈log₂ n⌉ + 2 → O(log n)</span></h4>
+    <table class="codecount">
+      <tr><th>Statement</th><th>Frequency</th></tr>
+      <tr><td class="code">i = 1</td><td class="sym">1</td></tr>
+      <tr><td class="code">while i &lt; n:</td><td class="sym">k + 1</td></tr>
+      <tr><td class="code">    i = i * 2</td><td class="sym">k</td></tr>
+      <tr class="tot"><td>Total</td><td class="sym">2k + 2,   k = ⌈log₂ n⌉</td></tr>
+    </table>
+    <p>i takes the values 1, 2, 4, 8, …; it reaches n after about log₂ n doublings. Any loop whose variable is multiplied or divided by a constant runs O(log n) times.</p></div>
+
+  <!-- ===== STEP COUNTER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧮 Interactive Lab: Step Counter</b><span>frequency count, verified by running the loops</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">Code fragment<select id="sc-pick" style="width:240px"></select></label>
+        <label class="fld">n = <b id="sc-nv" style="font-size:1.2em;color:var(--accent)">10</b><input type="range" id="sc-n" min="1" max="200" value="10"></label>
+      </div>
+      <div class="two">
+        <div><table class="codecount" id="sc-table"></table></div>
+        <div>
+          <div class="calc-out" id="sc-out"></div>
+          <div class="msg ok" id="sc-check"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Space complexity</h3>
+  <p>The <strong>space complexity</strong> S(P) of a program is the total memory it needs as a function of the input size:</p>
+  <div class="formula">S(P) = <b>c</b> + <b>S<sub>P</sub>(n)</b></div>
+  <ul>
+    <li><strong>Fixed part c</strong>: space for the code, simple variables and constants. It does not depend on n.</li>
+    <li><strong>Variable part S<sub>P</sub>(n)</strong>: space that depends on the input, e.g. arrays of size n, dynamically created nodes, and the <strong>recursion stack</strong>.</li>
+  </ul>
+  <div class="tbl-wrap"><table>
+    <tr><th>Program</th><th>Extra space</th><th>Why</th></tr>
+    <tr><td>Iterative sum of an array</td><td class="o1">O(1)</td><td>A few variables (total, i), whatever n is</td></tr>
+    <tr><td>Recursive sum of an array</td><td class="on">O(n)</td><td>n + 1 stack frames are alive at the deepest point</td></tr>
+    <tr><td>Copying an array</td><td class="on">O(n)</td><td>A second array of n elements</td></tr>
+    <tr><td>n × n matrix</td><td class="on">O(n²)</td><td>n² cells</td></tr>
+  </table></div>
+  <div class="box tip"><span class="box-title">Auxiliary space</span><p>Exam questions often ask for <strong>auxiliary</strong> (extra) space: the memory used <em>besides</em> the input itself. Bubble sort uses O(1) auxiliary space; merge sort uses O(n).</p></div>
+
+  <h3>Best, worst and average case</h3>
+  <p>For the same n, the number of steps can depend on <em>which</em> input is given. Linear search in an array of n elements:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Case</th><th>When it happens</th><th>Comparisons</th><th>Complexity</th></tr>
+    <tr><td><strong>Best case</strong></td><td>Key is the first element</td><td>1</td><td class="o1">Ω(1) / Θ(1)</td></tr>
+    <tr><td><strong>Worst case</strong></td><td>Key is last, or not present</td><td>n</td><td class="on">O(n) / Θ(n)</td></tr>
+    <tr><td><strong>Average case</strong></td><td>Key equally likely at any position</td><td>(1 + 2 + … + n) / n = (n + 1) / 2</td><td class="on">Θ(n)</td></tr>
+  </table></div>
+  <p>The <strong>worst case</strong> is the most commonly reported, because it is a guarantee: the algorithm never takes longer.</p>
+
+  <h3>Asymptotic notations</h3>
+  <p>Asymptotic notations describe how a function behaves for <strong>large n</strong>, ignoring constant factors and lower-order terms. Let f(n) be the running time and g(n) a simple comparison function such as n or n².</p>
+  <div class="notation">
+    <div class="mini"><h4>Big-O: O(g(n))</h4><p><strong>Upper bound.</strong> f grows <em>no faster</em> than g.</p><div class="formula">f(n) = O(g(n)) ⟺ ∃ c &gt; 0, n₀ ≥ 1 : 0 ≤ f(n) ≤ c·g(n) for all n ≥ n₀</div><p>Read: "f is at most a constant times g, eventually."</p></div>
+    <div class="mini"><h4>Omega: Ω(g(n))</h4><p><strong>Lower bound.</strong> f grows <em>at least as fast</em> as g.</p><div class="formula">f(n) = Ω(g(n)) ⟺ ∃ c &gt; 0, n₀ ≥ 1 : f(n) ≥ c·g(n) ≥ 0 for all n ≥ n₀</div><p>Read: "f is at least a constant times g, eventually."</p></div>
+    <div class="mini"><h4>Theta: Θ(g(n))</h4><p><strong>Tight bound.</strong> f grows <em>exactly as fast</em> as g.</p><div class="formula">f(n) = Θ(g(n)) ⟺ ∃ c₁, c₂ &gt; 0, n₀ : c₁·g(n) ≤ f(n) ≤ c₂·g(n) for all n ≥ n₀</div><p>Equivalently: f = O(g) <strong>and</strong> f = Ω(g).</p></div>
+  </div>
+
+  <h4>Worked proofs</h4>
+  <div class="op"><h4>Show 3n + 2 = Θ(n)</h4>
+    <ul>
+      <li><strong>Upper</strong>: 3n + 2 ≤ 3n + n = 4n when n ≥ 2. So c₂ = 4, n₀ = 2 ⇒ 3n + 2 = O(n).</li>
+      <li><strong>Lower</strong>: 3n + 2 ≥ 3n for all n ≥ 1. So c₁ = 3 ⇒ 3n + 2 = Ω(n).</li>
+      <li>Both hold for n ≥ 2 ⇒ <strong>3n + 2 = Θ(n)</strong>.</li>
+    </ul></div>
+  <div class="op"><h4>Show 10n² + 4n + 2 = O(n²)</h4>
+    <p>For n ≥ 5, 4n + 2 ≤ n² (at n = 5: 22 ≤ 25). Then 10n² + 4n + 2 ≤ 10n² + n² = 11n². So <strong>c = 11, n₀ = 5</strong>. Also 10n² + 4n + 2 ≥ 10n² for all n, so it is Θ(n²).</p></div>
+  <div class="op"><h4>Show 6·2ⁿ + n² = O(2ⁿ)</h4>
+    <p>For n ≥ 4, n² ≤ 2ⁿ (16 ≤ 16). So 6·2ⁿ + n² ≤ 7·2ⁿ: <strong>c = 7, n₀ = 4</strong>.</p></div>
+  <div class="op"><h4>Show n² ≠ O(n)</h4>
+    <p>Suppose n² ≤ c·n for all n ≥ n₀. Dividing by n gives n ≤ c for all n ≥ n₀, which is false for n = max(n₀, c + 1). No constant works, so n² is <strong>not</strong> O(n).</p></div>
+  <div class="box tip"><span class="box-title">Also good to know</span><p><strong>Little-o</strong>: f = o(g) means f grows <em>strictly slower</em> than g (e.g. n = o(n²), but n² ≠ o(n²)). <strong>Little-omega</strong>: f = ω(g) means f grows strictly faster. Big-O and Big-Ω allow equality; little-o and little-ω don't.</p></div>
+
+  <!-- ===== BOUNDS EXPLORER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>📈 Interactive Lab: Bounds Explorer</b><span>find c₁, c₂ and n₀ for f(n) = an² + bn + c</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">a (n²)<input type="number" id="be-a" value="3" min="0" max="20"></label>
+        <label class="fld">b (n)<input type="number" id="be-b" value="10" min="0" max="200"></label>
+        <label class="fld">c (const)<input type="number" id="be-c" value="20" min="0" max="500"></label>
+        <label class="fld">g(n)<select id="be-g" style="width:96px"><option value="0">1</option><option value="1">n</option><option value="2" selected>n²</option><option value="3">n³</option></select></label>
+      </div>
+      <div class="controls">
+        <label class="fld">c₁ (lower)<input type="number" id="be-c1" value="3" step="0.5" min="0"></label>
+        <label class="fld">c₂ (upper)<input type="number" id="be-c2" value="4" step="0.5" min="0"></label>
+        <label class="fld">n₀<input type="number" id="be-n0" value="5" min="1"></label>
+        <label class="fld">Show n up to<select id="be-N" style="width:90px"><option>10</option><option selected>20</option><option>50</option><option>100</option></select></label>
+        <button class="btn acc sm" id="be-suggest">Suggest constants</button>
+      </div>
+      <div class="legend" id="be-legend"></div>
+      <div class="chart" id="be-chart"><svg id="be-svg"></svg><div class="tip" id="be-tip"></div></div>
+      <div class="verdict" id="be-verdict"></div>
+      <div class="msg" id="be-msg"></div>
+      <details><summary>Show values table</summary><div class="tbl-wrap" id="be-table"></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 (NEW): CALCULATING CASES ======================= -->
+<section class="sec page" id="in-s3c" data-label="Best/avg/worst" data-sub="How to calculate time complexity, step by step">
+  <div class="sec-head"><div class="sec-num">4</div><h2>How to Calculate Time Complexity: Best, Average &amp; Worst Case</h2></div>
+
+  <p>For many algorithms the number of steps depends not only on the input <em>size</em> n but also on the input <em>itself</em>. Searching for 10 in [10, 20, 30, …] stops immediately; searching for a missing value checks everything. So for each n we describe three functions:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Case</th><th>Definition</th><th>Formula</th></tr>
+    <tr><td><strong>Best case</strong></td><td>Fewest steps over all inputs of size n</td><td>T<sub>best</sub>(n) = min { T(I) : |I| = n }</td></tr>
+    <tr><td><strong>Worst case</strong></td><td>Most steps over all inputs of size n</td><td>T<sub>worst</sub>(n) = max { T(I) : |I| = n }</td></tr>
+    <tr><td><strong>Average case</strong></td><td>Expected steps, weighting each input by its probability</td><td>T<sub>avg</sub>(n) = Σ p(I) · T(I)</td></tr>
+  </table></div>
+  <div class="formula">If all k possible inputs are equally likely:&nbsp; T<sub>avg</sub>(n) = (1/k) · Σ T(I<sub>i</sub>)</div>
+
+  <h3>The method, step by step</h3>
+  <div class="box def"><span class="box-title">Recipe</span>
+  <ol>
+    <li><strong>Identify the input size n</strong> (number of elements, digits, nodes…).</li>
+    <li><strong>Choose the basic operation</strong>: the statement executed most often, usually a comparison in searching and sorting.</li>
+    <li><strong>Ask: does the count depend only on n?</strong> If yes (e.g. finding the maximum, matrix addition), best = average = worst: count once with the frequency count method and stop.</li>
+    <li><strong>Best case</strong>: find the input that makes the algorithm stop earliest, and count the basic operations for it.</li>
+    <li><strong>Worst case</strong>: find the input that makes it do the most work, and count.</li>
+    <li><strong>Average case</strong>: list the kinds of input (e.g. "key at position i"), give each a probability (usually equal), and compute Σ probability × count.</li>
+    <li><strong>Simplify</strong>: keep the dominant term, drop constants, and state each case with asymptotic notation.</li>
+  </ol></div>
+  <p>Useful sums: 1 + 2 + … + n = n(n + 1)/2 &nbsp;·&nbsp; 1 + 2 + 4 + … + 2<sup>k−1</sup> = 2<sup>k</sup> − 1 &nbsp;·&nbsp; 1 + 1/2 + … + 1/n = H<sub>n</sub> ≈ ln n.</p>
+
+  <h3>Worked example 1: Linear search</h3>
+<pre class="pseudo">for i ← 0 to n − 1:
+    if a[i] = key: return i      // basic operation: this comparison
+return −1</pre>
+  <ul>
+    <li><strong>Best case</strong>: key is at position 1 → <strong>1</strong> comparison → Θ(1).</li>
+    <li><strong>Worst case</strong>: key is last or absent → <strong>n</strong> comparisons → Θ(n).</li>
+    <li><strong>Average case (successful)</strong>: the key is at position i (1 ≤ i ≤ n) with probability 1/n and needs i comparisons:
+      <div class="formula">T<sub>avg</sub> = Σ<sub>i=1..n</sub> (1/n) · i = (1/n) · n(n + 1)/2 = (n + 1)/2 → Θ(n)</div></li>
+    <li><strong>Including unsuccessful searches</strong>: if the key is absent with probability q, then T<sub>avg</sub> = (1 − q)(n + 1)/2 + q·n. For any q this is still Θ(n).</li>
+  </ul>
+
+  <h3>Worked example 2: Binary search</h3>
+  <ul>
+    <li><strong>Best case</strong>: the key is the middle element → <strong>1</strong> comparison → Θ(1).</li>
+    <li><strong>Worst case</strong>: each comparison halves the range: n → n/2 → n/4 → … → 1. That is about log₂ n halvings plus the last comparison: <strong>⌊log₂ n⌋ + 1</strong> → Θ(log n).</li>
+    <li><strong>Average case (successful)</strong>: take n = 2<sup>k</sup> − 1. One key needs 1 comparison, 2 keys need 2, 4 keys need 3, …, 2<sup>k−1</sup> keys need k:
+      <div class="formula">T<sub>avg</sub> = (1/n) · Σ<sub>i=1..k</sub> i · 2<sup>i−1</sup> = ((k − 1)·2<sup>k</sup> + 1) / n ≈ log₂ n − 1 → Θ(log n)</div>
+      For n = 15 (k = 4): (3 · 16 + 1)/15 = 49/15 ≈ 3.27 comparisons, close to the worst case of 4.</li>
+  </ul>
+
+  <h3>Worked example 3: Insertion sort</h3>
+<pre class="pseudo">for i ← 1 to n − 1:
+    key ← a[i];  j ← i − 1
+    while j ≥ 0 and a[j] > key:     // basic operation: a[j] > key
+        a[j + 1] ← a[j];  j ← j − 1
+    a[j + 1] ← key</pre>
+  <ul>
+    <li><strong>Best case: already sorted.</strong> Each new element is compared once with its left neighbour and stays put: 1 comparison for each of the n − 1 passes → <strong>n − 1</strong> → Θ(n).</li>
+    <li><strong>Worst case: reverse sorted.</strong> Element i is compared with all i elements before it: 1 + 2 + … + (n − 1) = <strong>n(n − 1)/2</strong> → Θ(n²).</li>
+    <li><strong>Average case: random order.</strong> Element i ends up equally likely in any of the i + 1 positions, so on average it moves past about half of the elements before it. Adding these up over all passes gives
+      <div class="formula">T<sub>avg</sub> = n(n − 1)/4 + n − H<sub>n</sub> ≈ n²/4 → Θ(n²)</div>
+      The average is about half the worst case, but it is still quadratic.</li>
+  </ul>
+
+  <h3>Worked example 4: Early exit</h3>
+<pre class="pseudo">for i ← 0 to n − 2:
+    for j ← i + 1 to n − 1:
+        if a[i] = a[j]: return TRUE      // duplicate found: stop early
+return FALSE</pre>
+  <p><strong>Best</strong>: a[0] = a[1] → 1 comparison → Θ(1). <strong>Worst</strong>: no duplicates → every pair is compared: n(n − 1)/2 → Θ(n²). Any algorithm that can <strong>return early</strong> usually has different best and worst cases.</p>
+
+  <h3>Worked example 5: When all three cases are the same</h3>
+  <p>Finding the maximum of an array always compares every element: <strong>n − 1</strong> comparisons for every input. Best = average = worst = Θ(n). The same holds for matrix addition, summing an array, and traversal.</p>
+
+  <!-- ===== CASE ANALYSER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🔬 Interactive Lab: Case Analyser</b><span>tries every possible input of size n</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">Algorithm<select id="ca-alg" style="width:220px"><option value="lin">Linear search</option><option value="bin">Binary search</option><option value="ins">Insertion sort</option><option value="bub">Bubble sort (early exit)</option></select></label>
+        <label class="fld">n = <b id="ca-nv" style="font-size:1.2em;color:var(--accent)">8</b><input type="range" id="ca-n" min="1" max="30" value="8"></label>
+        <label class="chk" id="ca-unsw" style="display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)"><input type="checkbox" id="ca-uns"> include unsuccessful searches</label>
+      </div>
+      <div class="cap" id="ca-what"></div>
+      <div class="cases" id="ca-cards"></div>
+      <div class="lbl">How many inputs need each number of comparisons</div>
+      <div class="chart" id="ca-chart"><svg id="ca-svg"></svg><div class="tip" id="ca-tip"></div></div>
+      <details><summary>Show the distribution as a table</summary><div class="tbl-wrap" id="ca-table"></div></details>
+    </div>
+  </div>
+
+  <h3>Best, average and worst cases of common algorithms</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Best case input</th></tr>
+    <tr><td>Linear search</td><td class="o1">Θ(1)</td><td class="on">Θ(n)</td><td class="on">Θ(n)</td><td>Key at the first position</td></tr>
+    <tr><td>Binary search</td><td class="o1">Θ(1)</td><td>Θ(log n)</td><td>Θ(log n)</td><td>Key in the middle</td></tr>
+    <tr><td>Bubble sort (with early exit)</td><td class="on">Θ(n)</td><td class="on">Θ(n²)</td><td class="on">Θ(n²)</td><td>Already sorted</td></tr>
+    <tr><td>Insertion sort</td><td class="on">Θ(n)</td><td class="on">Θ(n²)</td><td class="on">Θ(n²)</td><td>Already sorted</td></tr>
+    <tr><td>Selection sort</td><td class="on">Θ(n²)</td><td class="on">Θ(n²)</td><td class="on">Θ(n²)</td><td>No difference: always scans</td></tr>
+    <tr><td>Merge sort</td><td>Θ(n log n)</td><td>Θ(n log n)</td><td>Θ(n log n)</td><td>No difference</td></tr>
+    <tr><td>Quick sort</td><td>Θ(n log n)</td><td>Θ(n log n)</td><td class="on">Θ(n²)</td><td>Pivot always splits evenly</td></tr>
+    <tr><td>Hash table search</td><td class="o1">Θ(1)</td><td class="o1">Θ(1)</td><td class="on">Θ(n)</td><td>No collisions</td></tr>
+  </table></div>
+
+  <div class="box warn"><span class="box-title">Don't mix up cases and notations</span>
+  <ul>
+    <li>Best, average and worst are three <strong>different functions</strong> of n. O, Ω and Θ are ways of <strong>bounding</strong> a function. You can use any notation with any case: "the worst case of linear search is Θ(n)" and "the best case is Θ(1)" are both precise.</li>
+    <li>"Big-O = worst case, Ω = best case" is a common shortcut, not a definition. It works because the worst case bounds every input from above (so the algorithm is O(worst)) and the best case bounds every input from below (so it is Ω(best)).</li>
+    <li>The best case is <strong>not</strong> "n = 1". It is the best input <em>for a given n</em>, for every n.</li>
+  </ul></div>
+
+  <h3>Try it yourself</h3>
+  <details><summary>1. Find the best, worst and average case of finding the minimum of n numbers.</summary><p>Every element must be checked, so it is always n − 1 comparisons: best = average = worst = Θ(n).</p></details>
+  <details><summary>2. A function returns as soon as it finds an even number in an array of n odd/even values. Give its best and worst case.</summary><p>Best: the first element is even → 1 check → Θ(1). Worst: no even numbers (or only the last) → n checks → Θ(n).</p></details>
+  <details><summary>3. Linear search: the key is present with probability 1/2, and if present it is equally likely to be anywhere. What is the average number of comparisons?</summary><p>(1/2)·(n + 1)/2 + (1/2)·n = (3n + 1)/4 → Θ(n).</p></details>
+  <details><summary>4. Why is the average case of insertion sort still Θ(n²) if it does only about half the work of the worst case?</summary><p>Halving is a constant factor: n²/4 and n²/2 are both Θ(n²). Only the growth rate matters.</p></details>
+</section>
+
+<!-- ======================= SECTION 5 (Growth) ======================= -->
+<section class="sec page" id="in-s4" data-label="Growth" data-sub="Growth rates &amp; comparisons">
+  <div class="sec-head"><div class="sec-num">5</div><h2>Growth Rates &amp; Comparison</h2></div>
+
+  <h3>Order of growth</h3>
+  <p>From slowest-growing (best) to fastest-growing (worst):</p>
+  <div class="order"><span>O(1)</span><em>&lt;</em><span>O(log n)</span><em>&lt;</em><span>O(√n)</span><em>&lt;</em><span>O(n)</span><em>&lt;</em><span>O(n log n)</span><em>&lt;</em><span>O(n²)</span><em>&lt;</em><span>O(n³)</span><em>&lt;</em><span>O(2ⁿ)</span><em>&lt;</em><span>O(n!)</span></div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Complexity</th><th>Name</th><th>Typical example</th></tr>
+    <tr><td>O(1)</td><td>Constant</td><td>Access a[i], push/pop on a stack</td></tr>
+    <tr><td>O(log n)</td><td>Logarithmic</td><td>Binary search</td></tr>
+    <tr><td>O(n)</td><td>Linear</td><td>Linear search, traversal</td></tr>
+    <tr><td>O(n log n)</td><td>Linearithmic</td><td>Merge sort, heap sort</td></tr>
+    <tr><td>O(n²)</td><td>Quadratic</td><td>Bubble sort, comparing all pairs</td></tr>
+    <tr><td>O(n³)</td><td>Cubic</td><td>Naïve matrix multiplication, Floyd–Warshall</td></tr>
+    <tr><td>O(2ⁿ)</td><td>Exponential</td><td>All subsets of a set, naïve recursive Fibonacci</td></tr>
+    <tr><td>O(n!)</td><td>Factorial</td><td>All permutations (brute-force travelling salesman)</td></tr>
+  </table></div>
+
+  <!-- ===== GROWTH CHART ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>📊 Interactive Lab: Growth-Rate Chart</b><span>hover to read values</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="gr-scale"><button class="on" data-s="lin">Linear scale</button><button data-s="log">Log scale</button></div>
+        <label class="fld">n up to<select id="gr-N" style="width:90px"><option>8</option><option selected>16</option><option>32</option><option>64</option><option>128</option></select></label>
+      </div>
+      <div class="legend" id="gr-legend"></div>
+      <div class="chart" id="gr-chart"><svg id="gr-svg"></svg><div class="tip" id="gr-tip"></div></div>
+      <div class="cap" id="gr-cap"></div>
+      <div class="tbl-wrap" id="gr-table"></div>
+    </div>
+  </div>
+
+  <h3>How long does it really take?</h3>
+  <p>Assume a computer performs 10⁸ simple steps per second and the input size is n = 10⁶ (one million):</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Complexity</th><th>Steps (approx.)</th><th>Time</th></tr>
+    <tr><td>O(log n)</td><td>20</td><td class="o1">0.2 microseconds</td></tr>
+    <tr><td>O(n)</td><td>10⁶</td><td class="o1">10 milliseconds</td></tr>
+    <tr><td>O(n log n)</td><td>2 × 10⁷</td><td class="o1">0.2 seconds</td></tr>
+    <tr><td>O(n²)</td><td>10¹²</td><td class="on">2.8 hours</td></tr>
+    <tr><td>O(n³)</td><td>10¹⁸</td><td class="on">317 years</td></tr>
+    <tr><td>O(2ⁿ)</td><td>2^1,000,000</td><td class="on">far longer than the age of the universe</td></tr>
+  </table></div>
+  <p>A faster computer can't rescue a bad algorithm: making the machine 100× faster turns 2.8 hours into 1.7 minutes, while switching from O(n²) to O(n log n) turns it into 0.2 seconds.</p>
+
+  <h3>Rules for finding the complexity of code</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Rule</th><th>Example</th><th>Result</th></tr>
+    <tr><td><strong>Drop constants</strong></td><td>T(n) = 5n + 3</td><td>O(n)</td></tr>
+    <tr><td><strong>Keep the dominant term</strong></td><td>T(n) = 3n² + 100n + 7</td><td>O(n²)</td></tr>
+    <tr><td><strong>Sequential blocks: add, keep the max</strong></td><td>a loop of n, then a loop of n²</td><td>O(n + n²) = O(n²)</td></tr>
+    <tr><td><strong>Nested loops: multiply</strong></td><td>loop of n inside loop of m</td><td>O(n·m)</td></tr>
+    <tr><td><strong>if / else: take the larger branch</strong></td><td>O(1) branch vs O(n) branch</td><td>O(n)</td></tr>
+    <tr><td><strong>Halving/doubling loop</strong></td><td><code>while i &gt; 1: i //= 2</code></td><td>O(log n)</td></tr>
+    <tr><td><strong>Different inputs, different variables</strong></td><td>loop over a (size n) then b (size m)</td><td>O(n + m), not O(n)</td></tr>
+  </table></div>
+
+  <h3>Complexity of common data structure operations</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Structure</th><th>Access</th><th>Search</th><th>Insert</th><th>Delete</th><th>Notes</th></tr>
+    <tr><td>Array</td><td class="o1">O(1)</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Binary search O(log n) if sorted</td></tr>
+    <tr><td>Singly linked list</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="o1">O(1) at head</td><td class="o1">O(1) at head</td><td>O(n) to reach a position</td></tr>
+    <tr><td>Stack</td><td>top only</td><td class="on">O(n)</td><td class="o1">O(1) push</td><td class="o1">O(1) pop</td><td>LIFO</td></tr>
+    <tr><td>Queue</td><td>front only</td><td class="on">O(n)</td><td class="o1">O(1) enqueue</td><td class="o1">O(1) dequeue</td><td>FIFO</td></tr>
+    <tr><td>Binary search tree (balanced)</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td><td>O(n) if it degenerates into a chain</td></tr>
+    <tr><td>Hash table</td><td>—</td><td class="o1">O(1) average</td><td class="o1">O(1) average</td><td class="o1">O(1) average</td><td>O(n) worst case with many collisions</td></tr>
+  </table></div>
+
+  <h3>Time–space trade-off</h3>
+  <p>Often we can make a program faster by using more memory, or save memory by doing more work:</p>
+  <ul>
+    <li><strong>Lookup tables</strong>: precompute answers (more space) to answer each query in O(1) (less time).</li>
+    <li><strong>Hash tables</strong> use extra space to get O(1) average search instead of O(n).</li>
+    <li><strong>Recursion vs iteration</strong>: recursive code is often shorter but uses O(depth) stack space.</li>
+    <li><strong>Compressed data</strong> saves space but needs time to decompress.</li>
+  </ul>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sec page" id="in-s5" data-label="Pros &amp; cons" data-sub="Choosing structures, limits of analysis">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Using This Knowledge: Pros, Cons &amp; Pitfalls</h2></div>
+
+  <h3>Choosing a data structure</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>If you mostly need to…</th><th>Consider</th><th>Because</th></tr>
+    <tr><td>Access elements by position</td><td>Array</td><td>O(1) random access</td></tr>
+    <tr><td>Insert/delete often at the front</td><td>Linked list</td><td>O(1) at the head, no shifting</td></tr>
+    <tr><td>Undo the latest action, match brackets</td><td>Stack</td><td>LIFO</td></tr>
+    <tr><td>Serve requests in arrival order</td><td>Queue</td><td>FIFO</td></tr>
+    <tr><td>Keep data sorted and search fast</td><td>Balanced BST</td><td>O(log n) search, insert, delete</td></tr>
+    <tr><td>Look up by key</td><td>Hash table</td><td>O(1) average</td></tr>
+    <tr><td>Model connections (roads, friends)</td><td>Graph</td><td>Many-to-many relationships</td></tr>
+    <tr><td>Model a hierarchy (folders, org chart)</td><td>Tree</td><td>Parent–child relationships</td></tr>
+  </table></div>
+
+  <h3>Advantages of asymptotic analysis</h3>
+  <div class="grid2">
+    <div class="mini pro"><h4>✔ Machine-independent</h4><p>Compares algorithms without worrying about processor speed, language or compiler.</p></div>
+    <div class="mini pro"><h4>✔ Predicts scalability</h4><p>Shows what happens when the input grows 10×, 1000×, a million times.</p></div>
+    <div class="mini pro"><h4>✔ Simple to compare</h4><p>O(n log n) vs O(n²) is an instant, meaningful comparison.</p></div>
+    <div class="mini pro"><h4>✔ Done before coding</h4><p>Bad designs can be rejected on paper.</p></div>
+  </div>
+
+  <h3>Limitations of asymptotic analysis</h3>
+  <div class="grid2">
+    <div class="mini con"><h4>✘ Ignores constants</h4><p>1000n and n are both O(n), but one is 1000× slower. For small n, an O(n²) algorithm with a small constant can beat an O(n log n) one.</p></div>
+    <div class="mini con"><h4>✘ Only describes large n</h4><p>Real inputs may be small enough that the "worse" algorithm is faster.</p></div>
+    <div class="mini con"><h4>✘ Ignores hardware effects</h4><p>Cache behaviour, memory access patterns and parallelism matter in practice.</p></div>
+    <div class="mini con"><h4>✘ Average case needs assumptions</h4><p>It depends on a probability distribution of inputs that may not match reality.</p></div>
+  </div>
+
+  <h3>Advantages and disadvantages of each class of structure</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Class</th><th>Advantages</th><th>Disadvantages</th></tr>
+    <tr><td>Linear</td><td>Simple, easy to traverse, memory-friendly (arrays)</td><td>Can't naturally represent hierarchies or networks; searching is often O(n)</td></tr>
+    <tr><td>Non-linear</td><td>Models hierarchies and networks; fast search in balanced trees</td><td>More complex to implement and traverse</td></tr>
+    <tr><td>Static</td><td>Fast, simple, no allocation at run time</td><td>Fixed size: overflow or wasted memory</td></tr>
+    <tr><td>Dynamic</td><td>Uses only the memory needed; grows freely</td><td>Pointer overhead, allocation cost, poorer cache use</td></tr>
+  </table></div>
+
+  <h3>Common mistakes</h3>
+  <div class="box warn"><span class="box-title">Watch out</span>
+  <ul>
+    <li><strong>"Big-O means worst case."</strong> Not exactly: O is an upper bound on a <em>function</em>. You can give an O bound for the best, worst or average case. Worst case is simply the most common use.</li>
+    <li><strong>Writing O(2n) or O(n² + n)</strong>: drop constants and lower terms: O(n), O(n²).</li>
+    <li><strong>Adding nested loops</strong> instead of multiplying them: two nested loops of n are O(n²), not O(2n).</li>
+    <li><strong>Assuming every loop is O(n)</strong>: a loop that doubles or halves its variable is O(log n).</li>
+    <li><strong>Using one n for two inputs</strong>: processing lists of size n and m is O(n + m) or O(n·m).</li>
+    <li><strong>Forgetting the recursion stack</strong> when computing space complexity.</li>
+    <li><strong>Choosing n₀ or c that only works for one n</strong>: the inequality must hold for <em>every</em> n ≥ n₀.</li>
+  </ul></div>
+
+  <h3>Important examination points</h3>
+  <div class="box exam"><span class="box-title">Remember for exams</span>
+  <ul>
+    <li>Classification tree: Primitive (int, float, char, bool, pointer) / Non-primitive → Linear (array, linked list, stack, queue) / Non-linear (tree, graph).</li>
+    <li>Five properties of an algorithm: input, output, definiteness, finiteness, effectiveness.</li>
+    <li>S(P) = c + S<sub>P</sub>(n): fixed part plus variable part.</li>
+    <li>Definitions of O, Ω and Θ with constants c and n₀; Θ = O and Ω together.</li>
+    <li>When proving, state c and n₀ explicitly and check the inequality for n ≥ n₀.</li>
+    <li>Order: 1 &lt; log n &lt; n &lt; n log n &lt; n² &lt; n³ &lt; 2ⁿ &lt; n!</li>
+    <li>Linear search: best 1, worst n, average (n + 1)/2 comparisons. Binary search worst: ⌊log₂ n⌋ + 1.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sec page" id="in-s6" data-label="Python" data-sub="Implementation">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Python Implementation</h2></div>
+  <p>Six complete, tested programs. Each tab shows the code and its actual output. Use the <strong>Copy</strong> button to paste the program into your editor. All outputs are exact counts, so you will get the same results.</p>
+  <div class="tabs" data-tabs="code">
+    <button class="tab-btn on" data-pane="in-c1">1 · Frequency count</button>
+    <button class="tab-btn" data-pane="in-c2">2 · Best / worst / average</button>
+    <button class="tab-btn" data-pane="in-c3">3 · Space complexity</button>
+    <button class="tab-btn" data-pane="in-c4">4 · Checking O, Ω, Θ</button>
+    <button class="tab-btn" data-pane="in-c5">5 · Growth table</button>
+    <button class="tab-btn" data-pane="in-c6">6 · Cases by enumeration</button>
+  </div>
+  <div class="tab-pane on" id="in-c1">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: Frequency-count (step-count) method
+# Each function counts how many times every statement executes,
+# including the extra test that ends each loop.
+import math
+
+def sum_array(n):
+    steps = 0
+    a = list(range(n))
+    s = 0;                         steps += 1          # s = 0
+    i = 0
+    while True:
+        steps += 1                                     # loop test (runs n + 1 times)
+        if i &gt;= n: break
+        s = s + a[i];              steps += 1          # body (runs n times)
+        i += 1
+    steps += 1                                         # return s
+    return steps                                       # T(n) = 2n + 3
+
+def nested_pairs(n):
+    steps = 1                                          # count = 0
+    for i in range(n + 1):                             # outer test: n + 1 times
+        steps += 1
+        if i == n: break
+        for j in range(n + 1):                         # inner test: n + 1 per outer pass
+            steps += 1
+            if j == n: break
+            steps += 1                                 # count += 1 : n*n times
+    return steps                                       # T(n) = 2n^2 + 2n + 2
+
+def triangular(n):
+    steps = 1                                          # count = 0
+    for i in range(n + 1):
+        steps += 1                                     # outer test
+        if i == n: break
+        j = i + 1
+        while True:
+            steps += 1                                 # inner test
+            if j &gt;= n: break
+            steps += 1                                 # count += 1
+            j += 1
+    return steps                                       # T(n) = n^2 + n + 2
+
+def doubling_loop(n):
+    steps = 1                                          # i = 1
+    i = 1
+    while True:
+        steps += 1                                     # test i &lt; n
+        if not i &lt; n: break
+        i *= 2;                    steps += 1          # i = i * 2
+    return steps                                       # T(n) = 2*ceil(log2 n) + 2
+
+formulas = {
+    "sum_array     2n+3":          (sum_array,     lambda n: 2*n + 3),
+    "nested_pairs  2n^2+2n+2":     (nested_pairs,  lambda n: 2*n*n + 2*n + 2),
+    "triangular    n^2+n+2":       (triangular,    lambda n: n*n + n + 2),
+    "doubling_loop 2*ceil(lg n)+2": (doubling_loop, lambda n: 2*math.ceil(math.log2(n)) + 2),
+}
+
+print(f"{'function   formula':32}" + "".join(f"{'n='+str(n):&gt;12}" for n in [1, 10, 100, 1000]))
+for name, (fn, f) in formulas.items():
+    counted = [fn(n) for n in [1, 10, 100, 1000]]
+    assert counted == [f(n) for n in [1, 10, 100, 1000]], name   # counts match the formula
+    print(f"{name:32}" + "".join(f"{c:&gt;12}" for c in counted))
+print("\nAll counted steps match their formulas.")
+print("Growth when n goes from 100 to 1000 (x10):")
+for name, (fn, f) in formulas.items():
+    print(f"  {name.split()[0]:14} x{fn(1000) / fn(100):.1f}")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">function   formula                       n=1        n=10       n=100      n=1000
+sum_array     2n+3                         5          23         203        2003
+nested_pairs  2n^2+2n+2                    6         222       20202     2002002
+triangular    n^2+n+2                      4         112       10102     1001002
+doubling_loop 2*ceil(lg n)+2               2          10          16          22
+
+All counted steps match their formulas.
+Growth when n goes from 100 to 1000 (x10):
+  sum_array      x9.9
+  nested_pairs   x99.1
+  triangular     x99.1
+  doubling_loop  x1.4</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>Each function counts its own steps, and the <code>assert</code> confirms the counts equal the formulas. When n grows 10×, the O(n) count grows about 10×, the O(n²) counts about 100×, and the O(log n) count barely moves.</p></div>
+  </div>
+  <div class="tab-pane" id="in-c2">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: Best, worst and average case of linear search, and binary search
+
+def linear_search(a, key):
+    comparisons = 0
+    for i in range(len(a)):
+        comparisons += 1
+        if a[i] == key:
+            return i, comparisons
+    return -1, comparisons
+
+def binary_search(a, key):
+    low, high, comparisons = 0, len(a) - 1, 0
+    while low &lt;= high:
+        mid = (low + high) // 2
+        comparisons += 1
+        if a[mid] == key:
+            return mid, comparisons
+        if a[mid] &lt; key:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1, comparisons
+
+n = 10
+a = list(range(10, 10 * n + 1, 10))          # [10, 20, ..., 100]
+print("Array:", a)
+print("Linear search:")
+print("  best  (key at front) :", linear_search(a, 10)[1], "comparison")
+print("  worst (key at end)   :", linear_search(a, 100)[1], "comparisons")
+print("  worst (key missing)  :", linear_search(a, 55)[1], "comparisons")
+avg = sum(linear_search(a, k)[1] for k in a) / n
+print(f"  average (successful) : {avg} = (n + 1) / 2")
+
+import math
+for size in [10, 100, 1000, 10**6]:
+    arr = list(range(size))
+    worst = binary_search(arr, size)[1]       # key larger than every element: longest path
+    print(f"Binary search, n = {size:&gt;7}: worst case = {worst} comparisons "
+          f"(floor(log2 n) + 1 = {math.floor(math.log2(size)) + 1}); linear worst = {size}")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Array: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+Linear search:
+  best  (key at front) : 1 comparison
+  worst (key at end)   : 10 comparisons
+  worst (key missing)  : 10 comparisons
+  average (successful) : 5.5 = (n + 1) / 2
+Binary search, n =      10: worst case = 4 comparisons (floor(log2 n) + 1 = 4); linear worst = 10
+Binary search, n =     100: worst case = 7 comparisons (floor(log2 n) + 1 = 7); linear worst = 100
+Binary search, n =    1000: worst case = 10 comparisons (floor(log2 n) + 1 = 10); linear worst = 1000
+Binary search, n = 1000000: worst case = 20 comparisons (floor(log2 n) + 1 = 20); linear worst = 1000000</pre>
+  </div>
+  <div class="tab-pane" id="in-c3">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: Space complexity: iterative vs recursive sum
+# The iterative version uses a fixed number of variables: O(1) extra space.
+# The recursive version keeps one stack frame per pending call: O(n) extra space.
+
+max_depth = 0
+
+def sum_iterative(a):
+    total = 0                       # one variable, whatever the size of a
+    for x in a:
+        total += x
+    return total
+
+def sum_recursive(a, n, depth=1):
+    global max_depth
+    max_depth = max(max_depth, depth)       # how many frames are alive right now
+    if n == 0:
+        return 0
+    return a[n - 1] + sum_recursive(a, n - 1, depth + 1)
+
+for n in [5, 50, 500]:
+    a = list(range(1, n + 1))
+    max_depth = 0
+    r = sum_recursive(a, n)
+    print(f"n = {n:3}: iterative = {sum_iterative(a):6}, recursive = {r:6}, "
+          f"recursion depth = {max_depth} frames (n + 1)")
+
+# Storing an n x n matrix needs n*n cells: O(n^2) space
+for n in [10, 100]:
+    m = [[0] * n for _ in range(n)]
+    print(f"{n} x {n} matrix stores {sum(len(row) for row in m)} values")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">n =   5: iterative =     15, recursive =     15, recursion depth = 6 frames (n + 1)
+n =  50: iterative =   1275, recursive =   1275, recursion depth = 51 frames (n + 1)
+n = 500: iterative = 125250, recursive = 125250, recursion depth = 501 frames (n + 1)
+10 x 10 matrix stores 100 values
+100 x 100 matrix stores 10000 values</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>Both versions compute the same sum in O(n) time, but the recursive one needs n + 1 stack frames: O(n) space versus O(1). Python stops very deep recursion (about 1000 frames by default), which is a practical sign of this cost.</p></div>
+  </div>
+  <div class="tab-pane" id="in-c4">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: Checking Big-O, Omega and Theta constants numerically
+# (A numerical check is evidence, not a proof, but it is a good way to test
+#  constants c and n0 that you found by hand.)
+
+def holds_from(test, n0, upto=10_000):
+    """True if test(n) is true for every n in [n0, upto]."""
+    return all(test(n) for n in range(n0, upto + 1))
+
+def smallest_n0(test, upto=10_000):
+    for n0 in range(1, upto + 1):
+        if holds_from(test, n0, upto):
+            return n0
+    return None
+
+f = lambda n: 10 * n * n + 4 * n + 2
+print("f(n) = 10n^2 + 4n + 2")
+print("  O(n^2)  with c = 11 : holds from n0 =", smallest_n0(lambda n: f(n) &lt;= 11 * n * n))
+print("  Omega(n^2) with c = 10 : holds from n0 =", smallest_n0(lambda n: f(n) &gt;= 10 * n * n))
+print("  =&gt; f(n) = Theta(n^2)")
+
+g = lambda n: 3 * n + 2
+print("\nf(n) = 3n + 2")
+print("  O(n) with c = 4     : holds from n0 =", smallest_n0(lambda n: g(n) &lt;= 4 * n))
+print("  Omega(n) with c = 3 : holds from n0 =", smallest_n0(lambda n: g(n) &gt;= 3 * n))
+
+h = lambda n: 6 * 2**n + n * n
+print("\nf(n) = 6*2^n + n^2")
+print("  O(2^n) with c = 7   : holds from n0 =", smallest_n0(lambda n: h(n) &lt;= 7 * 2**n, upto=200))
+
+k = lambda n: 5 * n * n - 6 * n
+print("\nf(n) = 5n^2 - 6n")
+print("  O(n^2) with c = 5   : holds from n0 =", smallest_n0(lambda n: k(n) &lt;= 5 * n * n))
+print("  Omega(n^2) with c = 4 : holds from n0 =", smallest_n0(lambda n: k(n) &gt;= 4 * n * n))
+
+print("\nIs n^2 = O(n)? Try c = 100:")
+first_fail = next(n for n in range(1, 10_000) if n * n &gt; 100 * n)
+print("  n^2 &gt; 100n first at n =", first_fail, "-&gt; fails for every larger n, for ANY c")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">f(n) = 10n^2 + 4n + 2
+  O(n^2)  with c = 11 : holds from n0 = 5
+  Omega(n^2) with c = 10 : holds from n0 = 1
+  =&gt; f(n) = Theta(n^2)
+
+f(n) = 3n + 2
+  O(n) with c = 4     : holds from n0 = 2
+  Omega(n) with c = 3 : holds from n0 = 1
+
+f(n) = 6*2^n + n^2
+  O(2^n) with c = 7   : holds from n0 = 4
+
+f(n) = 5n^2 - 6n
+  O(n^2) with c = 5   : holds from n0 = 1
+  Omega(n^2) with c = 4 : holds from n0 = 6
+
+Is n^2 = O(n)? Try c = 100:
+  n^2 &gt; 100n first at n = 101 -&gt; fails for every larger n, for ANY c</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>The n₀ values printed match the hand proofs in Section 3 (c = 11 needs n₀ = 5; c = 7 for 2ⁿ needs n₀ = 4). A numerical check over a range is evidence, not a proof, but it quickly catches wrong constants.</p></div>
+  </div>
+  <div class="tab-pane" id="in-c5">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 5: How common growth rates compare
+import math
+
+def fmt(x):
+    return f"{x:,.0f}" if x &lt; 1e15 else f"{x:.2e}"
+
+funcs = [
+    ("1",       lambda n: 1),
+    ("log n",   lambda n: math.log2(n)),
+    ("n",       lambda n: n),
+    ("n log n", lambda n: n * math.log2(n)),
+    ("n^2",     lambda n: n ** 2),
+    ("n^3",     lambda n: n ** 3),
+    ("2^n",     lambda n: 2 ** n),
+]
+sizes = [1, 2, 4, 8, 16, 32, 64]
+print(f"{'g(n)':&gt;8}" + "".join(f"{'n='+str(n):&gt;18}" for n in sizes))
+for name, f in funcs:
+    print(f"{name:&gt;8}" + "".join(f"{fmt(f(n)):&gt;18}" for n in sizes))
+
+print("\nAt 10^8 simple steps per second, an input of n = 10^6 takes:")
+n, speed = 10**6, 10**8
+for name, f in funcs[1:6]:
+    sec = f(n) / speed
+    if sec &lt; 1e-3:   t = f"{sec * 1e6:.1f} microseconds"
+    elif sec &lt; 1:    t = f"{sec * 1e3:.1f} milliseconds"
+    elif sec &lt; 3600: t = f"{sec:.1f} seconds"
+    elif sec &lt; 86400 * 365: t = f"{sec / 3600:.1f} hours"
+    else:            t = f"{sec / (86400 * 365):,.0f} years"
+    print(f"  {name:&gt;8}: {t}")
+print("       2^n: far longer than the age of the universe")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">    g(n)               n=1               n=2               n=4               n=8              n=16              n=32              n=64
+       1                 1                 1                 1                 1                 1                 1                 1
+   log n                 0                 1                 2                 3                 4                 5                 6
+       n                 1                 2                 4                 8                16                32                64
+ n log n                 0                 2                 8                24                64               160               384
+     n^2                 1                 4                16                64               256             1,024             4,096
+     n^3                 1                 8                64               512             4,096            32,768           262,144
+     2^n                 2                 4                16               256            65,536     4,294,967,296          1.84e+19
+
+At 10^8 simple steps per second, an input of n = 10^6 takes:
+     log n: 0.2 microseconds
+         n: 10.0 milliseconds
+   n log n: 199.3 milliseconds
+       n^2: 2.8 hours
+       n^3: 317 years
+       2^n: far longer than the age of the universe</pre>
+  </div>
+  <div class="tab-pane" id="in-c6">
+    <p>Tries every input of size n and reports the best, worst and average number of comparisons, then checks them against the formulas derived in Section 4.</p>
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 6: Best, worst and average case by trying EVERY input (enumeration)
+# For each algorithm we count the basic operation (key comparisons) on all
+# possible inputs of size n, then take the minimum, maximum and mean.
+from itertools import permutations
+from fractions import Fraction
+import math
+
+def linear_search(a, key):
+    c = 0
+    for x in a:
+        c += 1                       # one comparison per element examined
+        if x == key:
+            return c
+    return c
+
+def binary_search(a, key):
+    lo, hi, c = 0, len(a) - 1, 0
+    while lo &lt;= hi:
+        mid = (lo + hi) // 2
+        c += 1                       # one comparison with a[mid] (3-way)
+        if a[mid] == key: return c
+        if a[mid] &lt; key: lo = mid + 1
+        else: hi = mid - 1
+    return c
+
+def insertion_sort(a):
+    a, c = list(a), 0
+    for i in range(1, len(a)):
+        key, j = a[i], i - 1
+        while j &gt;= 0:
+            c += 1                   # comparison a[j] &gt; key
+            if a[j] &gt; key:
+                a[j + 1] = a[j]; j -= 1
+            else:
+                break
+        a[j + 1] = key
+    return c
+
+def report(name, counts, formulas):
+    best, worst = min(counts), max(counts)
+    avg = Fraction(sum(counts), len(counts))
+    print(f"{name}  ({len(counts)} inputs tried)")
+    print(f"  best  = {best:&lt;4} formula {formulas[0]}")
+    print(f"  worst = {worst:&lt;4} formula {formulas[1]}")
+    print(f"  avg   = {float(avg):&lt;8.4f} formula {formulas[2]}")
+
+n = 10
+a = list(range(1, n + 1))
+succ = [linear_search(a, k) for k in a]
+report(f"Linear search, n = {n}, successful only", succ,
+       ["1", f"n = {n}", f"(n+1)/2 = {(n + 1) / 2}"])
+
+n = 15
+a = list(range(1, n + 1))
+succ = [binary_search(a, k) for k in a]
+k = n.bit_length()                                         # n = 2^k - 1 -&gt; k = 4
+report(f"Binary search, n = {n}, successful only", succ,
+       ["1", f"floor(log2 n) + 1 = {math.floor(math.log2(n)) + 1}",
+        f"((k-1)2^k + 1)/n = {((k - 1) * 2**k + 1) / n:.4f}  (about log2 n - 1)"])
+
+for n in [4, 6, 8]:
+    counts = [insertion_sort(p) for p in permutations(range(n))]
+    H = sum(Fraction(1, i) for i in range(1, n + 1))
+    exact = Fraction(n * (n - 1), 4) + n - H
+    assert Fraction(sum(counts), len(counts)) == exact     # average formula is exact
+    report(f"Insertion sort, n = {n}", counts,
+           [f"n - 1 = {n - 1}", f"n(n-1)/2 = {n * (n - 1) // 2}",
+            f"n(n-1)/4 + n - H(n) = {float(exact):.4f}"])</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Linear search, n = 10, successful only  (10 inputs tried)
+  best  = 1    formula 1
+  worst = 10   formula n = 10
+  avg   = 5.5000   formula (n+1)/2 = 5.5
+Binary search, n = 15, successful only  (15 inputs tried)
+  best  = 1    formula 1
+  worst = 4    formula floor(log2 n) + 1 = 4
+  avg   = 3.2667   formula ((k-1)2^k + 1)/n = 3.2667  (about log2 n - 1)
+Insertion sort, n = 4  (24 inputs tried)
+  best  = 3    formula n - 1 = 3
+  worst = 6    formula n(n-1)/2 = 6
+  avg   = 4.9167   formula n(n-1)/4 + n - H(n) = 4.9167
+Insertion sort, n = 6  (720 inputs tried)
+  best  = 5    formula n - 1 = 5
+  worst = 15   formula n(n-1)/2 = 15
+  avg   = 11.0500  formula n(n-1)/4 + n - H(n) = 11.0500
+Insertion sort, n = 8  (40320 inputs tried)
+  best  = 7    formula n - 1 = 7
+  worst = 28   formula n(n-1)/2 = 28
+  avg   = 19.2821  formula n(n-1)/4 + n - H(n) = 19.2821</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>The insertion-sort average matches n(n − 1)/4 + n − H<sub>n</sub> <em>exactly</em> (checked with fractions and an <code>assert</code>) over all 40,320 orderings of 8 items.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sec page" id="in-s7" data-label="Practice" data-sub="Questions &amp; quiz">
+  <div class="sec-head"><div class="sec-num">8</div><h2>Practice &amp; Assessment</h2></div>
+
+  <h3>A. Conceptual questions</h3>
+  <details><summary>1. Define a data structure. How is it different from an abstract data type?</summary><p>A data structure is a way of organising and storing data for efficient access and modification. An ADT specifies only the values and operations (what); a data structure is a concrete implementation of an ADT (how).</p></details>
+  <details><summary>2. Classify data structures with a diagram and examples.</summary><p>Primitive (int, float, char, bool, pointer) and non-primitive. Non-primitive divides into linear (array, linked list, stack, queue) and non-linear (tree, graph). Other bases: static/dynamic, homogeneous/heterogeneous.</p></details>
+  <details><summary>3. What is the difference between time complexity and space complexity?</summary><p>Time complexity counts the basic operations performed as a function of n; space complexity measures the memory needed (fixed part plus variable part, including the recursion stack) as a function of n.</p></details>
+  <details><summary>4. Define O, Ω and Θ. Which one gives a tight bound?</summary><p>O: f ≤ c·g eventually (upper bound). Ω: f ≥ c·g eventually (lower bound). Θ: c₁·g ≤ f ≤ c₂·g eventually; Θ is the tight bound.</p></details>
+  <details><summary>5. Why is worst-case analysis usually preferred?</summary><p>It gives a guarantee on the maximum time for any input of size n, it is often easier to compute than the average case, and for many algorithms the worst case occurs frequently.</p></details>
+
+  <h3>B. Find the time complexity</h3>
+  <div class="grid2">
+    <div>
+<pre><code>for i in range(n):
+    for j in range(i):
+        print(i, j)</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(n²)</strong>: the inner loop runs 0 + 1 + … + (n − 1) = n(n − 1)/2 times.</p></details>
+    </div>
+    <div>
+<pre><code>i = n
+while i > 1:
+    i = i // 2</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(log n)</strong>: i is halved each time.</p></details>
+    </div>
+    <div>
+<pre><code>for i in range(n):
+    j = 1
+    while j < n:
+        j = j * 2</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(n log n)</strong>: an O(log n) loop inside an O(n) loop.</p></details>
+    </div>
+    <div>
+<pre><code>for i in range(n):
+    total += a[i]
+for j in range(m):
+    total += b[j]</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(n + m)</strong>: two sequential loops over different inputs.</p></details>
+    </div>
+    <div>
+<pre><code>for i in range(100):
+    for j in range(100):
+        x = x + 1</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(1)</strong>: 10,000 steps, but that number does not depend on n.</p></details>
+    </div>
+    <div>
+<pre><code>def fib(n):
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)</code></pre>
+      <details><summary>Show answer</summary><p><strong>O(2ⁿ)</strong> time (each call makes two more calls), and O(n) space for the recursion stack.</p></details>
+    </div>
+  </div>
+
+  <h3>C. Predict the output</h3>
+  <div class="grid2">
+    <div>
+<pre><code>count = 0
+for i in range(8):
+    j = 1
+    while j < 8:
+        j *= 2
+        count += 1
+print(count)</code></pre>
+      <details><summary>Show answer</summary><p><code>24</code><br>The inner loop runs log₂ 8 = 3 times, for each of the 8 values of i.</p></details>
+    </div>
+    <div>
+<pre><code>count = 0
+for i in range(5):
+    for j in range(i + 1, 5):
+        count += 1
+print(count)</code></pre>
+      <details><summary>Show answer</summary><p><code>10</code><br>4 + 3 + 2 + 1 + 0 = n(n − 1)/2 with n = 5.</p></details>
+    </div>
+    <div>
+<pre><code>n, steps, i = 64, 0, 64
+while i > 1:
+    i //= 2
+    steps += 1
+print(steps)</code></pre>
+      <details><summary>Show answer</summary><p><code>6</code><br>64 → 32 → 16 → 8 → 4 → 2 → 1: log₂ 64 = 6 halvings.</p></details>
+    </div>
+    <div>
+<pre><code>total = 0
+for i in range(1, 5):
+    for j in range(i):
+        total += j
+print(total)</code></pre>
+      <details><summary>Show answer</summary><p><code>10</code><br>i = 1 adds 0; i = 2 adds 0+1; i = 3 adds 0+1+2; i = 4 adds 0+1+2+3: 0 + 1 + 3 + 6 = 10.</p></details>
+    </div>
+  </div>
+
+  <h3>D. Proof-based question</h3>
+  <p>Show that f(n) = 5n² − 6n is Θ(n²). Give c₁, c₂ and n₀.</p>
+  <details><summary>Show solution</summary>
+    <ul>
+      <li><strong>Upper bound</strong>: 5n² − 6n ≤ 5n² for all n ≥ 1, so c₂ = 5.</li>
+      <li><strong>Lower bound</strong>: we want 5n² − 6n ≥ 4n², i.e. n² ≥ 6n, i.e. n ≥ 6. So c₁ = 4, n₀ = 6.</li>
+      <li>Hence 4n² ≤ 5n² − 6n ≤ 5n² for all n ≥ 6: <strong>f(n) = Θ(n²)</strong>. (Program 4 confirms n₀ = 6.)</li>
+    </ul>
+  </details>
+
+  <h3>E. Classification identification</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Item</th><th>Answer</th></tr>
+    <tr><td>Folders inside folders on your computer</td><td><details><summary>Show</summary>Non-linear (tree)</details></td></tr>
+    <tr><td>Metro stations connected by lines</td><td><details><summary>Show</summary>Non-linear (graph)</details></td></tr>
+    <tr><td>A variable holding the character 'A'</td><td><details><summary>Show</summary>Primitive (char)</details></td></tr>
+    <tr><td>Train coaches coupled one after another</td><td><details><summary>Show</summary>Linear (linked list)</details></td></tr>
+  </table></div>
+
+  <h3>F. Quiz: test yourself (8 MCQs)</h3>
+  <div id="in-quiz"></div>
+  <div class="score" id="in-quiz-score" style="display:none"><span>Your score: <b id="in-quiz-num">0</b> / 8</span><button class="btn acc" id="in-quiz-retry">Retry quiz</button></div>
+</section>
+
+<div class="footer">MCA Data Structures Series · Overview &amp; Complexity · Next topic: Arrays</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-in');
+  if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  var NS='http://www.w3.org/2000/svg';
+  function S(tag, at, par){ var e=document.createElementNS(NS, tag); for(var k in at){ if(at[k]!==null && at[k]!==undefined) e.setAttribute(k, at[k]); } if(par) par.appendChild(e); return e; }
+  function TX(par, x, y, s, at){ at=at||{}; at.x=x; at.y=y; var e=S('text', at, par); e.textContent=s; return e; }
+  function fmtNum(v){
+    if(!isFinite(v)) return '\u221e';
+    var a=Math.abs(v);
+    if(a>=1e9) return v.toExponential(2).replace('e+','e');
+    if(Math.abs(v-Math.round(v))<1e-9) return Math.round(v).toLocaleString('en-US');
+    return (Math.round(v*100)/100).toLocaleString('en-US');
+  }
+
+  /* ---------------- tabs ---------------- */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){
+      b.addEventListener('click', function(){
+        each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+        b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+
+
+  /* =================================================================
+     CLASSIFICATION EXPLORER
+     ================================================================= */
+  var NODES=[
+    {id:'ds', x:450, y:34, w:190, label:'Data Structures', info:['Data Structures','A way of organising and storing data so that it can be accessed and modified efficiently. Classified first by whether a structure holds a single basic value (primitive) or a collection of values with relationships (non-primitive).']},
+    {id:'prim', x:200, y:120, w:170, label:'Primitive', parent:'ds', info:['Primitive data structures','Basic data types supported directly by the language and operated on by machine instructions. Each holds a single value.','Examples: int, float, char, bool, pointer. In Python: int, float, str (character data), bool.']},
+    {id:'nonp', x:640, y:120, w:190, label:'Non-primitive', parent:'ds', info:['Non-primitive data structures','Derived from primitive types. They store a collection of values and the relationships between them.','Two families: linear and non-linear.']},
+    {id:'int', x:70, y:210, w:80, label:'int', parent:'prim', info:['Integer','Whole numbers such as \u22123, 0, 42. Typically 4 bytes in C; arbitrary size in Python.']},
+    {id:'float', x:160, y:210, w:80, label:'float', parent:'prim', info:['Floating point','Real numbers with a fractional part such as 3.14. Typically 4 bytes (float) or 8 bytes (double) in C.']},
+    {id:'char', x:250, y:210, w:80, label:'char', parent:'prim', info:['Character','A single character such as \'A\'. 1 byte in C (ASCII).']},
+    {id:'ptr', x:340, y:210, w:90, label:'pointer', parent:'prim', info:['Pointer','A variable holding a memory address. The building block of linked lists, trees and graphs. Also bool (true/false) is a primitive type.']},
+    {id:'lin', x:520, y:210, w:150, label:'Linear', parent:'nonp', info:['Linear data structures','Elements are arranged in a sequence: each element (except the ends) has exactly one predecessor and one successor. They can be traversed in a single run.','Examples: array, linked list, stack, queue.']},
+    {id:'nonlin', x:780, y:210, w:160, label:'Non-linear', parent:'nonp', info:['Non-linear data structures','Elements are arranged in a hierarchy or a network, so one element can be connected to many others.','Examples: tree, graph (and heap, which is a special tree).']},
+    {id:'arr', x:410, y:300, w:90, label:'Array', parent:'lin', info:['Array','Fixed-size collection of same-type elements in contiguous memory. O(1) access by index. Static.','Post: Arrays']},
+    {id:'ll', x:510, y:300, w:100, label:'Linked list', parent:'lin', info:['Linked list','Nodes connected by pointers; dynamic size, O(1) insertion at the head, O(n) access.','Post: Linked Lists']},
+    {id:'stk', x:610, y:300, w:84, label:'Stack', parent:'lin', info:['Stack','LIFO: insertion and deletion at one end (top). Used for function calls, undo, expression evaluation.','Post: Stack']},
+    {id:'que', x:700, y:300, w:84, label:'Queue', parent:'lin', info:['Queue','FIFO: insert at rear, delete at front. Used for scheduling, buffers, BFS.','Post: Queue']},
+    {id:'tree', x:790, y:300, w:84, label:'Tree', parent:'nonlin', info:['Tree','Hierarchical structure: one root, and every other node has exactly one parent. Used for file systems, search trees, heaps, expression trees.']},
+    {id:'graph', x:880, y:300, w:84, label:'Graph', parent:'nonlin', info:['Graph','A set of vertices connected by edges, with no root or hierarchy required. Used for maps, networks, social connections.']}
+  ];
+  var byId={}; NODES.forEach(function(n){ byId[n.id]=n; });
+  var clSvg=$('cl-svg');
+  clSvg.setAttribute('viewBox','0 0 940 330');
+  NODES.forEach(function(n){ if(n.parent){ var p=byId[n.parent]; S('path',{d:'M'+p.x+','+(p.y+16)+' C'+p.x+','+(p.y+50)+' '+n.x+','+(n.y-50)+' '+n.x+','+(n.y-16),fill:'none',stroke:'#c9c4b6','stroke-width':1.6},clSvg); } });
+  var gNodes={};
+  NODES.forEach(function(n){
+    var level = n.id==='ds'?0 : (n.id==='prim'||n.id==='nonp')?1 : (n.id==='lin'||n.id==='nonlin')?2 : 3;
+    var g=S('g',{'class':'tnode'+(level===0?' root':''),tabindex:0,role:'button','aria-label':n.label},clSvg);
+    var fills=['#1c2033','#fff','#fff','#fff'];
+    S('rect',{x:n.x-n.w/2,y:n.y-16,width:n.w,height:32,rx:9,fill:fills[level],stroke:'#1c2033','stroke-width':level===3?1.2:1.8},g);
+    TX(g,n.x,n.y+5,n.label,{'text-anchor':'middle','font-size':level===3?12.5:14,'font-family':level===3?'Fira Code, monospace':'Bricolage Grotesque, sans-serif','font-weight':level<3?700:500,fill:level===0?'#fff':'#1c2033'});
+    function pick(){ each(clSvg.querySelectorAll('.tnode'), function(x){ x.classList.remove('on'); }); g.classList.add('on'); var inf=$('cl-info'); inf.innerHTML=''; var h=el('h4'); h.textContent=n.info[0]; inf.appendChild(h); n.info.slice(1).forEach(function(t){ var p=el('p'); p.textContent=t; inf.appendChild(p); });
+      var path=[], c=n; while(c){ path.unshift(c.label); c=c.parent?byId[c.parent]:null; } var pp=el('p'); pp.style.color='var(--ink2)'; pp.style.fontSize='.85em'; pp.textContent='Path: '+path.join(' \u2192 '); inf.appendChild(pp); }
+    g.addEventListener('click', pick);
+    g.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); pick(); } });
+    gNodes[n.id]=pick;
+  });
+  gNodes.ds();
+
+  /* ---------------- Classify it ---------------- */
+  var CQ=[['int','P'],['Stack','L'],['Graph','N'],['char','P'],['Queue','L'],['Tree','N'],['Array','L'],['float','P'],['Linked list','L'],['Binary search tree','N'],['bool','P'],['Family tree','N'],['Road map between cities','N'],['Music playlist (next song)','L'],['Heap','N'],['Deque','L'],['pointer','P'],['Folders on a disk','N'],['Undo history','L']];
+  var CQN={P:'Primitive',L:'Linear',N:'Non-linear'};
+  var cqOrder=[], cqI=0, cqRight=0, cqDone=0, cqAnswered=false;
+  function cqShuffle(){ cqOrder=CQ.slice(); for(var i=cqOrder.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=cqOrder[i]; cqOrder[i]=cqOrder[j]; cqOrder[j]=t; } cqI=0; }
+  function cqShow(){ if(cqI>=cqOrder.length) cqShuffle(); $('cq-item').textContent=cqOrder[cqI][0]; $('cq-msg').textContent='Which class does this belong to?'; $('cq-msg').className='msg'; cqAnswered=false; }
+  each(root.querySelectorAll('.copts button'), function(b){ b.addEventListener('click', function(){
+    if(cqAnswered) return; cqAnswered=true; cqDone++;
+    var ans=cqOrder[cqI][1], pick=b.getAttribute('data-c');
+    if(pick===ans){ cqRight++; $('cq-msg').textContent='Correct: '+cqOrder[cqI][0]+' is '+CQN[ans].toLowerCase()+'.'; $('cq-msg').className='msg ok'; }
+    else { $('cq-msg').textContent='Not quite: '+cqOrder[cqI][0]+' is '+CQN[ans].toLowerCase()+'.'; $('cq-msg').className='msg bad'; }
+    $('cq-score').textContent=cqRight+' / '+cqDone;
+  }); });
+  $('cq-next').addEventListener('click', function(){ cqI++; cqShow(); });
+  cqShuffle(); cqShow();
+
+  /* =================================================================
+     STEP COUNTER
+     Each fragment: lines [code, symbolic count, count(n)], and run(n)
+     which actually executes the loops and counts every statement.
+     ================================================================= */
+  function clog(n){ return n<=1 ? 0 : Math.ceil(Math.log2(n)-1e-12); }
+  var FRAG=[
+    {name:'Swap two values (constant)', big:'O(1)', tot:'3', lines:[['temp = a','1',function(){return 1;}],['a = b','1',function(){return 1;}],['b = temp','1',function(){return 1;}]], run:function(){ return 3; }},
+    {name:'Sum of an array', big:'O(n)', tot:'2n + 3', lines:[['s = 0','1',function(){return 1;}],['for i in range(n):','n + 1',function(n){return n+1;}],['    s = s + a[i]','n',function(n){return n;}],['return s','1',function(){return 1;}]],
+      run:function(n){ var c=1, i=0; while(true){ c++; if(i>=n) break; c++; i++; } return c+1; }},
+    {name:'Nested loops (all pairs)', big:'O(n\u00b2)', tot:'2n\u00b2 + 2n + 2', lines:[['count = 0','1',function(){return 1;}],['for i in range(n):','n + 1',function(n){return n+1;}],['    for j in range(n):','n(n + 1)',function(n){return n*(n+1);}],['        count = count + 1','n\u00b2',function(n){return n*n;}]],
+      run:function(n){ var c=1; for(var i=0;;i++){ c++; if(i===n) break; for(var j=0;;j++){ c++; if(j===n) break; c++; } } return c; }},
+    {name:'Triangular loops (j from i+1)', big:'O(n\u00b2)', tot:'n\u00b2 + n + 2', lines:[['count = 0','1',function(){return 1;}],['for i in range(n):','n + 1',function(n){return n+1;}],['    for j in range(i + 1, n):','n(n + 1)/2',function(n){return n*(n+1)/2;}],['        count = count + 1','n(n \u2212 1)/2',function(n){return n*(n-1)/2;}]],
+      run:function(n){ var c=1; for(var i=0;;i++){ c++; if(i===n) break; for(var j=i+1;;j++){ c++; if(j>=n) break; c++; } } return c; }},
+    {name:'Doubling loop', big:'O(log n)', tot:'2k + 2,  k = \u2308log\u2082 n\u2309', lines:[['i = 1','1',function(){return 1;}],['while i < n:','k + 1',function(n){return clog(n)+1;}],['    i = i * 2','k',function(n){return clog(n);}]],
+      run:function(n){ var c=1, i=1; while(true){ c++; if(!(i<n)) break; i*=2; c++; } return c; }},
+    {name:'Loop with a doubling loop inside', big:'O(n log n)', tot:'2nk + 3n + 1', lines:[['for i in range(n):','n + 1',function(n){return n+1;}],['    j = 1','n',function(n){return n;}],['    while j < n:','n(k + 1)',function(n){return n*(clog(n)+1);}],['        j = j * 2','nk',function(n){return n*clog(n);}]],
+      run:function(n){ var c=0; for(var i=0;;i++){ c++; if(i===n) break; var j=1; c++; while(true){ c++; if(!(j<n)) break; j*=2; c++; } } return c; }},
+    {name:'Matrix addition (n \u00d7 n)', big:'O(n\u00b2)', tot:'2n\u00b2 + 2n + 1', lines:[['for i in range(n):','n + 1',function(n){return n+1;}],['    for j in range(n):','n(n + 1)',function(n){return n*(n+1);}],['        C[i][j] = A[i][j] + B[i][j]','n\u00b2',function(n){return n*n;}]],
+      run:function(n){ var c=0; for(var i=0;;i++){ c++; if(i===n) break; for(var j=0;;j++){ c++; if(j===n) break; c++; } } return c; }}
+  ];
+  FRAG.forEach(function(f,i){ var o=el('option'); o.value=i; o.textContent=f.name+'  '+f.big; $('sc-pick').appendChild(o); });
+  $('sc-pick').value=1;
+  function scUpdate(){
+    var f=FRAG[+$('sc-pick').value], n=+$('sc-n').value; $('sc-nv').textContent=n;
+    var t=$('sc-table'); t.innerHTML='<tr><th>Statement</th><th>Frequency</th><th>at n = '+n+'</th></tr>';
+    var total=0;
+    f.lines.forEach(function(L){ var v=L[2](n); total+=v; var tr=el('tr'); var a=el('td','code'); a.textContent=L[0]; var b=el('td','sym'); b.textContent=L[1]; var c=el('td','cnt'); c.textContent=fmtNum(v); tr.appendChild(a); tr.appendChild(b); tr.appendChild(c); t.appendChild(tr); });
+    var tr2=el('tr','tot'); var x=el('td'); x.textContent='Total T(n)'; var y=el('td','sym'); y.textContent=f.tot; var z=el('td','cnt'); z.textContent=fmtNum(total); tr2.appendChild(x); tr2.appendChild(y); tr2.appendChild(z); t.appendChild(tr2);
+    var ran=f.run(n), t2=0; f.lines.forEach(function(L){ t2+=L[2](2*n); });
+    $('sc-out').innerHTML='';
+    var lines=['T('+n+') = <b>'+fmtNum(total)+'</b> steps','Doubling n: T('+(2*n)+') = '+fmtNum(t2)+'  (\u00d7'+(total? (t2/total).toFixed(2):'\u2014')+')','Complexity: <b>'+f.big+'</b>'];
+    $('sc-out').innerHTML=lines.join('<br>');
+    var ok = ran===total;
+    $('sc-check').textContent = ok ? '\u2714 Running the loops for real also counts '+fmtNum(ran)+' steps: the formula is right.' : '\u2718 Executed count '+ran+' differs from the formula '+total+'.';
+    $('sc-check').className = 'msg '+(ok?'ok':'bad');
+  }
+  $('sc-pick').addEventListener('change', scUpdate); $('sc-n').addEventListener('input', scUpdate);
+  scUpdate();
+
+  /* =================================================================
+     SHARED LINE-CHART RENDERER
+     cfg = {svg, tip, xs:[...ints], series:[{name,color,f}], log:bool, yMax, shadeTo, vline, xLabel}
+     ================================================================= */
+  function lineChart(cfg){
+    var svg=cfg.svg; while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var W=680, H=330, L=62, R=96, T=14, B=40, pw=W-L-R, ph=H-T-B;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var x0=cfg.xs[0], x1=cfg.xs[cfg.xs.length-1];
+    var yMin = cfg.log ? 1 : 0, yMax=cfg.yMax;
+    function X(x){ return L + (x-x0)/(x1-x0)*pw; }
+    function Y(y){ if(cfg.log){ var v=Math.max(y,yMin); return T + ph - (Math.log10(v)-Math.log10(yMin))/(Math.log10(yMax)-Math.log10(yMin))*ph; } return T + ph - (y-yMin)/(yMax-yMin)*ph; }
+    var ax=S('g',{'class':'ax'},svg);
+    // y ticks
+    var ticks=[];
+    if(cfg.log){ var top=Math.round(Math.log10(yMax)), every=Math.max(1,Math.ceil(top/7)); for(var p=0; p<=top; p+=every) ticks.push(Math.pow(10,p)); }
+    else { var step=niceStep(yMax/5); for(var v=0; v<=yMax*1.0001; v+=step) ticks.push(v); }
+    ticks.forEach(function(v){ var y=Y(v); S('line',{x1:L,x2:L+pw,y1:y,y2:y,stroke:'#e9e6dc','stroke-width':1},ax); TX(ax,L-8,y+4,cfg.log? (v>=1e4? '10^'+Math.round(Math.log10(v)) : fmtNum(v)) : fmtNum(v),{'text-anchor':'end'}); });
+    // x ticks
+    var xraw=(x1-x0)/8, xstep=[1,2,5,10,20,25,50,100].filter(function(c){ return c>=xraw; })[0]||100;
+    for(var xv=Math.ceil(x0/xstep)*xstep; xv<=x1; xv+=xstep){ var xx=X(xv); S('line',{x1:xx,x2:xx,y1:T+ph,y2:T+ph+5,stroke:'#b9b4a6'},ax); TX(ax,xx,T+ph+18,String(xv),{'text-anchor':'middle'}); }
+    S('line',{x1:L,x2:L+pw,y1:T+ph,y2:T+ph,stroke:'#8a8676','stroke-width':1.2},ax);
+    TX(ax,L+pw/2,H-4,cfg.xLabel||'n',{'text-anchor':'middle'});
+    // clip
+    var cid='clp'+Math.random().toString(36).slice(2,8), defs=S('defs',{},svg), cp=S('clipPath',{id:cid},defs); S('rect',{x:L,y:T-1,width:pw,height:ph+2},cp);
+    if(cfg.shadeTo && cfg.shadeTo>x0){ var sx=X(Math.min(cfg.shadeTo,x1)); S('rect',{x:L,y:T,width:sx-L,height:ph,fill:'#f3f1ea'},svg); TX(svg,L+6,T+14,'n < n\u2080: ignored',{'font-size':11,fill:'#4a5068','font-family':'Fira Code, monospace'}); }
+    if(cfg.vline){ var vx=X(cfg.vline); S('line',{x1:vx,x2:vx,y1:T,y2:T+ph,stroke:'#4a5068','stroke-width':1.2,'stroke-dasharray':'4 4'},svg); TX(svg,vx+4,T+ph-6,'n\u2080 = '+cfg.vline,{'font-size':11,fill:'#4a5068','font-family':'Fira Code, monospace'}); }
+    // series
+    var g=S('g',{'clip-path':'url(#'+cid+')'},svg);
+    var fine=[]; var NS_=Math.min(400,(x1-x0)*12); for(var k=0;k<=NS_;k++) fine.push(x0+(x1-x0)*k/NS_);
+    var labels=[];
+    cfg.series.forEach(function(s){
+      var d='', started=false;
+      fine.forEach(function(x){ var y=s.f(x); if(!isFinite(y)) return; var py=Y(y); if(py<T-400) py=T-400; d+=(started?' L':'M')+X(x).toFixed(1)+','+py.toFixed(1); started=true; });
+      S('path',{d:d,fill:'none',stroke:s.color,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'},g);
+      // direct label position: end of line, or where it leaves the top
+      var endY=s.f(x1), lx, ly;
+      if(endY<=yMax*1.0001){ lx=L+pw+8; ly=Y(endY); }
+      else { var xc=x1; for(var q=0;q<fine.length;q++){ if(s.f(fine[q])>yMax){ xc=fine[q]; break; } } lx=Math.min(X(xc)+6,L+pw+8); ly=T+10; s._off=true; }
+      labels.push({s:s, x:lx, y:ly});
+    });
+    // de-collide labels on the right edge
+    labels.sort(function(a,b){ return a.y-b.y; });
+    for(var i=1;i<labels.length;i++){ if(labels[i].y-labels[i-1].y<14 && Math.abs(labels[i].x-labels[i-1].x)<60) labels[i].y=labels[i-1].y+14; }
+    labels.forEach(function(lb){ S('line',{x1:lb.x,x2:lb.x+10,y1:lb.y,y2:lb.y,stroke:lb.s.color,'stroke-width':3,'stroke-linecap':'round'},svg); TX(svg,lb.x+14,lb.y+4,(lb.s.short||lb.s.name)+(lb.s._off?' \u2191':''),{'font-size':11.5,fill:'#1c2033','font-family':'Fira Code, monospace'}); lb.s._off=false; });
+    // hover layer
+    var cross=S('line',{x1:0,x2:0,y1:T,y2:T+ph,stroke:'#1c2033','stroke-width':1,opacity:0},svg);
+    var dots=cfg.series.map(function(s){ return S('circle',{r:4.5,fill:s.color,stroke:'#fcfcfb','stroke-width':2,opacity:0},svg); });
+    var hit=S('rect',{x:L,y:T,width:pw,height:ph,fill:'transparent',style:'cursor:crosshair'},svg);
+    var tip=cfg.tip;
+    function move(ev){
+      var pt=svg.getBoundingClientRect(), sx=(ev.clientX-pt.left)/pt.width*W;
+      var xv=Math.round(x0+(sx-L)/pw*(x1-x0)); if(xv<x0) xv=x0; if(xv>x1) xv=x1;
+      var px=X(xv); cross.setAttribute('x1',px); cross.setAttribute('x2',px); cross.setAttribute('opacity',0.35);
+      tip.innerHTML=''; var hb=el('b'); hb.textContent='n = '+xv; tip.appendChild(hb);
+      cfg.series.forEach(function(s,i){ var v=s.f(xv), py=Y(v); var dd=dots[i]; if(v<=yMax*1.0001 && (!cfg.log || v>=yMin)){ dd.setAttribute('cx',px); dd.setAttribute('cy',py); dd.setAttribute('opacity',1); } else dd.setAttribute('opacity',0);
+        var row=el('div'); var a=el('span'); var ic=el('i'); ic.style.background=s.color; a.appendChild(ic); a.appendChild(document.createTextNode(s.name)); var b=el('span'); b.textContent=fmtNum(v); row.appendChild(a); row.appendChild(b); tip.appendChild(row); });
+      if(cfg.tipExtra){ var ex=cfg.tipExtra(xv); if(ex){ var e2=el('div'); e2.style.marginTop='4px'; e2.style.fontFamily='inherit'; e2.textContent=ex; tip.appendChild(e2); } }
+      tip.style.display='block';
+      var box=tip.parentNode.getBoundingClientRect(), left=ev.clientX-box.left+14; if(left+tip.offsetWidth>box.width) left=ev.clientX-box.left-tip.offsetWidth-14;
+      tip.style.left=Math.max(4,left)+'px'; tip.style.top=Math.max(4,ev.clientY-box.top-tip.offsetHeight/2)+'px';
+    }
+    function leave(){ cross.setAttribute('opacity',0); dots.forEach(function(d){ d.setAttribute('opacity',0); }); tip.style.display='none'; }
+    hit.addEventListener('mousemove', move); hit.addEventListener('mouseleave', leave);
+    hit.addEventListener('touchstart', function(e){ move(e.touches[0]); }, {passive:true});
+    hit.addEventListener('touchmove', function(e){ move(e.touches[0]); }, {passive:true});
+  }
+  function niceStep(raw){ if(raw<=0) return 1; var p=Math.pow(10,Math.floor(Math.log10(raw))), m=raw/p; return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p; }
+  function legend(box, series){ box.innerHTML=''; series.forEach(function(s){ var sp=el('span'); var i=el('i'); i.style.background=s.color; sp.appendChild(i); sp.appendChild(document.createTextNode(s.name)); box.appendChild(sp); }); }
+  var COL={s1:'#2a78d6',s2:'#eb6834',s3:'#1baf7a',s4:'#eda100',s5:'#e87ba4',s6:'#008300'};
+
+  /* =================================================================
+     BOUNDS EXPLORER
+     ================================================================= */
+  function beRead(){ function v(id,d){ var x=parseFloat($(id).value); return isNaN(x)?d:x; } return {a:Math.max(0,v('be-a',0)), b:Math.max(0,v('be-b',0)), c:Math.max(0,v('be-c',0)), gd:+$('be-g').value, c1:Math.max(0,v('be-c1',0)), c2:Math.max(0,v('be-c2',0)), n0:Math.max(1,Math.round(v('be-n0',1))), N:+$('be-N').value}; }
+  var GN=['1','n','n\u00b2','n\u00b3'];
+  function beUpdate(){
+    var p=beRead();
+    var f=function(n){ return p.a*n*n+p.b*n+p.c; }, g=function(n){ return Math.pow(n,p.gd); };
+    var fname='f(n) = '+[p.a?p.a+'n\u00b2':'',p.b?p.b+'n':'',p.c?String(p.c):''].filter(Boolean).join(' + ');
+    if(fname==='f(n) = '){ $('be-msg').textContent='Choose at least one non-zero coefficient.'; $('be-msg').className='msg bad'; return; }
+    var series=[{name:fname, short:'f(n)', color:COL.s1, f:f},{name:p.c2+'\u00b7'+GN[p.gd]+' (upper, c\u2082\u00b7g)', short:'c\u2082\u00b7g', color:COL.s2, f:function(n){ return p.c2*g(n); }},{name:p.c1+'\u00b7'+GN[p.gd]+' (lower, c\u2081\u00b7g)', short:'c\u2081\u00b7g', color:COL.s3, f:function(n){ return p.c1*g(n); }}];
+    legend($('be-legend'), series);
+    var xs=[]; for(var n=1;n<=p.N;n++) xs.push(n);
+    var ym=0; xs.forEach(function(n){ ym=Math.max(ym, f(n), Math.min(p.c2*g(n), f(n)*3+1)); });
+    lineChart({svg:$('be-svg'), tip:$('be-tip'), xs:xs, series:series, log:false, yMax:ym*1.08, shadeTo:p.n0, vline:p.n0>1?p.n0:null,
+      tipExtra:function(n){ if(n<p.n0) return 'n < n\u2080: not checked'; var up=f(n)<=p.c2*g(n)+1e-9, lo=f(n)>=p.c1*g(n)-1e-9; return (up?'\u2714':'\u2718')+' f \u2264 c\u2082\u00b7g   '+(lo?'\u2714':'\u2718')+' f \u2265 c\u2081\u00b7g'; }});
+    // verdict: check n0..LIMIT numerically
+    var LIM=2000, upFail=null, loFail=null;
+    for(var k=p.n0;k<=LIM;k++){ var fv=f(k), gv=g(k); if(upFail===null && fv>p.c2*gv+1e-9) upFail=k; if(loFail===null && fv<p.c1*gv-1e-9) loFail=k; if(upFail!==null&&loFail!==null) break; }
+    var vd=$('be-verdict'); vd.innerHTML='';
+    function chip(cls,t){ var s=el('span',cls); s.textContent=t; vd.appendChild(s); }
+    var upOk = upFail===null && p.c2>0, loOk = loFail===null && p.c1>0;
+    chip(upOk?'yes':'no', (upOk?'\u2714 ':'\u2718 ')+'f(n) = O('+GN[p.gd]+') with c\u2082 = '+p.c2+', n\u2080 = '+p.n0);
+    chip(loOk?'yes':'no', (loOk?'\u2714 ':'\u2718 ')+'f(n) = \u03a9('+GN[p.gd]+') with c\u2081 = '+p.c1+', n\u2080 = '+p.n0);
+    chip(upOk&&loOk?'yes':'na', upOk&&loOk ? '\u21d2 f(n) = \u0398('+GN[p.gd]+')' : '\u0398 needs both');
+    var deg = p.a?2:(p.b?1:0), notes=[];
+    if(!upOk) notes.push(p.c2<=0?'c\u2082 must be positive.' : (deg>p.gd ? 'f grows faster than '+GN[p.gd]+': no c\u2082 can ever work.' : 'Upper bound fails first at n = '+upFail+' (f = '+fmtNum(f(upFail))+' > '+fmtNum(p.c2*g(upFail))+'). Increase c\u2082 or n\u2080.'));
+    if(!loOk) notes.push(p.c1<=0?'c\u2081 must be positive.' : (deg<p.gd ? 'f grows slower than '+GN[p.gd]+': no c\u2081 can ever work.' : 'Lower bound fails first at n = '+loFail+' (f = '+fmtNum(f(loFail))+' < '+fmtNum(p.c1*g(loFail))+'). Decrease c\u2081 or increase n\u2080.'));
+    $('be-msg').textContent = notes.length ? notes.join(' ') : 'Both inequalities hold for every n from n\u2080 = '+p.n0+' up to '+LIM+' (checked numerically), consistent with the proof.';
+    $('be-msg').className = 'msg '+(notes.length?'bad':'ok');
+    // table
+    var h='<table class="vt"><tr><th>n</th><th>c\u2081\u00b7g(n)</th><th>f(n)</th><th>c\u2082\u00b7g(n)</th><th>f \u2264 c\u2082\u00b7g</th><th>f \u2265 c\u2081\u00b7g</th></tr>';
+    for(var m=1;m<=Math.min(p.N,15);m++){ var fv2=f(m), up2=fv2<=p.c2*g(m)+1e-9, lo2=fv2>=p.c1*g(m)-1e-9, chk=m>=p.n0;
+      h+='<tr'+(chk?'':' style="opacity:.55"')+'><td>'+m+'</td><td>'+fmtNum(p.c1*g(m))+'</td><td>'+fmtNum(fv2)+'</td><td>'+fmtNum(p.c2*g(m))+'</td><td class="'+(up2?'ok':'bad')+'">'+(up2?'\u2714':'\u2718')+'</td><td class="'+(lo2?'ok':'bad')+'">'+(lo2?'\u2714':'\u2718')+'</td></tr>'; }
+    h+='</table><p style="font-size:.85em;color:var(--ink2)">Faded rows have n &lt; n\u2080, so they don\'t count.</p>';
+    $('be-table').innerHTML=h;
+  }
+  $('be-suggest').addEventListener('click', function(){
+    var p=beRead(), deg=p.a?2:(p.b?1:0), coef=[p.c,p.b,p.a], sum=p.a+p.b+p.c;
+    if(sum===0) return;
+    var c1, c2;
+    if(deg===p.gd){ c1=coef[deg]; c2=sum; }
+    else if(deg<p.gd){ c1=0; c2=sum; }
+    else { c1=1; c2=0; }
+    var f=function(n){ return p.a*n*n+p.b*n+p.c; }, g=function(n){ return Math.pow(n,p.gd); };
+    var n0=1;
+    for(var cand=1; cand<=500; cand++){ var ok=true; for(var k=cand;k<=2000;k++){ var fv=f(k), gv=g(k); if((c2>0 && fv>c2*gv+1e-9) || (c1>0 && fv<c1*gv-1e-9)){ ok=false; break; } } if(ok){ n0=cand; break; } }
+    $('be-c1').value=c1; $('be-c2').value=c2; $('be-n0').value=n0;
+    if(n0>+$('be-N').value){ var opts=[10,20,50,100]; for(var i=0;i<opts.length;i++){ if(opts[i]>=n0*1.5||i===opts.length-1){ $('be-N').value=opts[i]; break; } } }
+    beUpdate();
+    var m=$('be-msg');
+    if(deg<p.gd) m.textContent='f grows slower than '+GN[p.gd]+', so only the upper bound is possible: c\u2082 = a + b + c = '+sum+', n\u2080 = '+n0+'. ' ;
+    else if(deg>p.gd) m.textContent='f grows faster than '+GN[p.gd]+', so only the lower bound is possible: c\u2081 = 1 works from n\u2080 = '+n0+'.';
+    else m.textContent='Same growth: c\u2081 = leading coefficient ('+c1+'), c\u2082 = a + b + c ('+c2+'), and both hold from n\u2080 = '+n0+'. So f(n) = \u0398('+GN[p.gd]+').';
+    m.className='msg ok';
+  });
+  ['be-a','be-b','be-c','be-g','be-c1','be-c2','be-n0','be-N'].forEach(function(id){ $(id).addEventListener('input', beUpdate); $(id).addEventListener('change', beUpdate); });
+  beUpdate();
+
+  /* =================================================================
+     GROWTH CHART
+     ================================================================= */
+  var GR={log:false};
+  var GSER=[
+    {name:'1', color:COL.s1, f:function(){ return 1; }},
+    {name:'log n', color:COL.s2, f:function(n){ return Math.log2(n); }},
+    {name:'n', color:COL.s3, f:function(n){ return n; }},
+    {name:'n log n', color:COL.s4, f:function(n){ return n*Math.log2(n); }},
+    {name:'n\u00b2', color:COL.s5, f:function(n){ return n*n; }},
+    {name:'2\u207f', color:COL.s6, f:function(n){ return Math.pow(2,n); }}
+  ];
+  function grUpdate(){
+    var N=+$('gr-N').value, xs=[]; for(var n=1;n<=N;n++) xs.push(n);
+    legend($('gr-legend'), GSER);
+    var yMax = GR.log ? Math.pow(10, Math.ceil(Math.log10(Math.pow(2,N)))) : N*N*1.15;
+    if(!GR.log && Math.pow(2,N) < N*N*1.15) yMax=Math.pow(2,N)*1.1;
+    lineChart({svg:$('gr-svg'), tip:$('gr-tip'), xs:xs, series:GSER, log:GR.log, yMax:yMax});
+    $('gr-cap').textContent = GR.log
+      ? 'Log scale: every gridline is 10\u00d7 the one below. Now all curves fit, and 2\u207f is the only one that keeps getting steeper.'
+      : 'Linear scale, sized to fit n\u00b2. Curves marked \u2191 have left the chart. Hover (or touch) the chart to read exact values.';
+    var pts=[1,2,4,8,16,32,64,128].filter(function(v){ return v<=N; });
+    var h='<table><tr><th>g(n)</th>'+pts.map(function(v){ return '<th>n = '+v+'</th>'; }).join('')+'</tr>';
+    GSER.forEach(function(s){ h+='<tr><td>'+s.name+'</td>'+pts.map(function(v){ return '<td>'+fmtNum(s.f(v))+'</td>'; }).join('')+'</tr>'; });
+    $('gr-table').innerHTML=h+'</table>';
+  }
+  each($('gr-scale').children, function(b){ b.addEventListener('click', function(){ each($('gr-scale').children, function(x){ x.classList.toggle('on', x===b); }); GR.log = b.getAttribute('data-s')==='log'; grUpdate(); }); });
+  $('gr-N').addEventListener('change', grUpdate);
+  grUpdate();
+
+  /* =================================================================
+     CASE ANALYSER: enumerate every input of size n
+     ================================================================= */
+  function caLinear(a, key){ var c=0; for(var i=0;i<a.length;i++){ c++; if(a[i]===key) return c; } return c; }
+  function caBinary(a, key){ var lo=0, hi=a.length-1, c=0; while(lo<=hi){ var mid=(lo+hi)>>1; c++; if(a[mid]===key) return c; if(a[mid]<key) lo=mid+1; else hi=mid-1; } return c; }
+  function caInsertion(arr){ var a=arr.slice(), c=0; for(var i=1;i<a.length;i++){ var key=a[i], j=i-1; while(j>=0){ c++; if(a[j]>key){ a[j+1]=a[j]; j--; } else break; } a[j+1]=key; } return c; }
+  function caBubble(arr){ var a=arr.slice(), n=a.length, c=0; for(var i=0;i<n-1;i++){ var sw=false; for(var j=0;j<n-1-i;j++){ c++; if(a[j]>a[j+1]){ var t=a[j]; a[j]=a[j+1]; a[j+1]=t; sw=true; } } if(!sw) break; } return c; }
+  function perms(n, cb){ var a=[]; for(var i=1;i<=n;i++) a.push(i); var c=[]; for(var k=0;k<n;k++) c.push(0); cb(a.slice()); var i2=1; while(i2<n){ if(c[i2]<i2){ var s = i2%2===0 ? 0 : c[i2]; var t=a[s]; a[s]=a[i2]; a[i2]=t; cb(a.slice()); c[i2]++; i2=1; } else { c[i2]=0; i2++; } } }
+  function harmonic(n){ var h=0; for(var i=1;i<=n;i++) h+=1/i; return h; }
+  function caRun(){
+    var alg=$('ca-alg').value, isSearch = alg==='lin'||alg==='bin';
+    var nInput=$('ca-n');
+    nInput.max = isSearch ? 30 : 7;
+    if(+nInput.value>+nInput.max) nInput.value=nInput.max;
+    var n=+nInput.value; $('ca-nv').textContent=n;
+    $('ca-unsw').style.display = isSearch ? 'inline-flex' : 'none';
+    var uns = isSearch && $('ca-uns').checked;
+    var results=[];   // {c, label}
+    if(isSearch){
+      var a=[]; for(var i=1;i<=n;i++) a.push(i*10);
+      a.forEach(function(v,i){ results.push({c: alg==='lin'?caLinear(a,v):caBinary(a,v), label:'key '+v+' (position '+(i+1)+')'}); });
+      if(uns){
+        if(alg==='lin') results.push({c:caLinear(a,-1), label:'key absent'});
+        else { for(var g=0; g<=n; g++){ var k=g*10+5; results.push({c:caBinary(a,k), label:'absent key '+k+(g===0?' (below all)':g===n?' (above all)':' (between '+(g*10)+' and '+(g*10+10)+')')}); } }
+      }
+      $('ca-what').textContent = 'Array ['+a.slice(0,Math.min(n,8)).join(', ')+(n>8?', \u2026':'')+'] (n = '+n+'). Every '+(uns?'search key (present and absent)':'key in the array')+' is tried once; each is equally likely. Basic operation: one comparison of the key with an element.';
+    } else {
+      var fn = alg==='ins' ? caInsertion : caBubble;
+      perms(n, function(p){ results.push({c:fn(p), label:'['+p.join(', ')+']'}); });
+      $('ca-what').textContent = 'All '+results.length.toLocaleString('en-US')+' orderings of the values 1 \u2026 '+n+' are sorted, each equally likely. Basic operation: one comparison of two array elements.';
+    }
+    var best=Infinity, worst=-Infinity, sum=0, bestEx='', worstEx='', freq={};
+    results.forEach(function(r){ sum+=r.c; if(r.c<best){ best=r.c; bestEx=r.label; } if(r.c>worst){ worst=r.c; worstEx=r.label; } freq[r.c]=(freq[r.c]||0)+1; });
+    var avg=sum/results.length;
+    var nBest=freq[best], nWorst=freq[worst];
+    if(!isSearch){
+      var fn2 = alg==='ins' ? caInsertion : caBubble, sorted=[], rev=[];
+      for(var q=1;q<=n;q++){ sorted.push(q); rev.unshift(q); }
+      if(fn2(sorted)===best) bestEx='['+sorted.join(', ')+'] (already sorted)';
+      if(fn2(rev)===worst) worstEx='['+rev.join(', ')+'] (reverse sorted)';
+    }
+    if(nBest>1) bestEx+=' \u00b7 one of '+nBest.toLocaleString('en-US')+' such inputs';
+    if(nWorst>1 && worst!==best) worstEx+=' \u00b7 one of '+nWorst.toLocaleString('en-US')+' such inputs';
+    // formulas
+    var F={best:'', worst:'', avg:'', avgVal:null};
+    var lg=Math.floor(Math.log2(n))+1;
+    if(alg==='lin'){ F.best='1'; F.worst='n = '+n; if(!uns){ F.avg='(n + 1)/2 = '+fmtNum((n+1)/2); F.avgVal=(n+1)/2; } else { F.avg='(n(n+1)/2 + n)/(n+1) = '+fmtNum((n*(n+1)/2+n)/(n+1)); F.avgVal=(n*(n+1)/2+n)/(n+1); } }
+    if(alg==='bin'){ F.best= uns? '1 (or \u230alog\u2082 n\u230b for misses)':'1'; F.worst='\u230alog\u2082 n\u230b + 1 = '+lg;
+      var k=Math.log2(n+1); if(!uns && Math.abs(k-Math.round(k))<1e-9 && n>0){ k=Math.round(k); F.avgVal=((k-1)*Math.pow(2,k)+1)/n; F.avg='((k\u22121)\u00b72\u1d4f + 1)/n = '+fmtNum(F.avgVal)+'  (k = '+k+')'; }
+      else F.avg='\u2248 log\u2082 n \u2212 1 = '+fmtNum(Math.log2(n)-1)+' (exact formula when n = 2\u1d4f \u2212 1)'; }
+    if(alg==='ins'){ F.best='n \u2212 1 = '+(n-1); F.worst='n(n\u22121)/2 = '+(n*(n-1)/2); F.avgVal=n*(n-1)/4+n-harmonic(n); F.avg='n(n\u22121)/4 + n \u2212 H\u2099 = '+fmtNum(F.avgVal); }
+    if(alg==='bub'){ F.best='n \u2212 1 = '+(n-1); F.worst='n(n\u22121)/2 = '+(n*(n-1)/2); F.avg='no simple closed form; \u0398(n\u00b2)'; }
+    var bestOK = (alg==='lin'||alg==='bin'&&!uns) ? best===1 : (alg==='ins'||alg==='bub') ? best===n-1 : true;
+    var worstOK = alg==='lin' ? worst===n : alg==='bin' ? worst===lg : worst===n*(n-1)/2;
+    var avgOK = F.avgVal===null ? null : Math.abs(F.avgVal-avg)<1e-9;
+    var box=$('ca-cards'); box.innerHTML='';
+    [['Best case',best,F.best,bestEx,bestOK],['Average case',avg,F.avg,results.length.toLocaleString('en-US')+' inputs averaged',avgOK],['Worst case',worst,F.worst,worstEx,worstOK]].forEach(function(c){
+      var d=el('div','case'); var h=el('h5'); h.textContent=c[0]; d.appendChild(h);
+      var b=el('div','big'); b.textContent=fmtNum(c[1]); d.appendChild(b);
+      var fx=el('div','fx'); fx.textContent='formula: '+c[2]; d.appendChild(fx);
+      var ex=el('div','ex'); ex.textContent=(c[0]==='Average case'?'':'e.g. ')+c[3]; d.appendChild(ex);
+      if(c[4]!==null){ var ok=el('div','ok'); ok.textContent = c[4] ? '\u2714 matches the formula' : '\u2718 differs from the formula'; if(!c[4]) ok.style.color='var(--red)'; d.appendChild(ok); }
+      box.appendChild(d);
+    });
+    caChart(freq, best, worst, avg, results.length);
+    var keys=Object.keys(freq).map(Number).sort(function(x,y){return x-y;});
+    var h='<table><tr><th>Comparisons</th><th>Number of inputs</th><th>Share</th></tr>'+keys.map(function(k){ return '<tr><td>'+k+'</td><td>'+freq[k].toLocaleString('en-US')+'</td><td>'+(100*freq[k]/results.length).toFixed(1)+'%</td></tr>'; }).join('')+'</table>';
+    $('ca-table').innerHTML=h;
+  }
+  function caChart(freq, best, worst, avg, total){
+    var svg=$('ca-svg'); while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var W=680, H=270, L=56, R=16, T=26, B=46, pw=W-L-R, ph=H-T-B;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var lo=best, hi=worst, span=hi-lo+1, maxF=0; for(var k in freq) maxF=Math.max(maxF,freq[k]);
+    var slot=pw/span, bw=Math.max(2, Math.min(42, slot-2));
+    function X(c){ return L+(c-lo)*slot+slot/2; }
+    function Y(v){ return T+ph-v/maxF*ph; }
+    var ax=S('g',{'class':'ax'},svg);
+    var step=niceStep(maxF/4); if(step<1) step=1;
+    for(var v=0; v<=maxF*1.0001; v+=step){ var y=Y(v); S('line',{x1:L,x2:L+pw,y1:y,y2:y,stroke:'#e9e6dc'},ax); TX(ax,L-8,y+4,fmtNum(v),{'text-anchor':'end'}); }
+    S('line',{x1:L,x2:L+pw,y1:T+ph,y2:T+ph,stroke:'#8a8676','stroke-width':1.2},ax);
+    var every=Math.ceil(span/14);
+    for(var c=lo;c<=hi;c++){ if((c-lo)%every===0 || c===hi) TX(ax,X(c),T+ph+16,String(c),{'text-anchor':'middle'}); }
+    TX(ax,L+pw/2,H-6,'number of comparisons',{'text-anchor':'middle'});
+    var tip=$('ca-tip');
+    for(var c2=lo;c2<=hi;c2++){
+      var f=freq[c2]||0; if(!f) continue;
+      var x=X(c2)-bw/2, y0=Y(f), hgt=T+ph-y0;
+      var r=Math.min(4,bw/2,hgt);
+      var d='M'+x+','+(T+ph)+' V'+(y0+r)+' Q'+x+','+y0+' '+(x+r)+','+y0+' H'+(x+bw-r)+' Q'+(x+bw)+','+y0+' '+(x+bw)+','+(y0+r)+' V'+(T+ph)+' Z';
+      S('path',{d:d,fill:'#2a78d6'},svg);
+      (function(cc,ff){
+        var hit=S('rect',{x:X(cc)-slot/2,y:T,width:slot,height:ph,fill:'transparent'},svg);
+        function show(ev){ tip.innerHTML=''; var b=el('b'); b.textContent=cc+' comparison'+(cc===1?'':'s'); tip.appendChild(b); var row=el('div'); var a1=el('span'); a1.textContent='inputs'; var a2=el('span'); a2.textContent=ff.toLocaleString('en-US')+' ('+(100*ff/total).toFixed(1)+'%)'; row.appendChild(a1); row.appendChild(a2); tip.appendChild(row);
+          if(cc===best||cc===worst){ var r2=el('div'); r2.textContent = cc===best&&cc===worst ? 'best = worst' : cc===best ? 'best case' : 'worst case'; tip.appendChild(r2); }
+          tip.style.display='block'; var bx=tip.parentNode.getBoundingClientRect(), left=ev.clientX-bx.left+12; if(left+tip.offsetWidth>bx.width) left=ev.clientX-bx.left-tip.offsetWidth-12; tip.style.left=Math.max(4,left)+'px'; tip.style.top=Math.max(4,ev.clientY-bx.top-tip.offsetHeight-8)+'px'; }
+        hit.addEventListener('mousemove', show); hit.addEventListener('mouseleave', function(){ tip.style.display='none'; });
+        hit.addEventListener('touchstart', function(e){ show(e.touches[0]); }, {passive:true});
+      })(c2,f);
+    }
+    // markers
+    var ax2=X(avg);
+    S('line',{x1:ax2,x2:ax2,y1:T-6,y2:T+ph,stroke:'#1c2033','stroke-width':1.4,'stroke-dasharray':'5 4','pointer-events':'none'},svg);
+    TX(svg,ax2,T-10,'average = '+fmtNum(Math.round(avg*100)/100),{'text-anchor':ax2>L+pw-80?'end':ax2<L+80?'start':'middle','font-size':11.5,'font-family':'Fira Code, monospace',fill:'#1c2033','font-weight':600,'pointer-events':'none'});
+    TX(svg,X(best),T+ph+32,'best',{'text-anchor':'middle','font-size':11,'font-family':'Fira Code, monospace',fill:'#0b7a6f','font-weight':600});
+    if(worst!==best) TX(svg,X(worst),T+ph+32,'worst',{'text-anchor':'middle','font-size':11,'font-family':'Fira Code, monospace',fill:'#c92a2a','font-weight':600});
+  }
+  ['ca-alg','ca-uns'].forEach(function(id){ $(id).addEventListener('change', caRun); });
+  $('ca-n').addEventListener('input', caRun);
+  caRun();
+
+  /* ---------------- quiz ---------------- */
+  var QZ=[
+    {q:'Which of the following is a non-linear data structure?', o:['Array','Stack','Tree','Queue'], a:2, e:'In a tree one node can have many children, forming a hierarchy. Arrays, stacks and queues are linear.'},
+    {q:'Which of the following is a primitive data structure?', o:['char','Linked list','Graph','Stack'], a:0, e:'char holds a single basic value and is directly supported by the language and machine.'},
+    {q:'Big-O notation describes:', o:['A lower bound','An upper bound','A tight bound','The exact running time'], a:1, e:'f(n) = O(g(n)) means f(n) \u2264 c\u00b7g(n) for all n \u2265 n\u2080: g bounds f from above.'},
+    {q:'f(n) = 3n\u00b3 + 2n\u00b2 + 5. Which is the tightest correct statement?', o:['f(n) = \u0398(n\u00b2)','f(n) = \u0398(n\u00b3)','f(n) = \u0398(n\u2074)','f(n) = \u0398(1)'], a:1, e:'The dominant term is 3n\u00b3; constants and lower-order terms are dropped.'},
+    {q:'What is the time complexity of:  i = 1; while i < n: i = i * 2', o:['O(n)','O(log n)','O(n\u00b2)','O(1)'], a:1, e:'i doubles each time, so the loop runs about log\u2082 n times.'},
+    {q:'What is the best-case number of comparisons for linear search in an array of n elements?', o:['1','n/2','n','log n'], a:0, e:'If the key is the first element, one comparison is enough.'},
+    {q:'Which function grows the fastest as n increases?', o:['n\u00b3','n log n','2\u207f','n\u00b2'], a:2, e:'Any exponential function eventually overtakes every polynomial.'},
+    {q:'f(n) = \u0398(g(n)) means:', o:['f = O(g) only','f = \u03a9(g) only','f = O(g) and f = \u03a9(g)','f and g are equal for all n'], a:2, e:'\u0398 requires both an upper and a lower bound with the same g(n).'}
+  ];
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('in-quiz'); qz.innerHTML=''; answered=0; score=0; $('in-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      var qt=el('div','qt'); qt.textContent=item.q; card.appendChild(qt);
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.appendChild(document.createTextNode(item.e)); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('in-quiz-num').textContent=score; $('in-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('in-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+
+  /* ---------------- section navigation menu ---------------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('in-nav'), tabsBox=$('in-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('in-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('in-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('in-prev').disabled = cur===0; $('in-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('in-prev').addEventListener('click', function(){ go(cur-1); });
+  $('in-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('in-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('in-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <span class="idn-pn prev empty"></span>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="arrays.html"><small>Next lesson →</small><b>Arrays</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

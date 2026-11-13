@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linked lists · Learn Data Structures with idontno</title>
+<meta name="description" content="Singly, doubly and circular lists; insert, delete and search with algorithms.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="linked-lists">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="cur" data-lesson="linked-lists" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module II · Linear data structures</span><span>›</span><span>Lesson 3 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     LINKED LISTS: Singly, Doubly & Circular
+     Insertion, Deletion (beginning / end / position), Search
+     MCA Data Structures Interactive Learning Blog
+     Paste this whole block into Blogger's HTML view.
+     ============================================================ -->
+<style>
+#dsa-ll{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-ll *,#dsa-ll *::before,#dsa-ll *::after{box-sizing:border-box}
+#dsa-ll h1,#dsa-ll h2,#dsa-ll h3,#dsa-ll h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-ll p{margin:0 0 14px}
+#dsa-ll a{color:var(--blue)}
+#dsa-ll code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-ll ul,#dsa-ll ol{margin:0 0 14px;padding-left:22px}
+#dsa-ll li{margin:4px 0}
+#dsa-ll strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-ll .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-ll .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-ll .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-ll .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-ll .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-ll .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-ll .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-ll .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-ll .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-ll .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-ll .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-ll .toc a{text-decoration:none;color:var(--ink)}
+#dsa-ll .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-ll section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-ll .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-ll .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-ll .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-ll h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-ll h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-ll .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-ll .box p:last-child,#dsa-ll .box ul:last-child{margin-bottom:0}
+#dsa-ll .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-ll .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-ll .def .box-title{color:var(--blue)}
+#dsa-ll .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-ll .tip .box-title{color:var(--teal)}
+#dsa-ll .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-ll .warn .box-title{color:var(--red)}
+#dsa-ll .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-ll .exam .box-title{color:var(--gold)}
+#dsa-ll .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-ll .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-ll .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-ll .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-ll .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-ll .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-ll .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-ll .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-ll .pro{border-left:4px solid var(--teal)}
+#dsa-ll .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-ll .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-ll table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-ll th,#dsa-ll td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-ll th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-ll tr:nth-child(even) td{background:#faf9f5}
+#dsa-ll td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-ll td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-ll .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-ll .mem .c{width:64px;text-align:center}
+#dsa-ll .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-ll .mem .c:last-child .v{border-right-width:2px}
+#dsa-ll .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-ll .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-ll .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-ll .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-ll .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-ll .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-ll .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-ll .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-ll pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-ll pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-ll pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-ll pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-ll .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-ll .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-ll .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-ll .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-ll .tab-pane{display:none;padding-top:10px}
+#dsa-ll .tab-pane.on{display:block}
+#dsa-ll .code-wrap{position:relative}
+#dsa-ll .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-ll .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-ll .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-ll .btn:hover{transform:translateY(-1px)}
+#dsa-ll .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-ll .btn.acc{background:var(--accent)}
+#dsa-ll .btn.tl{background:var(--teal)}
+#dsa-ll .btn.rd{background:var(--red)}
+#dsa-ll .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-ll input[type=number],#dsa-ll input[type=text],#dsa-ll select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-ll label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-ll .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-ll .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-ll .lab-head b{font-size:1.05em}
+#dsa-ll .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-ll .lab-body{padding:18px;background:#fff}
+#dsa-ll .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-ll .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-ll .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-ll .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-ll .cell:last-child .box-v{border-right-width:2px}
+#dsa-ll .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-ll .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-ll .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-ll .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-ll .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-ll .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-ll .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-ll .cell.done .box-v{background:var(--teal-soft)}
+#dsa-ll .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-ll .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-ll .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-ll .pc div{padding:1px 14px;white-space:pre}
+#dsa-ll .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-ll .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-ll .log div{margin:2px 0}
+#dsa-ll .log .ok{color:#8ce99a}
+#dsa-ll .log .bad{color:#ff8787}
+#dsa-ll .log .hd{color:#ffb48a}
+#dsa-ll .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-ll .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-ll .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-ll .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-ll .msg.bad{color:var(--red)}
+#dsa-ll .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-ll .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-ll .calc-out b{color:var(--accent)}
+#dsa-ll .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-ll .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-ll .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-ll .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-ll .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-ll .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-ll .mgrid div.tg small{color:#ffe3d3}
+#dsa-ll .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-ll .mgrid div.now{background:#ffd8a8}
+#dsa-ll .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-ll details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-ll details summary{cursor:pointer;font-weight:600}
+#dsa-ll details[open] summary{margin-bottom:8px}
+#dsa-ll .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-ll .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-ll .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-ll .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-ll .opt:hover{border-color:var(--ink2)}
+#dsa-ll .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-ll .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-ll .opt:disabled{cursor:default}
+#dsa-ll .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-ll .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-ll .score b{color:#ffb48a;font-size:1.3em}
+#dsa-ll .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-ll .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-ll .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-ll .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-ll .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-ll .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-ll .nav-tab.home{padding-left:14px}
+#dsa-ll .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-ll .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-ll .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-ll .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-ll .nb,#dsa-ll .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-ll .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-ll .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-ll .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-ll .crumb b{display:block;font-size:1.02em}
+#dsa-ll .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-ll .nav-tools{display:flex;gap:8px}
+#dsa-ll .nt{border-color:var(--line);font-size:.82em}
+#dsa-ll .nt:hover{border-color:var(--ink)}
+#dsa-ll .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-ll.paged .page{display:none}
+#dsa-ll.paged .page.active{display:block;animation:llFade .3s ease}
+@keyframes llFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-ll .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-ll .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-ll .pager button:hover{background:var(--accent-soft)}
+#dsa-ll .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-ll .pager button b{font-size:.95em}
+#dsa-ll .pager .nx{text-align:right;margin-left:auto}
+#dsa-ll:not(.paged) .pager{display:none}
+#dsa-ll .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-ll .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-ll .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-ll .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-ll .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-ll .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-ll .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-ll .ov b{display:block;font-size:1.02em}
+#dsa-ll .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-ll .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-ll:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-ll:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-ll.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-ll .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-ll .nav-bar{gap:6px}
+  #dsa-ll .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-ll .nb{flex:1}
+  #dsa-ll .nav-tools{flex-basis:100%}
+  #dsa-ll .nav-tools .nt{flex:1}
+  #dsa-ll .pager button{max-width:49%;font-size:.9em}
+  #dsa-ll{font-size:16px}
+  #dsa-ll section.sec{padding:22px 16px 10px}
+  #dsa-ll .hero{padding:28px 20px}
+  #dsa-ll .hero h1{font-size:1.9em}
+  #dsa-ll .grid2,#dsa-ll .grid3,#dsa-ll .viz-split{grid-template-columns:1fr}
+  #dsa-ll .toc ol{columns:1}
+  #dsa-ll .cell{width:44px}
+  #dsa-ll .cell .box-v{height:46px;font-size:.95em}
+  #dsa-ll .cell .adr{display:none}
+  #dsa-ll .mem .c{width:50px}
+  #dsa-ll .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- linked-list specific ---------- */
+#dsa-ll .hero-chain{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap;font-family:'Fira Code',monospace}
+#dsa-ll .hc-head{background:#ffffff1f;border:1px solid #ffffff40;border-radius:7px;padding:6px 10px;color:#ffb48a;font-size:.85em}
+#dsa-ll .hc-ar{color:#9aa0bb}
+#dsa-ll .hc-n{display:inline-flex;border:2px solid #ffffff55;border-radius:8px;overflow:hidden}
+#dsa-ll .hc-n b{padding:9px 14px;color:#fff;font-weight:500}
+#dsa-ll .hc-n i{padding:9px 10px;border-left:2px solid #ffffff55;color:#ffb48a;font-style:normal}
+#dsa-ll .hc-n.hot{border-color:var(--accent);background:var(--accent)}
+#dsa-ll .hc-n.hot i{border-color:#ffffff66;color:#fff}
+#dsa-ll .hc-null{color:#9aa0bb;font-size:.85em}
+#dsa-ll .lfig{background:var(--soft);border-radius:12px;padding:6px 8px;margin:10px 0 4px;overflow-x:auto}
+#dsa-ll .lfig svg{display:block;width:100%;height:auto}
+#dsa-ll .lfig{min-height:60px}
+#dsa-ll .fig-row{display:grid;grid-template-columns:1fr;gap:2px}
+#dsa-ll .fig-lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin-top:8px}
+#dsa-ll .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-ll .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-ll .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-ll .op h4 .bx.slow{background:var(--red-soft);color:var(--red)}
+#dsa-ll .op p{font-size:.95em}
+#dsa-ll .op-grp{font-size:.8em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:26px 0 0}
+#dsa-ll .ll-stage{background:var(--soft);border-radius:12px;padding:6px;overflow-x:auto}
+#dsa-ll .ll-stage svg{display:block;width:100%;min-width:600px;height:auto}
+#dsa-ll .memlab svg{display:block;width:100%;min-width:640px;height:auto}
+#dsa-ll .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden}
+#dsa-ll .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-ll .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-ll .seg button.on{background:var(--ink);color:#fff}
+#dsa-ll .btn-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+#dsa-ll .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-ll .chk{display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)}
+#dsa-ll .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.78em;color:var(--ink2);margin-top:8px}
+#dsa-ll .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid #0002}
+#dsa-ll .ntable td,#dsa-ll .ntable th{font-family:'Fira Code',monospace;font-size:.85em;padding:6px 10px}
+#dsa-ll .ntable tr.on td{background:#ffe8cc !important}
+#dsa-ll .struct{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+#dsa-ll .struct pre{font-size:.76em;margin:6px 0 0}
+#dsa-ll .algo-note{font-size:.85em;color:var(--ink2);margin:-4px 0 10px}
+@media (max-width:720px){
+  #dsa-ll .fig-row,#dsa-ll .struct{grid-template-columns:1fr}
+  #dsa-ll .lfig svg{min-width:480px}
+  #dsa-ll .seg button{padding:7px 10px;font-size:.82em}
+}
+</style>
+
+<div id="dsa-ll">
+
+<!-- ======================= NAVIGATION MENU ======================= -->
+<div class="nav" id="ll-nav">
+  <div class="nav-tabs" id="ll-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="ll-prev">← Previous</button>
+    <div class="crumb"><b id="ll-crumb-t">Home</b><span id="ll-crumb-s">Overview</span></div>
+    <button class="nb" id="ll-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="ll-all">Show all sections</button>
+      <button class="nt" id="ll-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HOME ======================= -->
+<section class="page" id="ll-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">MCA · Data Structures · Unit: Linked Lists</span>
+  <h1>Linked Lists: Singly, Doubly &amp; Circular</h1>
+  <p>Nodes, pointers and the art of re-linking. Learn how to insert and delete at the beginning, end and any position, and how to search, with step-by-step algorithms, animated pointer visualizers, Python programs and exam practice.</p>
+  <div class="hero-chain">
+    <span class="hc-head">head</span><span class="hc-ar">→</span>
+    <span class="hc-n"><b>10</b><i>•</i></span><span class="hc-ar">→</span>
+    <span class="hc-n"><b>20</b><i>•</i></span><span class="hc-ar">→</span>
+    <span class="hc-n hot"><b>30</b><i>•</i></span><span class="hc-ar">→</span>
+    <span class="hc-null">NULL</span>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>What is it</b><small>Definition, why arrays aren't enough, real-world uses</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Concepts &amp; lab</b><small>Nodes, pointers, types, memory layout, pointer explorer</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Algorithms &amp; visualiser</b><small>Insert, delete, search, traverse for SLL, DLL, CLL</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Complexity</b><small>Time &amp; space, array vs linked list, type comparison</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Uses, pros &amp; cons</b><small>Applications, advantages, disadvantages, edge cases</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Python</b><small>Four tested programs with output</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Practice</b><small>Questions, traces, output prediction, 8-MCQ quiz</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sec page" id="ll-s1" data-label="What is it" data-sub="Introduction to linked lists">
+  <div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Linked Lists</h2></div>
+
+  <div class="box def">
+    <span class="box-title">Definition</span>
+    <p>A <strong>linked list</strong> is a <strong>linear data structure</strong> made of a sequence of <strong>nodes</strong>. Each node stores <strong>data</strong> and a <strong>link (pointer)</strong> to the next node. The order of elements is decided by these links, <strong>not</strong> by their physical position in memory.</p>
+  </div>
+
+  <p>Think of a treasure hunt: each clue (node) contains a message (data) and tells you where the next clue is hidden (link). The clues can be anywhere in the park; what keeps them in order is that each one points to the next. You only need to know where the <strong>first</strong> clue is: that is the <strong>head</strong> of the list.</p>
+
+  <div class="lfig" data-t="sll" data-v="10,20,30,40" data-addr="1"></div>
+  <div class="cap">Figure 1: A singly linked list of 4 nodes. Each box is [data | next]. The numbers under the nodes are memory addresses: notice they are <em>not</em> consecutive. The last node's next field is NULL (shown as a slash).</div>
+
+  <h3>Why do we need linked lists?</h3>
+  <p>Arrays are excellent for random access, but they have three weaknesses that linked lists solve:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Problem with arrays</th><th>How a linked list solves it</th></tr>
+    <tr><td><strong>Fixed size</strong>: capacity must be decided in advance.</td><td>Nodes are created one at a time while the program runs, so the list grows and shrinks freely (<strong>dynamic size</strong>).</td></tr>
+    <tr><td><strong>Costly insertion/deletion</strong>: elements must be shifted (O(n)).</td><td>Only a few pointers are changed; no data moves. Inserting at the beginning is O(1).</td></tr>
+    <tr><td><strong>Needs one contiguous block</strong> of memory.</td><td>Nodes can be scattered anywhere; each just stores the address of the next.</td></tr>
+  </table></div>
+
+  <h3>Why are linked lists important?</h3>
+  <ul>
+    <li>They are the classic example of a <strong>dynamic data structure</strong> and teach how <strong>pointers/references</strong> work.</li>
+    <li>Stacks, queues, graphs (adjacency lists), hash tables (chaining) and polynomial arithmetic are commonly built using linked lists.</li>
+    <li>Operating systems use them to manage free memory blocks, processes and file blocks.</li>
+  </ul>
+
+  <h3>Real-world examples</h3>
+  <div class="grid3">
+    <div class="mini"><span class="ico">🚂</span><h4>Train coaches</h4><p>Each coach is coupled to the next one. Adding a coach means re-coupling just two links.</p></div>
+    <div class="mini"><span class="ico">🌐</span><h4>Browser back / forward</h4><p>Pages linked both ways: a natural <strong>doubly</strong> linked list.</p></div>
+    <div class="mini"><span class="ico">🔁</span><h4>Music playlist on repeat</h4><p>After the last song, playback returns to the first: a <strong>circular</strong> linked list.</p></div>
+    <div class="mini"><span class="ico">↩️</span><h4>Undo / redo</h4><p>Editors keep a chain of states you can move back and forth through.</p></div>
+    <div class="mini"><span class="ico">🖼️</span><h4>Image viewer</h4><p>Previous and Next buttons walk through photos linked in both directions.</p></div>
+    <div class="mini"><span class="ico">⏱️</span><h4>Round-robin scheduling</h4><p>The CPU gives each process a turn in a circle, over and over.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sec page" id="ll-s2" data-label="Concepts &amp; lab" data-sub="Nodes, types &amp; memory representation">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Core Concepts &amp; Memory Representation</h2></div>
+
+  <h3>Terminology</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td><strong>Node</strong></td><td>The building block of a linked list. It contains a data field and one or more link fields.</td></tr>
+    <tr><td><strong>Data (INFO) field</strong></td><td>Stores the actual value, e.g. 25.</td></tr>
+    <tr><td><strong>Link (NEXT) field / pointer</strong></td><td>Stores the <em>address</em> of the next node. In Python it holds a <em>reference</em> to the next node object.</td></tr>
+    <tr><td><strong>PREV field</strong></td><td>In a doubly linked list, stores the address of the previous node.</td></tr>
+    <tr><td><strong>Head (START)</strong></td><td>A pointer variable that holds the address of the first node. Losing the head means losing the whole list.</td></tr>
+    <tr><td><strong>Tail / Last node</strong></td><td>The final node. Its next is NULL (or head, in a circular list).</td></tr>
+    <tr><td><strong>NULL (None)</strong></td><td>A special value meaning "points to nothing". It marks the end of a linear list.</td></tr>
+    <tr><td><strong>Empty list</strong></td><td>A list with no nodes: head = NULL.</td></tr>
+    <tr><td><strong>Self-referential structure</strong></td><td>A structure that contains a pointer to a structure of the same type. A node is self-referential.</td></tr>
+  </table></div>
+
+  <h3>Node structure</h3>
+  <div class="struct">
+    <div class="mini"><h4>Singly (SLL)</h4><p>[ data | next ]</p>
+<pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None</code></pre>
+<pre><code>struct node {
+    int data;
+    struct node *next;
+};</code></pre></div>
+    <div class="mini"><h4>Doubly (DLL)</h4><p>[ prev | data | next ]</p>
+<pre><code>class DNode:
+    def __init__(self, data):
+        self.prev = None
+        self.data = data
+        self.next = None</code></pre>
+<pre><code>struct dnode {
+    struct dnode *prev;
+    int data;
+    struct dnode *next;
+};</code></pre></div>
+    <div class="mini"><h4>Circular (CLL)</h4><p>Same node as SLL; only the last link changes.</p>
+<pre><code># same Node class as SLL
+# last.next = head
+# (instead of None)</code></pre>
+<pre><code>struct node {
+    int data;
+    struct node *next;
+};  /* last->next = head */</code></pre></div>
+  </div>
+
+  <h3>Types of linked lists</h3>
+  <h4>1. Singly linked list (SLL)</h4>
+  <p>Each node has one link, <code>next</code>. You can move only <strong>forward</strong>. The last node's next is NULL.</p>
+  <div class="lfig" data-t="sll" data-v="10,20,30,40"></div>
+
+  <h4>2. Doubly linked list (DLL)</h4>
+  <p>Each node has two links: <code>prev</code> (to the previous node) and <code>next</code> (to the next node). You can move <strong>forward and backward</strong>. The first node's prev and the last node's next are NULL. Blue arrows are prev links.</p>
+  <div class="lfig" data-t="dll" data-v="10,20,30,40"></div>
+
+  <h4>3. Circular linked list (CLL)</h4>
+  <p>A singly linked list where the last node points <strong>back to the first node</strong> instead of NULL. There is no "end": starting from any node you can reach every other node.</p>
+  <div class="lfig" data-t="cll" data-v="10,20,30,40"></div>
+  <div class="box tip"><span class="box-title">Also good to know</span><p>A <strong>circular doubly linked list</strong> combines both ideas: last.next = head <em>and</em> head.prev = last. Many syllabi only ask for its definition; the algorithms follow the same patterns shown in Section 3.</p></div>
+
+  <h3>How linked lists live in memory</h3>
+  <p>Unlike an array, nodes are <strong>not</strong> stored side by side. Each node is allocated separately from free memory (the <strong>heap</strong>) whenever it's needed, so nodes end up scattered. The next field stores the address of the following node, which is how the list keeps its order.</p>
+  <ul>
+    <li><strong>Creating a node</strong>: in C, <code>malloc(sizeof(struct node))</code>; in Python, <code>Node(x)</code>. Textbooks call this <strong>GETNODE</strong>: take a node from the list of free memory, often called the <strong>AVAIL list</strong> (free-storage list).</li>
+    <li><strong>Deleting a node</strong>: in C, <code>free(ptr)</code> returns the memory to AVAIL. In Python, the garbage collector frees a node once nothing refers to it.</li>
+    <li><strong>Overflow</strong>: GETNODE fails because no free memory is left (AVAIL = NULL). <strong>Underflow</strong>: trying to delete from an empty list (head = NULL).</li>
+  </ul>
+  <div class="box exam"><span class="box-title">Exam note: two-array representation</span><p>Many textbooks also show a linked list stored in two parallel arrays, <code>INFO[]</code> and <code>LINK[]</code>, with a variable <code>START</code>. <code>LINK[k]</code> holds the index of the next node, and 0 or −1 plays the role of NULL. It is the same idea: order comes from the link values, not from the positions.</p></div>
+
+  <h3>Creating a linked list</h3>
+  <p>A list is created by starting with an empty list (head = NULL) and inserting nodes one at a time, usually at the end:</p>
+<pre class="pseudo">ALGORITHM CREATE_LIST(values[1..k])
+1. head ← NULL
+2. for each x in values:
+3.     INSERT_END(head, x)          // see Section 3
+4. return head</pre>
+
+  <!-- ===== MEMORY LAB ===== -->
+  <div class="lab memlab">
+    <div class="lab-head"><b>🧪 Interactive Lab: Pointer &amp; Memory Explorer</b><span>see where nodes really live</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="ml-type"><button class="on" data-t="sll">Singly</button><button data-t="dll">Doubly</button><button data-t="cll">Circular</button></div>
+        <label class="fld">Values (max 6)<input type="text" id="ml-vals" value="10, 20, 30, 40, 50" style="width:170px"></label>
+        <button class="btn gh" id="ml-shuffle">↻ Re-allocate memory</button>
+        <button class="btn acc" id="ml-follow">▶ Follow the pointers</button>
+      </div>
+      <div class="cap" id="ml-cap" style="margin:0 0 6px"></div>
+      <div class="ll-stage"><svg id="ml-svg"></svg></div>
+      <div class="msg" id="ml-msg">Each grey cell is a block of memory with its address. Nodes are placed in random free blocks. Each next field holds an <em>address</em>, and the arrow shows where it leads.</div>
+      <div class="tbl-wrap"><table class="ntable" id="ml-table"></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sec page" id="ll-s3" data-label="Visualiser" data-sub="Algorithms for insert, delete, search &amp; traverse">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Operations &amp; Algorithms</h2></div>
+
+  <p>Every operation on a linked list is about <strong>moving a pointer</strong> to the right place and then <strong>re-linking</strong> a few fields. The algorithms below use these conventions:</p>
+  <ul>
+    <li><strong>Positions are 1-based</strong>: position 1 is the first node. For insertion, valid positions are 1 … n + 1; for deletion, 1 … n (n = number of nodes).</li>
+    <li><code>GETNODE()</code> allocates a new node; <code>FREE(p)</code> releases a node's memory.</li>
+    <li><code>temp</code> is a pointer used to walk through the list. It never modifies the list by itself.</li>
+  </ul>
+  <div class="box warn"><span class="box-title">The golden rule of re-linking</span><p>When inserting, <strong>connect the new node to the rest of the list first</strong> (<code>newNode.next ← temp.next</code>), and only then make the previous node point to it (<code>temp.next ← newNode</code>). Doing it the other way around loses the address of the rest of the list.</p></div>
+
+  <p>Choose a list type. Each tab contains all eight operations with their algorithms and before/after diagrams. The animated visualizer at the end of this section runs these exact algorithms line by line.</p>
+
+  <div class="tabs" data-tabs="ops">
+    <button class="tab-btn on" data-pane="ll-op-sll">Singly linked list</button>
+    <button class="tab-btn" data-pane="ll-op-dll">Doubly linked list</button>
+    <button class="tab-btn" data-pane="ll-op-cll">Circular linked list</button>
+  </div>
+
+  <!-- ---------------- SLL ---------------- -->
+  <div class="tab-pane on" id="ll-op-sll">
+    <div class="op-grp">Traversal &amp; Search</div>
+    <div class="op"><h4>Traversal <span class="bx slow">O(n)</span></h4>
+      <p>Start a pointer at head and follow next links until it becomes NULL, processing each node on the way. Never move <code>head</code> itself, or you lose the list.</p>
+      <pre class="pseudo">ALGORITHM TRAVERSE_SLL(head)
+1. temp ← head
+2. while temp ≠ NULL:
+3.     PROCESS(temp.data)
+4.     temp ← temp.next
+5. exit</pre></div>
+    <div class="op"><h4>Search <span class="bx slow">O(n)</span></h4>
+      <p>Linked lists have no indices, so searching is always <strong>linear</strong>: compare each node's data with the key, counting positions. Binary search is not practical because you can't jump to the middle node in O(1).</p>
+      <pre class="pseudo">ALGORITHM SEARCH_SLL(head, key)
+1. temp ← head;  pos ← 1
+2. while temp ≠ NULL:
+3.     if temp.data = key: return pos    // found
+4.     temp ← temp.next
+5.     pos ← pos + 1
+6. return −1    // not found</pre>
+      <p>Example: searching 30 in 10 → 20 → 30 → 40 compares 10, 20, 30 and returns position 3.</p></div>
+
+    <div class="op-grp">Insertion</div>
+    <div class="op"><h4>Insert at beginning <span class="bx">O(1)</span></h4>
+      <p>The new node points to the current first node, then head moves to the new node. Works for an empty list too (newNode.next becomes NULL).</p>
+      <pre class="pseudo">ALGORITHM INSERT_BEGIN_SLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item
+2. newNode.next ← head
+3. head ← newNode
+4. exit</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="sll" data-v="20,30,40"></div></div><div><div class="fig-lbl">After inserting 10</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-hl="0:new"></div></div></div></div>
+    <div class="op"><h4>Insert at end <span class="bx slow">O(n)</span></h4>
+      <p>Walk temp to the last node (the one whose next is NULL), then attach the new node there. If the list is empty, the new node becomes the head.</p>
+      <pre class="pseudo">ALGORITHM INSERT_END_SLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item;  newNode.next ← NULL
+2. if head = NULL: head ← newNode; exit
+3. temp ← head
+4. while temp.next ≠ NULL:    // find the last node
+5.     temp ← temp.next
+6. temp.next ← newNode
+7. exit</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="sll" data-v="10,20,30" data-p="2:temp"></div></div><div><div class="fig-lbl">After inserting 40</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-hl="3:new"></div></div></div></div>
+    <div class="op"><h4>Insert at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Move temp to the node <em>before</em> the position (pos − 1), link the new node to temp's successor, then link temp to the new node.</p>
+      <pre class="pseudo">ALGORITHM INSERT_POS_SLL(head, item, pos)
+1. if pos &lt; 1 or pos &gt; n + 1: print "INVALID POSITION"; exit
+2. if pos = 1: INSERT_BEGIN_SLL(head, item); exit
+3. newNode ← GETNODE();  newNode.data ← item
+4. temp ← head
+5. repeat (pos − 2) times: temp ← temp.next  // node at pos − 1
+6. newNode.next ← temp.next    // link to the rest FIRST
+7. temp.next ← newNode
+8. exit</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (insert 25 at position 3)</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-p="1:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="sll" data-v="10,20,25,30,40" data-hl="2:new"></div></div></div>
+      <p>temp stops at position 2 (node 20) after pos − 2 = 1 move. Two pointer changes: 25.next = 30, then 20.next = 25.</p></div>
+
+    <div class="op-grp">Deletion</div>
+    <div class="op"><h4>Delete at beginning <span class="bx">O(1)</span></h4>
+      <p>Save the first node in temp, move head to the second node, and free temp.</p>
+      <pre class="pseudo">ALGORITHM DELETE_BEGIN_SLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. temp ← head
+3. head ← head.next
+4. FREE(temp)
+5. exit</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-hl="0:del" data-p="0:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="sll" data-v="20,30,40"></div></div></div></div>
+    <div class="op"><h4>Delete at end <span class="bx slow">O(n)</span></h4>
+      <p>In a singly list you can't step backwards, so you must stop at the <strong>second-last</strong> node (check <code>temp.next.next</code>) and set its next to NULL. A one-node list is a special case.</p>
+      <pre class="pseudo">ALGORITHM DELETE_END_SLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if head.next = NULL: FREE(head); head ← NULL; exit
+3. temp ← head
+4. while temp.next.next ≠ NULL:    // stop at second-last node
+5.     temp ← temp.next
+6. last ← temp.next
+7. temp.next ← NULL
+8. FREE(last)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-hl="3:del" data-p="2:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="sll" data-v="10,20,30"></div></div></div></div>
+    <div class="op"><h4>Delete at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Move temp to the node before the target, make it skip over the target (<code>temp.next ← target.next</code>), then free the target.</p>
+      <pre class="pseudo">ALGORITHM DELETE_POS_SLL(head, pos)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if pos &lt; 1 or pos &gt; n: print "INVALID POSITION"; exit
+3. if pos = 1: DELETE_BEGIN_SLL(head); exit
+4. temp ← head
+5. repeat (pos − 2) times: temp ← temp.next  // node at pos − 1
+6. target ← temp.next
+7. temp.next ← target.next    // bypass target
+8. FREE(target)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (delete position 3)</div><div class="lfig" data-t="sll" data-v="10,20,30,40" data-hl="2:del" data-p="1:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="sll" data-v="10,20,40"></div></div></div></div>
+  </div>
+
+  <!-- ---------------- DLL ---------------- -->
+  <div class="tab-pane" id="ll-op-dll">
+    <div class="box tip"><span class="box-title">What changes in a doubly linked list?</span><p>Every insertion or deletion must keep <strong>both</strong> directions correct. For each link you change in the forward direction, there is usually a matching <code>prev</code> link to fix. Always check whether the neighbour exists (≠ NULL) before touching its prev field.</p></div>
+    <div class="op-grp">Traversal &amp; Search</div>
+    <div class="op"><h4>Traversal (forward and backward) <span class="bx slow">O(n)</span></h4>
+      <p>Forward traversal follows <code>next</code> exactly like an SLL. Because each node also has <code>prev</code>, you can then walk backward from the last node to the first.</p>
+      <pre class="pseudo">ALGORITHM TRAVERSE_DLL(head)
+1. if head = NULL: print "EMPTY"; exit
+2. temp ← head
+3. while temp ≠ NULL:    // forward using next
+4.     PROCESS(temp.data);  last ← temp
+5.     temp ← temp.next
+6. temp ← last
+7. while temp ≠ NULL:    // backward using prev
+8.     PROCESS(temp.data)
+9.     temp ← temp.prev</pre></div>
+    <div class="op"><h4>Search <span class="bx slow">O(n)</span></h4>
+      <p>Identical to SLL search, following next links.</p>
+      <pre class="pseudo">ALGORITHM SEARCH_DLL(head, key)
+1. temp ← head;  pos ← 1
+2. while temp ≠ NULL:
+3.     if temp.data = key: return pos    // found
+4.     temp ← temp.next
+5.     pos ← pos + 1
+6. return −1    // not found</pre></div>
+
+    <div class="op-grp">Insertion</div>
+    <div class="op"><h4>Insert at beginning <span class="bx">O(1)</span></h4>
+      <p>New node's next points to the old head; the old head's prev points back to the new node (if the list wasn't empty); head moves.</p>
+      <pre class="pseudo">ALGORITHM INSERT_BEGIN_DLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item;  newNode.prev ← NULL
+2. newNode.next ← head
+3. if head ≠ NULL: head.prev ← newNode
+4. head ← newNode</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="dll" data-v="20,30,40"></div></div><div><div class="fig-lbl">After inserting 10</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-hl="0:new"></div></div></div></div>
+    <div class="op"><h4>Insert at end <span class="bx slow">O(n)</span></h4>
+      <p>Walk to the last node, set last.next = newNode and newNode.prev = last. (With an extra <code>tail</code> pointer this becomes O(1).)</p>
+      <pre class="pseudo">ALGORITHM INSERT_END_DLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item;  newNode.next ← NULL
+2. if head = NULL: newNode.prev ← NULL; head ← newNode; exit
+3. temp ← head
+4. while temp.next ≠ NULL:    // find the last node
+5.     temp ← temp.next
+6. temp.next ← newNode
+7. newNode.prev ← temp</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="dll" data-v="10,20,30" data-p="2:temp"></div></div><div><div class="fig-lbl">After inserting 40</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-hl="3:new"></div></div></div></div>
+    <div class="op"><h4>Insert at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Four links change when inserting between two nodes: newNode.next, newNode.prev, the successor's prev, and temp.next. Steps 6–8 must come <strong>before</strong> step 9, because step 9 overwrites temp.next.</p>
+      <pre class="pseudo">ALGORITHM INSERT_POS_DLL(head, item, pos)
+1. if pos &lt; 1 or pos &gt; n + 1: print "INVALID POSITION"; exit
+2. if pos = 1: INSERT_BEGIN_DLL(head, item); exit
+3. newNode ← GETNODE();  newNode.data ← item
+4. temp ← head
+5. repeat (pos − 2) times: temp ← temp.next  // node at pos − 1
+6. newNode.next ← temp.next
+7. newNode.prev ← temp
+8. if temp.next ≠ NULL: temp.next.prev ← newNode
+9. temp.next ← newNode</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (insert 25 at position 3)</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-p="1:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="dll" data-v="10,20,25,30,40" data-hl="2:new"></div></div></div></div>
+
+    <div class="op-grp">Deletion</div>
+    <div class="op"><h4>Delete at beginning <span class="bx">O(1)</span></h4>
+      <p>Move head to the second node and set its prev to NULL (if it exists).</p>
+      <pre class="pseudo">ALGORITHM DELETE_BEGIN_DLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. temp ← head
+3. head ← head.next
+4. if head ≠ NULL: head.prev ← NULL
+5. FREE(temp)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-hl="0:del" data-p="0:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="dll" data-v="20,30,40"></div></div></div></div>
+    <div class="op"><h4>Delete at end <span class="bx slow">O(n)</span></h4>
+      <p>Walk to the last node. Thanks to its prev link, you don't need to stop one node early as in an SLL: just set <code>temp.prev.next ← NULL</code>.</p>
+      <pre class="pseudo">ALGORITHM DELETE_END_DLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. temp ← head
+3. while temp.next ≠ NULL:    // find the last node
+4.     temp ← temp.next
+5. if temp.prev = NULL: head ← NULL    // it was the only node
+6. else: temp.prev.next ← NULL
+7. FREE(temp)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-hl="3:del" data-p="3:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="dll" data-v="10,20,30"></div></div></div></div>
+    <div class="op"><h4>Delete at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Here temp goes <strong>to the target node itself</strong> (pos − 1 moves), because prev gives access to its predecessor. Its neighbours are then linked to each other in both directions.</p>
+      <pre class="pseudo">ALGORITHM DELETE_POS_DLL(head, pos)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if pos &lt; 1 or pos &gt; n: print "INVALID POSITION"; exit
+3. if pos = 1: DELETE_BEGIN_DLL(head); exit
+4. temp ← head
+5. repeat (pos − 1) times: temp ← temp.next  // node AT pos
+6. temp.prev.next ← temp.next
+7. if temp.next ≠ NULL: temp.next.prev ← temp.prev
+8. FREE(temp)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (delete position 3)</div><div class="lfig" data-t="dll" data-v="10,20,30,40" data-hl="2:del" data-p="2:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="dll" data-v="10,20,40"></div></div></div></div>
+  </div>
+
+  <!-- ---------------- CLL ---------------- -->
+  <div class="tab-pane" id="ll-op-cll">
+    <div class="box tip"><span class="box-title">What changes in a circular linked list?</span><p>There is no NULL at the end, so loops stop when the pointer <strong>returns to head</strong>. A <code>do … while</code> loop is used so that the head node itself is processed. Any operation that changes the first node must also update the <strong>last node's next</strong> to keep the circle closed.</p></div>
+    <div class="op-grp">Traversal &amp; Search</div>
+    <div class="op"><h4>Traversal <span class="bx slow">O(n)</span></h4>
+      <p>A plain <code>while temp ≠ head</code> loop would stop immediately (temp starts at head), so the condition is tested <em>after</em> the first visit.</p>
+      <pre class="pseudo">ALGORITHM TRAVERSE_CLL(head)
+1. if head = NULL: print "EMPTY"; exit
+2. temp ← head
+3. do:
+4.     PROCESS(temp.data)
+5.     temp ← temp.next
+6. while temp ≠ head    // back at the start: stop</pre></div>
+    <div class="op"><h4>Search <span class="bx slow">O(n)</span></h4>
+      <p>Compare each node until the key is found or the pointer comes full circle back to head.</p>
+      <pre class="pseudo">ALGORITHM SEARCH_CLL(head, key)
+1. if head = NULL: return −1
+2. temp ← head;  pos ← 1
+3. do:
+4.     if temp.data = key: return pos    // found
+5.     temp ← temp.next;  pos ← pos + 1
+6. while temp ≠ head
+7. return −1    // full circle: not found</pre></div>
+
+    <div class="op-grp">Insertion</div>
+    <div class="op"><h4>Insert at beginning <span class="bx slow">O(n)*</span></h4>
+      <p>Besides updating head, the last node must point to the new first node, so we first walk to the last node. A list with one node points to itself.</p>
+      <pre class="pseudo">ALGORITHM INSERT_BEGIN_CLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item
+2. if head = NULL: newNode.next ← newNode; head ← newNode; exit
+3. last ← head
+4. while last.next ≠ head:    // find the last node
+5.     last ← last.next
+6. newNode.next ← head
+7. last.next ← newNode
+8. head ← newNode</pre>
+      <p class="algo-note">* O(1) if the program keeps a pointer to the last node (a common design for circular lists).</p>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="cll" data-v="20,30,40" data-p="2:last"></div></div><div><div class="fig-lbl">After inserting 10</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-hl="0:new"></div></div></div></div>
+    <div class="op"><h4>Insert at end <span class="bx slow">O(n)</span></h4>
+      <p>Walk to the last node, attach the new node, and make the new node point back to head.</p>
+      <pre class="pseudo">ALGORITHM INSERT_END_CLL(head, item)
+1. newNode ← GETNODE();  newNode.data ← item
+2. if head = NULL: newNode.next ← newNode; head ← newNode; exit
+3. last ← head
+4. while last.next ≠ head:    // find the last node
+5.     last ← last.next
+6. last.next ← newNode
+7. newNode.next ← head    // close the circle</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="cll" data-v="10,20,30" data-p="2:last"></div></div><div><div class="fig-lbl">After inserting 40</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-hl="3:new"></div></div></div></div>
+    <div class="op"><h4>Insert at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Same as SLL. Inserting at position n + 1 also works automatically: the old last node's next was head, so the new node inherits <code>next = head</code>.</p>
+      <pre class="pseudo">ALGORITHM INSERT_POS_CLL(head, item, pos)
+1. if pos &lt; 1 or pos &gt; n + 1: print "INVALID POSITION"; exit
+2. if pos = 1: INSERT_BEGIN_CLL(head, item); exit
+3. newNode ← GETNODE();  newNode.data ← item
+4. temp ← head
+5. repeat (pos − 2) times: temp ← temp.next  // node at pos − 1
+6. newNode.next ← temp.next
+7. temp.next ← newNode</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (insert 25 at position 3)</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-p="1:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="cll" data-v="10,20,25,30,40" data-hl="2:new"></div></div></div></div>
+
+    <div class="op-grp">Deletion</div>
+    <div class="op"><h4>Delete at beginning <span class="bx slow">O(n)*</span></h4>
+      <p>Find the last node, move head forward, and make the last node point to the new head.</p>
+      <pre class="pseudo">ALGORITHM DELETE_BEGIN_CLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if head.next = head: FREE(head); head ← NULL; exit
+3. last ← head
+4. while last.next ≠ head:    // find the last node
+5.     last ← last.next
+6. temp ← head
+7. head ← head.next
+8. last.next ← head    // keep the circle closed
+9. FREE(temp)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-hl="0:del" data-p="3:last"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="cll" data-v="20,30,40"></div></div></div></div>
+    <div class="op"><h4>Delete at end <span class="bx slow">O(n)</span></h4>
+      <p>Stop at the second-last node (its next.next is head) and make it point to head.</p>
+      <pre class="pseudo">ALGORITHM DELETE_END_CLL(head)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if head.next = head: FREE(head); head ← NULL; exit
+3. temp ← head
+4. while temp.next.next ≠ head:    // stop at second-last node
+5.     temp ← temp.next
+6. last ← temp.next
+7. temp.next ← head
+8. FREE(last)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-hl="3:del" data-p="2:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="cll" data-v="10,20,30"></div></div></div></div>
+    <div class="op"><h4>Delete at a given position <span class="bx slow">O(n)</span></h4>
+      <p>Same as SLL for positions 2 … n; position 1 uses the delete-at-beginning algorithm so the circle stays closed.</p>
+      <pre class="pseudo">ALGORITHM DELETE_POS_CLL(head, pos)
+1. if head = NULL: print "UNDERFLOW"; exit
+2. if pos &lt; 1 or pos &gt; n: print "INVALID POSITION"; exit
+3. if pos = 1: DELETE_BEGIN_CLL(head); exit
+4. temp ← head
+5. repeat (pos − 2) times: temp ← temp.next  // node at pos − 1
+6. target ← temp.next
+7. temp.next ← target.next
+8. FREE(target)</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (delete position 3)</div><div class="lfig" data-t="cll" data-v="10,20,30,40" data-hl="2:del" data-p="1:temp"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="cll" data-v="10,20,40"></div></div></div></div>
+  </div>
+
+  <!-- ===== OPERATIONS VISUALIZER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🎬 Linked List Operations Visualizer</b><span>runs the algorithms above, line by line</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="lv-type"><button class="on" data-t="sll">Singly</button><button data-t="dll">Doubly</button><button data-t="cll">Circular</button></div>
+        <label class="fld">Value<input type="number" id="lv-val" value="25"></label>
+        <label class="fld">Position<input type="number" id="lv-pos" value="3"></label>
+        <label class="fld">Speed<select id="lv-speed" style="width:96px"><option value="1300">Slow</option><option value="800" selected>Normal</option><option value="320">Fast</option></select></label>
+        <label class="chk"><input type="checkbox" id="lv-stepmode"> Step mode</label>
+        <button class="btn acc sm" id="lv-step" style="display:none">Next step ▶</button>
+      </div>
+      <div class="btn-grid">
+        <button class="btn tl sm" data-op="insBeg">Insert at beginning</button>
+        <button class="btn tl sm" data-op="insEnd">Insert at end</button>
+        <button class="btn tl sm" data-op="insPos">Insert at position</button>
+        <button class="btn rd sm" data-op="delBeg">Delete at beginning</button>
+        <button class="btn rd sm" data-op="delEnd">Delete at end</button>
+        <button class="btn rd sm" data-op="delPos">Delete at position</button>
+        <button class="btn sm" data-op="search">Search value</button>
+        <button class="btn sm" data-op="trav">Traverse</button>
+        <button class="btn gh sm" id="lv-rand">Random list</button>
+        <button class="btn gh sm" id="lv-reset">Reset</button>
+      </div>
+      <div class="ll-stage"><svg id="lv-svg"></svg></div>
+      <div class="legend">
+        <span><i style="background:#b2f2bb"></i>new node</span><span><i style="background:#ffd8a8"></i>current (temp)</span><span><i style="background:#ffc9c9"></i>node being deleted</span><span><i style="background:#96f2d7"></i>found / visited</span><span><b style="color:#d9480f">orange arrow</b> = link just changed</span><span><b style="color:#2f5bd3">blue arrow</b> = prev link</span>
+      </div>
+      <div class="msg" id="lv-msg">Pick an operation. Try "Insert at position" with position 1, n + 1 and something in the middle, and watch which links change.</div>
+      <div class="stats">
+        <div class="stat">n = <b id="lv-n">4</b></div>
+        <div class="stat">Pointer moves = <b id="lv-moves">0</b></div>
+        <div class="stat">Links changed = <b id="lv-links">0</b></div>
+      </div>
+      <div class="viz-split">
+        <div class="pc" id="lv-pc"></div>
+        <div class="log" id="lv-log"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="sec page" id="ll-s4" data-label="Complexity" data-sub="Time, space &amp; comparisons">
+  <div class="sec-head"><div class="sec-num">4</div><h2>Complexity Analysis &amp; Comparison</h2></div>
+
+  <h3>Time complexity (only a head pointer is kept)</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operation</th><th>Singly</th><th>Doubly</th><th>Circular (singly)</th><th>Reason</th></tr>
+    <tr><td>Access k-th node</td><td class="on">O(k)</td><td class="on">O(k)</td><td class="on">O(k)</td><td>Must follow k − 1 links; no random access</td></tr>
+    <tr><td>Traversal</td><td class="on">Θ(n)</td><td class="on">Θ(n)</td><td class="on">Θ(n)</td><td>Every node visited once</td></tr>
+    <tr><td>Search</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Linear; best case O(1) if key is first</td></tr>
+    <tr><td>Insert at beginning</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="on">O(n)*</td><td>CLL must also update the last node</td></tr>
+    <tr><td>Insert at end</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Walk to the last node</td></tr>
+    <tr><td>Insert at position pos</td><td class="on">O(pos)</td><td class="on">O(pos)</td><td class="on">O(pos)</td><td>Walk pos − 2 links, then O(1) re-linking</td></tr>
+    <tr><td>Delete at beginning</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="on">O(n)*</td><td>CLL must also update the last node</td></tr>
+    <tr><td>Delete at end</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td>Find the last / second-last node</td></tr>
+    <tr><td>Delete at position pos</td><td class="on">O(pos)</td><td class="on">O(pos)</td><td class="on">O(pos)</td><td>Walk to the position, then O(1) re-linking</td></tr>
+    <tr><td>Delete a node, given a pointer to it</td><td class="on">O(n)</td><td class="o1">O(1)</td><td class="on">O(n)</td><td>DLL already knows the predecessor via prev</td></tr>
+  </table></div>
+  <p style="font-size:.88em;color:var(--ink2)">* Becomes O(1) when the program also maintains a pointer to the last node.</p>
+
+  <div class="box tip"><span class="box-title">Effect of a tail (last) pointer</span>
+  <ul>
+    <li><strong>Insert at end</strong> becomes O(1) for all three types.</li>
+    <li><strong>Delete at end</strong> becomes O(1) only for a DLL (tail.prev gives the new last node). An SLL or CLL still needs O(n) to find the second-last node.</li>
+    <li>Circular lists are often stored with <em>only</em> a last pointer: head is simply <code>last.next</code>, so insertion at both ends is O(1).</li>
+  </ul></div>
+
+  <h3>Space complexity</h3>
+  <ul>
+    <li>A list of n nodes needs <strong>O(n)</strong> space.</li>
+    <li><strong>Overhead per node</strong>: one pointer (SLL, CLL) or two pointers (DLL), in addition to the data. On a 64-bit machine each pointer is 8 bytes.</li>
+    <li>All the operations above use only a few pointer variables (temp, newNode, last): <strong>O(1) auxiliary space</strong>.</li>
+  </ul>
+
+  <h3>Array vs Linked List</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Array</th><th>Linked List</th></tr>
+    <tr><td>Memory</td><td>One contiguous block</td><td>Scattered nodes connected by pointers</td></tr>
+    <tr><td>Size</td><td>Fixed (static) or resized by copying</td><td>Dynamic: grows/shrinks one node at a time</td></tr>
+    <tr><td>Access k-th element</td><td class="o1">O(1) random access</td><td class="on">O(k) sequential access</td></tr>
+    <tr><td>Insert/delete at beginning</td><td class="on">O(n): shifting</td><td class="o1">O(1): change pointers (SLL/DLL)</td></tr>
+    <tr><td>Extra memory</td><td>None per element</td><td>1 or 2 pointers per node</td></tr>
+    <tr><td>Cache performance</td><td>Excellent (locality)</td><td>Poorer (nodes spread out)</td></tr>
+    <tr><td>Binary search</td><td>Possible on sorted data, O(log n)</td><td>Not practical</td></tr>
+    <tr><td>Memory waste</td><td>Unused capacity</td><td>Pointer overhead only</td></tr>
+  </table></div>
+
+  <h3>Singly vs Doubly vs Circular</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Singly</th><th>Doubly</th><th>Circular</th></tr>
+    <tr><td>Links per node</td><td>1 (next)</td><td>2 (prev, next)</td><td>1 (next)</td></tr>
+    <tr><td>Last node's next</td><td>NULL</td><td>NULL</td><td>head</td></tr>
+    <tr><td>Direction of travel</td><td>Forward only</td><td>Forward and backward</td><td>Forward, endlessly around</td></tr>
+    <tr><td>Reach the previous node</td><td>Must restart from head</td><td>O(1) via prev</td><td>Go all the way around: O(n)</td></tr>
+    <tr><td>Memory per node</td><td>Least</td><td>Most</td><td>Same as singly</td></tr>
+    <tr><td>Code complexity</td><td>Simplest</td><td>More links to update</td><td>Careful loop termination</td></tr>
+    <tr><td>Typical use</td><td>Stacks, simple lists, chaining</td><td>Browser history, undo/redo, LRU caches</td><td>Round-robin scheduling, playlists, buffers</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sec page" id="ll-s5" data-label="Uses, pros &amp; cons" data-sub="Applications, advantages, disadvantages, edge cases">
+  <div class="sec-head"><div class="sec-num">5</div><h2>Applications, Advantages &amp; Disadvantages</h2></div>
+
+  <h3>Applications of linked lists</h3>
+  <div class="grid2">
+    <div class="mini"><h4>1. Implementing stacks and queues</h4><p>A stack pushes/pops at the head in O(1); a queue inserts at the tail and deletes at the head. No fixed capacity.</p></div>
+    <div class="mini"><h4>2. Polynomial representation</h4><p>Each node stores a (coefficient, exponent) pair; polynomial addition merges two lists (see Program 4).</p></div>
+    <div class="mini"><h4>3. Sparse matrices</h4><p>Store only the non-zero elements as nodes (row, column, value), saving huge amounts of memory.</p></div>
+    <div class="mini"><h4>4. Graphs: adjacency lists</h4><p>Each vertex keeps a linked list of its neighbours, which is efficient for sparse graphs.</p></div>
+    <div class="mini"><h4>5. Hash tables: chaining</h4><p>Keys that hash to the same slot are kept in a linked list at that slot.</p></div>
+    <div class="mini"><h4>6. Dynamic memory management</h4><p>Operating systems keep free memory blocks in a linked "free list" (the AVAIL list).</p></div>
+    <div class="mini"><h4>7. Browser history, undo/redo (DLL)</h4><p>Moving backward and forward between states needs both prev and next links.</p></div>
+    <div class="mini"><h4>8. Round-robin scheduling (CLL)</h4><p>Processes sit in a circle; the scheduler keeps moving to the next one forever.</p></div>
+    <div class="mini"><h4>9. Music playlists &amp; slideshows (CLL)</h4><p>After the last item, playback continues from the first.</p></div>
+    <div class="mini"><h4>10. Large-number arithmetic</h4><p>Numbers too big for built-in types are stored digit by digit in a list.</p></div>
+  </div>
+
+  <h3>Advantages of linked lists</h3>
+  <div class="grid2">
+    <div class="mini pro"><h4>✔ Dynamic size</h4><p>No need to know the size in advance; memory is allocated only when a node is created.</p></div>
+    <div class="mini pro"><h4>✔ Fast insertion/deletion</h4><p>Once the position is known, only a few pointers change. No elements are shifted.</p></div>
+    <div class="mini pro"><h4>✔ No contiguous memory needed</h4><p>Nodes can use any free blocks, so large lists can be built even with fragmented memory.</p></div>
+    <div class="mini pro"><h4>✔ No wasted capacity</h4><p>Exactly n nodes exist for n elements.</p></div>
+    <div class="mini pro"><h4>✔ Flexible building block</h4><p>Easily implements stacks, queues, graphs and other dynamic structures.</p></div>
+    <div class="mini pro"><h4>✔ Two-way / circular variants</h4><p>DLL gives backward travel; CLL gives continuous cycling, with no special end case.</p></div>
+  </div>
+
+  <h3>Disadvantages of linked lists</h3>
+  <div class="grid2">
+    <div class="mini con"><h4>✘ No random access</h4><p>To reach the k-th node you must follow k − 1 links: O(n). Binary search isn't practical.</p></div>
+    <div class="mini con"><h4>✘ Extra memory for pointers</h4><p>Every node stores 1 or 2 addresses, which can exceed the data size for small items.</p></div>
+    <div class="mini con"><h4>✘ Poor cache performance</h4><p>Scattered nodes mean the CPU cache helps far less than with arrays.</p></div>
+    <div class="mini con"><h4>✘ Reverse traversal is hard (SLL)</h4><p>A singly list can't move backwards without extra work or a doubly list.</p></div>
+    <div class="mini con"><h4>✘ More complex code</h4><p>Pointer mistakes cause lost nodes, memory leaks, crashes or infinite loops.</p></div>
+    <div class="mini con"><h4>✘ Allocation overhead</h4><p>Creating and freeing many small nodes is slower than working inside one array.</p></div>
+  </div>
+
+  <h3>Special cases &amp; edge cases</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Situation</th><th>What the algorithm must do</th></tr>
+    <tr><td>Empty list (head = NULL)</td><td>Deletion reports UNDERFLOW; insertion makes the new node the head (in a CLL, it points to itself).</td></tr>
+    <tr><td>Single-node list</td><td>Deleting it must set head = NULL. In SLL delete-at-end, <code>temp.next.next</code> would fail, so it is handled first.</td></tr>
+    <tr><td>Insert at position 1</td><td>Head changes, so use the insert-at-beginning algorithm.</td></tr>
+    <tr><td>Insert at position n + 1</td><td>Valid: same as insert at end. In a DLL, the "successor's prev" step is skipped because temp.next is NULL.</td></tr>
+    <tr><td>Delete at position n</td><td>Valid: same as delete at end. In a DLL, the "successor's prev" step is skipped.</td></tr>
+    <tr><td>Position &lt; 1 or too large</td><td>Report INVALID POSITION before moving any pointer.</td></tr>
+    <tr><td>Circular list loops</td><td>Must stop when the pointer returns to head, not at NULL (there is no NULL).</td></tr>
+  </table></div>
+
+  <h3>Common mistakes</h3>
+  <div class="box warn"><span class="box-title">Watch out</span>
+  <ul>
+    <li><strong>Wrong order of re-linking</strong>: <code>temp.next ← newNode</code> before <code>newNode.next ← temp.next</code> makes the new node point to itself and loses the rest of the list (see Practice Q4 in Section 7).</li>
+    <li><strong>Moving head while traversing</strong>: always use a separate pointer (temp).</li>
+    <li><strong>Not checking for NULL</strong> before using <code>temp.next</code> or <code>temp.next.prev</code>: causes a crash (in Python, <code>AttributeError: 'NoneType' object has no attribute ...</code>).</li>
+    <li><strong>Forgetting to update prev links</strong> in a DLL: forward traversal looks fine, but backward traversal is broken.</li>
+    <li><strong>Using <code>while temp ≠ NULL</code> on a circular list</strong>: it never ends (infinite loop).</li>
+    <li><strong>Not updating the last node in a CLL</strong> after inserting/deleting at the beginning: the circle points to a removed or wrong node.</li>
+    <li><strong>Forgetting FREE</strong> in C after deleting a node: memory leak.</li>
+  </ul></div>
+
+  <h3>Important examination points</h3>
+  <div class="box exam"><span class="box-title">Remember for exams</span>
+  <ul>
+    <li>A node is a <strong>self-referential structure</strong>: [data | link].</li>
+    <li>Linked list = <strong>sequential access</strong>; array = <strong>random access</strong>.</li>
+    <li>Insert/delete at beginning of SLL and DLL is <strong>O(1)</strong>; anything that needs the last node is <strong>O(n)</strong> without a tail pointer.</li>
+    <li>For insertion/deletion at position pos in an SLL, stop at node <strong>pos − 1</strong>. In a DLL, deletion can stop <strong>at</strong> pos.</li>
+    <li>Inserting in the middle of a DLL changes <strong>4 links</strong>; deleting from the middle changes <strong>2 links</strong>.</li>
+    <li>Circular traversal uses a <strong>do-while</strong> loop that stops when temp == head.</li>
+    <li>Always write the <strong>UNDERFLOW</strong> check (head = NULL) and the <strong>INVALID POSITION</strong> check in algorithms.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sec page" id="ll-s6" data-label="Python" data-sub="Implementation">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Python Implementation</h2></div>
+  <p>Four complete, tested programs. Each tab shows the code and its actual output. The method names match the algorithms in Section 3. Use the <strong>Copy</strong> button to paste the program into your editor.</p>
+
+  <div class="tabs" data-tabs="code">
+    <button class="tab-btn on" data-pane="ll-c1">1 · Singly linked list</button>
+    <button class="tab-btn" data-pane="ll-c2">2 · Doubly linked list</button>
+    <button class="tab-btn" data-pane="ll-c3">3 · Circular linked list</button>
+    <button class="tab-btn" data-pane="ll-c4">4 · Applications</button>
+  </div>
+
+  <div class="tab-pane on" id="ll-c1">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: Singly Linked List (SLL)
+# Operations: traversal, search, insert &amp; delete at beginning / end / position
+# Positions are 1-based: position 1 is the first node.
+
+class Node:
+    def __init__(self, data):
+        self.data = data      # the value stored in the node
+        self.next = None      # link to the next node (None = NULL)
+
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None      # empty list
+
+    # ---------- traversal ----------
+    def traverse(self):
+        temp = self.head
+        parts = []
+        while temp is not None:
+            parts.append(str(temp.data))
+            temp = temp.next
+        print("  " + " -&gt; ".join(parts + ["NULL"]))
+
+    def length(self):
+        count, temp = 0, self.head
+        while temp:
+            count += 1
+            temp = temp.next
+        return count
+
+    # ---------- search ----------
+    def search(self, key):
+        """Return the 1-based position of key, or -1 if not found."""
+        temp, pos = self.head, 1
+        while temp is not None:
+            if temp.data == key:
+                return pos
+            temp = temp.next
+            pos += 1
+        return -1
+
+    # ---------- insertion ----------
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        new_node.next = self.head     # 1. new node points to old first node
+        self.head = new_node          # 2. head now points to new node
+
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head is None:         # empty list: new node becomes head
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next is not None:  # walk to the LAST node
+            temp = temp.next
+        temp.next = new_node
+
+    def insert_at_position(self, data, pos):
+        if pos &lt; 1 or pos &gt; self.length() + 1:
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            self.insert_at_beginning(data)
+            return
+        temp = self.head
+        for _ in range(pos - 2):      # stop at node (pos - 1)
+            temp = temp.next
+        new_node = Node(data)
+        new_node.next = temp.next     # link new node to the rest FIRST
+        temp.next = new_node          # then link previous node to new node
+
+    # ---------- deletion ----------
+    def delete_at_beginning(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        temp = self.head
+        self.head = temp.next         # head moves to the second node
+        return temp.data              # Python frees 'temp' automatically
+
+    def delete_at_end(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        if self.head.next is None:    # only one node
+            data = self.head.data
+            self.head = None
+            return data
+        temp = self.head
+        while temp.next.next is not None:   # stop at SECOND-LAST node
+            temp = temp.next
+        data = temp.next.data
+        temp.next = None
+        return data
+
+    def delete_at_position(self, pos):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        if pos &lt; 1 or pos &gt; self.length():
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            return self.delete_at_beginning()
+        temp = self.head
+        for _ in range(pos - 2):      # stop at node (pos - 1)
+            temp = temp.next
+        target = temp.next
+        temp.next = target.next       # bypass the target node
+        return target.data
+
+
+sll = SinglyLinkedList()
+for v in [20, 30, 40]:
+    sll.insert_at_end(v)
+print("Initial list:"); sll.traverse()
+
+sll.insert_at_beginning(10); print("Insert 10 at beginning:"); sll.traverse()
+sll.insert_at_end(50);       print("Insert 50 at end:");       sll.traverse()
+sll.insert_at_position(25, 4); print("Insert 25 at position 4:"); sll.traverse()
+
+print("Search 40 -&gt; position", sll.search(40))
+print("Search 99 -&gt; position", sll.search(99))
+
+print("Delete at beginning -&gt;", sll.delete_at_beginning()); sll.traverse()
+print("Delete at end       -&gt;", sll.delete_at_end());       sll.traverse()
+print("Delete position 2   -&gt;", sll.delete_at_position(2)); sll.traverse()
+
+try:
+    sll.insert_at_position(99, 10)
+except IndexError as e:
+    print("Insert at position 10 -&gt;", e)</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Initial list:
+  20 -&gt; 30 -&gt; 40 -&gt; NULL
+Insert 10 at beginning:
+  10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; NULL
+Insert 50 at end:
+  10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; 50 -&gt; NULL
+Insert 25 at position 4:
+  10 -&gt; 20 -&gt; 30 -&gt; 25 -&gt; 40 -&gt; 50 -&gt; NULL
+Search 40 -&gt; position 5
+Search 99 -&gt; position -1
+Delete at beginning -&gt; 10
+  20 -&gt; 30 -&gt; 25 -&gt; 40 -&gt; 50 -&gt; NULL
+Delete at end       -&gt; 50
+  20 -&gt; 30 -&gt; 25 -&gt; 40 -&gt; NULL
+Delete position 2   -&gt; 30
+  20 -&gt; 25 -&gt; 40 -&gt; NULL
+Insert at position 10 -&gt; Invalid position 10</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>Node</code> has two attributes; <code>self.next = None</code> is Python's NULL.</li>
+      <li><code>insert_at_position</code> loops <code>pos − 2</code> times to stop at node pos − 1, then links the new node in the safe order.</li>
+      <li><code>delete_at_end</code> handles the single-node case first, then stops at the second-last node using <code>temp.next.next</code>.</li>
+      <li>Python frees unreachable nodes automatically, so there is no explicit FREE.</li>
+    </ul></div>
+  </div>
+
+  <div class="tab-pane" id="ll-c2">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: Doubly Linked List (DLL)
+# Each node has two links: prev (to the previous node) and next (to the next node).
+# Positions are 1-based.
+
+class DNode:
+    def __init__(self, data):
+        self.prev = None
+        self.data = data
+        self.next = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def traverse_forward(self):
+        temp, parts = self.head, []
+        while temp:
+            parts.append(str(temp.data))
+            temp = temp.next
+        print("  NULL &lt;-&gt; " + " &lt;-&gt; ".join(parts) + " &lt;-&gt; NULL" if parts else "  (empty)")
+
+    def traverse_backward(self):
+        if self.head is None:
+            print("  (empty)"); return
+        temp = self.head
+        while temp.next:              # go to the last node
+            temp = temp.next
+        parts = []
+        while temp:                   # follow prev links back to the head
+            parts.append(str(temp.data))
+            temp = temp.prev
+        print("  Backward: " + " &lt;-&gt; ".join(parts))
+
+    def length(self):
+        n, temp = 0, self.head
+        while temp:
+            n += 1
+            temp = temp.next
+        return n
+
+    def search(self, key):
+        temp, pos = self.head, 1
+        while temp:
+            if temp.data == key:
+                return pos
+            temp, pos = temp.next, pos + 1
+        return -1
+
+    # ---------- insertion ----------
+    def insert_at_beginning(self, data):
+        new_node = DNode(data)
+        new_node.next = self.head
+        if self.head is not None:
+            self.head.prev = new_node    # old first node points back to new node
+        self.head = new_node
+
+    def insert_at_end(self, data):
+        new_node = DNode(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node
+        new_node.prev = temp
+
+    def insert_at_position(self, data, pos):
+        if pos &lt; 1 or pos &gt; self.length() + 1:
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            self.insert_at_beginning(data)
+            return
+        temp = self.head
+        for _ in range(pos - 2):         # node at position pos-1
+            temp = temp.next
+        new_node = DNode(data)
+        new_node.next = temp.next        # 1
+        new_node.prev = temp             # 2
+        if temp.next is not None:
+            temp.next.prev = new_node    # 3 (skip when inserting at the end)
+        temp.next = new_node             # 4
+
+    # ---------- deletion ----------
+    def delete_at_beginning(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        temp = self.head
+        self.head = temp.next
+        if self.head is not None:
+            self.head.prev = None
+        return temp.data
+
+    def delete_at_end(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        temp = self.head
+        while temp.next:                 # go to the last node
+            temp = temp.next
+        if temp.prev is None:            # it was the only node
+            self.head = None
+        else:
+            temp.prev.next = None
+        return temp.data
+
+    def delete_at_position(self, pos):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        if pos &lt; 1 or pos &gt; self.length():
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            return self.delete_at_beginning()
+        temp = self.head
+        for _ in range(pos - 1):         # node AT position pos
+            temp = temp.next
+        temp.prev.next = temp.next
+        if temp.next is not None:
+            temp.next.prev = temp.prev
+        return temp.data
+
+
+dll = DoublyLinkedList()
+for v in [20, 30, 40]:
+    dll.insert_at_end(v)
+print("Initial list:"); dll.traverse_forward()
+dll.insert_at_beginning(10); print("Insert 10 at beginning:"); dll.traverse_forward()
+dll.insert_at_end(50);       print("Insert 50 at end:");       dll.traverse_forward()
+dll.insert_at_position(35, 4); print("Insert 35 at position 4:"); dll.traverse_forward()
+dll.traverse_backward()
+print("Search 35 -&gt; position", dll.search(35))
+print("Delete at beginning -&gt;", dll.delete_at_beginning()); dll.traverse_forward()
+print("Delete at end       -&gt;", dll.delete_at_end());       dll.traverse_forward()
+print("Delete position 3   -&gt;", dll.delete_at_position(3)); dll.traverse_forward()
+dll.traverse_backward()</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Initial list:
+  NULL &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+Insert 10 at beginning:
+  NULL &lt;-&gt; 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+Insert 50 at end:
+  NULL &lt;-&gt; 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; 50 &lt;-&gt; NULL
+Insert 35 at position 4:
+  NULL &lt;-&gt; 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 35 &lt;-&gt; 40 &lt;-&gt; 50 &lt;-&gt; NULL
+  Backward: 50 &lt;-&gt; 40 &lt;-&gt; 35 &lt;-&gt; 30 &lt;-&gt; 20 &lt;-&gt; 10
+Search 35 -&gt; position 4
+Delete at beginning -&gt; 10
+  NULL &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 35 &lt;-&gt; 40 &lt;-&gt; 50 &lt;-&gt; NULL
+Delete at end       -&gt; 50
+  NULL &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 35 &lt;-&gt; 40 &lt;-&gt; NULL
+Delete position 3   -&gt; 35
+  NULL &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+  Backward: 40 &lt;-&gt; 30 &lt;-&gt; 20</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li>The backward traversal at the end of the output proves the <code>prev</code> links were kept correct after every operation.</li>
+      <li>In <code>insert_at_position</code>, the comments 1–4 mark the four links that change.</li>
+      <li><code>delete_at_position</code> moves temp <em>to</em> the target (pos − 1 moves) and joins its neighbours.</li>
+    </ul></div>
+  </div>
+
+  <div class="tab-pane" id="ll-c3">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: Circular (Singly) Linked List (CLL)
+# The last node's next points back to the head instead of NULL.
+# Positions are 1-based.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def _last(self):
+        """Return the last node (the one whose next is head)."""
+        temp = self.head
+        while temp.next is not self.head:
+            temp = temp.next
+        return temp
+
+    def traverse(self):
+        if self.head is None:
+            print("  (empty)"); return
+        parts, temp = [], self.head
+        while True:                       # do-while: visit head at least once
+            parts.append(str(temp.data))
+            temp = temp.next
+            if temp is self.head:
+                break
+        print("  " + " -&gt; ".join(parts) + f" -&gt; (back to {self.head.data})")
+
+    def length(self):
+        if self.head is None:
+            return 0
+        n, temp = 1, self.head.next
+        while temp is not self.head:
+            n += 1
+            temp = temp.next
+        return n
+
+    def search(self, key):
+        if self.head is None:
+            return -1
+        temp, pos = self.head, 1
+        while True:
+            if temp.data == key:
+                return pos
+            temp, pos = temp.next, pos + 1
+            if temp is self.head:         # came full circle: not found
+                return -1
+
+    # ---------- insertion ----------
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            new_node.next = new_node      # single node points to itself
+            self.head = new_node
+            return
+        last = self._last()
+        new_node.next = self.head
+        last.next = new_node              # last node must point to the NEW head
+        self.head = new_node
+
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            new_node.next = new_node
+            self.head = new_node
+            return
+        last = self._last()
+        last.next = new_node
+        new_node.next = self.head         # close the circle
+
+    def insert_at_position(self, data, pos):
+        if pos &lt; 1 or pos &gt; self.length() + 1:
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            self.insert_at_beginning(data)
+            return
+        temp = self.head
+        for _ in range(pos - 2):
+            temp = temp.next
+        new_node = Node(data)
+        new_node.next = temp.next
+        temp.next = new_node
+
+    # ---------- deletion ----------
+    def delete_at_beginning(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        data = self.head.data
+        if self.head.next is self.head:   # only one node
+            self.head = None
+            return data
+        last = self._last()
+        self.head = self.head.next
+        last.next = self.head             # keep the circle closed
+        return data
+
+    def delete_at_end(self):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        if self.head.next is self.head:
+            data = self.head.data
+            self.head = None
+            return data
+        temp = self.head
+        while temp.next.next is not self.head:   # second-last node
+            temp = temp.next
+        data = temp.next.data
+        temp.next = self.head
+        return data
+
+    def delete_at_position(self, pos):
+        if self.head is None:
+            raise IndexError("Underflow: list is empty")
+        if pos &lt; 1 or pos &gt; self.length():
+            raise IndexError(f"Invalid position {pos}")
+        if pos == 1:
+            return self.delete_at_beginning()
+        temp = self.head
+        for _ in range(pos - 2):
+            temp = temp.next
+        target = temp.next
+        temp.next = target.next
+        return target.data
+
+
+cll = CircularLinkedList()
+for v in [20, 30, 40]:
+    cll.insert_at_end(v)
+print("Initial list:"); cll.traverse()
+cll.insert_at_beginning(10); print("Insert 10 at beginning:"); cll.traverse()
+cll.insert_at_end(50);       print("Insert 50 at end:");       cll.traverse()
+cll.insert_at_position(45, 5); print("Insert 45 at position 5:"); cll.traverse()
+print("Search 50 -&gt; position", cll.search(50))
+print("Search 60 -&gt; position", cll.search(60))
+print("Delete at beginning -&gt;", cll.delete_at_beginning()); cll.traverse()
+print("Delete at end       -&gt;", cll.delete_at_end());       cll.traverse()
+print("Delete position 2   -&gt;", cll.delete_at_position(2)); cll.traverse()
+last = cll._last()
+print("Last node", last.data, "points to", last.next.data, "(the head)")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Initial list:
+  20 -&gt; 30 -&gt; 40 -&gt; (back to 20)
+Insert 10 at beginning:
+  10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; (back to 10)
+Insert 50 at end:
+  10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; 50 -&gt; (back to 10)
+Insert 45 at position 5:
+  10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; 45 -&gt; 50 -&gt; (back to 10)
+Search 50 -&gt; position 6
+Search 60 -&gt; position -1
+Delete at beginning -&gt; 10
+  20 -&gt; 30 -&gt; 40 -&gt; 45 -&gt; 50 -&gt; (back to 20)
+Delete at end       -&gt; 50
+  20 -&gt; 30 -&gt; 40 -&gt; 45 -&gt; (back to 20)
+Delete position 2   -&gt; 30
+  20 -&gt; 40 -&gt; 45 -&gt; (back to 20)
+Last node 45 points to 20 (the head)</pre>
+    <div class="box tip"><span class="box-title">Code walkthrough</span><ul>
+      <li><code>while True … if temp is self.head: break</code> is Python's version of a do-while loop.</li>
+      <li><code>_last()</code> finds the node whose next is head; it is needed whenever head changes.</li>
+      <li>The final line of output confirms the circle is still closed after all operations.</li>
+    </ul></div>
+  </div>
+
+  <div class="tab-pane" id="ll-c4">
+    <p>Three classic applications: reversing a list in place, finding the middle node with two pointers, and adding two polynomials stored as linked lists.</p>
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: Applications of linked lists
+#  (a) Reverse a singly linked list in place
+#  (b) Find the middle node with slow/fast pointers
+#  (c) Polynomial addition using linked lists
+
+class Node:
+    def __init__(self, data, nxt=None):
+        self.data = data
+        self.next = nxt
+
+def build(values):
+    head = None
+    for v in reversed(values):
+        head = Node(v, head)            # insert at beginning, in reverse order
+    return head
+
+def show(head):
+    out = []
+    while head:
+        out.append(str(head.data))
+        head = head.next
+    return " -&gt; ".join(out + ["NULL"])
+
+# (a) Reverse: turn every arrow around, one node at a time
+def reverse(head):
+    prev = None
+    curr = head
+    while curr:
+        nxt = curr.next     # remember the rest of the list
+        curr.next = prev    # reverse this node's link
+        prev = curr         # move prev one step forward
+        curr = nxt          # move curr one step forward
+    return prev             # prev is the new head
+
+# (b) Middle: fast moves 2 steps while slow moves 1
+def middle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow.data
+
+# (c) Polynomial: each node stores (coefficient, exponent), exponents decreasing
+class Term:
+    def __init__(self, coeff, exp):
+        self.coeff, self.exp, self.next = coeff, exp, None
+
+def make_poly(pairs):
+    head = tail = None
+    for c, e in pairs:
+        t = Term(c, e)
+        if head is None:
+            head = tail = t
+        else:
+            tail.next = t
+            tail = t
+    return head
+
+def poly_str(p):
+    terms = []
+    while p:
+        if p.exp == 0:
+            terms.append(f"{p.coeff}")
+        elif p.exp == 1:
+            terms.append(f"{p.coeff}x")
+        else:
+            terms.append(f"{p.coeff}x^{p.exp}")
+        p = p.next
+    return " + ".join(terms)
+
+def add_poly(p, q):
+    result = []
+    while p and q:
+        if p.exp &gt; q.exp:
+            result.append((p.coeff, p.exp)); p = p.next
+        elif p.exp &lt; q.exp:
+            result.append((q.coeff, q.exp)); q = q.next
+        else:                               # same exponent: add coefficients
+            if p.coeff + q.coeff != 0:
+                result.append((p.coeff + q.coeff, p.exp))
+            p, q = p.next, q.next
+    while p:
+        result.append((p.coeff, p.exp)); p = p.next
+    while q:
+        result.append((q.coeff, q.exp)); q = q.next
+    return make_poly(result)
+
+
+head = build([10, 20, 30, 40, 50])
+print("Original :", show(head))
+print("Middle   :", middle(head))
+head = reverse(head)
+print("Reversed :", show(head))
+
+p1 = make_poly([(5, 3), (4, 2), (2, 0)])      # 5x^3 + 4x^2 + 2
+p2 = make_poly([(3, 2), (7, 1), (6, 0)])      # 3x^2 + 7x + 6
+print("\nP1       :", poly_str(p1))
+print("P2       :", poly_str(p2))
+print("P1 + P2  :", poly_str(add_poly(p1, p2)))</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Original : 10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; 50 -&gt; NULL
+Middle   : 30
+Reversed : 50 -&gt; 40 -&gt; 30 -&gt; 20 -&gt; 10 -&gt; NULL
+
+P1       : 5x^3 + 4x^2 + 2
+P2       : 3x^2 + 7x + 6
+P1 + P2  : 5x^3 + 7x^2 + 7x + 8</pre>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sec page" id="ll-s7" data-label="Practice" data-sub="Questions &amp; quiz">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Practice &amp; Assessment</h2></div>
+
+  <h3>A. Conceptual questions</h3>
+  <details><summary>1. What is a linked list? How is it different from an array?</summary><p>A linear collection of nodes where each node holds data and a link to the next node. Unlike an array, its nodes need not be contiguous, its size is dynamic, insertion/deletion only changes pointers, but there is no random access.</p></details>
+  <details><summary>2. Why is a node called a self-referential structure?</summary><p>Because it contains a pointer to another structure of the same type (<code>struct node *next</code> inside <code>struct node</code>).</p></details>
+  <details><summary>3. Why is deleting the last node O(n) even in a singly list with a tail pointer?</summary><p>After deletion, the second-last node must become the new tail and its next must be set to NULL. A singly list has no prev link, so finding the second-last node requires walking from the head.</p></details>
+  <details><summary>4. What are the advantages of a doubly linked list over a singly linked list?</summary><p>Two-way traversal, O(1) deletion of a node when a pointer to it is given, and easier insertion before a node. The cost is an extra pointer per node and more links to maintain.</p></details>
+  <details><summary>5. How do you detect the end of a circular linked list during traversal?</summary><p>There is no NULL; stop when the traversal pointer comes back to the head (use a do-while loop so the head is processed first).</p></details>
+
+  <h3>B. Programming exercises</h3>
+  <ol>
+    <li>Count the number of nodes in an SLL, both iteratively and recursively.</li>
+    <li>Insert a node into a <strong>sorted</strong> singly linked list so it remains sorted.</li>
+    <li>Delete the first node that contains a given value (delete by key) in an SLL and a DLL.</li>
+    <li>Print a singly linked list in reverse order without modifying it (hint: recursion).</li>
+    <li>Convert a singly linked list into a circular linked list, then split it back.</li>
+    <li>Concatenate two doubly linked lists in O(1) time when both lists keep head and tail pointers.</li>
+  </ol>
+
+  <h3>C. Predict the output</h3>
+  <p>All snippets use: <code>class Node: def __init__(self, d, n=None): self.data, self.next = d, n</code></p>
+  <div class="grid2">
+    <div>
+<pre><code>head = Node(1, Node(2, Node(3)))
+head = Node(0, head)
+t = head
+while t.next:
+    t = t.next
+print(head.data, t.data)</code></pre>
+      <details><summary>Show answer</summary><p><code>0 3</code><br>Node 0 is inserted at the beginning; the loop stops at the last node, 3.</p></details>
+    </div>
+    <div>
+<pre><code>head = Node(5, Node(10, Node(15)))
+head.next = head.next.next
+t, s = head, 0
+while t:
+    s += t.data
+    t = t.next
+print(s)</code></pre>
+      <details><summary>Show answer</summary><p><code>20</code><br>Node 10 is bypassed (deleted at position 2), leaving 5 → 15.</p></details>
+    </div>
+    <div>
+<pre><code>a = Node(1); b = Node(2); c = Node(3)
+a.next, b.next, c.next = b, c, a
+t, out = b, []
+for _ in range(5):
+    out.append(t.data)
+    t = t.next
+print(out)</code></pre>
+      <details><summary>Show answer</summary><p><code>[2, 3, 1, 2, 3]</code><br>c.next = a makes the list circular, so the walk wraps around.</p></details>
+    </div>
+    <div>
+<pre><code>head = Node(1, Node(2, Node(4)))
+temp = head.next
+new = Node(3)
+temp.next = new        # wrong order!
+new.next = temp.next
+t, out = head, []
+for _ in range(5):
+    if t is None:
+        break
+    out.append(t.data)
+    t = t.next
+print(out)</code></pre>
+      <details><summary>Show answer</summary><p><code>[1, 2, 3, 3, 3]</code><br>After <code>temp.next = new</code>, <code>temp.next</code> <em>is</em> new, so <code>new.next = new</code>: the node points to itself and node 4 is lost. The loop limit of 5 is the only thing that stops it.</p></details>
+    </div>
+  </div>
+
+  <h3>D. Trace-based question</h3>
+  <p>A singly linked list is 12 → 25 → 31 → 47 → NULL. Trace INSERT_POS_SLL to insert 40 at position 3, then DELETE_END_SLL. Show where temp is at each step and the final list.</p>
+  <details><summary>Show solution</summary>
+    <div class="tbl-wrap"><table>
+      <tr><th>Step</th><th>Action</th><th>List / pointers</th></tr>
+      <tr><td>Insert, line 4</td><td>temp ← head</td><td>temp = 12</td></tr>
+      <tr><td>Insert, line 5</td><td>pos − 2 = 1 move</td><td>temp = 25</td></tr>
+      <tr><td>Insert, line 6</td><td>newNode.next ← temp.next</td><td>40 → 31</td></tr>
+      <tr><td>Insert, line 7</td><td>temp.next ← newNode</td><td>12 → 25 → 40 → 31 → 47 → NULL</td></tr>
+      <tr><td>Delete, line 3</td><td>temp ← head</td><td>temp = 12 (12.next.next = 40 ≠ NULL)</td></tr>
+      <tr><td>Delete, loop</td><td>temp ← temp.next</td><td>temp = 25 (25.next.next = 31 ≠ NULL)</td></tr>
+      <tr><td>Delete, loop</td><td>temp ← temp.next</td><td>temp = 40 (40.next.next = 47 ≠ NULL)</td></tr>
+      <tr><td>Delete, loop</td><td>temp ← temp.next</td><td>temp = 31 (31.next.next = NULL → stop)</td></tr>
+      <tr><td>Delete, lines 6–8</td><td>last ← 47; 31.next ← NULL; FREE(47)</td><td>12 → 25 → 40 → 31 → NULL</td></tr>
+    </table></div>
+    <p>Pointer moves: 1 (insert) + 3 (delete) = 4. <strong>Final list: 12 → 25 → 40 → 31 → NULL.</strong></p>
+  </details>
+
+  <h3>E. Diagram identification</h3>
+  <p><strong>Q1.</strong> Identify the type of each list.</p>
+  <div class="fig-lbl">List A</div><div class="lfig" data-t="cll" data-v="5,15,25"></div>
+  <div class="fig-lbl">List B</div><div class="lfig" data-t="dll" data-v="5,15,25"></div>
+  <div class="fig-lbl">List C</div><div class="lfig" data-t="sll" data-v="5,15,25"></div>
+  <details><summary>Show answer</summary><p>A: circular (last node points back to head). B: doubly (each node has prev and next links). C: singly (one link per node, last is NULL).</p></details>
+
+  <p style="margin-top:16px"><strong>Q2.</strong> Which operation turned the first doubly linked list into the second? How many links had to change?</p>
+  <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="lfig" data-t="dll" data-v="8,16,24,32"></div></div><div><div class="fig-lbl">After</div><div class="lfig" data-t="dll" data-v="8,24,32"></div></div></div>
+  <details><summary>Show answer</summary><p>Deletion at position 2 (node 16). Two links change: 8.next ← 24 and 24.prev ← 8. Then node 16 is freed.</p></details>
+
+  <h3>F. Quiz: test yourself (8 MCQs)</h3>
+  <div id="ll-quiz"></div>
+  <div class="score" id="ll-quiz-score" style="display:none"><span>Your score: <b id="ll-quiz-num">0</b> / 8</span><button class="btn acc" id="ll-quiz-retry">Retry quiz</button></div>
+</section>
+
+<div class="footer">MCA Data Structures Series · Linked Lists · Next topic: Stacks &amp; Queues</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-ll');
+  if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  var ALG = {"sll": {"trav": ["ALGORITHM TRAVERSE_SLL(head)", "1. temp \u2190 head", "2. while temp \u2260 NULL:", "3.     PROCESS(temp.data)", "4.     temp \u2190 temp.next", "5. exit"], "search": ["ALGORITHM SEARCH_SLL(head, key)", "1. temp \u2190 head;  pos \u2190 1", "2. while temp \u2260 NULL:", "3.     if temp.data = key: return pos    // found", "4.     temp \u2190 temp.next", "5.     pos \u2190 pos + 1", "6. return \u22121    // not found"], "insBeg": ["ALGORITHM INSERT_BEGIN_SLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item", "2. newNode.next \u2190 head", "3. head \u2190 newNode", "4. exit"], "insEnd": ["ALGORITHM INSERT_END_SLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item;  newNode.next \u2190 NULL", "2. if head = NULL: head \u2190 newNode; exit", "3. temp \u2190 head", "4. while temp.next \u2260 NULL:    // find the last node", "5.     temp \u2190 temp.next", "6. temp.next \u2190 newNode", "7. exit"], "insPos": ["ALGORITHM INSERT_POS_SLL(head, item, pos)", "1. if pos < 1 or pos > n + 1: print \"INVALID POSITION\"; exit", "2. if pos = 1: INSERT_BEGIN_SLL(head, item); exit", "3. newNode \u2190 GETNODE();  newNode.data \u2190 item", "4. temp \u2190 head", "5. repeat (pos \u2212 2) times: temp \u2190 temp.next  // node at pos \u2212 1", "6. newNode.next \u2190 temp.next    // link to the rest FIRST", "7. temp.next \u2190 newNode", "8. exit"], "delBeg": ["ALGORITHM DELETE_BEGIN_SLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. temp \u2190 head", "3. head \u2190 head.next", "4. FREE(temp)", "5. exit"], "delEnd": ["ALGORITHM DELETE_END_SLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if head.next = NULL: FREE(head); head \u2190 NULL; exit", "3. temp \u2190 head", "4. while temp.next.next \u2260 NULL:    // stop at second-last node", "5.     temp \u2190 temp.next", "6. last \u2190 temp.next", "7. temp.next \u2190 NULL", "8. FREE(last)"], "delPos": ["ALGORITHM DELETE_POS_SLL(head, pos)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if pos < 1 or pos > n: print \"INVALID POSITION\"; exit", "3. if pos = 1: DELETE_BEGIN_SLL(head); exit", "4. temp \u2190 head", "5. repeat (pos \u2212 2) times: temp \u2190 temp.next  // node at pos \u2212 1", "6. target \u2190 temp.next", "7. temp.next \u2190 target.next    // bypass target", "8. FREE(target)"]}, "dll": {"trav": ["ALGORITHM TRAVERSE_DLL(head)", "1. if head = NULL: print \"EMPTY\"; exit", "2. temp \u2190 head", "3. while temp \u2260 NULL:    // forward using next", "4.     PROCESS(temp.data);  last \u2190 temp", "5.     temp \u2190 temp.next", "6. temp \u2190 last", "7. while temp \u2260 NULL:    // backward using prev", "8.     PROCESS(temp.data)", "9.     temp \u2190 temp.prev"], "search": ["ALGORITHM SEARCH_DLL(head, key)", "1. temp \u2190 head;  pos \u2190 1", "2. while temp \u2260 NULL:", "3.     if temp.data = key: return pos    // found", "4.     temp \u2190 temp.next", "5.     pos \u2190 pos + 1", "6. return \u22121    // not found"], "insBeg": ["ALGORITHM INSERT_BEGIN_DLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item;  newNode.prev \u2190 NULL", "2. newNode.next \u2190 head", "3. if head \u2260 NULL: head.prev \u2190 newNode", "4. head \u2190 newNode"], "insEnd": ["ALGORITHM INSERT_END_DLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item;  newNode.next \u2190 NULL", "2. if head = NULL: newNode.prev \u2190 NULL; head \u2190 newNode; exit", "3. temp \u2190 head", "4. while temp.next \u2260 NULL:    // find the last node", "5.     temp \u2190 temp.next", "6. temp.next \u2190 newNode", "7. newNode.prev \u2190 temp"], "insPos": ["ALGORITHM INSERT_POS_DLL(head, item, pos)", "1. if pos < 1 or pos > n + 1: print \"INVALID POSITION\"; exit", "2. if pos = 1: INSERT_BEGIN_DLL(head, item); exit", "3. newNode \u2190 GETNODE();  newNode.data \u2190 item", "4. temp \u2190 head", "5. repeat (pos \u2212 2) times: temp \u2190 temp.next  // node at pos \u2212 1", "6. newNode.next \u2190 temp.next", "7. newNode.prev \u2190 temp", "8. if temp.next \u2260 NULL: temp.next.prev \u2190 newNode", "9. temp.next \u2190 newNode"], "delBeg": ["ALGORITHM DELETE_BEGIN_DLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. temp \u2190 head", "3. head \u2190 head.next", "4. if head \u2260 NULL: head.prev \u2190 NULL", "5. FREE(temp)"], "delEnd": ["ALGORITHM DELETE_END_DLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. temp \u2190 head", "3. while temp.next \u2260 NULL:    // find the last node", "4.     temp \u2190 temp.next", "5. if temp.prev = NULL: head \u2190 NULL    // it was the only node", "6. else: temp.prev.next \u2190 NULL", "7. FREE(temp)"], "delPos": ["ALGORITHM DELETE_POS_DLL(head, pos)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if pos < 1 or pos > n: print \"INVALID POSITION\"; exit", "3. if pos = 1: DELETE_BEGIN_DLL(head); exit", "4. temp \u2190 head", "5. repeat (pos \u2212 1) times: temp \u2190 temp.next  // node AT pos", "6. temp.prev.next \u2190 temp.next", "7. if temp.next \u2260 NULL: temp.next.prev \u2190 temp.prev", "8. FREE(temp)"]}, "cll": {"trav": ["ALGORITHM TRAVERSE_CLL(head)", "1. if head = NULL: print \"EMPTY\"; exit", "2. temp \u2190 head", "3. do:", "4.     PROCESS(temp.data)", "5.     temp \u2190 temp.next", "6. while temp \u2260 head    // back at the start: stop"], "search": ["ALGORITHM SEARCH_CLL(head, key)", "1. if head = NULL: return \u22121", "2. temp \u2190 head;  pos \u2190 1", "3. do:", "4.     if temp.data = key: return pos    // found", "5.     temp \u2190 temp.next;  pos \u2190 pos + 1", "6. while temp \u2260 head", "7. return \u22121    // full circle: not found"], "insBeg": ["ALGORITHM INSERT_BEGIN_CLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item", "2. if head = NULL: newNode.next \u2190 newNode; head \u2190 newNode; exit", "3. last \u2190 head", "4. while last.next \u2260 head:    // find the last node", "5.     last \u2190 last.next", "6. newNode.next \u2190 head", "7. last.next \u2190 newNode", "8. head \u2190 newNode"], "insEnd": ["ALGORITHM INSERT_END_CLL(head, item)", "1. newNode \u2190 GETNODE();  newNode.data \u2190 item", "2. if head = NULL: newNode.next \u2190 newNode; head \u2190 newNode; exit", "3. last \u2190 head", "4. while last.next \u2260 head:    // find the last node", "5.     last \u2190 last.next", "6. last.next \u2190 newNode", "7. newNode.next \u2190 head    // close the circle"], "insPos": ["ALGORITHM INSERT_POS_CLL(head, item, pos)", "1. if pos < 1 or pos > n + 1: print \"INVALID POSITION\"; exit", "2. if pos = 1: INSERT_BEGIN_CLL(head, item); exit", "3. newNode \u2190 GETNODE();  newNode.data \u2190 item", "4. temp \u2190 head", "5. repeat (pos \u2212 2) times: temp \u2190 temp.next  // node at pos \u2212 1", "6. newNode.next \u2190 temp.next", "7. temp.next \u2190 newNode"], "delBeg": ["ALGORITHM DELETE_BEGIN_CLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if head.next = head: FREE(head); head \u2190 NULL; exit", "3. last \u2190 head", "4. while last.next \u2260 head:    // find the last node", "5.     last \u2190 last.next", "6. temp \u2190 head", "7. head \u2190 head.next", "8. last.next \u2190 head    // keep the circle closed", "9. FREE(temp)"], "delEnd": ["ALGORITHM DELETE_END_CLL(head)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if head.next = head: FREE(head); head \u2190 NULL; exit", "3. temp \u2190 head", "4. while temp.next.next \u2260 head:    // stop at second-last node", "5.     temp \u2190 temp.next", "6. last \u2190 temp.next", "7. temp.next \u2190 head", "8. FREE(last)"], "delPos": ["ALGORITHM DELETE_POS_CLL(head, pos)", "1. if head = NULL: print \"UNDERFLOW\"; exit", "2. if pos < 1 or pos > n: print \"INVALID POSITION\"; exit", "3. if pos = 1: DELETE_BEGIN_CLL(head); exit", "4. temp \u2190 head", "5. repeat (pos \u2212 2) times: temp \u2190 temp.next  // node at pos \u2212 1", "6. target \u2190 temp.next", "7. temp.next \u2190 target.next", "8. FREE(target)"]}};
+
+  /* ---------------- tabs ---------------- */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){
+      b.addEventListener('click', function(){
+        each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+        b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+  /* =================================================================
+     SVG LINKED-LIST RENDERER
+     state = {nodes:{id:{v,a,next,prev}}, head, ord:[ids in row], fl:{id,at}|null,
+              hl:{id:cls}, ptrs:{name:id}, he:[changed edge keys], addr:bool}
+     ================================================================= */
+  var NS='http://www.w3.org/2000/svg', UID=0;
+  var C={ink:'#1c2033', ink2:'#4a5068', blue:'#2f5bd3', acc:'#d9480f', line:'#c9c4b6'};
+  var FILL={cur:'#ffd8a8', 'new':'#b2f2bb', del:'#ffc9c9', found:'#96f2d7', seen:'#e4f5f2'};
+  function S(tag, at, par){ var e=document.createElementNS(NS, tag); for(var k in at){ if(at[k]!==null && at[k]!==undefined) e.setAttribute(k, at[k]); } if(par) par.appendChild(e); return e; }
+  function TX(par, x, y, s, at){ at=at||{}; at.x=x; at.y=y; var e=S('text', at, par); e.textContent=s; return e; }
+  var ROWY=118, GAP=56, X0=76, FLY=24;
+  function geo(t){ return t==='dll' ? {w:132,h:46,pf:34,nf:34} : {w:100,h:46,pf:0,nf:38}; }
+
+  function drawList(svg, t, st){
+    var g=geo(t), w=g.w, h=g.h;
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var uid='llm'+(++UID);
+    var defs=S('defs',{},svg);
+    function marker(id,color){ var m=S('marker',{id:uid+id,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs); S('path',{d:'M0,0 L10,5 L0,10 z',fill:color},m); }
+    marker('k',C.ink); marker('b',C.blue); marker('o',C.acc);
+    var he={}; (st.he||[]).forEach(function(k){ he[k]=1; });
+    var pos={}, len=st.ord.length;
+    st.ord.forEach(function(id,i){ pos[id]={x:X0+i*(w+GAP), y:ROWY, row:true, i:i}; });
+    var flAtEnd=false;
+    if(st.fl && st.nodes[st.fl.id] && !pos[st.fl.id]){
+      var k=st.fl.at, fx;
+      if(len===0 || k<=0) fx=X0; else if(k>=len){ fx=X0+len*(w+GAP); flAtEnd=true; } else fx=X0+(k-0.5)*(w+GAP);
+      pos[st.fl.id]={x:fx, y:FLY, row:false};
+    }
+    var cols=Math.max(len+(flAtEnd?1:0),1);
+    var hasPtr=Object.keys(st.ptrs||{}).length>0;
+    var W=Math.max(640, X0+cols*(w+GAP)+20);
+    var topY=st.isStatic ? ROWY-30 : 0;
+    var H=st.isStatic ? (ROWY+h+(hasPtr?58:(t==='cll'?36:(st.addr?24:16)))) : (ROWY+h+100);
+    svg.setAttribute('viewBox','0 '+topY+' '+W+' '+(H-topY));
+    if(st.isStatic){ svg.style.maxWidth=Math.round(W*0.82)+'px'; }
+    var edges=S('g',{},svg), nodesG=S('g',{},svg), tags=S('g',{},svg);
+
+    function path(d, kind, key){
+      var hot=!!he[key];
+      S('path',{d:d,fill:'none',stroke:hot?C.acc:(kind==='p'?C.blue:C.ink),'stroke-width':hot?2.8:1.7,'marker-end':'url(#'+uid+(hot?'o':(kind==='p'?'b':'k'))+')'},edges);
+    }
+    // head pointer
+    var hx=6, hy=ROWY+8;
+    S('rect',{x:hx,y:hy,width:48,height:30,rx:7,fill:'#1c2033'},nodesG);
+    TX(nodesG,hx+24,hy+20,'head',{'text-anchor':'middle','font-size':12,fill:'#fff','font-family':'Fira Code, monospace','font-weight':600});
+    if(st.head===null || st.head===undefined){
+      TX(nodesG,hx+24,hy+48,'NULL',{'text-anchor':'middle','font-size':11,fill:C.ink2,'font-family':'Fira Code, monospace'});
+    } else if(pos[st.head]){
+      var B=pos[st.head];
+      if(B.row && B.i===0) path('M'+(hx+48)+','+(hy+15)+' L'+B.x+','+(hy+15),'k','head');
+      else if(B.row) path('M'+(hx+24)+','+hy+' C'+(hx+24)+','+(ROWY-40)+' '+(B.x+20)+','+(ROWY-40)+' '+(B.x+20)+','+ROWY,'k','head');
+      else path('M'+(hx+30)+','+hy+' L'+(B.x+14)+','+(B.y+h),'k','head');
+    }
+    // edges
+    Object.keys(st.nodes).forEach(function(id){
+      var A=pos[id], n=st.nodes[id]; if(!A) return;
+      var ny = t==='dll' ? h*0.34 : h/2, py=h*0.68;
+      if(n.next!==null && pos[n.next]){
+        var B=pos[n.next], sx=A.x+w-g.nf/2, d;
+        if(A.row && B.row){
+          var di=B.i-A.i;
+          if(di===1) d='M'+sx+','+(A.y+ny)+' L'+B.x+','+(B.y+ny);
+          else if(di>1){ var top=ROWY-26-7*di; d='M'+sx+','+A.y+' C'+sx+','+top+' '+(B.x+16)+','+top+' '+(B.x+16)+','+B.y; }
+          else { var yb=ROWY+h+22; d='M'+sx+','+(A.y+h)+' L'+sx+','+yb+' L'+(B.x+16)+','+yb+' L'+(B.x+16)+','+(B.y+h); }
+        } else if(!B.row){ d='M'+sx+','+(A.y+ny)+' L'+(B.x+16)+','+(B.y+h); }
+        else { d='M'+sx+','+(A.y+h)+' L'+(B.x+g.pf+18)+','+B.y; }
+        path(d,'k',id+':next');
+      }
+      if(t==='dll' && n.prev!==null && pos[n.prev]){
+        var P=pos[n.prev], px=A.x+g.pf/2, d2;
+        if(A.row && P.row){
+          var dj=P.i-A.i;
+          if(dj===-1) d2='M'+px+','+(A.y+py)+' L'+(P.x+w)+','+(P.y+py);
+          else if(dj<-1){ var yb2=ROWY+h+26+6*(-dj); d2='M'+px+','+(A.y+h)+' C'+px+','+yb2+' '+(P.x+w-16)+','+yb2+' '+(P.x+w-16)+','+(P.y+h); }
+          else d2='M'+px+','+(A.y+py)+' L'+(P.x)+','+(P.y+py);
+        } else if(!P.row){ d2='M'+px+','+A.y+' L'+(P.x+w-16)+','+(P.y+h); }
+        else { d2='M'+px+','+(A.y+h)+' L'+(P.x+w-18)+','+P.y; }
+        path(d2,'p',id+':prev');
+      }
+    });
+    // nodes
+    Object.keys(pos).forEach(function(id){
+      var A=pos[id], n=st.nodes[id]; if(!n) return;
+      var fill=FILL[(st.hl||{})[id]]||'#fff';
+      var gg=S('g',{},nodesG);
+      S('rect',{x:A.x,y:A.y,width:w,height:h,rx:6,fill:fill,stroke:C.ink,'stroke-width':2},gg);
+      var dx0=A.x+g.pf, dx1=A.x+w-g.nf;
+      if(g.pf) S('line',{x1:dx0,y1:A.y,x2:dx0,y2:A.y+h,stroke:C.ink,'stroke-width':1.5},gg);
+      S('line',{x1:dx1,y1:A.y,x2:dx1,y2:A.y+h,stroke:C.ink,'stroke-width':1.5},gg);
+      TX(gg,(dx0+dx1)/2,A.y+h/2+6,String(n.v),{'text-anchor':'middle','font-size':17,'font-family':'Fira Code, monospace','font-weight':500,fill:C.ink});
+      function field(x0,x1,val,cy){ if(val===null){ S('line',{x1:x0+5,y1:A.y+h-6,x2:x1-5,y2:A.y+6,stroke:C.ink2,'stroke-width':1.3},gg); } else { S('circle',{cx:(x0+x1)/2,cy:A.y+cy,r:3.2,fill:C.ink},gg); } }
+      field(dx1,A.x+w,n.next,t==='dll'?h*0.34:h/2);
+      if(g.pf) field(A.x,dx0,n.prev,h*0.68);
+      if(st.addr!==false) TX(gg,A.x+w/2,A.y+h+14,'@'+n.a,{'text-anchor':'middle','font-size':10.5,fill:C.ink2,'font-family':'Fira Code, monospace'});
+      if(n.next===null && A.row && A.i===len-1 && !flAtEnd) TX(gg,A.x+w+8,A.y+(t==='dll'?h*0.34:h/2)+4,'NULL',{'font-size':11,fill:C.ink2,'font-family':'Fira Code, monospace'});
+    });
+    // pointer tags
+    var byNode={};
+    Object.keys(st.ptrs||{}).forEach(function(name){ var id=st.ptrs[name]; if(id===null||!pos[id]) return; (byNode[id]=byNode[id]||[]).push(name); });
+    Object.keys(byNode).forEach(function(id){
+      var A=pos[id], names=byNode[id];
+      names.forEach(function(nm, j){
+        var tw=10+nm.length*7.4, cx=A.x+w/2, y;
+        if(A.row){ y=ROWY+h+34+j*20; if(j===0) S('path',{d:'M'+(cx-5)+','+(y-1)+' L'+cx+','+(y-7)+' L'+(cx+5)+','+(y-1)+' z',fill:C.acc},tags); }
+        else { y=A.y-2; cx=A.x+w+8+tw/2+j*(tw+6); }
+        S('rect',{x:cx-tw/2,y:y,width:tw,height:17,rx:8,fill:C.acc},tags);
+        TX(tags,cx,y+12.5,nm,{'text-anchor':'middle','font-size':11,fill:'#fff','font-family':'Fira Code, monospace','font-weight':600});
+      });
+    });
+  }
+
+  /* ---------------- model helpers ---------------- */
+  var ADDRS={};
+  function randAddr(){ var a; do{ a=1000+16*Math.floor(Math.random()*560); }while(ADDRS[a]); ADDRS[a]=1; return a; }
+  function buildModel(t, vals, fixedAddr){
+    var M={nodes:{}, head:null, ord:[], seq:0};
+    var ids=vals.map(function(v,i){ var id='n'+(M.seq++); M.nodes[id]={v:v, a: fixedAddr? fixedAddr[i] : randAddr(), next:null, prev:null}; return id; });
+    ids.forEach(function(id,i){ M.nodes[id].next = i<ids.length-1 ? ids[i+1] : (t==='cll'? ids[0] : null); if(t==='dll') M.nodes[id].prev = i>0? ids[i-1] : null; });
+    M.head = ids.length? ids[0] : null; M.ord = ids.slice();
+    return M;
+  }
+  var FIXED=[2048,1296,3520,1760,2832,1104,3184,2496];
+
+  /* ---------------- static figures ---------------- */
+  each(root.querySelectorAll('.lfig'), function(div){
+    var t=div.getAttribute('data-t'), vals=(div.getAttribute('data-v')||'').split(',').filter(function(s){return s.trim()!=='';}).map(function(s){return s.trim();});
+    var M=buildModel(t, vals, FIXED);
+    var hl={}, ptrs={};
+    (div.getAttribute('data-hl')||'').split(',').forEach(function(p){ if(!p) return; var q=p.split(':'); hl[M.ord[+q[0]]]=q[1]; });
+    (div.getAttribute('data-p')||'').split(',').forEach(function(p){ if(!p) return; var q=p.split(':'); ptrs[q[1]]=M.ord[+q[0]]; });
+    var svg=S('svg',{xmlns:NS,role:'img','aria-label':t+' linked list: '+vals.join(', ')},div);
+    drawList(svg, t, {nodes:M.nodes, head:M.head, ord:M.ord, hl:hl, ptrs:ptrs, isStatic:true, addr:div.getAttribute('data-addr')==='1'});
+  });
+
+  /* =================================================================
+     OPERATIONS VISUALIZER
+     ================================================================= */
+  var TYPE='sll', MAXN=7, M=null, frames=[], busy=false, stepResolve=null;
+  var START=[10,20,30,40];
+  function N(id){ return M.nodes[id]; }
+  function cl(o){ return JSON.parse(JSON.stringify(o)); }
+  function F(alg, line, log, o){ o=o||{}; frames.push({m:cl(M), alg:alg, line:line, log:log, fl:o.fl||null, hl:o.hl||{}, ptrs:o.ptrs||{}, he:o.he||[], cls:o.cls||'', mv:o.mv||0, lk:o.lk||0}); }
+  function hlo(){ var r={}; for(var i=0;i<arguments.length;i+=2){ if(arguments[i]!==null) r[arguments[i]]=arguments[i+1]; } return r; }
+  function v(id){ return id===null||id===undefined ? 'NULL' : String(N(id).v); }
+  function mkNode(val){ var id='n'+(M.seq++); M.nodes[id]={v:val, a:randAddr(), next:null, prev:null}; return id; }
+  function freeNode(id){ delete ADDRS[N(id).a]; delete M.nodes[id]; var k=M.ord.indexOf(id); if(k>=0) M.ord.splice(k,1); }
+  function lastId(){ return M.ord[M.ord.length-1]; }
+  var RESULT=null;
+  function done(text, cls){ RESULT={text:text, cls:cls||'ok'}; }
+
+  /* ---- insertion at beginning ---- */
+  function insBeg(item, A){
+    A=A||'insBeg'; var t=TYPE;
+    var nn=mkNode(item), fl={id:nn, at:0};
+    F(A,1,'GETNODE: new node @'+N(nn).a+' with data '+item,{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+    if(t==='cll'){
+      if(M.head===null){ N(nn).next=nn; M.head=nn; M.ord=[nn]; F(A,2,'List empty: newNode.next \u2190 newNode; head \u2190 newNode',{hl:hlo(nn,'new'),he:[nn+':next','head'],lk:2}); done('Inserted '+item+' into an empty circular list: it points to itself.'); return; }
+      F(A,2,'head \u2260 NULL, continue',{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+      var last=M.head; F(A,3,'last \u2190 head ('+v(last)+')',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last}});
+      while(N(last).next!==M.head){ F(A,4,'last.next ('+v(N(last).next)+') \u2260 head \u2192 move',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last}}); last=N(last).next; F(A,5,'last \u2190 last.next ('+v(last)+')',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last},mv:1}); }
+      F(A,4,'last.next = head \u2192 last node found',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last}});
+      N(nn).next=M.head; F(A,6,'newNode.next \u2190 head ('+v(M.head)+')',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last},he:[nn+':next'],lk:1});
+      N(last).next=nn; F(A,7,'last.next \u2190 newNode',{fl:fl,hl:hlo(nn,'new',last,'cur'),ptrs:{newNode:nn,last:last},he:[last+':next'],lk:1});
+      M.head=nn; M.ord.unshift(nn); F(A,8,'head \u2190 newNode',{hl:hlo(nn,'new'),ptrs:{newNode:nn,last:last},he:['head'],lk:1});
+      done('Inserted '+item+' at the beginning. The last node now points to the new head.'); return;
+    }
+    N(nn).next=M.head;
+    F(A,2,'newNode.next \u2190 head ('+v(M.head)+')',{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn},he:[nn+':next'],lk:1});
+    if(t==='dll'){
+      if(M.head!==null){ N(M.head).prev=nn; F(A,3,'head \u2260 NULL: head.prev \u2190 newNode',{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn},he:[M.head+':prev'],lk:1}); }
+      else F(A,3,'head = NULL: nothing to link back',{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+      M.head=nn; M.ord.unshift(nn); F(A,4,'head \u2190 newNode',{hl:hlo(nn,'new'),ptrs:{newNode:nn},he:['head'],lk:1});
+    } else {
+      M.head=nn; M.ord.unshift(nn); F(A,3,'head \u2190 newNode',{hl:hlo(nn,'new'),ptrs:{newNode:nn},he:['head'],lk:1});
+      F(A,4,'exit',{hl:hlo(nn,'new')});
+    }
+    done('Inserted '+item+' at the beginning in O(1): no traversal needed.');
+  }
+
+  /* ---- insertion at end ---- */
+  function insEnd(item){
+    var A='insEnd', t=TYPE, nn=mkNode(item), fl={id:nn, at:M.ord.length};
+    F(A,1,'GETNODE: new node @'+N(nn).a+' with data '+item,{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+    if(M.head===null){
+      if(t==='cll') N(nn).next=nn;
+      M.head=nn; M.ord=[nn];
+      F(A,2,'List empty: head \u2190 newNode'+(t==='cll'?' (points to itself)':''),{hl:hlo(nn,'new'),he:['head'].concat(t==='cll'?[nn+':next']:[]),lk:t==='cll'?2:1});
+      done('List was empty, so '+item+' became the first node.'); return;
+    }
+    F(A,2,'head \u2260 NULL, continue',{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+    var name = t==='cll' ? 'last' : 'temp', stop = t==='cll' ? M.head : null, p=M.head;
+    function P(){ var r={newNode:nn}; r[name]=p; return r; }
+    F(A,3,name+' \u2190 head ('+v(p)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P()});
+    var moves=0;
+    while(N(p).next!==stop){ F(A,4,name+'.next ('+v(N(p).next)+') \u2260 '+(t==='cll'?'head':'NULL')+' \u2192 move',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P()}); p=N(p).next; moves++; F(A,5,name+' \u2190 '+name+'.next ('+v(p)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P(),mv:1}); }
+    F(A,4,name+'.next = '+(t==='cll'?'head':'NULL')+' \u2192 '+v(p)+' is the last node',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P()});
+    if(t==='sll'){
+      N(p).next=nn; M.ord.push(nn); F(A,6,'temp.next \u2190 newNode',{hl:hlo(nn,'new',p,'cur'),ptrs:P(),he:[p+':next'],lk:1}); F(A,7,'exit',{hl:hlo(nn,'new')});
+    } else if(t==='dll'){
+      N(p).next=nn; F(A,6,'temp.next \u2190 newNode',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P(),he:[p+':next'],lk:1});
+      N(nn).prev=p; M.ord.push(nn); F(A,7,'newNode.prev \u2190 temp',{hl:hlo(nn,'new',p,'cur'),ptrs:P(),he:[nn+':prev'],lk:1});
+    } else {
+      N(p).next=nn; F(A,6,'last.next \u2190 newNode',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:P(),he:[p+':next'],lk:1});
+      N(nn).next=M.head; M.ord.push(nn); F(A,7,'newNode.next \u2190 head (circle closed)',{hl:hlo(nn,'new',p,'cur'),ptrs:P(),he:[nn+':next'],lk:1});
+    }
+    done('Inserted '+item+' at the end after '+moves+' pointer move(s): O(n) because we had to find the last node.');
+  }
+
+  /* ---- insertion at position ---- */
+  function insPos(item, pos){
+    var A='insPos', t=TYPE, n=M.ord.length;
+    if(pos<1 || pos>n+1){ F(A,1,'pos = '+pos+' is outside 1 \u2026 '+(n+1)+' \u2192 INVALID POSITION',{cls:'bad'}); done('Invalid position. For insertion, pos must be between 1 and n + 1 = '+(n+1)+'.','bad'); return; }
+    F(A,1,'1 \u2264 '+pos+' \u2264 n + 1 = '+(n+1)+': valid',{});
+    if(pos===1){ F(A,2,'pos = 1 \u2192 use INSERT_BEGIN',{}); insBeg(item); RESULT.text='Position 1: '+RESULT.text; return; }
+    F(A,2,'pos \u2260 1, continue',{});
+    var nn=mkNode(item), fl={id:nn, at:pos-1};
+    F(A,3,'GETNODE: new node @'+N(nn).a+' with data '+item,{fl:fl,hl:hlo(nn,'new'),ptrs:{newNode:nn}});
+    var p=M.head; F(A,4,'temp \u2190 head ('+v(p)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p}});
+    for(var i=0;i<pos-2;i++){ p=N(p).next; F(A,5,'move '+(i+1)+' of '+(pos-2)+': temp \u2190 temp.next ('+v(p)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},mv:1}); }
+    if(pos-2===0) F(A,5,'pos \u2212 2 = 0 moves: temp stays at '+v(p),{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p}});
+    var succ=N(p).next;
+    N(nn).next=succ; F(A,6,'newNode.next \u2190 temp.next ('+v(succ)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},he:[nn+':next'],lk:succ===null?0:1});
+    if(t==='dll'){
+      N(nn).prev=p; F(A,7,'newNode.prev \u2190 temp ('+v(p)+')',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},he:[nn+':prev'],lk:1});
+      if(succ!==null){ N(succ).prev=nn; F(A,8,'temp.next \u2260 NULL: temp.next.prev \u2190 newNode',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},he:[succ+':prev'],lk:1}); }
+      else F(A,8,'temp.next = NULL: inserting at the end, skip',{fl:fl,hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p}});
+      N(p).next=nn; M.ord.splice(pos-1,0,nn); F(A,9,'temp.next \u2190 newNode',{hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},he:[p+':next'],lk:1});
+    } else {
+      N(p).next=nn; M.ord.splice(pos-1,0,nn); F(A,7,'temp.next \u2190 newNode',{hl:hlo(nn,'new',p,'cur'),ptrs:{newNode:nn,temp:p},he:[p+':next'],lk:1});
+      if(t==='sll') F(A,8,'exit',{hl:hlo(nn,'new')});
+    }
+    done('Inserted '+item+' at position '+pos+' after '+(pos-2)+' pointer move(s).');
+  }
+
+  /* ---- deletion at beginning ---- */
+  function delBeg(A){
+    A=A||'delBeg'; var t=TYPE;
+    if(M.head===null){ F(A,1,'head = NULL \u2192 UNDERFLOW',{cls:'bad'}); done('Underflow! The list is empty.','bad'); return; }
+    F(A,1,'head \u2260 NULL, continue',{});
+    var h0=M.head, item=N(h0).v;
+    if(t==='cll'){
+      if(N(h0).next===h0){ freeNode(h0); M.head=null; F(A,2,'Only one node: FREE(head); head \u2190 NULL',{he:['head'],lk:1}); done('Deleted '+item+'. The list is now empty.'); return; }
+      F(A,2,'More than one node, continue',{hl:hlo(h0,'del')});
+      var last=M.head; F(A,3,'last \u2190 head',{hl:hlo(h0,'del'),ptrs:{last:last}});
+      while(N(last).next!==M.head){ F(A,4,'last.next \u2260 head \u2192 move',{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last}}); last=N(last).next; F(A,5,'last \u2190 last.next ('+v(last)+')',{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last},mv:1}); }
+      F(A,4,'last.next = head \u2192 last node is '+v(last),{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last}});
+      F(A,6,'temp \u2190 head ('+item+')',{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last,temp:h0}});
+      M.head=N(h0).next; F(A,7,'head \u2190 head.next ('+v(M.head)+')',{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last,temp:h0},he:['head'],lk:1});
+      N(last).next=M.head; F(A,8,'last.next \u2190 head',{hl:hlo(h0,'del',last,'cur'),ptrs:{last:last,temp:h0},he:[last+':next'],lk:1});
+      freeNode(h0); F(A,9,'FREE(temp)',{hl:hlo(last,'cur'),ptrs:{last:last}});
+      done('Deleted '+item+' from the beginning and kept the circle closed.'); return;
+    }
+    F(A,2,'temp \u2190 head ('+item+')',{hl:hlo(h0,'del'),ptrs:{temp:h0}});
+    M.head=N(h0).next; F(A,3,'head \u2190 head.next ('+v(M.head)+')',{hl:hlo(h0,'del'),ptrs:{temp:h0},he:['head'],lk:1});
+    if(t==='dll'){
+      if(M.head!==null){ N(M.head).prev=null; F(A,4,'head \u2260 NULL: head.prev \u2190 NULL',{hl:hlo(h0,'del'),ptrs:{temp:h0},he:[],lk:1}); }
+      else F(A,4,'head = NULL: list became empty',{hl:hlo(h0,'del'),ptrs:{temp:h0}});
+      freeNode(h0); F(A,5,'FREE(temp)',{});
+    } else { freeNode(h0); F(A,4,'FREE(temp)',{}); F(A,5,'exit',{}); }
+    done('Deleted '+item+' from the beginning in O(1).');
+  }
+
+  /* ---- deletion at end ---- */
+  function delEnd(){
+    var A='delEnd', t=TYPE;
+    if(M.head===null){ F(A,1,'head = NULL \u2192 UNDERFLOW',{cls:'bad'}); done('Underflow! The list is empty.','bad'); return; }
+    F(A,1,'head \u2260 NULL, continue',{});
+    if(t==='dll'){
+      var p=M.head; F(A,2,'temp \u2190 head ('+v(p)+')',{hl:hlo(p,'cur'),ptrs:{temp:p}});
+      var mv=0;
+      while(N(p).next!==null){ F(A,3,'temp.next \u2260 NULL \u2192 move',{hl:hlo(p,'cur'),ptrs:{temp:p}}); p=N(p).next; mv++; F(A,4,'temp \u2190 temp.next ('+v(p)+')',{hl:hlo(p,'cur'),ptrs:{temp:p},mv:1}); }
+      F(A,3,'temp.next = NULL \u2192 last node is '+v(p),{hl:hlo(p,'del'),ptrs:{temp:p}});
+      var item=N(p).v;
+      if(N(p).prev===null){ M.head=null; F(A,5,'temp.prev = NULL: it was the only node, head \u2190 NULL',{hl:hlo(p,'del'),ptrs:{temp:p},he:['head'],lk:1}); }
+      else { var pr=N(p).prev; N(pr).next=null; F(A,6,'temp.prev.next \u2190 NULL ('+v(pr)+' becomes last)',{hl:hlo(p,'del',pr,'cur'),ptrs:{temp:p},he:[],lk:1}); }
+      freeNode(p); F(A,7,'FREE(temp)',{});
+      done('Deleted '+item+' from the end. The prev link let us stop at the last node itself.'); return;
+    }
+    var stop = t==='cll' ? M.head : null;
+    if(N(M.head).next===(t==='cll'?M.head:null)){ var only=N(M.head).v; freeNode(M.head); M.head=null; F(A,2,'Only one node: FREE(head); head \u2190 NULL',{he:['head'],lk:1}); done('Deleted '+only+'. The list is now empty.'); return; }
+    F(A,2,'More than one node, continue',{});
+    var q=M.head; F(A,3,'temp \u2190 head ('+v(q)+')',{hl:hlo(q,'cur'),ptrs:{temp:q}});
+    while(N(N(q).next).next!==stop){ F(A,4,'temp.next.next ('+v(N(N(q).next).next)+') \u2260 '+(t==='cll'?'head':'NULL')+' \u2192 move',{hl:hlo(q,'cur'),ptrs:{temp:q}}); q=N(q).next; F(A,5,'temp \u2190 temp.next ('+v(q)+')',{hl:hlo(q,'cur'),ptrs:{temp:q},mv:1}); }
+    F(A,4,'temp.next.next = '+(t==='cll'?'head':'NULL')+' \u2192 temp is the second-last node',{hl:hlo(q,'cur'),ptrs:{temp:q}});
+    var last=N(q).next, it=N(last).v;
+    F(A,6,'last \u2190 temp.next ('+it+')',{hl:hlo(q,'cur',last,'del'),ptrs:{temp:q,last:last}});
+    N(q).next = t==='cll' ? M.head : null;
+    F(A,7,'temp.next \u2190 '+(t==='cll'?'head':'NULL'),{hl:hlo(q,'cur',last,'del'),ptrs:{temp:q,last:last},he:t==='cll'?[q+':next']:[],lk:1});
+    freeNode(last); F(A,8,'FREE(last)',{hl:hlo(q,'cur'),ptrs:{temp:q}});
+    done('Deleted '+it+' from the end. We had to stop at the second-last node.');
+  }
+
+  /* ---- deletion at position ---- */
+  function delPos(pos){
+    var A='delPos', t=TYPE, n=M.ord.length;
+    if(M.head===null){ F(A,1,'head = NULL \u2192 UNDERFLOW',{cls:'bad'}); done('Underflow! The list is empty.','bad'); return; }
+    F(A,1,'head \u2260 NULL, continue',{});
+    if(pos<1 || pos>n){ F(A,2,'pos = '+pos+' is outside 1 \u2026 '+n+' \u2192 INVALID POSITION',{cls:'bad'}); done('Invalid position. For deletion, pos must be between 1 and n = '+n+'.','bad'); return; }
+    F(A,2,'1 \u2264 '+pos+' \u2264 n = '+n+': valid',{});
+    if(pos===1){ F(A,3,'pos = 1 \u2192 use DELETE_BEGIN',{}); delBeg(); RESULT.text='Position 1: '+RESULT.text; return; }
+    F(A,3,'pos \u2260 1, continue',{});
+    var p=M.head; F(A,4,'temp \u2190 head ('+v(p)+')',{hl:hlo(p,'cur'),ptrs:{temp:p}});
+    var times = t==='dll' ? pos-1 : pos-2;
+    for(var i=0;i<times;i++){ p=N(p).next; F(A,5,'move '+(i+1)+' of '+times+': temp \u2190 temp.next ('+v(p)+')',{hl:hlo(p,'cur'),ptrs:{temp:p},mv:1}); }
+    if(times===0) F(A,5,'0 moves needed: temp stays at '+v(p),{hl:hlo(p,'cur'),ptrs:{temp:p}});
+    if(t==='dll'){
+      var item=N(p).v, pr=N(p).prev, nx=N(p).next;
+      N(pr).next=nx; F(A,6,'temp.prev.next \u2190 temp.next ('+v(pr)+' \u2192 '+v(nx)+')',{hl:hlo(p,'del'),ptrs:{temp:p},he:[pr+':next'],lk:1});
+      if(nx!==null){ N(nx).prev=pr; F(A,7,'temp.next.prev \u2190 temp.prev ('+v(nx)+' \u2190 '+v(pr)+')',{hl:hlo(p,'del'),ptrs:{temp:p},he:[nx+':prev'],lk:1}); }
+      else F(A,7,'temp.next = NULL: deleting the last node, skip',{hl:hlo(p,'del'),ptrs:{temp:p}});
+      freeNode(p); F(A,8,'FREE(temp)',{});
+      done('Deleted '+item+' at position '+pos+' by joining its two neighbours (2 links).'); return;
+    }
+    var tg=N(p).next, it=N(tg).v;
+    F(A,6,'target \u2190 temp.next ('+it+')',{hl:hlo(p,'cur',tg,'del'),ptrs:{temp:p,target:tg}});
+    N(p).next=N(tg).next; F(A,7,'temp.next \u2190 target.next ('+v(N(tg).next)+'): target bypassed',{hl:hlo(p,'cur',tg,'del'),ptrs:{temp:p,target:tg},he:[p+':next'],lk:1});
+    freeNode(tg); F(A,8,'FREE(target)',{hl:hlo(p,'cur'),ptrs:{temp:p}});
+    done('Deleted '+it+' at position '+pos+'.');
+  }
+
+  /* ---- search ---- */
+  function search(key){
+    var A='search', t=TYPE, seen={};
+    function H(cur, cls){ var r=cl(seen); if(cur!==null) r[cur]=cls||'cur'; return r; }
+    if(t==='cll'){
+      if(M.head===null){ F(A,1,'head = NULL \u2192 return \u22121',{cls:'bad'}); done('The list is empty: '+key+' not found.','bad'); return; }
+      F(A,1,'head \u2260 NULL, continue',{});
+      var p=M.head, pos=1; F(A,2,'temp \u2190 head; pos \u2190 1',{hl:H(p),ptrs:{temp:p}});
+      do{
+        F(A,3,'do: visit node at position '+pos,{hl:H(p),ptrs:{temp:p}});
+        if(N(p).v===key){ F(A,4,'temp.data = '+key+' \u2192 FOUND at position '+pos,{hl:H(p,'found'),ptrs:{temp:p},cls:'ok'}); done('Found '+key+' at position '+pos+' after '+pos+' comparison(s).'); return; }
+        F(A,4,N(p).v+' \u2260 '+key,{hl:H(p),ptrs:{temp:p}});
+        seen[p]='seen'; p=N(p).next; pos++;
+        F(A,5,'temp \u2190 temp.next ('+v(p)+'); pos \u2190 '+pos,{hl:H(p),ptrs:{temp:p},mv:1});
+        F(A,6,p===M.head?'temp = head \u2192 full circle, stop':'temp \u2260 head \u2192 repeat',{hl:H(p),ptrs:{temp:p}});
+      } while(p!==M.head);
+      F(A,7,'return \u22121 (not found)',{hl:H(null),cls:'bad'}); done(key+' is not in the list ('+(pos-1)+' comparisons).','bad'); return;
+    }
+    var q=M.head, ps=1; F(A,1,'temp \u2190 head; pos \u2190 1',{hl:H(q),ptrs:{temp:q}});
+    while(q!==null){
+      F(A,2,'temp \u2260 NULL',{hl:H(q),ptrs:{temp:q}});
+      if(N(q).v===key){ F(A,3,'temp.data = '+key+' \u2192 FOUND at position '+ps,{hl:H(q,'found'),ptrs:{temp:q},cls:'ok'}); done('Found '+key+' at position '+ps+' after '+ps+' comparison(s).'); return; }
+      F(A,3,N(q).v+' \u2260 '+key,{hl:H(q),ptrs:{temp:q}});
+      seen[q]='seen'; q=N(q).next; F(A,4,'temp \u2190 temp.next ('+v(q)+')',{hl:H(q),ptrs:{temp:q},mv:1});
+      ps++; F(A,5,'pos \u2190 '+ps,{hl:H(q),ptrs:{temp:q}});
+    }
+    F(A,2,'temp = NULL \u2192 end of list',{hl:H(null)});
+    F(A,6,'return \u22121 (not found)',{hl:H(null),cls:'bad'}); done(key+' is not in the list ('+(ps-1)+' comparisons).','bad');
+  }
+
+  /* ---- traversal ---- */
+  function trav(){
+    var A='trav', t=TYPE, seen={}, out=[];
+    function H(cur){ var r=cl(seen); if(cur!==null && cur!==undefined) r[cur]='cur'; return r; }
+    if(t==='sll'){
+      var p=M.head; F(A,1,'temp \u2190 head ('+v(p)+')',{hl:H(p),ptrs:{temp:p}});
+      while(p!==null){ F(A,2,'temp \u2260 NULL',{hl:H(p),ptrs:{temp:p}}); out.push(N(p).v); F(A,3,'PROCESS: '+N(p).v,{hl:H(p),ptrs:{temp:p}}); seen[p]='found'; p=N(p).next; F(A,4,'temp \u2190 temp.next ('+v(p)+')',{hl:H(p),ptrs:{temp:p},mv:1}); }
+      F(A,2,'temp = NULL \u2192 stop',{hl:H(null)}); F(A,5,'exit',{hl:H(null)});
+      done(out.length? 'Visited: '+out.join(' \u2192 ')+' \u2192 NULL' : 'The list is empty: nothing to visit.', out.length?'ok':'bad'); return;
+    }
+    if(M.head===null){ F(A,1,'head = NULL \u2192 EMPTY',{cls:'bad'}); done('The list is empty: nothing to visit.','bad'); return; }
+    F(A,1,'head \u2260 NULL, continue',{});
+    if(t==='cll'){
+      var c=M.head; F(A,2,'temp \u2190 head ('+v(c)+')',{hl:H(c),ptrs:{temp:c}});
+      do{ F(A,3,'do:',{hl:H(c),ptrs:{temp:c}}); out.push(N(c).v); F(A,4,'PROCESS: '+N(c).v,{hl:H(c),ptrs:{temp:c}}); seen[c]='found'; c=N(c).next; F(A,5,'temp \u2190 temp.next ('+v(c)+')',{hl:H(c),ptrs:{temp:c},mv:1}); F(A,6,c===M.head?'temp = head \u2192 stop':'temp \u2260 head \u2192 repeat',{hl:H(c),ptrs:{temp:c}}); } while(c!==M.head);
+      done('Visited: '+out.join(' \u2192 ')+' \u2192 (back to '+N(M.head).v+')'); return;
+    }
+    var d=M.head, last=null; F(A,2,'temp \u2190 head ('+v(d)+')',{hl:H(d),ptrs:{temp:d}});
+    while(d!==null){ F(A,3,'temp \u2260 NULL (forward)',{hl:H(d),ptrs:{temp:d}}); out.push(N(d).v); last=d; F(A,4,'PROCESS: '+N(d).v+'; last \u2190 temp',{hl:H(d),ptrs:{temp:d,last:last}}); seen[d]='found'; d=N(d).next; F(A,5,'temp \u2190 temp.next ('+v(d)+')',{hl:H(d),ptrs:{temp:d,last:last},mv:1}); }
+    F(A,3,'temp = NULL \u2192 forward pass done',{hl:H(null),ptrs:{last:last}});
+    seen={}; var back=[]; d=last; F(A,6,'temp \u2190 last ('+v(d)+')',{hl:H(d),ptrs:{temp:d}});
+    while(d!==null){ F(A,7,'temp \u2260 NULL (backward)',{hl:H(d),ptrs:{temp:d}}); back.push(N(d).v); F(A,8,'PROCESS: '+N(d).v,{hl:H(d),ptrs:{temp:d}}); seen[d]='found'; d=N(d).prev; F(A,9,'temp \u2190 temp.prev ('+v(d)+')',{hl:H(d),ptrs:{temp:d},mv:1}); }
+    F(A,7,'temp = NULL \u2192 stop',{hl:H(null)});
+    done('Forward: '+out.join(' \u21c4 ')+'   |   Backward: '+back.join(' \u21c4 '));
+  }
+
+  /* ---------------- player ---------------- */
+  var svgV=$('lv-svg');
+  function pseudo(alg, line){
+    var pc=$('lv-pc'); pc.innerHTML='';
+    var lines=ALG[TYPE][alg]||[];
+    lines.forEach(function(s,i){ var d=el('div', i===line && line>0 ? 'on' : ''); d.textContent=s; pc.appendChild(d); });
+  }
+  function log(s, cls){ var lg=$('lv-log'); var d=el('div',cls||''); d.textContent=s; lg.appendChild(d); lg.scrollTop=lg.scrollHeight; }
+  function msg(s, cls){ var m=$('lv-msg'); m.textContent=s; m.className='msg '+(cls||''); }
+  function renderModel(extra){ extra=extra||{}; drawList(svgV, TYPE, {nodes:M.nodes, head:M.head, ord:M.ord, fl:extra.fl||null, hl:extra.hl||{}, ptrs:extra.ptrs||{}, he:extra.he||[]}); $('lv-n').textContent=M.ord.length; }
+  function wait(){
+    if($('lv-stepmode').checked){ return new Promise(function(r){ stepResolve=r; }); }
+    return sleep(parseInt($('lv-speed').value,10));
+  }
+  $('lv-step').addEventListener('click', function(){ if(stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  $('lv-stepmode').addEventListener('change', function(){ $('lv-step').style.display=this.checked?'':'none'; if(!this.checked && stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  function setBusy(b){ busy=b; each(root.querySelectorAll('#ll-s3 [data-op], #lv-rand, #lv-reset'), function(x){ x.disabled=b; }); each($('lv-type').children, function(x){ x.disabled=b; }); }
+
+  async function run(op){
+    if(busy) return;
+    var val=parseInt($('lv-val').value,10), pos=parseInt($('lv-pos').value,10);
+    if((op.indexOf('ins')===0 || op==='search') && isNaN(val)){ msg('Enter a whole-number value.','bad'); return; }
+    if(op.indexOf('ins')===0 && (val>999 || val<-99)){ msg('Please use values between \u221299 and 999 so they fit in the node.','bad'); return; }
+    if((op==='insPos'||op==='delPos') && isNaN(pos)){ msg('Enter a whole-number position.','bad'); return; }
+    if(op.indexOf('ins')===0 && M.ord.length>=MAXN){ msg('The visualizer shows at most '+MAXN+' nodes. (A real linked list has no fixed limit: it grows until memory runs out.)','bad'); return; }
+    var saved=cl(M);
+    frames=[]; RESULT=null;
+    F(op,0,'',{});
+    if(op==='insBeg') insBeg(val); else if(op==='insEnd') insEnd(val); else if(op==='insPos') insPos(val,pos);
+    else if(op==='delBeg') delBeg(); else if(op==='delEnd') delEnd(); else if(op==='delPos') delPos(pos);
+    else if(op==='search') search(val); else trav();
+    var finalM=M;
+    setBusy(true); $('lv-log').innerHTML=''; msg('Running\u2026','');
+    var title={insBeg:'INSERT AT BEGINNING '+val, insEnd:'INSERT AT END '+val, insPos:'INSERT '+val+' AT POSITION '+pos, delBeg:'DELETE AT BEGINNING', delEnd:'DELETE AT END', delPos:'DELETE AT POSITION '+pos, search:'SEARCH '+val, trav:'TRAVERSE'}[op];
+    log(title+'   ['+TYPE.toUpperCase()+', n = '+saved.ord.length+']','hd');
+    var moves=0, links=0;
+    $('lv-moves').textContent='0'; $('lv-links').textContent='0';
+    for(var i=1;i<frames.length;i++){
+      var f=frames[i];
+      M=f.m; moves+=f.mv; links+=f.lk;
+      pseudo(f.alg, f.line);
+      renderModel({fl:f.fl, hl:f.hl, ptrs:f.ptrs, he:f.he});
+      log(f.log, f.cls);
+      $('lv-moves').textContent=moves; $('lv-links').textContent=links;
+      await wait();
+    }
+    M=finalM; renderModel();
+    if(RESULT) msg(RESULT.text, RESULT.cls);
+    setBusy(false);
+  }
+  each(root.querySelectorAll('#ll-s3 [data-op]'), function(b){ b.addEventListener('click', function(){ run(b.getAttribute('data-op')); }); });
+
+  function valuesNow(){ return M ? M.ord.map(function(id){ return M.nodes[id].v; }) : START.slice(); }
+  function rebuild(vals){ ADDRS={}; M=buildModel(TYPE, vals); renderModel(); pseudo('insPos',-1); }
+  each($('lv-type').children, function(b){
+    b.addEventListener('click', function(){
+      if(busy) return;
+      each($('lv-type').children, function(x){ x.classList.toggle('on', x===b); });
+      var vals=valuesNow(); TYPE=b.getAttribute('data-t'); rebuild(vals);
+      $('lv-log').innerHTML=''; msg('Switched to a '+{sll:'singly',dll:'doubly',cll:'circular'}[TYPE]+' linked list with the same values.','');
+    });
+  });
+  $('lv-reset').addEventListener('click', function(){ rebuild(START.slice()); $('lv-log').innerHTML=''; $('lv-moves').textContent='0'; $('lv-links').textContent='0'; msg('List reset to 10 \u2192 20 \u2192 30 \u2192 40.',''); });
+  $('lv-rand').addEventListener('click', function(){
+    var n=3+Math.floor(Math.random()*3), vals=[];
+    while(vals.length<n){ var x=5+Math.floor(Math.random()*95); if(vals.indexOf(x)<0) vals.push(x); }
+    rebuild(vals); $('lv-log').innerHTML=''; msg('New random list with '+n+' nodes.','');
+  });
+  rebuild(START.slice());
+
+  /* =================================================================
+     MEMORY & POINTER EXPLORER
+     ================================================================= */
+  var ML={t:'sll', cells:[], vals:[], busy:false};
+  var MC=6, MR=3, CW=148, CH=74, CG=14, MX=12, MY=58;
+  function mlAddr(i){ return 2000+i*48; }
+  function mlParse(){
+    var vals=$('ml-vals').value.split(/[,\s]+/).filter(function(s){return s!=='';}).map(function(s){ return parseInt(s,10); }).filter(function(x){ return !isNaN(x); });
+    if(vals.length===0) vals=[10,20,30];
+    return vals.slice(0,6).map(function(x){ return Math.max(-99, Math.min(999, x)); });
+  }
+  function mlAlloc(){
+    ML.vals=mlParse();
+    var free=[]; for(var i=0;i<MC*MR;i++) free.push(i);
+    for(var k=free.length-1;k>0;k--){ var j=Math.floor(Math.random()*(k+1)); var tmp=free[k]; free[k]=free[j]; free[j]=tmp; }
+    ML.cells=free.slice(0, ML.vals.length);
+  }
+  function mlDraw(active){
+    var svg=$('ml-svg'); while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var W=MX*2+MC*CW+(MC-1)*CG, H=MY+MR*CH+(MR-1)*CG+16;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var uid='mlm'+(++UID), defs=S('defs',{},svg);
+    [['k',C.ink],['b',C.blue],['o',C.acc]].forEach(function(p){ var m=S('marker',{id:uid+p[0],viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs); S('path',{d:'M0,0 L10,5 L0,10 z',fill:p[1]},m); });
+    function cxy(cell){ return {x:MX+(cell%MC)*(CW+CG), y:MY+Math.floor(cell/MC)*(CH+CG)}; }
+    var n=ML.vals.length, t=ML.t;
+    var occ={}; ML.cells.forEach(function(c,i){ occ[c]=i; });
+    // memory cells
+    for(var c=0;c<MC*MR;c++){
+      var p=cxy(c); var used=occ[c]!==undefined;
+      S('rect',{x:p.x,y:p.y,width:CW,height:CH,rx:8,fill:used?'#fff':'#ece9e0',stroke:used?C.ink:C.line,'stroke-width':used?1.8:1,'stroke-dasharray':used?null:'4 3'},svg);
+      TX(svg,p.x+6,p.y+13,String(mlAddr(c)),{'font-size':10.5,fill:used?C.acc:'#9a968a','font-family':'Fira Code, monospace','font-weight':600});
+      if(!used) TX(svg,p.x+CW/2,p.y+CH/2+6,'free',{'text-anchor':'middle','font-size':12,fill:'#aaa59a','font-family':'Fira Code, monospace'});
+    }
+    var lay=S('g',{},svg), top=S('g',{},svg);
+    function nextOf(i){ return i<n-1 ? i+1 : (t==='cll'?0:-1); }
+    function prevOf(i){ return t==='dll' && i>0 ? i-1 : -1; }
+    var fw = t==='dll' ? [40,68,40] : [0,80,68];
+    ML.cells.forEach(function(cell,i){
+      var p=cxy(cell), bx=p.x+(CW-(fw[0]+fw[1]+fw[2]))/2, by=p.y+22, bh=40;
+      var isA = active===i;
+      var g2=S('g',{},top);
+      S('rect',{x:bx,y:by,width:fw[0]+fw[1]+fw[2],height:bh,rx:5,fill:isA?'#ffd8a8':'#fff',stroke:C.ink,'stroke-width':1.8},g2);
+      var x1=bx+fw[0], x2=x1+fw[1];
+      if(fw[0]) S('line',{x1:x1,y1:by,x2:x1,y2:by+bh,stroke:C.ink,'stroke-width':1.2},g2);
+      S('line',{x1:x2,y1:by,x2:x2,y2:by+bh,stroke:C.ink,'stroke-width':1.2},g2);
+      TX(g2,(x1+x2)/2,by+bh/2+6,String(ML.vals[i]),{'text-anchor':'middle','font-size':16,'font-family':'Fira Code, monospace','font-weight':600,fill:C.ink});
+      var nx=nextOf(i), pv=prevOf(i);
+      TX(g2,(x2+bx+fw[0]+fw[1]+fw[2])/2,by+bh/2+4,nx<0?'NULL':String(mlAddr(ML.cells[nx])),{'text-anchor':'middle','font-size':10,'font-family':'Fira Code, monospace',fill:nx<0?C.ink2:C.ink});
+      if(fw[0]) TX(g2,bx+fw[0]/2,by+bh/2+4,pv<0?'NULL':String(mlAddr(ML.cells[pv])),{'text-anchor':'middle','font-size':10,'font-family':'Fira Code, monospace',fill:pv<0?C.ink2:C.blue});
+      // arrows
+      function arrow(fromX, fromY, toCell, kind, bend){
+        var q=cxy(toCell), tx=q.x+CW/2, ty=q.y+22;
+        if(Math.abs(q.y-p.y)<1){ ty=q.y+22+20; tx = q.x > p.x ? q.x+ (CW-(fw[0]+fw[1]+fw[2]))/2 : q.x+CW-(CW-(fw[0]+fw[1]+fw[2]))/2; }
+        else if(q.y<p.y){ ty=q.y+22+40; }
+        var mx=(fromX+tx)/2, my=(fromY+ty)/2, dx=tx-fromX, dy=ty-fromY, L=Math.sqrt(dx*dx+dy*dy)||1;
+        var cx=mx - dy/L*bend, cy=my + dx/L*bend;
+        var hot = active===i && kind==='k';
+        S('path',{d:'M'+fromX+','+fromY+' Q'+cx+','+cy+' '+tx+','+ty,fill:'none',stroke:hot?C.acc:(kind==='b'?C.blue:C.ink),'stroke-width':hot?2.6:1.5,'stroke-dasharray':kind==='b'?'5 4':null,'marker-end':'url(#'+uid+(hot?'o':kind)+')',opacity:0.9},lay);
+      }
+      if(nx>=0) arrow(x2+fw[2]/2, by+bh/2, ML.cells[nx], 'k', 30);
+      if(pv>=0) arrow(bx+fw[0]/2, by+bh, ML.cells[pv], 'b', -30);
+    });
+    // head
+    S('rect',{x:MX,y:10,width:120,height:30,rx:7,fill:C.ink},top);
+    TX(top,MX+60,30,'head = '+(n?mlAddr(ML.cells[0]):'NULL'),{'text-anchor':'middle','font-size':12,fill:'#fff','font-family':'Fira Code, monospace','font-weight':600});
+    if(n){ var h0=cxy(ML.cells[0]); S('path',{d:'M'+(MX+120)+',25 Q'+(h0.x+CW/2)+',20 '+(h0.x+CW/2)+','+(h0.y+22),fill:'none',stroke:active===-1?C.acc:C.ink,'stroke-width':active===-1?2.6:1.5,'marker-end':'url(#'+uid+(active===-1?'o':'k')+')'},lay); }
+    $('ml-cap').textContent={sll:'Singly: each node = [ data | address of next node ].',dll:'Doubly: each node = [ address of previous | data | address of next ]. Dashed blue arrows are prev links.',cll:'Circular: like singly, but the last node stores the address of the first node instead of NULL.'}[t];
+    mlTable(active);
+  }
+  function mlTable(active){
+    var tb=$('ml-table'), n=ML.vals.length, t=ML.t;
+    var h='<tr><th>Order</th><th>Address</th>'+(t==='dll'?'<th>prev</th>':'')+'<th>data</th><th>next</th></tr>';
+    for(var i=0;i<n;i++){
+      var nx = i<n-1 ? mlAddr(ML.cells[i+1]) : (t==='cll' ? mlAddr(ML.cells[0])+' (head)' : 'NULL');
+      var pv = t==='dll' ? (i>0 ? mlAddr(ML.cells[i-1]) : 'NULL') : null;
+      h+='<tr'+(active===i?' class="on"':'')+'><td>'+(i+1)+(i===0?' (head)':'')+'</td><td>'+mlAddr(ML.cells[i])+'</td>'+(t==='dll'?'<td>'+pv+'</td>':'')+'<td>'+ML.vals[i]+'</td><td>'+nx+'</td></tr>';
+    }
+    tb.innerHTML=h;
+  }
+  each($('ml-type').children, function(b){
+    b.addEventListener('click', function(){ if(ML.busy) return; each($('ml-type').children, function(x){ x.classList.toggle('on', x===b); }); ML.t=b.getAttribute('data-t'); ML.vals=mlParse(); if(ML.cells.length!==ML.vals.length) mlAlloc(); mlDraw(); });
+  });
+  $('ml-shuffle').addEventListener('click', function(){ if(ML.busy) return; mlAlloc(); mlDraw(); $('ml-msg').textContent='Memory re-allocated: same list, same order, completely different addresses. The order comes from the links, not from where the nodes sit.'; $('ml-msg').className='msg'; });
+  $('ml-vals').addEventListener('change', function(){ if(ML.busy) return; mlAlloc(); mlDraw(); });
+  $('ml-follow').addEventListener('click', async function(){
+    if(ML.busy) return; ML.busy=true; this.disabled=true;
+    var n=ML.vals.length, m=$('ml-msg'), path=['head = '+mlAddr(ML.cells[0])];
+    m.className='msg'; mlDraw(-1); m.textContent=path.join('  \u2192  '); await sleep(900);
+    var rounds = ML.t==='cll' ? n+1 : n;
+    for(var k=0;k<rounds;k++){
+      var i=k%n; mlDraw(i);
+      var nx = i<n-1 ? mlAddr(ML.cells[i+1]) : (ML.t==='cll' ? mlAddr(ML.cells[0]) : 'NULL');
+      path.push('['+mlAddr(ML.cells[i])+'] data '+ML.vals[i]+', next = '+nx);
+      if(k===n && ML.t==='cll') path[path.length-1]='['+mlAddr(ML.cells[0])+'] back at head: stop';
+      m.textContent=path.join('  \u2192  '); await sleep(1000);
+    }
+    if(ML.t==='dll'){ path.push('\u2026and prev links lead back the other way'); m.textContent=path.join('  \u2192  '); }
+    if(ML.t!=='cll') { path.push('NULL: end of list'); m.textContent=path.join('  \u2192  '); }
+    mlDraw(); m.className='msg ok'; ML.busy=false; this.disabled=false;
+  });
+  mlAlloc(); mlDraw();
+
+  /* ---------------- quiz ---------------- */
+  var QZ=[
+    {q:'A singly linked list keeps only a head pointer. What is the time complexity of inserting a node at the end?', o:['O(1)','O(log n)','O(n)','O(n\u00b2)'], a:2, e:'You must walk from head to the last node, following n \u2212 1 links, before attaching the new node.'},
+    {q:'In a doubly linked list, a pointer p to a node (not the first or last) is given. Deleting that node takes:', o:['O(1)','O(n)','O(log n)','O(n\u00b2)'], a:0, e:'p.prev gives the predecessor directly, so p.prev.next \u2190 p.next and p.next.prev \u2190 p.prev complete the deletion in constant time.'},
+    {q:'In a circular singly linked list, what does the last node\'s next field contain?', o:['NULL','Its own address','The address of the first node','The address of the second-last node'], a:2, e:'That link is what makes the list circular: after the last node, traversal continues from head.'},
+    {q:'To insert newNode after the node pointed to by temp in an SLL, which order of statements is correct?', o:['temp.next \u2190 newNode; newNode.next \u2190 temp.next','newNode.next \u2190 temp.next; temp.next \u2190 newNode','newNode.next \u2190 temp; temp.next \u2190 newNode','temp \u2190 newNode; newNode.next \u2190 NULL'], a:1, e:'Link the new node to the rest of the list first. The other order makes newNode point to itself and loses the remaining nodes.'},
+    {q:'How many link fields change when a node is inserted between two existing nodes of a doubly linked list?', o:['1','2','3','4'], a:3, e:'newNode.next, newNode.prev, successor.prev and predecessor.next: four links.'},
+    {q:'When should the traversal loop of a circular linked list stop?', o:['When temp becomes NULL','When temp returns to head','After exactly n \u2212 1 steps without checking','When temp.next becomes NULL'], a:1, e:'There is no NULL in a circular list. A do-while loop processes head first and stops when temp comes back to head.'},
+    {q:'Which of the following is NOT an advantage of linked lists over arrays?', o:['Dynamic size','O(1) insertion at the beginning','Random access to the k-th element','No need for contiguous memory'], a:2, e:'Linked lists only allow sequential access: reaching the k-th node takes O(k). Random access is an advantage of arrays.'},
+    {q:'Which application is the most natural fit for a circular linked list?', o:['Round-robin CPU scheduling','Binary search on sorted data','Browser back button only','Storing a fixed-size lookup table'], a:0, e:'Round-robin gives each process a turn and then starts again from the first: exactly the endless cycle a circular list provides.'}
+  ];
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('ll-quiz'); qz.innerHTML=''; answered=0; score=0; $('ll-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      var qt=el('div','qt'); qt.textContent=item.q; card.appendChild(qt);
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.appendChild(document.createTextNode(item.e)); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('ll-quiz-num').textContent=score; $('ll-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('ll-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+  /* ---------------- section navigation menu ---------------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('ll-nav'), tabsBox=$('ll-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('ll-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('ll-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('ll-prev').disabled = cur===0; $('ll-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('ll-prev').addEventListener('click', function(){ go(cur-1); });
+  $('ll-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('ll-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('ll-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="arrays.html"><small>← Previous lesson</small><b>Arrays</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="stack.html"><small>Next lesson →</small><b>Stack</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

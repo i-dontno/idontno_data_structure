@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queue · Learn Data Structures with idontno</title>
+<meta name="description" content="Simple queue, circular queue and deque, with applications.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="queue">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="cur" data-lesson="queue" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module II · Linear data structures</span><span>›</span><span>Lesson 5 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     QUEUE: Simple Queue, Circular Queue and Deque,
+     Applications, Advantages & Disadvantages
+     MCA Data Structures Interactive Learning Blog
+     Paste this whole block into Blogger's HTML view.
+     ============================================================ -->
+<style>
+#dsa-qu{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-qu *,#dsa-qu *::before,#dsa-qu *::after{box-sizing:border-box}
+#dsa-qu h1,#dsa-qu h2,#dsa-qu h3,#dsa-qu h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-qu p{margin:0 0 14px}
+#dsa-qu a{color:var(--blue)}
+#dsa-qu code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-qu ul,#dsa-qu ol{margin:0 0 14px;padding-left:22px}
+#dsa-qu li{margin:4px 0}
+#dsa-qu strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-qu .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-qu .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-qu .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-qu .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-qu .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-qu .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-qu .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-qu .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-qu .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-qu .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-qu .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-qu .toc a{text-decoration:none;color:var(--ink)}
+#dsa-qu .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-qu section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-qu .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-qu .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-qu .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-qu h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-qu h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-qu .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-qu .box p:last-child,#dsa-qu .box ul:last-child{margin-bottom:0}
+#dsa-qu .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-qu .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-qu .def .box-title{color:var(--blue)}
+#dsa-qu .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-qu .tip .box-title{color:var(--teal)}
+#dsa-qu .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-qu .warn .box-title{color:var(--red)}
+#dsa-qu .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-qu .exam .box-title{color:var(--gold)}
+#dsa-qu .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-qu .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-qu .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-qu .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-qu .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-qu .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-qu .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-qu .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-qu .pro{border-left:4px solid var(--teal)}
+#dsa-qu .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-qu .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-qu table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-qu th,#dsa-qu td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-qu th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-qu tr:nth-child(even) td{background:#faf9f5}
+#dsa-qu td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-qu td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-qu .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-qu .mem .c{width:64px;text-align:center}
+#dsa-qu .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-qu .mem .c:last-child .v{border-right-width:2px}
+#dsa-qu .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-qu .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-qu .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-qu .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-qu .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-qu .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-qu .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-qu .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-qu pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-qu pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-qu pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-qu pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-qu .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-qu .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-qu .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-qu .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-qu .tab-pane{display:none;padding-top:10px}
+#dsa-qu .tab-pane.on{display:block}
+#dsa-qu .code-wrap{position:relative}
+#dsa-qu .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-qu .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-qu .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-qu .btn:hover{transform:translateY(-1px)}
+#dsa-qu .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-qu .btn.acc{background:var(--accent)}
+#dsa-qu .btn.tl{background:var(--teal)}
+#dsa-qu .btn.rd{background:var(--red)}
+#dsa-qu .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-qu input[type=number],#dsa-qu input[type=text],#dsa-qu select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-qu label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-qu .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-qu .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-qu .lab-head b{font-size:1.05em}
+#dsa-qu .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-qu .lab-body{padding:18px;background:#fff}
+#dsa-qu .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-qu .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-qu .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-qu .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-qu .cell:last-child .box-v{border-right-width:2px}
+#dsa-qu .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-qu .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-qu .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-qu .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-qu .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-qu .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-qu .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-qu .cell.done .box-v{background:var(--teal-soft)}
+#dsa-qu .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-qu .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-qu .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-qu .pc div{padding:1px 14px;white-space:pre}
+#dsa-qu .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-qu .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-qu .log div{margin:2px 0}
+#dsa-qu .log .ok{color:#8ce99a}
+#dsa-qu .log .bad{color:#ff8787}
+#dsa-qu .log .hd{color:#ffb48a}
+#dsa-qu .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-qu .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-qu .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-qu .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-qu .msg.bad{color:var(--red)}
+#dsa-qu .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-qu .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-qu .calc-out b{color:var(--accent)}
+#dsa-qu .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-qu .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-qu .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-qu .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-qu .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-qu .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-qu .mgrid div.tg small{color:#ffe3d3}
+#dsa-qu .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-qu .mgrid div.now{background:#ffd8a8}
+#dsa-qu .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-qu details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-qu details summary{cursor:pointer;font-weight:600}
+#dsa-qu details[open] summary{margin-bottom:8px}
+#dsa-qu .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-qu .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-qu .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-qu .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-qu .opt:hover{border-color:var(--ink2)}
+#dsa-qu .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-qu .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-qu .opt:disabled{cursor:default}
+#dsa-qu .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-qu .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-qu .score b{color:#ffb48a;font-size:1.3em}
+#dsa-qu .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-qu .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-qu .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-qu .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-qu .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-qu .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-qu .nav-tab.home{padding-left:14px}
+#dsa-qu .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-qu .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-qu .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-qu .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-qu .nb,#dsa-qu .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-qu .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-qu .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-qu .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-qu .crumb b{display:block;font-size:1.02em}
+#dsa-qu .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-qu .nav-tools{display:flex;gap:8px}
+#dsa-qu .nt{border-color:var(--line);font-size:.82em}
+#dsa-qu .nt:hover{border-color:var(--ink)}
+#dsa-qu .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-qu.paged .page{display:none}
+#dsa-qu.paged .page.active{display:block;animation:quFade .3s ease}
+@keyframes quFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-qu .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-qu .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-qu .pager button:hover{background:var(--accent-soft)}
+#dsa-qu .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-qu .pager button b{font-size:.95em}
+#dsa-qu .pager .nx{text-align:right;margin-left:auto}
+#dsa-qu:not(.paged) .pager{display:none}
+#dsa-qu .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-qu .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-qu .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-qu .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-qu .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-qu .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-qu .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-qu .ov b{display:block;font-size:1.02em}
+#dsa-qu .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-qu .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-qu:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-qu:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-qu.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-qu .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-qu .nav-bar{gap:6px}
+  #dsa-qu .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-qu .nb{flex:1}
+  #dsa-qu .nav-tools{flex-basis:100%}
+  #dsa-qu .nav-tools .nt{flex:1}
+  #dsa-qu .pager button{max-width:49%;font-size:.9em}
+  #dsa-qu{font-size:16px}
+  #dsa-qu section.sec{padding:22px 16px 10px}
+  #dsa-qu .hero{padding:28px 20px}
+  #dsa-qu .hero h1{font-size:1.9em}
+  #dsa-qu .grid2,#dsa-qu .grid3,#dsa-qu .viz-split{grid-template-columns:1fr}
+  #dsa-qu .toc ol{columns:1}
+  #dsa-qu .cell{width:44px}
+  #dsa-qu .cell .box-v{height:46px;font-size:.95em}
+  #dsa-qu .cell .adr{display:none}
+  #dsa-qu .mem .c{width:50px}
+  #dsa-qu .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- queue specific ---------- */
+#dsa-qu .grid2>div,#dsa-qu .grid3>div{min-width:0}
+#dsa-qu .q-split>div,#dsa-qu .sbs>div,#dsa-qu .fig-row>div{min-width:0}
+#dsa-qu .pc{overflow-x:auto}
+#dsa-qu .hero-q{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap;font-family:'Fira Code',monospace}
+#dsa-qu .hero-q .lbl{font-size:.8em;color:#9aa0bb}
+#dsa-qu .hero-q .cells{display:flex;border:2px solid #ffffff55;border-radius:9px;overflow:hidden}
+#dsa-qu .hero-q .cells b{width:54px;height:46px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:500;border-right:1.5px solid #ffffff33}
+#dsa-qu .hero-q .cells b:last-child{border-right:0}
+#dsa-qu .hero-q .cells b.f{background:#0b7a6f}
+#dsa-qu .hero-q .cells b.r{background:var(--accent)}
+#dsa-qu .hero-q .ar{color:#ffb48a;font-size:.85em}
+#dsa-qu .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+#dsa-qu .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-qu .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-qu .seg button.on{background:var(--ink);color:#fff}
+#dsa-qu .seg button:disabled{opacity:.5;cursor:not-allowed}
+#dsa-qu .btn-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+#dsa-qu .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-qu .chk{display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)}
+#dsa-qu .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.78em;color:var(--ink2);margin-top:8px}
+#dsa-qu .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid #0002}
+#dsa-qu .q-split{display:grid;grid-template-columns:1fr 1.1fr;gap:14px;align-items:start}
+#dsa-qu .q-stage{background:var(--soft);border-radius:12px;padding:6px}
+#dsa-qu .q-stage svg{display:block;width:100%;height:auto;margin:0 auto}
+#dsa-qu .q-side .pc{min-height:0;margin-bottom:10px}
+#dsa-qu .q-side .log{height:230px}
+#dsa-qu .sbs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#dsa-qu .sbs h4{margin:0 0 6px;font-size:.95em;text-align:center}
+#dsa-qu .sbs .note{font-size:.8em;color:var(--ink2);text-align:center;margin-top:6px;font-family:'Fira Code',monospace;min-height:2.6em}
+#dsa-qu .fig{background:var(--soft);border-radius:12px;padding:6px;margin:10px 0 4px}
+#dsa-qu .fig svg{display:block;width:100%;height:auto;margin:0 auto}
+#dsa-qu .fig-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#dsa-qu .fig-lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin-top:8px}
+#dsa-qu .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-qu .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-qu .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-qu .op h4 .bx.slow{background:var(--red-soft);color:var(--red)}
+#dsa-qu .op p{font-size:.95em}
+#dsa-qu .chips{display:flex;align-items:center;gap:5px;min-height:52px;padding:8px 10px;background:var(--soft);border-radius:10px;flex-wrap:wrap}
+#dsa-qu .chips span{font-family:'Fira Code',monospace;background:#fff;border:1.5px solid var(--ink);border-radius:7px;padding:6px 10px;min-width:34px;text-align:center}
+#dsa-qu .chips span.f{background:#0b7a6f;border-color:#0b7a6f;color:#fff}
+#dsa-qu .chips span.r{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-qu .chips span.f.r{background:linear-gradient(90deg,#0b7a6f 50%,#d9480f 50%)}
+#dsa-qu .chips em{font-style:normal;font-size:.8em;color:var(--ink2)}
+#dsa-qu .chips .end{font-size:.72em;font-weight:700;color:var(--ink2);font-family:'Fira Code',monospace}
+#dsa-qu .gantt{position:relative;display:flex;min-height:46px;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden;margin-top:8px;background:#fff}
+#dsa-qu .gantt div{display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--ink);font-family:'Fira Code',monospace;font-size:.78em;position:relative;padding-bottom:12px}
+#dsa-qu .gantt div small{position:absolute;bottom:1px;left:2px;font-size:.78em;color:var(--ink2)}
+#dsa-qu .gantt div:last-of-type{border-right:0}
+#dsa-qu .gantt .gend{position:absolute;right:3px;bottom:1px;font-family:'Fira Code',monospace;font-size:.62em;color:var(--ink2)}
+#dsa-qu .trace td,#dsa-qu .trace th{font-family:'Fira Code',monospace;font-size:.82em;padding:6px 10px}
+#dsa-qu .trace tr.now td{background:#ffe8cc !important}
+#dsa-qu .trace-wrap{max-height:300px;overflow-y:auto;margin-top:10px;border:1px solid var(--line);border-radius:10px}
+#dsa-qu .trace-wrap table{margin:0}
+#dsa-qu .verdict{font-weight:700;margin-top:10px;font-size:1.02em}
+#dsa-qu .ap-pane{display:none}
+#dsa-qu .ap-pane.on{display:block}
+@media (max-width:720px){
+  #dsa-qu .q-split,#dsa-qu .sbs,#dsa-qu .fig-row{grid-template-columns:1fr}
+  #dsa-qu .seg button{padding:7px 10px;font-size:.82em}
+  #dsa-qu .hero-q .cells b{width:42px}
+}
+</style>
+
+<div id="dsa-qu">
+
+<!-- ======================= NAVIGATION MENU ======================= -->
+<div class="nav" id="qu-nav">
+  <div class="nav-tabs" id="qu-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="qu-prev">← Previous</button>
+    <div class="crumb"><b id="qu-crumb-t">Home</b><span id="qu-crumb-s">Overview</span></div>
+    <button class="nb" id="qu-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="qu-all">Show all sections</button>
+      <button class="nt" id="qu-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= HOME ======================= -->
+<section class="page" id="qu-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">MCA · Data Structures · Unit: Queues</span>
+  <h1>Queue: First In, First Out</h1>
+  <p>Simple queues, circular queues and double-ended queues (deques): how they work, their algorithms, why the circular queue fixes "false overflow", where queues are used, and their advantages and disadvantages. Includes animated visualizers, a round-robin scheduling lab, Python programs and exam practice.</p>
+  <div class="hero-q">
+    <span class="lbl">dequeue ←</span>
+    <div class="cells"><b class="f">10</b><b>20</b><b>30</b><b class="r">40</b><b></b><b></b></div>
+    <span class="lbl">← enqueue</span>
+    <span class="ar">&nbsp;front = 0, rear = 3</span>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>What is it</b><small>FIFO idea, need, importance, real-world examples</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Concepts &amp; lab</b><small>Terminology, ADT, types, why circular? (live lab)</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Algorithms &amp; visualiser</b><small>Simple queue, circular queue and deque operations</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Complexity</b><small>Time &amp; space, type comparison, stack vs queue</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Uses, pros &amp; cons</b><small>Applications with a scheduling lab, advantages, disadvantages</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Python</b><small>Five tested programs with output</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Practice</b><small>Questions, traces, output prediction, 8-MCQ quiz</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="sec page" id="qu-s1" data-label="What is it" data-sub="Introduction to queues">
+  <div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Queues</h2></div>
+
+  <div class="box def">
+    <span class="box-title">Definition</span>
+    <p>A <strong>queue</strong> is a <strong>linear data structure</strong> in which elements are inserted at one end, called the <strong>rear</strong> (or tail), and deleted from the other end, called the <strong>front</strong> (or head). The element inserted first is the first to be removed. This principle is called <strong>FIFO: First In, First Out</strong>.</p>
+  </div>
+
+  <p>Think of people waiting at a ticket counter. Newcomers join at the back of the line, and the person at the front is served first. Nobody jumps the line. That fairness, <em>served in order of arrival</em>, is what a queue models.</p>
+
+  <div class="fig"><svg class="qfig" data-k="sq" data-v="10,20,30,40,," data-f="0" data-r="3" data-arrows="1"></svg></div>
+  <div class="cap">Figure 1: A queue of capacity 6 holding 10, 20, 30, 40. Enqueue adds at the rear; dequeue removes from the front. 10 arrived first, so it leaves first.</div>
+
+  <h3>Why do we need a queue?</h3>
+  <p>Whenever many requests compete for one resource, they must be handled <strong>in the order they arrive</strong>: print jobs sent to one printer, customers calling a help line, packets arriving at a router, processes waiting for the CPU. A queue stores the waiting items and guarantees that the oldest one is served next.</p>
+
+  <h3>Why are queues important?</h3>
+  <ul>
+    <li>Operating systems use queues for <strong>CPU scheduling</strong>, I/O requests and keyboard buffers.</li>
+    <li>Graph algorithms such as <strong>Breadth-First Search (BFS)</strong> depend on a queue.</li>
+    <li>Queues decouple a fast producer from a slow consumer (for example, data streaming into a buffer).</li>
+    <li>Enqueue and dequeue run in <strong>O(1)</strong> time when implemented correctly.</li>
+  </ul>
+
+  <h3>Real-world examples</h3>
+  <div class="grid3">
+    <div class="mini"><span class="ico">🎟️</span><h4>Ticket counter</h4><p>First person in line is served first.</p></div>
+    <div class="mini"><span class="ico">🖨️</span><h4>Printer spooler</h4><p>Documents print in the order they were sent.</p></div>
+    <div class="mini"><span class="ico">📞</span><h4>Call centre</h4><p>"Your call is in a queue": callers are answered in order.</p></div>
+    <div class="mini"><span class="ico">🚦</span><h4>Traffic signal</h4><p>Cars at a signal leave in the order they arrived.</p></div>
+    <div class="mini"><span class="ico">⏱️</span><h4>CPU scheduling</h4><p>Round-robin gives each process a turn in a circular queue.</p></div>
+    <div class="mini"><span class="ico">⌨️</span><h4>Keyboard buffer</h4><p>Keys you type are processed in the order pressed.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="sec page" id="qu-s2" data-label="Concepts &amp; lab" data-sub="Terminology, types &amp; why circular">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Core Concepts &amp; Types of Queues</h2></div>
+
+  <h3>Terminology</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Term</th><th>Meaning</th></tr>
+    <tr><td><strong>Front</strong></td><td>Index (or pointer) of the first element: the next one to be removed.</td></tr>
+    <tr><td><strong>Rear</strong></td><td>Index (or pointer) of the last element: where the newest one was added.</td></tr>
+    <tr><td><strong>Enqueue</strong></td><td>Insert an element at the rear.</td></tr>
+    <tr><td><strong>Dequeue</strong></td><td>Remove and return the element at the front.</td></tr>
+    <tr><td><strong>Peek / Front</strong></td><td>Return the front element without removing it.</td></tr>
+    <tr><td><strong>Overflow</strong></td><td>Trying to enqueue into a full queue.</td></tr>
+    <tr><td><strong>Underflow</strong></td><td>Trying to dequeue from an empty queue.</td></tr>
+    <tr><td><strong>MAX</strong></td><td>Capacity of an array-based queue.</td></tr>
+  </table></div>
+
+  <h3>Queue as an Abstract Data Type</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operation</th><th>Description</th><th>Error condition</th></tr>
+    <tr><td><code>enqueue(x)</code></td><td>Add x at the rear</td><td>Overflow if full</td></tr>
+    <tr><td><code>dequeue()</code></td><td>Remove and return the front element</td><td>Underflow if empty</td></tr>
+    <tr><td><code>peek()</code></td><td>Return the front element, queue unchanged</td><td>Empty queue</td></tr>
+    <tr><td><code>isEmpty()</code> / <code>isFull()</code></td><td>Test the state of the queue</td><td>none</td></tr>
+    <tr><td><code>size()</code></td><td>Number of elements</td><td>none</td></tr>
+  </table></div>
+
+  <h3>Array representation</h3>
+  <p>A queue is stored in an array <code>Q[0 … MAX−1]</code> with two indices, <code>front</code> and <code>rear</code>. In this post both start at <strong>−1</strong> to mean "empty". The first enqueue sets front to 0. When the last element is dequeued, both are reset to −1.</p>
+  <div class="box tip"><span class="box-title">Linked list representation</span><p>A queue can also be a singly linked list with two pointers: <code>front</code> (first node, for deletion) and <code>rear</code> (last node, for insertion). Enqueue = insert at end using rear, dequeue = delete at beginning using front: both O(1), and there is no fixed MAX. See Program 4 in Section 6.</p></div>
+
+  <h3>Types of queues</h3>
+  <h4>1. Simple (linear) queue</h4>
+  <p>Insert at rear, delete at front, rear only moves forward. Once rear reaches MAX − 1, no more insertions are possible, <strong>even if cells at the front have been freed</strong> by dequeues. This wasted space is called <strong>false overflow</strong> (or the drawback of the linear queue).</p>
+  <div class="fig"><svg class="qfig" data-k="sq" data-v=",,30,40,50,60" data-f="2" data-r="5"></svg></div>
+  <div class="cap">rear = MAX − 1, so the simple queue reports OVERFLOW, yet cells [0] and [1] are free.</div>
+
+  <h4>2. Circular queue</h4>
+  <p>The last position is connected back to the first, so rear and front <strong>wrap around</strong> using <code>(index + 1) mod MAX</code>. Freed cells at the beginning are reused. The queue is full only when <code>(rear + 1) mod MAX = front</code>.</p>
+  <div class="fig"><svg class="qfig" data-k="cq" data-v="70,,30,40,50,60" data-f="2" data-r="0"></svg></div>
+  <div class="cap">After rear reaches index 5, the next element (70) goes to index 0: (5 + 1) mod 6 = 0.</div>
+
+  <h4>3. Deque (double-ended queue)</h4>
+  <p>Insertion and deletion are allowed at <strong>both</strong> ends. It is usually stored as a circular array. Two restricted forms are common in exams:</p>
+  <ul>
+    <li><strong>Input-restricted deque</strong>: insertion only at the rear, deletion at both ends.</li>
+    <li><strong>Output-restricted deque</strong>: deletion only at the front, insertion at both ends.</li>
+  </ul>
+  <p>A deque can behave as a stack (use one end only) or as a queue (insert at one end, delete at the other).</p>
+  <div class="box exam"><span class="box-title">Also good to know</span><p>A <strong>priority queue</strong> serves elements by priority instead of arrival order. It is usually built with a heap and is covered in its own post.</p></div>
+
+  <!-- ===== WHY CIRCULAR LAB ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧪 Interactive Lab: Why Do We Need a Circular Queue?</b><span>same operations, MAX = 6</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <label class="fld">Value<input type="number" id="wc-val" value="10"></label>
+        <button class="btn tl" id="wc-enq">Enqueue</button>
+        <button class="btn rd" id="wc-deq">Dequeue</button>
+        <button class="btn gh" id="wc-demo">▶ Show false overflow</button>
+        <button class="btn gh" id="wc-reset">Reset</button>
+      </div>
+      <div class="sbs">
+        <div><h4>Simple queue</h4><div class="q-stage"><svg id="wc-sq"></svg></div><div class="note" id="wc-sq-note"></div></div>
+        <div><h4>Circular queue</h4><div class="q-stage"><svg id="wc-cq"></svg></div><div class="note" id="wc-cq-note"></div></div>
+      </div>
+      <div class="msg" id="wc-msg">Click "Show false overflow", or enqueue 6 values, dequeue 2, then try to enqueue again.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="sec page" id="qu-s3" data-label="Visualiser" data-sub="Algorithms for all three queue types">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Operations &amp; Algorithms</h2></div>
+
+  <p>All algorithms use an array <code>Q[0 … MAX−1]</code> with <strong>0-based indexing</strong>. An empty queue has <code>front = rear = −1</code>. Choose a queue type:</p>
+
+  <div class="tabs" data-tabs="types">
+    <button class="tab-btn on" data-pane="qu-op-sq">Simple queue</button>
+    <button class="tab-btn" data-pane="qu-op-cq">Circular queue</button>
+    <button class="tab-btn" data-pane="qu-op-dq">Deque</button>
+  </div>
+
+  <!-- ---------- SIMPLE ---------- -->
+  <div class="tab-pane on" id="qu-op-sq">
+    <div class="op"><h4>ENQUEUE (insert at rear) <span class="bx">O(1)</span></h4>
+      <p>Check for overflow (rear at the last index). If the queue is empty, front must also move to 0. Then advance rear and store the item.</p>
+      <pre class="pseudo">ALGORITHM ENQUEUE(Q, front, rear, MAX, item)       // simple queue
+1. if rear = MAX − 1: print "OVERFLOW"; exit
+2. if front = −1: front ← 0    // inserting the first element
+3. rear ← rear + 1
+4. Q[rear] ← item</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="fig"><svg class="qfig" data-k="sq" data-v="10,20,,,," data-f="0" data-r="1"></svg></div></div><div><div class="fig-lbl">After enqueue(30)</div><div class="fig"><svg class="qfig" data-k="sq" data-v="10,20,30,,," data-f="0" data-r="2" data-hl="2:new"></svg></div></div></div></div>
+    <div class="op"><h4>DEQUEUE (delete from front) <span class="bx">O(1)</span></h4>
+      <p>Check for underflow. Take the front item. If it was the only element (front = rear), reset both to −1; otherwise move front forward. No elements are shifted.</p>
+      <pre class="pseudo">ALGORITHM DEQUEUE(Q, front, rear)                  // simple queue
+1. if front = −1: print "UNDERFLOW"; exit
+2. item ← Q[front]
+3. if front = rear: front ← −1; rear ← −1    // queue became empty
+4. else: front ← front + 1
+5. return item</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="fig"><svg class="qfig" data-k="sq" data-v="10,20,30,,," data-f="0" data-r="2" data-hl="0:del"></svg></div></div><div><div class="fig-lbl">After dequeue() → 10</div><div class="fig"><svg class="qfig" data-k="sq" data-v=",20,30,,," data-f="1" data-r="2"></svg></div></div></div></div>
+    <div class="op"><h4>PEEK, IS_EMPTY, IS_FULL <span class="bx">O(1)</span></h4>
+      <pre class="pseudo">ALGORITHM PEEK(Q, front)                           // simple queue
+1. if front = −1: print "QUEUE EMPTY"; exit
+2. return Q[front]</pre>
+      <pre class="pseudo">ALGORITHM IS_EMPTY(front)                          // simple queue
+1. if front = −1: return TRUE
+2. else: return FALSE</pre>
+      <pre class="pseudo">ALGORITHM IS_FULL(rear, MAX)                        // simple queue
+1. if rear = MAX − 1: return TRUE
+2. else: return FALSE</pre>
+      <p>Note that IS_FULL only checks <code>rear</code>: this is exactly why a simple queue can report "full" while free cells exist at the front.</p></div>
+    <div class="op"><h4>DISPLAY <span class="bx slow">O(n)</span></h4>
+      <pre class="pseudo">ALGORITHM DISPLAY(Q, front, rear)                  // simple queue
+1. if front = −1: print "QUEUE EMPTY"; exit
+2. i ← front
+3. while i ≤ rear:
+4.     print Q[i]
+5.     i ← i + 1</pre></div>
+    <div class="box warn"><span class="box-title">Alternative you may see in textbooks</span><p>Some books shift all elements to the left after every dequeue so that front stays at 0. This avoids false overflow but makes dequeue <strong>O(n)</strong>. The circular queue solves the same problem in O(1).</p></div>
+  </div>
+
+  <!-- ---------- CIRCULAR ---------- -->
+  <div class="tab-pane" id="qu-op-cq">
+    <div class="op"><h4>ENQUEUE_CQ <span class="bx">O(1)</span></h4>
+      <p>The full test changes to <code>(rear + 1) mod MAX = front</code>: the cell after rear (going round the circle) is the front. Rear advances with <code>mod MAX</code>, so after index MAX − 1 it returns to 0.</p>
+      <pre class="pseudo">ALGORITHM ENQUEUE_CQ(Q, front, rear, MAX, item)    // circular queue
+1. if (rear + 1) mod MAX = front: print "OVERFLOW"; exit
+2. if front = −1: front ← 0    // inserting the first element
+3. rear ← (rear + 1) mod MAX    // wrap around
+4. Q[rear] ← item</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (rear = 5)</div><div class="fig"><svg class="qfig" data-k="cq" data-v=",,30,40,50,60" data-f="2" data-r="5"></svg></div></div><div><div class="fig-lbl">After enqueue(70): rear = (5+1) mod 6 = 0</div><div class="fig"><svg class="qfig" data-k="cq" data-v="70,,30,40,50,60" data-f="2" data-r="0" data-hl="0:new"></svg></div></div></div></div>
+    <div class="op"><h4>DEQUEUE_CQ <span class="bx">O(1)</span></h4>
+      <p>Same as the simple queue, but front also wraps around with <code>mod MAX</code>.</p>
+      <pre class="pseudo">ALGORITHM DEQUEUE_CQ(Q, front, rear, MAX)          // circular queue
+1. if front = −1: print "UNDERFLOW"; exit
+2. item ← Q[front]
+3. if front = rear: front ← −1; rear ← −1    // queue became empty
+4. else: front ← (front + 1) mod MAX    // wrap around
+5. return item</pre></div>
+    <div class="op"><h4>PEEK_CQ, IS_EMPTY_CQ, IS_FULL_CQ <span class="bx">O(1)</span></h4>
+      <pre class="pseudo">ALGORITHM PEEK_CQ(Q, front)                        // circular queue
+1. if front = −1: print "QUEUE EMPTY"; exit
+2. return Q[front]</pre>
+      <pre class="pseudo">ALGORITHM IS_EMPTY_CQ(front)                       // circular queue
+1. if front = −1: return TRUE
+2. else: return FALSE</pre>
+      <pre class="pseudo">ALGORITHM IS_FULL_CQ(front, rear, MAX)             // circular queue
+1. if (rear + 1) mod MAX = front: return TRUE
+2. else: return FALSE</pre></div>
+    <div class="op"><h4>DISPLAY_CQ <span class="bx slow">O(n)</span></h4>
+      <p>Start at front and keep stepping with <code>mod MAX</code> until rear has been printed. A plain <code>for i ← front to rear</code> loop fails when rear &lt; front (the queue has wrapped).</p>
+      <pre class="pseudo">ALGORITHM DISPLAY_CQ(Q, front, rear, MAX)          // circular queue
+1. if front = −1: print "QUEUE EMPTY"; exit
+2. i ← front
+3. repeat:
+4.     print Q[i]
+5.     if i = rear: exit
+6.     i ← (i + 1) mod MAX</pre></div>
+    <div class="box exam"><span class="box-title">Number of elements in a circular queue</span>
+      <p>If front = −1: 0. If rear ≥ front: <strong>rear − front + 1</strong>. Otherwise: <strong>MAX − front + rear + 1</strong>. Example: MAX = 6, front = 4, rear = 1 → 6 − 4 + 1 + 1 = 4 elements (indices 4, 5, 0, 1).</p></div>
+  </div>
+
+  <!-- ---------- DEQUE ---------- -->
+  <div class="tab-pane" id="qu-op-dq">
+    <p>The deque uses a circular array. Inserting at the front moves front <strong>backwards</strong>: <code>(front − 1 + MAX) mod MAX</code>. Adding MAX before taking mod keeps the result non-negative (from index 0 it goes to MAX − 1).</p>
+    <div class="op"><h4>INSERT_FRONT <span class="bx">O(1)</span></h4>
+      <pre class="pseudo">ALGORITHM INSERT_FRONT(Q, front, rear, MAX, item)  // deque
+1. if (rear + 1) mod MAX = front: print "OVERFLOW"; exit
+2. if front = −1: front ← 0; rear ← 0    // first element
+3. else: front ← (front − 1 + MAX) mod MAX    // step back
+4. Q[front] ← item</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before (front = 0)</div><div class="fig"><svg class="qfig" data-k="dq" data-v="20,30,,,," data-f="0" data-r="1"></svg></div></div><div><div class="fig-lbl">After insert_front(10): front = (0−1+6) mod 6 = 5</div><div class="fig"><svg class="qfig" data-k="dq" data-v="20,30,,,,10" data-f="5" data-r="1" data-hl="5:new"></svg></div></div></div></div>
+    <div class="op"><h4>INSERT_REAR <span class="bx">O(1)</span></h4>
+      <p>Identical to ENQUEUE_CQ, except that an empty deque sets both front and rear to 0 at once.</p>
+      <pre class="pseudo">ALGORITHM INSERT_REAR(Q, front, rear, MAX, item)   // deque
+1. if (rear + 1) mod MAX = front: print "OVERFLOW"; exit
+2. if front = −1: front ← 0; rear ← 0    // first element
+3. else: rear ← (rear + 1) mod MAX
+4. Q[rear] ← item</pre></div>
+    <div class="op"><h4>DELETE_FRONT <span class="bx">O(1)</span></h4>
+      <p>Identical to DEQUEUE_CQ.</p>
+      <pre class="pseudo">ALGORITHM DELETE_FRONT(Q, front, rear, MAX)        // deque
+1. if front = −1: print "UNDERFLOW"; exit
+2. item ← Q[front]
+3. if front = rear: front ← −1; rear ← −1
+4. else: front ← (front + 1) mod MAX
+5. return item</pre></div>
+    <div class="op"><h4>DELETE_REAR <span class="bx">O(1)</span></h4>
+      <p>Take the rear item and move rear backwards with <code>(rear − 1 + MAX) mod MAX</code>.</p>
+      <pre class="pseudo">ALGORITHM DELETE_REAR(Q, front, rear, MAX)         // deque
+1. if front = −1: print "UNDERFLOW"; exit
+2. item ← Q[rear]
+3. if front = rear: front ← −1; rear ← −1
+4. else: rear ← (rear − 1 + MAX) mod MAX    // step back
+5. return item</pre>
+      <div class="fig-row"><div><div class="fig-lbl">Before</div><div class="fig"><svg class="qfig" data-k="dq" data-v="20,30,40,,,10" data-f="5" data-r="2" data-hl="2:del"></svg></div></div><div><div class="fig-lbl">After delete_rear() → 40</div><div class="fig"><svg class="qfig" data-k="dq" data-v="20,30,,,,10" data-f="5" data-r="1"></svg></div></div></div></div>
+    <div class="op"><h4>IS_EMPTY, IS_FULL, DISPLAY</h4>
+      <p>Same tests and traversal as the circular queue.</p>
+      <pre class="pseudo">ALGORITHM IS_FULL_DQ(front, rear, MAX)             // deque
+1. if (rear + 1) mod MAX = front: return TRUE
+2. else: return FALSE</pre>
+      <pre class="pseudo">ALGORITHM DISPLAY_DQ(Q, front, rear, MAX)          // deque
+1. if front = −1: print "DEQUE EMPTY"; exit
+2. i ← front
+3. repeat:
+4.     print Q[i]
+5.     if i = rear: exit
+6.     i ← (i + 1) mod MAX</pre></div>
+  </div>
+
+  <!-- ===== VISUALIZER ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🎬 Queue Operations Visualizer</b><span>runs the algorithms above, line by line</span></div>
+    <div class="lab-body">
+      <div class="controls">
+        <div class="seg" id="qv-type"><button class="on" data-k="sq">Simple queue</button><button data-k="cq">Circular queue</button><button data-k="dq">Deque</button></div>
+        <label class="fld">Value<input type="number" id="qv-val" value="50"></label>
+        <label class="fld">Speed<select id="qv-speed" style="width:96px"><option value="1300">Slow</option><option value="800" selected>Normal</option><option value="320">Fast</option></select></label>
+        <label class="chk"><input type="checkbox" id="qv-stepmode"> Step mode</label>
+        <button class="btn acc sm" id="qv-step" style="display:none">Next step ▶</button>
+      </div>
+      <div class="btn-grid" id="qv-ops"></div>
+      <div class="q-split">
+        <div class="q-stage"><svg id="qv-svg"></svg></div>
+        <div class="q-side">
+          <div class="pc" id="qv-pc"></div>
+          <div class="log" id="qv-log"></div>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:#b2f2bb"></i>inserted</span><span><i style="background:#ffc9c9"></i>removed</span><span><i style="background:#ffd8a8"></i>current</span><span><i style="background:#0b7a6f"></i>front</span><span><i style="background:#d9480f"></i>rear</span></div>
+      <div class="msg" id="qv-msg">Simple queue: fill it, dequeue twice, then try to enqueue. Then repeat on the circular queue.</div>
+      <div class="stats">
+        <div class="stat">front = <b id="qv-f">0</b></div>
+        <div class="stat">rear = <b id="qv-r">2</b></div>
+        <div class="stat">size = <b id="qv-n">3</b></div>
+        <div class="stat">MAX = <b>6</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="sec page" id="qu-s4" data-label="Complexity" data-sub="Time, space &amp; comparisons">
+  <div class="sec-head"><div class="sec-num">4</div><h2>Complexity Analysis &amp; Comparison</h2></div>
+
+  <h3>Time complexity</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Operation</th><th>Simple queue</th><th>Circular queue</th><th>Deque</th><th>Linked list queue</th></tr>
+    <tr><td>Enqueue / insert rear</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td></tr>
+    <tr><td>Dequeue / delete front</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td></tr>
+    <tr><td>Insert front</td><td>not allowed</td><td>not allowed</td><td class="o1">O(1)</td><td>(deque only)</td></tr>
+    <tr><td>Delete rear</td><td>not allowed</td><td>not allowed</td><td class="o1">O(1)</td><td>(deque only)</td></tr>
+    <tr><td>Peek, isEmpty, isFull</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td><td class="o1">O(1)</td></tr>
+    <tr><td>Display / search</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td><td class="on">O(n)</td></tr>
+  </table></div>
+  <div class="box warn"><span class="box-title">Python pitfall</span><p><code>list.pop(0)</code> removes the first element by shifting all the others: <strong>O(n)</strong>. A Python list is therefore a poor queue. Use <code>collections.deque</code>, whose <code>append</code>, <code>popleft</code>, <code>appendleft</code> and <code>pop</code> are all O(1).</p></div>
+
+  <h3>Space complexity</h3>
+  <ul>
+    <li>Array-based queues reserve <strong>O(MAX)</strong> memory. A simple queue may waste cells at the front; a circular queue reuses them.</li>
+    <li>A linked queue uses <strong>O(n)</strong> memory plus one pointer per node.</li>
+    <li>All operations use <strong>O(1) auxiliary space</strong>.</li>
+  </ul>
+
+  <h3>Simple vs Circular vs Deque</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Simple queue</th><th>Circular queue</th><th>Deque</th></tr>
+    <tr><td>Insertion at</td><td>Rear only</td><td>Rear only</td><td>Front and rear</td></tr>
+    <tr><td>Deletion at</td><td>Front only</td><td>Front only</td><td>Front and rear</td></tr>
+    <tr><td>Index movement</td><td>front, rear only increase</td><td>Wrap with mod MAX</td><td>Both directions, wrap with mod MAX</td></tr>
+    <tr><td>Full condition</td><td>rear = MAX − 1</td><td>(rear + 1) mod MAX = front</td><td>(rear + 1) mod MAX = front</td></tr>
+    <tr><td>Empty condition</td><td>front = −1</td><td>front = −1</td><td>front = −1</td></tr>
+    <tr><td>Reuses freed cells?</td><td>No (false overflow)</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Principle</td><td>FIFO</td><td>FIFO</td><td>FIFO or LIFO, as used</td></tr>
+  </table></div>
+
+  <h3>Stack vs Queue</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Basis</th><th>Stack</th><th>Queue</th></tr>
+    <tr><td>Principle</td><td>LIFO</td><td>FIFO</td></tr>
+    <tr><td>Ends used</td><td>One (top)</td><td>Two (rear for insert, front for delete)</td></tr>
+    <tr><td>Pointers in array form</td><td>top</td><td>front and rear</td></tr>
+    <tr><td>Insert / delete names</td><td>push / pop</td><td>enqueue / dequeue</td></tr>
+    <tr><td>Typical uses</td><td>Recursion, undo, expression evaluation</td><td>Scheduling, buffers, BFS</td></tr>
+  </table></div>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="sec page" id="qu-s5" data-label="Uses, pros &amp; cons" data-sub="Applications, advantages, disadvantages, edge cases">
+  <div class="sec-head"><div class="sec-num">5</div><h2>Applications, Advantages &amp; Disadvantages</h2></div>
+
+  <h3>Applications of queues</h3>
+  <div class="grid2">
+    <div class="mini"><h4>1. CPU scheduling</h4><p>Ready processes wait in a queue. <strong>Round-robin</strong> scheduling uses a circular queue: each process runs for a time slice, then goes to the back.</p></div>
+    <div class="mini"><h4>2. Printer and disk spooling</h4><p>Jobs are stored in a queue and processed one at a time in arrival order.</p></div>
+    <div class="mini"><h4>3. Breadth-First Search (BFS)</h4><p>Graph and tree level-order traversal visit nodes level by level using a queue.</p></div>
+    <div class="mini"><h4>4. I/O and keyboard buffers</h4><p>Circular buffers hold data between a fast producer and a slower consumer.</p></div>
+    <div class="mini"><h4>5. Networking</h4><p>Routers queue packets; message queues connect services in distributed systems.</p></div>
+    <div class="mini"><h4>6. Customer service systems</h4><p>Call centres, ticket booking and token systems serve requests in order.</p></div>
+    <div class="mini"><h4>7. Traffic and simulation</h4><p>Vehicles at signals, bank counters and queuing models are simulated with queues.</p></div>
+    <div class="mini"><h4>8. Streaming media (circular buffer)</h4><p>Audio and video players buffer upcoming data in a fixed-size circular queue.</p></div>
+    <div class="mini"><h4>9. Deque: palindrome check</h4><p>Remove from both ends and compare characters.</p></div>
+    <div class="mini"><h4>10. Deque: undo history and sliding windows</h4><p>Keep the last k actions (drop the oldest from the other end); find the maximum in each window of an array.</p></div>
+  </div>
+
+  <!-- ===== APPLICATION LAB ===== -->
+  <div class="lab">
+    <div class="lab-head"><b>🧩 Application Lab: Queues at Work</b><span>round robin · palindrome</span></div>
+    <div class="lab-body">
+      <div class="controls"><div class="seg" id="ap-mode"><button class="on" data-m="rr">Round-robin CPU scheduling</button><button data-m="pal">Palindrome with a deque</button></div></div>
+
+      <div class="ap-pane on" id="ap-rr">
+        <div class="controls">
+          <label class="fld">Processes (name=burst)<input type="text" id="rr-in" value="P1=5, P2=3, P3=8, P4=2" style="width:240px"></label>
+          <label class="fld">Time quantum<input type="number" id="rr-q" value="2" min="1"></label>
+          <button class="btn acc" id="rr-run">▶ Run</button>
+          <button class="btn gh" id="rr-stepb">Step</button>
+        </div>
+        <div class="cap">All processes arrive at time 0. Each step: dequeue the front process, run it for at most one quantum, and enqueue it again if it still needs time.</div>
+        <div><b style="font-size:.85em;color:var(--ink2)">READY QUEUE (front → rear)</b></div>
+        <div class="chips" id="rr-queue"><em>empty</em></div>
+        <div><b style="font-size:.85em;color:var(--ink2)">GANTT CHART</b></div>
+        <div class="gantt" id="rr-gantt"></div>
+        <div class="trace-wrap"><table class="trace" id="rr-trace"></table></div>
+        <div class="tbl-wrap" id="rr-sum"></div>
+      </div>
+
+      <div class="ap-pane" id="ap-pal">
+        <div class="controls">
+          <label class="fld">Text<input type="text" id="pal-in" value="Never odd or even" style="width:240px"></label>
+          <button class="btn acc" id="pal-run">▶ Run</button>
+          <button class="btn gh" id="pal-stepb">Step</button>
+        </div>
+        <div class="cap">Letters and digits are inserted at the rear (case ignored). Then the front and rear characters are deleted and compared until at most one is left.</div>
+        <div><b style="font-size:.85em;color:var(--ink2)">DEQUE (front → rear)</b></div>
+        <div class="chips" id="pal-dq"><em>empty</em></div>
+        <div class="trace-wrap"><table class="trace" id="pal-trace"></table></div>
+        <div class="verdict" id="pal-verdict"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Advantages of queues</h3>
+  <div class="grid2">
+    <div class="mini pro"><h4>✔ Fair ordering</h4><p>FIFO serves requests in arrival order, which is essential for scheduling and buffering.</p></div>
+    <div class="mini pro"><h4>✔ O(1) operations</h4><p>Enqueue, dequeue and peek take constant time (circular array, deque or linked list).</p></div>
+    <div class="mini pro"><h4>✔ Circular queue reuses memory</h4><p>No false overflow; a fixed block serves an endless stream of data.</p></div>
+    <div class="mini pro"><h4>✔ Deque is flexible</h4><p>Works as a queue, a stack, or both, with O(1) operations at either end.</p></div>
+    <div class="mini pro"><h4>✔ Decouples producer and consumer</h4><p>Data can arrive in bursts and be processed at a steady pace.</p></div>
+    <div class="mini pro"><h4>✔ Foundation for algorithms</h4><p>BFS, level-order traversal and many simulations rely on queues.</p></div>
+  </div>
+
+  <h3>Disadvantages of queues</h3>
+  <div class="grid2">
+    <div class="mini con"><h4>✘ False overflow (simple queue)</h4><p>Freed cells at the front can't be reused once rear reaches the end.</p></div>
+    <div class="mini con"><h4>✘ Fixed size (array forms)</h4><p>MAX must be chosen in advance; too small overflows, too large wastes memory.</p></div>
+    <div class="mini con"><h4>✘ No random access</h4><p>Only the front (and rear, in a deque) can be accessed directly.</p></div>
+    <div class="mini con"><h4>✘ Searching is O(n)</h4><p>Finding an element requires scanning from front to rear.</p></div>
+    <div class="mini con"><h4>✘ Extra memory (linked form)</h4><p>Each node carries a pointer in addition to its data.</p></div>
+    <div class="mini con"><h4>✘ Circular logic is error-prone</h4><p>Modulo arithmetic and the full/empty tests are easy to get wrong.</p></div>
+  </div>
+
+  <h3>Special cases &amp; edge cases</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>Situation</th><th>Correct behaviour</th></tr>
+    <tr><td>Enqueue into an empty queue</td><td>Set front to 0 as well as rear (deque: front = rear = 0).</td></tr>
+    <tr><td>Dequeue the only element</td><td>front = rear: reset both to −1, otherwise the queue looks non-empty.</td></tr>
+    <tr><td>Simple queue with rear = MAX − 1 but front &gt; 0</td><td>Reports OVERFLOW even though cells are free (false overflow).</td></tr>
+    <tr><td>Circular queue: rear = MAX − 1</td><td>Next rear is 0, if (rear + 1) mod MAX ≠ front.</td></tr>
+    <tr><td>Deque insert_front with front = 0</td><td>front becomes MAX − 1 (step back with wrap).</td></tr>
+    <tr><td>Circular queue: front = rear (not −1)</td><td>Exactly one element, not empty.</td></tr>
+  </table></div>
+
+  <h3>Common mistakes</h3>
+  <div class="box warn"><span class="box-title">Watch out</span>
+  <ul>
+    <li><strong>Forgetting to set front = 0</strong> on the first enqueue: dequeue then reads Q[−1].</li>
+    <li><strong>Not resetting to −1</strong> when the last element is dequeued.</li>
+    <li><strong>Using <code>rear = MAX − 1</code> as the full test for a circular queue</strong>: it gives false overflow again.</li>
+    <li><strong>Writing <code>(front − 1) mod MAX</code></strong> without adding MAX: in many languages −1 mod 6 is −1, not 5. (Python returns 5, but C and Java don't.)</li>
+    <li><strong>Displaying a circular queue with <code>for i in range(front, rear+1)</code></strong>: prints nothing when the queue has wrapped (rear &lt; front).</li>
+    <li><strong>Using <code>list.pop(0)</code> in Python</strong> for a queue: correct, but O(n) per dequeue.</li>
+  </ul></div>
+
+  <h3>Important examination points</h3>
+  <div class="box exam"><span class="box-title">Remember for exams</span>
+  <ul>
+    <li>Queue = <strong>FIFO</strong>: insert at <strong>rear</strong>, delete at <strong>front</strong>.</li>
+    <li>Simple queue: full when <strong>rear = MAX − 1</strong>; empty when <strong>front = −1</strong>.</li>
+    <li>Circular queue: rear ← <strong>(rear + 1) mod MAX</strong>; full when <strong>(rear + 1) mod MAX = front</strong>.</li>
+    <li>Count in a circular queue: rear − front + 1, or MAX − front + rear + 1 if wrapped.</li>
+    <li>Deque: insert_front uses <strong>(front − 1 + MAX) mod MAX</strong>; know input-restricted and output-restricted deques.</li>
+    <li>Applications to quote: CPU scheduling (round robin), printer spooling, BFS, buffers.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="sec page" id="qu-s6" data-label="Python" data-sub="Implementation">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Python Implementation</h2></div>
+  <p>Five complete, tested programs. Each tab shows the code and its actual output. Use the <strong>Copy</strong> button to paste the program into your editor.</p>
+
+  <div class="tabs" data-tabs="code">
+    <button class="tab-btn on" data-pane="qu-c1">1 · Simple queue</button>
+    <button class="tab-btn" data-pane="qu-c2">2 · Circular queue</button>
+    <button class="tab-btn" data-pane="qu-c3">3 · Deque</button>
+    <button class="tab-btn" data-pane="qu-c4">4 · collections.deque &amp; linked queue</button>
+    <button class="tab-btn" data-pane="qu-c5">5 · Applications</button>
+  </div>
+  <div class="tab-pane on" id="qu-c1">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: Simple (linear) queue using a fixed-size array
+# front = index of the first element, rear = index of the last element.
+# Both start at -1 (empty queue). Insert at REAR, delete from FRONT.
+
+class SimpleQueue:
+    def __init__(self, max_size):
+        self.MAX = max_size
+        self.Q = [None] * max_size
+        self.front = -1
+        self.rear = -1
+
+    def is_empty(self):
+        return self.front == -1
+
+    def is_full(self):
+        return self.rear == self.MAX - 1
+
+    def enqueue(self, item):
+        if self.is_full():
+            print(f"  enqueue({item}) -&gt; OVERFLOW (rear = MAX - 1)")
+            return
+        if self.front == -1:          # first element
+            self.front = 0
+        self.rear += 1
+        self.Q[self.rear] = item
+        print(f"  enqueue({item}) -&gt; front = {self.front}, rear = {self.rear}")
+
+    def dequeue(self):
+        if self.is_empty():
+            print("  dequeue() -&gt; UNDERFLOW")
+            return None
+        item = self.Q[self.front]
+        self.Q[self.front] = None     # optional: clear the cell
+        if self.front == self.rear:   # it was the only element
+            self.front = self.rear = -1
+        else:
+            self.front += 1
+        print(f"  dequeue() -&gt; {item}, front = {self.front}, rear = {self.rear}")
+        return item
+
+    def peek(self):
+        return None if self.is_empty() else self.Q[self.front]
+
+    def display(self):
+        if self.is_empty():
+            print("  Queue: (empty)")
+        else:
+            print("  Queue (front -&gt; rear):", self.Q[self.front:self.rear + 1])
+
+
+q = SimpleQueue(5)
+for x in [10, 20, 30, 40]:
+    q.enqueue(x)
+q.display()
+print("peek() -&gt;", q.peek())
+q.dequeue()
+q.dequeue()
+q.display()
+q.enqueue(50)
+q.enqueue(60)          # rear is at the end: overflow...
+print("Cells:", q.Q, "&lt;- index 0 and 1 are free but cannot be reused!")</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">  enqueue(10) -&gt; front = 0, rear = 0
+  enqueue(20) -&gt; front = 0, rear = 1
+  enqueue(30) -&gt; front = 0, rear = 2
+  enqueue(40) -&gt; front = 0, rear = 3
+  Queue (front -&gt; rear): [10, 20, 30, 40]
+peek() -&gt; 10
+  dequeue() -&gt; 10, front = 1, rear = 3
+  dequeue() -&gt; 20, front = 2, rear = 3
+  Queue (front -&gt; rear): [30, 40]
+  enqueue(50) -&gt; front = 2, rear = 4
+  enqueue(60) -&gt; OVERFLOW (rear = MAX - 1)
+Cells: [None, None, 30, 40, 50] &lt;- index 0 and 1 are free but cannot be reused!</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>The last line of output shows false overflow: cells 0 and 1 are free, but rear is already at the last index.</p></div>
+  </div>
+  <div class="tab-pane" id="qu-c2">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: Circular queue using a fixed-size array
+# rear and front wrap around with (index + 1) % MAX, so freed cells are reused.
+
+class CircularQueue:
+    def __init__(self, max_size):
+        self.MAX = max_size
+        self.Q = [None] * max_size
+        self.front = -1
+        self.rear = -1
+
+    def is_empty(self):
+        return self.front == -1
+
+    def is_full(self):
+        return (self.rear + 1) % self.MAX == self.front
+
+    def size(self):
+        if self.is_empty():
+            return 0
+        if self.rear &gt;= self.front:
+            return self.rear - self.front + 1
+        return self.MAX - self.front + self.rear + 1
+
+    def enqueue(self, item):
+        if self.is_full():
+            print(f"  enqueue({item}) -&gt; OVERFLOW")
+            return
+        if self.front == -1:
+            self.front = 0
+        self.rear = (self.rear + 1) % self.MAX      # wrap around
+        self.Q[self.rear] = item
+        print(f"  enqueue({item}) -&gt; front = {self.front}, rear = {self.rear}")
+
+    def dequeue(self):
+        if self.is_empty():
+            print("  dequeue() -&gt; UNDERFLOW")
+            return None
+        item = self.Q[self.front]
+        self.Q[self.front] = None
+        if self.front == self.rear:                 # last element removed
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.MAX
+        print(f"  dequeue() -&gt; {item}, front = {self.front}, rear = {self.rear}")
+        return item
+
+    def display(self):
+        if self.is_empty():
+            print("  Queue: (empty)"); return
+        items, i = [], self.front
+        while True:
+            items.append(self.Q[i])
+            if i == self.rear:
+                break
+            i = (i + 1) % self.MAX
+        print("  Queue (front -&gt; rear):", items, "| size =", self.size())
+
+
+cq = CircularQueue(5)
+for x in [10, 20, 30, 40, 50]:
+    cq.enqueue(x)
+cq.enqueue(60)                 # full
+cq.dequeue(); cq.dequeue()
+cq.display()
+cq.enqueue(60)                 # reuses index 0
+cq.enqueue(70)                 # reuses index 1
+cq.display()
+print("Array cells:", cq.Q)</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">  enqueue(10) -&gt; front = 0, rear = 0
+  enqueue(20) -&gt; front = 0, rear = 1
+  enqueue(30) -&gt; front = 0, rear = 2
+  enqueue(40) -&gt; front = 0, rear = 3
+  enqueue(50) -&gt; front = 0, rear = 4
+  enqueue(60) -&gt; OVERFLOW
+  dequeue() -&gt; 10, front = 1, rear = 4
+  dequeue() -&gt; 20, front = 2, rear = 4
+  Queue (front -&gt; rear): [30, 40, 50] | size = 3
+  enqueue(60) -&gt; front = 2, rear = 0
+  enqueue(70) -&gt; front = 2, rear = 1
+  Queue (front -&gt; rear): [30, 40, 50, 60, 70] | size = 5
+Array cells: [60, 70, 30, 40, 50]</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>After two dequeues, 60 and 70 go into cells 0 and 1 (rear wraps from 4 to 0). The array order differs from the queue order: the queue starts at front = 2.</p></div>
+  </div>
+  <div class="tab-pane" id="qu-c3">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: Deque (double-ended queue) using a circular array
+# Insert and delete at BOTH ends.
+
+class Deque:
+    def __init__(self, max_size):
+        self.MAX = max_size
+        self.Q = [None] * max_size
+        self.front = -1
+        self.rear = -1
+
+    def is_empty(self):
+        return self.front == -1
+
+    def is_full(self):
+        return (self.rear + 1) % self.MAX == self.front
+
+    def insert_front(self, item):
+        if self.is_full():
+            print(f"  insert_front({item}) -&gt; OVERFLOW"); return
+        if self.front == -1:
+            self.front = self.rear = 0
+        else:
+            self.front = (self.front - 1 + self.MAX) % self.MAX   # step backwards
+        self.Q[self.front] = item
+        print(f"  insert_front({item}) -&gt; front = {self.front}, rear = {self.rear}")
+
+    def insert_rear(self, item):
+        if self.is_full():
+            print(f"  insert_rear({item}) -&gt; OVERFLOW"); return
+        if self.front == -1:
+            self.front = self.rear = 0
+        else:
+            self.rear = (self.rear + 1) % self.MAX
+        self.Q[self.rear] = item
+        print(f"  insert_rear({item}) -&gt; front = {self.front}, rear = {self.rear}")
+
+    def delete_front(self):
+        if self.is_empty():
+            print("  delete_front() -&gt; UNDERFLOW"); return None
+        item = self.Q[self.front]; self.Q[self.front] = None
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.MAX
+        print(f"  delete_front() -&gt; {item}, front = {self.front}, rear = {self.rear}")
+        return item
+
+    def delete_rear(self):
+        if self.is_empty():
+            print("  delete_rear() -&gt; UNDERFLOW"); return None
+        item = self.Q[self.rear]; self.Q[self.rear] = None
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.rear = (self.rear - 1 + self.MAX) % self.MAX     # step backwards
+        print(f"  delete_rear() -&gt; {item}, front = {self.front}, rear = {self.rear}")
+        return item
+
+    def display(self):
+        if self.is_empty():
+            print("  Deque: (empty)"); return
+        items, i = [], self.front
+        while True:
+            items.append(self.Q[i])
+            if i == self.rear: break
+            i = (i + 1) % self.MAX
+        print("  Deque (front -&gt; rear):", items)
+
+
+d = Deque(5)
+d.insert_rear(20); d.insert_rear(30)
+d.insert_front(10)          # front wraps to index 4
+d.insert_rear(40)
+d.display()
+print("Array cells:", d.Q)
+d.delete_rear(); d.delete_front()
+d.display()</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">  insert_rear(20) -&gt; front = 0, rear = 0
+  insert_rear(30) -&gt; front = 0, rear = 1
+  insert_front(10) -&gt; front = 4, rear = 1
+  insert_rear(40) -&gt; front = 4, rear = 2
+  Deque (front -&gt; rear): [10, 20, 30, 40]
+Array cells: [20, 30, 40, None, 10]
+  delete_rear() -&gt; 40, front = 4, rear = 1
+  delete_front() -&gt; 10, front = 0, rear = 1
+  Deque (front -&gt; rear): [20, 30]</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p><code>insert_front(10)</code> with front = 0 moves front to index 4, the last cell: (0 − 1 + 5) mod 5 = 4.</p></div>
+  </div>
+  <div class="tab-pane" id="qu-c4">
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: Queues the Pythonic way, and a linked-list queue
+from collections import deque
+
+# (a) collections.deque: O(1) at both ends. Use it for real programs.
+q = deque()
+q.append("A"); q.append("B"); q.append("C")       # enqueue at the rear
+print("deque queue      :", list(q))
+print("popleft()        :", q.popleft())           # dequeue from the front
+q.appendleft("Z")                                 # deque: insert at the front
+print("after appendleft :", list(q))
+print("pop() (rear)     :", q.pop())
+
+# Avoid list.pop(0) for queues: it shifts every element, O(n).
+
+# (b) Linked-list queue: front pointer for deletion, rear pointer for insertion
+class Node:
+    def __init__(self, data):
+        self.data, self.next = data, None
+
+class LinkedQueue:
+    def __init__(self):
+        self.front = self.rear = None
+
+    def enqueue(self, item):
+        node = Node(item)
+        if self.rear is None:            # empty queue
+            self.front = self.rear = node
+        else:
+            self.rear.next = node        # link after the current rear
+            self.rear = node
+
+    def dequeue(self):
+        if self.front is None:
+            raise IndexError("Underflow: queue is empty")
+        item = self.front.data
+        self.front = self.front.next
+        if self.front is None:           # queue became empty
+            self.rear = None
+        return item
+
+    def display(self):
+        t, out = self.front, []
+        while t:
+            out.append(str(t.data)); t = t.next
+        print("  front -&gt; " + " -&gt; ".join(out + ["NULL"]) + "   (rear = " + (str(self.rear.data) if self.rear else "NULL") + ")")
+
+lq = LinkedQueue()
+for x in [5, 15, 25]:
+    lq.enqueue(x)
+lq.display()
+print("dequeue() -&gt;", lq.dequeue())
+lq.enqueue(35)
+lq.display()</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">deque queue      : ['A', 'B', 'C']
+popleft()        : A
+after appendleft : ['Z', 'B', 'C']
+pop() (rear)     : C
+  front -&gt; 5 -&gt; 15 -&gt; 25 -&gt; NULL   (rear = 25)
+dequeue() -&gt; 5
+  front -&gt; 15 -&gt; 25 -&gt; 35 -&gt; NULL   (rear = 35)</pre>
+    <div class="box tip"><span class="box-title">What to notice</span><p>In real Python programs, use <code>collections.deque</code>. The linked queue shows the textbook design: enqueue via <code>rear</code>, dequeue via <code>front</code>, and reset <code>rear</code> to None when the queue empties.</p></div>
+  </div>
+  <div class="tab-pane" id="qu-c5">
+    <p>Round-robin scheduling (the same example as the lab in Section 5), palindrome checking with a deque, and the "hot potato" (Josephus) game.</p>
+    <div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 5: Applications of queues
+from collections import deque
+
+# (a) Round-robin CPU scheduling with a circular queue (all arrive at time 0)
+def round_robin(bursts, quantum):
+    ready = deque(bursts.keys())
+    remaining = dict(bursts)
+    time, gantt, finish = 0, [], {}
+    while ready:
+        p = ready.popleft()                       # take the process at the front
+        run = min(quantum, remaining[p])
+        gantt.append(f"{p}[{time}-{time + run}]")
+        time += run
+        remaining[p] -= run
+        if remaining[p] &gt; 0:
+            ready.append(p)                       # not finished: back of the queue
+        else:
+            finish[p] = time
+    print("Gantt chart:", " ".join(gantt))
+    for p in bursts:
+        tat = finish[p]                           # turnaround = finish - arrival(0)
+        wt = tat - bursts[p]                      # waiting = turnaround - burst
+        print(f"  {p}: finish={finish[p]:2}  turnaround={tat:2}  waiting={wt:2}")
+    avg_wt = sum(finish[p] - bursts[p] for p in bursts) / len(bursts)
+    print(f"  Average waiting time = {avg_wt:.2f}")
+
+# (b) Palindrome check with a deque: compare both ends
+def is_palindrome(text):
+    d = deque(ch.lower() for ch in text if ch.isalnum())
+    while len(d) &gt; 1:
+        if d.popleft() != d.pop():
+            return False
+    return True
+
+# (c) Hot potato (Josephus problem): pass k times, the holder leaves
+def hot_potato(names, k):
+    q = deque(names)
+    order = []
+    while len(q) &gt; 1:
+        for _ in range(k):
+            q.append(q.popleft())                 # pass the potato
+        order.append(q.popleft())                 # holder is out
+    return order, q[0]
+
+
+round_robin({"P1": 5, "P2": 3, "P3": 8, "P4": 2}, quantum=2)
+for w in ["Madam", "racecar", "Never odd or even", "queue"]:
+    print(f"is_palindrome({w!r}) = {is_palindrome(w)}")
+out, winner = hot_potato(["Asha", "Ravi", "Meena", "John", "Sara"], 3)
+print("Hot potato: eliminated", out, "-&gt; winner", winner)</code></pre></div>
+    <div class="out-label">▸ Output</div><pre class="out">Gantt chart: P1[0-2] P2[2-4] P3[4-6] P4[6-8] P1[8-10] P2[10-11] P3[11-13] P1[13-14] P3[14-16] P3[16-18]
+  P1: finish=14  turnaround=14  waiting= 9
+  P2: finish=11  turnaround=11  waiting= 8
+  P3: finish=18  turnaround=18  waiting=10
+  P4: finish= 8  turnaround= 8  waiting= 6
+  Average waiting time = 8.25
+is_palindrome('Madam') = True
+is_palindrome('racecar') = True
+is_palindrome('Never odd or even') = True
+is_palindrome('queue') = False
+Hot potato: eliminated ['John', 'Meena', 'Sara', 'Ravi'] -&gt; winner Asha</pre>
+  </div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="sec page" id="qu-s7" data-label="Practice" data-sub="Questions &amp; quiz">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Practice &amp; Assessment</h2></div>
+
+  <h3>A. Conceptual questions</h3>
+  <details><summary>1. Define a queue. How does it differ from a stack?</summary><p>A queue is a linear structure with insertion at the rear and deletion at the front (FIFO). A stack inserts and deletes at the same end, the top (LIFO).</p></details>
+  <details><summary>2. What is false overflow? How does a circular queue solve it?</summary><p>In a simple queue, once rear = MAX − 1 no insertion is possible, even if dequeues have freed cells at the front. A circular queue wraps rear around with (rear + 1) mod MAX, so those cells are reused.</p></details>
+  <details><summary>3. Write the conditions for empty and full in a circular queue.</summary><p>Empty: front = −1. Full: (rear + 1) mod MAX = front.</p></details>
+  <details><summary>4. What is a deque? Explain input-restricted and output-restricted deques.</summary><p>A deque allows insertion and deletion at both ends. Input-restricted: insertion at one end only, deletion at both. Output-restricted: deletion at one end only, insertion at both.</p></details>
+  <details><summary>5. Why is collections.deque preferred over list for queues in Python?</summary><p>deque.popleft() is O(1), while list.pop(0) shifts all remaining elements, which is O(n).</p></details>
+
+  <h3>B. Programming exercises</h3>
+  <ol>
+    <li>Add a <code>size()</code> method to the simple queue of Program 1 using front and rear.</li>
+    <li>Implement a queue using two stacks.</li>
+    <li>Implement a stack using two queues.</li>
+    <li>Reverse the first k elements of a queue using a stack.</li>
+    <li>Using a deque, find the maximum of every window of size k in an array.</li>
+    <li>Simulate a bank with two counters: customers join the shorter queue.</li>
+  </ol>
+
+  <h3>C. Predict the output</h3>
+  <div class="grid2">
+    <div>
+<pre><code>from collections import deque
+q = deque([1, 2, 3])
+q.append(4)
+q.popleft()
+q.append(q.popleft())
+print(list(q))</code></pre>
+      <details><summary>Show answer</summary><p><code>[3, 4, 2]</code><br>1 is dequeued; then 2 is dequeued and immediately enqueued again at the rear.</p></details>
+    </div>
+    <div>
+<pre><code>MAX = 5
+front, rear = 3, 1
+if rear >= front:
+    size = rear - front + 1
+else:
+    size = MAX - front + rear + 1
+print(size)</code></pre>
+      <details><summary>Show answer</summary><p><code>4</code><br>The queue has wrapped: indices 3, 4, 0, 1.</p></details>
+    </div>
+    <div>
+<pre><code>from collections import deque
+d = deque()
+d.append(1); d.appendleft(2)
+d.append(3); d.appendleft(4)
+print(d.pop(), d.popleft(), list(d))</code></pre>
+      <details><summary>Show answer</summary><p><code>3 4 [2, 1]</code><br>The deque is [4, 2, 1, 3]; pop() takes the rear (3), popleft() the front (4).</p></details>
+    </div>
+    <div>
+<pre><code>q = [10, 20, 30]
+q.pop()          # meant to dequeue
+print(q)</code></pre>
+      <details><summary>Show answer</summary><p><code>[10, 20]</code><br><code>pop()</code> removes the <em>last</em> element (stack behaviour). A dequeue should remove 10: <code>pop(0)</code> or, better, <code>deque.popleft()</code>.</p></details>
+    </div>
+  </div>
+
+  <h3>D. Trace-based question</h3>
+  <p>A circular queue has MAX = 5 and is initially empty (front = rear = −1). Trace: enqueue A, B, C, D; dequeue twice; enqueue E, F, G, H. Give front, rear and the array after each step.</p>
+  <details><summary>Show solution</summary>
+    <div class="tbl-wrap"><table>
+      <tr><th>Operation</th><th>front</th><th>rear</th><th>Array [0..4]</th><th>Note</th></tr>
+      <tr><td>enqueue A</td><td>0</td><td>0</td><td>A _ _ _ _</td><td>first element: front ← 0</td></tr>
+      <tr><td>enqueue B, C, D</td><td>0</td><td>3</td><td>A B C D _</td><td></td></tr>
+      <tr><td>dequeue → A</td><td>1</td><td>3</td><td>_ B C D _</td><td></td></tr>
+      <tr><td>dequeue → B</td><td>2</td><td>3</td><td>_ _ C D _</td><td></td></tr>
+      <tr><td>enqueue E</td><td>2</td><td>4</td><td>_ _ C D E</td><td></td></tr>
+      <tr><td>enqueue F</td><td>2</td><td>0</td><td>F _ C D E</td><td>(4 + 1) mod 5 = 0: wrap</td></tr>
+      <tr><td>enqueue G</td><td>2</td><td>1</td><td>F G C D E</td><td></td></tr>
+      <tr><td>enqueue H</td><td>2</td><td>1</td><td>F G C D E</td><td>(1 + 1) mod 5 = 2 = front → OVERFLOW</td></tr>
+    </table></div>
+    <p>Queue order (front → rear): C, D, E, F, G.</p>
+  </details>
+
+  <h3>E. Diagram identification</h3>
+  <p><strong>Q1.</strong> Is this circular queue full? How many elements does it hold, and which will be dequeued first?</p>
+  <div class="fig" style="max-width:420px"><svg class="qfig" data-k="cq" data-v="60,70,,40,50,55" data-f="3" data-r="1"></svg></div>
+  <details><summary>Show answer</summary><p><strong>Not full</strong>: (rear + 1) mod 6 = 2 ≠ front (3), so index 2 is still free. Size = MAX − front + rear + 1 = 6 − 3 + 1 + 1 = <strong>5</strong>, in queue order 40, 50, 55, 60, 70. The element at front, <strong>40</strong>, will be dequeued first.</p></details>
+
+  <p style="margin-top:16px"><strong>Q2.</strong> Which operation changed the deque on the left into the one on the right?</p>
+  <div class="fig-row"><div><div class="fig"><svg class="qfig" data-k="dq" data-v="15,25,35,,," data-f="0" data-r="2"></svg></div></div><div><div class="fig"><svg class="qfig" data-k="dq" data-v="15,25,35,,,5" data-f="5" data-r="2" data-hl="5:new"></svg></div></div></div>
+  <details><summary>Show answer</summary><p><strong>insert_front(5)</strong>: front moved from 0 to (0 − 1 + 6) mod 6 = 5.</p></details>
+
+  <h3>F. Quiz: test yourself (8 MCQs)</h3>
+  <div id="qu-quiz"></div>
+  <div class="score" id="qu-quiz-score" style="display:none"><span>Your score: <b id="qu-quiz-num">0</b> / 8</span><button class="btn acc" id="qu-quiz-retry">Retry quiz</button></div>
+</section>
+
+<div class="footer">MCA Data Structures Series · Queues · Next topic: Infix, Prefix &amp; Postfix Expressions</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-qu');
+  if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  function cl(o){ return JSON.parse(JSON.stringify(o)); }
+  var ALG = {"sq": {"enq": ["ALGORITHM ENQUEUE(Q, front, rear, MAX, item)       // simple queue", "1. if rear = MAX \u2212 1: print \"OVERFLOW\"; exit", "2. if front = \u22121: front \u2190 0    // inserting the first element", "3. rear \u2190 rear + 1", "4. Q[rear] \u2190 item"], "deq": ["ALGORITHM DEQUEUE(Q, front, rear)                  // simple queue", "1. if front = \u22121: print \"UNDERFLOW\"; exit", "2. item \u2190 Q[front]", "3. if front = rear: front \u2190 \u22121; rear \u2190 \u22121    // queue became empty", "4. else: front \u2190 front + 1", "5. return item"], "peek": ["ALGORITHM PEEK(Q, front)                           // simple queue", "1. if front = \u22121: print \"QUEUE EMPTY\"; exit", "2. return Q[front]"], "isEmpty": ["ALGORITHM IS_EMPTY(front)                          // simple queue", "1. if front = \u22121: return TRUE", "2. else: return FALSE"], "isFull": ["ALGORITHM IS_FULL(rear, MAX)                        // simple queue", "1. if rear = MAX \u2212 1: return TRUE", "2. else: return FALSE"], "display": ["ALGORITHM DISPLAY(Q, front, rear)                  // simple queue", "1. if front = \u22121: print \"QUEUE EMPTY\"; exit", "2. i \u2190 front", "3. while i \u2264 rear:", "4.     print Q[i]", "5.     i \u2190 i + 1"]}, "cq": {"enq": ["ALGORITHM ENQUEUE_CQ(Q, front, rear, MAX, item)    // circular queue", "1. if (rear + 1) mod MAX = front: print \"OVERFLOW\"; exit", "2. if front = \u22121: front \u2190 0    // inserting the first element", "3. rear \u2190 (rear + 1) mod MAX    // wrap around", "4. Q[rear] \u2190 item"], "deq": ["ALGORITHM DEQUEUE_CQ(Q, front, rear, MAX)          // circular queue", "1. if front = \u22121: print \"UNDERFLOW\"; exit", "2. item \u2190 Q[front]", "3. if front = rear: front \u2190 \u22121; rear \u2190 \u22121    // queue became empty", "4. else: front \u2190 (front + 1) mod MAX    // wrap around", "5. return item"], "peek": ["ALGORITHM PEEK_CQ(Q, front)                        // circular queue", "1. if front = \u22121: print \"QUEUE EMPTY\"; exit", "2. return Q[front]"], "isEmpty": ["ALGORITHM IS_EMPTY_CQ(front)                       // circular queue", "1. if front = \u22121: return TRUE", "2. else: return FALSE"], "isFull": ["ALGORITHM IS_FULL_CQ(front, rear, MAX)             // circular queue", "1. if (rear + 1) mod MAX = front: return TRUE", "2. else: return FALSE"], "display": ["ALGORITHM DISPLAY_CQ(Q, front, rear, MAX)          // circular queue", "1. if front = \u22121: print \"QUEUE EMPTY\"; exit", "2. i \u2190 front", "3. repeat:", "4.     print Q[i]", "5.     if i = rear: exit", "6.     i \u2190 (i + 1) mod MAX"]}, "dq": {"insFront": ["ALGORITHM INSERT_FRONT(Q, front, rear, MAX, item)  // deque", "1. if (rear + 1) mod MAX = front: print \"OVERFLOW\"; exit", "2. if front = \u22121: front \u2190 0; rear \u2190 0    // first element", "3. else: front \u2190 (front \u2212 1 + MAX) mod MAX    // step back", "4. Q[front] \u2190 item"], "insRear": ["ALGORITHM INSERT_REAR(Q, front, rear, MAX, item)   // deque", "1. if (rear + 1) mod MAX = front: print \"OVERFLOW\"; exit", "2. if front = \u22121: front \u2190 0; rear \u2190 0    // first element", "3. else: rear \u2190 (rear + 1) mod MAX", "4. Q[rear] \u2190 item"], "delFront": ["ALGORITHM DELETE_FRONT(Q, front, rear, MAX)        // deque", "1. if front = \u22121: print \"UNDERFLOW\"; exit", "2. item \u2190 Q[front]", "3. if front = rear: front \u2190 \u22121; rear \u2190 \u22121", "4. else: front \u2190 (front + 1) mod MAX", "5. return item"], "delRear": ["ALGORITHM DELETE_REAR(Q, front, rear, MAX)         // deque", "1. if front = \u22121: print \"UNDERFLOW\"; exit", "2. item \u2190 Q[rear]", "3. if front = rear: front \u2190 \u22121; rear \u2190 \u22121", "4. else: rear \u2190 (rear \u2212 1 + MAX) mod MAX    // step back", "5. return item"], "isEmpty": ["ALGORITHM IS_EMPTY_DQ(front)                       // deque", "1. if front = \u22121: return TRUE", "2. else: return FALSE"], "isFull": ["ALGORITHM IS_FULL_DQ(front, rear, MAX)             // deque", "1. if (rear + 1) mod MAX = front: return TRUE", "2. else: return FALSE"], "display": ["ALGORITHM DISPLAY_DQ(Q, front, rear, MAX)          // deque", "1. if front = \u22121: print \"DEQUE EMPTY\"; exit", "2. i \u2190 front", "3. repeat:", "4.     print Q[i]", "5.     if i = rear: exit", "6.     i \u2190 (i + 1) mod MAX"]}};
+
+  /* ---------------- tabs ---------------- */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){
+      b.addEventListener('click', function(){
+        each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+        b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+      });
+    });
+  });
+
+  /* ---------------- copy buttons ---------------- */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+
+
+  /* =================================================================
+     SVG QUEUE RENDERER
+     st = {k:'sq'|'cq'|'dq', A:[MAX], front, rear, hl:{i:cls}, fly:{v,i,out,label},
+           hotF, hotR, arrows, isStatic}
+     ================================================================= */
+  var NS='http://www.w3.org/2000/svg', UID=0;
+  var C={ink:'#1c2033', ink2:'#4a5068', acc:'#d9480f', teal:'#0b7a6f', line:'#c9c4b6'};
+  var FILL={cur:'#ffd8a8', 'new':'#b2f2bb', del:'#ffc9c9', seen:'#96f2d7'};
+  var MONO='Fira Code, monospace';
+  function S(tag, at, par){ var e=document.createElementNS(NS, tag); for(var k in at){ if(at[k]!==null && at[k]!==undefined) e.setAttribute(k, at[k]); } if(par) par.appendChild(e); return e; }
+  function TX(par, x, y, s, at){ at=at||{}; at.x=x; at.y=y; var e=S('text', at, par); e.textContent=s; return e; }
+  function occupied(st){
+    var MAX=st.A.length, occ={};
+    if(st.front===-1) return occ;
+    if(st.k==='sq'){ for(var i=st.front;i<=st.rear;i++) occ[i]=1; return occ; }
+    var j=st.front; for(var c=0;c<MAX;c++){ occ[j]=1; if(j===st.rear) break; j=(j+1)%MAX; }
+    return occ;
+  }
+  function tag(par, x, y, label, color, hot, dir){
+    var tw=12+label.length*7.2;
+    S('rect',{x:x-tw/2,y:y,width:tw,height:18,rx:9,fill:color,stroke:hot?'#ffd43b':null,'stroke-width':hot?3:null},par);
+    TX(par,x,y+13,label,{'text-anchor':'middle','font-size':11,fill:'#fff','font-family':MONO,'font-weight':600});
+    if(dir==='down') S('path',{d:'M'+(x-5)+','+(y+18)+' L'+x+','+(y+25)+' L'+(x+5)+','+(y+18)+' z',fill:color},par);
+    if(dir==='up') S('path',{d:'M'+(x-5)+','+y+' L'+x+','+(y-7)+' L'+(x+5)+','+y+' z',fill:color},par);
+  }
+  function drawQ(svg, st){
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var uid='qm'+(++UID), defs=S('defs',{},svg);
+    [['k',C.ink],['o',C.acc],['t',C.teal]].forEach(function(p){ var m=S('marker',{id:uid+p[0],viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs); S('path',{d:'M0,0 L10,5 L0,10 z',fill:p[1]},m); });
+    var MAX=st.A.length, occ=occupied(st), hl=st.hl||{}, W=st.arrows?520:420;
+    var ring = st.k!=='sq';
+    var y=8;
+    function cellFill(i){ return FILL[hl[i]] || (occ[i] ? '#fff' : 'none'); }
+    function cellStroke(i){ return (occ[i]||hl[i]) ? C.ink : C.line; }
+    function cellVal(i){ return (occ[i]||hl[i]) && st.A[i]!==null && st.A[i]!==undefined ? String(st.A[i]) : ''; }
+    /* ---- ring ---- */
+    if(ring){
+      var R=100, cx=W/2, cy=y+150, bw=58, bh=36;
+      S('circle',{cx:cx,cy:cy,r:R,fill:'none',stroke:C.line,'stroke-width':1.5,'stroke-dasharray':'3 5'},svg);
+      // direction arc
+      var r2=44;
+      S('path',{d:'M'+(cx)+','+(cy-r2)+' A'+r2+','+r2+' 0 1 1 '+(cx-r2*Math.sin(0.9))+','+(cy-r2*Math.cos(0.9)),fill:'none',stroke:C.ink2,'stroke-width':1.6,'marker-end':'url(#'+uid+'k)'},svg);
+      TX(svg,cx,cy-2,'(i + 1)',{'text-anchor':'middle','font-size':10.5,fill:C.ink2,'font-family':MONO});
+      TX(svg,cx,cy+12,'mod '+MAX,{'text-anchor':'middle','font-size':10.5,fill:C.ink2,'font-family':MONO});
+      var tagsAt={};
+      for(var i=0;i<MAX;i++){
+        var a=-Math.PI/2 + i*2*Math.PI/MAX, bx=cx+R*Math.cos(a), by=cy+R*Math.sin(a);
+        S('rect',{x:bx-bw/2,y:by-bh/2,width:bw,height:bh,rx:7,fill:cellFill(i)==='none'?'#f7f5ef':cellFill(i),stroke:cellStroke(i),'stroke-width':occ[i]?1.8:1,'stroke-dasharray':occ[i]||hl[i]?null:'4 3'},svg);
+        TX(svg,bx,by+6,cellVal(i),{'text-anchor':'middle','font-size':15,'font-family':MONO,'font-weight':500,fill:C.ink});
+        var ix=cx+(R-36)*Math.cos(a), iy=cy+(R-36)*Math.sin(a);
+        TX(svg,ix,iy+4,'['+i+']',{'text-anchor':'middle','font-size':10,'font-family':MONO,fill:C.acc});
+        var lbl=[];
+        if(st.front===i) lbl.push(['front',C.teal,st.hotF]);
+        if(st.rear===i) lbl.push(['rear',C.acc,st.hotR]);
+        lbl.forEach(function(L,j){
+          var tr=R+40+j*0, tx=cx+tr*Math.cos(a), ty=cy+tr*Math.sin(a)-9 + (lbl.length>1 ? (j===0?-10:10) : 0);
+          tag(svg,tx,ty,L[0],L[1],L[2],null);
+        });
+      }
+      y = cy+R+52;
+    }
+    /* ---- strip ---- */
+    var cw = ring ? 52 : 60, ch = ring ? 38 : 46, x0=(W-MAX*cw)/2;
+    var tagY=y, cellY=y+28;
+    for(var k=0;k<MAX;k++){
+      var x=x0+k*cw;
+      S('rect',{x:x+2,y:cellY,width:cw-4,height:ch,rx:6,fill:cellFill(k)==='none'?'#f7f5ef':cellFill(k),stroke:cellStroke(k),'stroke-width':occ[k]?1.8:1,'stroke-dasharray':occ[k]||hl[k]?null:'4 3'},svg);
+      TX(svg,x+cw/2,cellY+ch/2+6,cellVal(k),{'text-anchor':'middle','font-size':ring?14:16,'font-family':MONO,'font-weight':500,fill:C.ink});
+      TX(svg,x+cw/2,cellY+ch+13,'['+k+']',{'text-anchor':'middle','font-size':10.5,'font-family':MONO,fill:C.acc});
+    }
+    if(st.front>=0) tag(svg,x0+st.front*cw+cw/2,tagY,'front',C.teal,st.hotF,'down');
+    if(st.rear>=0) tag(svg,x0+st.rear*cw+cw/2,cellY+ch+24,'rear',C.acc,st.hotR,'up');
+    if(st.front===-1){ TX(svg,W/2,tagY+14,'front = rear = \u22121  (empty)',{'text-anchor':'middle','font-size':11.5,fill:C.ink2,'font-family':MONO}); }
+    var bottom=cellY+ch+46;
+    if(st.arrows){
+      S('path',{d:'M'+(x0-6)+','+(cellY+ch/2)+' L'+(x0-50)+','+(cellY+ch/2),stroke:C.teal,'stroke-width':2.2,'marker-end':'url(#'+uid+'t)'},svg);
+      TX(svg,x0-28,cellY-6,'out',{'text-anchor':'middle','font-size':10.5,fill:C.teal,'font-family':MONO,'font-weight':600});
+      S('path',{d:'M'+(x0+MAX*cw+50)+','+(cellY+ch/2)+' L'+(x0+MAX*cw+6)+','+(cellY+ch/2),stroke:C.acc,'stroke-width':2.2,'marker-end':'url(#'+uid+'o)'},svg);
+      TX(svg,x0+MAX*cw+28,cellY-6,'in',{'text-anchor':'middle','font-size':10.5,fill:C.acc,'font-family':MONO,'font-weight':600});
+    }
+    if(st.fly){
+      var fi=Math.max(0,Math.min(MAX-1,st.fly.i)), fx=x0+fi*cw+cw/2, fy=bottom+4;
+      S('rect',{x:fx-34,y:fy,width:68,height:32,rx:7,fill:st.fly.out?FILL.del:FILL['new'],stroke:C.ink,'stroke-width':1.8},svg);
+      TX(svg,fx,fy+21,String(st.fly.v),{'text-anchor':'middle','font-size':15,'font-family':MONO,'font-weight':500,fill:C.ink});
+      TX(svg,fx+40,fy+20,st.fly.label||(st.fly.out?'returned':'item'),{'font-size':10.5,fill:C.ink2,'font-family':MONO});
+      bottom=fy+40;
+    } else if(!st.isStatic) bottom+=44;
+    svg.setAttribute('viewBox','0 0 '+W+' '+(bottom+4));
+    if(st.isStatic) svg.style.maxWidth = ring ? '380px' : (st.arrows ? '520px' : '420px');
+  }
+
+  /* static figures */
+  each(root.querySelectorAll('svg.qfig'), function(svg){
+    var vals=svg.getAttribute('data-v').split(',').map(function(s){ s=s.trim(); return s===''?null:s; });
+    while(vals.length<6) vals.push(null);
+    var hl={}; (svg.getAttribute('data-hl')||'').split(',').forEach(function(p){ if(!p) return; var q=p.split(':'); hl[+q[0]]=q[1]; });
+    drawQ(svg,{k:svg.getAttribute('data-k'), A:vals, front:+svg.getAttribute('data-f'), rear:+svg.getAttribute('data-r'), hl:hl, arrows:svg.getAttribute('data-arrows')==='1', isStatic:true});
+  });
+
+  /* =================================================================
+     OPERATIONS VISUALIZER
+     ================================================================= */
+  var MAX=6, TYPE='sq', Q=null, frames=[], RESULT=null, busy=false, stepResolve=null;
+  var OPS={
+    sq:[['enq','Enqueue','tl'],['deq','Dequeue','rd'],['peek','Peek',''],['isEmpty','isEmpty',''],['isFull','isFull',''],['display','Display','']],
+    cq:[['enq','Enqueue','tl'],['deq','Dequeue','rd'],['peek','Peek',''],['isEmpty','isEmpty',''],['isFull','isFull',''],['display','Display','']],
+    dq:[['insFront','Insert front','tl'],['insRear','Insert rear','tl'],['delFront','Delete front','rd'],['delRear','Delete rear','rd'],['isEmpty','isEmpty',''],['isFull','isFull',''],['display','Display','']]
+  };
+  function newQ(vals){ var q={A:[], front:-1, rear:-1}; for(var i=0;i<MAX;i++) q.A.push(null); vals.forEach(function(v,i){ q.A[i]=v; }); if(vals.length){ q.front=0; q.rear=vals.length-1; } return q; }
+  function V(o){ var v={k:TYPE, A:Q.A.slice(), front:Q.front, rear:Q.rear}; for(var k in o) v[k]=o[k]; return v; }
+  function F(alg,line,log,view,cls){ frames.push({alg:alg,line:line,log:log,view:view,cls:cls||''}); }
+  function done(t,c){ RESULT={text:t, cls:c||'ok'}; }
+  function size(){ if(Q.front===-1) return 0; if(TYPE==='sq' || Q.rear>=Q.front) return Q.rear-Q.front+1; return MAX-Q.front+Q.rear+1; }
+  function H(i,c){ var o={}; o[i]=c; return o; }
+  function isFullNow(){ return TYPE==='sq' ? Q.rear===MAX-1 : (Q.rear+1)%MAX===Q.front; }
+
+  function insertRear(val){
+    var A = TYPE==='dq' ? 'insRear' : 'enq';
+    if(isFullNow()){
+      var note='';
+      if(TYPE==='sq' && Q.front>0) note='  (false overflow: '+Q.front+' free cell(s) at the front cannot be reused)';
+      F(A,1,(TYPE==='sq'?'rear = MAX \u2212 1':'(rear + 1) mod MAX = '+((Q.rear+1)%MAX)+' = front')+' \u2192 OVERFLOW',V({fly:{v:val,i:Q.rear,out:false,label:'rejected'}}),'bad');
+      done('Overflow!'+note,'bad'); return;
+    }
+    F(A,1,TYPE==='sq' ? 'rear = '+Q.rear+' \u2260 MAX \u2212 1: space available' : '(rear + 1) mod MAX = '+((Q.rear+1+MAX)%MAX)+' \u2260 front ('+Q.front+'): space available',V({fly:{v:val,i:(Q.rear+1+MAX)%MAX,out:false}}));
+    if(TYPE==='dq'){
+      if(Q.front===-1){ Q.front=0; Q.rear=0; F(A,2,'empty: front \u2190 0; rear \u2190 0',V({hotF:true,hotR:true,fly:{v:val,i:0,out:false}})); }
+      else { F(A,2,'front \u2260 \u22121',V({fly:{v:val,i:(Q.rear+1)%MAX,out:false}})); Q.rear=(Q.rear+1)%MAX; F(A,3,'rear \u2190 (rear + 1) mod '+MAX+' = '+Q.rear,V({hotR:true,fly:{v:val,i:Q.rear,out:false}})); }
+      Q.A[Q.rear]=val; F(A,4,'Q['+Q.rear+'] \u2190 '+val,V({hl:H(Q.rear,'new')}));
+    } else {
+      if(Q.front===-1){ Q.front=0; F(A,2,'front = \u22121 \u2192 front \u2190 0 (first element)',V({hotF:true,fly:{v:val,i:0,out:false}})); }
+      else F(A,2,'front \u2260 \u22121: unchanged',V({fly:{v:val,i:(Q.rear+1)%MAX,out:false}}));
+      var old=Q.rear; Q.rear = TYPE==='sq' ? Q.rear+1 : (Q.rear+1)%MAX;
+      F(A,3, TYPE==='sq' ? 'rear \u2190 rear + 1 = '+Q.rear : 'rear \u2190 ('+old+' + 1) mod '+MAX+' = '+Q.rear+(Q.rear<old?'  (wrapped!)':''),V({hotR:true,fly:{v:val,i:Q.rear,out:false}}));
+      Q.A[Q.rear]=val; F(A,4,'Q['+Q.rear+'] \u2190 '+val,V({hl:H(Q.rear,'new')}));
+    }
+    done('Inserted '+val+' at the rear (index '+Q.rear+'). Size = '+size()+'.');
+  }
+  function insertFront(val){
+    var A='insFront';
+    if(isFullNow()){ F(A,1,'(rear + 1) mod MAX = front \u2192 OVERFLOW',V({}),'bad'); done('Overflow! The deque is full.','bad'); return; }
+    F(A,1,'not full',V({}));
+    if(Q.front===-1){ Q.front=0; Q.rear=0; F(A,2,'empty: front \u2190 0; rear \u2190 0',V({hotF:true,hotR:true})); }
+    else { F(A,2,'front \u2260 \u22121',V({})); var old=Q.front; Q.front=(Q.front-1+MAX)%MAX; F(A,3,'front \u2190 ('+old+' \u2212 1 + '+MAX+') mod '+MAX+' = '+Q.front+(Q.front>old?'  (wrapped!)':''),V({hotF:true,fly:{v:val,i:Q.front,out:false}})); }
+    Q.A[Q.front]=val; F(A,4,'Q['+Q.front+'] \u2190 '+val,V({hl:H(Q.front,'new')}));
+    done('Inserted '+val+' at the front (index '+Q.front+'). Size = '+size()+'.');
+  }
+  function deleteFront(){
+    var A = TYPE==='dq' ? 'delFront' : 'deq';
+    if(Q.front===-1){ F(A,1,'front = \u22121 \u2192 UNDERFLOW',V({}),'bad'); done('Underflow! The queue is empty.','bad'); return; }
+    F(A,1,'front = '+Q.front+' \u2260 \u22121',V({}));
+    var f=Q.front, item=Q.A[f];
+    F(A,2,'item \u2190 Q['+f+'] = '+item,V({hl:H(f,'del'),fly:{v:item,i:f,out:true}}));
+    if(Q.front===Q.rear){ Q.A[f]=null; Q.front=-1; Q.rear=-1; F(A,3,'front = rear \u2192 only element: front \u2190 rear \u2190 \u22121',V({hotF:true,hotR:true,fly:{v:item,i:f,out:true}})); }
+    else { F(A,3,'front \u2260 rear',V({hl:H(f,'del'),fly:{v:item,i:f,out:true}})); Q.A[f]=null; Q.front = TYPE==='sq' ? Q.front+1 : (Q.front+1)%MAX; F(A,4, TYPE==='sq'?'front \u2190 front + 1 = '+Q.front : 'front \u2190 ('+f+' + 1) mod '+MAX+' = '+Q.front,V({hotF:true,fly:{v:item,i:f,out:true}})); }
+    F(A,5,'return '+item,V({fly:{v:item,i:f,out:true}}),'ok');
+    done('Removed '+item+' from the front. Size = '+size()+'.');
+  }
+  function deleteRear(){
+    var A='delRear';
+    if(Q.front===-1){ F(A,1,'front = \u22121 \u2192 UNDERFLOW',V({}),'bad'); done('Underflow! The deque is empty.','bad'); return; }
+    F(A,1,'front \u2260 \u22121',V({}));
+    var r=Q.rear, item=Q.A[r];
+    F(A,2,'item \u2190 Q['+r+'] = '+item,V({hl:H(r,'del'),fly:{v:item,i:r,out:true}}));
+    if(Q.front===Q.rear){ Q.A[r]=null; Q.front=-1; Q.rear=-1; F(A,3,'front = rear \u2192 front \u2190 rear \u2190 \u22121',V({hotF:true,hotR:true,fly:{v:item,i:r,out:true}})); }
+    else { F(A,3,'front \u2260 rear',V({hl:H(r,'del'),fly:{v:item,i:r,out:true}})); Q.A[r]=null; Q.rear=(Q.rear-1+MAX)%MAX; F(A,4,'rear \u2190 ('+r+' \u2212 1 + '+MAX+') mod '+MAX+' = '+Q.rear+(Q.rear>r?'  (wrapped!)':''),V({hotR:true,fly:{v:item,i:r,out:true}})); }
+    F(A,5,'return '+item,V({fly:{v:item,i:r,out:true}}),'ok');
+    done('Removed '+item+' from the rear. Size = '+size()+'.');
+  }
+  function peek(){
+    if(Q.front===-1){ F('peek',1,'front = \u22121 \u2192 QUEUE EMPTY',V({}),'bad'); done('The queue is empty: nothing to peek.','bad'); return; }
+    F('peek',1,'front \u2260 \u22121',V({})); F('peek',2,'return Q['+Q.front+'] = '+Q.A[Q.front],V({hl:H(Q.front,'cur')}),'ok'); done('Front element is '+Q.A[Q.front]+'. The queue is unchanged.');
+  }
+  function isEmpty(){
+    if(Q.front===-1){ F('isEmpty',1,'front = \u22121 \u2192 TRUE',V({}),'ok'); done('isEmpty() = TRUE'); }
+    else { F('isEmpty',1,'front = '+Q.front+' \u2260 \u22121',V({})); F('isEmpty',2,'return FALSE',V({})); done('isEmpty() = FALSE (size '+size()+').'); }
+  }
+  function isFull(){
+    var full=isFullNow(), test = TYPE==='sq' ? 'rear = '+Q.rear+(full?' = ':' \u2260 ')+'MAX \u2212 1' : '(rear + 1) mod MAX = '+((Q.rear+1+MAX)%MAX)+(full?' = ':' \u2260 ')+'front ('+Q.front+')';
+    if(full){ F('isFull',1,test+' \u2192 TRUE',V({}),'ok'); done('isFull() = TRUE'+(TYPE==='sq' && Q.front>0 ? ', although '+Q.front+' cell(s) at the front are free: false overflow!' : '.')); }
+    else { F('isFull',1,test,V({})); F('isFull',2,'return FALSE',V({})); done('isFull() = FALSE.'); }
+  }
+  function display(){
+    if(Q.front===-1){ F('display',1,'front = \u22121 \u2192 EMPTY',V({}),'bad'); done('The queue is empty.','bad'); return; }
+    F('display',1,'front \u2260 \u22121',V({})); var i=Q.front, out=[], seen={};
+    function hh(c){ var o=cl(seen); o[i]=c; return o; }
+    F('display',2,'i \u2190 front = '+i,V({hl:hh('cur')}));
+    if(TYPE==='sq'){
+      while(i<=Q.rear){ F('display',3,'i = '+i+' \u2264 rear',V({hl:hh('cur')})); out.push(Q.A[i]); F('display',4,'print Q['+i+'] = '+Q.A[i],V({hl:hh('cur')}),'ok'); seen[i]='seen'; i++; F('display',5,'i \u2190 '+i,V({hl:i<=Q.rear?hh('cur'):cl(seen)})); }
+      F('display',3,'i > rear \u2192 stop',V({hl:cl(seen)}));
+    } else {
+      while(true){ F('display',3,'repeat',V({hl:hh('cur')})); out.push(Q.A[i]); F('display',4,'print Q['+i+'] = '+Q.A[i],V({hl:hh('cur')}),'ok');
+        if(i===Q.rear){ seen[i]='seen'; F('display',5,'i = rear \u2192 exit',V({hl:cl(seen)})); break; }
+        F('display',5,'i \u2260 rear',V({hl:hh('cur')})); seen[i]='seen'; var o=i; i=(i+1)%MAX; F('display',6,'i \u2190 ('+o+' + 1) mod '+MAX+' = '+i,V({hl:hh('cur')})); }
+    }
+    done('Display (front \u2192 rear): '+out.join(', '));
+  }
+
+  var svgV=$('qv-svg');
+  function render(view){ drawQ(svgV, view||V({})); $('qv-f').textContent=Q.front; $('qv-r').textContent=Q.rear; $('qv-n').textContent=size(); }
+  function pseudo(alg,line){ var pc=$('qv-pc'); pc.innerHTML=''; (ALG[TYPE][alg]||[]).forEach(function(s,i){ var d=el('div', i===line&&line>0?'on':''); d.textContent=s; pc.appendChild(d); }); }
+  function log(s,c){ var lg=$('qv-log'); var d=el('div',c||''); d.textContent=s; lg.appendChild(d); lg.scrollTop=lg.scrollHeight; }
+  function msg(s,c){ var m=$('qv-msg'); m.textContent=s; m.className='msg '+(c||''); }
+  function wait(){ if($('qv-stepmode').checked) return new Promise(function(r){ stepResolve=r; }); return sleep(parseInt($('qv-speed').value,10)); }
+  $('qv-step').addEventListener('click', function(){ if(stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  $('qv-stepmode').addEventListener('change', function(){ $('qv-step').style.display=this.checked?'':'none'; if(!this.checked && stepResolve){ var r=stepResolve; stepResolve=null; r(); } });
+  function setBusy(b){ busy=b; each(root.querySelectorAll('#qv-ops button'), function(x){ x.disabled=b; }); each($('qv-type').children, function(x){ x.disabled=b; }); }
+  var NAMES={enq:'ENQUEUE',deq:'DEQUEUE',peek:'PEEK',isEmpty:'IS_EMPTY',isFull:'IS_FULL',display:'DISPLAY',insFront:'INSERT_FRONT',insRear:'INSERT_REAR',delFront:'DELETE_FRONT',delRear:'DELETE_REAR'};
+  async function run(op){
+    if(busy) return;
+    var val=parseInt($('qv-val').value,10);
+    if((op==='enq'||op.indexOf('ins')===0)){ if(isNaN(val)){ msg('Enter a whole-number value.','bad'); return; } if(val>999||val<-99){ msg('Please use values between \u221299 and 999.','bad'); return; } }
+    frames=[]; RESULT=null;
+    if(op==='enq'||op==='insRear') insertRear(val); else if(op==='insFront') insertFront(val);
+    else if(op==='deq'||op==='delFront') deleteFront(); else if(op==='delRear') deleteRear();
+    else if(op==='peek') peek(); else if(op==='isEmpty') isEmpty(); else if(op==='isFull') isFull(); else display();
+    setBusy(true); $('qv-log').innerHTML=''; msg('Running\u2026','');
+    log(NAMES[op]+((op==='enq'||op.indexOf('ins')===0)?'('+val+')':'()')+'   ['+{sq:'simple queue',cq:'circular queue',dq:'deque'}[TYPE]+']','hd');
+    for(var i=0;i<frames.length;i++){ var f=frames[i]; pseudo(f.alg,f.line); drawQ(svgV,f.view); log(f.log,f.cls); await wait(); }
+    render(); if(RESULT) msg(RESULT.text,RESULT.cls); setBusy(false);
+    if(op==='enq'||op.indexOf('ins')===0){ if(RESULT && RESULT.cls==='ok') $('qv-val').value=val+10; }
+  }
+  function buildOps(){
+    var box=$('qv-ops'); box.innerHTML='';
+    OPS[TYPE].forEach(function(o){ var b=el('button','btn sm '+o[2]); b.textContent=o[1]; b.addEventListener('click', function(){ run(o[0]); }); box.appendChild(b); });
+    var r=el('button','btn gh sm'); r.textContent='Reset'; r.addEventListener('click', function(){ if(busy) return; Q=newQ([10,20,30]); $('qv-val').value=40; render(); $('qv-log').innerHTML=''; msg('Reset to 10, 20, 30.',''); }); box.appendChild(r);
+  }
+  each($('qv-type').children, function(b){
+    b.addEventListener('click', function(){
+      if(busy) return;
+      each($('qv-type').children, function(x){ x.classList.toggle('on', x===b); });
+      TYPE=b.getAttribute('data-k'); Q=newQ([10,20,30]); $('qv-val').value=40; buildOps(); render(); $('qv-log').innerHTML='';
+      pseudo(TYPE==='dq'?'insFront':'enq',-1);
+      msg({sq:'Simple queue: rear only moves right. Fill it, dequeue twice and try to enqueue.',cq:'Circular queue: indices wrap around with mod 6, so freed cells are reused.',dq:'Deque: insert and delete at both ends. Try Insert front on this list: front wraps from 0 to 5.'}[TYPE],'');
+    });
+  });
+  Q=newQ([10,20,30]); $('qv-val').value=40; buildOps(); pseudo('enq',-1); render();
+
+  /* =================================================================
+     WHY-CIRCULAR LAB (Section 2)
+     ================================================================= */
+  var WC={s:null, c:null};
+  function wcNew(){ WC.s={A:[null,null,null,null,null,null],front:-1,rear:-1}; WC.c={A:[null,null,null,null,null,null],front:-1,rear:-1}; $('wc-val').value=10; }
+  function wcSize(q,k){ if(q.front===-1) return 0; if(k==='sq'||q.rear>=q.front) return q.rear-q.front+1; return 6-q.front+q.rear+1; }
+  function wcDraw(hs, hc, hot){
+    drawQ($('wc-sq'),{k:'sq',A:WC.s.A,front:WC.s.front,rear:WC.s.rear,hl:hs||{},hotF:hot==='f',hotR:hot==='r',isStatic:true});
+    drawQ($('wc-cq'),{k:'cq',A:WC.c.A,front:WC.c.front,rear:WC.c.rear,hl:hc||{},hotF:hot==='f',hotR:hot==='r',isStatic:true});
+    $('wc-sq').style.maxWidth=''; $('wc-cq').style.maxWidth='';
+    var fs = WC.s.front===-1 ? 6 : 6-wcSize(WC.s,'sq');
+    $('wc-sq-note').textContent='front = '+WC.s.front+', rear = '+WC.s.rear+' | size '+wcSize(WC.s,'sq')+' | usable free cells: '+(WC.s.front===-1?6:5-WC.s.rear);
+    $('wc-cq-note').textContent='front = '+WC.c.front+', rear = '+WC.c.rear+' | size '+wcSize(WC.c,'cq')+' | usable free cells: '+(6-wcSize(WC.c,'cq'));
+  }
+  function wcMsg(t,c){ var m=$('wc-msg'); m.textContent=t; m.className='msg '+(c||''); }
+  function wcEnq(v){
+    var out=[], hs={}, hc={};
+    var s=WC.s; if(s.rear===5){ out.push('Simple: OVERFLOW'+(s.front>0?' (false overflow: '+s.front+' free cell(s) at the front)':'')); }
+    else { if(s.front===-1) s.front=0; s.rear++; s.A[s.rear]=v; hs[s.rear]='new'; out.push('Simple: stored at ['+s.rear+']'); }
+    var c=WC.c; if((c.rear+1)%6===c.front){ out.push('Circular: OVERFLOW (truly full)'); }
+    else { if(c.front===-1) c.front=0; var o=c.rear; c.rear=(c.rear+1)%6; c.A[c.rear]=v; hc[c.rear]='new'; out.push('Circular: stored at ['+c.rear+']'+(c.rear<o?' (wrapped to the start!)':'')); }
+    wcDraw(hs,hc,'r'); return out;
+  }
+  function wcDeq(){
+    var out=[];
+    [['sq',WC.s],['cq',WC.c]].forEach(function(p){ var q=p[1], nm=p[0]==='sq'?'Simple':'Circular';
+      if(q.front===-1){ out.push(nm+': UNDERFLOW'); return; }
+      var it=q.A[q.front]; q.A[q.front]=null;
+      if(q.front===q.rear){ q.front=-1; q.rear=-1; } else q.front = p[0]==='sq' ? q.front+1 : (q.front+1)%6;
+      out.push(nm+': removed '+it); });
+    wcDraw({},{},'f'); return out;
+  }
+  $('wc-enq').addEventListener('click', function(){ var v=parseInt($('wc-val').value,10); if(isNaN(v)){ wcMsg('Enter a whole number.','bad'); return; } var r=wcEnq(v); $('wc-val').value=v+10; wcMsg(r.join('  |  '), r.join('').indexOf('false')>=0?'bad':''); });
+  $('wc-deq').addEventListener('click', function(){ wcMsg(wcDeq().join('  |  '),''); });
+  $('wc-reset').addEventListener('click', function(){ wcNew(); wcDraw(); wcMsg('Both queues are empty.',''); });
+  $('wc-demo').addEventListener('click', async function(){
+    var btns=[this,$('wc-enq'),$('wc-deq'),$('wc-reset')]; btns.forEach(function(b){ b.disabled=true; });
+    wcNew(); wcDraw(); wcMsg('Step 1: enqueue 10 \u2026 60 into both queues.',''); await sleep(700);
+    for(var v=10; v<=60; v+=10){ wcEnq(v); await sleep(380); }
+    wcMsg('Step 2: dequeue twice (10 and 20 leave).',''); await sleep(900);
+    wcDeq(); await sleep(600); wcDeq(); await sleep(900);
+    wcMsg('Step 3: enqueue 70 \u2026',''); await sleep(700);
+    var r=wcEnq(70); $('wc-val').value=80;
+    wcMsg(r.join('  |  ')+'. The simple queue wastes the freed cells; the circular queue reuses them.','bad');
+    btns.forEach(function(b){ b.disabled=false; });
+  });
+  wcNew(); wcDraw();
+
+  /* =================================================================
+     APPLICATION LAB (Section 5)
+     ================================================================= */
+  each($('ap-mode').children, function(b){ b.addEventListener('click', function(){ each($('ap-mode').children, function(x){ x.classList.toggle('on', x===b); }); $('ap-rr').classList.toggle('on', b.getAttribute('data-m')==='rr'); $('ap-pal').classList.toggle('on', b.getAttribute('data-m')==='pal'); }); });
+  function chips(box, arr, ends){
+    box.innerHTML='';
+    if(!arr.length){ box.appendChild(el('em','','empty')); return; }
+    if(ends) box.appendChild(el('span','end','FRONT \u2192'));
+    arr.forEach(function(x,i){ var c=''; if(i===0) c='f'; if(i===arr.length-1) c+=(c?' ':'')+'r'; var sp=el('span',c); sp.textContent=String(x); box.appendChild(sp); });
+    if(ends) box.appendChild(el('span','end','\u2190 REAR'));
+  }
+  // ---- round robin ----
+  var RR={steps:[], k:0, running:false, err:''};
+  var COLORS=['#ffd8a8','#b2f2bb','#a5d8ff','#eebefa','#ffec99','#c3fae8','#ffc9c9','#d0bfff'];
+  function rrBuild(){
+    var parts=$('rr-in').value.split(','), procs=[], q=parseInt($('rr-q').value,10);
+    RR.err='';
+    parts.forEach(function(p){ var m=p.trim().match(/^([A-Za-z0-9_]+)\s*=\s*(\d+)$/); if(m && +m[2]>0) procs.push({n:m[1], b:+m[2]}); else if(p.trim()) RR.err='Could not read "'+p.trim()+'". Use the form P1=5.'; });
+    if(!procs.length && !RR.err) RR.err='Enter at least one process, e.g. P1=5.';
+    if(procs.length>8) RR.err='Please use at most 8 processes.';
+    if(isNaN(q)||q<1) RR.err='Time quantum must be a positive whole number.';
+    if(procs.reduce(function(s,p){return s+p.b;},0)>60) RR.err='Keep the total burst time at 60 or less for a readable chart.';
+    var color={}; procs.forEach(function(p,i){ color[p.n]=COLORS[i%COLORS.length]; });
+    var ready=procs.map(function(p){return p.n;}), rem={}, burst={}; procs.forEach(function(p){ rem[p.n]=p.b; burst[p.n]=p.b; });
+    var time=0, steps=[], finish={};
+    while(ready.length && !RR.err){
+      var p=ready.shift(), run=Math.min(q, rem[p]);
+      var start=time; time+=run; rem[p]-=run;
+      var act;
+      if(rem[p]>0){ ready.push(p); act='runs '+run+', '+rem[p]+' left \u2192 enqueue at rear'; }
+      else { finish[p]=time; act='runs '+run+', finished at t = '+time; }
+      steps.push({p:p, start:start, end:time, act:act, queue:ready.slice(), color:color[p]});
+    }
+    RR.steps=steps; RR.k=0; RR.procs=procs; RR.finish=finish; RR.burst=burst; RR.total=time; RR.q=q;
+    $('rr-trace').innerHTML='<tr><th>#</th><th>Time</th><th>Dequeued</th><th>Action</th><th>Queue after (front \u2192 rear)</th></tr>';
+    $('rr-gantt').innerHTML=''; $('rr-sum').innerHTML='';
+    chips($('rr-queue'), RR.err?[]:procs.map(function(p){return p.n+' ('+p.b+')';}), true);
+    if(RR.err){ $('rr-sum').innerHTML='<p style="color:#c92a2a;font-weight:600">'+RR.err+'</p>'; }
+  }
+  function rrShow(i){
+    var s=RR.steps[i], tb=$('rr-trace');
+    each(tb.querySelectorAll('tr.now'), function(r){ r.classList.remove('now'); });
+    var tr=el('tr','now'); [String(i+1), s.start+'\u2013'+s.end, s.p, s.act, s.queue.length?s.queue.join(', '):'(empty)'].forEach(function(t){ var td=el('td'); td.textContent=t; tr.appendChild(td); }); tb.appendChild(tr); tr.scrollIntoView({block:'nearest'});
+    var g=el('div'); g.style.flex=String(s.end-s.start); g.style.background=s.color; g.innerHTML='<b></b><small></small>'; g.firstChild.textContent=s.p; g.lastChild.textContent=String(s.start); $('rr-gantt').appendChild(g);
+    chips($('rr-queue'), s.queue, true);
+    if(i===RR.steps.length-1){
+      var h='<table><tr><th>Process</th><th>Burst</th><th>Finish</th><th>Turnaround (= finish)</th><th>Waiting (= TAT \u2212 burst)</th></tr>', tw=0, tt=0;
+      RR.procs.forEach(function(p){ var f=RR.finish[p.n], w=f-p.b; tw+=w; tt+=f; h+='<tr><td>'+p.n+'</td><td>'+p.b+'</td><td>'+f+'</td><td>'+f+'</td><td>'+w+'</td></tr>'; });
+      h+='<tr><td colspan="3"><b>Average</b></td><td><b>'+(tt/RR.procs.length).toFixed(2)+'</b></td><td><b>'+(tw/RR.procs.length).toFixed(2)+'</b></td></tr></table>';
+      $('rr-sum').innerHTML=h;
+      var endT=el('span','gend'); endT.textContent=String(RR.total); $('rr-gantt').appendChild(endT);
+      $('rr-gantt').setAttribute('title','Total time '+RR.total);
+    }
+  }
+  $('rr-run').addEventListener('click', async function(){
+    if(RR.running) return; RR.running=true; this.disabled=true; $('rr-stepb').disabled=true;
+    rrBuild(); await sleep(400);
+    for(var i=0;i<RR.steps.length;i++){ rrShow(i); await sleep(650); }
+    RR.k=RR.steps.length; RR.running=false; this.disabled=false; $('rr-stepb').disabled=false;
+  });
+  $('rr-stepb').addEventListener('click', function(){ if(RR.running) return; if(RR.k===0||RR.k>=RR.steps.length){ rrBuild(); if(RR.err) return; } rrShow(RR.k); RR.k++; });
+  $('rr-in').addEventListener('input', function(){ RR.k=0; }); $('rr-q').addEventListener('input', function(){ RR.k=0; });
+  rrBuild();
+
+  // ---- palindrome with deque ----
+  var PAL={steps:[], k:0, running:false};
+  function palBuild(){
+    var s=$('pal-in').value, d=[], steps=[];
+    for(var i=0;i<s.length;i++){ var ch=s[i].toLowerCase(); if(/[a-z0-9]/.test(ch)){ d.push(ch); steps.push({act:'insert_rear("'+ch+'")', dq:d.slice()}); } }
+    var ok=true;
+    if(!d.length){ steps.push({act:'no letters or digits to check', dq:[], bad:true, verdict:'Nothing to check.'}); }
+    while(d.length>1){ var a=d.shift(), b=d.pop(); if(a!==b){ ok=false; steps.push({act:'delete_front \u2192 "'+a+'", delete_rear \u2192 "'+b+'": different', dq:d.slice(), bad:true}); break; } steps.push({act:'delete_front \u2192 "'+a+'", delete_rear \u2192 "'+b+'": match', dq:d.slice()}); }
+    if(steps.length && !steps[steps.length-1].verdict){ steps.push({act: ok ? (d.length?'one character left ("'+d[0]+'"): ':'deque empty: ')+'PALINDROME' : 'NOT a palindrome', dq:d.slice(), bad:!ok, verdict: ok?'"'+s+'" is a palindrome.':'"'+s+'" is not a palindrome.'}); }
+    PAL.steps=steps; PAL.k=0;
+    $('pal-trace').innerHTML='<tr><th>#</th><th>Action</th><th>Deque (front \u2192 rear)</th></tr>'; $('pal-verdict').textContent=''; chips($('pal-dq'),[],true);
+  }
+  function palShow(i){
+    var s=PAL.steps[i], tb=$('pal-trace');
+    each(tb.querySelectorAll('tr.now'), function(r){ r.classList.remove('now'); });
+    var tr=el('tr','now'); [String(i+1), s.act, s.dq.length?s.dq.join(' '):'(empty)'].forEach(function(t){ var td=el('td'); td.textContent=t; tr.appendChild(td); }); if(s.bad) tr.style.color='#c92a2a'; tb.appendChild(tr); tr.scrollIntoView({block:'nearest'});
+    chips($('pal-dq'), s.dq, true);
+    if(s.verdict){ var v=$('pal-verdict'); v.textContent=s.verdict; v.style.color=s.bad?'#c92a2a':'#0b7a6f'; }
+  }
+  $('pal-run').addEventListener('click', async function(){
+    if(PAL.running) return; PAL.running=true; this.disabled=true; $('pal-stepb').disabled=true;
+    palBuild(); for(var i=0;i<PAL.steps.length;i++){ palShow(i); await sleep(450); }
+    PAL.k=PAL.steps.length; PAL.running=false; this.disabled=false; $('pal-stepb').disabled=false;
+  });
+  $('pal-stepb').addEventListener('click', function(){ if(PAL.running) return; if(PAL.k===0||PAL.k>=PAL.steps.length) palBuild(); palShow(PAL.k); PAL.k++; });
+  $('pal-in').addEventListener('input', function(){ PAL.k=0; });
+  palBuild();
+
+  /* ---------------- quiz ---------------- */
+  var QZ=[
+    {q:'A queue follows which principle?', o:['LIFO','FIFO','Random order','Priority order'], a:1, e:'First In, First Out: elements leave in the order they arrived.'},
+    {q:'A simple (linear) queue has MAX = 5, front = 3 and rear = 4. What happens on enqueue?', o:['Item goes to index 0','OVERFLOW, although cells 0\u20132 are free','Item replaces Q[3]','UNDERFLOW'], a:1, e:'The simple queue tests rear = MAX \u2212 1, so it reports overflow even though the front cells are empty: false overflow.'},
+    {q:'What is the "full" condition of a circular queue (0-based array, front = \u22121 when empty)?', o:['rear = MAX \u2212 1','front = rear','(rear + 1) mod MAX = front','front = 0'], a:2, e:'The queue is full when the next position after rear (going round the circle) is the front.'},
+    {q:'In a circular queue with MAX = 8, rear = 7 and front = 3, where does the next element go?', o:['Index 8','Index 0','Index 3','Overflow occurs'], a:1, e:'rear \u2190 (7 + 1) mod 8 = 0, and 0 \u2260 front (3), so index 0 is free.'},
+    {q:'A deque that allows insertion at only one end but deletion at both ends is called:', o:['Output-restricted deque','Input-restricted deque','Priority queue','Circular queue'], a:1, e:'Input (insertion) is restricted to one end; output (deletion) happens at both ends.'},
+    {q:'Which algorithm uses a queue to visit graph vertices level by level?', o:['Depth-First Search','Breadth-First Search','Binary search','Quick sort'], a:1, e:'BFS enqueues the neighbours of each vertex and processes them in FIFO order, level by level.'},
+    {q:'Why is collections.deque preferred over a Python list for a queue?', o:['A list cannot store duplicates','deque.popleft() is O(1); list.pop(0) is O(n)','deque sorts elements automatically','A list cannot grow'], a:1, e:'Removing from the front of a list shifts every remaining element.'},
+    {q:'A circular queue has MAX = 10, front = 7, rear = 2. How many elements does it contain?', o:['5','6','4','9'], a:1, e:'It has wrapped (rear < front): MAX \u2212 front + rear + 1 = 10 \u2212 7 + 2 + 1 = 6 (indices 7, 8, 9, 0, 1, 2).'}
+  ];
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('qu-quiz'); qz.innerHTML=''; answered=0; score=0; $('qu-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      var qt=el('div','qt'); qt.textContent=item.q; card.appendChild(qt);
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.appendChild(document.createTextNode(item.e)); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('qu-quiz-num').textContent=score; $('qu-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('qu-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+
+  /* ---------------- section navigation menu ---------------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('qu-nav'), tabsBox=$('qu-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('qu-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('qu-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('qu-prev').disabled = cur===0; $('qu-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('qu-prev').addEventListener('click', function(){ go(cur-1); });
+  $('qu-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('qu-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('qu-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="stack.html"><small>← Previous lesson</small><b>Stack</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="stack-queue-applications.html"><small>Next lesson →</small><b>Applications of stacks &amp; queues</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

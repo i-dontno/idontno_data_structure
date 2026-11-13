@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prim&#x27;s &amp; Kruskal&#x27;s (MST) · Learn Data Structures with idontno</title>
+<meta name="description" content="Minimum spanning trees with two greedy algorithms.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="minimum-spanning-tree">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="cur" data-lesson="minimum-spanning-tree" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module IV · Graphs</span><span>›</span><span>Lesson 15 of 18</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+  Minimum Spanning Trees &#8212; Prim's and Kruskal's Algorithms
+  Interactive learning blog for MCA Data Structures
+  Paste this whole file into Blogger: New Post &#8594; "HTML view".
+  Do not switch back to "Compose view" after pasting.
+============================================================= -->
+<style>
+
+#mstb{
+  --ink:#1c1f33; --ink2:#454a66; --muted:#6b7090; --paper:#fbfaf6; --card:#ffffff;
+  --line:#e4e2d9; --soft:#f3f1ea;
+  --accent:#0f766e; --accent-soft:#e1f3f0;
+  --pivot:#e8590c; --pivot-soft:#fff0e6;
+  --src:#2563eb; --src-soft:#e8efff;
+  --dst:#15803d; --dst-soft:#e6f6ea;
+  --upd:#f59f00; --upd-soft:#fff6d6;
+  --bad:#c92a2a; --bad-soft:#ffe9e9;
+  --codebg:#1e2235;
+  font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink); background:var(--paper); line-height:1.65; font-size:17px;
+  max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+}
+#mstb *,#mstb *::before,#mstb *::after{box-sizing:border-box}
+#mstb p{margin:0 0 14px}
+#mstb a{color:var(--accent)}
+#mstb h2,#mstb h3,#mstb h4{font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);line-height:1.25;margin:0}
+#mstb code,#mstb .mono{font-family:'Fira Code',ui-monospace,monospace;font-size:.88em}
+#mstb :not(pre)>code{background:var(--soft);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+#mstb ul,#mstb ol{margin:0 0 14px;padding-left:24px}
+#mstb li{margin:4px 0}
+#mstb table{border-collapse:collapse}
+#mstb img{max-width:100%}
+#mstb button{font-family:inherit}
+
+/* ---------- hero ---------- */
+#mstb .ms-hero{background:linear-gradient(135deg,#14213d 0%,#1f3a5f 55%,#0f766e 100%);color:#fff;border-radius:18px;padding:38px 34px 30px;margin:0 0 26px;position:relative;overflow:hidden}
+#mstb .ms-hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,4.4vw,44px);font-weight:800;line-height:1.08;margin:6px 0 12px;color:#fff;letter-spacing:-.5px}
+#mstb .ms-hero p{color:#d8e4f0;max-width:620px;font-size:17px}
+#mstb .ms-kicker{font-family:'Fira Code',monospace;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:#9fe3d7}
+#mstb .ms-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+#mstb .ms-hero-tags span{font-size:13px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:3px 12px}
+#mstb .ms-hero svg{position:absolute;right:-20px;top:10px;opacity:.22;width:300px;height:220px}
+
+/* ---------- toc ---------- */
+#mstb .ms-toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:28px}
+#mstb .ms-toc h4{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:8px}
+#mstb .ms-toc ol{columns:2;column-gap:30px;margin:0;padding-left:22px}
+#mstb .ms-toc a{text-decoration:none;color:var(--ink2);font-weight:500}
+#mstb .ms-toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#mstb .ms-sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:26px}
+#mstb .ms-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#mstb .ms-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}
+#mstb .ms-sec-head h2{font-size:clamp(22px,3vw,29px);font-weight:800;letter-spacing:-.3px}
+#mstb h3{font-size:21px;font-weight:700;margin:26px 0 10px}
+#mstb h4{font-size:17px;font-weight:700;margin:18px 0 8px}
+
+/* callouts */
+#mstb .ms-box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#mstb .ms-box b.t{display:block;font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+#mstb .ms-box p:last-child,#mstb .ms-box ul:last-child{margin-bottom:0}
+#mstb .ms-def{background:var(--accent-soft);border-color:#b5e0d8}
+#mstb .ms-def b.t{color:var(--accent)}
+#mstb .ms-exam{background:var(--upd-soft);border-color:#f5d97a}
+#mstb .ms-exam b.t{color:#a36200}
+#mstb .ms-warn{background:var(--bad-soft);border-color:#f4b9b9}
+#mstb .ms-warn b.t{color:var(--bad)}
+#mstb .ms-tip{background:var(--src-soft);border-color:#c3d4fb}
+#mstb .ms-tip b.t{color:var(--src)}
+
+/* grids & cards */
+#mstb .ms-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
+#mstb .ms-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+#mstb .ms-card h4{margin:0 0 6px;font-size:16px}
+#mstb .ms-card p{font-size:15px;margin:0;color:var(--ink2)}
+#mstb .ms-card .ms-pill{display:inline-block;font-family:'Fira Code',monospace;font-size:11.5px;padding:1px 8px;border-radius:99px;background:var(--ink);color:#fff;margin-bottom:6px}
+#mstb .ms-card.hl{border-color:var(--accent);background:var(--accent-soft)}
+
+/* generic table */
+#mstb .ms-tbl-wrap{overflow-x:auto;margin:14px 0}
+#mstb table.ms-tbl{width:100%;font-size:15px;background:#fff}
+#mstb table.ms-tbl th,#mstb table.ms-tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+#mstb table.ms-tbl th{background:var(--soft);font-weight:700}
+#mstb table.ms-tbl tr.hl td{background:var(--accent-soft)}
+
+/* formula */
+#mstb .ms-formula{font-family:'Fira Code',monospace;background:var(--ink);color:#f1f3ff;border-radius:12px;padding:16px 20px;margin:16px 0;font-size:15px;overflow-x:auto;line-height:1.9}
+#mstb .ms-formula .k{color:#ffb37a}#mstb .ms-formula .i{color:#8fb5ff}#mstb .ms-formula .c{color:#8a91b4}
+
+/* distance matrices (worked example + visualizer) */
+#mstb .ms-mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:16px 0}
+#mstb .ms-mat-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow-x:auto}
+#mstb .ms-mat-card h4{margin:0 0 4px;font-size:16px}
+#mstb .ms-mat-card .sub{font-size:13px;color:var(--muted);margin-bottom:8px}
+#mstb table.ms-mat{font-family:'Fira Code',monospace;font-size:14.5px;margin:0 auto}
+#mstb table.ms-mat th,#mstb table.ms-mat td{width:44px;height:38px;text-align:center;border:1px solid var(--line);padding:0;background:#fff}
+#mstb table.ms-mat th{background:var(--soft);color:var(--ink2);font-weight:600}
+#mstb table.ms-mat td.krow,#mstb table.ms-mat td.kcol{background:var(--pivot-soft)}
+#mstb table.ms-mat td.chg{background:var(--upd-soft);font-weight:700;color:#8a4b00;box-shadow:inset 0 0 0 2px var(--upd)}
+#mstb table.ms-mat th.kh{background:var(--pivot);color:#fff}
+#mstb .ms-mat-card .chgs{font-size:13px;margin-top:8px;color:var(--ink2);font-family:'Fira Code',monospace;line-height:1.6}
+
+/* legend */
+#mstb .ms-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px;color:var(--ink2);margin:8px 0}
+#mstb .ms-legend span{display:inline-flex;align-items:center;gap:6px}
+#mstb .ms-legend i{display:inline-block;width:14px;height:14px;border-radius:4px}
+
+/* code */
+#mstb .ms-code{background:var(--codebg);border-radius:12px;margin:14px 0;overflow:hidden}
+#mstb .ms-code-bar{display:flex;align-items:center;justify-content:space-between;background:#151827;padding:8px 14px;color:#a7adcf;font-family:'Fira Code',monospace;font-size:12.5px}
+#mstb .ms-code pre{margin:0;padding:16px 18px;overflow-x:auto;color:#e6e8f5;font-family:'Fira Code',monospace;font-size:13.8px;line-height:1.65;background:transparent;border:0;white-space:pre}
+#mstb .ms-code pre code{background:none;border:0;padding:0;font-size:inherit;color:inherit}
+#mstb .ms-out pre{background:#0d1020;color:#b8f5c8}
+#mstb .py-kw{color:#ff9ac1}#mstb .py-str{color:#ffd88a}#mstb .py-com{color:#7f88b0;font-style:italic}
+#mstb .py-num{color:#9ee8ff}#mstb .py-bi{color:#8fd3a5}#mstb .py-fn{color:#8fb5ff}
+#mstb .ms-copy{background:#2b3050;color:#e6e8f5;border:1px solid #3d4370;border-radius:7px;padding:4px 12px;font-size:12.5px;cursor:pointer;font-family:'Fira Code',monospace}
+#mstb .ms-copy:hover{background:#3a4170}
+#mstb .ms-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+#mstb .ms-tab{border:1px solid var(--line);background:var(--soft);padding:8px 14px;border-radius:10px 10px 0 0;cursor:pointer;font-weight:600;font-size:14.5px;color:var(--ink2)}
+#mstb .ms-tab.on{background:var(--codebg);color:#fff;border-color:var(--codebg)}
+#mstb .ms-pane{display:none}
+#mstb .ms-pane.on{display:block}
+#mstb .ms-pane > .ms-code:first-child{margin-top:0;border-top-left-radius:0}
+
+/* pseudocode */
+#mstb .ms-pseudo{font-family:'Fira Code',monospace;font-size:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 0;margin:12px 0;line-height:1.75;overflow-x:auto}
+#mstb .ms-pseudo div{padding:0 16px;white-space:pre;border-left:3px solid transparent}
+#mstb .ms-pseudo div .ln{display:inline-block;width:26px;color:#a0a4bd}
+#mstb .ms-pseudo div.on{background:var(--upd-soft);border-left-color:var(--upd)}
+#mstb .ms-pseudo .kw{color:#7c3aed;font-weight:600}
+#mstb .ms-pseudo .cm{color:#8a8fa8;font-style:italic}
+
+/* buttons / inputs */
+#mstb .ms-btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:8px 14px;border-radius:9px;font-weight:600;font-size:14.5px;cursor:pointer;line-height:1.2}
+#mstb .ms-btn:hover{filter:brightness(1.25)}
+#mstb .ms-btn.ghost{background:#fff;color:var(--ink)}
+#mstb .ms-btn.ghost:hover{background:var(--soft);filter:none}
+#mstb .ms-btn.acc{background:var(--accent);border-color:var(--accent)}
+#mstb .ms-btn:disabled{opacity:.4;cursor:not-allowed}
+#mstb select,#mstb input[type=text]{font-family:inherit;font-size:14.5px;border:1px solid #cfccc0;border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+#mstb .ms-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+#mstb .ms-row label{font-size:14px;color:var(--ink2);font-weight:600}
+
+/* lab + visualizer layout */
+#mstb .ms-lab{border:2px solid var(--ink);border-radius:16px;padding:18px;margin:18px 0;background:#fff}
+#mstb .ms-lab-title{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#mstb .ms-lab-title span{font-family:'Fira Code',monospace;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;background:var(--pivot);color:#fff;border-radius:6px;padding:2px 8px}
+#mstb .ms-lab-title h3{margin:0;font-size:20px}
+#mstb .ms-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+#mstb .ms-two > *{min-width:0}
+#mstb .ms-graph{width:100%;height:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:block}
+#mstb .ms-graph .v circle{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+#mstb .ms-graph .v text{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#mstb .ms-graph .v.pivot circle{fill:var(--pivot);stroke:var(--pivot)}#mstb .ms-graph .v.pivot text{fill:#fff}
+#mstb .ms-graph .v.src circle{fill:var(--src);stroke:var(--src)}#mstb .ms-graph .v.src text{fill:#fff}
+#mstb .ms-graph .v.dst circle{fill:var(--dst);stroke:var(--dst)}#mstb .ms-graph .v.dst text{fill:#fff}
+#mstb .ms-graph .v.onpath circle{stroke:var(--accent);stroke-width:4}
+#mstb .ms-graph .e path{fill:none;stroke:#8d91a8;stroke-width:2}
+#mstb .ms-graph .e.neg path{stroke:var(--bad)}
+#mstb .ms-graph .e.hov path{stroke:var(--upd);stroke-width:4}
+#mstb .ms-graph .e.path path{stroke:var(--accent);stroke-width:4.5}
+#mstb .ms-graph .e.dim{opacity:.35}
+#mstb .ms-graph g.faded{opacity:.28}
+#mstb .ms-graph .elab rect{fill:#fff;stroke:var(--line)}
+#mstb .ms-graph .elab text{font-family:'Fira Code',monospace;font-size:13px;font-weight:600;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#mstb .ms-graph .elab.neg text{fill:var(--bad)}
+#mstb .ms-graph .ov path{fill:none;stroke-width:2.5;stroke-dasharray:7 5}
+#mstb .ms-graph .ov.a path{stroke:var(--src)}#mstb .ms-graph .ov.b path{stroke:var(--dst)}#mstb .ms-graph .ov.c path{stroke:#9aa0b8}
+#mstb .ms-graph .ov text{font-family:'Fira Code',monospace;font-size:12.5px;font-weight:700;text-anchor:middle;dominant-baseline:central}
+#mstb .ms-graph .ov.a text{fill:var(--src)}#mstb .ms-graph .ov.b text{fill:var(--dst)}#mstb .ms-graph .ov.c text{fill:#6b7090}
+
+#mstb table.ms-in{font-family:'Fira Code',monospace;font-size:14px;margin:6px 0}
+#mstb table.ms-in th{background:var(--soft);width:46px;height:34px;border:1px solid var(--line);text-align:center}
+#mstb table.ms-in td{border:1px solid var(--line);padding:0;width:56px;height:38px}
+#mstb table.ms-in input{width:100%;height:38px;border:0;border-radius:0;text-align:center;font-family:'Fira Code',monospace;font-size:14px;padding:0;background:#fff}
+#mstb table.ms-in input:focus{outline:2px solid var(--upd);background:var(--upd-soft)}
+#mstb table.ms-in input:disabled{background:var(--soft);color:var(--muted)}
+#mstb table.ms-in input.bad{background:var(--bad-soft);color:var(--bad)}
+#mstb .ms-stat{font-size:14px;color:var(--ink2);background:var(--paper);border:1px dashed #cfccc0;border-radius:10px;padding:8px 12px;margin-top:8px;font-family:'Fira Code',monospace;line-height:1.6}
+
+#mstb .ms-viz-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:6px 0 10px}
+#mstb .ms-phase{font-weight:800;font-size:17px}
+#mstb .ms-phase em{font-style:normal;color:var(--pivot)}
+#mstb .ms-prog{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+#mstb .ms-prog div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pivot));transition:width .25s}
+#mstb .ms-msg{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:15.5px;min-height:78px;margin:10px 0}
+#mstb .ms-msg.upd{border-left-color:var(--upd);background:#fffbea}
+#mstb .ms-msg.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+#mstb .ms-msg .calc{font-family:'Fira Code',monospace;font-size:14px;display:block;margin-top:4px}
+#mstb .ms-vmat td{transition:background .2s}
+#mstb table.ms-mat td.tgt{box-shadow:inset 0 0 0 3px var(--dst)}
+#mstb table.ms-mat td.s1{box-shadow:inset 0 0 0 3px var(--src)}
+#mstb table.ms-mat td.tgt.upd{background:var(--upd-soft);font-weight:700}
+#mstb table.ms-mat td .old{display:block;font-size:10.5px;color:var(--muted);text-decoration:line-through;line-height:1}
+#mstb table.ms-mat td.negd{background:var(--bad-soft);color:var(--bad);font-weight:700}
+#mstb .ms-log{max-height:170px;overflow-y:auto;font-family:'Fira Code',monospace;font-size:13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 12px;line-height:1.7}
+#mstb .ms-log div.cur{background:var(--upd-soft);border-radius:4px}
+#mstb .ms-predict{display:none;gap:8px;align-items:center;flex-wrap:wrap;background:var(--src-soft);border:1px solid #c3d4fb;border-radius:10px;padding:10px 12px;margin:8px 0}
+#mstb .ms-predict.on{display:flex}
+#mstb .ms-predict b{font-size:15px}
+#mstb .ms-pathres{font-family:'Fira Code',monospace;font-size:14.5px;margin-top:6px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);display:none}
+
+/* details (answers) */
+#mstb details{border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--paper)}
+#mstb details summary{cursor:pointer;padding:10px 14px;font-weight:600;list-style:none}
+#mstb details summary::-webkit-details-marker{display:none}
+#mstb details summary::before{content:"\0025B8  ";color:var(--accent)}
+#mstb details[open] summary::before{content:"\0025BE  "}
+#mstb details .ans{padding:0 16px 12px;border-top:1px dashed var(--line);padding-top:10px}
+
+/* quiz */
+#mstb .ms-q{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--paper)}
+#mstb .ms-q .qt{font-weight:700;margin-bottom:10px}
+#mstb .ms-q .qt span{color:var(--accent);margin-right:6px}
+#mstb .ms-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;margin:6px 0;cursor:pointer;font-size:15.5px;color:var(--ink)}
+#mstb .ms-opt:hover:not(:disabled){border-color:var(--ink2)}
+#mstb .ms-opt.right{border-color:var(--dst);background:var(--dst-soft)}
+#mstb .ms-opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+#mstb .ms-opt:disabled{cursor:default;opacity:1}
+#mstb .ms-exp{display:none;font-size:15px;margin-top:8px;padding:10px 12px;border-radius:9px;background:var(--src-soft)}
+#mstb .ms-score{font-size:18px;font-weight:800;padding:14px 16px;border-radius:12px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* ---------- slide navigation ---------- */
+#mstb .ms-nav{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 18px;box-shadow:0 4px 14px rgba(28,31,51,.06)}
+#mstb .ms-nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:2px}
+#mstb .ms-nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:99px;padding:5px 10px 5px 7px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap;line-height:1.2}
+#mstb .ms-nav-tab b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:var(--soft);color:var(--ink);font-size:12.5px}
+#mstb .ms-nav-tab:hover{border-color:var(--ink2)}
+#mstb .ms-nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#mstb .ms-nav-tab.on b{background:var(--pivot);color:#fff}
+#mstb .ms-nav-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+#mstb .ms-nav-count{flex:1 1 200px;text-align:center;font-weight:700;font-size:15px;color:var(--ink)}
+#mstb .ms-nav-count span{font-family:'Fira Code',monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin-right:8px;color:var(--ink2)}
+#mstb .ms-nav-bar .ms-btn{padding:7px 12px;font-size:14px}
+#mstb .ms-nav-tools{display:flex;gap:8px;margin-left:auto}
+#mstb.ms-slides .ms-slide{display:none}
+#mstb.ms-slides .ms-slide.on{display:block;animation:msFade .25s ease}
+@keyframes msFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#mstb .ms-slide-foot{display:none;justify-content:space-between;gap:10px;margin:-8px 0 26px}
+#mstb.ms-slides .ms-slide-foot{display:flex}
+#mstb:fullscreen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#mstb:-webkit-full-screen{max-width:none;overflow-y:auto;padding:16px 4vw 40px;background:var(--paper)}
+#mstb:fullscreen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+#mstb:-webkit-full-screen > *{max-width:1100px;margin-left:auto;margin-right:auto}
+@media (max-width:760px){
+  #mstb .ms-nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
+  #mstb .ms-nav-count{order:-1;flex-basis:100%}
+  #mstb .ms-nav-tools{margin-left:0}
+}
+#mstb .ms-foot{text-align:center;color:var(--muted);font-size:14px;margin-top:10px}
+
+@media (max-width:760px){
+  #mstb{font-size:16px}
+  #mstb .ms-sec{padding:20px 16px}
+  #mstb .ms-two{grid-template-columns:1fr}
+  #mstb .ms-toc ol{columns:1}
+  #mstb .ms-hero{padding:28px 20px}
+  #mstb .ms-hero svg{display:none}
+  #mstb .ms-lab{padding:12px}
+  #mstb table.ms-mat th,#mstb table.ms-mat td{width:38px;height:34px;font-size:13px}
+}
+
+/* ---------- MST-specific ---------- */
+#mstb .ms-nav-tabs{gap:4px}
+#mstb .ms-nav-tab{padding:5px 7px 5px 4px;font-size:12.5px;gap:4px}
+#mstb .ms-nav-tab b{min-width:19px;height:19px;font-size:12px}
+#mstb .ms-toc li{margin:0 0 6px;break-inside:avoid}
+#mstb .ms-hero{background:linear-gradient(135deg,#152a24 0%,#1f4d3a 50%,#5c7f24 100%)}
+#mstb .ms-hero .ms-kicker{color:#c9ec9a}
+#mstb .ms-graph .e line{stroke:#9aa0b8;stroke-width:2.5;stroke-linecap:round}
+#mstb .ms-graph .e.neg line{stroke:var(--bad)}
+#mstb .ms-graph .e.tree line{stroke:var(--dst);stroke-width:6}
+#mstb .ms-graph .e.cur line{stroke:var(--pivot);stroke-width:6}
+#mstb .ms-graph .e.curbad line{stroke:var(--bad);stroke-width:6;stroke-dasharray:9 6}
+#mstb .ms-graph .e.rej line{stroke:#d9a3a3;stroke-dasharray:6 6;stroke-width:2}
+#mstb .ms-graph .e.cand line{stroke:#f6b26b;stroke-width:3.5;stroke-dasharray:3 5}
+#mstb .ms-graph .e.faint{opacity:.3}
+#mstb .ms-graph .e.hov line{stroke:var(--upd);stroke-width:6}
+#mstb .ms-graph .elab.tree rect{stroke:var(--dst);stroke-width:2;fill:var(--dst-soft)}
+#mstb .ms-graph .elab.cur rect,#mstb .ms-graph .elab.curbad rect{stroke:var(--pivot);stroke-width:2;fill:var(--pivot-soft)}
+#mstb .ms-graph .elab.rej text{fill:#c08a8a;text-decoration:line-through}
+#mstb .ms-graph .v.intree circle{fill:var(--dst);stroke:var(--dst)}#mstb .ms-graph .v.intree text{fill:#fff}
+#mstb .ms-graph .v.cur circle{fill:var(--pivot);stroke:var(--pivot)}#mstb .ms-graph .v.cur text{fill:#fff}
+#mstb .ms-graph .v .badge{font-family:'Fira Code',monospace;font-size:12px;font-weight:600;fill:var(--ink2)}
+#mstb .ms-graph .v .badgebg{fill:#fff;stroke:var(--line)}
+#mstb table.ms-trace{font-family:'Fira Code',monospace;font-size:13.5px}
+#mstb table.ms-trace td,#mstb table.ms-trace th{text-align:center;white-space:nowrap}
+#mstb table.ms-trace td.acc{color:var(--dst);font-weight:700}
+#mstb table.ms-trace td.rej{color:var(--bad);font-weight:700}
+#mstb table.ms-trace td.upd{background:var(--upd-soft);font-weight:700}
+#mstb table.ms-trace td.done{color:#b0b3c4}
+#mstb table.ms-trace tr.curr td{background:var(--pivot-soft)}
+#mstb table.ms-trace tr.acc td{background:var(--dst-soft)}
+#mstb table.ms-trace tr.rej td{color:#b07a7a}
+#mstb .ms-side{font-size:14px}
+#mstb .ms-side table{width:100%}
+#mstb .ms-comps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+#mstb .ms-comps span{font-family:'Fira Code',monospace;font-size:13px;border-radius:8px;padding:3px 9px;border:1.5px solid}
+#mstb .ms-total{font-weight:800;font-size:16px;margin:8px 0}
+#mstb .ms-total b{color:var(--dst)}
+#mstb .ms-minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+#mstb .ms-minis figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px}
+#mstb .ms-minis figcaption{text-align:center;font-size:14px;font-weight:600;color:var(--ink2);margin-top:4px}
+#mstb .ms-minis figure.best{border-color:var(--dst);background:var(--dst-soft)}
+#mstb .ms-bars{margin:12px 0}
+#mstb .ms-bar{display:grid;grid-template-columns:170px 1fr 110px;gap:10px;align-items:center;margin:8px 0;font-size:14.5px}
+#mstb .ms-bar .track{height:18px;background:var(--soft);border-radius:99px;overflow:hidden}
+#mstb .ms-bar .fill{height:100%;border-radius:99px;transition:width .3s}
+#mstb .ms-bar .num{font-family:'Fira Code',monospace;font-size:13px;text-align:right}
+#mstb .ms-rec{background:var(--accent-soft);border:1px solid #b5e0d8;border-radius:10px;padding:10px 14px;font-weight:600}
+#mstb .ms-vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#mstb .ms-vs > div{border-radius:14px;padding:16px;border:1.5px solid}
+#mstb .ms-vs .p{background:#eef4ff;border-color:#bcd0fb}
+#mstb .ms-vs .k{background:#fff3e8;border-color:#f6c79d}
+#mstb .ms-vs h4{margin:0 0 8px;font-size:18px}
+#mstb .ms-vs ol{margin:0;font-size:15px}
+#mstb .ms-steps{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+#mstb .ms-steps span{font-family:'Fira Code',monospace;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:7px;padding:2px 8px}
+@media (max-width:760px){
+  #mstb .ms-vs{grid-template-columns:1fr}
+  #mstb .ms-bar{grid-template-columns:110px 1fr 80px;font-size:13px}
+}
+</style>
+
+<div id="mstb">
+
+<!-- ======================= SLIDE NAVIGATION ======================= -->
+<nav class="ms-nav" id="ms-nav" aria-label="Blog sections">
+  <div class="ms-nav-tabs" id="ms-nav-tabs">
+    <button class="ms-nav-tab" data-slide="0" style="padding-left:11px">Home</button>
+    <button class="ms-nav-tab" data-slide="1"><b>1</b>What is it</button>
+    <button class="ms-nav-tab" data-slide="2"><b>2</b>Concepts &amp; lab</button>
+    <button class="ms-nav-tab" data-slide="3"><b>3</b>Visualiser</button>
+    <button class="ms-nav-tab" data-slide="4"><b>4</b>Complexity</button>
+    <button class="ms-nav-tab" data-slide="5"><b>5</b>Prim vs Kruskal</button>
+    <button class="ms-nav-tab" data-slide="6"><b>6</b>Special cases</button>
+    <button class="ms-nav-tab" data-slide="7"><b>7</b>Python</button>
+    <button class="ms-nav-tab" data-slide="8"><b>8</b>Practice</button>
+  </div>
+  <div class="ms-nav-bar">
+    <button class="ms-btn ghost" id="ms-nav-prev">&#8592; Previous</button>
+    <div class="ms-nav-count" id="ms-nav-count"></div>
+    <button class="ms-btn" id="ms-nav-next">Next &#8594;</button>
+    <div class="ms-nav-tools">
+      <button class="ms-btn ghost" id="ms-nav-all">Show all sections</button>
+      <button class="ms-btn ghost" id="ms-nav-fs">&#9974; Fullscreen</button>
+    </div>
+  </div>
+</nav>
+
+<div class="ms-slide" id="ms-home" data-title="Overview">
+<header class="ms-hero">
+  <svg viewBox="0 0 300 220" aria-hidden="true">
+    <g stroke="#fff" stroke-width="5" fill="none"><path d="M40 110 L110 40"/><path d="M110 40 L110 180"/><path d="M110 40 L200 40"/><path d="M200 40 L200 180"/><path d="M200 180 L270 110"/></g>
+    <g stroke="#fff" stroke-width="2" fill="none" stroke-dasharray="6 6" opacity=".6"><path d="M40 110 L110 180"/><path d="M110 180 L200 180"/><path d="M200 40 L270 110"/></g>
+    <g fill="#fff"><circle cx="40" cy="110" r="15"/><circle cx="110" cy="40" r="15"/><circle cx="110" cy="180" r="15"/><circle cx="200" cy="40" r="15"/><circle cx="200" cy="180" r="15"/><circle cx="270" cy="110" r="15"/></g>
+  </svg>
+  <div class="ms-kicker">Graphs &#183; Greedy Algorithms &#183; Union&#8211;Find</div>
+  <h1>Minimum Spanning Trees: Prim's &amp; Kruskal's Algorithms</h1>
+  <p>Connect every vertex of a graph using the cheapest possible set of edges &#8212; with no cycles. Two classic greedy algorithms solve it in completely different ways. Watch both, compare them, and code them in Python.</p>
+  <div class="ms-hero-tags"><span>MCA &#183; Data Structures</span><span>Greedy method</span><span>Disjoint Set Union</span><span>O(E log V)</span><span>Python</span></div>
+</header>
+
+<nav class="ms-toc">
+  <h4>In this post</h4>
+  <ol>
+    <li><a href="#ms-s1">What is a Minimum Spanning Tree?</a></li>
+    <li><a href="#ms-s2">Core Concepts &amp; Graph Lab</a></li>
+    <li><a href="#ms-s3">Prim's &amp; Kruskal's Algorithms + Visualiser</a></li>
+    <li><a href="#ms-s4">Complexity Analysis</a></li>
+    <li><a href="#ms-s5">Difference between Prim's and Kruskal's</a></li>
+    <li><a href="#ms-s6">Special Cases &amp; Common Mistakes</a></li>
+    <li><a href="#ms-s7">Python Implementation</a></li>
+    <li><a href="#ms-s8">Practice &amp; Quiz</a></li>
+  </ol>
+</nav>
+</div>
+
+<!-- ======================= SECTION 1 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s1" data-title="What is a minimum spanning tree?">
+  <div class="ms-sec-head"><div class="ms-num">1</div><h2>What is a Minimum Spanning Tree?</h2></div>
+
+  <p>Suppose a company must lay fibre-optic cable to connect six office buildings. Cable can only run along certain routes, and each route has a cost. The company wants <b>every building connected</b> (directly or indirectly) while spending <b>as little as possible</b>. There is no need for two different routes between the same buildings &#8212; that would waste money. The cheapest such network is a <b>Minimum Spanning Tree</b>.</p>
+
+  <div class="ms-box ms-def">
+    <b class="t">Definitions</b>
+    <ul>
+      <li>A <b>tree</b> is a connected graph with <b>no cycles</b>.</li>
+      <li>A <b>spanning tree</b> of a connected, undirected graph G = (V, E) is a subgraph that <b>includes every vertex</b> of G and is a tree. It always has exactly <b>|V| &#8722; 1 edges</b>.</li>
+      <li>In a <b>weighted</b> graph, the <b>weight of a spanning tree</b> is the sum of the weights of its edges.</li>
+      <li>A <b>Minimum Spanning Tree (MST)</b> is a spanning tree whose total weight is the <b>smallest possible</b>. (Also called a <i>minimum-cost spanning tree</i>.)</li>
+    </ul>
+  </div>
+
+  <h3>A simple example</h3>
+  <p>The graph below has 4 vertices and 5 edges. It has <b>8</b> different spanning trees (each with exactly 3 edges). Three of them are shown. The first one has the smallest total weight, <b>6</b>, so it is the MST.</p>
+  <div class="ms-two">
+    <svg class="ms-graph" id="ms-intro-graph" viewBox="0 0 360 260"></svg>
+    <div>
+      <ul>
+        <li>Spanning tree = <b>all 4 vertices</b>, <b>3 edges</b>, <b>no cycle</b>.</li>
+        <li>Weights of all 8 spanning trees: 6, 7, 8, 8, 9, 9, 11, 12.</li>
+        <li>Adding any 4th edge to a spanning tree creates a cycle; removing any edge disconnects it.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="ms-minis">
+    <figure class="best"><svg class="ms-graph" id="ms-mini1" viewBox="0 0 360 260"></svg><figcaption>Weight 2 + 3 + 1 = 6 &#10004; MST</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-mini2" viewBox="0 0 360 260"></svg><figcaption>Weight 2 + 3 + 4 = 9</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-mini3" viewBox="0 0 360 260"></svg><figcaption>Weight 3 + 4 + 5 = 12</figcaption></figure>
+  </div>
+
+  <h3>Why do we need MSTs?</h3>
+  <p>Trying every spanning tree is hopeless: a complete graph on n vertices has <b>n<sup>n&#8722;2</sup></b> spanning trees (Cayley's formula) &#8212; already 100 million for n = 10. Prim's and Kruskal's algorithms find an MST quickly, in about E log V steps.</p>
+
+  <h3>Real-world applications</h3>
+  <div class="ms-grid">
+    <div class="ms-card"><h4>&#128268; Network design</h4><p>Laying cable, pipelines, power lines or roads to connect all locations at minimum total cost.</p></div>
+    <div class="ms-card"><h4>&#129513; Clustering</h4><p>Build an MST and delete the k &#8722; 1 heaviest edges: the remaining pieces are k natural clusters (single-linkage clustering).</p></div>
+    <div class="ms-card"><h4>&#129517; Approximation algorithms</h4><p>An MST gives a route at most twice the optimal for the metric Travelling Salesman Problem.</p></div>
+    <div class="ms-card"><h4>&#128444;&#65039; Image segmentation</h4><p>Pixels are vertices, colour differences are weights; MST-based methods split an image into regions.</p></div>
+    <div class="ms-card"><h4>&#128225; Broadcasting</h4><p>Sending a message to every node of a network once, over the cheapest set of links.</p></div>
+    <div class="ms-card"><h4>&#127960;&#65039; Circuit design</h4><p>Connecting pins on a circuit board with the least amount of wire.</p></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 2 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s2" data-title="Core concepts &amp; graph lab">
+  <div class="ms-sec-head"><div class="ms-num">2</div><h2>Core Concepts</h2></div>
+
+  <h3>2.1 Key terminology</h3>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th style="width:26%">Term</th><th>Meaning</th></tr>
+    <tr><td><b>Undirected weighted graph</b></td><td>Edges have no direction (u&#8211;v is the same as v&#8211;u) and each edge has a weight. MSTs are defined for this kind of graph.</td></tr>
+    <tr><td><b>Connected graph</b></td><td>There is a path between every pair of vertices. Only a connected graph has a spanning tree.</td></tr>
+    <tr><td><b>Cycle</b></td><td>A path that starts and ends at the same vertex. A tree never contains one.</td></tr>
+    <tr><td><b>Cut</b></td><td>A division of the vertices into two groups S and V &#8722; S.</td></tr>
+    <tr><td><b>Crossing edge</b></td><td>An edge with one end in S and the other in V &#8722; S.</td></tr>
+    <tr><td><b>Light edge</b></td><td>The crossing edge with the minimum weight for a given cut.</td></tr>
+    <tr><td><b>Greedy algorithm</b></td><td>Makes the choice that looks best right now (the cheapest safe edge) and never undoes it. For MSTs, greedy choices are provably optimal.</td></tr>
+    <tr><td><b>Spanning forest</b></td><td>For a <i>disconnected</i> graph: one spanning tree for each connected component.</td></tr>
+  </table></div>
+
+  <h3>2.2 Properties of spanning trees</h3>
+  <ul>
+    <li>A spanning tree of a graph with V vertices has exactly <b>V &#8722; 1 edges</b>.</li>
+    <li>Adding any extra edge to a spanning tree creates <b>exactly one cycle</b>.</li>
+    <li>Removing any edge from a spanning tree <b>disconnects</b> it into two parts.</li>
+    <li>A connected graph may have many spanning trees and even several MSTs, but all MSTs have the <b>same total weight</b>.</li>
+    <li>If all edge weights are <b>distinct</b>, the MST is <b>unique</b>.</li>
+  </ul>
+
+  <h3>2.3 The two rules behind every MST algorithm</h3>
+  <div class="ms-two">
+    <div class="ms-box ms-def" style="margin:0"><b class="t">Cut property</b>
+      <p>For any cut (S, V &#8722; S), the <b>lightest crossing edge</b> belongs to some MST. (If weights are distinct, to every MST.)</p>
+      <p style="font-size:14.5px"><i>Why:</i> if an MST T did not use the light edge e, add e to T. This creates a cycle that must cross the cut again through some heavier edge f. Swap f for e: still a spanning tree, and no heavier. So e is safe.</p>
+      <p style="font-size:14.5px"><b>Prim's algorithm</b> uses this rule: S = the tree built so far.</p></div>
+    <div class="ms-box ms-warn" style="margin:0"><b class="t">Cycle property</b>
+      <p>The <b>heaviest edge on any cycle</b> (if it is strictly the heaviest) is <b>not</b> in any MST.</p>
+      <p style="font-size:14.5px"><i>Why:</i> removing it keeps the graph connected (the rest of the cycle is still there), and makes the total cheaper.</p>
+      <p style="font-size:14.5px"><b>Kruskal's algorithm</b> uses this rule: an edge that would close a cycle is the heaviest on that cycle, so it is rejected.</p></div>
+  </div>
+
+  <h3>2.4 Graph representations used</h3>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th>Representation</th><th>Looks like</th><th>Best suited to</th></tr>
+    <tr><td><b>Adjacency matrix</b></td><td><code>W[u][v]</code> = weight, &#8734; if no edge; symmetric for undirected graphs</td><td>Prim's simple O(V&#178;) version, dense graphs</td></tr>
+    <tr><td><b>Adjacency list</b></td><td><code>{u: [(v, w), &#8230;]}</code>; each edge stored twice (u&#8594;v and v&#8594;u)</td><td>Prim's with a min-heap, sparse graphs</td></tr>
+    <tr><td><b>Edge list</b></td><td><code>[(u, v, w), &#8230;]</code>; each edge stored once</td><td>Kruskal's (needs edges sorted by weight)</td></tr>
+  </table></div>
+
+  <!-- LAB -->
+  <div class="ms-lab" id="ms-lab">
+    <div class="ms-lab-title"><span>Interactive Lab</span><h3>Build an Undirected Weighted Graph</h3></div>
+    <p style="font-size:15px;color:var(--ink2);margin-bottom:6px">Type a weight in any cell (leave it blank for &#8220;no edge&#8221;). Because the graph is <b>undirected</b>, the mirror cell updates automatically. Hover a cell to highlight its edge. The lab tells you whether the graph is connected and what the MST would weigh. Then send it to the visualiser.</p>
+    <div class="ms-row">
+      <label>Vertices</label>
+      <select id="ms-lab-n"><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option></select>
+      <label>Preset</label>
+      <select id="ms-lab-preset">
+        <option value="ex">Worked example (A&#8211;F)</option>
+        <option value="intro">Simple 4-vertex graph</option>
+        <option value="ties">Equal weights (many MSTs)</option>
+        <option value="dense">Complete graph K5</option>
+        <option value="disc">Disconnected graph</option>
+      </select>
+      <button class="ms-btn ghost" id="ms-lab-load">Load preset</button>
+      <button class="ms-btn ghost" id="ms-lab-rand">Random</button>
+      <button class="ms-btn ghost" id="ms-lab-clear">Clear</button>
+    </div>
+    <div class="ms-two">
+      <div>
+        <div class="ms-tbl-wrap" style="margin:0"><table class="ms-in" id="ms-lab-mat"></table></div>
+        <div class="ms-stat" id="ms-lab-stat"></div>
+      </div>
+      <svg class="ms-graph" id="ms-lab-graph" viewBox="0 0 460 330"></svg>
+    </div>
+    <div class="ms-row"><label><input type="checkbox" id="ms-lab-showmst"> Highlight the MST</label><button class="ms-btn acc" id="ms-lab-send">Send this graph to the Visualiser &#8595;</button></div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 3 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s3" data-title="Prim's &amp; Kruskal's step by step">
+  <div class="ms-sec-head"><div class="ms-num">3</div><h2>Prim's and Kruskal's Algorithms</h2></div>
+
+  <p>Both algorithms are <b>greedy</b>: they build the MST one edge at a time, always adding the cheapest edge that is <b>safe</b> (keeps the result cycle-free and can be part of an MST). They differ in <i>which</i> edges they consider.</p>
+  <div class="ms-vs">
+    <div class="p"><h4>&#127793; Prim's &#8212; grow one tree</h4><p style="margin:0;font-size:15px">Start from any vertex. Repeatedly add the cheapest edge that connects the tree to a <b>new</b> vertex. The tree grows like a plant from its seed.</p></div>
+    <div class="k"><h4>&#129521; Kruskal's &#8212; merge many trees</h4><p style="margin:0;font-size:15px">Sort all edges. Go from lightest to heaviest and add an edge if it does <b>not form a cycle</b>. Small trees (a forest) merge until one tree remains.</p></div>
+  </div>
+
+  <h3>3.1 Prim's algorithm</h3>
+  <p>Proposed by Vojt&#283;ch Jarn&#237;k (1930) and rediscovered by Robert Prim (1957) and Edsger Dijkstra (1959), so it is also called the <b>Jarn&#237;k&#8211;Prim</b> algorithm.</p>
+  <h4>Step-by-step working</h4>
+  <ol>
+    <li>Choose a start vertex s. Set <code>key[s] = 0</code> and <code>key[v] = &#8734;</code> for all other vertices. (<b>key[v]</b> = weight of the cheapest edge that connects v to the tree so far; <b>parent[v]</b> = the tree vertex at the other end of that edge.)</li>
+    <li>Pick the vertex u <b>not yet in the tree</b> with the <b>smallest key</b>, and add it to the tree (together with the edge parent[u]&#8211;u).</li>
+    <li>For every neighbour v of u that is still outside the tree: if <code>w(u, v) &lt; key[v]</code>, set <code>key[v] = w(u, v)</code> and <code>parent[v] = u</code>.</li>
+    <li>Repeat steps 2&#8211;3 until all V vertices are in the tree.</li>
+  </ol>
+  <h4>Pseudocode</h4>
+  <div class="ms-pseudo">
+<div><span class="ln">1</span><span class="kw">PRIM</span>(G, s)</div>
+<div><span class="ln">2</span>   <span class="kw">for each</span> vertex v: key[v] &#8592; &#8734;, parent[v] &#8592; NIL, inMST[v] &#8592; false</div>
+<div><span class="ln">3</span>   key[s] &#8592; 0</div>
+<div><span class="ln">4</span>   <span class="kw">repeat</span> V times:</div>
+<div><span class="ln">5</span>      u &#8592; vertex with inMST[u] = false and minimum key[u]   <span class="cm">// EXTRACT-MIN</span></div>
+<div><span class="ln">6</span>      inMST[u] &#8592; true                                   <span class="cm">// edge parent[u]&#8211;u joins the MST</span></div>
+<div><span class="ln">7</span>      <span class="kw">for each</span> neighbour v of u:</div>
+<div><span class="ln">8</span>         <span class="kw">if</span> inMST[v] = false <span class="kw">and</span> w(u, v) &lt; key[v]:</div>
+<div><span class="ln">9</span>            key[v] &#8592; w(u, v);  parent[v] &#8592; u               <span class="cm">// DECREASE-KEY</span></div>
+  </div>
+
+  <h4>Worked example &#8212; Prim's (start at A)</h4>
+  <svg class="ms-graph" id="ms-ex-graph" viewBox="0 0 460 330" style="max-width:460px;margin:8px auto"></svg>
+  <p style="text-align:center;font-size:14px;color:var(--muted)">Figure &#8212; The worked-example graph (6 vertices, 9 edges). The MST is shown in green.</p>
+  <p>Each row shows the key array <i>after</i> adding the vertex and updating its neighbours (&#8220;&#8212;&#8221; means already in the tree, yellow = key just decreased):</p>
+  <div class='ms-tbl-wrap'><table class='ms-tbl ms-trace'><tr><th>Step</th><th>Add vertex</th><th>Edge added</th><th>key[A]</th><th>key[B]</th><th>key[C]</th><th>key[D]</th><th>key[E]</th><th>key[F]</th><th>Total</th></tr><tr><td>1</td><td><b>A</b></td><td class='acc'>&#8212;</td><td class='done'>&#8212;</td><td class='upd'>6</td><td class='upd'>3</td><td class=''>&#8734;</td><td class=''>&#8734;</td><td class=''>&#8734;</td><td>0</td></tr><tr><td>2</td><td><b>C</b></td><td class='acc'>A&#8211;C (3)</td><td class='done'>&#8212;</td><td class='upd'>4</td><td class='done'>&#8212;</td><td class='upd'>5</td><td class='upd'>9</td><td class=''>&#8734;</td><td>3</td></tr><tr><td>3</td><td><b>B</b></td><td class='acc'>C&#8211;B (4)</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='upd'>2</td><td class=''>9</td><td class=''>&#8734;</td><td>7</td></tr><tr><td>4</td><td><b>D</b></td><td class='acc'>B&#8211;D (2)</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='upd'>7</td><td class='upd'>8</td><td>9</td></tr><tr><td>5</td><td><b>E</b></td><td class='acc'>D&#8211;E (7)</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='upd'>1</td><td>16</td></tr><tr><td>6</td><td><b>F</b></td><td class='acc'>E&#8211;F (1)</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td class='done'>&#8212;</td><td>17</td></tr></table></div>
+  <p>Edges added, in order: <b>A&#8211;C (3), C&#8211;B (4), B&#8211;D (2), D&#8211;E (7), E&#8211;F (1)</b>. Total weight = 3 + 4 + 2 + 7 + 1 = <b>17</b>. Notice that Prim's picks D&#8211;E (7) <i>before</i> E&#8211;F (1): it can only use edges touching the current tree.</p>
+
+  <h3>3.2 Kruskal's algorithm</h3>
+  <p>Published by Joseph Kruskal in 1956.</p>
+  <h4>Step-by-step working</h4>
+  <ol>
+    <li>Put every vertex in its <b>own set</b> (a forest of V single-vertex trees).</li>
+    <li><b>Sort</b> all edges in non-decreasing order of weight.</li>
+    <li>Take the next edge (u, v). If u and v are in <b>different sets</b>, add the edge to the MST and <b>merge</b> (union) the two sets. If they are in the <b>same set</b>, the edge would form a cycle &#8212; <b>reject</b> it.</li>
+    <li>Stop when the MST has V &#8722; 1 edges (or the edges run out).</li>
+  </ol>
+  <h4>Pseudocode</h4>
+  <div class="ms-pseudo">
+<div><span class="ln">1</span><span class="kw">KRUSKAL</span>(G)</div>
+<div><span class="ln">2</span>   A &#8592; &#8709;                                       <span class="cm">// edges of the MST</span></div>
+<div><span class="ln">3</span>   <span class="kw">for each</span> vertex v: MAKE-SET(v)</div>
+<div><span class="ln">4</span>   sort the edges of G by weight (ascending)</div>
+<div><span class="ln">5</span>   <span class="kw">for each</span> edge (u, v) in sorted order:</div>
+<div><span class="ln">6</span>      <span class="kw">if</span> FIND-SET(u) &#8800; FIND-SET(v):              <span class="cm">// different trees &#8594; no cycle</span></div>
+<div><span class="ln">7</span>         A &#8592; A &#8746; {(u, v)}</div>
+<div><span class="ln">8</span>         UNION(u, v)</div>
+<div><span class="ln">9</span>   <span class="kw">return</span> A</div>
+  </div>
+
+  <h4>Detecting cycles: the Disjoint Set Union (Union&#8211;Find)</h4>
+  <p>Kruskal's needs a fast way to answer &#8220;are u and v already connected?&#8221;. The <b>Disjoint Set Union (DSU)</b> data structure stores each tree of the forest as a set, using a <code>parent</code> array. Each set has a <b>representative</b> (root).</p>
+  <ul>
+    <li><b>MAKE-SET(v):</b> <code>parent[v] = v</code> &#8212; v is alone in its set.</li>
+    <li><b>FIND(v):</b> follow parent pointers up to the root. <b>Path compression</b> makes every visited node point directly at the root, so later finds are faster.</li>
+    <li><b>UNION(u, v):</b> make one root the parent of the other. <b>Union by rank</b> attaches the shorter tree under the taller one, keeping trees flat.</li>
+  </ul>
+  <p>With both optimisations, each operation takes O(&#945;(V)) amortised time, where &#945; is the inverse Ackermann function &#8212; less than 5 for any realistic input, i.e. practically constant.</p>
+
+  <h4>Worked example &#8212; Kruskal's</h4>
+  <p>Sorted edges: E&#8211;F 1, B&#8211;D 2, A&#8211;C 3, B&#8211;C 4, C&#8211;D 5, A&#8211;B 6, D&#8211;E 7, D&#8211;F 8, C&#8211;E 9.</p>
+  <div class='ms-tbl-wrap'><table class='ms-tbl ms-trace'><tr><th>#</th><th>Edge</th><th>w</th><th>Same set?</th><th>Action</th><th>Sets after this step</th><th>Total</th></tr><tr class='acc'><td>1</td><td>E&#8211;F</td><td>1</td><td>No</td><td class='acc'>&#10004; Accept</td><td style='text-align:left'>{A} {B} {C} {D} {E,F}</td><td>1</td></tr><tr class='acc'><td>2</td><td>B&#8211;D</td><td>2</td><td>No</td><td class='acc'>&#10004; Accept</td><td style='text-align:left'>{A} {B,D} {C} {E,F}</td><td>3</td></tr><tr class='acc'><td>3</td><td>A&#8211;C</td><td>3</td><td>No</td><td class='acc'>&#10004; Accept</td><td style='text-align:left'>{A,C} {B,D} {E,F}</td><td>6</td></tr><tr class='acc'><td>4</td><td>B&#8211;C</td><td>4</td><td>No</td><td class='acc'>&#10004; Accept</td><td style='text-align:left'>{A,B,C,D} {E,F}</td><td>10</td></tr><tr class='rej'><td>5</td><td>C&#8211;D</td><td>5</td><td>Yes</td><td class='rej'>&#10008; Reject (cycle)</td><td style='text-align:left'>{A,B,C,D} {E,F}</td><td>10</td></tr><tr class='rej'><td>6</td><td>A&#8211;B</td><td>6</td><td>Yes</td><td class='rej'>&#10008; Reject (cycle)</td><td style='text-align:left'>{A,B,C,D} {E,F}</td><td>10</td></tr><tr class='acc'><td>7</td><td>D&#8211;E</td><td>7</td><td>No</td><td class='acc'>&#10004; Accept</td><td style='text-align:left'>{A,B,C,D,E,F}</td><td>17</td></tr></table></div>
+  <p>After 7 edges are examined, the tree has 5 = V &#8722; 1 edges, so D&#8211;F and C&#8211;E are never needed. Total weight = 1 + 2 + 3 + 4 + 7 = <b>17</b> &#8212; the <b>same MST</b> as Prim's (the weights are distinct, so the MST is unique), found in a different order.</p>
+
+  <!-- VISUALIZER -->
+  <div class="ms-lab" id="ms-viz">
+    <div class="ms-lab-title"><span>Visualiser</span><h3>Prim's &amp; Kruskal's Step by Step</h3></div>
+    <div class="ms-row">
+      <label>Algorithm</label>
+      <select id="ms-viz-algo"><option value="prim">Prim's</option><option value="kruskal">Kruskal's</option></select>
+      <label id="ms-viz-start-lbl">Start</label><select id="ms-viz-start"></select>
+      <label>Graph</label>
+      <select id="ms-viz-preset">
+        <option value="ex">Worked example (A&#8211;F)</option>
+        <option value="intro">Simple 4-vertex graph</option>
+        <option value="ties">Equal weights</option>
+        <option value="dense">Complete graph K5</option>
+        <option value="disc">Disconnected graph</option>
+        <option value="lab">My graph from the Lab</option>
+      </select>
+    </div>
+    <div class="ms-row">
+      <button class="ms-btn ghost" id="ms-viz-reset">&#10226; Reset</button>
+      <button class="ms-btn ghost" id="ms-viz-back">&#9664; Back</button>
+      <button class="ms-btn" id="ms-viz-step">Step &#9654;</button>
+      <button class="ms-btn acc" id="ms-viz-play">&#9654; Play</button>
+      <button class="ms-btn ghost" id="ms-viz-end">Run to end &#9197;</button>
+      <label><input type="checkbox" id="ms-viz-predict"> Predict mode</label>
+      <label>Speed <input type="range" id="ms-viz-speed" min="1" max="10" value="5" style="vertical-align:middle"></label>
+    </div>
+    <div class="ms-viz-top"><div class="ms-phase" id="ms-viz-phase"></div><div class="mono" style="font-size:13px;color:var(--muted)" id="ms-viz-count"></div></div>
+    <div class="ms-prog"><div id="ms-viz-bar"></div></div>
+    <div class="ms-predict" id="ms-viz-pq"><b id="ms-viz-pq-txt"></b><span id="ms-viz-pq-btns" style="display:flex;gap:6px;flex-wrap:wrap"></span><span id="ms-viz-pq-fb" style="font-weight:700"></span></div>
+    <div class="ms-msg" id="ms-viz-msg"></div>
+    <div class="ms-two">
+      <div>
+        <svg class="ms-graph" id="ms-viz-graph" viewBox="0 0 460 330"></svg>
+        <div class="ms-legend" id="ms-viz-legend"></div>
+        <div class="ms-total" id="ms-viz-total"></div>
+      </div>
+      <div class="ms-side">
+        <div class="ms-mat-card" id="ms-viz-side"></div>
+        <div class="ms-pseudo" id="ms-viz-code" style="font-size:12.5px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= SECTION 4 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s4" data-title="Complexity analysis">
+  <div class="ms-sec-head"><div class="ms-num">4</div><h2>Complexity Analysis</h2></div>
+
+  <h3>4.1 Prim's algorithm</h3>
+  <p>The cost depends on how we find the minimum-key vertex (EXTRACT-MIN, done V times) and how we lower keys (DECREASE-KEY, up to E times):</p>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th>Implementation</th><th>EXTRACT-MIN</th><th>DECREASE-KEY</th><th>Total time</th><th>Good for</th></tr>
+    <tr class="hl"><td><b>Adjacency matrix + array</b></td><td>O(V) each, V times</td><td>O(1)</td><td><b>O(V&#178;)</b></td><td>Dense graphs (E &#8776; V&#178;)</td></tr>
+    <tr class="hl"><td><b>Adjacency list + binary heap</b></td><td>O(log V)</td><td>O(log V)</td><td><b>O((V + E) log V) = O(E log V)</b></td><td>Sparse graphs</td></tr>
+    <tr><td>Adjacency list + Fibonacci heap <i>(reference)</i></td><td>O(log V) amortised</td><td>O(1) amortised</td><td>O(E + V log V)</td><td>Theory / very large graphs</td></tr>
+  </table></div>
+  <p style="font-size:15px">Program 1 in Section 7 uses Python's <code>heapq</code> with &#8220;lazy deletion&#8221; (old entries are skipped when popped). The heap can then hold up to E entries, giving O(E log E) = O(E log V), since E &#8804; V&#178; means log E &#8804; 2 log V.</p>
+
+  <h3>4.2 Kruskal's algorithm</h3>
+  <div class="ms-formula">T = <span class="k">O(E log E)</span>  sorting  +  <span class="i">O(E &#183; &#945;(V))</span>  find/union  =  O(E log E) = <span class="k">O(E log V)</span></div>
+  <ul>
+    <li><b>Sorting</b> the edges dominates the running time.</li>
+    <li>With union by rank + path compression, the DSU part is almost linear: O(E &#945;(V)).</li>
+    <li>Without any DSU optimisation, FIND can take O(V), giving O(E &#183; V) &#8212; much slower.</li>
+    <li>If the edges are already sorted (or weights are small integers that can be counting-sorted), Kruskal's runs in nearly O(E).</li>
+  </ul>
+
+  <h3>4.3 Best, average and worst cases</h3>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th>Algorithm</th><th>Best case</th><th>Average case</th><th>Worst case</th><th>Space</th></tr>
+    <tr><td>Prim's (array)</td><td>&#920;(V&#178;)</td><td>&#920;(V&#178;)</td><td>&#920;(V&#178;)</td><td>O(V&#178;) matrix + O(V) arrays</td></tr>
+    <tr><td>Prim's (binary heap)</td><td>O(E log V)</td><td>O(E log V)</td><td>O(E log V)</td><td>O(V + E)</td></tr>
+    <tr><td>Kruskal's (DSU)</td><td>O(E log E)*</td><td>O(E log E)</td><td>O(E log E)</td><td>O(V + E)</td></tr>
+  </table></div>
+  <p style="font-size:14.5px;color:var(--muted)">* Kruskal's can stop early once V &#8722; 1 edges are chosen, but the sort is already done, so the bound stays O(E log E).</p>
+
+  <h3>4.4 Relation to Dijkstra's algorithm</h3>
+  <p>Prim's algorithm looks almost identical to <b>Dijkstra's</b> (from our earlier post): both grow a set from a start vertex using a priority queue. The only difference is the value stored in the queue:</p>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th></th><th>Prim's (MST)</th><th>Dijkstra's (shortest paths)</th></tr>
+    <tr><td>Priority of v</td><td><code>key[v] = w(u, v)</code> &#8212; weight of <b>one edge</b></td><td><code>dist[v] = dist[u] + w(u, v)</code> &#8212; length of the <b>whole path</b></td></tr>
+    <tr><td>Result</td><td>Tree of minimum <b>total</b> weight</td><td>Tree of shortest paths from the source</td></tr>
+    <tr><td>Negative weights</td><td>Allowed</td><td>Not allowed</td></tr>
+  </table></div>
+  <p>See Section 6.4 for a graph where the MST and the shortest-path tree are different.</p>
+</section>
+
+<!-- ======================= SECTION 5 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s5" data-title="Difference between Prim's and Kruskal's">
+  <div class="ms-sec-head"><div class="ms-num">5</div><h2>Difference between Prim's and Kruskal's Algorithms</h2></div>
+
+  <p>Both algorithms are greedy, both produce a minimum spanning tree of the same total weight, and both work with negative weights. Here is how they differ &#8212; a very common examination question.</p>
+
+  <h3>5.1 Point-by-point comparison</h3>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th style="width:22%">Basis</th><th style="background:#eef4ff">Prim's algorithm</th><th style="background:#fff3e8">Kruskal's algorithm</th></tr>
+    <tr><td><b>Approach</b></td><td>Vertex-based: grows <b>one tree</b> from a start vertex</td><td>Edge-based: picks edges globally, merging a <b>forest</b> of trees</td></tr>
+    <tr><td><b>Starting point</b></td><td>Needs a start vertex</td><td>No start vertex; starts from the lightest edge</td></tr>
+    <tr><td><b>Edge selected</b></td><td>Cheapest edge joining the tree to a new vertex</td><td>Cheapest remaining edge in the whole graph that does not form a cycle</td></tr>
+    <tr><td><b>Partial result</b></td><td>Always a single connected tree</td><td>May be a disconnected forest until the end</td></tr>
+    <tr><td><b>Rule used</b></td><td>Cut property</td><td>Cycle property (and cut property)</td></tr>
+    <tr><td><b>Cycle checking</b></td><td>Not needed: a new vertex is always outside the tree</td><td>Needed for every edge: Disjoint Set Union (Union&#8211;Find)</td></tr>
+    <tr><td><b>Main data structure</b></td><td>Priority queue (min-heap) or key array</td><td>Sorted edge list + Disjoint Set Union</td></tr>
+    <tr><td><b>Graph representation</b></td><td>Adjacency matrix or adjacency list</td><td>Edge list</td></tr>
+    <tr><td><b>Time complexity</b></td><td>O(V&#178;) with array; O(E log V) with binary heap</td><td>O(E log E) = O(E log V)</td></tr>
+    <tr><td><b>Best for</b></td><td><b>Dense</b> graphs (many edges)</td><td><b>Sparse</b> graphs (few edges)</td></tr>
+    <tr><td><b>Disconnected graph</b></td><td>Spans only the start vertex's component (must be restarted)</td><td>Naturally produces a minimum spanning forest</td></tr>
+    <tr><td><b>Edges pre-sorted?</b></td><td>No benefit</td><td>Big benefit: skips the O(E log E) sort</td></tr>
+    <tr><td><b>Similar to</b></td><td>Dijkstra's algorithm</td><td>Union&#8211;Find based connectivity / clustering</td></tr>
+  </table></div>
+
+  <h3>5.2 Similarities</h3>
+  <ul>
+    <li>Both follow the <b>greedy</b> design technique and always produce an <b>optimal</b> (minimum) spanning tree.</li>
+    <li>Both select exactly <b>V &#8722; 1 edges</b> for a connected graph.</li>
+    <li>Both work with <b>negative and zero</b> edge weights.</li>
+    <li>Both need an <b>undirected</b> graph.</li>
+    <li>When weights are distinct, both return the <b>same</b> MST; with ties they may choose different MSTs of the same weight.</li>
+  </ul>
+
+  <h3>5.3 Same graph, different order</h3>
+  <p>On our worked example both algorithms pick the same five edges, but in a different order:</p>
+  <div class="ms-vs">
+    <div class="p"><h4>Prim's (start A)</h4><div class="ms-steps"><span>1. A&#8211;C 3</span><span>2. C&#8211;B 4</span><span>3. B&#8211;D 2</span><span>4. D&#8211;E 7</span><span>5. E&#8211;F 1</span></div><p style="font-size:14.5px;margin:6px 0 0">Follows the tree outward; a heavy edge (7) can come before a light one (1).</p></div>
+    <div class="k"><h4>Kruskal's</h4><div class="ms-steps"><span>1. E&#8211;F 1</span><span>2. B&#8211;D 2</span><span>3. A&#8211;C 3</span><span>4. B&#8211;C 4</span><span>5. D&#8211;E 7</span></div><p style="font-size:14.5px;margin:6px 0 0">Strictly increasing weights; rejects C&#8211;D 5 and A&#8211;B 6 because they form cycles.</p></div>
+  </div>
+  <p>Try it yourself: in the visualiser (Section 3), run the same graph with each algorithm.</p>
+
+  <!-- DECISION LAB -->
+  <div class="ms-lab" id="ms-choose">
+    <div class="ms-lab-title"><span>Interactive</span><h3>Which Algorithm Should I Use?</h3></div>
+    <p style="font-size:15px;color:var(--ink2)">Set the number of vertices and edges. The bars show the approximate number of basic operations (V&#178;, E&#183;log&#8322;V, E&#183;log&#8322;E) for each method.</p>
+    <div class="ms-row"><label>Vertices V</label><input type="range" id="ms-ch-v" min="10" max="5000" value="1000"><span class="mono" id="ms-ch-vv"></span></div>
+    <div class="ms-row"><label>Density</label><input type="range" id="ms-ch-d" min="0" max="100" value="5"><span class="mono" id="ms-ch-dv"></span></div>
+    <div class="ms-bars" id="ms-ch-bars"></div>
+    <div class="ms-rec" id="ms-ch-rec"></div>
+  </div>
+
+  <h3>5.4 Memory trick</h3>
+  <div class="ms-box ms-tip"><b class="t">Remember</b>
+  <p><b>P</b>rim's = <b>P</b>lant: grows one tree from a seed vertex, best when the graph is thick (dense). <b>K</b>ruskal's = <b>K</b>it of edges: sort all pieces, join them if they don't make a loop, best when the graph is thin (sparse).</p></div>
+</section>
+
+<!-- ======================= SECTION 6 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s6" data-title="Special cases &amp; common mistakes">
+  <div class="ms-sec-head"><div class="ms-num">6</div><h2>Special Cases &amp; Common Mistakes</h2></div>
+
+  <h3>6.1 Special cases and edge cases</h3>
+  <div class="ms-tbl-wrap"><table class="ms-tbl">
+    <tr><th style="width:24%">Situation</th><th>What happens / what to do</th></tr>
+    <tr><td><b>Disconnected graph</b></td><td>No spanning tree exists. Kruskal's returns a <b>minimum spanning forest</b> with V &#8722; c edges (c = number of components). Prim's spans only the start vertex's component unless restarted from each unvisited vertex. Try the &#8220;Disconnected graph&#8221; preset.</td></tr>
+    <tr><td><b>Equal weights (ties)</b></td><td>There can be several different MSTs, all with the same total weight. A square with four edges of weight 1 has 4 MSTs. Which one you get depends on the tie-breaking order.</td></tr>
+    <tr><td><b>Negative or zero weights</b></td><td>Perfectly fine for both algorithms &#8212; only the <i>order</i> of weights matters, never their sum along a path.</td></tr>
+    <tr><td><b>Directed graphs</b></td><td>Prim's and Kruskal's do not apply. The directed version (minimum spanning <i>arborescence</i>) needs a different algorithm (Chu&#8211;Liu/Edmonds), which is beyond this syllabus.</td></tr>
+    <tr><td><b>Self-loops</b></td><td>Never part of a tree (a self-loop is a cycle). Ignore them.</td></tr>
+    <tr><td><b>Parallel edges</b></td><td>Only the lightest edge between a pair of vertices can be useful. Kruskal's handles this automatically; for a matrix keep <code>min</code>.</td></tr>
+    <tr><td><b>Maximum spanning tree</b></td><td>Sort in <b>descending</b> order (Kruskal's) or use a max-heap (Prim's), or negate all weights and find the MST.</td></tr>
+    <tr><td><b>Graph that is already a tree</b></td><td>The MST is the graph itself (E = V &#8722; 1).</td></tr>
+  </table></div>
+
+  <h3>6.2 Advantages and disadvantages</h3>
+  <div class="ms-two">
+    <div class="ms-card" style="border-color:#a7dcb5;background:var(--dst-soft)"><h4>&#9989; Advantages</h4>
+      <ul style="margin:0;font-size:15.5px">
+        <li>Both are simple greedy algorithms with a proof of optimality.</li>
+        <li>Fast: O(E log V) &#8212; far better than checking all spanning trees.</li>
+        <li>Handle negative weights (unlike Dijkstra's).</li>
+        <li>Kruskal's is easy to code with an edge list and works on forests.</li>
+        <li>Prim's array version is ideal for dense graphs and needs no sorting.</li>
+      </ul></div>
+    <div class="ms-card" style="border-color:#f4b9b9;background:var(--bad-soft)"><h4>&#10060; Disadvantages</h4>
+      <ul style="margin:0;font-size:15.5px">
+        <li>Only for undirected graphs.</li>
+        <li>An MST minimises total weight, not the distance between two particular vertices.</li>
+        <li>Kruskal's needs all edges sorted first &#8212; wasteful for very dense graphs.</li>
+        <li>Prim's needs a priority queue for good speed on sparse graphs.</li>
+        <li>With ties, the MST is not unique, which can surprise users.</li>
+      </ul></div>
+  </div>
+
+  <h3>6.3 Common implementation mistakes</h3>
+  <div class="ms-box ms-warn"><b class="t">Mistake 1 &#8212; Using &#8220;visited vertices&#8221; for cycle detection in Kruskal's</b>
+  <p>Some students reject an edge if <i>both</i> ends are already visited. That is wrong. Edges A&#8211;B (1), C&#8211;D (2), B&#8211;C (3): after the first two edges, all four vertices are &#8220;visited&#8221;, so B&#8211;C is rejected &#8212; but it is needed to connect {A, B} with {C, D}! Two vertices can both be visited yet lie in <b>different</b> trees. Always use Union&#8211;Find (compare roots).</p></div>
+  <div class="ms-box ms-warn"><b class="t">Mistake 2 &#8212; Storing undirected edges only once in an adjacency list</b>
+  <p>For Prim's, the edge u&#8211;v must appear in both <code>adj[u]</code> and <code>adj[v]</code>. Otherwise the algorithm can only travel in one direction and may miss vertices.</p></div>
+  <div class="ms-box ms-warn"><b class="t">Mistake 3 &#8212; Updating keys of vertices already in the tree</b>
+  <p>In Prim's, check <code>not in_mst[v]</code> before lowering key[v]. Otherwise parent[] gets overwritten for tree vertices and the reported edges are wrong.</p></div>
+  <div class="ms-box ms-warn"><b class="t">Mistake 4 &#8212; Not skipping stale heap entries</b>
+  <p>With <code>heapq</code> (no decrease-key), a vertex can be pushed several times. When popping, skip it if it is already in the tree (<code>if v in in_mst: continue</code>).</p></div>
+  <div class="ms-box ms-warn"><b class="t">Mistake 5 &#8212; Confusing an MST with shortest paths</b>
+  <p>The path between two vertices <i>inside</i> the MST is not necessarily their shortest path in the graph. See the example below.</p></div>
+
+  <h3>6.4 MST &#8800; Shortest-path tree</h3>
+  <div class="ms-two">
+    <div>
+      <p>Triangle with A&#8211;B = 2, B&#8211;C = 2, A&#8211;C = 3.</p>
+      <ul>
+        <li><b>MST</b> = {A&#8211;B, B&#8211;C}, weight <b>4</b>. In it, the path from A to C costs 4.</li>
+        <li><b>Shortest-path tree from A</b> (Dijkstra) = {A&#8211;B, A&#8211;C}, weight 5, because the shortest A&#8594;C distance is 3.</li>
+      </ul>
+      <p>Different goals, different trees.</p>
+    </div>
+    <div class="ms-minis" style="margin:0">
+      <figure class="best"><svg class="ms-graph" id="ms-tri1" viewBox="0 0 360 260"></svg><figcaption>MST (weight 4)</figcaption></figure>
+      <figure><svg class="ms-graph" id="ms-tri2" viewBox="0 0 360 260"></svg><figcaption>Shortest-path tree from A</figcaption></figure>
+    </div>
+  </div>
+
+  <h3>6.5 Important examination points</h3>
+  <div class="ms-box ms-exam"><b class="t">Remember for exams</b>
+  <ul>
+    <li>A spanning tree of V vertices has <b>V &#8722; 1 edges</b>; a complete graph K<sub>n</sub> has <b>n<sup>n&#8722;2</sup></b> spanning trees.</li>
+    <li>Prim's and Kruskal's are <b>greedy</b> algorithms; both give an optimal MST.</li>
+    <li>Prim's: O(V&#178;) with matrix, O(E log V) with binary heap. Kruskal's: O(E log E).</li>
+    <li>Kruskal's uses <b>Disjoint Set Union</b> to detect cycles; Prim's uses a <b>priority queue</b>.</li>
+    <li>Prim's &#8594; dense graphs; Kruskal's &#8594; sparse graphs.</li>
+    <li>Distinct weights &#8658; unique MST. Negative weights are allowed.</li>
+    <li>When tracing, always write the order in which edges are added and the total cost.</li>
+  </ul></div>
+</section>
+
+<!-- ======================= SECTION 7 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s7" data-title="Python implementation">
+  <div class="ms-sec-head"><div class="ms-num">7</div><h2>Python Implementation</h2></div>
+  <p>All four programs are complete and runnable (Python 3.6+). The outputs shown are their real outputs on the worked example. Use the tabs to switch programs and <b>Copy</b> to copy the code.</p>
+
+  <div class="ms-tabs">
+    <button class="ms-tab on" data-pane="ms-p1">1 &#183; Prim's (min-heap)</button>
+    <button class="ms-tab" data-pane="ms-p2">2 &#183; Prim's (matrix, O(V&#178;))</button>
+    <button class="ms-tab" data-pane="ms-p3">3 &#183; Kruskal's (Union&#8211;Find)</button>
+    <button class="ms-tab" data-pane="ms-p4">4 &#183; Compare &amp; forest</button>
+  </div>
+
+  <div class="ms-pane on" id="ms-p1">
+    <div class="ms-code"><div class="ms-code-bar"><span>prim_heap.py</span><button class="ms-copy">Copy</button></div><pre><code class="py"># Prim's Algorithm using a Min-Heap (priority queue) &#8212; O(E log V)
+# Graph is stored as an adjacency list: {vertex: [(neighbour, weight), ...]}
+
+import heapq
+
+
+def prim_mst(graph, start):
+    in_mst = set()                     # vertices already in the tree
+    mst_edges = []                     # (u, v, weight) edges chosen
+    total = 0
+    # heap entries: (edge weight, from-vertex, to-vertex)
+    heap = [(0, None, start)]
+
+    while heap and len(in_mst) &lt; len(graph):
+        w, u, v = heapq.heappop(heap)  # cheapest edge leaving the tree
+        if v in in_mst:
+            continue                   # stale entry: v was added already
+        in_mst.add(v)
+        if u is not None:
+            mst_edges.append((u, v, w))
+            total += w
+        for nbr, wt in graph[v]:       # push edges to vertices outside tree
+            if nbr not in in_mst:
+                heapq.heappush(heap, (wt, v, nbr))
+    return mst_edges, total
+
+
+def build_graph(edges):
+    graph = {}
+    for u, v, w in edges:              # undirected: add both directions
+        graph.setdefault(u, []).append((v, w))
+        graph.setdefault(v, []).append((u, w))
+    return graph
+
+
+if __name__ == "__main__":
+    edges = [("A", "B", 6), ("A", "C", 3), ("B", "C", 4), ("B", "D", 2),
+             ("C", "D", 5), ("C", "E", 9), ("D", "E", 7), ("D", "F", 8),
+             ("E", "F", 1)]
+    graph = build_graph(edges)
+    mst, cost = prim_mst(graph, "A")
+    print("Prim's MST (start = A), edges in the order they were added:")
+    for u, v, w in mst:
+        print(f"  {u} - {v}   weight {w}")
+    print("Total weight of MST =", cost)</code></pre></div>
+    <div class="ms-code ms-out"><div class="ms-code-bar"><span>Output</span></div><pre>Prim's MST (start = A), edges in the order they were added:
+  A - C   weight 3
+  C - B   weight 4
+  B - D   weight 2
+  D - E   weight 7
+  E - F   weight 1
+Total weight of MST = 17</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>The heap stores <code>(weight, from, to)</code> tuples, so <code>heappop</code> always returns the cheapest edge leaving the tree.</li>
+      <li>Python's <code>heapq</code> has no decrease-key, so we simply push new entries and <b>skip stale ones</b> (vertices already in the tree).</li>
+      <li><code>build_graph</code> adds each undirected edge in <b>both directions</b>.</li>
+    </ul>
+  </div>
+
+  <div class="ms-pane" id="ms-p2">
+    <div class="ms-code"><div class="ms-code-bar"><span>prim_matrix.py</span><button class="ms-copy">Copy</button></div><pre><code class="py"># Prim's Algorithm using an Adjacency Matrix &#8212; O(V^2)
+# This is the version usually traced in exams: it keeps key[] and parent[] arrays.
+
+INF = float('inf')
+
+
+def prim_matrix(W, names, start=0):
+    n = len(W)
+    key = [INF] * n          # key[v] = cheapest edge joining v to the tree
+    parent = [None] * n      # parent[v] = tree vertex at the other end
+    in_mst = [False] * n
+    key[start] = 0
+
+    for step in range(n):
+        # 1. pick the non-tree vertex with the smallest key
+        u = min((v for v in range(n) if not in_mst[v]), key=lambda v: key[v])
+        if key[u] == INF:
+            print("Graph is disconnected!")
+            break
+        in_mst[u] = True
+
+        # 2. update keys of its neighbours that are still outside the tree
+        for v in range(n):
+            if W[u][v] != INF and not in_mst[v] and W[u][v] &lt; key[v]:
+                key[v] = W[u][v]
+                parent[v] = u
+
+        keys = " ".join(f"{('-' if in_mst[v] else ('&#8734;' if key[v] == INF else key[v])):&gt;2}"
+                        for v in range(n))
+        print(f"Step {step + 1}: add {names[u]}   key = [{keys}]")
+
+    total = 0
+    print("MST edges:")
+    for v in range(n):
+        if parent[v] is not None:
+            print(f"  {names[parent[v]]} - {names[v]}   weight {W[parent[v]][v]}")
+            total += W[parent[v]][v]
+    print("Total weight =", total)
+
+
+if __name__ == "__main__":
+    names = ["A", "B", "C", "D", "E", "F"]
+    n = len(names)
+    W = [[INF] * n for _ in range(n)]
+    for u, v, w in [(0, 1, 6), (0, 2, 3), (1, 2, 4), (1, 3, 2), (2, 3, 5),
+                    (2, 4, 9), (3, 4, 7), (3, 5, 8), (4, 5, 1)]:
+        W[u][v] = W[v][u] = w          # undirected: symmetric matrix
+    print("key order:", " ".join(f"{x:&gt;2}" for x in names))
+    prim_matrix(W, names, start=0)</code></pre></div>
+    <div class="ms-code ms-out"><div class="ms-code-bar"><span>Output</span></div><pre>key order:  A  B  C  D  E  F
+Step 1: add A   key = [ -  6  3  &#8734;  &#8734;  &#8734;]
+Step 2: add C   key = [ -  4  -  5  9  &#8734;]
+Step 3: add B   key = [ -  -  -  2  9  &#8734;]
+Step 4: add D   key = [ -  -  -  -  7  8]
+Step 5: add E   key = [ -  -  -  -  -  1]
+Step 6: add F   key = [ -  -  -  -  -  -]
+MST edges:
+  C - B   weight 4
+  A - C   weight 3
+  B - D   weight 2
+  D - E   weight 7
+  E - F   weight 1
+Total weight = 17</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>This is the classic exam version with <code>key[]</code>, <code>parent[]</code> and <code>in_mst[]</code> arrays. The printed key rows match the worked example table in Section 3.</li>
+      <li>Finding the minimum key is a simple O(V) scan, done V times &#8594; O(V&#178;). No heap is needed.</li>
+      <li>MST edges are read from <code>parent[]</code> at the end (in vertex order, not in the order they were added).</li>
+    </ul>
+  </div>
+
+  <div class="ms-pane" id="ms-p3">
+    <div class="ms-code"><div class="ms-code-bar"><span>kruskal.py</span><button class="ms-copy">Copy</button></div><pre><code class="py"># Kruskal's Algorithm with Disjoint Set Union (Union-Find) &#8212; O(E log E)
+
+class DisjointSet:
+    def __init__(self, vertices):
+        self.parent = {v: v for v in vertices}   # every vertex is its own set
+        self.rank = {v: 0 for v in vertices}
+
+    def find(self, x):
+        # path compression: point x directly at the root
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, a, b):
+        ra, rb = self.find(a), self.find(b)
+        if ra == rb:
+            return False                         # same set -&gt; would form a cycle
+        # union by rank: attach the shorter tree under the taller one
+        if self.rank[ra] &lt; self.rank[rb]:
+            ra, rb = rb, ra
+        self.parent[rb] = ra
+        if self.rank[ra] == self.rank[rb]:
+            self.rank[ra] += 1
+        return True
+
+
+def kruskal_mst(vertices, edges):
+    ds = DisjointSet(vertices)
+    mst, total = [], 0
+    for u, v, w in sorted(edges, key=lambda e: e[2]):    # 1. sort by weight
+        if ds.union(u, v):                               # 2. no cycle -&gt; take it
+            mst.append((u, v, w))
+            total += w
+            print(f"  accept {u}-{v} ({w})")
+            if len(mst) == len(vertices) - 1:            # 3. tree complete
+                break
+        else:
+            print(f"  reject {u}-{v} ({w})  -&gt; would form a cycle")
+    return mst, total
+
+
+if __name__ == "__main__":
+    vertices = ["A", "B", "C", "D", "E", "F"]
+    edges = [("A", "B", 6), ("A", "C", 3), ("B", "C", 4), ("B", "D", 2),
+             ("C", "D", 5), ("C", "E", 9), ("D", "E", 7), ("D", "F", 8),
+             ("E", "F", 1)]
+    print("Kruskal's trace:")
+    mst, cost = kruskal_mst(vertices, edges)
+    print("MST edges:", ", ".join(f"{u}-{v}({w})" for u, v, w in mst))
+    print("Total weight =", cost)</code></pre></div>
+    <div class="ms-code ms-out"><div class="ms-code-bar"><span>Output</span></div><pre>Kruskal's trace:
+  accept E-F (1)
+  accept B-D (2)
+  accept A-C (3)
+  accept B-C (4)
+  reject C-D (5)  -&gt; would form a cycle
+  reject A-B (6)  -&gt; would form a cycle
+  accept D-E (7)
+MST edges: E-F(1), B-D(2), A-C(3), B-C(4), D-E(7)
+Total weight = 17</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li><code>DisjointSet</code> implements <b>find</b> with path compression and <b>union</b> with union by rank.</li>
+      <li><code>union</code> returns <code>False</code> when both ends already share a root &#8212; that edge would form a cycle and is rejected.</li>
+      <li>The loop stops as soon as V &#8722; 1 edges have been accepted.</li>
+    </ul>
+  </div>
+
+  <div class="ms-pane" id="ms-p4">
+    <div class="ms-code"><div class="ms-code-bar"><span>compare_mst.py</span><button class="ms-copy">Copy</button></div><pre><code class="py"># Prim vs Kruskal on the same graph + Minimum Spanning FOREST for a
+# disconnected graph (Kruskal handles it naturally; Prim needs a restart).
+
+import heapq
+
+
+def kruskal(vertices, edges):
+    parent = {v: v for v in vertices}
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]   # path halving
+            x = parent[x]
+        return x
+
+    chosen = []
+    for u, v, w in sorted(edges, key=lambda e: e[2]):
+        ru, rv = find(u), find(v)
+        if ru != rv:
+            parent[ru] = rv
+            chosen.append((u, v, w))
+    return chosen
+
+
+def prim_forest(vertices, edges):
+    adj = {v: [] for v in vertices}
+    for u, v, w in edges:
+        adj[u].append((w, u, v))
+        adj[v].append((w, v, u))
+    seen, chosen, trees = set(), [], 0
+    for s in vertices:                      # restart Prim in each component
+        if s in seen:
+            continue
+        trees += 1
+        seen.add(s)
+        heap = list(adj[s])
+        heapq.heapify(heap)
+        while heap:
+            w, u, v = heapq.heappop(heap)
+            if v in seen:
+                continue
+            seen.add(v)
+            chosen.append((u, v, w))
+            for e in adj[v]:
+                if e[2] not in seen:
+                    heapq.heappush(heap, e)
+    return chosen, trees
+
+
+def weight(es):
+    return sum(w for _, _, w in es)
+
+
+if __name__ == "__main__":
+    V = ["A", "B", "C", "D", "E", "F"]
+    E = [("A", "B", 6), ("A", "C", 3), ("B", "C", 4), ("B", "D", 2),
+         ("C", "D", 5), ("C", "E", 9), ("D", "E", 7), ("D", "F", 8),
+         ("E", "F", 1)]
+    k = kruskal(V, E)
+    p, _ = prim_forest(V, E)
+    print("Kruskal order:", [f"{u}{v}" for u, v, _ in k], "weight", weight(k))
+    print("Prim order   :", [f"{u}{v}" for u, v, _ in p], "weight", weight(p))
+    print("Same total weight?", weight(k) == weight(p))
+
+    # disconnected graph: {P, Q, R} and {S, T}
+    V2 = ["P", "Q", "R", "S", "T"]
+    E2 = [("P", "Q", 4), ("Q", "R", 1), ("P", "R", 3), ("S", "T", 2)]
+    f, trees = prim_forest(V2, E2)
+    print("\nDisconnected graph -&gt; spanning forest with", trees, "trees")
+    print("Forest edges:", [f"{u}{v}({w})" for u, v, w in kruskal(V2, E2)],
+          "weight", weight(f))
+    print("Edges in forest = V - (number of trees) =", len(V2) - trees)</code></pre></div>
+    <div class="ms-code ms-out"><div class="ms-code-bar"><span>Output</span></div><pre>Kruskal order: ['EF', 'BD', 'AC', 'BC', 'DE'] weight 17
+Prim order   : ['AC', 'CB', 'BD', 'DE', 'EF'] weight 17
+Same total weight? True
+
+Disconnected graph -&gt; spanning forest with 2 trees
+Forest edges: ['QR(1)', 'ST(2)', 'PR(3)'] weight 6
+Edges in forest = V - (number of trees) = 3</pre></div>
+    <h4>How the code works</h4>
+    <ul>
+      <li>Runs both algorithms on the same graph: different order, same total weight.</li>
+      <li><code>prim_forest</code> restarts Prim's from every unvisited vertex, so it also handles disconnected graphs.</li>
+      <li>For a disconnected graph the result is a <b>spanning forest</b> with V &#8722; c edges (here 5 &#8722; 2 = 3).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= SECTION 8 ======================= -->
+<section class="ms-sec ms-slide" id="ms-s8" data-title="Practice &amp; quiz">
+  <div class="ms-sec-head"><div class="ms-num">8</div><h2>Practice &amp; Assessment</h2></div>
+  <p>Try each question yourself first, then open the answer.</p>
+
+  <h3>8.1 Conceptual questions</h3>
+  <details><summary>Q1. Define a minimum spanning tree. How many edges does it have?</summary><div class="ans">A spanning tree of a connected, undirected, weighted graph whose total edge weight is the smallest possible. It has exactly V &#8722; 1 edges.</div></details>
+  <details><summary>Q2. Why are Prim's and Kruskal's called greedy algorithms? Why does greedy work here?</summary><div class="ans">At each step they take the cheapest edge that is currently safe and never undo the choice. Greedy works because of the <b>cut property</b>: the lightest edge crossing any cut is always part of some MST.</div></details>
+  <details><summary>Q3. Why does Kruskal's need a Disjoint Set Union but Prim's does not?</summary><div class="ans">Kruskal's may pick an edge anywhere in the graph, so it must check whether both ends are already connected (that would create a cycle). Prim's only adds edges from the tree to a vertex <i>outside</i> the tree, which can never create a cycle.</div></details>
+  <details><summary>Q4. Can a graph have more than one MST? When is it unique?</summary><div class="ans">Yes, when some edges have equal weights (e.g. a square with all weights 1 has 4 MSTs). If all edge weights are distinct, the MST is unique. All MSTs of a graph have the same total weight.</div></details>
+  <details><summary>Q5. Which algorithm would you use for a graph with 10,000 vertices and 20,000 edges? Why?</summary><div class="ans">The graph is sparse (E &#8776; 2V). Kruskal's (O(E log E)) or Prim's with a binary heap (O(E log V)) are both fine; the O(V&#178;) array version of Prim's (10&#8312; steps) would be much slower. Kruskal's is the usual choice for sparse graphs.</div></details>
+
+  <h3>8.2 Trace-based question</h3>
+  <p>For the graph below, (a) trace <b>Kruskal's</b> algorithm showing accepted/rejected edges, and (b) trace <b>Prim's</b> starting from P. Give the MST weight.</p>
+  <svg class="ms-graph" id="ms-trace-graph" viewBox="0 0 420 300" style="max-width:400px;margin:8px auto"></svg>
+  <details><summary>Show answer</summary><div class="ans">
+    <p><b>(a) Kruskal's.</b> Sorted: P&#8211;R 1, R&#8211;S 2, P&#8211;Q 3, S&#8211;T 4, Q&#8211;S 5, Q&#8211;T 6, Q&#8211;R 7.<br>
+    Accept P&#8211;R (1), accept R&#8211;S (2), accept P&#8211;Q (3), accept S&#8211;T (4) &#8594; 4 = V &#8722; 1 edges, done. (If you continue: Q&#8211;S, Q&#8211;T and Q&#8211;R would all be rejected as they form cycles.)</p>
+    <p><b>(b) Prim's from P.</b> Add P &#8594; key: Q 3, R 1. Pick R (1) &#8594; S 2, Q stays 3. Pick S (2) &#8594; T 4, Q stays 3 (Q&#8211;S is 5). Pick Q (3). Pick T (4).<br>
+    Edges: P&#8211;R 1, R&#8211;S 2, P&#8211;Q 3, S&#8211;T 4.</p>
+    <p><b>MST weight = 1 + 2 + 3 + 4 = 10.</b></p>
+  </div></details>
+
+  <h3>8.3 Output-prediction question</h3>
+  <div class="ms-code"><div class="ms-code-bar"><span>predict.py</span></div><pre><code class="py">edges = [(4, 'A', 'B'), (1, 'B', 'C'), (3, 'A', 'C'), (2, 'C', 'D')]
+parent = {v: v for v in "ABCD"}
+
+def find(x):
+    while parent[x] != x:
+        x = parent[x]
+    return x
+
+total = 0
+for w, u, v in sorted(edges):
+    if find(u) != find(v):
+        parent[find(u)] = find(v)
+        total += w
+        print(u + v, end=" ")
+print("|", total)</code></pre></div>
+  <details><summary>Show answer</summary><div class="ans"><p>Output:</p><pre class="mono" style="background:var(--soft);padding:8px 12px;border-radius:8px">BC CD AC | 6</pre><p>Tuples are sorted by their first element (the weight): B&#8211;C 1, C&#8211;D 2, A&#8211;C 3, A&#8211;B 4. The first three join different sets; A&#8211;B is rejected because A and B are already connected through C.</p></div></details>
+
+  <h3>8.4 Diagram-identification question</h3>
+  <p>Graph G is on the left. Which of the subgraphs (a)&#8211;(d) are <b>spanning trees</b> of G? Which one is the <b>minimum</b> spanning tree?</p>
+  <div class="ms-minis">
+    <figure><svg class="ms-graph" id="ms-id-g" viewBox="0 0 360 260"></svg><figcaption>Graph G</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-id-a" viewBox="0 0 360 260"></svg><figcaption>(a)</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-id-b" viewBox="0 0 360 260"></svg><figcaption>(b)</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-id-c" viewBox="0 0 360 260"></svg><figcaption>(c)</figcaption></figure>
+    <figure><svg class="ms-graph" id="ms-id-d" viewBox="0 0 360 260"></svg><figcaption>(d)</figcaption></figure>
+  </div>
+  <details><summary>Show answer</summary><div class="ans">
+    <ul>
+      <li><b>(a)</b> W&#8211;X, X&#8211;Y, Y&#8211;Z: spanning tree (4 vertices, 3 edges, no cycle), weight 1 + 4 + 2 = 7.</li>
+      <li><b>(b)</b> W&#8211;X, Y&#8211;Z, Z&#8211;W: spanning tree, weight 1 + 2 + 3 = <b>6 &#8212; this is the MST</b> (Kruskal's picks exactly these: 1, 2, 3).</li>
+      <li><b>(c)</b> W&#8211;X, X&#8211;Y, W&#8211;Y: <b>not</b> a spanning tree &#8212; it has a cycle and does not include Z.</li>
+      <li><b>(d)</b> W&#8211;X, Y&#8211;Z: <b>not</b> a spanning tree &#8212; only 2 edges, disconnected.</li>
+    </ul>
+  </div></details>
+
+  <h3>8.5 Programming exercises</h3>
+  <ol>
+    <li>Modify Kruskal's (Program 3) to find a <b>maximum</b> spanning tree.</li>
+    <li>Write a function that returns <code>True</code> if a given list of edges is a spanning tree of a graph (check V &#8722; 1 edges, no cycle, all vertices covered).</li>
+    <li><b>Clustering:</b> use Kruskal's to split the worked-example graph into k = 2 clusters by stopping when 2 components remain. Which vertices go together?</li>
+    <li>Implement Prim's algorithm that prints the heap contents after every step.</li>
+    <li>Count how many spanning trees the worked-example graph has by brute force (try all 5-edge subsets). Compare with Cayley's formula for K<sub>6</sub>.</li>
+    <li>Generate random graphs with 500 vertices and compare the running time of Prim's (array), Prim's (heap) and Kruskal's for sparse and dense graphs.</li>
+  </ol>
+
+  <h3>8.6 Quick quiz</h3>
+  <div id="ms-quiz"></div>
+  <div class="ms-score"><span id="ms-quiz-score">Score: 0 / 8</span><button class="ms-btn ghost" id="ms-quiz-reset">Try again</button></div>
+</section>
+
+<div class="ms-slide-foot"><button class="ms-btn ghost" id="ms-foot-prev">&#8592; Previous</button><button class="ms-btn" id="ms-foot-next">Next &#8594;</button></div>
+
+<p class="ms-foot">Previous in the series: <b>Shortest Paths &amp; the Floyd&#8211;Warshall Algorithm</b>.</p>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.getElementById("mstb");
+  if (!root) return;
+  var INF = Infinity, SVGNS = "http://www.w3.org/2000/svg", LET = "ABCDEFG";
+  function $(id){ return document.getElementById(id); }
+  function fmt(x){ return x === INF ? "\u221E" : (x < 0 ? "\u2212" + (-x) : String(x)); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/[<]/g,"&lt;").replace(/>/g,"&gt;"); }
+  function mk(tag, attrs, parent){
+    var el = document.createElementNS(SVGNS, tag);
+    for (var a in attrs) el.setAttribute(a, attrs[a]);
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+
+  /* ---------------- graphs ---------------- */
+  function G(names, edges, pos){
+    var n = names.length, W = [];
+    for (var i=0;i<n;i++){ W.push([]); for (var j=0;j<n;j++) W[i].push(INF); }
+    edges.forEach(function(e){ var w = Math.min(W[e[0]][e[1]], e[2]); W[e[0]][e[1]] = w; W[e[1]][e[0]] = w; });
+    return {n:n, names:names, W:W, pos:pos || null};
+  }
+  function edgeList(g){
+    var out = [];
+    for (var i=0;i<g.n;i++) for (var j=i+1;j<g.n;j++) if (g.W[i][j] !== INF) out.push([i,j,g.W[i][j]]);
+    return out;
+  }
+  function cloneG(g){ return {n:g.n, names:g.names.slice(), W:g.W.map(function(r){return r.slice();}), pos:g.pos}; }
+  var EXPOS = [[.11,.5],[.36,.16],[.36,.84],[.64,.16],[.64,.84],[.89,.5]];
+  var SQPOS = [[.2,.2],[.8,.2],[.8,.8],[.2,.8]];
+  var PRESETS = {
+    ex:    function(){ return G("ABCDEF".split(""), [[0,1,6],[0,2,3],[1,2,4],[1,3,2],[2,3,5],[2,4,9],[3,4,7],[3,5,8],[4,5,1]], EXPOS); },
+    intro: function(){ return G("PQRS".split(""), [[0,1,2],[1,2,3],[2,3,1],[3,0,4],[0,2,5]], SQPOS); },
+    ties:  function(){ return G("ABCD".split(""), [[0,1,1],[1,2,1],[2,3,1],[3,0,1],[0,2,2]], SQPOS); },
+    dense: function(){ return G("ABCDE".split(""), [[0,1,5],[0,2,2],[0,3,8],[0,4,6],[1,2,3],[1,3,4],[1,4,9],[2,3,7],[2,4,1],[3,4,10]]); },
+    disc:  function(){ return G("PQRST".split(""), [[0,1,4],[1,2,1],[0,2,3],[3,4,2]], [[.15,.25],[.45,.15],[.3,.8],[.72,.3],[.88,.78]]); }
+  };
+
+  /* ---------------- MST helpers ---------------- */
+  function DSU(n){ this.p = []; this.r = []; for (var i=0;i<n;i++){ this.p.push(i); this.r.push(0); } }
+  DSU.prototype.find = function(x){ if (this.p[x] !== x) this.p[x] = this.find(this.p[x]); return this.p[x]; };
+  DSU.prototype.union = function(a, b){
+    var ra = this.find(a), rb = this.find(b); if (ra === rb) return false;
+    if (this.r[ra] < this.r[rb]){ var t = ra; ra = rb; rb = t; }
+    this.p[rb] = ra; if (this.r[ra] === this.r[rb]) this.r[ra]++; return true;
+  };
+  function sortedEdges(g){
+    return edgeList(g).sort(function(a,b){ return a[2]-b[2] || a[0]-b[0] || a[1]-b[1]; });
+  }
+  function kruskalSet(g){
+    var d = new DSU(g.n), set = {}, total = 0, cnt = 0;
+    sortedEdges(g).forEach(function(e){ if (d.union(e[0], e[1])){ set[e[0]+"-"+e[1]] = 1; total += e[2]; cnt++; } });
+    var comps = {}; for (var v=0;v<g.n;v++) comps[d.find(v)] = 1;
+    return {set:set, total:total, edges:cnt, comps:Object.keys(comps).length};
+  }
+
+  /* ---------------- drawing ---------------- */
+  var COMPCOL = ["#dbeafe","#fde2c8","#d8f3dc","#f3d9fa","#fff3bf","#ffd6d6","#d0f0f0"];
+  var COMPSTROKE = ["#2563eb","#e8590c","#15803d","#9c36b5","#c08400","#c92a2a","#0f766e"];
+  function drawGraph(svg, g, opt){
+    opt = opt || {};
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var vb = svg.viewBox.baseVal, Wd = vb.width, Ht = vb.height, r = 20, pos = [], n = g.n;
+    var padX = 36, padY = 34;
+    for (var i=0;i<n;i++){
+      if (g.pos && g.pos[i]) pos.push([padX + g.pos[i][0]*(Wd-2*padX), padY + g.pos[i][1]*(Ht-2*padY)]);
+      else {
+        var R = Math.min(Wd, Ht)/2 - 40, ang = -Math.PI/2 + 2*Math.PI*i/n;
+        pos.push([Wd/2 + R*Math.cos(ang), Ht/2 + R*Math.sin(ang)]);
+      }
+    }
+    var eG = mk("g", {}, svg), lG = mk("g", {}, svg), vG = mk("g", {}, svg), ret = {edges:{}};
+    edgeList(g).forEach(function(e){
+      var u = e[0], v = e[1], key = u+"-"+v;
+      var cls = opt.ecls ? (opt.ecls(u, v) || "") : "";
+      if (e[2] < 0) cls += " neg";
+      var gg = mk("g", {"class":"e " + cls}, eG);
+      mk("line", {x1:pos[u][0].toFixed(1), y1:pos[u][1].toFixed(1), x2:pos[v][0].toFixed(1), y2:pos[v][1].toFixed(1)}, gg);
+      ret.edges[key] = gg;
+      var lx = (pos[u][0]+pos[v][0])/2, ly = (pos[u][1]+pos[v][1])/2, txt = fmt(e[2]), w = 12 + txt.length*8.5;
+      var lab = mk("g", {"class":"elab " + cls}, lG);
+      mk("rect", {x:(lx-w/2).toFixed(1), y:(ly-11).toFixed(1), width:w, height:22, rx:6}, lab);
+      var t = mk("text", {x:lx.toFixed(1), y:ly.toFixed(1)}, lab); t.textContent = txt;
+    });
+    for (var k=0;k<n;k++){
+      var vc = "v" + (opt.vcls && opt.vcls[k] ? " " + opt.vcls[k] : "");
+      var vg = mk("g", {"class":vc}, vG);
+      var c = mk("circle", {cx:pos[k][0].toFixed(1), cy:pos[k][1].toFixed(1), r:r}, vg);
+      if (opt.vcomp && opt.vcomp[k] !== undefined && !(opt.vcls && opt.vcls[k])){
+        c.setAttribute("style", "fill:" + COMPCOL[opt.vcomp[k] % 7] + ";stroke:" + COMPSTROKE[opt.vcomp[k] % 7]);
+      }
+      var tt = mk("text", {x:pos[k][0].toFixed(1), y:pos[k][1].toFixed(1)}, vg); tt.textContent = g.names[k];
+      if (opt.badge && opt.badge[k] !== undefined && opt.badge[k] !== null){
+        var by = pos[k][1] + (pos[k][1] > Ht/2 ? 34 : -34), bt = String(opt.badge[k]), bw = 14 + bt.length*7.5;
+        mk("rect", {"class":"badgebg", x:(pos[k][0]-bw/2).toFixed(1), y:(by-10).toFixed(1), width:bw, height:20, rx:6}, vg);
+        var b = mk("text", {"class":"badge", x:pos[k][0].toFixed(1), y:by.toFixed(1)}, vg); b.textContent = bt;
+      }
+    }
+    return ret;
+  }
+  function inSet(set){ return function(u, v){ return set[u+"-"+v] || set[v+"-"+u] ? "tree" : "faint"; }; }
+
+  /* ---------------- static figures ---------------- */
+  var intro = PRESETS.intro();
+  drawGraph($("ms-intro-graph"), intro);
+  function setOf(pairs){ var s = {}; pairs.forEach(function(p){ s[p[0]+"-"+p[1]] = 1; }); return s; }
+  drawGraph($("ms-mini1"), intro, {ecls: inSet(setOf([[0,1],[1,2],[2,3]]))});
+  drawGraph($("ms-mini2"), intro, {ecls: inSet(setOf([[0,1],[1,2],[0,3]]))});
+  drawGraph($("ms-mini3"), intro, {ecls: inSet(setOf([[1,2],[0,3],[0,2]]))});
+  var ex = PRESETS.ex();
+  drawGraph($("ms-ex-graph"), ex, {ecls: function(u,v){ return kruskalSet(ex).set[u+"-"+v] ? "tree" : ""; }});
+  var tri = G(["A","B","C"], [[0,1,2],[1,2,2],[0,2,3]], [[.12,.8],[.5,.15],[.88,.8]]);
+  drawGraph($("ms-tri1"), tri, {ecls: inSet(setOf([[0,1],[1,2]]))});
+  drawGraph($("ms-tri2"), tri, {ecls: inSet(setOf([[0,1],[0,2]])), vcls:{0:"cur"}});
+  drawGraph($("ms-trace-graph"), G("PQRST".split(""), [[0,1,3],[0,2,1],[1,2,7],[1,3,5],[2,3,2],[3,4,4],[1,4,6]], [[.1,.5],[.45,.12],[.45,.88],[.75,.6],[.95,.2]]));
+  var idg = G(["W","X","Y","Z"], [[0,1,1],[1,2,4],[2,3,2],[3,0,3],[0,2,5]], SQPOS);
+  drawGraph($("ms-id-g"), idg);
+  drawGraph($("ms-id-a"), idg, {ecls: inSet(setOf([[0,1],[1,2],[2,3]]))});
+  drawGraph($("ms-id-b"), idg, {ecls: inSet(setOf([[0,1],[2,3],[0,3]]))});
+  drawGraph($("ms-id-c"), idg, {ecls: inSet(setOf([[0,1],[1,2],[0,2]]))});
+  drawGraph($("ms-id-d"), idg, {ecls: inSet(setOf([[0,1],[2,3]]))});
+
+  /* ---------------- LAB ---------------- */
+  var lab = {g: PRESETS.ex(), ret: null};
+  function parseW(s){
+    s = String(s).trim().toLowerCase().replace("\u2212","-");
+    if (s === "" || s === "\u221E" || s === "inf" || s === "-") return INF;
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return NaN;
+    return parseFloat(s);
+  }
+  function labTable(){
+    var g = lab.g, h = "<tr><th>\u2014<\/th>";
+    for (var j=0;j<g.n;j++) h += "<th>"+g.names[j]+"<\/th>";
+    h += "<\/tr>";
+    for (var i=0;i<g.n;i++){
+      h += "<tr><th>"+g.names[i]+"<\/th>";
+      for (var j2=0;j2<g.n;j2++){
+        var v = i===j2 ? "\u2014" : (g.W[i][j2] === INF ? "" : String(g.W[i][j2]));
+        h += "<td><input type='text' data-i='"+i+"' data-j='"+j2+"' value='"+v+"'"+(i===j2?" disabled":"")+" placeholder='\u00B7' aria-label='weight "+g.names[i]+" "+g.names[j2]+"'><\/td>";
+      }
+      h += "<\/tr>";
+    }
+    $("ms-lab-mat").innerHTML = h;
+    labDraw();
+  }
+  function labDraw(){
+    var g = lab.g, k = kruskalSet(g), show = $("ms-lab-showmst").checked;
+    lab.ret = drawGraph($("ms-lab-graph"), g, show ? {ecls: function(u,v){ return k.set[u+"-"+v] ? "tree" : "faint"; }} : {});
+    var E = edgeList(g).length, neg = edgeList(g).filter(function(e){ return e[2] < 0; }).length;
+    var ws = edgeList(g).map(function(e){ return e[2]; }), distinct = ws.length === new Set(ws).size;
+    var conn = k.comps === 1;
+    $("ms-lab-stat").innerHTML = "V = "+g.n+",  E = "+E+"  (max "+(g.n*(g.n-1)/2)+")<br>negative edges: "+neg+
+      "<br>connected: <b style='color:"+(conn?"#15803d":"#c92a2a")+"'>"+(conn?"yes":"no \u2014 "+k.comps+" components")+"<\/b>"+
+      "<br>"+(conn ? "MST: "+k.edges+" edges (= V \u2212 1), weight <b>"+fmt(k.total)+"<\/b>" : "spanning forest: "+k.edges+" edges, weight "+fmt(k.total))+
+      "<br>"+(E ? (distinct ? "all weights distinct \u2192 MST is unique" : "repeated weights \u2192 MST may not be unique") : "");
+  }
+  $("ms-lab-mat").addEventListener("input", function(ev){
+    var inp = ev.target; if (!inp.dataset || inp.dataset.i === undefined) return;
+    var i = +inp.dataset.i, j = +inp.dataset.j, v = parseW(inp.value);
+    if (isNaN(v)){ inp.className = "bad"; return; }
+    inp.className = ""; lab.g.W[i][j] = v; lab.g.W[j][i] = v;
+    var m = $("ms-lab-mat").querySelector("input[data-i='"+j+"'][data-j='"+i+"']");
+    if (m){ m.value = inp.value; m.className = ""; }
+    labDraw();
+  });
+  function hov(t, on){
+    if (t.tagName !== "INPUT" || !lab.ret) return;
+    var a = +t.dataset.i, b = +t.dataset.j, key = Math.min(a,b)+"-"+Math.max(a,b), e = lab.ret.edges[key];
+    if (!e) return;
+    var c = e.getAttribute("class").replace(/ hov/g, "");
+    e.setAttribute("class", on ? c + " hov" : c);
+  }
+  $("ms-lab-mat").addEventListener("mouseover", function(ev){ hov(ev.target, true); });
+  $("ms-lab-mat").addEventListener("mouseout", function(ev){ hov(ev.target, false); });
+  function emptyG(n){ return G(LET.slice(0,n).split(""), []); }
+  $("ms-lab-n").addEventListener("change", function(){
+    var n = +this.value, old = lab.g, g = emptyG(n);
+    for (var i=0;i<Math.min(n,old.n);i++) for (var j=0;j<Math.min(n,old.n);j++) g.W[i][j] = old.W[i][j];
+    lab.g = g; labTable();
+  });
+  $("ms-lab-load").addEventListener("click", function(){ lab.g = PRESETS[$("ms-lab-preset").value](); $("ms-lab-n").value = String(lab.g.n); labTable(); });
+  $("ms-lab-clear").addEventListener("click", function(){ lab.g = emptyG(lab.g.n); labTable(); });
+  $("ms-lab-rand").addEventListener("click", function(){
+    var n = lab.g.n, g;
+    do {
+      g = emptyG(n);
+      for (var i=0;i<n;i++) for (var j=i+1;j<n;j++) if (Math.random() < 0.5){ var w = 1 + Math.floor(Math.random()*12); g.W[i][j] = g.W[j][i] = w; }
+    } while (kruskalSet(g).comps !== 1);
+    lab.g = g; labTable();
+  });
+  $("ms-lab-showmst").addEventListener("change", labDraw);
+  $("ms-lab-send").addEventListener("click", function(){
+    if (window.msGoTo) window.msGoTo(3, true);
+    $("ms-viz-preset").value = "lab"; vizLoad();
+    $("ms-viz").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  labTable();
+
+  /* ---------------- VISUALISER ---------------- */
+  var viz = {g:null, snaps:[], pos:0, timer:null};
+  var CODE = {
+    prim: ["key[all] = \u221E;  key[s] = 0", "repeat V times:", "  u = non-tree vertex with min key", "  add u (edge parent[u]\u2013u) to MST",
+           "  for each neighbour v not in MST:", "    if w(u,v) < key[v]:", "      key[v] = w(u,v); parent[v] = u"],
+    kruskal: ["make-set(v) for every vertex", "sort edges by weight", "for each edge (u, v) in order:", "  if find(u) != find(v):",
+              "    add (u, v) to MST; union(u, v)", "  else: reject (would form a cycle)"]
+  };
+  function buildPrim(g, s){
+    var n = g.n, nm = g.names, key = [], par = [], inT = [], snaps = [], tree = {}, total = 0, order = [];
+    for (var i=0;i<n;i++){ key.push(INF); par.push(null); inT.push(false); }
+    key[s] = 0;
+    function snap(o){ o.key = key.slice(); o.par = par.slice(); o.inT = inT.slice(); o.tree = Object.assign({}, tree); o.total = total; o.order = order.slice(); snaps.push(o); }
+    snap({msg:"Start at <b>"+nm[s]+"<\/b>: key["+nm[s]+"] = 0, every other key = \u221E. No vertex is in the tree yet.", code:[0], upd:{}, cur:null});
+    for (var step=0; step<n; step++){
+      var u = -1;
+      for (var v=0;v<n;v++) if (!inT[v] && (u === -1 || key[v] < key[u])) u = v;
+      var choices = []; for (var c=0;c<n;c++) if (!inT[c] && key[c] === key[u] && key[u] !== INF) choices.push(c);
+      if (key[u] === INF){
+        var rest = []; for (var x=0;x<n;x++) if (!inT[x]) rest.push(nm[x]);
+        snap({msg:"All remaining keys are \u221E: vertices <b>"+rest.join(", ")+"<\/b> cannot be reached. The graph is <b>disconnected<\/b>, so Prim's only spans the component of "+nm[s]+". (Restart from "+rest[0]+" to build a spanning forest.)", cls:"bad", code:[2], upd:{}, cur:null, done:true});
+        return snaps;
+      }
+      inT[u] = true;
+      var edgeTxt = "";
+      if (par[u] !== null){ tree[Math.min(par[u],u)+"-"+Math.max(par[u],u)] = 1; total += g.W[par[u]][u]; order.push(nm[par[u]]+"\u2013"+nm[u]+" ("+fmt(g.W[par[u]][u])+")"); edgeTxt = " \u2192 add edge <b>"+nm[par[u]]+"\u2013"+nm[u]+"<\/b> ("+fmt(g.W[par[u]][u])+")"; }
+      var upd = {}, ch = [];
+      for (var w=0;w<n;w++) if (!inT[w] && g.W[u][w] !== INF && g.W[u][w] < key[w]){ ch.push(nm[w]+": "+fmt(key[w])+" \u2192 "+fmt(g.W[u][w])); key[w] = g.W[u][w]; par[w] = u; upd[w] = 1; }
+      var last = step === n-1;
+      snap({msg:"Smallest key among non-tree vertices: <b>"+nm[u]+"<\/b> (key "+fmt(snaps[snaps.length-1].key[u])+")"+edgeTxt+"."+
+        (choices.length > 1 ? " <i>(Tie with "+choices.filter(function(q){return q!==u;}).map(function(q){return nm[q];}).join(", ")+" \u2014 first one chosen.)<\/i>" : "")+
+        "<span class='calc'>"+(ch.length ? "Update neighbours: "+ch.join(",  ") : "No neighbour keys improve.")+"<\/span>"+
+        (last ? "<b>All vertices are in the tree \u2014 MST complete.<\/b>" : ""),
+        cls: last ? "" : "upd", code: ch.length ? [2,3,4,5,6] : [2,3,4], upd:upd, cur:u, chosen:u, chosenOpts:(function(){ var o=[]; for (var q=0;q<n;q++) if (!snaps[snaps.length-1].inT[q] && snaps[snaps.length-1].key[q] !== INF) o.push(q); return o; })(), done:last});
+    }
+    return snaps;
+  }
+  function buildKruskal(g){
+    var n = g.n, nm = g.names, d = new DSU(n), es = sortedEdges(g), snaps = [], tree = {}, rej = {}, total = 0, acc = 0, status = es.map(function(){ return ""; });
+    function comps(){ var m = {}, out = []; for (var v=0;v<n;v++){ var r = d.find(v); if (!(r in m)){ m[r] = out.length; out.push([]); } out[m[r]].push(v); } return out; }
+    function snap(o){ o.par = d.p.slice(); o.tree = Object.assign({}, tree); o.rej = Object.assign({}, rej); o.total = total; o.status = status.slice(); o.comps = comps(); o.es = es; snaps.push(o); }
+    snap({msg:"Every vertex starts in its <b>own set<\/b>. Edges are sorted by weight: "+es.map(function(e){ return nm[e[0]]+nm[e[1]]+"("+fmt(e[2])+")"; }).join(", ")+".", code:[0,1], cur:-1});
+    for (var i=0;i<es.length;i++){
+      var e = es[i], ru = d.find(e[0]), rv = d.find(e[1]), key = e[0]+"-"+e[1];
+      var calc = "find("+nm[e[0]]+") = "+nm[ru]+",  find("+nm[e[1]]+") = "+nm[rv];
+      var willAcc = ru !== rv;
+      if (willAcc){ d.union(e[0], e[1]); tree[key] = 1; total += e[2]; acc++; status[i] = "acc"; }
+      else { rej[key] = 1; status[i] = "rej"; }
+      var done = acc === n-1;
+      snap({msg:"Edge <b>"+nm[e[0]]+"\u2013"+nm[e[1]]+"<\/b> (weight "+fmt(e[2])+"): "+(willAcc ? "ends are in <b>different sets<\/b> \u2192 <b>accept<\/b> and union the sets." : "both ends are already in the <b>same set<\/b> \u2192 it would form a cycle \u2192 <b>reject<\/b>.")+
+        "<span class='calc'>"+calc+(willAcc ? "  \u2714 different" : "  \u2718 same")+"<\/span>"+(done ? "<b>"+(n-1)+" edges chosen (V \u2212 1) \u2014 MST complete.<\/b>" + (i < es.length-1 ? " Remaining edges are not needed." : "") : ""),
+        cls: willAcc ? "upd" : "bad", code: willAcc ? [2,3,4] : [2,3,5], cur:i, curAcc:willAcc, done:done});
+      if (done) break;
+    }
+    if (acc < n-1){
+      var cc = snaps[snaps.length-1].comps.length;
+      snap({msg:"No edges left, but only "+acc+" edges were chosen. The graph is <b>disconnected<\/b> ("+cc+" components): the result is a <b>minimum spanning forest<\/b> with V \u2212 "+cc+" = "+acc+" edges.", cls:"bad", code:[], cur:-1, done:true});
+    }
+    return snaps;
+  }
+  function vizLoad(){
+    vizStop();
+    var p = $("ms-viz-preset").value;
+    viz.g = p === "lab" ? cloneG(lab.g) : PRESETS[p]();
+    var st = $("ms-viz-start"), o = "", prev = st.value;
+    for (var v=0;v<viz.g.n;v++) o += "<option value='"+v+"'>"+viz.g.names[v]+"<\/option>";
+    st.innerHTML = o; if (prev && +prev < viz.g.n) st.value = prev;
+    vizBuild();
+  }
+  function vizBuild(){
+    vizStop();
+    var algo = $("ms-viz-algo").value;
+    $("ms-viz-start").style.display = $("ms-viz-start-lbl").style.display = algo === "prim" ? "" : "none";
+    viz.algo = algo;
+    viz.snaps = algo === "prim" ? buildPrim(viz.g, +$("ms-viz-start").value || 0) : buildKruskal(viz.g);
+    $("ms-viz-legend").innerHTML = algo === "prim"
+      ? "<span><i style='background:var(--dst)'><\/i>in tree / MST edge<\/span><span><i style='background:var(--pivot)'><\/i>just added<\/span><span><i style='background:#f6b26b'><\/i>candidate (crossing) edge<\/span><span>label = key<\/span>"
+      : "<span><i style='background:var(--dst)'><\/i>MST edge<\/span><span><i style='background:var(--pivot)'><\/i>current edge<\/span><span><i style='background:#d9a3a3'><\/i>rejected (cycle)<\/span><span>colour = set (component)<\/span>";
+    vizGo(0);
+  }
+  function vizGo(p){
+    var total = viz.snaps.length - 1;
+    viz.pos = Math.max(0, Math.min(total, p));
+    var s = viz.snaps[viz.pos], g = viz.g, nm = g.names, n = g.n;
+    $("ms-viz-count").textContent = "step " + viz.pos + " / " + total;
+    $("ms-viz-bar").style.width = (total ? viz.pos/total*100 : 100) + "%";
+    var msg = $("ms-viz-msg"); msg.className = "ms-msg" + (s.cls ? " " + s.cls : ""); msg.innerHTML = s.msg;
+    var side = "", opt = {};
+    if (viz.algo === "prim"){
+      $("ms-viz-phase").innerHTML = viz.pos === 0 ? "Prim's \u2014 initialise" : "Prim's \u2014 step <em>"+viz.pos+"<\/em> of "+n;
+      var vcls = {}, badge = {};
+      for (var v=0;v<n;v++){ if (s.inT[v]) vcls[v] = "intree"; badge[v] = s.inT[v] ? null : "key " + fmt(s.key[v]); }
+      if (s.cur !== null && s.cur !== undefined) vcls[s.cur] = "cur";
+      opt = {vcls:vcls, badge:badge, ecls:function(u, w){
+        var k = u+"-"+w;
+        if (s.tree[k]) return (s.cur !== null && s.par[s.cur] !== null && ((s.par[s.cur]===u && s.cur===w) || (s.par[s.cur]===w && s.cur===u))) ? "cur" : "tree";
+        if (s.inT[u] !== s.inT[w]) return "cand";
+        return s.inT[u] && s.inT[w] ? "faint" : "";
+      }};
+      side = "<h4>key[] and parent[]<\/h4><div class='sub'>yellow = key decreased in this step<\/div><table class='ms-tbl ms-trace'><tr><th>Vertex<\/th>";
+      for (var a=0;a<n;a++) side += "<th>"+nm[a]+"<\/th>";
+      side += "<\/tr><tr><td><b>key<\/b><\/td>";
+      for (var b=0;b<n;b++) side += "<td class='"+(s.inT[b] ? "done" : (s.upd[b] ? "upd" : ""))+"'>"+(s.inT[b] && viz.pos ? "\u2714" : fmt(s.key[b]))+"<\/td>";
+      side += "<\/tr><tr><td><b>parent<\/b><\/td>";
+      for (var c=0;c<n;c++) side += "<td class='"+(s.upd[c] ? "upd" : "")+"'>"+(s.par[c] === null ? "\u2014" : nm[s.par[c]])+"<\/td>";
+      side += "<\/tr><\/table><div class='ms-comps' style='margin-top:10px'>"+(s.order.length ? s.order.map(function(t,i){ return "<span style='border-color:#15803d;background:#e6f6ea'>"+(i+1)+". "+t+"<\/span>"; }).join("") : "<span style='border-color:#ccc'>no edges yet<\/span>")+"<\/div>";
+    } else {
+      $("ms-viz-phase").innerHTML = viz.pos === 0 ? "Kruskal's \u2014 sort the edges" : (s.cur >= 0 ? "Kruskal's \u2014 edge <em>"+(s.cur+1)+"<\/em> of "+s.es.length : "Kruskal's \u2014 finished");
+      var compOf = {}; s.comps.forEach(function(cm, ci){ cm.forEach(function(v){ compOf[v] = ci; }); });
+      var curE = s.cur >= 0 ? s.es[s.cur] : null;
+      opt = {vcomp:compOf, ecls:function(u, w){
+        var k = u+"-"+w;
+        if (curE && curE[0]===u && curE[1]===w) return s.curAcc ? "cur" : "curbad";
+        if (s.tree[k]) return "tree";
+        if (s.rej[k]) return "rej";
+        return "";
+      }};
+      side = "<h4>Sorted edge list<\/h4><table class='ms-tbl ms-trace'><tr><th>#<\/th><th>Edge<\/th><th>w<\/th><th>Result<\/th><\/tr>";
+      s.es.forEach(function(e, i){
+        var st = s.status[i], rc = i === s.cur ? "curr" : (st === "acc" ? "acc" : (st === "rej" ? "rej" : ""));
+        side += "<tr class='"+rc+"'><td>"+(i+1)+"<\/td><td>"+nm[e[0]]+"\u2013"+nm[e[1]]+"<\/td><td>"+fmt(e[2])+"<\/td><td class='"+st+"'>"+(st === "acc" ? "\u2714 accept" : (st === "rej" ? "\u2718 cycle" : "\u00B7"))+"<\/td><\/tr>";
+      });
+      side += "<\/table><h4 style='margin-top:12px'>Disjoint sets<\/h4><div class='ms-comps'>";
+      s.comps.forEach(function(cm, ci){ side += "<span style='background:"+COMPCOL[ci%7]+";border-color:"+COMPSTROKE[ci%7]+"'>{"+cm.map(function(v){ return nm[v]; }).join(", ")+"}<\/span>"; });
+      side += "<\/div><div class='mono' style='font-size:12.5px;color:var(--ink2)'>parent[] = ["+s.par.map(function(q){ return nm[q]; }).join(", ")+"]<\/div>";
+    }
+    $("ms-viz-total").innerHTML = "MST weight so far: <b>"+fmt(s.total)+"<\/b>";
+    $("ms-viz-side").innerHTML = side;
+    drawGraph($("ms-viz-graph"), g, opt);
+    var ch = "", lines = CODE[viz.algo];
+    lines.forEach(function(l, i){ ch += "<div"+(s.code && s.code.indexOf(i) >= 0 ? " class='on'" : "")+"><span class='ln'>"+(i+1)+"<\/span>"+esc(l)+"<\/div>"; });
+    $("ms-viz-code").innerHTML = ch;
+    var end = viz.pos === total;
+    $("ms-viz-back").disabled = viz.pos === 0;
+    ["ms-viz-step","ms-viz-end"].forEach(function(id){ $(id).disabled = end; });
+    if (end) vizStop();
+    vizPredict();
+  }
+  function vizPredict(){
+    var box = $("ms-viz-pq"), btns = $("ms-viz-pq-btns");
+    $("ms-viz-pq-fb").textContent = "";
+    if (!$("ms-viz-predict").checked || viz.pos >= viz.snaps.length - 1){ box.className = "ms-predict"; return; }
+    var nxt = viz.snaps[viz.pos + 1], nm = viz.g.names, h = "";
+    if (viz.algo === "prim"){
+      if (nxt.chosen === undefined){ box.className = "ms-predict"; return; }
+      $("ms-viz-pq-txt").textContent = "Which vertex will Prim's add next?";
+      nxt.chosenOpts.forEach(function(v){ h += "<button class='ms-btn ghost' data-ans='"+v+"'>"+nm[v]+"<\/button>"; });
+    } else {
+      if (nxt.cur < 0){ box.className = "ms-predict"; return; }
+      var e = nxt.es[nxt.cur];
+      $("ms-viz-pq-txt").textContent = "Will edge " + nm[e[0]] + "\u2013" + nm[e[1]] + " (" + fmt(e[2]) + ") be accepted?";
+      h = "<button class='ms-btn' data-ans='y'>Yes, accept<\/button><button class='ms-btn ghost' data-ans='n'>No, cycle<\/button>";
+    }
+    btns.innerHTML = h; box.className = "ms-predict on";
+  }
+  $("ms-viz-pq-btns").addEventListener("click", function(ev){
+    var b = ev.target.closest("button"); if (!b) return;
+    var nxt = viz.snaps[viz.pos + 1], a = b.getAttribute("data-ans"), ok;
+    if (viz.algo === "prim"){
+      var key = viz.snaps[viz.pos].key[nxt.chosen];
+      ok = viz.snaps[viz.pos].key[+a] === key;   /* any vertex tied for the minimum key is a correct answer */
+    } else ok = (a === "y") === nxt.curAcc;
+    vizGo(viz.pos + 1);
+    var fb = $("ms-viz-pq-fb"); fb.textContent = ok ? "\u2714 Correct!" : "\u2718 Not quite \u2014 read the explanation.";
+    fb.style.color = ok ? "#15803d" : "#c92a2a";
+    $("ms-viz-pq").className = "ms-predict on";
+  });
+  function vizStop(){ if (viz.timer){ clearInterval(viz.timer); viz.timer = null; } $("ms-viz-play").textContent = "\u25B6 Play"; }
+  function vizPlay(){
+    if (viz.timer){ vizStop(); return; }
+    if (viz.pos >= viz.snaps.length - 1) vizGo(0);
+    var ms = 2200 - (+$("ms-viz-speed").value)*190;
+    $("ms-viz-play").textContent = "\u23F8 Pause";
+    viz.timer = setInterval(function(){ if (viz.pos >= viz.snaps.length - 1){ vizStop(); return; } vizGo(viz.pos + 1); }, ms);
+  }
+  $("ms-viz-preset").addEventListener("change", vizLoad);
+  $("ms-viz-algo").addEventListener("change", vizBuild);
+  $("ms-viz-start").addEventListener("change", vizBuild);
+  $("ms-viz-reset").addEventListener("click", function(){ vizStop(); vizGo(0); });
+  $("ms-viz-back").addEventListener("click", function(){ vizStop(); vizGo(viz.pos - 1); });
+  $("ms-viz-step").addEventListener("click", function(){ vizStop(); vizGo(viz.pos + 1); });
+  $("ms-viz-end").addEventListener("click", function(){ vizStop(); vizGo(viz.snaps.length - 1); });
+  $("ms-viz-play").addEventListener("click", vizPlay);
+  $("ms-viz-speed").addEventListener("input", function(){ if (viz.timer){ vizStop(); vizPlay(); } });
+  $("ms-viz-predict").addEventListener("change", vizPredict);
+  vizLoad();
+
+  /* ---------------- WHICH ALGORITHM? ---------------- */
+  function chooser(){
+    var V = +$("ms-ch-v").value, dens = +$("ms-ch-d").value / 100;
+    var maxE = V*(V-1)/2, E = Math.max(V-1, Math.round(dens*maxE));
+    $("ms-ch-vv").textContent = V.toLocaleString();
+    $("ms-ch-dv").textContent = Math.round(dens*100) + "%  \u2192  E = " + E.toLocaleString();
+    var lg = function(x){ return Math.log(Math.max(2,x))/Math.LN2; };
+    var rows = [["Prim's (array) V\u00B2", V*V, "#2563eb"], ["Prim's (heap) E\u00B7log V", (E+V)*lg(V), "#0f766e"], ["Kruskal's E\u00B7log E", E*lg(E), "#e8590c"]];
+    var mx = Math.max.apply(null, rows.map(function(r){ return r[1]; })), h = "";
+    rows.forEach(function(r){
+      h += "<div class='ms-bar'><span>"+r[0]+"<\/span><div class='track'><div class='fill' style='width:"+(r[1]/mx*100).toFixed(1)+"%;background:"+r[2]+"'><\/div><\/div><span class='num'>"+(r[1] >= 1e6 ? (r[1]/1e6).toFixed(1)+" M" : Math.round(r[1]).toLocaleString())+"<\/span><\/div>";
+    });
+    $("ms-ch-bars").innerHTML = h;
+    var best = rows.slice().sort(function(a,b){ return a[1]-b[1]; })[0][0];
+    var kind = E > V*lg(V) * 4 ? "dense" : "sparse";
+    $("ms-ch-rec").innerHTML = "This graph is <b>"+kind+"<\/b> (E/V \u2248 "+(E/V).toFixed(1)+"). Fewest operations: <b>"+best+"<\/b>. " +
+      (kind === "dense" ? "For dense graphs, Prim's array version avoids sorting a huge edge list." : "For sparse graphs, Kruskal's or heap-based Prim's are much faster than O(V\u00B2).");
+  }
+  $("ms-ch-v").addEventListener("input", chooser); $("ms-ch-d").addEventListener("input", chooser);
+  chooser();
+
+  /* ---------------- code tabs, highlighting, copy ---------------- */
+  root.querySelectorAll(".ms-tabs").forEach(function(bar){
+    bar.addEventListener("click", function(ev){
+      var b = ev.target.closest(".ms-tab"); if (!b) return;
+      bar.querySelectorAll(".ms-tab").forEach(function(x){ x.classList.toggle("on", x === b); var p = $(x.dataset.pane); if (p) p.classList.toggle("on", x === b); });
+    });
+  });
+  var KW = /^(def|for|in|if|else|elif|return|while|not|and|or|is|None|True|False|import|from|as|with|lambda|pass|break|continue|class|try|except|self)$/;
+  var BI = /^(print|range|len|min|max|float|int|str|any|all|list|enumerate|sorted|sum|set|dict|abs)$/;
+  function highlight(code){
+    var re = /(#[^\n]*)|("""[\s\S]*?"""|'(?:\\.|[^'\\\n])*'|"(?:\\.|[^"\\\n])*")|([A-Za-z_][A-Za-z_0-9]*)|(\d+(?:\.\d+)?)/g;
+    var out = "", last = 0, m, prevDef = false;
+    while ((m = re.exec(code))){
+      out += esc(code.slice(last, m.index));
+      if (m[1]) { out += "<span class='py-com'>"+esc(m[1])+"<\/span>"; prevDef = false; }
+      else if (m[2]) { out += "<span class='py-str'>"+esc(m[2])+"<\/span>"; prevDef = false; }
+      else if (m[3]){
+        var w = m[3];
+        if (prevDef) out += "<span class='py-fn'>"+w+"<\/span>";
+        else if (KW.test(w)) out += "<span class='py-kw'>"+w+"<\/span>";
+        else if (BI.test(w)) out += "<span class='py-bi'>"+w+"<\/span>";
+        else out += w;
+        prevDef = (w === "def" || w === "class");
+      }
+      else if (m[4]) { out += "<span class='py-num'>"+m[4]+"<\/span>"; prevDef = false; }
+      last = re.lastIndex;
+    }
+    return out + esc(code.slice(last));
+  }
+  root.querySelectorAll("code.py").forEach(function(c){ var raw = c.textContent; c._raw = raw; c.innerHTML = highlight(raw); });
+  root.querySelectorAll(".ms-copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var code = btn.closest(".ms-code").querySelector("code"), text = code._raw || code.textContent;
+      function ok(){ btn.textContent = "Copied \u2713"; setTimeout(function(){ btn.textContent = "Copy"; }, 1500); }
+      function fallback(){
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch(e) { btn.textContent = "Press Ctrl+C"; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    });
+  });
+
+  /* ---------------- QUIZ ---------------- */
+  var QUIZ = [
+    {q:"A spanning tree of a connected graph with V vertices has how many edges?", o:["V","V \u2212 1","V + 1","E \u2212 V"], a:1,
+     e:"A tree on V vertices always has exactly V \u2212 1 edges: one fewer edge disconnects it, one more creates a cycle."},
+    {q:"Which data structure does Kruskal's algorithm use to detect cycles efficiently?", o:["Stack","Min-heap","Disjoint Set Union (Union\u2013Find)","Hash table of visited vertices"], a:2,
+     e:"Union\u2013Find tells whether u and v are already in the same tree. A simple \u201Cvisited\u201D flag is not enough (see Mistake 1 in Section 6)."},
+    {q:"What is the time complexity of Prim's algorithm using a binary heap and adjacency list?", o:["O(V\u00B2)","O(E log V)","O(V\u00B3)","O(E + V)"], a:1,
+     e:"Each of up to E key decreases (or pushes) and V extractions costs O(log V): O((V + E) log V) = O(E log V)."},
+    {q:"For a very dense graph (E \u2248 V\u00B2), which implementation is usually preferred?", o:["Kruskal's with sorting","Prim's with adjacency matrix and array (O(V\u00B2))","Bellman\u2013Ford","DFS"], a:1,
+     e:"With E \u2248 V\u00B2, Kruskal's costs O(V\u00B2 log V) for sorting, while Prim's array version is just O(V\u00B2)."},
+    {q:"Prim's and Kruskal's algorithms both follow which design technique?", o:["Divide and conquer","Dynamic programming","Greedy method","Backtracking"], a:2,
+     e:"Both repeatedly pick the cheapest safe edge and never reconsider it \u2014 a greedy strategy justified by the cut property."},
+    {q:"Can Prim's and Kruskal's algorithms handle negative edge weights?", o:["No, neither can","Only Prim's","Only Kruskal's","Yes, both can"], a:3,
+     e:"MST algorithms only compare edge weights; they never add weights along a path, so negative values cause no problem."},
+    {q:"If all edge weights in a connected graph are distinct, then the MST is\u2026", o:["Unique","Not guaranteed to exist","Always a path","Different for Prim's and Kruskal's"], a:0,
+     e:"With distinct weights there is exactly one MST, so both algorithms must return the same set of edges."},
+    {q:"Which statement is TRUE while the algorithms are running?", o:["Kruskal's partial result is always connected","Prim's partial result is always a single tree; Kruskal's may be a forest","Both always keep a forest of many trees","Prim's must sort all edges first"], a:1,
+     e:"Prim's grows one tree from the start vertex. Kruskal's accepts edges anywhere, so its partial result can be several separate trees."}
+  ];
+  var score = 0, answered = 0;
+  function quizBuild(){
+    score = 0; answered = 0; var h = "";
+    QUIZ.forEach(function(q, qi){
+      h += "<div class='ms-q' data-q='"+qi+"'><div class='qt'><span>Q"+(qi+1)+".<\/span>"+q.q+"<\/div>";
+      q.o.forEach(function(o, oi){ h += "<button class='ms-opt' data-o='"+oi+"'>"+String.fromCharCode(65+oi)+". "+o+"<\/button>"; });
+      h += "<div class='ms-exp'><\/div><\/div>";
+    });
+    $("ms-quiz").innerHTML = h; $("ms-quiz-score").textContent = "Score: 0 / " + QUIZ.length;
+  }
+  $("ms-quiz").addEventListener("click", function(ev){
+    var b = ev.target.closest(".ms-opt"); if (!b || b.disabled) return;
+    var qd = b.closest(".ms-q"), q = QUIZ[+qd.dataset.q], oi = +b.dataset.o;
+    qd.querySelectorAll(".ms-opt").forEach(function(x){ x.disabled = true; if (+x.dataset.o === q.a) x.classList.add("right"); });
+    var right = oi === q.a; if (!right) b.classList.add("wrong"); else score++;
+    answered++;
+    var ex = qd.querySelector(".ms-exp"); ex.style.display = "block";
+    ex.innerHTML = (right ? "<b style='color:#15803d'>Correct!<\/b> " : "<b style='color:#c92a2a'>Not quite.<\/b> ") + q.e;
+    $("ms-quiz-score").textContent = "Score: " + score + " / " + QUIZ.length + (answered === QUIZ.length ? (score >= 7 ? "  \u2014 Excellent! \uD83C\uDF89" : score >= 5 ? "  \u2014 Good, review the explanations." : "  \u2014 Revisit Sections 2\u20136 and try again.") : "");
+  });
+  $("ms-quiz-reset").addEventListener("click", quizBuild);
+  quizBuild();
+
+  /* ---------------- SLIDE NAVIGATION ---------------- */
+  (function(){
+    var slides = [$("ms-home")], s = 1;
+    while ($("ms-s"+s)){ slides.push($("ms-s"+s)); s++; }
+    var tabs = root.querySelectorAll(".ms-nav-tab"), TOTAL = slides.length - 1, cur = 0, slideMode = true, nav = $("ms-nav");
+    function navTop(){
+      var r = root.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight){
+        var fs = document.fullscreenElement || document.webkitFullscreenElement;
+        if (fs === root) root.scrollTop = 0; else window.scrollTo(0, window.pageYOffset + r.top - 8);
+      }
+    }
+    function render(){
+      root.classList.toggle("ms-slides", slideMode);
+      slides.forEach(function(el, i){ el.classList.toggle("on", i === cur); });
+      tabs.forEach(function(t){ t.classList.toggle("on", +t.dataset.slide === cur); });
+      var title = slides[cur].getAttribute("data-title");
+      $("ms-nav-count").innerHTML = (cur === 0 ? "<span>Home<\/span>" : "<span>" + cur + " / " + TOTAL + "<\/span>") + title;
+      ["ms-nav-prev","ms-foot-prev"].forEach(function(id){ $(id).disabled = cur === 0; });
+      ["ms-nav-next","ms-foot-next"].forEach(function(id){ $(id).disabled = cur === TOTAL; });
+      $("ms-nav-all").textContent = slideMode ? "Show all sections" : "One section at a time";
+      var on = root.querySelector(".ms-nav-tab.on"), bar = $("ms-nav-tabs");
+      if (on) bar.scrollLeft = on.offsetLeft - bar.clientWidth/2 + on.clientWidth/2;
+    }
+    function goTo(i, noScroll){
+      i = Math.max(0, Math.min(TOTAL, i));
+      if (i !== 3) vizStop();
+      cur = i; render();
+      if (!slideMode){
+        if (!noScroll) window.scrollTo({top: slides[i].getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight - 10, behavior:"smooth"});
+      } else if (!noScroll) navTop();
+    }
+    window.msGoTo = goTo;
+    tabs.forEach(function(t){ t.addEventListener("click", function(){ goTo(+t.dataset.slide); }); });
+    $("ms-nav-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("ms-nav-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("ms-foot-prev").addEventListener("click", function(){ goTo(cur-1); });
+    $("ms-foot-next").addEventListener("click", function(){ goTo(cur+1); });
+    $("ms-nav-all").addEventListener("click", function(){ slideMode = !slideMode; render(); if (slideMode) navTop(); });
+    root.addEventListener("click", function(ev){
+      var a = ev.target.closest && ev.target.closest("a[href^='#ms-s']"); if (!a) return;
+      var m = a.getAttribute("href").match(/^#ms-s(\d+)$/); if (!m) return;
+      ev.preventDefault(); goTo(+m[1]);
+    });
+    document.addEventListener("keydown", function(ev){
+      if (!slideMode || ev.altKey || ev.ctrlKey || ev.metaKey) return;
+      var tg = ev.target.tagName;
+      if (tg === "INPUT" || tg === "TEXTAREA" || tg === "SELECT" || ev.target.isContentEditable) return;
+      var r = root.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+      if (ev.key === "ArrowRight"){ goTo(cur+1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft"){ goTo(cur-1); ev.preventDefault(); }
+    });
+    var fsBtn = $("ms-nav-fs");
+    if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsBtn.style.display = "none";
+    fsBtn.addEventListener("click", function(){
+      var fs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fs) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else (root.requestFullscreen || root.webkitRequestFullscreen).call(root);
+    });
+    function fsChange(){ var fs = document.fullscreenElement || document.webkitFullscreenElement; fsBtn.textContent = fs === root ? "\u2715 Exit fullscreen" : "\u26F6 Fullscreen"; }
+    document.addEventListener("fullscreenchange", fsChange);
+    document.addEventListener("webkitfullscreenchange", fsChange);
+    var h = (location.hash || "").match(/^#ms-s(\d+)$/);
+    goTo(h ? +h[1] : 0, true);
+  })();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="floyd-warshall.html"><small>← Previous lesson</small><b>Floyd–Warshall algorithm</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="graph-applications.html"><small>Next lesson →</small><b>Applications of graphs</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>

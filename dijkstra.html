@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dijkstra&#x27;s algorithm · Learn Data Structures with idontno</title>
+<meta name="description" content="Single-source shortest paths in weighted graphs.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="dijkstra">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Python built-in data types<span class="idn-tag">Soon</span></span></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="cur" data-lesson="dijkstra" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module IV · Graphs</span><span>›</span><span>Lesson 13 of 18</span></div>
+  <article class="idn-lesson">
+<style>
+#dijkstra-blog{--ink:#1c2033;--ind:#2f5bd3;--teal:#0b7a6f;--ora:#d9480f;--paper:#fbfaf6;--sky:#e9effd;--line:#e3dfd3;--ok:#0b7a6f;--bad:#d6336c;--mut:#4a5068;--card:#fff;--sh:0 1px 3px rgba(28,32,51,.08),0 6px 18px rgba(28,32,51,.05);font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;max-width:1040px;margin:0 auto;border-radius:20px;overflow:hidden;box-sizing:border-box;display:flex;flex-direction:column}
+#dijkstra-blog *{box-sizing:border-box}
+#dijkstra-blog .hero{background:linear-gradient(135deg,#1c2033 0%,#4a5068 100%);color:#c8d6fa;padding:34px 26px}
+#dijkstra-blog .hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+#dijkstra-blog .hero h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 10px;font-weight:800;color:#fff}
+#dijkstra-blog .hero h1 span{color:var(--ora)}
+#dijkstra-blog .hero p{margin:0 0 12px;color:#c8d6fa;max-width:58ch}
+#dijkstra-blog .hero .lead{font-size:18px;color:#fff}
+#dijkstra-blog .hero .box{background:rgba(255,255,255,.96);margin:0}
+#dijkstra-blog nav{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+#dijkstra-blog nav button,#dijkstra-blog .b{font:inherit;font-size:14px;min-height:38px;border:1.5px solid var(--ind);background:#fff;color:var(--ink);padding:5px 13px;border-radius:99px;cursor:pointer}
+#dijkstra-blog nav button:hover,#dijkstra-blog .b:hover{background:var(--sky)}
+#dijkstra-blog nav button.cur,#dijkstra-blog .b.on{background:var(--ind);color:#fff;border-color:var(--ind)}
+#dijkstra-blog .b.pri{background:var(--ora);color:#1c2033;border-color:var(--ora);font-weight:700}
+#dijkstra-blog .b.dk{background:var(--ink);color:#fff;border-color:var(--ink)}
+#dijkstra-blog .b:disabled{opacity:.45;cursor:default}
+#dijkstra-blog button:focus-visible,#dijkstra-blog input:focus-visible,#dijkstra-blog select:focus-visible,#dijkstra-blog [tabindex]:focus-visible{outline:3px solid var(--ora);outline-offset:2px}
+#dijkstra-blog section{padding:30px 22px;border-bottom:1px solid var(--line)}
+#dijkstra-blog h2{margin:0 0 4px;font-size:27px;font-weight:800;line-height:1.2}
+#dijkstra-blog h3{margin:22px 0 6px;font-size:18px;color:var(--ind)}
+#dijkstra-blog h4{margin:0 0 4px;font-size:16px}
+#dijkstra-blog .sub{margin:0 0 16px;color:var(--mut)}
+#dijkstra-blog p{margin:8px 0}
+#dijkstra-blog .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;box-shadow:var(--sh)}
+#dijkstra-blog .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#dijkstra-blog .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+#dijkstra-blog .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:820px){#dijkstra-blog .grid,#dijkstra-blog .g3,#dijkstra-blog .hero-in{grid-template-columns:1fr}#dijkstra-blog .g4{grid-template-columns:1fr 1fr}#dijkstra-blog section{padding:24px 14px}}
+@media(max-width:480px){#dijkstra-blog .g4{grid-template-columns:1fr}#dijkstra-blog .b,#dijkstra-blog nav button{min-height:44px}}
+#dijkstra-blog .card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--ind);border-radius:12px;padding:12px 14px;font-size:15px;box-shadow:var(--sh)}
+#dijkstra-blog .card.t{border-top-color:var(--teal)}#dijkstra-blog .card.o{border-top-color:var(--ora)}
+#dijkstra-blog .card b{display:block}
+#dijkstra-blog .note{background:#fff1e8;border:1px solid #ffa94d;border-left:5px solid var(--ora);border-radius:12px;padding:10px 14px;margin:14px 0;font-size:15px}
+#dijkstra-blog .rev{background:#f3f1ea;border:1px solid #e3dfd3;border-radius:12px;padding:8px 14px;margin-top:16px;font-size:14px}
+#dijkstra-blog .rev b{color:var(--teal)}
+#dijkstra-blog .rev ul{margin:4px 0 0;padding-left:20px}
+#dijkstra-blog svg.t{width:100%;height:auto;max-height:340px;display:block}
+#dijkstra-blog .ge{stroke:#9aa0bb;stroke-width:2.4;fill:none}
+#dijkstra-blog .ge.tree{stroke:var(--teal);stroke-width:4.5}
+#dijkstra-blog .ge.path{stroke:var(--ora);stroke-width:6}
+#dijkstra-blog .ge.focus{stroke:#d6336c;stroke-width:5;stroke-dasharray:9 6;animation:djd .8s linear infinite}
+#dijkstra-blog .ah{fill:#9aa0bb}#dijkstra-blog .ah.tree{fill:var(--teal)}#dijkstra-blog .ah.path{fill:var(--ora)}#dijkstra-blog .ah.focus{fill:#d6336c}
+@keyframes djd{to{stroke-dashoffset:-15}}
+#dijkstra-blog .wl{font:700 15px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:4px}
+#dijkstra-blog .gv circle{fill:#fff;stroke:var(--ind);stroke-width:2.4;transition:fill .25s}
+#dijkstra-blog .gv.q circle{fill:#c8d6fa}
+#dijkstra-blog .gv.st circle{fill:#96f2d7;stroke:var(--ok)}
+#dijkstra-blog .gv.cur circle{fill:#ffa94d;stroke:var(--ora);stroke-width:5}
+#dijkstra-blog .gv.src circle{stroke:var(--ink);stroke-width:4}
+#dijkstra-blog .gv.dst circle{stroke-dasharray:5 3}
+#dijkstra-blog .gv.click{cursor:pointer}
+#dijkstra-blog .gv text{font:700 17px 'Fira Code',monospace;text-anchor:middle;dominant-baseline:central;fill:var(--ink);pointer-events:none}
+#dijkstra-blog .gv .sb{font-size:15px;fill:#4a5068}
+#dijkstra-blog .gv .tg{font-size:13px;fill:var(--mut)}
+#dijkstra-blog .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+#dijkstra-blog label{font-size:14px}
+#dijkstra-blog input[type=number],#dijkstra-blog input[type=text],#dijkstra-blog select{font:600 14px 'Fira Code',monospace;padding:6px 10px;min-height:38px;border:1.5px solid var(--ind);border-radius:10px;background:#fff;color:var(--ink)}
+#dijkstra-blog input[type=number]{width:88px}
+#dijkstra-blog input[type=text].w{width:min(100%,300px)}
+#dijkstra-blog input[type=checkbox]{width:18px;height:18px;accent-color:var(--ind)}
+#dijkstra-blog .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:1px 9px;margin:3px 4px 0 0;font:600 13px 'Fira Code',monospace}
+#dijkstra-blog .chip.q{background:#c8d6fa}#dijkstra-blog .chip.g{background:#96f2d7}#dijkstra-blog .chip.r{background:#fcc2d7}#dijkstra-blog .chip.s{background:#f3f0ff;color:#9aa0bb;text-decoration:line-through}
+#dijkstra-blog .res{background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;margin-top:8px;font-size:15px;min-height:48px}
+#dijkstra-blog .res b{color:#ffa94d}
+#dijkstra-blog .msg{min-height:24px;font-weight:600;margin:6px 0}
+#dijkstra-blog .msg.bad,#dijkstra-blog .bd{color:var(--bad)}#dijkstra-blog .msg.ok,#dijkstra-blog .gd{color:var(--ok)}
+#dijkstra-blog .lg{font-size:13px;color:var(--mut)}
+#dijkstra-blog ul.n,#dijkstra-blog ol.n{margin:10px 0 0;padding-left:22px}
+#dijkstra-blog ul.n li,#dijkstra-blog ol.n li{margin:4px 0}
+#dijkstra-blog table{border-collapse:collapse;font-size:14px;background:#fff}
+#dijkstra-blog .wrap{overflow-x:auto;max-width:100%}
+#dijkstra-blog .wrap>table{width:100%;margin-top:8px}
+#dijkstra-blog th,#dijkstra-blog td{border:1px solid var(--line);padding:5px 9px;text-align:left}
+#dijkstra-blog th{background:var(--sky)}
+#dijkstra-blog td.hit{background:#ffd8a8;font-weight:700}
+#dijkstra-blog td.ok,#dijkstra-blog input.ok{background:#96f2d7;border-color:var(--ok)}
+#dijkstra-blog td.no,#dijkstra-blog input.no{background:#fcc2d7;border-color:var(--bad)}
+#dijkstra-blog input.sm{width:78px}
+#dijkstra-blog pre{font:13px/1.55 'Fira Code',monospace;background:#1d2130;color:#c8d6fa;padding:14px;border-radius:12px;overflow-x:auto;margin:10px 0 0;max-width:100%}
+#dijkstra-blog .fm{background:var(--ink);color:#fff;border-radius:10px;padding:9px 14px;font:600 14px 'Fira Code',monospace;text-align:center;overflow-x:auto;margin:8px 0}
+#dijkstra-blog .fb{margin-top:10px;font-size:15px}
+#dijkstra-blog .fb div{padding:3px 0}#dijkstra-blog .fb .y{color:var(--ok);font-weight:600}#dijkstra-blog .fb .n{color:var(--bad);font-weight:600}
+#dijkstra-blog .sc{font-weight:700;margin-left:6px}
+#dijkstra-blog .q{margin:0 0 14px}
+#dijkstra-blog .q p{margin:0 0 6px;font-weight:600}
+#dijkstra-blog .q .b{display:block;width:100%;text-align:left;border-radius:10px;margin:4px 0}
+#dijkstra-blog .q .ok{background:#96f2d7;border-color:var(--ok)}#dijkstra-blog .q .no{background:#fcc2d7;border-color:var(--bad)}
+#dijkstra-blog .q small{display:block;color:var(--mut);margin-top:2px}
+#dijkstra-blog .cl{display:block;width:100%;text-align:left;font:13px 'Fira Code',monospace;background:#1d2130;color:#c8d6fa;border:0;border-bottom:1px solid #4a5068;padding:6px 12px;cursor:pointer;white-space:pre;overflow-x:auto}
+#dijkstra-blog .cl:hover{background:#4a5068}#dijkstra-blog .cl.ok{background:#1c2033}#dijkstra-blog .cl.no{background:#4a5068}
+#dijkstra-blog .cb{border-radius:12px;overflow:hidden;margin-top:8px}
+#dijkstra-blog footer{padding:18px 22px;font-size:13px;color:var(--mut)}
+#dijkstra-blog .dkt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 14px;background:var(--sky);border-bottom:1px solid var(--line)}
+#dijkstra-blog .dkm{flex:1;min-width:140px}
+#dijkstra-blog .dkc{font:600 13px 'Fira Code',monospace}
+#dijkstra-blog .dkp{height:7px;background:#fff;border-radius:99px;overflow:hidden;margin-top:3px;border:1px solid var(--line)}
+#dijkstra-blog .dkp i{display:block;height:100%;background:var(--ora);width:0;transition:width .3s}
+#dijkstra-blog .dkb{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 22px;border-top:1px solid var(--line);background:#fff;flex-wrap:wrap}
+#dijkstra-blog .dkb .b{max-width:46%;white-space:normal;text-align:left}
+#dijkstra-blog .dkh{font-size:12px;color:var(--mut)}
+#dijkstra-blog.deck nav,#dijkstra-blog.deck .dkt{order:-1}
+#dijkstra-blog.deck .slide{display:none}
+#dijkstra-blog.deck .slide.cur{display:block}
+#dijkstra-blog.deck .slide.cur.fwd{animation:djf .35s ease}
+#dijkstra-blog.deck .slide.cur.back{animation:djb .35s ease}
+#dijkstra-blog:not(.deck) .dkb,#dijkstra-blog:not(.deck) .dkn,#dijkstra-blog:not(.deck) .dkm{display:none}
+@keyframes djf{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes djb{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+#dijkstra-blog:fullscreen{max-width:none;border-radius:0;overflow-y:auto;height:100%}
+#dijkstra-blog:-webkit-full-screen{max-width:none;border-radius:0;overflow-y:auto;height:100%}
+@media(max-width:700px){#dijkstra-blog .dkh{display:none}#dijkstra-blog .dkb .b{max-width:48%}}
+@media(prefers-reduced-motion:reduce){#dijkstra-blog *{animation:none!important;transition:none!important}}
+@media print{#dijkstra-blog.deck .slide{display:block!important}#dijkstra-blog .dkt,#dijkstra-blog .dkb,#dijkstra-blog nav,#dijkstra-blog .row .b{display:none}#dijkstra-blog{box-shadow:none}}
+</style>
+
+<div id="dijkstra-blog">
+<div class="hero slide" id="dj-home">
+  <div class="hero-in">
+    <div>
+      <h1>Find the <span>cheapest</span> route with Dijkstra&rsquo;s algorithm</h1>
+      <p class="lead">Learn how to find the shortest path in a weighted graph by watching every comparison happen, then solve problems yourself.</p>
+      <p>Dijkstra&rsquo;s algorithm (published in 1959 by Edsger Dijkstra) finds the cheapest route from one starting vertex to every other vertex, as long as no edge has a negative weight. It is behind many route planners and network routing tools.</p>
+      <button class="b pri" id="dj-start">Start learning</button>
+    </div>
+    <div class="box"><svg class="t" id="dj-hero-svg" role="img" aria-label="Weighted road graph from Home (H) to School (T). The cheapest route H, B, D, F, T costs 9 and is drawn in orange."></svg></div>
+  </div>
+</div>
+<nav aria-label="Sections"><button data-go="dj-home">Home</button><button data-go="dj-s1">1 What is it</button><button data-go="dj-s2">2 Concepts &amp; lab</button><button data-go="dj-s3">3 Visualiser</button><button data-go="dj-s3b">3B Directed graphs</button><button data-go="dj-s4">4 Complexity</button><button data-go="dj-s5">5 Special cases</button><button data-go="dj-s6">6 Python</button><button data-go="dj-s7">7 Practice</button></nav>
+
+<section id="dj-s1" aria-labelledby="dj-h1">
+  <h2 id="dj-h1">1. What is Dijkstra&rsquo;s algorithm?</h2>
+  <p class="sub">It finds the cheapest route from one starting vertex to all the others.</p>
+  <p>A <b>weighted graph</b> has a number (a <b>weight</b>) on every edge. The weight is the cost of using that edge: distance, time, money, or anything else. Dijkstra&rsquo;s algorithm picks a <b>source</b> vertex and finds the route with the smallest total weight to every other vertex. The routes together form a <b>shortest-path tree</b>.</p>
+  <div class="note"><b>Key idea:</b> &ldquo;shortest&rdquo; means the smallest <b>total weight</b>, not the fewest edges. A route with more edges can be cheaper.</div>
+  <h3>Where is it used?</h3>
+  <div class="g4">
+    <div class="card"><b>Road navigation</b>Roads are edges and junctions are vertices. Real map apps add live traffic and faster variants, so a fixed weighted graph is only a simplified model.</div>
+    <div class="card t"><b>Network routing</b>Link-state routing protocols such as OSPF run a shortest-path calculation like this to choose routes.</div>
+    <div class="card o"><b>Cost optimisation</b>Cheapest chain of flights, shipping legs or transfers, when each leg has a cost.</div>
+    <div class="card"><b>Games and robots</b>Finding the cheapest way across a map. A* is a close relative that adds a guess about the remaining distance.</div>
+  </div>
+  <h3>Any path versus the cheapest path</h3>
+  <ul class="n"><li>Finding <b>any</b> path only asks: can I get there? A traversal such as BFS or DFS answers that.</li>
+  <li>Finding the <b>cheapest</b> path asks: which route has the smallest total weight? That is Dijkstra&rsquo;s job.</li>
+  <li>BFS finds the route with the fewest edges. That is the cheapest route only when every edge costs the same.</li></ul>
+  <h3>Try it: fewest edges is not always cheapest</h3>
+  <p>A student goes from Home (H) to School (T). Letters are road junctions. Choose a route to see it drawn.</p>
+  <div class="row" id="dj-rt" role="group" aria-label="Choose a route"></div>
+  <div class="grid"><div class="box"><svg class="t" id="dj-s1svg" role="img" aria-label="Weighted road graph with the chosen route highlighted"></svg></div><div class="box"><div id="dj-s1txt" aria-live="polite"></div><div class="wrap" id="dj-s1tbl"></div></div></div>
+  <div class="rev"><b>Revision notes</b><ul><li>Weighted graph: every edge has a cost.</li><li>Dijkstra: single source, cheapest path to every vertex, weights must be 0 or more.</li><li>Cheapest path &ne; fewest edges.</li></ul></div>
+</section>
+
+<section id="dj-s2" aria-labelledby="dj-h2">
+  <h2 id="dj-h2">2. Core concepts and the graph lab</h2>
+  <p class="sub">Learn the vocabulary, then build and run your own graph.</p>
+  <div class="g3">
+    <div class="card"><b>Graph, vertex, edge</b>A graph is a set of vertices (points) joined by edges (connections).</div>
+    <div class="card"><b>Weight</b>The cost of travelling along one edge. Here it is 0 or more.</div>
+    <div class="card"><b>Path</b>A sequence of connected vertices. Its cost is the sum of its edge weights.</div>
+    <div class="card t"><b>Source</b>The vertex where we start.</div>
+    <div class="card t"><b>Distance</b>The best total cost found from the source to a vertex. Written <code>dist[v]</code>.</div>
+    <div class="card t"><b>Tentative distance</b>The best distance found <i>so far</i>. It can still improve until the vertex is settled.</div>
+    <div class="card o"><b>Relaxation</b>Checking whether an edge gives a cheaper route to a vertex.</div>
+    <div class="card o"><b>Predecessor (parent)</b>The vertex just before <code>v</code> on the best route found so far. Written <code>parent[v]</code>.</div>
+    <div class="card o"><b>Priority queue</b>A structure that always hands back the entry with the smallest distance first.</div>
+    <div class="card"><b>Settled vertex</b>A vertex whose shortest distance is final. It will never change again.</div>
+    <div class="card"><b>Infinity (&infin;)</b>&ldquo;Not found yet.&rdquo; At the end, a vertex with &infin; is unreachable. It is not a real distance.</div>
+    <div class="card"><b>Shortest-path tree</b>All the parent links together. Following them back from any vertex gives its cheapest route.</div>
+  </div>
+  <h3>The relaxation rule</h3>
+  <div class="fm">if dist[u] + w(u, v) &lt; dist[v]:  dist[v] = dist[u] + w(u, v);  parent[v] = u</div>
+  <p>We have just settled <code>u</code>. The edge from <code>u</code> to <code>v</code> offers a route of cost <code>dist[u] + w(u, v)</code>. We update <code>v</code> only if that route is <b>strictly</b> cheaper. If it only <i>ties</i>, we keep the old parent. This stops needless updates and keeps the result stable.</p>
+  <div class="box"><b>Relaxation calculator.</b> Type numbers (use <code>inf</code> for &infin;).
+    <div class="row"><label>dist[u] <input type="text" id="dj-ru" value="4" class="sm"></label><label>w(u, v) <input type="text" id="dj-rw" value="3" class="sm"></label><label>dist[v] now <input type="text" id="dj-rv" value="inf" class="sm"></label></div>
+    <div class="res" id="dj-rout" aria-live="polite"></div></div>
+  <div class="note"><b>The starting state:</b> dist(source) = 0, every other distance = &infin;, every parent is empty, nothing is settled, and the priority queue holds only the entry (0, source).</div>
+  <div class="note"><b>The main loop:</b> remove the entry with the smallest distance. If its vertex is already settled it is a <b>stale entry</b> (an older, longer route that was later beaten), so ignore it. Otherwise the vertex becomes <b>settled</b>, because with non-negative weights no later route can be cheaper. Then relax its outgoing edges.</div>
+  <h3>Graph lab</h3>
+  <p class="sub">Edit the graph, choose a source and a destination, and run the algorithm. This is the same graph the visualiser uses in section 3.</p>
+  <div class="row" id="dj-pre" role="group" aria-label="Example graphs"></div>
+  <div class="row"><span class="chip">Edges</span><button class="b on" id="dj-undir" aria-pressed="true">Undirected</button><button class="b" id="dj-dir" aria-pressed="false">Directed</button>
+    <label>Source <select id="dj-src"></select></label><label>Destination <select id="dj-dst"></select></label></div>
+  <div class="row"><button class="b" id="dj-addv">Add vertex</button><label>Remove vertex <select id="dj-rmsel"></select></label><button class="b" id="dj-rmv">Remove</button></div>
+  <div class="row"><label>From <select id="dj-from"></select></label><label>To <select id="dj-to"></select></label><label>Weight <input type="number" id="dj-wt" value="1" min="0" max="99"></label><button class="b" id="dj-adde">Add or update edge</button><button class="b" id="dj-rme">Remove edge</button></div>
+  <div class="row"><button class="b" id="dj-reset">Reset to the Home to School example</button><button class="b" id="dj-rand">New random example</button><button class="b pri" id="dj-run">Run Dijkstra</button></div>
+  <div class="msg" id="dj-labmsg" role="status" aria-live="polite"></div>
+  <div class="grid"><div class="box"><svg class="t" id="dj-labsvg" role="img" aria-label="Your weighted graph"></svg><div class="lg">Weights are written on the edges. The source has a thick outline, and the destination a dashed outline.</div></div>
+    <div class="box"><b>Edge list</b> <span class="lg">(change a weight, or remove an edge)</span><div class="wrap" id="dj-edges"></div></div></div>
+  <div class="box" id="dj-labres" aria-live="polite"><span class="lg">Press &ldquo;Run Dijkstra&rdquo; to see the distance table, parents and the path to the destination.</span></div>
+  <div class="row"><button class="b dk" id="dj-open">Watch it step by step in section 3</button></div>
+  <div class="rev"><b>Revision notes</b><ul><li>Relax edge (u, v): update only if <code>dist[u] + w &lt; dist[v]</code> (strict).</li><li>Settled = final. Tentative = best so far.</li><li>Negative weights are rejected, because Dijkstra needs them to be 0 or more.</li></ul></div>
+</section>
+
+<section id="dj-s3" aria-labelledby="dj-h3">
+  <h2 id="dj-h3">3. Step-by-step visualiser</h2>
+  <p class="sub">Every step below comes from running the real algorithm on the graph from section 2. Nothing is typed by hand.</p>
+  <div class="row"><label>Source <select id="dj-vsrc"></select></label><label>Destination <select id="dj-vdst"></select></label><label><input type="checkbox" id="dj-stop"> stop when the destination is settled</label></div>
+  <div class="msg bad" id="dj-verr" role="alert"></div>
+  <div class="grid"><div class="box"><svg class="t" id="dj-vsvg" role="img" aria-label="Algorithm state on the weighted graph"></svg>
+    <div class="lg">Thick dark outline = source &middot; orange = current &middot; blue = in the queue &middot; green with &#10003; = settled &middot; pink dashes = edge being examined &middot; teal = shortest-path tree &middot; orange line = route to the destination. The number under each vertex is its distance.</div></div>
+    <div><div class="box" style="margin-top:0"><b>Priority queue</b> <span class="lg">(smallest first; struck-through = stale)</span><div id="dj-vpq"></div></div>
+    <div class="box"><b>Route to the destination</b><div id="dj-vpath" aria-live="polite"></div></div></div></div>
+  <div class="res" id="dj-vexp" aria-live="polite"></div>
+  <div class="row"><button class="b" id="dj-vb">&larr; Back</button><button class="b dk" id="dj-vn">Next &rarr;</button><button class="b" id="dj-vp">Auto-play</button><button class="b" id="dj-vpa" disabled>Pause</button><button class="b" id="dj-vr">Restart</button><span class="chip" id="dj-vc" role="status"></span></div>
+  <div class="grid"><div class="box"><b>Distance table</b><div class="wrap" id="dj-vdist"></div></div><div class="box"><b>Predecessor table</b><div class="wrap" id="dj-vpred"></div></div></div>
+  <ul class="n"><li>Back and Next replay the recorded events of the algorithm. Auto-play moves forward one step per second and stops at the end.</li>
+  <li>The queue may contain <b>stale entries</b>. When a better route to a vertex is found, the old entry is not deleted. It is simply ignored when it reaches the front.</li>
+  <li>At the last step the teal edges are the shortest-path tree.</li></ul>
+  <div class="rev"><b>Revision notes</b><ul><li>Each loop: pop the smallest entry, settle the vertex (unless stale), relax its edges.</li><li>An update changes <code>dist</code> and <code>parent</code> and pushes a new queue entry.</li><li>Unreachable vertices keep &infin; and have no parent.</li></ul></div>
+</section>
+
+<section id="dj-s3b" aria-labelledby="dj-h3b">
+  <h2 id="dj-h3b">3B. Directed graph visualiser</h2>
+  <p class="sub">Edges are one-way streets: you may travel only in the direction of the arrow.</p>
+  <div class="g3">
+    <div class="card"><b>Edges have a direction</b>An edge <code>u &rarr; v</code> takes you from u to v. You cannot use it to go back from v to u, unless a separate edge <code>v &rarr; u</code> exists.</div>
+    <div class="card t"><b>Only out-edges are relaxed</b>When u is settled, Dijkstra looks only at edges that <i>start</i> at u. Edges that point <i>into</i> u are not used to leave it.</div>
+    <div class="card o"><b>Direction changes the answer</b>The cost from A to B can differ from the cost from B to A, and a vertex can be unreachable even when the picture looks connected.</div>
+  </div>
+  <div class="note"><b>Two-way roads</b> are drawn as two curved arrows, for example <code>A &rarr; B</code> and <code>B &rarr; A</code>. Each arrow has its own weight and is used on its own.</div>
+  <div class="row" id="dj-d-pre" role="group" aria-label="Directed examples"></div>
+  <div class="row"><label>Source <select id="dj-d-src"></select></label><label>Destination <select id="dj-d-dst"></select></label><button class="b" id="dj-d-swap">Swap source and destination</button><button class="b" id="dj-d-rev">Reverse all arrows</button><label><input type="checkbox" id="dj-d-cmp"> also show distances if the edges were undirected</label></div>
+  <div class="msg" id="dj-d-msg" role="status" aria-live="polite"></div>
+  <div class="grid"><div class="box"><svg class="t" id="dj-d-svg" role="img" aria-label="Directed weighted graph with the algorithm state"></svg>
+    <div class="lg">Arrowheads show the direction. Thick dark outline = source &middot; orange = current &middot; blue = in the queue &middot; green with &#10003; = settled &middot; pink dashes = edge being examined &middot; teal = shortest-path tree &middot; orange line = route to the destination. The number under each vertex is its distance.</div></div>
+    <div><div class="box" style="margin-top:0"><b>Priority queue</b> <span class="lg">(smallest first; struck-through = stale)</span><div id="dj-d-pq"></div></div>
+    <div class="box"><b>Route to the destination</b><div id="dj-d-path" aria-live="polite"></div></div>
+    <div class="box"><b>Edges at the current vertex</b><div id="dj-d-edges" aria-live="polite"></div></div></div></div>
+  <div class="res" id="dj-d-exp" aria-live="polite"></div>
+  <div class="row"><button class="b" id="dj-d-b">&larr; Back</button><button class="b dk" id="dj-d-n">Next &rarr;</button><button class="b" id="dj-d-p">Auto-play</button><button class="b" id="dj-d-pa" disabled>Pause</button><button class="b" id="dj-d-r">Restart</button><span class="chip" id="dj-d-c" role="status"></span></div>
+  <div class="grid"><div class="box"><b>Distance table</b><div class="wrap" id="dj-d-dist"></div></div><div class="box"><b>Predecessor table</b><div class="wrap" id="dj-d-pred"></div></div></div>
+  <ul class="n"><li>Try &ldquo;Reverse all arrows&rdquo; or &ldquo;Swap source and destination&rdquo;. The shortest distances change, because every edge now points the other way.</li>
+  <li>A vertex with no outgoing edge is a <b>dead end</b>. It can be settled, but it gives no route to anything else.</li>
+  <li>A vertex with no incoming edge from the reachable part of the graph stays at &infin;. It is unreachable.</li></ul>
+  <div class="rev"><b>Revision notes</b><ul><li>Directed graph: relax only edges that start at the settled vertex.</li><li>dist(A to B) and dist(B to A) can be different.</li><li>Opposite edges (<code>A&rarr;B</code> and <code>B&rarr;A</code>) are separate edges with separate weights.</li></ul></div>
+</section>
+
+<section id="dj-s4" aria-labelledby="dj-h4">
+  <h2 id="dj-h4">4. Complexity and comparisons</h2>
+  <p class="sub">The running time depends on how the graph and the priority queue are stored.</p>
+  <p>Let <b>V</b> = number of vertices and <b>E</b> = number of edges.</p>
+  <div class="wrap"><table><tr><th>Implementation</th><th>Time</th><th>Extra space</th><th>Notes</th></tr>
+  <tr><td>Adjacency list + binary heap with <b>lazy duplicates</b> (the code in section 6)</td><td>O((V + E) log V)</td><td>Heap can hold up to E entries: O(E)</td><td>Each successful relaxation pushes a new entry. Stale entries are skipped. For a simple graph, log E is at most 2 log V.</td></tr>
+  <tr><td>Adjacency list + binary heap with <b>decrease-key</b></td><td>O((V + E) log V)</td><td>Heap holds at most V entries: O(V)</td><td>Needs a heap that can lower an entry&rsquo;s key. A Fibonacci heap improves it to O(E + V log V).</td></tr>
+  <tr><td>Adjacency <b>matrix</b> + linear scan for the minimum</td><td>O(V<sup>2</sup>)</td><td>Graph storage O(V<sup>2</sup>)</td><td>Each of V rounds scans V vertices. Good for very dense graphs.</td></tr></table></div>
+  <p><b>Space in every version:</b> the graph itself takes O(V + E) as a list or O(V<sup>2</sup>) as a matrix. The distance, parent and settled arrays each take O(V).</p>
+  <div class="note"><b>No single bound fits every implementation.</b> Always say which graph storage and which priority queue you assume.</div>
+  <h3>Compared with other algorithms</h3>
+  <div class="wrap"><table><tr><th>Algorithm</th><th>Use it when</th><th>Time (typical)</th><th>Caveat</th></tr>
+  <tr><td>BFS</td><td>Unweighted graph, or every edge costs the same</td><td>O(V + E)</td><td>Counts edges, so it is wrong for different positive weights.</td></tr>
+  <tr><td>Dijkstra</td><td>Non-negative weights</td><td>see the table above</td><td>Invalid with negative weights.</td></tr>
+  <tr><td>Bellman-Ford</td><td>Negative weights are possible</td><td>O(V &times; E)</td><td>Detects a negative cycle. If one is reachable from the source, shortest distances are not defined.</td></tr></table></div>
+  <h3>Operation-count explorer</h3>
+  <p>This shows <b>rough operation counts</b> from the formulas, with constants removed. They are <b>not</b> timings or benchmarks.</p>
+  <div class="box"><div class="row"><label>V <input type="number" id="dj-cv" value="1000" min="2" max="1000000"></label><label>E <input type="number" id="dj-ce" value="5000" min="1"></label><label><input type="checkbox" id="dj-cdir"> directed graph</label></div>
+    <div class="wrap" id="dj-cout" aria-live="polite"></div></div>
+  <div class="rev"><b>Revision notes</b><ul><li>List + heap: O((V + E) log V). Matrix + scan: O(V<sup>2</sup>).</li><li>Sparse graph (E small): list + heap. Very dense graph: matrix can be competitive.</li><li>Negative weights: use Bellman-Ford.</li></ul></div>
+</section>
+
+<section id="dj-s5" aria-labelledby="dj-h5">
+  <h2 id="dj-h5">5. Special cases and common mistakes</h2>
+  <p class="sub">Small graphs, with results computed live by the same algorithm.</p>
+  <div class="note"><b>Cycles are fine.</b> A graph with cycles still works, as long as the weights are not negative. A negative <i>edge</i> is the problem, not a cycle.</div>
+  <div class="grid" id="dj-demos"></div>
+  <h3>Other cases to remember</h3>
+  <ul class="n"><li><b>Zero-weight edges</b> are allowed. They cost nothing but still count as steps in the path.</li>
+  <li><b>Unreachable vertices</b> end with distance &infin; and no parent. Never invent a path for them.</li>
+  <li><b>Equal-length shortest paths</b> can exist. The shortest <i>distance</i> is unique, but the shortest <i>path</i> may not be. The parent you get depends on the strict comparison and the queue order.</li>
+  <li><b>Directed edges</b> can only be used one way, so distances from A to B and from B to A may differ.</li>
+  <li><b>Stale entries</b> must be ignored. Skipping this check can process a vertex twice.</li></ul>
+  <h3>Common mistakes</h3>
+  <ul class="n"><li>Using BFS when edges have different positive weights.</li><li>Writing the relaxation test the wrong way round, or updating on a tie.</li><li>Forgetting to update the parent when the distance changes.</li>
+  <li>Stopping when the destination is first <i>discovered</i>. Stop only when it is <i>settled</i> (removed from the queue).</li><li>Treating a tentative distance as final.</li><li>Printing &infin; as if it were a real distance.</li><li>Mixing up &ldquo;fewest edges&rdquo; with &ldquo;smallest total weight&rdquo;.</li></ul>
+  <h3>Spot the mistake</h3>
+  <p>Click the line that contains the bug.</p>
+  <div class="box" id="dj-sm"></div>
+  <div class="rev"><b>Revision notes</b><ul><li>Negative edge &rarr; Dijkstra can give wrong answers (use Bellman-Ford).</li><li>Zero edges and cycles are fine.</li><li>Stop only when the destination is settled.</li></ul></div>
+</section>
+
+<section id="dj-s6" aria-labelledby="dj-h6">
+  <h2 id="dj-h6">6. Python implementation</h2>
+  <p class="sub">The same algorithm as the visualiser, using the Home to School graph.</p>
+  <div class="row" role="tablist" aria-label="Code views"><button class="b on" data-t="0" role="tab">Pseudocode</button><button class="b" data-t="1" role="tab">Python</button><button class="b" data-t="2" role="tab">Sample input</button><button class="b" data-t="3" role="tab">Expected output</button><button class="b dk" id="dj-cp">Copy</button></div>
+<pre id="dj-c0" tabindex="0">DIJKSTRA(Graph, source):          // all weights must be &gt;= 0
+  for each vertex v:  dist[v] &larr; &infin;;  parent[v] &larr; none
+  dist[source] &larr; 0
+  settled &larr; empty set
+  PQ &larr; min-priority queue containing (0, source)
+
+  while PQ is not empty:
+    (d, u) &larr; remove the entry with the smallest d
+    if u is in settled:  continue        // stale entry
+    add u to settled                      // dist[u] = d is final
+    for each edge (u, v) with weight w:
+      if v is in settled:  continue
+      if d + w &lt; dist[v]:                 // strictly shorter
+        dist[v]   &larr; d + w
+        parent[v] &larr; u
+        insert (dist[v], v) into PQ
+  return dist, parent</pre>
+<pre id="dj-c1" tabindex="0" style="display:none">import heapq
+from math import inf
+
+def build_graph(vertices, edges, directed=False):
+    """Return an adjacency list: {vertex: [(neighbour, weight), ...]}."""
+    graph = {v: [] for v in vertices}          # isolated vertices are kept
+    for u, v, w in edges:
+        if w &lt; 0:
+            raise ValueError("Dijkstra needs non-negative weights")
+        graph[u].append((v, w))
+        if not directed:
+            graph[v].append((u, w))
+    return graph
+
+def dijkstra(graph, source):
+    """Single-source shortest paths. Returns (dist, parent)."""
+    dist = {v: inf for v in graph}
+    parent = {v: None for v in graph}
+    dist[source] = 0
+    heap = [(0, source)]                        # (distance, vertex)
+    settled = set()
+    while heap:
+        d, u = heapq.heappop(heap)              # smallest distance first
+        if u in settled:                        # stale entry: ignore it
+            continue
+        settled.add(u)                          # d is now final
+        for v, w in graph[u]:
+            if v in settled:
+                continue
+            nd = d + w                          # candidate distance
+            if nd &lt; dist[v]:                    # strictly shorter: relax
+                dist[v] = nd
+                parent[v] = u
+                heapq.heappush(heap, (nd, v))
+    return dist, parent
+
+def shortest_path(parent, source, target, dist):
+    """Return the path as a list, or None if target is unreachable."""
+    if dist[target] == inf:
+        return None
+    path = [target]
+    while path[-1] != source:
+        path.append(parent[path[-1]])
+    return path[::-1]</pre>
+<pre id="dj-c2" tabindex="0" style="display:none"># H = Home, T = School; A to F are road junctions
+vertices = ["H", "A", "B", "C", "D", "E", "F", "T"]
+edges = [("H", "C", 5), ("H", "B", 2), ("H", "A", 3),
+         ("A", "D", 3), ("B", "D", 1), ("B", "E", 6),
+         ("C", "E", 2), ("D", "F", 4), ("E", "F", 1),
+         ("E", "T", 4), ("F", "T", 2)]
+
+graph = build_graph(vertices, edges)           # undirected
+dist, parent = dijkstra(graph, "H")
+
+for v in vertices:
+    print(v, dist[v], parent[v])
+path = shortest_path(parent, "H", "T", dist)
+print("Path:", " -> ".join(path), "cost", dist["T"])</pre>
+<pre id="dj-c3" tabindex="0" style="display:none">H 0 None
+A 3 H
+B 2 H
+C 5 H
+D 3 B
+E 7 C
+F 7 D
+T 9 F
+Path: H -> B -> D -> F -> T cost 9</pre>
+  <ul class="n"><li>An unreachable vertex keeps <code>inf</code> and parent <code>None</code>, and <code>shortest_path</code> returns <code>None</code> for it.</li>
+  <li><code>heapq</code> compares tuples, so equal distances are ordered by vertex name. The visualiser uses the same rule, so both give the same parents.</li>
+  <li>The check <code>u in settled</code> is what handles stale heap entries.</li></ul>
+  <div class="rev"><b>Revision notes</b><ul><li>Heap entries are (distance, vertex).</li><li>Ignore stale entries; relax only when strictly shorter.</li><li>Rebuild the path by following <code>parent</code> backwards.</li></ul></div>
+</section>
+
+<section id="dj-s7" aria-labelledby="dj-h7">
+  <h2 id="dj-h7">7. Practice problems and quiz</h2>
+  <p class="sub">Every problem is made from a real graph, and its answer is computed by the algorithm. Press &ldquo;New problem&rdquo; for a fresh one.</p>
+  <h3>A. Type your answer</h3>
+  <div class="row" id="dj-atabs" role="group" aria-label="Exercise type"></div>
+  <div class="box" id="dj-ex"></div>
+  <h3>B. Step trainer: click the next vertex</h3>
+  <p>Dijkstra settles the unsettled vertex with the <b>smallest tentative distance</b>. Click that vertex each time.</p>
+  <div class="box" id="dj-trn"></div>
+  <h3>C. Which situation is this?</h3>
+  <div class="box" id="dj-idc"></div>
+  <h3>D. Quiz</h3>
+  <div id="dj-quiz"></div><div class="msg" id="dj-score" role="status"></div>
+</section>
+<footer>Built from the Dijkstra&rsquo;s algorithm notes you supplied, with extra examples, corrections and practice added. All diagrams were drawn from scratch.</footer>
+</div>
+
+<script>
+(function(){
+/*CORE_START*/
+var INF=Infinity,ALPHA='ABCDEFGHIJKL';
+function MinHeap(){this.a=[]}
+MinHeap.prototype.less=function(x,y){return x[0]<y[0]||(x[0]===y[0]&&x[1]<y[1])};
+MinHeap.prototype.push=function(x){var a=this.a,i=a.length,p,t;a.push(x);while(i>0){p=(i-1)>>1;if(this.less(a[i],a[p])){t=a[i];a[i]=a[p];a[p]=t;i=p}else break}};
+MinHeap.prototype.pop=function(){var a=this.a,top=a[0],last=a.pop(),n=a.length,i=0,l,r,m,t;if(n){a[0]=last;for(;;){l=2*i+1;r=l+1;m=i;if(l<n&&this.less(a[l],a[m]))m=l;if(r<n&&this.less(a[r],a[m]))m=r;if(m===i)break;t=a[i];a[i]=a[m];a[m]=t;i=m}}return top};
+MinHeap.prototype.size=function(){return this.a.length};
+function cp(o){return JSON.parse(JSON.stringify(o,function(k,v){return v===Infinity?'__inf':v}),function(k,v){return v==='__inf'?Infinity:v})}
+function adjOf(G){var a={};G.vertices.forEach(function(v){a[v]=[]});G.edges.forEach(function(e){a[e.u].push({v:e.v,w:e.w});if(!G.directed)a[e.v].push({v:e.u,w:e.w})});
+  Object.keys(a).forEach(function(k){a[k].sort(function(x,y){return x.v<y.v?-1:x.v>y.v?1:0})});return a}
+function validate(G){var bad=[],seen={};
+  G.edges.forEach(function(e){var k=e.u+(G.directed?'>':'-')+e.v;
+    if(G.vertices.indexOf(e.u)<0||G.vertices.indexOf(e.v)<0)bad.push('Edge '+e.u+(G.directed?' \u2192 ':' \u2013 ')+e.v+' uses a vertex that does not exist.');
+    else if(e.u===e.v)bad.push('Vertex '+e.u+' has a self-loop. A loop never shortens a path, so this lab does not allow it.');
+    else if(typeof e.w!=='number'||!isFinite(e.w))bad.push('Edge '+e.u+(G.directed?' \u2192 ':' \u2013 ')+e.v+' has no valid weight.');
+    else if(e.w<0)bad.push('Edge '+e.u+(G.directed?' \u2192 ':' \u2013 ')+e.v+' has a negative weight ('+e.w+'). Dijkstra\u2019s algorithm needs every weight to be 0 or more, because it finalises a vertex as soon as it is removed from the queue and assumes no later route can be cheaper. Use Bellman-Ford for negative weights.');
+    if(seen[k])bad.push('Edge '+e.u+(G.directed?' \u2192 ':' \u2013 ')+e.v+' appears twice.');seen[k]=1});return bad}
+function newState(G,s){var st={dist:{},parent:{},settled:{},order:[],events:[],heap:new MinHeap()};G.vertices.forEach(function(v){st.dist[v]=INF;st.parent[v]=null});st.dist[s]=0;st.heap.push([0,s]);return st}
+function relaxFrom(st,adj,u,d){adj[u].forEach(function(p){var v=p.v,w=p.w,cand,old;
+  if(st.settled[v]){st.events.push({type:'skip',u:u,v:v,w:w});return}
+  cand=d+w;old=st.dist[v];
+  if(cand<old){st.dist[v]=cand;st.parent[v]=u;st.heap.push([cand,v]);st.events.push({type:'relax',u:u,v:v,w:w,cand:cand,old:old,updated:true})}
+  else st.events.push({type:'relax',u:u,v:v,w:w,cand:cand,old:old,updated:false,tie:cand===old})})}
+function dijkstra(G,s,o){o=o||{};var bad=o.allowNegative?[]:validate(G),st,adj,e,d,u;
+  if(bad.length)return {error:bad};
+  if(G.vertices.indexOf(s)<0)return {error:['The source vertex does not exist.']};
+  adj=adjOf(G);st=newState(G,s);st.events.push({type:'init',source:s});
+  while(st.heap.size()){e=st.heap.pop();d=e[0];u=e[1];
+    if(st.settled[u]){st.events.push({type:'pop',v:u,d:d,stale:true});continue}
+    st.settled[u]=true;st.order.push(u);st.events.push({type:'pop',v:u,d:d,stale:false});
+    if(o.stopAt===u){st.events.push({type:'stop',v:u});break}
+    relaxFrom(st,adj,u,d)}
+  st.events.push({type:'done'});
+  return {dist:st.dist,parent:st.parent,order:st.order,events:st.events,settled:st.settled}}
+function replay(G,s,events){var dist={},parent={},settled={},pq=[],cur=null,out=[];
+  G.vertices.forEach(function(v){dist[v]=INF;parent[v]=null});
+  function snap(ev,focus){out.push({ev:ev,dist:cp(dist),parent:cp(parent),settled:cp(settled),pq:pq.map(function(x){return x.slice()}).sort(function(a,b){return a[0]-b[0]||(a[1]<b[1]?-1:a[1]>b[1]?1:0)}),cur:cur,focus:focus||null})}
+  events.forEach(function(ev){var i;
+    if(ev.type==='init'){dist[ev.source]=0;pq.push([0,ev.source]);cur=null;snap(ev)}
+    else if(ev.type==='pop'){for(i=0;i<pq.length;i++)if(pq[i][0]===ev.d&&pq[i][1]===ev.v){pq.splice(i,1);break}
+      if(!ev.stale){settled[ev.v]=true;cur=ev.v}else cur=null;snap(ev)}
+    else if(ev.type==='relax'){if(ev.updated){dist[ev.v]=ev.cand;parent[ev.v]=ev.u;pq.push([ev.cand,ev.v])}snap(ev,{u:ev.u,v:ev.v})}
+    else if(ev.type==='skip')snap(ev,{u:ev.u,v:ev.v});
+    else{cur=null;snap(ev)}});
+  return out}
+function pathTo(parent,s,t,dist){var p=[t],x=t,g=0;if(dist[t]===INF)return null;while(x!==s){x=parent[x];if(x==null||g++>99)return null;p.push(x)}return p.reverse()}
+function edgeIdx(G,u,v){var i,e;for(i=0;i<G.edges.length;i++){e=G.edges[i];if((e.u===u&&e.v===v)||(!G.directed&&e.u===v&&e.v===u))return i}return -1}
+function weightOf(G,u,v){var i=edgeIdx(G,u,v);return i<0?null:G.edges[i].w}
+function bellmanFord(G,s){var dist={},i,ch=true,n=G.vertices.length,r=0;G.vertices.forEach(function(v){dist[v]=INF});dist[s]=0;
+  var E=[];G.edges.forEach(function(e){E.push([e.u,e.v,e.w]);if(!G.directed)E.push([e.v,e.u,e.w])});
+  while(ch&&r++<=n){ch=false;E.forEach(function(e){if(dist[e[0]]+e[2]<dist[e[1]]){dist[e[1]]=dist[e[0]]+e[2];ch=true}})}
+  return {dist:dist,negCycle:ch}}
+function allPaths(G,s,t){var adj=adjOf(G),res=[],path=[s];(function go(u,c){if(u===t){res.push({path:path.slice(),cost:c});return}adj[u].forEach(function(p){if(path.indexOf(p.v)<0){path.push(p.v);go(p.v,c+p.w);path.pop()}})})(s,0);return res}
+function circlePos(L){var n=L.length,pos={};L.forEach(function(v,i){var a=-Math.PI/2+2*Math.PI*i/n;pos[v]=[Math.round(270+200*Math.cos(a)),Math.round(150+100*Math.sin(a))]});return pos}
+function randGraph(n,directed,rnd,o){o=o||{};var L=ALPHA.split('').slice(0,n),G={directed:directed,vertices:L,pos:circlePos(L),edges:[],vb:[540,300]},i,j,ex={},m=o.leaveOut?n-1:n,extra,t=0,a,b;
+  function add(u,v){if(u===v||ex[u+'>'+v]||(!directed&&ex[v+'>'+u]))return false;ex[u+'>'+v]=1;G.edges.push({u:u,v:v,w:1+Math.floor(rnd()*9)});return true}
+  for(i=1;i<m;i++){j=Math.floor(rnd()*i);add(L[j],L[i])}
+  extra=Math.floor(n*0.7);while(extra>0&&t++<80){a=Math.floor(rnd()*m);b=Math.floor(rnd()*m);if(add(L[a],L[b]))extra--}
+  return G}
+function mkG(directed,vertices,pos,edges){return {directed:directed,vertices:vertices,pos:pos,edges:edges.map(function(e){return {u:e[0],v:e[1],w:e[2]}}),vb:[540,300]}}
+var PRESETS={
+ home:function(){var g=mkG(false,['H','A','B','C','D','E','F','T'],{H:[60,45],C:[300,45],B:[170,130],E:[370,130],A:[60,230],D:[170,230],F:[370,230],T:[480,190]},[['H','C',5],['H','B',2],['H','A',3],['A','D',3],['B','D',1],['B','E',6],['C','E',2],['D','F',4],['E','F',1],['E','T',4],['F','T',2]]);g.source='H';g.dest='T';return g},
+ tie:function(){var g=mkG(true,['S','A','B','C','D','E','F'],{S:[50,150],C:[150,140],A:[210,55],B:[330,55],D:[300,165],E:[440,150],F:[240,255]},[['S','A',3],['S','C',2],['S','F',6],['C','A',2],['C','D',3],['A','B',6],['A','D',1],['B','E',1],['D','E',4],['F','E',2]]);g.source='S';g.dest='E';return g},
+ special:function(){var g=mkG(false,['A','B','C','D','E','F'],{A:[60,150],C:[170,60],B:[170,240],D:[300,150],E:[420,150],F:[470,50]},[['A','B',4],['A','C',0],['C','D',2],['B','D',1],['D','E',3]]);g.source='A';g.dest='E';return g}};
+
+function undirectedCopy(G){var g=cp(G);g.directed=false;return g}
+function caseProps(G,s,t){var neg=G.edges.some(function(e){return e.w<0}),p={negative:neg,unreachable:false,zero:false,ties:false,dirdiff:false,fewer:false},r,paths,min,cheap,cheapHops,minHops;
+  if(neg)return p;
+  r=dijkstra(G,s);p.unreachable=r.dist[t]===INF;p.zero=G.edges.some(function(e){return e.w===0});
+  if(!p.unreachable){paths=allPaths(G,s,t);min=Math.min.apply(null,paths.map(function(x){return x.cost}));
+    var best=paths.filter(function(x){return x.cost===min});p.ties=best.length>1;
+    cheapHops=Math.min.apply(null,best.map(function(x){return x.path.length-1}));minHops=Math.min.apply(null,paths.map(function(x){return x.path.length-1}));p.fewer=minHops<cheapHops}
+  if(G.directed)p.dirdiff=dijkstra(undirectedCopy(G),s).dist[t]!==r.dist[t];
+  return p}
+var TEMPLATES=[
+ {key:'unreachable',g:function(){var g=mkG(false,['S','A','B','C','T'],{S:[60,150],A:[170,90],B:[280,150],C:[340,60],T:[450,120]},[['S','A',2],['A','B',3],['C','T',1]]);g.source='S';g.dest='T';return g}},
+ {key:'zero',g:function(){var g=mkG(false,['S','A','B','T'],{S:[60,150],A:[220,60],B:[220,240],T:[390,150]},[['S','A',0],['A','T',3],['S','B',1],['B','T',1]]);g.source='S';g.dest='T';return g}},
+ {key:'ties',g:function(){var g=mkG(false,['S','A','B','T'],{S:[60,150],A:[220,60],B:[220,240],T:[390,150]},[['S','A',2],['S','B',2],['A','T',3],['B','T',3]]);g.source='S';g.dest='T';return g}},
+ {key:'negative',g:function(){var g=mkG(true,['S','A','T'],{S:[60,150],A:[230,150],T:[400,150]},[['S','A',4],['A','T',-2]]);g.source='S';g.dest='T';return g}},
+ {key:'dirdiff',g:function(){var g=mkG(true,['S','A','B','T'],{S:[60,150],A:[230,60],B:[230,240],T:[400,150]},[['S','A',6],['S','B',1],['T','B',1],['A','T',1]]);g.source='S';g.dest='T';return g}},
+ {key:'fewer',g:function(){var g=mkG(false,['S','A','B','T'],{S:[60,170],A:[190,60],B:[320,60],T:[440,170]},[['S','T',10],['S','A',2],['A','B',2],['B','T',2]]);g.source='S';g.dest='T';return g}}];
+/*CORE_END*/
+
+var R=document.getElementById('dijkstra-blog');
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function fmt(x){return x===INF?'\u221e':String(x)}
+function arr(G){return G.directed?' \u2192 ':' \u2013 '}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e}
+function rnd(n){return Math.floor(Math.random()*n)}
+function shuffle(a){var b=a.slice(),i,j,t;for(i=b.length-1;i>0;i--){j=rnd(i+1);t=b[i];b[i]=b[j];b[j]=t}return b}
+function norm(s){return String(s).trim().toLowerCase()}
+function parseNum(s){s=norm(s);if(['inf','infinity','\u221e','oo','unreachable'].indexOf(s)>-1)return INF;if(s==='')return NaN;return Number(s)}
+function tbl(head,rows,cls){return '<div class="wrap"><table>'+'<tr>'+head.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>'+rows.map(function(r,i){return '<tr'+(cls&&cls[i]?' class="'+cls[i]+'"':'')+'>'+r.map(function(x){return '<td>'+x+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'}
+
+/* ---------- graph drawing ---------- */
+function drawG(svg,G,o){o=o||{};var vb=G.vb||[540,300],s='',RD=22,P=G.pos,has={},v;
+  G.edges.forEach(function(e){has[e.u+'>'+e.v]=1});
+  G.edges.forEach(function(e,i){var a=P[e.u],b=P[e.v],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.sqrt(dx*dx+dy*dy)||1,ux=dx/L,uy=dy/L,cur=G.directed&&has[e.v+'>'+e.u],c,p0,p1,d,tx,ty,sx,sy,sl,ex,ey,el2,mx,my,cl=o.ec?o.ec(e,i):'';
+    if(cur){c=[(a[0]+b[0])/2-uy*32,(a[1]+b[1])/2+ux*32];sx=c[0]-a[0];sy=c[1]-a[1];sl=Math.sqrt(sx*sx+sy*sy)||1;ex=b[0]-c[0];ey=b[1]-c[1];el2=Math.sqrt(ex*ex+ey*ey)||1;
+      p0=[a[0]+sx/sl*RD,a[1]+sy/sl*RD];p1=[b[0]-ex/el2*RD,b[1]-ey/el2*RD];tx=ex/el2;ty=ey/el2;d='M'+p0+' Q'+c+' '+p1;mx=.25*a[0]+.5*c[0]+.25*b[0];my=.25*a[1]+.5*c[1]+.25*b[1]}
+    else{p0=[a[0]+ux*RD,a[1]+uy*RD];p1=[b[0]-ux*RD,b[1]-uy*RD];tx=ux;ty=uy;d='M'+p0+' L'+p1;mx=(a[0]+b[0])/2;my=(a[1]+b[1])/2}
+    s+='<path class="ge'+cl+'" d="'+d+'"/>';
+    if(G.directed){var bs=[p1[0]-tx*12,p1[1]-ty*12];s+='<polygon class="ah'+cl+'" points="'+p1+' '+[bs[0]-ty*6,bs[1]+tx*6]+' '+[bs[0]+ty*6,bs[1]-tx*6]+'"/>'}
+    s+='<text class="wl" x="'+mx+'" y="'+my+'">'+e.w+'</text>'});
+  G.vertices.forEach(function(v){var t=o.tag?o.tag(v):'',u=o.sub?o.sub(v):'';
+    s+='<g class="gv '+(o.vc?o.vc(v):'')+'" data-v="'+v+'"><circle cx="'+P[v][0]+'" cy="'+P[v][1]+'" r="'+RD+'"/><text x="'+P[v][0]+'" y="'+P[v][1]+'">'+v+'</text>'+(t?'<text class="tg" x="'+P[v][0]+'" y="'+(P[v][1]-31)+'">'+t+'</text>':'')+(u?'<text class="sb" x="'+P[v][0]+'" y="'+(P[v][1]+37)+'">'+u+'</text>':'')+'</g>'});
+  svg.setAttribute('viewBox','0 0 '+vb[0]+' '+vb[1]);svg.innerHTML=s}
+function pathEdges(G,p){var o={},i;if(p)for(i=0;i<p.length-1;i++){var k=edgeIdx(G,p[i],p[i+1]);if(k>-1)o[k]=1}return o}
+function treeEdges(G,parent){var o={};G.vertices.forEach(function(v){if(parent[v]!=null){var k=edgeIdx(G,parent[v],v);if(k>-1)o[k]=1}});return o}
+function routeStr(p){return p.join(' \u2192 ')}
+
+/* ---------- shared graph state ---------- */
+var LG=PRESETS.home(),labRes=null;
+function fillSel(id,list,val){var s=$(id),o='';list.forEach(function(v){o+='<option value="'+v+'"'+(v===val?' selected':'')+'>'+v+'</option>'});s.innerHTML=o}
+function syncSelects(){var V=LG.vertices,f=$('dj-from').value,t=$('dj-to').value,r=$('dj-rmsel').value;
+  if(V.indexOf(LG.source)<0)LG.source=V[0];if(V.indexOf(LG.dest)<0)LG.dest=V[V.length-1];
+  ['dj-src','dj-vsrc'].forEach(function(i){fillSel(i,V,LG.source)});['dj-dst','dj-vdst'].forEach(function(i){fillSel(i,V,LG.dest)});
+  fillSel('dj-from',V,V.indexOf(f)>-1?f:V[0]);fillSel('dj-to',V,V.indexOf(t)>-1?t:V[Math.min(1,V.length-1)]);fillSel('dj-rmsel',V,V.indexOf(r)>-1?r:V[V.length-1])}
+function setMsg(t,type){var m=$('dj-labmsg');m.textContent=t;m.className='msg'+(type?' '+type:'')}
+function showErr(node,errs){node.innerHTML=errs.map(function(e){return '<div class="bd">'+esc(e)+'</div>'}).join('')}
+function labDraw(){var p=labRes?pathTo(labRes.parent,LG.source,LG.dest,labRes.dist):null,pe=pathEdges(LG,p),te=labRes?treeEdges(LG,labRes.parent):{};
+  drawG($('dj-labsvg'),LG,{ec:function(e,i){return pe[i]?' path':te[i]?' tree':''},vc:function(v){return (v===LG.source?'src':'')+(v===LG.dest?' dst':'')+(labRes&&labRes.settled[v]?' st':'')},tag:function(v){return v===LG.source?'source':v===LG.dest?'destination':''},sub:function(v){return labRes?fmt(labRes.dist[v]):''}});
+  var rows=LG.edges.map(function(e,i){return '<tr><td>'+e.u+arr(LG)+e.v+'</td><td><input type="number" min="0" max="99" value="'+e.w+'" data-w="'+i+'" aria-label="Weight of edge '+e.u+' to '+e.v+'" class="sm"></td><td><button class="b" data-rm="'+i+'" aria-label="Remove edge '+e.u+' to '+e.v+'">Remove</button></td></tr>'}).join('');
+  $('dj-edges').innerHTML='<table><tr><th>Edge</th><th>Weight</th><th></th></tr>'+(rows||'<tr><td colspan="3">No edges yet.</td></tr>')+'</table>'}
+function changed(){syncSelects();labRes=null;labDraw();$('dj-labres').innerHTML='<span class="lg">Press \u201cRun Dijkstra\u201d to see the distance table, parents and the path to the destination.</span>';$('dj-undir').className='b'+(LG.directed?'':' on');$('dj-dir').className='b'+(LG.directed?' on':'');$('dj-undir').setAttribute('aria-pressed',String(!LG.directed));$('dj-dir').setAttribute('aria-pressed',String(LG.directed));vizLoad()}
+function relayout(){LG.pos=circlePos(LG.vertices)}
+function setDirected(flag){if(LG.directed===flag)return;if(!flag){var seen={},kept=[],dropped=0;LG.edges.forEach(function(e){var k=[e.u,e.v].sort().join('-');if(seen[k]!==undefined){dropped++;if(e.w<kept[seen[k]].w)kept[seen[k]].w=e.w}else{seen[k]=kept.length;kept.push(e)}});LG.edges=kept;LG.directed=false;setMsg('Edges are now undirected.'+(dropped?' '+dropped+' pair(s) of opposite edges were merged, keeping the smaller weight.':''),'ok')}else{LG.directed=true;setMsg('Edges are now directed: each edge can be used only from its first vertex to its second.','ok')}changed()}
+function parseW(v){var w=Number(v);return v===''||!isFinite(w)?null:w}
+function negMsg(w){return 'A weight of '+w+' is negative. Dijkstra\u2019s algorithm needs every weight to be 0 or more. It finalises a vertex as soon as it is removed from the queue and assumes no later route can be cheaper, and a negative edge breaks that assumption. For negative weights use Bellman-Ford.'}
+$('dj-addv').onclick=function(){var used={},c=null,i;LG.vertices.forEach(function(v){used[v]=1});if(LG.vertices.length>=12){setMsg('The lab holds at most 12 vertices.','bad');return}
+  for(i=0;i<ALPHA.length;i++)if(!used[ALPHA[i]]){c=ALPHA[i];break}LG.vertices.push(c);relayout();setMsg('Added vertex '+c+'. The layout was rearranged to stay readable. Now add edges to connect it.','ok');changed()};
+$('dj-rmv').onclick=function(){var v=$('dj-rmsel').value;if(LG.vertices.length<=2){setMsg('Keep at least 2 vertices.','bad');return}
+  LG.vertices=LG.vertices.filter(function(x){return x!==v});LG.edges=LG.edges.filter(function(e){return e.u!==v&&e.v!==v});relayout();setMsg('Removed vertex '+v+' and its edges.','ok');changed()};
+$('dj-adde').onclick=function(){var u=$('dj-from').value,v=$('dj-to').value,w=parseW($('dj-wt').value),i;
+  if(u===v){setMsg('A self-loop never shortens a path, so this lab does not allow it. Choose two different vertices.','bad');return}
+  if(w===null){setMsg('Type a weight (a number) first.','bad');return}if(w<0){setMsg(negMsg(w),'bad');return}
+  i=edgeIdx(LG,u,v);if(i>-1){LG.edges[i].w=w;setMsg('That edge already existed, so its weight was updated to '+w+'.','ok')}else{LG.edges.push({u:u,v:v,w:w});setMsg('Added edge '+u+arr(LG)+v+' with weight '+w+'.','ok')}changed()};
+$('dj-rme').onclick=function(){var u=$('dj-from').value,v=$('dj-to').value,i=edgeIdx(LG,u,v);if(i<0){setMsg('There is no edge '+u+arr(LG)+v+' to remove.','bad');return}LG.edges.splice(i,1);setMsg('Removed edge '+u+arr(LG)+v+'.','ok');changed()};
+$('dj-edges').addEventListener('change',function(e){var t=e.target,i=t.getAttribute('data-w');if(i===null)return;var w=parseW(t.value);
+  if(w===null){setMsg('That is not a valid weight.','bad');labDraw();return}if(w<0){setMsg(negMsg(w),'bad');labDraw();return}LG.edges[+i].w=w;setMsg('Weight updated to '+w+'.','ok');changed()});
+$('dj-edges').addEventListener('click',function(e){var t=e.target.closest('[data-rm]');if(!t)return;LG.edges.splice(+t.getAttribute('data-rm'),1);setMsg('Edge removed.','ok');changed()});
+$('dj-undir').onclick=function(){setDirected(false)};$('dj-dir').onclick=function(){setDirected(true)};
+function pickSD(src,dst){$(src).onchange=function(){LG.source=$(src).value;changed()};$(dst).onchange=function(){LG.dest=$(dst).value;changed()}}
+pickSD('dj-src','dj-dst');pickSD('dj-vsrc','dj-vdst');
+$('dj-reset').onclick=function(){LG=PRESETS.home();setMsg('Reset to the Home to School example.','ok');changed()};
+$('dj-rand').onclick=function(){var n=6+rnd(3),d=LG.directed;LG=randGraph(n,d,Math.random);LG.source='A';LG.dest=LG.vertices[n-1];setMsg('New random '+(d?'directed':'undirected')+' graph with '+n+' vertices and weights 1 to 9.','ok');changed()};
+[['Home to School (notes)','home'],['Tie example (notes, directed)','tie'],['Zero weight and unreachable','special']].forEach(function(p){var b=el('button','b',p[0]);b.onclick=function(){LG=PRESETS[p[1]]();setMsg('Loaded: '+p[0]+'.','ok');changed()};$('dj-pre').appendChild(b)});
+$('dj-run').onclick=function(){var r=dijkstra(LG,LG.source),h,p;if(r.error){labRes=null;labDraw();showErr($('dj-labres'),r.error);setMsg('This graph cannot be run. See the explanation below the graph.','bad');return}
+  labRes=r;labDraw();p=pathTo(r.parent,LG.source,LG.dest,r.dist);
+  h='<b>Results from source '+LG.source+'</b> (settled in this order: '+r.order.join(', ')+')'+tbl(['Vertex','Distance','Parent'],LG.vertices.map(function(v){return [v,fmt(r.dist[v]),r.parent[v]==null?(v===LG.source?'none (source)':'none'):r.parent[v]]}));
+  h+=p?'<p><b>Route to '+LG.dest+':</b> '+routeStr(p)+' with total cost <b>'+r.dist[LG.dest]+'</b>'+(p.length===1?' (the destination is the source).':'.')+' Teal edges form the shortest-path tree and the orange line is this route.</p>':'<p class="bd"><b>'+LG.dest+' is unreachable from '+LG.source+'.</b> No route exists, so its distance stays \u221e and it has no parent'+(LG.directed?' (check the edge directions)':'')+'.</p>';
+  $('dj-labres').innerHTML=h;setMsg('Done.','ok')};
+$('dj-open').onclick=function(){R.dispatchEvent(new CustomEvent('djgo',{detail:{id:'dj-s3'}}))};
+
+/* ---------- relaxation calculator ---------- */
+function relaxCalc(){var du=parseNum($('dj-ru').value),w=parseNum($('dj-rw').value),dv=parseNum($('dj-rv').value),o=$('dj-rout'),c;
+  if(isNaN(du)||isNaN(w)||isNaN(dv)){o.textContent='Type numbers, or inf for \u221e.';return}
+  if(du<0||w<0||dv<0){o.innerHTML='Distances and weights must be 0 or more for Dijkstra\u2019s algorithm.';return}
+  if(du===INF){o.innerHTML='dist[u] is \u221e, so u has not been reached and gives no route to v. <b>No change.</b>';return}
+  c=du+w;o.innerHTML='candidate = dist[u] + w = '+du+' + '+(w===INF?'\u221e':w)+' = <b>'+fmt(c)+'</b><br>'+(c<dv?fmt(c)+' &lt; '+fmt(dv)+', so <b>update</b>: dist[v] = '+fmt(c)+' and parent[v] = u.':fmt(c)+' is not less than '+fmt(dv)+(c===dv?' (a tie)':'')+', so <b>no change</b>: dist[v] and parent[v] stay as they are.')}
+['dj-ru','dj-rw','dj-rv'].forEach(function(i){$(i).oninput=relaxCalc});relaxCalc();
+
+/* ---------- section 1: fewest edges vs cheapest ---------- */
+var HG=PRESETS.home(),ROUTES=allPaths(HG,'H','T').map(function(r){return {path:r.path,cost:r.cost,hops:r.path.length-1}});
+var byCost=ROUTES.slice().sort(function(a,b){return a.cost-b.cost||a.hops-b.hops}),byHops=ROUTES.slice().sort(function(a,b){return a.hops-b.hops||a.cost-b.cost}),RT=[['Cheapest route',byCost[0]],['Fewest-edges route',byHops[0]]],rtSel=0;
+function showRoute(i){rtSel=i;var r=RT[i][1],pe=pathEdges(HG,r.path),on={};r.path.forEach(function(v){on[v]=1});
+  Array.prototype.forEach.call($('dj-rt').children,function(b,k){b.className='b'+(k===i?' on':'');b.setAttribute('aria-pressed',String(k===i))});
+  drawG($('dj-s1svg'),HG,{ec:function(e,k){return pe[k]?' path':''},vc:function(v){return on[v]?'st':''},tag:function(v){return v==='H'?'Home':v==='T'?'School':''}});
+  $('dj-s1txt').innerHTML='<b>'+RT[i][0]+':</b> '+routeStr(r.path)+'<br>Edges used: <b>'+r.hops+'</b> &middot; total cost: <b>'+r.cost+'</b>'+(i===1?'<br><span class="bd">It has fewer edges, but it costs '+(r.cost-byCost[0].cost)+' more than the cheapest route ('+byCost[0].cost+').</span>':'<br><span class="gd">It uses '+(r.hops-byHops[0].hops)+' more edge(s) than the fewest-edges route, yet it is cheaper.</span>');
+  var rows=byCost.slice(0,6);if(rows.indexOf(byHops[0])<0)rows.push(byHops[0]);
+  $('dj-s1tbl').innerHTML=tbl(['Route','Edges','Cost'],rows.map(function(x){return [routeStr(x.path),x.hops,x.cost]}),rows.map(function(x){return x===r?'hit':''}))}
+RT.forEach(function(r,i){var b=el('button','b',r[0]);b.onclick=function(){showRoute(i)};$('dj-rt').appendChild(b)});showRoute(0);
+(function(){var hp=pathEdges(HG,byCost[0].path);drawG($('dj-hero-svg'),HG,{ec:function(e,k){return hp[k]?' path':''},tag:function(v){return v==='H'?'Home':v==='T'?'School':''}})})();
+
+/* ---------- section 3: visualiser ---------- */
+var VZ={states:[],k:0,timer:null,res:null};
+function vizStop(){if(VZ.timer){clearInterval(VZ.timer);VZ.timer=null}$('dj-vp').disabled=false;$('dj-vpa').disabled=true}
+function vizBtns(on){['dj-vb','dj-vn','dj-vp','dj-vr'].forEach(function(i){$(i).disabled=!on})}
+function vizLoad(){vizStop();var r=dijkstra(LG,LG.source,{stopAt:$('dj-stop').checked?LG.dest:undefined});$('dj-verr').innerHTML='';
+  if(r.error){VZ.states=[];showErr($('dj-verr'),r.error);vizBtns(false);$('dj-vexp').textContent='This graph cannot be run, because of the problem above. Fix it in section 2.';$('dj-vc').textContent='';drawG($('dj-vsvg'),LG,{});return}
+  VZ.res=r;VZ.states=replay(LG,LG.source,r.events);VZ.k=0;vizBtns(true);vizRender()}
+function stepText(ev){var a=arr(LG);
+  if(ev.type==='init')return '<b>Initialise.</b> dist('+LG.source+') = 0 and every other vertex = \u221e. All parents are empty and nothing is settled. Put the entry (0, '+LG.source+') in the priority queue.';
+  if(ev.type==='pop')return ev.stale?'<b>Remove ('+ev.d+', '+ev.v+') from the queue.</b> '+ev.v+' is already settled, so this is a <b>stale entry</b>: an older, longer route that was later beaten. Ignore it.':'<b>Remove the smallest entry ('+ev.d+', '+ev.v+').</b> Vertex '+ev.v+' is now <b>settled</b>: its shortest distance, '+ev.d+', is final.';
+  if(ev.type==='relax')return '<b>Examine edge '+ev.u+a+ev.v+' (weight '+ev.w+').</b> Candidate = dist['+ev.u+'] + '+ev.w+' = '+(ev.cand-ev.w)+' + '+ev.w+' = '+ev.cand+'. Current dist['+ev.v+'] = '+fmt(ev.old)+'. '+(ev.updated?ev.cand+' &lt; '+fmt(ev.old)+', so <b>update</b>: dist['+ev.v+'] = '+ev.cand+', parent['+ev.v+'] = '+ev.u+', and push ('+ev.cand+', '+ev.v+') into the queue.':ev.cand+' is not less than '+fmt(ev.old)+(ev.tie?' (it ties, so the old parent is kept)':'')+', so <b>no change</b>.');
+  if(ev.type==='skip')return '<b>Examine edge '+ev.u+a+ev.v+' (weight '+ev.w+').</b> Vertex '+ev.v+' is already settled, so its distance is final. Skip this edge.';
+  if(ev.type==='stop')return '<b>Stop early.</b> The destination '+ev.v+' has just been settled, so its distance is final.';
+  return '<b>Finished.</b> The queue is empty. Any vertex still at \u221e is unreachable from the source.'}
+function vizRender(){var s=VZ.states[VZ.k],G=LG,p=pathTo(s.parent,G.source,G.dest,s.dist),pe=pathEdges(G,p),te=treeEdges(G,s.parent),fo=s.focus;
+  drawG($('dj-vsvg'),G,{ec:function(e,i){var f=fo&&((e.u===fo.u&&e.v===fo.v)||(!G.directed&&e.u===fo.v&&e.v===fo.u));return f?' focus':pe[i]?' path':te[i]?' tree':''},
+    vc:function(v){return (v===G.source?'src ':'')+(s.cur===v?'cur':s.settled[v]?'st':s.dist[v]<INF?'q':'')+(v===G.dest?' dst':'')},
+    tag:function(v){return v===G.source?'source':v===G.dest?'destination':''},sub:function(v){return fmt(s.dist[v])+(s.settled[v]?' \u2713':'')}});
+  $('dj-vexp').innerHTML='<b>Step '+(VZ.k+1)+' of '+VZ.states.length+'.</b> '+stepText(s.ev);$('dj-vc').textContent=(VZ.k+1)+' / '+VZ.states.length;
+  $('dj-vdist').innerHTML=tbl(['Vertex','Distance','Status'],G.vertices.map(function(v){return [v,fmt(s.dist[v]),(v===G.source?'source, ':'')+(s.cur===v?'current (just settled)':s.settled[v]?'settled':s.dist[v]<INF?'in queue (tentative)':'not reached yet')]}),G.vertices.map(function(v){return s.cur===v?'hit':''}));
+  $('dj-vpred').innerHTML=tbl(['Vertex','Parent'],G.vertices.map(function(v){return [v,s.parent[v]==null?(v===G.source?'none (source)':'\u2014'):s.parent[v]]}));
+  $('dj-vpq').innerHTML=s.pq.length?s.pq.map(function(x){var st=s.settled[x[1]]||x[0]>s.dist[x[1]];return '<span class="chip '+(st?'s':'q')+'" title="'+(st?'stale entry':'live entry')+'">('+x[0]+', '+x[1]+')'+(st?' stale':'')+'</span>'}).join(''):'<span class="lg">(empty)</span>';
+  $('dj-vpath').innerHTML=p?routeStr(p)+' &middot; cost <b>'+s.dist[G.dest]+'</b><br><span class="lg">'+(s.settled[G.dest]?'Final: the destination is settled.':'Tentative: the best route found so far. It may still improve.')+'</span>':(VZ.k===VZ.states.length-1?'<span class="bd">'+G.dest+' is unreachable from '+G.source+'. Its distance stays \u221e.</span>':'<span class="lg">No route to '+G.dest+' has been found yet (distance \u221e).</span>');
+  $('dj-vb').disabled=VZ.k===0;$('dj-vn').disabled=VZ.k===VZ.states.length-1;if(VZ.k===VZ.states.length-1&&VZ.timer)vizStop()}
+$('dj-vn').onclick=function(){vizStop();if(VZ.k<VZ.states.length-1){VZ.k++;vizRender()}};
+$('dj-vb').onclick=function(){vizStop();if(VZ.k>0){VZ.k--;vizRender()}};
+$('dj-vr').onclick=function(){vizStop();VZ.k=0;vizRender()};
+$('dj-vp').onclick=function(){if(VZ.timer||!VZ.states.length)return;if(VZ.k>=VZ.states.length-1){VZ.k=0;vizRender()}$('dj-vp').disabled=true;$('dj-vpa').disabled=false;VZ.timer=setInterval(function(){if(VZ.k<VZ.states.length-1){VZ.k++;vizRender()}else vizStop()},1000)};
+$('dj-vpa').onclick=vizStop;$('dj-stop').onchange=vizLoad;
+R.addEventListener('djslide',function(e){if(e.detail.id!=='dj-s3')vizStop()});
+
+/* ---------- section 4: operation-count explorer ---------- */
+function cx(){var V=+$('dj-cv').value,E=+$('dj-ce').value,dir=$('dj-cdir').checked,mx=dir?V*(V-1):V*(V-1)/2,lg=Math.log(V)/Math.LN2,o=$('dj-cout'),rows,min,i,w='';
+  if(!(V>=2&&E>=1)){o.innerHTML='<span class="bd">Enter V of at least 2 and E of at least 1.</span>';return}
+  if(E>mx)w='<p class="bd">E is larger than the most edges a simple '+(dir?'directed':'undirected')+' graph with '+V+' vertices can have ('+mx.toLocaleString()+').</p>';
+  else if(E<V-1)w='<p class="lg">With E &lt; V &minus; 1 the graph cannot be connected, so some vertices are unreachable.</p>';
+  rows=[['List + binary heap, lazy duplicates','(V + E) log V',(V+E)*lg],['List + binary heap, decrease-key','(V + E) log V',(V+E)*lg],['List + Fibonacci heap','E + V log V',E+V*lg],['Matrix + linear scan','V\u00b2',V*V]];
+  min=Math.min.apply(null,rows.map(function(r){return r[2]}));
+  o.innerHTML=w+tbl(['Implementation','Formula','Rough count'],rows.map(function(r){return [r[0],r[1],Math.round(r[2]).toLocaleString()+(r[2]===min?' (smallest)':'')]}),rows.map(function(r){return r[2]===min?'hit':''}))+'<p class="lg">Density: '+(mx?(100*E/mx).toFixed(2):0)+'% of the possible edges. These are formula values with constants removed. They are not measured running times.</p>'}
+['dj-cv','dj-ce'].forEach(function(i){$(i).oninput=cx});$('dj-cdir').onchange=cx;cx();
+
+/* ---------- section 5: demos ---------- */
+(function(){var host=$('dj-demos');
+  function card(title,G,sv,html,opt){var d=el('div','box');d.style.marginTop='0';d.innerHTML='<h4>'+title+'</h4><svg class="t" role="img" aria-label="'+title+'" style="max-height:230px"></svg><div class="dm">'+html+'</div>';host.appendChild(d);drawG(d.querySelector('svg'),G,opt||{})}
+  var ng=mkG(true,['S','A','B'],{S:[60,150],A:[270,60],B:[270,240]},[['S','A',1],['S','B',3],['B','A',-5]]);
+  var dj=dijkstra(ng,'S',{allowNegative:true}),bf=bellmanFord(ng,'S');
+  card('Negative edge (Dijkstra fails)',ng,'S','<p>This run is a <b>demonstration only</b>; the lab refuses such graphs. Dijkstra settles A with distance '+dj.dist.A+' before it sees B\u2192A. But S \u2192 B \u2192 A costs 3 + (\u22125) = <b>'+bf.dist.A+'</b>. Dijkstra says <b>'+dj.dist.A+'</b>, Bellman-Ford says <b>'+bf.dist.A+'</b>. Dijkstra is wrong here.</p>');
+  var sp=PRESETS.special(),rs=dijkstra(sp,'A');
+  card('Zero-weight edge and an unreachable vertex',sp,'A','<p>From A: '+sp.vertices.map(function(v){return v+'='+fmt(rs.dist[v])}).join(', ')+'.<br>The edge A\u2013C costs 0 but is still a step, so C is reached at distance 0. Vertex F has no edges, so it stays at <b>\u221e</b> with no path.</p>',{vc:function(v){return rs.dist[v]===INF?'':'st'},sub:function(v){return fmt(rs.dist[v])}});
+  var tg=PRESETS.tie(),rt=dijkstra(tg,'S'),eq=allPaths(tg,'S','E').filter(function(x){return x.cost===rt.dist.E});
+  card('Two equally short paths',tg,'S','<p>Shortest distance to E is <b>'+rt.dist.E+'</b>, reached by '+eq.map(function(x){return routeStr(x.path)}).join(' and ')+'. The algorithm reports one: parent[E] = <b>'+rt.parent.E+'</b>. The second route only ties, and the strict test (<code>&lt;</code>) does not replace the parent.</p>',{ec:function(e,i){return ''},sub:function(v){return fmt(rt.dist[v])}});
+  var t5=TEMPLATES[4].g(),d1=dijkstra(t5,'S'),d2=dijkstra(undirectedCopy(t5),'S');
+  card('Directed or undirected? It matters',t5,'S','<p>As drawn (directed), the cost S to T is <b>'+d1.dist.T+'</b> (S\u2192A\u2192T). If the edges were undirected, it would be <b>'+d2.dist.T+'</b> (S\u2013B\u2013T). The arrow T\u2192B cannot be used backwards.</p>',{sub:function(v){return fmt(d1.dist[v])}});
+  var cg=mkG(true,['A','B','C','D'],{A:[60,60],B:[230,60],C:[230,230],D:[400,150]},[['A','B',2],['B','C',2],['C','A',1],['C','D',4]]),rc=dijkstra(cg,'A');
+  card('A cycle with non-negative weights is fine',cg,'A','<p>A \u2192 B \u2192 C \u2192 A is a cycle, but all weights are 0 or more, so the algorithm works: '+cg.vertices.map(function(v){return v+'='+fmt(rc.dist[v])}).join(', ')+'.</p>',{sub:function(v){return fmt(rc.dist[v])}})})();
+var SM=[{t:'The relaxation test',lines:['d, u = heapq.heappop(heap)','if u in settled: continue','settled.add(u)','for v, w in graph[u]:','    nd = d + w','    if nd > dist[v]:','        dist[v] = nd; parent[v] = u'],bug:5,why:'The test is the wrong way round. We must update only when the new route is <b>shorter</b>: <code>nd &lt; dist[v]</code>. With <code>&gt;</code> the algorithm would replace short distances by longer ones.',hint:'Look at the line that decides whether the new route is better.'},
+ {t:'The predecessor',lines:['nd = d + w','if nd < dist[v]:','    dist[v] = nd','    parent[u] = v','    heapq.heappush(heap, (nd, v))'],bug:3,why:'The parent of <b>v</b> must be <b>u</b>, the vertex we came from. <code>parent[u] = v</code> records it backwards and breaks path reconstruction. Correct line: <code>parent[v] = u</code>.',hint:'Which vertex should remember where we came from?'},
+ {t:'Stopping early',lines:['nd = d + w','if nd < dist[v]:','    dist[v] = nd; parent[v] = u','    if v == target: return dist[v]','    heapq.heappush(heap, (nd, v))'],bug:3,why:'At this moment <code>dist[v]</code> is only <b>tentative</b>. A cheaper route may still be found. Stop only when the target is <b>removed</b> from the heap and settled.',hint:'Is the distance final when a vertex is first discovered?'},
+ {t:'The queue type',lines:['queue = deque([(0, source)])','while queue:','    d, u = queue.popleft()','    if u in settled: continue','    settled.add(u)'],bug:2,why:'<code>popleft()</code> returns the <b>oldest</b> entry, not the one with the smallest distance. Dijkstra needs a priority queue: <code>heapq.heappop(heap)</code>. A plain queue gives BFS order.',hint:'Which entry should we take next?'}],smI=0;
+function smShow(){var q=SM[smI],h='<b>Exercise '+(smI+1)+' of '+SM.length+': '+q.t+'</b><div class="cb">'+q.lines.map(function(l,i){return '<button class="cl" data-i="'+i+'">'+esc(l)+'</button>'}).join('')+'</div><div class="fb" id="dj-smf" role="status" aria-live="polite"></div><div class="row"><button class="b" id="dj-smn">Next exercise</button></div>';
+  $('dj-sm').innerHTML=h;$('dj-smn').onclick=function(){smI=(smI+1)%SM.length;smShow()};
+  Array.prototype.forEach.call($('dj-sm').querySelectorAll('.cl'),function(b){b.onclick=function(){var i=+b.getAttribute('data-i');if(i===q.bug){b.className='cl ok';$('dj-smf').innerHTML='<div class="y">Correct! That is the bug.</div><div>'+q.why+'</div>'}else{b.className='cl no';$('dj-smf').innerHTML='<div class="n">That line is fine.</div><div>Hint: '+q.hint+'</div>'}}})}
+smShow();
+
+/* ---------- section 6: code tabs ---------- */
+var curT=0;Array.prototype.forEach.call(R.querySelectorAll('[data-t]'),function(b){b.onclick=function(){curT=+b.getAttribute('data-t');[0,1,2,3].forEach(function(k){$('dj-c'+k).style.display=k===curT?'block':'none'});Array.prototype.forEach.call(R.querySelectorAll('[data-t]'),function(x){x.className='b'+(x===b?' on':'');x.setAttribute('aria-selected',String(x===b))})}});
+$('dj-cp').onclick=function(){var t=$('dj-c'+curT).textContent;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){$('dj-cp').textContent='Copied'},function(){$('dj-cp').textContent='Select and copy manually'});else $('dj-cp').textContent='Select and copy manually'};
+
+/* ---------- practice: shared helpers ---------- */
+function newProblemGraph(type){var G,res,tries=0,leave=type==='table'&&Math.random()<.5;do{G=randGraph(6,Math.random()<.4,Math.random,{leaveOut:leave});G.source='A';res=dijkstra(G,'A');tries++}while(res.order.length<(type==='next'?4:3)&&tries<50);return {G:G,res:res}}
+function updLines(G,res,only){var a=arr(G),out=[];res.events.forEach(function(e){if(e.type==='relax'&&e.updated&&(!only||only[e.v]))out.push(e.u+a+e.v+': dist['+e.u+'] + '+e.w+' = '+(e.cand-e.w)+' + '+e.w+' = '+e.cand+(e.old===INF?' &lt; \u221e':' &lt; '+e.old)+', so dist['+e.v+'] = '+e.cand+' and parent['+e.v+'] = '+e.u)});return out}
+function tentTable(G,st,hi){return tbl(['Vertex','Tentative distance','Status'],G.vertices.map(function(v){return [v,fmt(st.dist[v]),st.settled[v]?'settled':st.dist[v]<INF?'in queue':'not reached']}),G.vertices.map(function(v){return hi&&hi.indexOf(v)>-1?'hit':''}))}
+function stateAfter(G,order,k){var st=newState(G,G.source),adj=adjOf(G),i,u;for(i=0;i<k;i++){u=order[i];st.settled[u]=true;st.order.push(u);relaxFrom(st,adj,u,st.dist[u])}return st}
+
+/* ---------- A: typed answers ---------- */
+(function(){var types=[['dist','Distance'],['pred','Predecessor'],['path','Shortest path'],['table','Distance table'],['next','Next vertex']],cur='dist',P,sc=0,tot=0,counted=false,host=$('dj-ex');
+  types.forEach(function(t){var b=el('button','b'+(t[0]===cur?' on':''),t[1]);b.onclick=function(){cur=t[0];Array.prototype.forEach.call($('dj-atabs').children,function(x){x.className='b'+(x===b?' on':'')});gen()};$('dj-atabs').appendChild(b)});
+  function gen(){var np=newProblemGraph(cur),G=np.G,res=np.res,reach=res.order.filter(function(v){return v!=='A'});P={type:cur,G:G,res:res};counted=false;
+    P.t=reach[rnd(reach.length)];if(cur==='next'){P.k=1+rnd(Math.min(3,res.order.length-2));P.st=stateAfter(G,res.order,P.k)}
+    var q,inp;
+    if(cur==='dist'){q='What is the <b>shortest distance</b> from <b>A</b> to <b>'+P.t+'</b>?';inp='<input type="number" min="0" id="dj-ai" aria-label="Shortest distance">'}
+    else if(cur==='pred'){q='On a shortest path from A, which vertex comes <b>just before '+P.t+'</b> (its predecessor)?';inp='<input type="text" id="dj-ai" class="sm" maxlength="2" aria-label="Predecessor vertex">'}
+    else if(cur==='path'){q='Write a <b>shortest path</b> from <b>A</b> to <b>'+P.t+'</b> (for example <code>A C D</code>). Any shortest path is accepted.';inp='<input type="text" id="dj-ai" class="w" aria-label="Path">'}
+    else if(cur==='table'){q='Write the final <b>distance</b> of every vertex from A. Type <code>inf</code> for an unreachable vertex.';inp='<div class="row">'+G.vertices.filter(function(v){return v!=='A'}).map(function(v){return '<label>'+v+' <input type="text" class="sm" data-v="'+v+'" aria-label="Distance to '+v+'"></label>'}).join('')+'</div>'}
+    else{q='Dijkstra has already settled <b>'+res.order.slice(0,P.k).join(', ')+'</b>. Here are the tentative distances. Which vertex does it settle <b>next</b>?'+tentTable(G,P.st);inp='<input type="text" id="dj-ai" class="sm" maxlength="2" aria-label="Next vertex">'}
+    host.innerHTML='<div class="grid"><div><svg class="t" id="dj-asvg" role="img" aria-label="Graph for the exercise"></svg></div><div><p style="margin-top:0">'+q+'</p><div class="row">'+inp+'</div><div class="row"><button class="b dk" id="dj-ac">Check</button><button class="b" id="dj-as">Show answer</button><button class="b pri" id="dj-an">New problem</button><span class="sc" id="dj-asc">'+(tot?'Score: '+sc+' / '+tot:'')+'</span></div></div></div><div class="fb" id="dj-af" role="status" aria-live="polite"></div>';
+    drawG($('dj-asvg'),G,{vc:function(v){return v==='A'?'src':''},tag:function(v){return v==='A'?'source':''},sub:function(v){return cur==='next'&&P.st.settled[v]?'settled':''}});
+    $('dj-ac').onclick=function(){check(false)};$('dj-as').onclick=function(){check(true)};$('dj-an').onclick=gen}
+  function explain(){var G=P.G,res=P.res,a='',ch,only={},x,paths,all;
+    if(P.type==='next'){var cand=G.vertices.filter(function(v){return !P.st.settled[v]&&P.st.dist[v]<INF}),m=Math.min.apply(null,cand.map(function(v){return P.st.dist[v]}));
+      return '<div><b>Worked explanation.</b> The next vertex is the unsettled vertex with the smallest tentative distance, which is <b>'+m+'</b>: '+cand.filter(function(v){return P.st.dist[v]===m}).join(' or ')+'. Any vertex tied for the smallest value is accepted.</div>'}
+    if(P.type==='table')G.vertices.forEach(function(v){only[v]=1});else{x=P.t;while(x!=null&&x!=='A'){only[x]=1;x=res.parent[x]}}
+    paths=allPaths(G,'A',P.t||'A').filter(function(p){return p.cost===res.dist[P.t]});
+    a='<div><b>Worked explanation: the relaxations that set the answer</b></div>'+updLines(G,res,only).map(function(l){return '<div>\u2022 '+l+'</div>'}).join('');
+    if(P.type!=='table'){a+='<div><b>Result:</b> shortest distance to '+P.t+' = '+res.dist[P.t]+', route '+routeStr(pathTo(res.parent,'A',P.t,res.dist))+'.'+(paths.length>1?' There are <b>'+paths.length+'</b> equally short paths ('+paths.map(function(p){return p.path.join('')}).join(', ')+'), so any of them is correct.':'')+'</div>'}
+    else a+='<div><b>Final distances:</b> '+G.vertices.map(function(v){return v+'='+fmt(res.dist[v])}).join(', ')+'. A vertex with \u221e has no route.</div>';
+    return a}
+  function check(reveal){var G=P.G,res=P.res,ok=false,h='',i=$('dj-ai');
+    if(P.type==='table'){var ins=host.querySelectorAll('input[data-v]'),good=0,all=true;Array.prototype.forEach.call(ins,function(x){var v=x.getAttribute('data-v');if(reveal){x.value=fmt(res.dist[v]);x.className='sm ok';return}var n=parseNum(x.value),r=n===res.dist[v];if(x.value.trim()==='')all=false;x.className='sm '+(r?'ok':'no');if(r)good++});
+      if(!reveal&&!all){h='<div class="n">Fill in every box first.</div>';$('dj-af').innerHTML=h;return}
+      ok=good===ins.length;h=reveal?'<div><b>Answer shown.</b></div>':'<div class="'+(ok?'y':'n')+'"><b>'+good+' of '+ins.length+' correct.</b></div>'}
+    else{var val=i.value;if(reveal){i.value=P.type==='dist'?res.dist[P.t]:P.type==='pred'?res.parent[P.t]:P.type==='path'?pathTo(res.parent,'A',P.t,res.dist).join(' '):P.st&&(function(){var c=G.vertices.filter(function(v){return !P.st.settled[v]&&P.st.dist[v]<INF}),m=Math.min.apply(null,c.map(function(v){return P.st.dist[v]}));return c.filter(function(v){return P.st.dist[v]===m})[0]})();h='<div><b>Answer shown.</b></div>'}
+      else if(val.trim()===''){$('dj-af').innerHTML='<div class="n">Type an answer first.</div>';return}
+      else if(P.type==='dist'){var n=parseNum(val);ok=n===res.dist[P.t];h=ok?'<div class="y"><b>&#10003; Correct.</b></div>':'<div class="n"><b>&#10007; Not correct.</b> The shortest distance is '+res.dist[P.t]+'.</div>'}
+      else if(P.type==='pred'){var p=val.trim().toUpperCase(),w=weightOf(G,p,P.t),okp=w!=null&&G.vertices.indexOf(p)>-1&&res.dist[p]+w===res.dist[P.t]&&(G.directed?edgeIdx(G,p,P.t)>-1&&G.edges[edgeIdx(G,p,P.t)].u===p:true);ok=okp;
+        h=ok?'<div class="y"><b>&#10003; Correct.</b> '+p+' + edge weight '+w+' gives dist['+P.t+'] = '+res.dist[P.t]+(p!==res.parent[P.t]?' (this is another valid shortest route; the algorithm itself recorded '+res.parent[P.t]+')':'')+'.</div>':'<div class="n"><b>&#10007; Not correct.</b> A valid predecessor must have an edge to '+P.t+' and satisfy dist[p] + weight = '+res.dist[P.t]+'. The algorithm recorded '+res.parent[P.t]+'.</div>'}
+      else if(P.type==='path'){var tk=val.toUpperCase().match(/[A-L]/g)||[],bad=[],cost=0,k,okS=tk[0]==='A',okE=tk[tk.length-1]===P.t;
+        for(k=0;k<tk.length-1;k++){var ww=weightOf(G,tk[k],tk[k+1]);if(ww==null||(G.directed&&G.edges[edgeIdx(G,tk[k],tk[k+1])].u!==tk[k]))bad.push(tk[k]+arr(G)+tk[k+1]);else cost+=ww}
+        ok=okS&&okE&&!bad.length&&cost===res.dist[P.t];
+        h='<div class="'+(ok?'y':'n')+'"><b>'+(ok?'&#10003; Correct shortest path.':'&#10007; Not a shortest path yet.')+'</b></div><div>Starts at A: '+(okS?'yes':'<span class="bd">no</span>')+' &middot; ends at '+P.t+': '+(okE?'yes':'<span class="bd">no</span>')+' &middot; every step is an edge: '+(bad.length?'<span class="bd">no ('+bad.join(', ')+')</span>':'yes')+' &middot; total cost '+(bad.length?'?':cost)+' vs shortest '+res.dist[P.t]+'</div>'}
+      else{var c2=G.vertices.filter(function(v){return !P.st.settled[v]&&P.st.dist[v]<INF}),m2=Math.min.apply(null,c2.map(function(v){return P.st.dist[v]})),pick=val.trim().toUpperCase();ok=c2.indexOf(pick)>-1&&P.st.dist[pick]===m2;
+        h=ok?'<div class="y"><b>&#10003; Correct.</b></div>':'<div class="n"><b>&#10007; Not correct.</b> '+(P.st.settled[pick]?pick+' is already settled. ':G.vertices.indexOf(pick)<0?'':pick+' has tentative distance '+fmt(P.st.dist[pick])+'. ')+'The smallest tentative distance among unsettled vertices is '+m2+'.</div>'}
+      i.className=(i.className.replace(/ ?(ok|no)/g,''))+(reveal||ok?' ok':' no')}
+    if(!reveal&&!counted){counted=true;tot++;if(ok)sc++;$('dj-asc').textContent='Score: '+sc+' / '+tot}
+    $('dj-af').innerHTML=h+(ok||reveal||P.type==='table'&&!ok?explain():explain())}
+  gen()})();
+
+/* ---------- B: step trainer ---------- */
+(function(){var host=$('dj-trn'),T;
+  function fresh(G){T={G:G,adj:adjOf(G),st:newState(G,'A'),mis:0,first:null,done:false,log:''}}
+  function newG(){var np=newProblemGraph('dist');np.G.source='A';fresh(np.G);draw('Dijkstra starts at <b>A</b>. Only A has a distance so far. Click the vertex Dijkstra settles next.')}
+  function cands(){var st=T.st,c=T.G.vertices.filter(function(v){return !st.settled[v]&&st.dist[v]<INF}),m=Math.min.apply(null,c.map(function(v){return st.dist[v]}));return {list:c,min:m,best:c.filter(function(v){return st.dist[v]===m})}}
+  function stepLines(G,st,u){var c=cp(st);c.heap=new MinHeap();c.events=[];c.settled[u]=true;relaxFrom(c,adjOf(G),u,c.dist[u]);return c.events.map(function(e){var a=arr(G);return e.type==='skip'?'<div>\u2022 '+e.u+a+e.v+': '+e.v+' already settled, skip.</div>':'<div>\u2022 '+e.u+a+e.v+': '+(e.cand-e.w)+' + '+e.w+' = '+e.cand+(e.updated?' &lt; '+fmt(e.old)+', <b>update</b> dist['+e.v+'] to '+e.cand+' (parent '+e.u+')':' \u2265 '+fmt(e.old)+', no change')+'</div>'}).join('')}
+  function draw(msg,cls){var G=T.G,st=T.st;host.innerHTML='<div class="grid"><div><svg class="t" id="dj-tsvg" role="img" aria-label="Trainer graph. Click a vertex to settle it."></svg></div><div id="dj-ttab"></div></div><div class="msg '+(cls||'')+'" id="dj-tmsg" role="status" aria-live="polite" style="min-height:48px;font-weight:500">'+msg+'</div><div class="row"><button class="b" id="dj-th">Hint</button><button class="b" id="dj-ts">Show solution</button><button class="b" id="dj-tr">Reset</button><button class="b pri" id="dj-tn">New problem</button></div><div id="dj-tlog"></div>';
+    drawG($('dj-tsvg'),G,{vc:function(v){return (v==='A'?'src ':'')+(st.settled[v]?'st':st.dist[v]<INF?'q':'')+(!st.settled[v]&&!T.done?' click':'')},tag:function(v){return v==='A'?'source':''},sub:function(v){return fmt(st.dist[v])+(st.settled[v]?' \u2713':'')}});
+    $('dj-ttab').innerHTML=tentTable(G,st);$('dj-tlog').innerHTML=T.log;
+    Array.prototype.forEach.call($('dj-tsvg').querySelectorAll('.gv'),function(g){g.addEventListener('click',function(){pick(g.getAttribute('data-v'))});g.setAttribute('tabindex','0');g.setAttribute('role','button');g.setAttribute('aria-label','Settle vertex '+g.getAttribute('data-v'));g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(g.getAttribute('data-v'))}})});
+    $('dj-th').onclick=hint;$('dj-ts').onclick=solve;$('dj-tr').onclick=function(){fresh(T.G);draw('Reset. Click the vertex Dijkstra settles next.')};$('dj-tn').onclick=newG}
+  function finish(prefix){var G=T.G,st=T.st,un=G.vertices.filter(function(v){return st.dist[v]===INF});T.done=true;
+    return (prefix||'')+'<b>Finished.</b> No unsettled vertex has a finite distance. Final distances: '+G.vertices.map(function(v){return v+'='+fmt(st.dist[v])}).join(', ')+'.'+(un.length?' Unreachable: '+un.join(', ')+'.':'')+'<br>Mistakes: <b>'+T.mis+'</b>.'+(T.first?'<br>Your first wrong decision: '+T.first:'')}
+  function settle(v){var G=T.G,st=T.st,html=stepLines(G,st,v),d=st.dist[v];st.settled[v]=true;st.order.push(v);relaxFrom(st,T.adj,v,d);T.log='<div class="box"><b>Settled '+v+' (distance '+d+'). Relaxing its edges:</b>'+html+'</div>'}
+  function pick(v){if(T.done)return;var G=T.G,st=T.st,c=cands(),msg,cls='';
+    if(st.settled[v]){draw('<b>'+v+'</b> is already settled. Its distance is final.','bd');return}
+    if(st.dist[v]===INF){T.mis++;if(!T.first)T.first='you chose '+v+', but it has no route yet (distance \u221e).';draw('<b>&#10007; '+v+' has no route yet (distance \u221e).</b> Only vertices already reached can be settled. The smallest tentative distance is '+c.min+' ('+c.best.join(' or ')+').','bd');return}
+    if(st.dist[v]===c.min){settle(v);c=cands();msg=c.list.length?'<b>&#10003; Correct.</b> '+v+' has the smallest tentative distance ('+st.dist[v]+'), so it is settled. Its edges were relaxed (see below). Next?':finish('<b>&#10003; Correct.</b> ');if(!c.list.length)T.done=true;draw(msg,c.list.length?'gd':'');return}
+    T.mis++;if(!T.first)T.first='you chose '+v+' (tentative distance '+st.dist[v]+'), but '+c.best.join(' or ')+' had the smaller tentative distance '+c.min+'.';
+    T.log='<div class="box"><b>The correct decision: settle '+c.best[0]+' (distance '+c.min+'). Its relaxations would be:</b>'+stepLines(G,st,c.best[0])+'</div>';
+    draw('<b>&#10007; Not '+v+'.</b> It has tentative distance '+st.dist[v]+', but '+c.best.join(' or ')+' has the smaller value '+c.min+'. Dijkstra must settle the smallest one: any other route to '+v+' would have to pass through a vertex whose distance is at least '+c.min+'. Try again.','bd')}
+  function hint(){if(T.done)return;var c=cands();draw('<b>Hint:</b> look at the tentative distances in the table, ignoring settled vertices. The smallest value is <b>'+c.min+'</b>. Which vertex has it?')}
+  function solve(){while(!T.done){var c=cands();if(!c.list.length){break}settle(c.best[0])}var m=finish('<b>Solution shown.</b> ');draw(m);}
+  newG()})();
+
+/* ---------- C: identify the situation ---------- */
+(function(){var host=$('dj-idc'),opts=[['unreachable','The destination is unreachable'],['zero','A zero-weight edge'],['ties','Two or more equally short paths'],['negative','A negative edge (Dijkstra is not valid)'],['dirdiff','A directed edge changes the answer'],['fewer','The path with fewer edges is not the cheapest']],ord=shuffle(TEMPLATES.map(function(_,i){return i})),pos=0,sc=0,tot=0,done=false;
+  function show(){var t=TEMPLATES[ord[pos%ord.length]],G=t.g(),p=caseProps(G,G.source,G.dest);done=false;
+    host.innerHTML='<div class="grid"><div><svg class="t" id="dj-isvg" role="img" aria-label="Diagram: find the situation from S to T"></svg></div><div><p style="margin-top:0">Source <b>S</b>, destination <b>T</b>. Which situation does this diagram show?</p><div id="dj-iopts"></div></div></div><div class="fb" id="dj-if" role="status" aria-live="polite"></div><div class="row"><button class="b pri" id="dj-inx">Next diagram</button><span class="sc" id="dj-isc">'+(tot?'Score: '+sc+' / '+tot:'')+'</span></div>';
+    drawG($('dj-isvg'),G,{vc:function(v){return v==='S'?'src':v==='T'?'dst':''},tag:function(v){return v==='S'?'source':v==='T'?'destination':''}});
+    opts.forEach(function(o){var b=el('button','b',o[1]);b.style.display='block';b.style.width='100%';b.style.textAlign='left';b.style.margin='4px 0';b.onclick=function(){if(done)return;done=true;tot++;var ok=p[o[0]];if(ok)sc++;b.className='b '+(ok?'on':'');b.style.background=ok?'#96f2d7':'#fcc2d7';b.style.color='#1c2033';$('dj-isc').textContent='Score: '+sc+' / '+tot;$('dj-if').innerHTML='<div class="'+(ok?'y':'n')+'"><b>'+(ok?'&#10003; Correct.':'&#10007; Not this one.')+'</b></div><div>'+explain(t.key,G)+'</div>'};$('dj-iopts').appendChild(b)});
+    $('dj-inx').onclick=function(){pos++;if(pos%ord.length===0)ord=shuffle(ord);show()}}
+  function explain(key,G){var r=dijkstra(G,'S',{allowNegative:true}),ps;
+    if(key==='unreachable')return 'No sequence of edges leads from S to T, so dist(T) stays \u221e and T has no parent. Never print a path for it.';
+    if(key==='zero')return 'The edge S\u2013A has weight 0. It is allowed, costs nothing, and still counts as a step. Cheapest route to T: '+routeStr(pathTo(r.parent,'S','T',r.dist))+', cost '+r.dist.T+'.';
+    if(key==='ties'){ps=allPaths(G,'S','T').filter(function(x){return x.cost===r.dist.T});return 'Two routes cost the same, <b>'+r.dist.T+'</b>: '+ps.map(function(x){return routeStr(x.path)}).join(' and ')+'. The shortest distance is unique, but the shortest path is not. Either path is a correct answer.'}
+    if(key==='negative')return 'The edge A\u2192T has weight \u22122. Dijkstra\u2019s algorithm needs every weight to be 0 or more, so this graph is outside its guarantee. Use Bellman-Ford.';
+    if(key==='dirdiff'){var u=dijkstra(undirectedCopy(G),'S');return 'Using the arrows, the cost to T is <b>'+r.dist.T+'</b> (S\u2192A\u2192T). If the edges were undirected it would be <b>'+u.dist.T+'</b> (S\u2013B\u2013T). The arrow T\u2192B cannot be travelled from B to T.'}
+    var all=allPaths(G,'S','T').sort(function(a,b){return a.cost-b.cost}),few=allPaths(G,'S','T').sort(function(a,b){return a.path.length-b.path.length});
+    return 'The route with the fewest edges is '+routeStr(few[0].path)+' ('+(few[0].path.length-1)+' edge, cost '+few[0].cost+'). The cheapest is '+routeStr(all[0].path)+' ('+(all[0].path.length-1)+' edges, cost '+all[0].cost+'). Fewest edges is not the same as smallest total weight.'}
+  show()})();
+
+/* ---------- D: quiz ---------- */
+var Q=[
+ ['What does Dijkstra\u2019s algorithm compute?',['The cheapest paths from one source to all vertices, when no weight is negative','The path with the fewest edges only','A minimum spanning tree','The longest path'],0,'It finds shortest (cheapest) paths from a single source in a graph whose edge weights are 0 or more.'],
+ ['Relaxing an edge (u, v) means:',['Deleting the edge','Checking if dist[u] + w gives a shorter route to v, and updating if it does','Settling v','Adding w to every distance'],1,'Relaxation compares the new candidate distance with dist[v] and updates dist and parent only if it is strictly smaller.'],
+ ['Which vertex is settled next?',['The unsettled vertex with the smallest tentative distance','The vertex with the fewest edges','The alphabetically first vertex','The most recently discovered vertex'],0,'The priority queue always gives back the entry with the smallest distance.'],
+ ['When is the shortest distance to a vertex final?',['As soon as it is first discovered','When its (non-stale) entry is removed from the priority queue','After one relaxation','Only when the algorithm ends'],1,'With non-negative weights, no later route can beat the smallest queue entry, so it is final when it is removed.'],
+ ['Why does Dijkstra need non-negative weights?',['Negative numbers cannot be stored','A later negative edge could make an already-settled vertex cheaper, breaking the \u201cfinal\u201d assumption','It makes the heap slower','Because graphs have cycles'],1,'See the negative-edge demo in section 5. Cycles with non-negative weights are fine.'],
+ ['Time for an adjacency list with a binary heap (lazy duplicates)?',['O(V\u00b2)','O((V + E) log V)','O(V + E)','O(E\u00b2)'],1,'Each edge can cause one heap insertion costing O(log V), and each vertex is settled once.'],
+ ['At the end, dist[v] is \u221e. This means:',['A negative cycle exists','v is unreachable from the source','v was settled first','The algorithm failed'],1,'Infinity means no route was ever found. The vertex has no parent and no path.'],
+ ['Two routes to v have equal total cost. With the strict test (<), parent[v] \u2026',['changes to the later route','stays as the first route found','becomes empty','stops the algorithm'],1,'The update happens only when the new distance is strictly smaller, so a tie keeps the old parent.'],
+ ['How do you rebuild the path to t?',['Sort the distances','Follow parent[] from t back to the source, then reverse','Run BFS again','Read the queue in order'],1,'parent[t], parent[parent[t]], \u2026 leads back to the source. Reverse that list to get the path.']
+],qs=0,qa=0;
+Q.forEach(function(q,qi){var d=el('div','q','<p>'+(qi+1)+'. '+q[0]+'</p>');q[1].forEach(function(o,oi){var b=el('button','b');b.textContent=o;
+  b.onclick=function(){if(d.done)return;d.done=1;qa++;var bs=d.querySelectorAll('button');if(oi===q[2]){b.className='b ok';qs++}else{b.className='b no';bs[q[2]].className='b ok'}
+    d.insertAdjacentHTML('beforeend','<small>'+q[3]+'</small>');$('dj-score').textContent='Score: '+qs+' / '+qa+(qa===Q.length?(qs===Q.length?'. Perfect!':'. Review the sections you missed.'):'')};d.appendChild(b)});$('dj-quiz').appendChild(d)});
+
+/* ---------- start ---------- */
+$('dj-start').onclick=function(){R.dispatchEvent(new CustomEvent('djgo',{detail:{id:'dj-s1'}}))};
+R.djApi={INF:INF,dijkstra:dijkstra,replay:replay,pathTo:pathTo,edgeIdx:edgeIdx,undirectedCopy:undirectedCopy,PRESETS:PRESETS,mkG:mkG,drawG:drawG,pathEdges:pathEdges,treeEdges:treeEdges,routeStr:routeStr,fmt:fmt,tbl:tbl,el:el};
+changed();
+
+})();
+</script>
+<script>
+(function(){
+var R=document.getElementById('dijkstra-blog'),A=R&&R.djApi;
+function $(i){return document.getElementById(i)}
+if(!A){var m0=$('dj-d-exp');if(m0)m0.textContent='This section needs the main blog script. Paste this script block after the main script block.';return}
+var INF=A.INF,mk=A.mkG,D={G:null,src:'',dst:'',states:[],k:0,timer:null,und:{}};
+function ring(){var g=mk(true,['A','B','C','D'],{A:[110,70],B:[330,70],C:[330,230],D:[110,230]},[['A','B',1],['B','C',1],['C','D',1],['D','A',10]]);g.source='A';g.dest='D';return g}
+function unr(){var g=mk(true,['S','A','B','C','T'],{S:[50,150],A:[190,70],B:[340,150],C:[190,240],T:[470,150]},[['S','A',2],['A','B',3],['C','B',1],['C','T',2]]);g.source='S';g.dest='T';return g}
+function tw(){var g=mk(true,['A','B','C','D','E'],{A:[60,150],B:[190,60],C:[330,60],D:[330,240],E:[470,150]},[['A','B',2],['B','A',2],['B','C',3],['C','B',3],['C','D',1],['D','E',2],['A','E',9],['E','A',1]]);g.source='A';g.dest='E';return g}
+function cyc(){var g=mk(true,['A','B','C','D'],{A:[80,70],B:[270,70],C:[270,230],D:[460,150]},[['A','B',2],['B','C',2],['C','A',1],['C','D',4]]);g.source='A';g.dest='D';return g}
+var EX=[['Notes example (directed)',function(){return A.PRESETS.tie()}],['One-way ring',ring],['Unreachable because of direction',unr],['Two-way and one-way roads',tw],['Cycle with non-negative weights',cyc]],cur=0;
+function msg(t,c){var m=$('dj-d-msg');m.textContent=t;m.className='msg'+(c?' '+c:'')}
+function fill(id,V,val){var o='';V.forEach(function(v){o+='<option value="'+v+'"'+(v===val?' selected':'')+'>'+v+'</option>'});$(id).innerHTML=o}
+function stop(){if(D.timer){clearInterval(D.timer);D.timer=null}$('dj-d-p').disabled=false;$('dj-d-pa').disabled=true}
+function text(ev){var G=D.G;
+  if(ev.type==='init')return '<b>Initialise.</b> dist('+D.src+') = 0 and every other vertex = \u221e. All parents are empty and nothing is settled. Put (0, '+D.src+') in the priority queue.';
+  if(ev.type==='pop')return ev.stale?'<b>Remove ('+ev.d+', '+ev.v+') from the queue.</b> '+ev.v+' is already settled, so this is a <b>stale entry</b>. Ignore it.':'<b>Remove the smallest entry ('+ev.d+', '+ev.v+').</b> Vertex '+ev.v+' is now <b>settled</b>: its shortest distance, '+ev.d+', is final. Next we look only at the edges that <b>start</b> at '+ev.v+'.';
+  if(ev.type==='relax')return '<b>Edge '+ev.u+' \u2192 '+ev.v+' (weight '+ev.w+').</b> Candidate = dist['+ev.u+'] + '+ev.w+' = '+(ev.cand-ev.w)+' + '+ev.w+' = '+ev.cand+'. Current dist['+ev.v+'] = '+A.fmt(ev.old)+'. '+(ev.updated?ev.cand+' &lt; '+A.fmt(ev.old)+', so <b>update</b>: dist['+ev.v+'] = '+ev.cand+', parent['+ev.v+'] = '+ev.u+', and push ('+ev.cand+', '+ev.v+').':ev.cand+' is not less than '+A.fmt(ev.old)+(ev.tie?' (a tie, so the old parent stays)':'')+', so <b>no change</b>.');
+  if(ev.type==='skip')return '<b>Edge '+ev.u+' \u2192 '+ev.v+' (weight '+ev.w+').</b> '+ev.v+' is already settled, so its distance is final. Skip.';
+  if(ev.type==='stop')return '<b>Stop early.</b> The destination is settled.';
+  return '<b>Finished.</b> The queue is empty. Vertices still at \u221e cannot be reached by following the arrows from '+D.src+'.'}
+function prepare(){stop();var G=D.G,r=A.dijkstra(G,D.src);D.states=A.replay(G,D.src,r.events);D.k=0;D.und=A.dijkstra(A.undirectedCopy(G),D.src).dist;
+  fill('dj-d-src',G.vertices,D.src);fill('dj-d-dst',G.vertices,D.dst);render()}
+function render(){var G=D.G,s=D.states[D.k],p=A.pathTo(s.parent,D.src,D.dst,s.dist),pe=A.pathEdges(G,p),te=A.treeEdges(G,s.parent),fo=s.focus,cmp=$('dj-d-cmp').checked;
+  A.drawG($('dj-d-svg'),G,{ec:function(e,i){return fo&&e.u===fo.u&&e.v===fo.v?' focus':pe[i]?' path':te[i]?' tree':''},
+    vc:function(v){return (v===D.src?'src ':'')+(s.cur===v?'cur':s.settled[v]?'st':s.dist[v]<INF?'q':'')+(v===D.dst?' dst':'')},
+    tag:function(v){return v===D.src?'source':v===D.dst?'destination':''},sub:function(v){return A.fmt(s.dist[v])+(s.settled[v]?' \u2713':'')}});
+  $('dj-d-exp').innerHTML='<b>Step '+(D.k+1)+' of '+D.states.length+'.</b> '+text(s.ev);$('dj-d-c').textContent=(D.k+1)+' / '+D.states.length;
+  var last=D.k===D.states.length-1,head=['Vertex','Distance','Status'].concat(cmp?['If undirected']:[]);
+  $('dj-d-dist').innerHTML=A.tbl(head,G.vertices.map(function(v){var row=[v,A.fmt(s.dist[v]),(v===D.src?'source, ':'')+(s.cur===v?'current (just settled)':s.settled[v]?'settled':s.dist[v]<INF?'in queue (tentative)':'not reached yet')];if(cmp)row.push(A.fmt(D.und[v])+(last&&D.und[v]!==s.dist[v]?' \u2260 different':''));return row}),G.vertices.map(function(v){return s.cur===v?'hit':''}));
+  $('dj-d-pred').innerHTML=A.tbl(['Vertex','Parent'],G.vertices.map(function(v){return [v,s.parent[v]==null?(v===D.src?'none (source)':'\u2014'):s.parent[v]]}));
+  $('dj-d-pq').innerHTML=s.pq.length?s.pq.map(function(x){var st=s.settled[x[1]]||x[0]>s.dist[x[1]];return '<span class="chip '+(st?'s':'q')+'">('+x[0]+', '+x[1]+')'+(st?' stale':'')+'</span>'}).join(''):'<span class="lg">(empty)</span>';
+  $('dj-d-path').innerHTML=p?A.routeStr(p)+' &middot; cost <b>'+s.dist[D.dst]+'</b><br><span class="lg">'+(s.settled[D.dst]?'Final: the destination is settled.':'Tentative: the best route found so far.')+'</span>':(last?'<span class="bd">'+D.dst+' is unreachable from '+D.src+' by following the arrows. Its distance stays \u221e.</span>':'<span class="lg">No route to '+D.dst+' has been found yet (distance \u221e).</span>');
+  var c=s.cur!==null?s.cur:(s.focus?s.focus.u:null);
+  if(c===null)$('dj-d-edges').innerHTML='<span class="lg">Step forward until a vertex is settled.</span>';
+  else{var outs=G.edges.filter(function(e){return e.u===c}),ins=G.edges.filter(function(e){return e.v===c});
+    $('dj-d-edges').innerHTML='<div><b>Vertex '+c+'</b></div><div><b>Out-edges (used now):</b> '+(outs.length?outs.map(function(e){return '<span class="chip g">'+e.u+' \u2192 '+e.v+' ('+e.w+')</span>'}).join(''):'<span class="bd">none: a dead end</span>')+'</div><div><b>In-edges (not used to leave '+c+'):</b> '+(ins.length?ins.map(function(e){return '<span class="chip">'+e.u+' \u2192 '+e.v+' ('+e.w+')</span>'}).join(''):'none')+'</div>'}
+  $('dj-d-b').disabled=D.k===0;$('dj-d-n').disabled=last;if(last&&D.timer)stop()}
+function load(i){cur=i;D.G=EX[i][1]();D.src=D.G.source;D.dst=D.G.dest;Array.prototype.forEach.call($('dj-d-pre').children,function(b,k){b.className='b'+(k===i?' on':'');b.setAttribute('aria-pressed',String(k===i))});msg('Loaded: '+EX[i][0]+'.','ok');prepare()}
+EX.forEach(function(e,i){var b=A.el('button','b',e[0]);b.onclick=function(){load(i)};$('dj-d-pre').appendChild(b)});
+$('dj-d-src').onchange=function(){D.src=$('dj-d-src').value;prepare()};$('dj-d-dst').onchange=function(){D.dst=$('dj-d-dst').value;prepare()};
+$('dj-d-swap').onclick=function(){var t=D.src;D.src=D.dst;D.dst=t;msg('Source and destination swapped.','ok');prepare()};
+$('dj-d-rev').onclick=function(){D.G.edges=D.G.edges.map(function(e){return {u:e.v,v:e.u,w:e.w}});msg('Every arrow was reversed. Distances from '+D.src+' change because each edge now points the other way.','ok');prepare()};
+$('dj-d-cmp').onchange=render;
+$('dj-d-n').onclick=function(){stop();if(D.k<D.states.length-1){D.k++;render()}};$('dj-d-b').onclick=function(){stop();if(D.k>0){D.k--;render()}};$('dj-d-r').onclick=function(){stop();D.k=0;render()};
+$('dj-d-p').onclick=function(){if(D.timer)return;if(D.k>=D.states.length-1){D.k=0;render()}$('dj-d-p').disabled=true;$('dj-d-pa').disabled=false;D.timer=setInterval(function(){if(D.k<D.states.length-1){D.k++;render()}else stop()},1000)};
+$('dj-d-pa').onclick=stop;
+R.addEventListener('djslide',function(e){if(e.detail.id!=='dj-s3b')stop()});
+load(0);msg('');
+})();
+</script>
+<script>
+(function(){
+var R=document.getElementById('dijkstra-blog'),nav=R.querySelector('nav'),hero=document.getElementById('dj-home');
+var secs=Array.prototype.filter.call(R.children,function(e){return e.tagName==='SECTION'});
+var slides=[hero].concat(secs),idx={},cur=0,deck=true,dir='fwd',N=secs.filter(function(s){return /^\d+\./.test(s.querySelector('h2').textContent)}).length;
+slides.forEach(function(s,k){s.classList.add('slide');idx[s.id]=k});
+function label(k){var m=slides[k].querySelector('h2').textContent.match(/^(\d+[A-Z]?)\./);return m?m[1]:String(k)}
+function title(k){if(k===0)return 'Home';var h=slides[k].querySelector('h2');return h?h.textContent.replace(/^\d+[A-Z]?\.\s*/,''):'Section'}
+var top=document.createElement('div');top.className='dkt';
+top.innerHTML='<button class="b dkn" data-d="-1">&larr; Previous</button><div class="dkm"><span class="dkc" aria-live="polite"></span><div class="dkp"><i></i></div></div><button class="b dk dkn" data-d="1">Next &rarr;</button><button class="b" data-m="notes" aria-pressed="false">Show all sections</button><button class="b" data-m="fs">Fullscreen</button>';
+nav.parentNode.insertBefore(top,nav.nextSibling);
+var bot=document.createElement('div');bot.className='dkb';
+bot.innerHTML='<button class="b" data-d="-1"></button><span class="dkh">Tip: use the &larr; and &rarr; keys</span><button class="b dk" data-d="1"></button>';
+R.insertBefore(bot,R.querySelector('footer'));
+var navBtns=Array.prototype.slice.call(nav.querySelectorAll('button'));
+function render(){R.classList.toggle('deck',deck);
+  slides.forEach(function(s,k){s.classList.remove('cur','fwd','back');if(k===cur)s.classList.add('cur',dir)});
+  navBtns.forEach(function(b){var on=idx[b.getAttribute('data-go')]===cur;b.className=on?'cur':'';if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+  top.querySelector('.dkc').textContent=(cur===0?'Home':label(cur)+' / '+N+'  '+title(cur));
+  top.querySelector('.dkp i').style.width=(cur/(slides.length-1)*100)+'%';
+  var bs=bot.querySelectorAll('[data-d]'),tb=top.querySelectorAll('.dkn');
+  bs[0].textContent=cur>0?'\u2190 '+title(cur-1):'';bs[0].style.visibility=cur>0?'visible':'hidden';
+  bs[1].textContent=cur<slides.length-1?'Next: '+title(cur+1)+' \u2192':'';bs[1].style.visibility=cur<slides.length-1?'visible':'hidden';
+  tb[0].disabled=cur===0;tb[1].disabled=cur===slides.length-1;
+  var nb=top.querySelector('[data-m="notes"]');nb.textContent=deck?'Show all sections':'Show one at a time';nb.setAttribute('aria-pressed',String(!deck))}
+function toTop(){try{var fs=document.fullscreenElement||document.webkitFullscreenElement;if(fs===R){R.scrollTop=0}else{var y=R.getBoundingClientRect().top+(window.pageYOffset||0)-8;if(y<(window.pageYOffset||0))window.scrollTo(0,Math.max(0,y))}}catch(e){}}
+function setHash(push){try{var h='#'+slides[cur].id;if(location.hash!==h)history[push?'pushState':'replaceState'](null,'',h)}catch(e){}}
+function go(k,d,fromHash){if(k<0||k>=slides.length)return;dir=(d||(k>=cur?1:-1))>0?'fwd':'back';cur=k;render();if(!fromHash){toTop();setHash(true)}else toTop();R.dispatchEvent(new CustomEvent('djslide',{detail:{id:slides[cur].id}}))}
+navBtns.forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-go'),k=idx[id];if(deck)go(k);else{cur=k;render();var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}}});
+Array.prototype.forEach.call(R.querySelectorAll('[data-d]'),function(b){b.onclick=function(){go(cur+parseInt(b.getAttribute('data-d'),10))}});
+R.addEventListener('djgo',function(e){var k=idx[e.detail.id];if(k===undefined)return;if(deck)go(k);else{cur=k;render();document.getElementById(e.detail.id).scrollIntoView({behavior:'smooth'})}});
+top.querySelector('[data-m="notes"]').onclick=function(){deck=!deck;render()};
+var fsb=top.querySelector('[data-m="fs"]');
+if(!(R.requestFullscreen||R.webkitRequestFullscreen))fsb.style.display='none';
+fsb.onclick=function(){if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(R.requestFullscreen||R.webkitRequestFullscreen).call(R)}};
+document.addEventListener('fullscreenchange',function(){fsb.textContent=document.fullscreenElement?'Exit fullscreen':'Fullscreen'});
+document.addEventListener('keydown',function(e){if(!deck||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;var t=e.target,tn=t&&t.tagName;if(tn==='INPUT'||tn==='TEXTAREA'||tn==='SELECT'||(t&&t.isContentEditable)||(t&&t.getAttribute&&t.getAttribute('role')==='textbox'))return;
+  if(e.key==='ArrowRight')go(cur+1,1);else if(e.key==='ArrowLeft')go(cur-1,-1)});
+var tx=0,ty=0,ok=false;
+R.addEventListener('touchstart',function(e){var t=e.touches[0];tx=t.clientX;ty=t.clientY;ok=!e.target.closest('.wrap,pre,input,select,textarea,button,svg,table,a')},{passive:true});
+R.addEventListener('touchend',function(e){if(!deck||!ok)return;var t=e.changedTouches[0],dx=t.clientX-tx,dy=t.clientY-ty;if(Math.abs(dx)>70&&Math.abs(dy)<45)go(cur+(dx<0?1:-1))},{passive:true});
+function fromHash(){var h=(location.hash||'').replace('#','');if(h&&idx[h]!==undefined){if(idx[h]!==cur||!R.querySelector('.slide.cur'))go(idx[h],undefined,true)}else if(!h&&cur!==0){go(0,-1,true)}}
+window.addEventListener('popstate',fromHash);window.addEventListener('hashchange',fromHash);
+var h0=(location.hash||'').replace('#','');if(h0&&idx[h0]!==undefined)cur=idx[h0];
+render();
+})();
+</script>
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="graph-traversal.html"><small>← Previous lesson</small><b>Graph traversal: BFS &amp; DFS</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="floyd-warshall.html"><small>Next lesson →</small><b>Floyd–Warshall algorithm</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>
