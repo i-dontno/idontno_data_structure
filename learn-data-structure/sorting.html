@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sorting algorithms · Learn Data Structures</title>
+<title>Sorting algorithms · Learn Data Structures with idontno</title>
 <meta name="description" content="Bubble, selection, insertion, quick and merge sort with a performance comparison.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 <header class="idn-top"><div class="idn-top-in">
   <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
-    <span class="idn-bname"><b>Learn Data Structures</b></span></a>
+    <span class="idn-bname"><b>Learn Data Structures with idontno</b><small>by idontno</small></span></a>
   <div class="idn-search" role="search">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
@@ -64,29 +64,29 @@
   <article class="idn-lesson">
 <!-- Sorting Algorithms: Interactive Guide (paste in Blogger's HTML view) -->
 <style>
-.srt{--ink:#1b2130;--muted:#5a6375;--paper:#fbf8f2;--card:#fff;--line:#e5dfd3;--soft:#f3efe6;--accent:#2f4bd8;--accent-ink:#1f35a8;--accent2:#e8642c;
---c-def:#9db0cf;--c-cmp:#f2b232;--c-swp:#e5484d;--c-fin:#24a37d;--c-piv:#7c4ddb;--c-key:#2f7ef5;--c-min:#d9468f;--c-lz:#c8d6ff;--c-rz:#ffd5bd;--c-sp:#c7e8dc;--c-mrg:#8fd3bd;
+.srt{--ink:#1c2033;--muted:#4a5068;--paper:#fbfaf6;--card:#fff;--line:#e3dfd3;--soft:#f3f1ea;--accent:#2f5bd3;--accent-ink:#2f5bd3;--accent2:#d9480f;
+--c-def:#9aa0bb;--c-cmp:#fcc419;--c-swp:#c92a2a;--c-fin:#0b7a6f;--c-piv:#7048e8;--c-key:#2f5bd3;--c-min:#d6336c;--c-lz:#c8d6fa;--c-rz:#ffd8a8;--c-sp:#b2f2bb;--c-mrg:#96f2d7;
 font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;font-size:17px;max-width:1060px;margin:0 auto;padding:0 0 40px;border-radius:18px;overflow:hidden;overflow:clip;text-align:left}
 .srt *{box-sizing:border-box}
 .srt h1,.srt h2,.srt h3,.srt h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.2;color:var(--ink);margin:0}
 .srt p{margin:0 0 12px}
 .srt a{color:var(--accent)}
 .srt code,.srt kbd,.srt pre,.srt .mono{font-family:'Fira Code',ui-monospace,Consolas,monospace}
-.srt :not(pre)>code{background:#ece7dc;padding:1px 6px;border-radius:6px;font-size:.88em;color:#7a2e0e}
+.srt :not(pre)>code{background:#e3dfd3;padding:1px 6px;border-radius:6px;font-size:.88em;color:#a8380b}
 .srt ul,.srt ol{margin:0 0 12px;padding-left:22px}
 .srt li{margin:3px 0}
 .srt table{border-collapse:collapse;width:100%;font-size:15px;margin:0}
 .srt th,.srt td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
-.srt th{background:#efe9dd;font-weight:700}
-.srt tbody tr:nth-child(even) td{background:#fcfaf6}
+.srt th{background:#e3dfd3;font-weight:700}
+.srt tbody tr:nth-child(even) td{background:#fbfaf6}
 .srt .tbl{overflow-x:auto;margin:10px 0 16px;border-radius:10px;border:1px solid var(--line)}
 .srt .tbl table th,.srt .tbl table td{border-left:none;border-right:none}
 /* hero */
-.srt .hero{background:radial-gradient(circle at 85% 20%,#ffb48a 0,transparent 32%),radial-gradient(circle at 10% 90%,#8ea2ff 0,transparent 40%),#1b2130;color:#fff;padding:46px 34px 34px}
+.srt .hero{background:var(--ink);color:#fff;padding:46px 34px 34px}
 .srt .hero h1{color:#fff;font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.02em}
-.srt .hero p{color:#dfe4f2;max-width:720px;font-size:18px;margin-top:12px}
+.srt .hero p{color:#c9cde0;max-width:720px;font-size:18px;margin-top:12px}
 .srt .hero-bars{display:flex;gap:6px;align-items:flex-end;height:64px;margin-bottom:18px}
-.srt .hero-bars span{width:16px;border-radius:4px 4px 0 0;background:#9db0cf}
+.srt .hero-bars span{width:16px;border-radius:4px 4px 0 0;background:#9aa0bb}
 .srt .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .srt .chip{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:4px 12px;font-size:14px}
 .srt .wrap{padding:0 26px}
@@ -104,73 +104,73 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 .srt .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:12px 0}
 .srt .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
 .srt .note,.srt .warn,.srt .exam,.srt .key{border-radius:12px;padding:12px 16px;margin:14px 0;border-left:5px solid}
-.srt .note{background:#eef2ff;border-color:var(--accent)}
-.srt .warn{background:#fff3e8;border-color:var(--accent2)}
-.srt .exam{background:#f4ecff;border-color:#7c4ddb}
-.srt .key{background:#e9f7f1;border-color:#24a37d}
+.srt .note{background:#e9effd;border-color:var(--accent)}
+.srt .warn{background:#fff1e8;border-color:var(--accent2)}
+.srt .exam{background:#f3f0ff;border-color:#7048e8}
+.srt .key{background:#f3f1ea;border-color:#0b7a6f}
 .srt .note b:first-child,.srt .warn b:first-child,.srt .exam b:first-child,.srt .key b:first-child{display:block;margin-bottom:2px}
 .srt .pros,.srt .cons{border-radius:12px;padding:12px 16px}
-.srt .pros{background:#eaf7f0}.srt .cons{background:#fdeeee}
+.srt .pros{background:#f3f1ea}.srt .cons{background:#fdeaea}
 .srt .pros h4,.srt .cons h4{margin-top:0}
 .srt .term{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:12px 0}
 .srt .term div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:15.5px}
 .srt .term b{display:block;font-size:16px}
 .srt .arr{display:inline-flex;gap:3px;flex-wrap:wrap;vertical-align:middle}
-.srt .arr i{font-style:normal;font-family:'Fira Code',monospace;font-size:13.5px;min-width:30px;text-align:center;padding:3px 5px;border:1px solid #cfd6e4;border-radius:6px;background:#fff}
+.srt .arr i{font-style:normal;font-family:'Fira Code',monospace;font-size:13.5px;min-width:30px;text-align:center;padding:3px 5px;border:1px solid #e3dfd3;border-radius:6px;background:#fff}
 .srt .arr i.f{background:var(--c-fin);color:#fff;border-color:var(--c-fin)}
 .srt .arr i.p{background:var(--c-piv);color:#fff;border-color:var(--c-piv)}
 .srt .arr i.k{background:var(--c-key);color:#fff;border-color:var(--c-key)}
-.srt .arr i.s{background:var(--c-sp);border-color:#9fd2bf}
+.srt .arr i.s{background:var(--c-sp);border-color:#9aa0bb}
 .srt .arr i.m{background:var(--c-min);color:#fff;border-color:var(--c-min)}
-.srt .arr i.c{background:var(--c-cmp);border-color:#d99a1a}
+.srt .arr i.c{background:var(--c-cmp);border-color:#b7791f}
 .srt .arr i.g{border-style:dashed;color:#999;background:transparent}
-.srt .arr i.r{background:var(--c-mrg);border-color:#5fb79c}
-.srt .pseudo{background:#20263a;color:#e7ebf7;border-radius:12px;padding:14px 18px;font-family:'Fira Code',monospace;font-size:14px;line-height:1.7;white-space:pre;overflow-x:auto;margin:10px 0}
-.srt .pseudo b{color:#ffb98f;font-weight:500}
+.srt .arr i.r{background:var(--c-mrg);border-color:#9aa0bb}
+.srt .pseudo{background:#1c2033;color:#f3f1ea;border-radius:12px;padding:14px 18px;font-family:'Fira Code',monospace;font-size:14px;line-height:1.7;white-space:pre;overflow-x:auto;margin:10px 0}
+.srt .pseudo b{color:#ffa94d;font-weight:500}
 /* code tabs */
-.srt .code{border-radius:14px;overflow:hidden;border:1px solid #2c3450;margin:12px 0;background:#1b2030}
-.srt .code-bar{display:flex;align-items:center;gap:4px;background:#262c40;padding:6px 8px;flex-wrap:wrap}
-.srt .code-tab{background:transparent;border:0;color:#aeb7cf;font:600 13.5px 'Bricolage Grotesque',sans-serif;padding:6px 12px;border-radius:8px;cursor:pointer}
-.srt .code-tab.on{background:#3a4260;color:#fff}
-.srt .copy{margin-left:auto;background:#3a4260;color:#fff;border:0;border-radius:8px;padding:6px 12px;font:600 13px 'Bricolage Grotesque',sans-serif;cursor:pointer}
-.srt .copy:hover{background:#4c5680}
-.srt .code pre{margin:0;padding:14px 18px;color:#e4e8f4;font-size:13.8px;line-height:1.6;overflow-x:auto;background:#1b2030;white-space:pre}
+.srt .code{border-radius:14px;overflow:hidden;border:1px solid #4a5068;margin:12px 0;background:#1c2033}
+.srt .code-bar{display:flex;align-items:center;gap:4px;background:#4a5068;padding:6px 8px;flex-wrap:wrap}
+.srt .code-tab{background:transparent;border:0;color:#9aa0bb;font:600 13.5px 'Bricolage Grotesque',sans-serif;padding:6px 12px;border-radius:8px;cursor:pointer}
+.srt .code-tab.on{background:#4a5068;color:#fff}
+.srt .copy{margin-left:auto;background:#4a5068;color:#fff;border:0;border-radius:8px;padding:6px 12px;font:600 13px 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.srt .copy:hover{background:#4a5068}
+.srt .code pre{margin:0;padding:14px 18px;color:#e6e8ef;font-size:13.8px;line-height:1.6;overflow-x:auto;background:#1c2033;white-space:pre}
 .srt .code .pane{display:none}.srt .code .pane.on{display:block}
-.srt .code .outp{border-top:1px dashed #3a4260;padding:10px 18px;color:#9be3c2;font-family:'Fira Code',monospace;font-size:13.5px;white-space:pre-wrap;background:#161a28}
-.srt .code .outp:before{content:'Output';display:block;color:#7d87a6;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;font-family:'Bricolage Grotesque',sans-serif}
-.srt .code .k,.srt .code .kn,.srt .code .kc,.srt .code .ow{color:#ff9e7a}
-.srt .code .nf,.srt .code .fm{color:#7fc3ff}
-.srt .code .s,.srt .code .s1,.srt .code .s2,.srt .code .sa{color:#b7e48a}
-.srt .code .sd{color:#93c78a;font-style:italic}
-.srt .code .c1,.srt .code .c{color:#7d87a6;font-style:italic}
-.srt .code .mi,.srt .code .mf{color:#ffd479}
-.srt .code .nb,.srt .code .bp{color:#d7a6ff}
-.srt .code .o{color:#ffbfa8}
+.srt .code .outp{border-top:1px dashed #4a5068;padding:10px 18px;color:#96f2d7;font-family:'Fira Code',monospace;font-size:13.5px;white-space:pre-wrap;background:#1c2033}
+.srt .code .outp:before{content:'Output';display:block;color:#9aa0bb;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;font-family:'Bricolage Grotesque',sans-serif}
+.srt .code .k,.srt .code .kn,.srt .code .kc,.srt .code .ow{color:#ffa94d}
+.srt .code .nf,.srt .code .fm{color:#91a7ff}
+.srt .code .s,.srt .code .s1,.srt .code .s2,.srt .code .sa{color:#8ce99a}
+.srt .code .sd{color:#9aa0bb;font-style:italic}
+.srt .code .c1,.srt .code .c{color:#9aa0bb;font-style:italic}
+.srt .code .mi,.srt .code .mf{color:#fcc419}
+.srt .code .nb,.srt .code .bp{color:#d0bfff}
+.srt .code .o{color:#ffd8a8}
 /* buttons and inputs */
 .srt .btn{font:600 14.5px 'Bricolage Grotesque',sans-serif;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:10px;padding:7px 13px;cursor:pointer;transition:transform .08s,background .15s;white-space:nowrap}
-.srt .btn:hover{background:#f1ede4}
+.srt .btn:hover{background:#f3f1ea}
 .srt .btn:active{transform:translateY(1px)}
 .srt .btn.pri{background:var(--ink);color:#fff}
-.srt .btn.pri:hover{background:#323b52}
-.srt .btn.acc{background:var(--accent);border-color:var(--accent);color:#fff}
+.srt .btn.pri:hover{background:#4a5068}
+.srt .btn.acc{background:var(--accent2);border-color:var(--accent2);color:#fff}
 .srt .btn:disabled{opacity:.4;cursor:not-allowed}
 .srt .btn.sm{padding:4px 10px;font-size:13.5px}
-.srt select,.srt input[type=text],.srt input[type=number]{font:500 14.5px 'Bricolage Grotesque',sans-serif;border:1.5px solid #c9c2b4;border-radius:10px;padding:7px 10px;background:#fff;color:var(--ink);max-width:100%}
+.srt select,.srt input[type=text],.srt input[type=number]{font:500 14.5px 'Bricolage Grotesque',sans-serif;border:1.5px solid #d3cfc4;border-radius:10px;padding:7px 10px;background:#fff;color:var(--ink);max-width:100%}
 .srt input[type=text].mono{font-family:'Fira Code',monospace;font-size:14px}
 .srt label.lb{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:3px}
 .srt .ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:10px}
 .srt .ctl>div{display:flex;flex-direction:column}
-.srt .err{color:#c62828;font-size:14px;min-height:0;margin-top:4px}
+.srt .err{color:#c92a2a;font-size:14px;min-height:0;margin-top:4px}
 /* visualizer */
 .srt .viz{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:16px;margin:16px 0;box-shadow:6px 6px 0 var(--ink)}
-.srt .viz.pg{border-width:3px;box-shadow:8px 8px 0 var(--accent)}
+.srt .viz.pg{border-width:3px;box-shadow:8px 8px 0 var(--accent2)}
 .srt .viz-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
 .srt .viz-title h4{margin:0;font-size:19px}
 .srt .badge{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--accent2);color:#fff;border-radius:999px;padding:3px 10px}
-.srt .vz-op{background:#1b2130;color:#fff;border-radius:12px;padding:10px 14px;min-height:48px;font-size:15.5px;display:flex;gap:10px;align-items:flex-start}
-.srt .vz-op .kind{font-family:'Fira Code',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;background:#3a4260;border-radius:6px;padding:3px 7px;margin-top:2px;white-space:nowrap}
-.srt .vz-op .kind.compare{background:var(--c-cmp);color:#1b2130}.srt .vz-op .kind.swap,.srt .vz-op .kind.shift,.srt .vz-op .kind.write{background:var(--c-swp)}
-.srt .vz-op .kind.pass,.srt .vz-op .kind.done,.srt .vz-op .kind.insert{background:var(--c-fin)}.srt .vz-op .kind.pivot{background:var(--c-piv)}.srt .vz-op .kind.key{background:var(--c-key)}.srt .vz-op .kind.split{background:#5a6375}
+.srt .vz-op{background:#1c2033;color:#fff;border-radius:12px;padding:10px 14px;min-height:48px;font-size:15.5px;display:flex;gap:10px;align-items:flex-start}
+.srt .vz-op .kind{font-family:'Fira Code',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;background:#4a5068;border-radius:6px;padding:3px 7px;margin-top:2px;white-space:nowrap}
+.srt .vz-op .kind.compare{background:var(--c-cmp);color:#1c2033}.srt .vz-op .kind.swap,.srt .vz-op .kind.shift,.srt .vz-op .kind.write{background:var(--c-swp)}
+.srt .vz-op .kind.pass,.srt .vz-op .kind.done,.srt .vz-op .kind.insert{background:var(--c-fin)}.srt .vz-op .kind.pivot{background:var(--c-piv)}.srt .vz-op .kind.key{background:var(--c-key)}.srt .vz-op .kind.split{background:#4a5068}
 .srt .vz-stagewrap{position:relative;margin:14px 0 4px;padding-top:30px}
 .srt .vz-stage{position:relative;height:200px;border-bottom:2px solid var(--ink)}
 .srt .bar{position:absolute;bottom:0;border-radius:6px 6px 0 0;background:var(--c-def);transition:left .32s ease,height .32s ease,background-color .2s,transform .25s,opacity .25s;display:flex;align-items:flex-start;justify-content:center}
@@ -180,7 +180,7 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 .srt .bar.cmp{background:var(--c-cmp)}.srt .bar.swp{background:var(--c-swp)}.srt .bar.fin{background:var(--c-fin)}.srt .bar.piv{background:var(--c-piv)}
 .srt .bar.key,.srt .bar.ins{background:var(--c-key)}.srt .bar.min{background:var(--c-min)}.srt .bar.lz{background:var(--c-lz)}.srt .bar.rz{background:var(--c-rz)}.srt .bar.sp{background:var(--c-sp)}.srt .bar.mrg{background:var(--c-mrg)}
 .srt .bar.pos{box-shadow:inset 0 0 0 3px var(--ink)}
-.srt .bar.tgt{background:repeating-linear-gradient(45deg,#fff,#fff 4px,#f6d58a 4px,#f6d58a 8px);box-shadow:inset 0 0 0 2px #d99a1a}
+.srt .bar.tgt{background:repeating-linear-gradient(45deg,#fff,#fff 4px,#ffec99 4px,#ffec99 8px);box-shadow:inset 0 0 0 2px #b7791f}
 .srt .bar.lift{transform:translateY(-26px)}
 .srt .bar.dim{opacity:.28}
 .srt .vz-divider{position:absolute;top:-30px;bottom:-4px;width:0;border-left:2.5px dashed var(--ink);transition:left .3s}
@@ -204,28 +204,28 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 .srt .panel{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:14.5px;min-width:0}
 .srt .panel h5{margin:0 0 6px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .srt .hist{max-height:230px;overflow:auto}
-.srt .hist div{display:flex;flex-direction:column;gap:3px;padding:5px 0;border-bottom:1px dashed #d9d2c4}
+.srt .hist div{display:flex;flex-direction:column;gap:3px;padding:5px 0;border-bottom:1px dashed #e3dfd3}
 .srt .hist div small{color:var(--muted);font-size:12.5px}
-.srt .calls div{font-family:'Fira Code',monospace;font-size:12.5px;padding:2px 6px;border-radius:6px;margin:2px 0;border-left:3px solid #c9c2b4}
+.srt .calls div{font-family:'Fira Code',monospace;font-size:12.5px;padding:2px 6px;border-radius:6px;margin:2px 0;border-left:3px solid #d3cfc4}
 .srt .calls div.active{background:#fff;border-left-color:var(--c-piv);font-weight:700}
 .srt .calls div.done{color:var(--muted)}
 .srt .tree{display:flex;flex-direction:column;gap:6px}
 .srt .tree .row{display:flex;gap:6px}
-.srt .tree .nd{flex-basis:0;min-width:0;border:1.5px solid #c9c2b4;border-radius:8px;background:#fff;font-family:'Fira Code',monospace;font-size:11.5px;text-align:center;padding:2px 1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.srt .tree .nd.split{border-color:#5a6375}
-.srt .tree .nd.merging{background:var(--c-cmp);border-color:#d99a1a}
-.srt .tree .nd.merged,.srt .tree .nd.leaf{background:var(--c-mrg);border-color:#5fb79c}
+.srt .tree .nd{flex-basis:0;min-width:0;border:1.5px solid #d3cfc4;border-radius:8px;background:#fff;font-family:'Fira Code',monospace;font-size:11.5px;text-align:center;padding:2px 1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.srt .tree .nd.split{border-color:#4a5068}
+.srt .tree .nd.merging{background:var(--c-cmp);border-color:#b7791f}
+.srt .tree .nd.merged,.srt .tree .nd.leaf{background:var(--c-mrg);border-color:#9aa0bb}
 .srt .tree .nd.pending{opacity:.45}
 .srt .tree .gap{flex-basis:0}
 .srt .board table td,.srt .board table th{padding:6px 8px;font-size:14px}
 .srt .board tr{cursor:pointer}
-.srt .board tr.on td{background:#eef2ff!important;font-weight:700}
+.srt .board tr.on td{background:#e9effd!important;font-weight:700}
 .srt .minibar{height:10px;border-radius:0 4px 4px 0;background:var(--accent);min-width:2px}
-.srt .ask{background:#fff8e6;border:2px solid #f2b232;border-radius:12px;padding:12px 14px;margin-top:10px}
+.srt .ask{background:#fdf5e3;border:2px solid #fcc419;border-radius:12px;padding:12px 14px;margin-top:10px}
 .srt .ask .q{font-weight:600;margin-bottom:8px}
 .srt .ask .opts{display:flex;gap:8px;flex-wrap:wrap}
 .srt .fb{margin-top:8px;font-weight:600}
-.srt .fb.ok{color:#1d7f60}.srt .fb.no{color:#c62828}
+.srt .fb.ok{color:#0b7a6f}.srt .fb.no{color:#c92a2a}
 /* lab chart */
 .srt .hbar{display:grid;grid-template-columns:120px 1fr;gap:6px 10px;align-items:center;font-size:14px}
 .srt .hbar .track{position:relative;height:22px}
@@ -238,15 +238,15 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 .srt details.qa summary{cursor:pointer;font-weight:600}
 .srt details.qa[open] summary{margin-bottom:6px}
 .srt .mcq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
-.srt .mcq .opt{display:block;width:100%;text-align:left;margin:6px 0;border:1.5px solid #d3ccbf;background:#fff;border-radius:10px;padding:8px 12px;font:500 15px 'Bricolage Grotesque',sans-serif;cursor:pointer;color:var(--ink)}
+.srt .mcq .opt{display:block;width:100%;text-align:left;margin:6px 0;border:1.5px solid #e3dfd3;background:#fff;border-radius:10px;padding:8px 12px;font:500 15px 'Bricolage Grotesque',sans-serif;cursor:pointer;color:var(--ink)}
 .srt .mcq .opt:hover{border-color:var(--ink)}
-.srt .mcq .opt.right{background:#e3f6ee;border-color:#24a37d}
-.srt .mcq .opt.wrong{background:#fde8e8;border-color:#e5484d}
+.srt .mcq .opt.right{background:#e4f5f2;border-color:#0b7a6f}
+.srt .mcq .opt.wrong{background:#fdeaea;border-color:#c92a2a}
 .srt .mcq .exp{display:none;margin-top:6px;font-size:15px;background:var(--soft);border-radius:10px;padding:8px 12px}
 .srt .mcq.done .exp{display:block}
 .srt .score{font-size:18px;font-weight:700;margin:8px 0}
 .srt .cx td select{width:100%}
-.srt .cx td.ok{background:#e3f6ee!important}.srt .cx td.bad{background:#fde8e8!important}
+.srt .cx td.ok{background:#e4f5f2!important}.srt .cx td.bad{background:#fdeaea!important}
 .srt .sol{background:var(--soft);border-radius:12px;padding:10px 14px;margin-top:10px;font-size:15px}
 .srt .sol ol{margin:4px 0}
 .srt .outcomes li{margin:6px 0}
@@ -255,21 +255,21 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 @media (prefers-reduced-motion:reduce){.srt .bar,.srt .vz-divider,.srt .vz-idx span,.srt .vz-ptr span{transition:none}}
 
 /* slide navigation */
-.srt .snav{position:sticky;top:0;z-index:30;background:#1b2130;color:#fff;padding:8px 10px 10px;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.srt .snav{position:sticky;top:0;z-index:30;background:var(--paper);color:var(--ink);padding:10px 10px 12px;border-bottom:1px solid var(--line)}
 .srt .snav-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;padding-bottom:6px}
-.srt .snav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid transparent;color:#c9d0e3;font:600 14px 'Bricolage Grotesque',sans-serif;padding:6px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
-.srt .snav-tab:hover{background:#2a3247;color:#fff}
-.srt .snav-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 5px;border-radius:999px;background:#3a4260;color:#fff;font-size:12px;font-weight:800}
-.srt .snav-tab.on{background:#fff;color:#1b2130}
-.srt .snav-tab.on .n{background:var(--accent2)}
-.srt .snav-tab.seen:not(.on) .n{background:#24a37d}
-.srt .snav-ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid #313a52;padding-top:8px}
-.srt .snav-ctl .btn{background:#2a3247;color:#fff;border-color:#4a5578;padding:5px 12px;font-size:14px}
-.srt .snav-ctl .btn:hover{background:#3a4260}
+.srt .snav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid transparent;color:var(--muted);font:600 14px 'Bricolage Grotesque',sans-serif;padding:6px 11px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;white-space:nowrap}
+.srt .snav-tab:hover{border-color:var(--muted);color:var(--ink)}
+.srt .snav-tab .n{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 5px;border-radius:999px;background:var(--soft);color:var(--muted);font-size:12px;font-weight:800}
+.srt .snav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.srt .snav-tab.on .n{background:var(--accent2);color:#fff}
+.srt .snav-tab.seen:not(.on) .n{background:#e4f5f2;color:#0b7a6f}
+.srt .snav-ctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:8px}
+.srt .snav-ctl .btn{background:var(--card);color:var(--ink);border-color:var(--line);padding:5px 12px;font-size:14px}
+.srt .snav-ctl .btn:hover{background:var(--soft);border-color:var(--muted)}
 .srt .snav-ctl .btn:disabled{opacity:.35}
-.srt .snav-cur{flex:1;min-width:150px;text-align:center;font-size:15px;color:#dfe4f2;display:flex;align-items:center;justify-content:center;gap:8px}
+.srt .snav-cur{flex:1;min-width:150px;text-align:center;font-size:15px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:8px}
 .srt .snav-cur b{background:var(--accent2);color:#fff;border-radius:8px;padding:2px 9px;font-size:13px}
-.srt .snav-prog{height:3px;background:#313a52;border-radius:3px;margin-top:8px;overflow:hidden}
+.srt .snav-prog{height:3px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden}
 .srt .snav-prog i{display:block;height:100%;background:var(--accent2);transition:width .3s}
 .srt.slides .slide{display:none}
 .srt.slides .slide.on{display:block;animation:srtIn .35s ease}
@@ -295,28 +295,28 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
 <nav class="snav" id="srt-nav" aria-label="Section menu"></nav>
 <section class="slide" id="srt-home" data-num="Home" data-label="Overview">
 <header class="hero">
-  <div class="hero-bars" aria-hidden="true"><span style="height:30%"></span><span style="height:55%;background:#f2b232"></span><span style="height:42%;background:#f2b232"></span><span style="height:70%"></span><span style="height:20%"></span><span style="height:85%;background:#24a37d"></span><span style="height:100%;background:#24a37d"></span></div>
+  <div class="hero-bars" aria-hidden="true"><span style="height:30%"></span><span style="height:55%;background:#fcc419"></span><span style="height:42%;background:#fcc419"></span><span style="height:70%"></span><span style="height:20%"></span><span style="height:85%;background:#0b7a6f"></span><span style="height:100%;background:#0b7a6f"></span></div>
   <h1>Sorting Algorithms: An Interactive Guide</h1>
   <p>Bubble, Selection, Insertion, Quick and Merge Sort. Each one comes with a worked example, pseudocode, Python code, complexity analysis and a live visualizer. All five run on the same array, so you can compare them fairly.</p>
-  <div class="chips"><span class="chip">Data Structures</span><span class="chip">Python</span><span class="chip">Sorting Playground</span><span class="chip">Comparison Lab</span><span class="chip">Practice &amp; Quiz</span></div>
+  <div class="chips"><span class="chip">MCA · Data Structures</span><span class="chip">Python</span><span class="chip">Sorting Playground</span><span class="chip">Comparison Lab</span><span class="chip">Practice &amp; Quiz</span></div>
 </header>
 
 <div class="wrap">
 <nav class="toc" aria-label="Contents">
   <b>Contents</b>
   <ol style="list-style:none;padding-left:0">
-    <li><a href="#srt-s1"><b style="display:inline-block;min-width:24px;color:#e8642c">1</b> Introduction to Sorting</a></li>
-    <li><a href="#srt-pg"><b style="display:inline-block;min-width:24px;color:#e8642c">★</b> Sorting Playground (central lab)</a></li>
-    <li><a href="#srt-s2"><b style="display:inline-block;min-width:24px;color:#e8642c">2</b> Bubble Sort</a></li>
-    <li><a href="#srt-s3"><b style="display:inline-block;min-width:24px;color:#e8642c">3</b> Selection Sort</a></li>
-    <li><a href="#srt-s4"><b style="display:inline-block;min-width:24px;color:#e8642c">4</b> Insertion Sort</a></li>
-    <li><a href="#srt-s5"><b style="display:inline-block;min-width:24px;color:#e8642c">5</b> Quick Sort</a></li>
-    <li><a href="#srt-s6"><b style="display:inline-block;min-width:24px;color:#e8642c">6</b> Merge Sort</a></li>
-    <li><a href="#srt-s7"><b style="display:inline-block;min-width:24px;color:#e8642c">7</b> Performance Comparison &amp; Lab</a></li>
-    <li><a href="#srt-s8"><b style="display:inline-block;min-width:24px;color:#e8642c">8</b> Practice and Assessment</a></li>
-    <li><a href="#srt-s9"><b style="display:inline-block;min-width:24px;color:#e8642c">9</b> Learning Outcomes</a></li>
+    <li><a href="#srt-s1"><b style="display:inline-block;min-width:24px;color:#d9480f">1</b> Introduction to Sorting</a></li>
+    <li><a href="#srt-pg"><b style="display:inline-block;min-width:24px;color:#d9480f">★</b> Sorting Playground (central lab)</a></li>
+    <li><a href="#srt-s2"><b style="display:inline-block;min-width:24px;color:#d9480f">2</b> Bubble Sort</a></li>
+    <li><a href="#srt-s3"><b style="display:inline-block;min-width:24px;color:#d9480f">3</b> Selection Sort</a></li>
+    <li><a href="#srt-s4"><b style="display:inline-block;min-width:24px;color:#d9480f">4</b> Insertion Sort</a></li>
+    <li><a href="#srt-s5"><b style="display:inline-block;min-width:24px;color:#d9480f">5</b> Quick Sort</a></li>
+    <li><a href="#srt-s6"><b style="display:inline-block;min-width:24px;color:#d9480f">6</b> Merge Sort</a></li>
+    <li><a href="#srt-s7"><b style="display:inline-block;min-width:24px;color:#d9480f">7</b> Performance Comparison &amp; Lab</a></li>
+    <li><a href="#srt-s8"><b style="display:inline-block;min-width:24px;color:#d9480f">8</b> Practice and Assessment</a></li>
+    <li><a href="#srt-s9"><b style="display:inline-block;min-width:24px;color:#d9480f">9</b> Learning Outcomes</a></li>
   </ol>
-  <p style="margin:10px 0 0;font-size:15px;color:#5a6375">Tip: use the menu, the ← Previous / Next → buttons or your keyboard's arrow keys to move between sections. Choose <b>Show all sections</b> to read everything on one page.</p>
+  <p style="margin:10px 0 0;font-size:15px;color:#4a5068">Tip: use the menu, the ← Previous / Next → buttons or your keyboard's arrow keys to move between sections. Choose <b>Show all sections</b> to read everything on one page.</p>
 </nav>
 
 <div class="note" style="margin-bottom:26px"><b>One array for the whole blog</b>Every worked example below uses the same array <code>A = [38, 27, 43, 3, 9, 82, 10]</code> (7 elements, indices 0 to 6). Because the input is identical, the comparison and swap counts of different algorithms can be compared directly. Indexing is <b>zero-based</b> everywhere, as in Python.</div>
@@ -368,7 +368,7 @@ font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
     <tbody><tr><td>(Asha, 80), (Ravi, 80), (Meera, 60)</td><td>(Meera, 60), <b>(Asha, 80), (Ravi, 80)</b></td><td>(Meera, 60), <b>(Ravi, 80), (Asha, 80)</b></td></tr></tbody>
   </table></div>
   <p>Asha and Ravi both have 80. A stable sort keeps Asha before Ravi, as in the original list. Selection Sort actually produces the unstable result here. You will check this in an output-prediction question in Section 8.</p>
-  <div class="key"><b>Try it in the Playground</b>Click the <b>Duplicates</b> preset. Equal values get small tags (for example 4<sub style="color:#e8642c">a</sub>, 4<sub style="color:#e8642c">b</sub>), and when the run ends the visualizer tells you whether their order was preserved. Bubble, Insertion and Merge Sort are stable. Selection and Quick Sort are unstable.</div>
+  <div class="key"><b>Try it in the Playground</b>Click the <b>Duplicates</b> preset. Equal values get small tags (for example 4<sub style="color:#d9480f">a</sub>, 4<sub style="color:#d9480f">b</sub>), and when the run ends the visualizer tells you whether their order was preserved. Bubble, Insertion and Merge Sort are stable. Selection and Quick Sort are unstable.</div>
 
   <h3>In-place and out-of-place sorting</h3>
   <div class="grid2">
@@ -1115,7 +1115,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
 
   <h3>D. Output-prediction questions</h3>
   <p>Predict the output first, then reveal it. Every output shown was produced by running the program.</p>
-  <h4>Q1. Bubble Sort counts</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+  <h4>Q1. Bubble Sort counts</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="n">comparisons</span> <span class="o">=</span> <span class="n">swaps</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
@@ -1132,7 +1132,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
 
 <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="n">nums</span><span class="p">)</span></pre></div></div><details class="qa"><summary>Show output</summary><pre class="mono">(9, 4) [1, 2, 4, 5, 8]</pre>Pass 1: 4 comparisons, 3 swaps → [1, 4, 2, 5, 8]. Pass 2: 3 comparisons, 1 swap → [1, 2, 4, 5, 8]. Pass 3: 2 comparisons, 0 swaps, so the loop stops early. Total = 9 comparisons, 4 swaps.</details>
-  <h4>Q2. Insertion Sort on sorted and reverse input</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+  <h4>Q2. Insertion Sort on sorted and reverse input</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="n">comparisons</span> <span class="o">=</span> <span class="n">shifts</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -1150,7 +1150,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
 <span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span></pre></div></div><details class="qa"><summary>Show output</summary><pre class="mono">(4, 0)
 (10, 10)</pre>Sorted input: one comparison per key and no shifts, so n − 1 = 4 comparisons. Reverse input: every key moves to the front: 1+2+3+4 = 10 comparisons and 10 shifts = n(n−1)/2.</details>
-  <h4>Q3. Is Selection Sort stable?</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_by_marks</span><span class="p">(</span><span class="n">rec</span><span class="p">):</span>
+  <h4>Q3. Is Selection Sort stable?</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_by_marks</span><span class="p">(</span><span class="n">rec</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">i</span>
@@ -1163,7 +1163,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
 
 <span class="n">students</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"Asha"</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Ravi"</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Meera"</span><span class="p">,</span> <span class="mi">60</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">selection_sort_by_marks</span><span class="p">(</span><span class="n">students</span><span class="p">))</span></pre></div></div><details class="qa"><summary>Show output</summary><pre class="mono">[(&#x27;Meera&#x27;, 60), (&#x27;Ravi&#x27;, 80), (&#x27;Asha&#x27;, 80)]</pre>Pass 1 swaps Asha (index 0) with Meera (index 2), which moves Asha behind Ravi. Both have 80, so their original order is lost. This shows that Selection Sort is unstable.</details>
-  <h4>Q4. Lomuto partition</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">partition</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+  <h4>Q4. Lomuto partition</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">partition</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
     <span class="n">pivot</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">]</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">low</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
@@ -1178,7 +1178,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></pre></div></div><details class="qa"><summary>Show output</summary><pre class="mono">2 [2, 4, 5, 7, 9]</pre>Pivot = 5. 7 stays; 2 → i=0, swap with 7; 9 stays; 4 → i=1, swap with 7. Finally the pivot is swapped into index 2. Here one partition happens to sort the whole list. That is just a coincidence of this input.</details>
-  <h4>Q5. Merging two sorted lists</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">merge_lists</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+  <h4>Q5. Merging two sorted lists</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="k">def</span><span class="w"> </span><span class="nf">merge_lists</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="n">comparisons</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
@@ -1192,7 +1192,7 @@ Descending: [82, 43, 38, 27, 10, 9, 3] | {&#x27;comparisons&#x27;: 14, &#x27;mov
     <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">comparisons</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">merge_lists</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">]))</span></pre></div></div><details class="qa"><summary>Show output</summary><pre class="mono">([1, 2, 3, 4, 9, 10], 5)</pre>The comparisons are 1-2, 4-2, 4-3, 4-10 and 9-10. After that, the left list is empty, and 10 is copied without a comparison.</details>
-  <h4>Q6. Partial Bubble Sort</h4><div class="code"><div class="code-bar"><span style="color:#aeb7cf;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+  <h4>Q6. Partial Bubble Sort</h4><div class="code"><div class="code-bar"><span style="color:#9aa0bb;font-size:13px;padding:0 8px">Python</span><button type="button" class="copy">Copy code</button></div><div class="pane on"><pre><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
@@ -1230,7 +1230,7 @@ After pass 2 : [27, 3, 9, 38, 10, 43, 82]</pre>These are the same states as the 
     <li>Choose an appropriate sorting algorithm for a given situation.</li>
   </ol>
   <div class="key"><b>Quick selection guide</b>Small or nearly sorted data → <b>Insertion Sort</b>. Need guaranteed O(n log n) or stability, or data that does not fit in RAM → <b>Merge Sort</b>. Large in-memory arrays and average speed matters most → <b>Quick Sort</b> with a good pivot. Writes are very expensive → <b>Selection Sort</b>. Teaching the basic idea → <b>Bubble Sort</b>.</div>
-  <p class="foot">Interactive Data Structures series for students · Every animation is generated by running the algorithms themselves.</p>
+  <p class="foot">Interactive Data Structures series for MCA students · Every animation is generated by running the algorithms themselves.</p>
 </section>
 </div>
 
@@ -1634,7 +1634,7 @@ var SortEngine = (function () {
   }
   function legendHTML(algo, asc) {
     return legendItems(algo, asc).map(function (it) {
-      var st = it[0] === 'pos' ? 'background:var(--c-def);box-shadow:inset 0 0 0 2px #1b2130' : it[0] === 'tgt' ? 'background:repeating-linear-gradient(45deg,#fff,#fff 3px,#f6d58a 3px,#f6d58a 6px);box-shadow:inset 0 0 0 1.5px #d99a1a' : it[0] === 'dim' ? 'background:var(--c-def);opacity:.3' : 'background:var(' + it[0] + ')';
+      var st = it[0] === 'pos' ? 'background:var(--c-def);box-shadow:inset 0 0 0 2px #1c2033' : it[0] === 'tgt' ? 'background:repeating-linear-gradient(45deg,#fff,#fff 3px,#ffec99 3px,#ffec99 6px);box-shadow:inset 0 0 0 1.5px #b7791f' : it[0] === 'dim' ? 'background:var(--c-def);opacity:.3' : 'background:var(' + it[0] + ')';
       return '<span><i style="' + st + '"></i>' + it[1] + '</span>';
     }).join('');
   }
@@ -2308,7 +2308,7 @@ var SortEngine = (function () {
     <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
     <span class="idn-pn next empty"></span>
   </div>
-  <footer class="idn-footer"><span>Learn Data Structures· prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+  <footer class="idn-footer"><span>Learn Data Structures with idontno · prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
 </main>
 </div>
 <script src="assets/data.js"></script><script src="assets/site.js"></script>
