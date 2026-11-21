@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prof. Abhijeet Jadhav · idontno</title>
+<meta name="description" content="Prof. Abhijeet Jadhav: teacher of Data Structures and programming. Courses, notes and interactive lessons from idontno.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231c2033'/%3E%3Ctext x='27' y='46' font-family='system-ui,sans-serif' font-size='40' font-weight='800' fill='%23fff' text-anchor='middle'%3Ei%3C/text%3E%3Ccircle cx='42' cy='42' r='5' fill='%23ffa94d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1c2033;--ink2:#4a5068;--mut:#7a809b;--paper:#fbfaf6;--bg:#f4f3ee;--card:#fff;--line:#e3dfd3;--soft:#f3f1ea;--acc:#d9480f;--acc-soft:#fff1e8;--blue:#2f5bd3;--blue-soft:#e9effd;--teal:#0b7a6f;--teal-soft:#e4f5f2;--gold:#b7791f;--gold-soft:#fdf5e3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.mono{font-family:'Fira Code',monospace}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:18px;font-weight:800}
+.logo span{color:#ffa94d}
+.links{margin-left:auto;display:flex;gap:4px}
+.links a{text-decoration:none;font-size:15px;color:var(--ink2);padding:6px 11px;border-radius:8px}
+.links a:hover{background:var(--soft);color:var(--ink)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero-card{background:var(--ink);color:#fff;border-radius:22px;padding:38px 36px;display:grid;grid-template-columns:180px minmax(0,1fr);gap:34px;align-items:center;position:relative;overflow:hidden}
+.hero-card:after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;border:30px solid rgba(255,169,77,.08)}
+.photo{width:180px;height:180px;border-radius:50%;background:#2a3047;border:4px solid #ffa94d;display:grid;place-items:center;font-size:58px;font-weight:800;color:#fff;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.kicker{font:600 13px 'Fira Code',monospace;color:#ffa94d}
+.hero h1{font-size:clamp(32px,5vw,50px);line-height:1.05;margin:8px 0 6px;font-weight:800}
+.role{font-size:18px;color:#c9cde0;margin:0}
+.bio{color:#dfe3f0;margin:16px 0 0;max-width:62ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:999px;border:1.5px solid transparent;font-size:15px}
+.btn.pri{background:var(--acc);color:#fff}
+.btn.pri:hover{background:#c23d0b}
+.btn.ghost{border-color:rgba(255,255,255,.3);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.08)}
+
+/* sections */
+section{padding:26px 0}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 16px}
+.sec-h h2{font-size:28px;margin:0;font-weight:800}
+.sec-h .n{font:600 12px 'Fira Code',monospace;color:var(--acc);background:var(--acc-soft);border-radius:6px;padding:2px 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--ink2)}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.facts li{display:flex;gap:12px;align-items:flex-start}
+.facts .ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px}
+.facts b{display:block;font-size:13px;color:var(--mut);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:5px 13px;font-size:14px;color:var(--ink2)}
+
+/* featured course */
+.course{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:0;padding:0;overflow:hidden}
+.course .txt{padding:26px}
+.tag{display:inline-block;font:600 12px 'Fira Code',monospace;color:var(--teal);background:var(--teal-soft);border-radius:6px;padding:3px 8px}
+.course h3{font-size:26px;margin:10px 0 8px;line-height:1.15}
+.stats{display:flex;gap:22px;margin:16px 0 4px;flex-wrap:wrap}
+.stats b{display:block;font-size:24px;line-height:1.1}
+.stats span{font-size:13px;color:var(--mut)}
+.course .art{background:var(--soft);border-left:1px solid var(--line);padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.mod{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px}
+.mod .m{font:600 11px 'Fira Code',monospace;color:var(--acc);background:var(--acc-soft);border-radius:5px;padding:1px 6px;flex:none}
+.course .btn.pri{margin-top:16px}
+a.card{text-decoration:none;display:block;transition:border-color .15s,box-shadow .15s}
+a.card:hover{border-color:var(--ink2);box-shadow:0 4px 14px rgba(28,32,51,.06)}
+.card .go{display:inline-block;margin-top:10px;font-weight:700;color:var(--acc);font-size:14px}
+.card.soon{background:transparent;border-style:dashed}
+.card.soon h3,.card.soon p{color:var(--mut)}
+
+/* contact */
+.contact{display:flex;flex-wrap:wrap;gap:10px}
+.contact a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-weight:600;font-size:15px}
+.contact a:hover{border-color:var(--ink2)}
+.contact svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+footer{margin-top:24px;border-top:1px solid var(--line);padding:18px 0 34px;font-size:14px;color:var(--mut)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+
+@media(max-width:820px){
+  .hero-card{grid-template-columns:1fr;text-align:center;padding:30px 22px;gap:18px}
+  .photo{margin:0 auto;width:140px;height:140px;font-size:46px}
+  .bio{margin-left:auto;margin-right:auto}
+  .cta{justify-content:center}
+  .grid2,.course{grid-template-columns:1fr}
+  .course .art{border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:560px){
+  .links a:not(.keep){display:none}
+  .wrap{padding:0 14px}
+  .hero{padding-top:20px}
+  .sec-h h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="idontno home"><span class="logo">i<span>.</span></span>idontno</a>
+    <nav class="links" aria-label="Page sections">
+      <a href="#about">About</a>
+      <a href="#courses" class="keep">Courses</a>
+      <a href="#contact" class="keep">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="hero-card">
+      <!-- EDIT: to use your photo, replace "AJ" with <img src="photo.jpg" alt="Prof. Abhijeet Jadhav"> -->
+      <div class="photo" aria-hidden="true">AJ</div>
+      <div>
+        <div class="kicker">Hello, I'm</div>
+        <h1>Prof. Abhijeet Jadhav</h1>
+        <!-- EDIT: designation, department, institution -->
+        <p class="role">[Your designation] · [Department], [Institution]</p>
+        <!-- EDIT: 2-3 line bio -->
+        <p class="bio">I teach Data Structures and programming to MCA students, and I build interactive lessons
+          that let students <em>see</em> how algorithms work, step by step. [Add a line about your experience
+          or teaching focus.]</p>
+        <div class="cta">
+          <a class="btn pri" href="idontno_ds_course_site/index.html">Start the Data Structures course →</a>
+          <a class="btn ghost" href="https://idontnocode.blogspot.com" target="_blank" rel="noopener">Read the blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" aria-labelledby="about-h">
+    <div class="sec-h"><span class="n">01</span><h2 id="about-h">About me</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Teaching</h3>
+        <!-- EDIT: replace with your own paragraph -->
+        <p>[Write a short paragraph about your teaching: how long you have taught, the courses you handle,
+          and what you care about in the classroom.] I created <b>idontno</b> to put my lessons online so that
+          students can learn at their own pace, with visualisers, labs, Python programs and practice quizzes.</p>
+        <h3 style="margin-top:18px">Subjects I teach</h3>
+        <!-- EDIT: add or remove subjects -->
+        <div class="chips">
+          <span class="chip">Data Structures</span>
+          <span class="chip">Python Programming</span>
+          <span class="chip">[Subject]</span>
+          <span class="chip">[Subject]</span>
+        </div>
+      </div>
+      <div class="card">
+        <ul class="facts">
+          <!-- EDIT: fill in or delete any row -->
+          <li><span class="ic" style="background:var(--acc-soft)">🎓</span><span><b>Qualification</b>[Your degrees]</span></li>
+          <li><span class="ic" style="background:var(--blue-soft)">🏫</span><span><b>Institution</b>[Your institution]</span></li>
+          <li><span class="ic" style="background:var(--teal-soft)">⏳</span><span><b>Experience</b>[X] years of teaching</span></li>
+          <li><span class="ic" style="background:var(--gold-soft)">💡</span><span><b>Interests</b>[Your areas of interest]</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COURSES ============ -->
+  <section id="courses" aria-labelledby="courses-h">
+    <div class="sec-h"><span class="n">02</span><h2 id="courses-h">Courses</h2></div>
+
+    <div class="card course">
+      <div class="txt">
+        <span class="tag">Featured course · Free</span>
+        <h3>Learn Data Structures with idontno</h3>
+        <p>An interactive Data Structures course in Python, from complexity and arrays through linked lists, stacks,
+          queues, trees and graphs to searching and sorting. Every lesson has a visualiser, step-by-step algorithms,
+          Python programs and a practice quiz.</p>
+        <div class="stats">
+          <div><b>5</b><span>modules</span></div>
+          <div><b>18</b><span>lessons</span></div>
+          <div><b>Python</b><span>programs</span></div>
+        </div>
+        <a class="btn pri" href="idontno_ds_course_site/index.html">Open the course →</a>
+      </div>
+      <div class="art" aria-label="Course modules">
+        <div class="mod"><span class="m">I</span>Foundations</div>
+        <div class="mod"><span class="m">II</span>Linear data structures</div>
+        <div class="mod"><span class="m">III</span>Trees</div>
+        <div class="mod"><span class="m">IV</span>Graphs</div>
+        <div class="mod"><span class="m">V</span>Searching, sorting &amp; hashing</div>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:14px">
+      <a class="card" href="https://idontnocode.blogspot.com" target="_blank" rel="noopener">
+        <h3>idontno blog</h3>
+        <p>All my lessons as blog posts, with notes, programs and quizzes.</p>
+        <span class="go">Visit the blog →</span>
+      </a>
+      <!-- EDIT: replace with another course, or delete this card -->
+      <div class="card soon">
+        <h3>[Next course]</h3>
+        <p>Coming soon.</p>
+      </div>
+      <div class="card soon">
+        <h3>[Next course]</h3>
+        <p>Coming soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-h"><span class="n">03</span><h2 id="contact-h">Get in touch</h2></div>
+    <div class="card">
+      <p style="margin-bottom:14px">Questions about a lesson, or found a mistake? Write to me.</p>
+      <!-- EDIT: put your real email and links in the href values; delete any you don't want -->
+      <div class="contact">
+        <a href="mailto:you@example.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>[your email]</a>
+        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.9-2.3c3-.3 6-1.5 6-6.5a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.6 1.4a12.4 12.4 0 0 0-6.5 0C6 1.4 4.9 1.7 4.9 1.7a4.6 4.6 0 0 0-.1 3.5A5 5 0 0 0 3.4 8.7c0 5 3 6.2 6 6.5a3 3 0 0 0-.9 2.3V21"/></svg>GitHub</a>
+        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></svg>YouTube</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Prof. Abhijeet Jadhav · idontno</span>
+    <span>Learn by seeing, not memorising.</span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
