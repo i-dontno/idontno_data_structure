@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Built-in Data Types: int, str, list, dict, set &amp; More · Learn Data Structures</title>
+<meta name="description" content="Learn Python built-in data types: int, float, str, list, tuple, dict, set, bool, bytes and None. Mutable vs immutable, type checking, type conversion, examples, interview questions and a quiz.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="python-built-in-types">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures</b></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><a href="python-built-in-types.html" class="cur" data-lesson="python-built-in-types" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Python built-in data types</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Recursion<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module I · Foundations</span><span>›</span><span>Lesson 3 of 19</span></div>
+  <article class="idn-lesson">
+<!-- ============================================================
+     PYTHON BUILT-IN DATA TYPES
+     numeric, sequence, mapping, set, boolean, binary, None; mutability, type checking & casting
+     ============================================================ -->
+<style>
+#dsa-py{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-py *,#dsa-py *::before,#dsa-py *::after{box-sizing:border-box}
+#dsa-py h1,#dsa-py h2,#dsa-py h3,#dsa-py h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-py p{margin:0 0 14px}
+#dsa-py a{color:var(--blue)}
+#dsa-py code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-py ul,#dsa-py ol{margin:0 0 14px;padding-left:22px}
+#dsa-py li{margin:4px 0}
+#dsa-py strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-py .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-py .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-py .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-py .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-py .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-py .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-py .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-py .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-py .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-py .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-py .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-py .toc a{text-decoration:none;color:var(--ink)}
+#dsa-py .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-py section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-py .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-py .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-py .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-py h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-py h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-py .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-py .box p:last-child,#dsa-py .box ul:last-child{margin-bottom:0}
+#dsa-py .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-py .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-py .def .box-title{color:var(--blue)}
+#dsa-py .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-py .tip .box-title{color:var(--teal)}
+#dsa-py .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-py .warn .box-title{color:var(--red)}
+#dsa-py .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-py .exam .box-title{color:var(--gold)}
+#dsa-py .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-py .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-py .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-py .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-py .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-py .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-py .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-py .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-py .pro{border-left:4px solid var(--teal)}
+#dsa-py .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-py .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-py table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-py th,#dsa-py td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-py th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-py tr:nth-child(even) td{background:#faf9f5}
+#dsa-py td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-py td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-py .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-py .mem .c{width:64px;text-align:center}
+#dsa-py .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-py .mem .c:last-child .v{border-right-width:2px}
+#dsa-py .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-py .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-py .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-py .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-py .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-py .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-py .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-py .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-py pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-py pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-py pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-py pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-py .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-py .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-py .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-py .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-py .tab-pane{display:none;padding-top:10px}
+#dsa-py .tab-pane.on{display:block}
+#dsa-py .code-wrap{position:relative}
+#dsa-py .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-py .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-py .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-py .btn:hover{transform:translateY(-1px)}
+#dsa-py .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-py .btn.acc{background:var(--accent)}
+#dsa-py .btn.tl{background:var(--teal)}
+#dsa-py .btn.rd{background:var(--red)}
+#dsa-py .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-py input[type=number],#dsa-py input[type=text],#dsa-py select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-py label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-py .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-py .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-py .lab-head b{font-size:1.05em}
+#dsa-py .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-py .lab-body{padding:18px;background:#fff}
+#dsa-py .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-py .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-py .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-py .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-py .cell:last-child .box-v{border-right-width:2px}
+#dsa-py .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-py .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-py .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-py .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-py .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-py .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-py .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-py .cell.done .box-v{background:var(--teal-soft)}
+#dsa-py .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-py .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-py .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-py .pc div{padding:1px 14px;white-space:pre}
+#dsa-py .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-py .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-py .log div{margin:2px 0}
+#dsa-py .log .ok{color:#8ce99a}
+#dsa-py .log .bad{color:#ff8787}
+#dsa-py .log .hd{color:#ffb48a}
+#dsa-py .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-py .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-py .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-py .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-py .msg.bad{color:var(--red)}
+#dsa-py .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-py .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-py .calc-out b{color:var(--accent)}
+#dsa-py .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-py .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-py .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-py .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-py .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-py .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-py .mgrid div.tg small{color:#ffe3d3}
+#dsa-py .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-py .mgrid div.now{background:#ffd8a8}
+#dsa-py .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-py details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-py details summary{cursor:pointer;font-weight:600}
+#dsa-py details[open] summary{margin-bottom:8px}
+#dsa-py .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-py .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-py .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-py .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-py .opt:hover{border-color:var(--ink2)}
+#dsa-py .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-py .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-py .opt:disabled{cursor:default}
+#dsa-py .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-py .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-py .score b{color:#ffb48a;font-size:1.3em}
+#dsa-py .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-py .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-py .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-py .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-py .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-py .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-py .nav-tab.home{padding-left:14px}
+#dsa-py .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-py .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-py .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-py .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-py .nb,#dsa-py .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-py .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-py .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-py .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-py .crumb b{display:block;font-size:1.02em}
+#dsa-py .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-py .nav-tools{display:flex;gap:8px}
+#dsa-py .nt{border-color:var(--line);font-size:.82em}
+#dsa-py .nt:hover{border-color:var(--ink)}
+#dsa-py .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-py.paged .page{display:none}
+#dsa-py.paged .page.active{display:block;animation:pyFade .3s ease}
+@keyframes pyFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-py .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-py .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-py .pager button:hover{background:var(--accent-soft)}
+#dsa-py .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-py .pager button b{font-size:.95em}
+#dsa-py .pager .nx{text-align:right;margin-left:auto}
+#dsa-py:not(.paged) .pager{display:none}
+#dsa-py .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-py .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-py .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-py .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-py .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-py .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-py .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-py .ov b{display:block;font-size:1.02em}
+#dsa-py .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-py .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-py:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-py:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-py.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-py .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-py .nav-bar{gap:6px}
+  #dsa-py .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-py .nb{flex:1}
+  #dsa-py .nav-tools{flex-basis:100%}
+  #dsa-py .nav-tools .nt{flex:1}
+  #dsa-py .pager button{max-width:49%;font-size:.9em}
+  #dsa-py{font-size:16px}
+  #dsa-py section.sec{padding:22px 16px 10px}
+  #dsa-py .hero{padding:28px 20px}
+  #dsa-py .hero h1{font-size:1.9em}
+  #dsa-py .grid2,#dsa-py .grid3,#dsa-py .viz-split{grid-template-columns:1fr}
+  #dsa-py .toc ol{columns:1}
+  #dsa-py .cell{width:44px}
+  #dsa-py .cell .box-v{height:46px;font-size:.95em}
+  #dsa-py .cell .adr{display:none}
+  #dsa-py .mem .c{width:50px}
+  #dsa-py .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- linked-list specific ---------- */
+#dsa-py .hero-chain{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap;font-family:'Fira Code',monospace}
+#dsa-py .hc-head{background:#ffffff1f;border:1px solid #ffffff40;border-radius:7px;padding:6px 10px;color:#ffb48a;font-size:.85em}
+#dsa-py .hc-ar{color:#9aa0bb}
+#dsa-py .hc-n{display:inline-flex;border:2px solid #ffffff55;border-radius:8px;overflow:hidden}
+#dsa-py .hc-n b{padding:9px 14px;color:#fff;font-weight:500}
+#dsa-py .hc-n i{padding:9px 10px;border-left:2px solid #ffffff55;color:#ffb48a;font-style:normal}
+#dsa-py .hc-n.hot{border-color:var(--accent);background:var(--accent)}
+#dsa-py .hc-n.hot i{border-color:#ffffff66;color:#fff}
+#dsa-py .hc-null{color:#9aa0bb;font-size:.85em}
+#dsa-py .lfig{background:var(--soft);border-radius:12px;padding:6px 8px;margin:10px 0 4px;overflow-x:auto}
+#dsa-py .lfig svg{display:block;width:100%;height:auto}
+#dsa-py .lfig{min-height:60px}
+#dsa-py .fig-row{display:grid;grid-template-columns:1fr;gap:2px}
+#dsa-py .fig-lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin-top:8px}
+#dsa-py .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-py .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-py .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-py .op h4 .bx.slow{background:var(--red-soft);color:var(--red)}
+#dsa-py .op p{font-size:.95em}
+#dsa-py .op-grp{font-size:.8em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:26px 0 0}
+#dsa-py .ll-stage{background:var(--soft);border-radius:12px;padding:6px;overflow-x:auto}
+#dsa-py .ll-stage svg{display:block;width:100%;min-width:600px;height:auto}
+#dsa-py .memlab svg{display:block;width:100%;min-width:640px;height:auto}
+#dsa-py .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden}
+#dsa-py .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-py .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-py .seg button.on{background:var(--ink);color:#fff}
+#dsa-py .btn-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+#dsa-py .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-py .chk{display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)}
+#dsa-py .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.78em;color:var(--ink2);margin-top:8px}
+#dsa-py .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid #0002}
+#dsa-py .ntable td,#dsa-py .ntable th{font-family:'Fira Code',monospace;font-size:.85em;padding:6px 10px}
+#dsa-py .ntable tr.on td{background:#ffe8cc !important}
+#dsa-py .struct{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+#dsa-py .struct pre{font-size:.76em;margin:6px 0 0}
+#dsa-py .algo-note{font-size:.85em;color:var(--ink2);margin:-4px 0 10px}
+@media (max-width:720px){
+  #dsa-py .fig-row,#dsa-py .struct{grid-template-columns:1fr}
+  #dsa-py .lfig svg{min-width:480px}
+  #dsa-py .seg button{padding:7px 10px;font-size:.82em}
+}
+
+/* ---------- python-types specific ---------- */
+#dsa-py .hero-types{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;font-family:'Fira Code',monospace}
+#dsa-py .hero-types span{border:2px solid #ffffff55;border-radius:8px;padding:7px 12px;color:#fff;font-size:.88em}
+#dsa-py .hero-types span small{display:block;font-size:.7em;color:#9aa0bb}
+#dsa-py .hero-types span.hot{background:var(--accent);border-color:var(--accent)}
+#dsa-py .hero-types span.hot small{color:#ffe3d3}
+#dsa-py .op h4 code{background:none;padding:0;color:var(--ink);font-size:1em}
+#dsa-py .op h4 .bx.slow{background:var(--gold-soft);color:var(--gold)}
+#dsa-py .typ-grp{font-size:.8em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:26px 0 0}
+#dsa-py .res{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-py .res b{color:var(--accent)}
+#dsa-py .res .good{color:var(--teal)}
+#dsa-py .res .badc{color:var(--red)}
+#dsa-py .pick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+#dsa-py input.wide{width:min(100%,360px)}
+#dsa-py select.wide{width:min(100%,260px)}
+#dsa-py .wrongright{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+#dsa-py .wrongright h4{margin:0 0 4px;font-size:.85em;text-transform:uppercase;letter-spacing:.06em}
+#dsa-py .wrongright .w h4{color:var(--red)}
+#dsa-py .wrongright .r h4{color:var(--teal)}
+#dsa-py .tbl-wrap table.cmp td:first-child{font-family:'Fira Code',monospace;font-weight:600;color:var(--accent)}
+#dsa-py .tbl-wrap table.cmp td{font-size:.95em}
+#dsa-py .qa-item{margin:10px 0}
+#dsa-py .exer{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 8px;margin:16px 0;background:#fff}
+#dsa-py .exer h4{margin:0 0 6px}
+@media (max-width:720px){ #dsa-py .wrongright{grid-template-columns:1fr} }
+</style>
+<div id="dsa-py">
+
+<div class="nav" id="py-nav">
+  <div class="nav-tabs" id="py-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="py-prev">← Previous</button>
+    <div class="crumb"><b id="py-crumb-t">Home</b><span id="py-crumb-s">Overview</span></div>
+    <button class="nb" id="py-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="py-all">Show all sections</button>
+      <button class="nt" id="py-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<section class="page" id="py-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">Python · Unit: Built-in Data Types</span>
+  <h1>Python Built-in Data Types</h1>
+  <p>A beginner-friendly guide to every built-in data type in Python: numbers, strings, lists, tuples, dictionaries, sets and more. Learn what each type is, whether it can change, how to check and convert types, and avoid the mistakes beginners make. Every code example was run and the output shown is real.</p>
+  <div class="hero-types" aria-hidden="true">
+    <span>42<small>int</small></span><span>3.14<small>float</small></span><span>"hi"<small>str</small></span>
+    <span class="hot">[1, 2]<small>list</small></span><span>(1, 2)<small>tuple</small></span><span>{"k": 1}<small>dict</small></span>
+    <span>{1, 2}<small>set</small></span><span>True<small>bool</small></span><span>None<small>NoneType</small></span>
+  </div>
+</header>
+
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>Introduction</b><small>What data types are, dynamic typing, real-world examples</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>Numeric &amp; Boolean</b><small>int, float, complex and bool</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>Sequence types</b><small>str, list, tuple and range</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Dict, set, binary &amp; None</b><small>dict, set, frozenset, bytes, bytearray, memoryview, NoneType</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Compare &amp; mutability</b><small>Comparison table, mutable vs immutable, type explorer lab</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Check &amp; convert</b><small>type(), isinstance(), type casting, conversion lab</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Practical programs</b><small>Five tested programs with output</small></button>
+    <button class="ov" data-go="8"><span class="ov-n">8</span><b>Mistakes &amp; interview</b><small>8 common mistakes, 10 interview questions</small></button>
+    <button class="ov" data-go="9"><span class="ov-n">9</span><b>Practice &amp; conclusion</b><small>5 exercises, 8-MCQ quiz, summary</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+<section class="sec page" id="py-s1" data-label="Introduction" data-sub="What are data types?"><div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Python Data Types</h2></div><div class="box def"><span class="box-title">Definition</span><p>A <strong>data type</strong> tells Python what kind of value an object holds and what you are allowed to do with it. For example, you can add two numbers, join two strings, or loop over a list, but you cannot divide a string by a list. Every value in Python is an <strong>object</strong>, and every object has a type.</p></div><h3>Why are data types important?</h3><ul><li><strong>Correct operations:</strong> <code>5 + 3</code> adds numbers, <code>"5" + "3"</code> joins text. The type decides the meaning of the operator.</li><li><strong>Memory and speed:</strong> choosing a <code>set</code> for lookups or a <code>list</code> for ordered items changes how fast your program runs.</li><li><strong>Fewer bugs:</strong> knowing whether a value can change (mutable) or not (immutable) prevents surprising results.</li><li><strong>Foundation for DSA:</strong> stacks, queues, graphs and hash tables are all built from lists, dictionaries and sets.</li></ul><h3>How Python handles types: dynamic typing</h3><p>In Python you never declare a type. You just write <code>x = 10</code>. The <strong>type belongs to the object</strong>, not to the name. A name is just a label that can point to a different object later. Python checks types at run time, which is why this is called <strong>dynamic typing</strong>.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>x = 10
+print(x, type(x))
+x = &quot;ten&quot;
+print(x, type(x))
+x = [1, 2, 3]
+print(x, type(x))</code></pre></div><div class="out-label">Output</div><pre class="out">10 &lt;class &#x27;int&#x27;&gt;
+ten &lt;class &#x27;str&#x27;&gt;
+[1, 2, 3] &lt;class &#x27;list&#x27;&gt;</pre><div class="box tip"><span class="box-title">Strongly typed too</span><p>Python is dynamically typed <em>and</em> strongly typed. It will not silently mix incompatible types: <code>"5" + 5</code> raises a <code>TypeError</code> instead of guessing. You will see this in Section 6.</p></div><h3>Real-world example: one student, many types</h3><p>A single student record uses almost every common type. Each field is stored in the type that fits it best.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>student = {
+    &quot;name&quot;: &quot;Asha&quot;,                          # str
+    &quot;age&quot;: 20,                               # int
+    &quot;cgpa&quot;: 8.7,                             # float
+    &quot;is_placed&quot;: False,                      # bool
+    &quot;subjects&quot;: [&quot;DSA&quot;, &quot;Python&quot;, &quot;DBMS&quot;],   # list
+    &quot;mentor&quot;: None,                          # NoneType
+}
+for key, value in student.items():
+    print(f&quot;{key:10} -&gt; {value!r:32} {type(value).__name__}&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">name       -&gt; &#x27;Asha&#x27;                           str
+age        -&gt; 20                               int
+cgpa       -&gt; 8.7                              float
+is_placed  -&gt; False                            bool
+subjects   -&gt; [&#x27;DSA&#x27;, &#x27;Python&#x27;, &#x27;DBMS&#x27;]        list
+mentor     -&gt; None                             NoneType</pre><h3>The built-in types at a glance</h3><div class="tbl-wrap"><table class=""><thead><tr><th>Category</th><th>Types</th><th>Typical literal</th></tr></thead><tbody><tr><td>Numeric</td><td><code>int</code>, <code>float</code>, <code>complex</code></td><td><code>42</code>, <code>3.14</code>, <code>2+3j</code></td></tr><tr><td>Boolean</td><td><code>bool</code></td><td><code>True</code>, <code>False</code></td></tr><tr><td>Sequence</td><td><code>str</code>, <code>list</code>, <code>tuple</code>, <code>range</code></td><td><code>'hi'</code>, <code>[1, 2]</code>, <code>(1, 2)</code>, <code>range(5)</code></td></tr><tr><td>Mapping</td><td><code>dict</code></td><td><code>{'a': 1}</code></td></tr><tr><td>Set</td><td><code>set</code>, <code>frozenset</code></td><td><code>{1, 2}</code>, <code>frozenset([1, 2])</code></td></tr><tr><td>Binary</td><td><code>bytes</code>, <code>bytearray</code>, <code>memoryview</code></td><td><code>b'hi'</code>, <code>bytearray(b'hi')</code></td></tr><tr><td>None</td><td><code>NoneType</code></td><td><code>None</code></td></tr></tbody></table></div></section><section class="sec page" id="py-s2" data-label="Numeric &amp; Boolean" data-sub="int, float, complex, bool"><div class="sec-head"><div class="sec-num">2</div><h2>Numeric &amp; Boolean Types</h2></div><p>Numbers are the simplest data. Python has three numeric types, and the boolean type is closely related to integers. All four are <strong>immutable</strong>: an operation such as <code>x += 1</code> creates a new object and rebinds the name.</p><div class="typ-grp">A · Numeric types</div><div class="op"><h4><code>int</code> <span class="bx">immutable</span></h4><p>A whole number, positive, negative or zero, with <strong>no size limit</strong> (it grows as large as memory allows).</p><div class="algo-note"><strong>Syntax:</strong> <code>x = 25</code> &nbsp; <code>x = int("25")</code> &nbsp; also <code>0b1010</code> (binary), <code>0o17</code> (octal), <code>0xFF</code> (hex), <code>1_000_000</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = 25
+b = -7
+big = 2 ** 100
+print(a + b, a // 4, a % 4, a ** 2)
+print(big)
+print(type(big))
+print(0b1010, 0o17, 0xFF, 1_000_000)</code></pre></div><div class="out-label">Output</div><pre class="out">18 6 1 625
+1267650600228229401496703205376
+&lt;class &#x27;int&#x27;&gt;
+10 15 255 1000000</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>No overflow: <code>2 ** 100</code> works.</li><li><code>/</code> always gives a float, <code>//</code> gives the floor-divided integer.</li><li>Underscores can be used for readability.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Counting items, ages, marks, IDs</li><li>Loop counters and list indexes</li><li>Exact money calculations in paise or cents</li></ul></div></div></div><div class="op"><h4><code>float</code> <span class="bx">immutable</span></h4><p>A number with a decimal point, stored in 64-bit binary floating-point format.</p><div class="algo-note"><strong>Syntax:</strong> <code>x = 99.99</code> &nbsp; <code>x = 1.5e3</code> (scientific) &nbsp; <code>x = float("3.14")</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>price = 99.99
+rate = 1.5e3
+print(price * 2, rate)
+print(0.1 + 0.2)
+print(0.1 + 0.2 == 0.3)
+print(round(0.1 + 0.2, 2) == 0.3)
+print(7 / 2, 7 // 2)</code></pre></div><div class="out-label">Output</div><pre class="out">199.98 1500.0
+0.30000000000000004
+False
+True
+3.5 3</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Precision is limited to about 15-16 digits.</li><li>Some decimals (like 0.1) cannot be stored exactly, so <code>0.1 + 0.2 != 0.3</code>.</li><li>Compare floats with <code>math.isclose()</code> or <code>round()</code>, not <code>==</code>.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Prices, averages, percentages</li><li>Scientific measurements</li><li>Graphics and physics calculations</li></ul></div></div></div><div class="op"><h4><code>complex</code> <span class="bx">immutable</span></h4><p>A number with a real part and an imaginary part, written with the suffix <code>j</code>.</p><div class="algo-note"><strong>Syntax:</strong> <code>z = 3 + 4j</code> &nbsp; <code>z = complex(3, 4)</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>z = 3 + 4j
+w = complex(1, -2)
+print(z + w, z * w)
+print(z.real, z.imag, abs(z))
+print(z.conjugate())</code></pre></div><div class="out-label">Output</div><pre class="out">(4+2j) (11-2j)
+3.0 4.0 5.0
+(3-4j)</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Parts are available as <code>.real</code> and <code>.imag</code> (both floats).</li><li><code>abs(z)</code> gives the magnitude.</li><li>Python uses <code>j</code>, not <code>i</code>.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Electrical engineering (AC circuits)</li><li>Signal processing, Fourier transforms</li><li>Mathematics and simulations</li></ul></div></div></div><div class="typ-grp">E · Boolean type</div><div class="op"><h4><code>bool</code> <span class="bx">immutable</span></h4><p>A value that is either <code>True</code> or <code>False</code>. It is a <strong>subclass of int</strong>: <code>True</code> equals 1 and <code>False</code> equals 0.</p><div class="algo-note"><strong>Syntax:</strong> <code>flag = True</code> &nbsp; <code>flag = bool(value)</code> &nbsp; results of comparisons such as <code>5 &gt; 3</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>print(True + True, True * 10)
+print(isinstance(True, int))
+print(bool(0), bool(&quot;&quot;), bool([]), bool(None))
+print(bool(5), bool(&quot;False&quot;), bool([0]))
+print(5 &gt; 3, 5 == 3)</code></pre></div><div class="out-label">Output</div><pre class="out">2 10
+True
+False False False False
+True True True
+True False</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Only two values exist, and they are capitalised.</li><li><strong>Falsy values:</strong> <code>0</code>, <code>0.0</code>, <code>''</code>, <code>[]</code>, <code>()</code>, <code>{}</code>, <code>set()</code>, <code>None</code>. Everything else is truthy, even the string <code>"False"</code>.</li><li>Because <code>bool</code> is an int, <code>True + True</code> is 2.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Conditions in <code>if</code> and <code>while</code></li><li>Flags such as <code>is_logged_in</code></li><li>Filtering data (<code>any()</code>, <code>all()</code>)</li></ul></div></div></div><div class="box exam"><span class="box-title">Exam point</span><p><code>int</code>, <code>float</code>, <code>complex</code> and <code>bool</code> are all <strong>immutable</strong> and <strong>hashable</strong>. They hold a single value, so "ordered" and "duplicates" do not apply to them.</p></div></section><section class="sec page" id="py-s3" data-label="Sequence types" data-sub="str, list, tuple, range"><div class="sec-head"><div class="sec-num">3</div><h2>Sequence Types</h2></div><p>A <strong>sequence</strong> is an ordered collection whose items can be reached by position (index), starting at 0. Negative indexes count from the end (<code>-1</code> is the last item). Slicing <code>x[start:stop:step]</code> works on all sequences.</p><div class="typ-grp">B · Sequence types</div><div class="op"><h4><code>str</code> <span class="bx">immutable</span></h4><p>An ordered sequence of Unicode characters used to store text.</p><div class="algo-note"><strong>Syntax:</strong> <code>s = 'hello'</code> &nbsp; <code>s = "hello"</code> &nbsp; <code>s = '''multi-line'''</code> &nbsp; <code>s = str(100)</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>s = &quot;Data Structures&quot;
+print(len(s), s[0], s[-1], s[5:])
+print(s.upper(), s.lower())
+print(s.replace(&quot;Data&quot;, &quot;Python&quot;))
+print(s.split())
+print(&quot;-&quot;.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]))
+print(f&quot;Course: {s}&quot;)
+try:
+    s[0] = &quot;d&quot;
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">15 D s Structures
+DATA STRUCTURES data structures
+Python Structures
+[&#x27;Data&#x27;, &#x27;Structures&#x27;]
+a-b-c
+Course: Data Structures
+Error: &#x27;str&#x27; object does not support item assignment</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Immutable: methods like <code>upper()</code> or <code>replace()</code> return a <em>new</em> string.</li><li>Supports indexing, slicing, <code>len()</code>, <code>in</code>, and f-strings.</li><li>Duplicates are allowed (<code>'aab'</code>).</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Names, messages, file paths</li><li>Reading and cleaning user input</li><li>Parsing text and building output</li></ul></div></div></div><div class="op"><h4><code>list</code> <span class="bx slow">mutable</span></h4><p>An ordered, changeable collection that can hold items of any type, even mixed.</p><div class="algo-note"><strong>Syntax:</strong> <code>nums = [10, 20, 30]</code> &nbsp; <code>nums = list("abc")</code> &nbsp; <code>empty = []</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>nums = [10, 20, 30]
+nums.append(40)
+nums.insert(1, 15)
+nums.remove(30)
+print(nums, len(nums))
+nums[0] = 5
+print(nums, nums[-1], nums[1:3])
+nums.sort(reverse=True)
+print(nums)
+print([n * 2 for n in nums])</code></pre></div><div class="out-label">Output</div><pre class="out">[10, 15, 20, 40] 4
+[5, 15, 20, 40] 40 [15, 20]
+[40, 20, 15, 5]
+[80, 40, 30, 10]</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Ordered, mutable, allows duplicates.</li><li>Grows and shrinks automatically (dynamic array).</li><li><code>append()</code> is O(1) on average; <code>insert()</code> and <code>remove()</code> are O(n).</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Shopping cart, to-do list, marks of a class</li><li>Implementing stacks and queues</li><li>Storing results while looping</li></ul></div></div></div><div class="op"><h4><code>tuple</code> <span class="bx">immutable</span></h4><p>An ordered, <strong>unchangeable</strong> collection. Use it for a fixed group of related values.</p><div class="algo-note"><strong>Syntax:</strong> <code>p = (3, 4)</code> &nbsp; <code>p = 3, 4</code> &nbsp; <code>one = (5,)</code> (comma required) &nbsp; <code>p = tuple([3, 4])</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>point = (3, 4)
+single = (5,)
+x, y = point
+print(point, x, y, point[0])
+print(type(single), type((5)))
+print(point + (5, 6), point * 2)
+try:
+    point[0] = 9
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">(3, 4) 3 4 3
+&lt;class &#x27;tuple&#x27;&gt; &lt;class &#x27;int&#x27;&gt;
+(3, 4, 5, 6) (3, 4, 3, 4)
+Error: &#x27;tuple&#x27; object does not support item assignment</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Ordered, immutable, allows duplicates.</li><li>Hashable if all its items are hashable, so it can be a dict key.</li><li>Supports easy unpacking: <code>x, y = point</code>. Functions that "return two values" really return a tuple.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Coordinates, RGB colours, (latitude, longitude)</li><li>Dictionary keys such as <code>(row, col)</code></li><li>Protecting data from accidental change</li></ul></div></div></div><div class="op"><h4><code>range</code> <span class="bx">immutable</span></h4><p>An immutable sequence of integers generated on demand. It stores only <em>start, stop, step</em>, so even <code>range(10**9)</code> uses tiny memory.</p><div class="algo-note"><strong>Syntax:</strong> <code>range(stop)</code> &nbsp; <code>range(start, stop)</code> &nbsp; <code>range(start, stop, step)</code> (stop is excluded)</div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>r = range(1, 10, 2)
+print(r, list(r), len(r))
+print(list(range(5)), list(range(10, 0, -3)))
+print(7 in r, 4 in r)
+for i in range(3):
+    print(&quot;Round&quot;, i)</code></pre></div><div class="out-label">Output</div><pre class="out">range(1, 10, 2) [1, 3, 5, 7, 9] 5
+[0, 1, 2, 3, 4] [10, 7, 4, 1]
+True False
+Round 0
+Round 1
+Round 2</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Ordered, immutable; values never repeat.</li><li>Memory use is constant, whatever the length.</li><li>Convert with <code>list(range(5))</code> to see the numbers.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li><code>for</code> loops that run a fixed number of times</li><li>Generating indexes and number series</li><li>Stepping through every k-th item</li></ul></div></div></div><div class="box tip"><span class="box-title">List vs tuple: how to choose</span><p>If the collection will grow, shrink or be edited, use a <strong>list</strong>. If it is a fixed record that should never change, use a <strong>tuple</strong>. When in doubt, start with a list.</p></div></section><section class="sec page" id="py-s4" data-label="Dict, set, binary &amp; None" data-sub="Mapping, set, binary, NoneType"><div class="sec-head"><div class="sec-num">4</div><h2>Mapping, Set, Binary &amp; None Types</h2></div><div class="typ-grp">C · Mapping type</div><div class="op"><h4><code>dict</code> <span class="bx slow">mutable</span></h4><p>A collection of <strong>key : value</strong> pairs. You look up a value by its key, not by a position.</p><div class="algo-note"><strong>Syntax:</strong> <code>d = {"name": "Ravi", "age": 21}</code> &nbsp; <code>d = dict(name="Ravi")</code> &nbsp; <code>empty = {}</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>student = {&quot;name&quot;: &quot;Ravi&quot;, &quot;age&quot;: 21}
+student[&quot;cgpa&quot;] = 8.4
+student[&quot;age&quot;] = 22
+print(student)
+print(student[&quot;name&quot;], student.get(&quot;phone&quot;, &quot;N/A&quot;))
+print(list(student.keys()), list(student.values()))
+del student[&quot;cgpa&quot;]
+print(student, len(student))
+print(&quot;name&quot; in student)</code></pre></div><div class="out-label">Output</div><pre class="out">{&#x27;name&#x27;: &#x27;Ravi&#x27;, &#x27;age&#x27;: 22, &#x27;cgpa&#x27;: 8.4}
+Ravi N/A
+[&#x27;name&#x27;, &#x27;age&#x27;, &#x27;cgpa&#x27;] [&#x27;Ravi&#x27;, 22, 8.4]
+{&#x27;name&#x27;: &#x27;Ravi&#x27;, &#x27;age&#x27;: 22} 2
+True</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Keys are unique and must be hashable (str, int, tuple...). Values can be anything and can repeat.</li><li>Keeps <strong>insertion order</strong> (Python 3.7+).</li><li>Lookup, insert and delete are O(1) on average (it is a hash table).</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Records such as a student or product</li><li>Counting frequencies, caching, JSON-like data</li><li>Fast lookups by ID</li></ul></div></div></div><div class="typ-grp">D · Set types</div><div class="op"><h4><code>set</code> <span class="bx slow">mutable</span></h4><p>An <strong>unordered</strong> collection of <strong>unique</strong> items. Adding an existing item changes nothing.</p><div class="algo-note"><strong>Syntax:</strong> <code>s = {1, 2, 3}</code> &nbsp; <code>s = set([1, 2, 2])</code> &nbsp; <code>empty = set()</code> (not <code>{}</code>)</div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = {1, 2, 3, 3, 2}
+b = {3, 4, 5}
+print(a, len(a))
+print(a | b, a &amp; b, a - b, a ^ b)
+a.add(10)
+a.discard(1)
+print(a)
+print(set(), type({}), type(set()))</code></pre></div><div class="out-label">Output</div><pre class="out">{1, 2, 3} 3
+{1, 2, 3, 4, 5} {3} {1, 2} {1, 2, 4, 5}
+{10, 2, 3}
+set() &lt;class &#x27;dict&#x27;&gt; &lt;class &#x27;set&#x27;&gt;</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Unordered, mutable, <strong>no duplicates</strong>, no indexing.</li><li>Items must be hashable (no lists inside a set).</li><li>Membership test <code>x in s</code> is O(1) on average. Supports union <code>|</code>, intersection <code>&amp;</code>, difference <code>-</code>, symmetric difference <code>^</code>.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Removing duplicates</li><li>Fast membership checks</li><li>Finding common or different items between two groups</li></ul></div></div></div><div class="op"><h4><code>frozenset</code> <span class="bx">immutable</span></h4><p>An immutable version of <code>set</code>. Once created it cannot be changed, so it is <strong>hashable</strong>.</p><div class="algo-note"><strong>Syntax:</strong> <code>fs = frozenset([1, 2, 3])</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>fs = frozenset([1, 2, 2, 3])
+print(fs, type(fs))
+print(2 in fs, fs | {9})
+d = {fs: &quot;locked&quot;}
+print(d[frozenset([1, 2, 3])])
+try:
+    fs.add(4)
+except AttributeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">frozenset({1, 2, 3}) &lt;class &#x27;frozenset&#x27;&gt;
+True frozenset({1, 2, 3, 9})
+locked
+Error: &#x27;frozenset&#x27; object has no attribute &#x27;add&#x27;</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Same unique, unordered behaviour as a set, but no <code>add()</code> or <code>remove()</code>.</li><li>Can be a dictionary key or an item of another set.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Constant collections of allowed values</li><li>Keys that are themselves sets</li><li>Sets of sets (e.g. graph groups)</li></ul></div></div></div><div class="typ-grp">F · Binary types</div><p>Binary types store raw bytes (numbers 0 to 255). You meet them when reading files, sending data over a network, or encoding text.</p><div class="op"><h4><code>bytes</code> <span class="bx">immutable</span></h4><p>An immutable sequence of bytes.</p><div class="algo-note"><strong>Syntax:</strong> <code>b = b"Hello"</code> &nbsp; <code>b = bytes([72, 101])</code> &nbsp; <code>"text".encode("utf-8")</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>b = b&quot;Hello&quot;
+print(b, b[0], list(b))
+print(&quot;Hello&quot;.encode(&quot;utf-8&quot;), &quot;caf\u00e9&quot;.encode(&quot;utf-8&quot;))
+print(b.decode(&quot;utf-8&quot;), len(b))
+try:
+    b[0] = 72
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">b&#x27;Hello&#x27; 72 [72, 101, 108, 108, 111]
+b&#x27;Hello&#x27; b&#x27;caf\xc3\xa9&#x27;
+Hello 5
+Error: &#x27;bytes&#x27; object does not support item assignment</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Each item is an int from 0 to 255.</li><li>Convert back to text with <code>.decode()</code>.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Reading binary files (images, PDFs)</li><li>Network data and encryption</li><li>Encoding text to UTF-8</li></ul></div></div></div><div class="op"><h4><code>bytearray</code> <span class="bx slow">mutable</span></h4><p>A <em>changeable</em> version of <code>bytes</code>.</p><div class="algo-note"><strong>Syntax:</strong> <code>ba = bytearray(b"Hello")</code> &nbsp; <code>ba = bytearray(10)</code> (ten zero bytes)</div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>ba = bytearray(b&quot;Hello&quot;)
+ba[0] = 74
+ba.append(33)
+print(ba, bytes(ba))</code></pre></div><div class="out-label">Output</div><pre class="out">bytearray(b&#x27;Jello!&#x27;) b&#x27;Jello!&#x27;</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Supports item assignment, <code>append()</code> and slicing like a list.</li><li>Efficient for editing binary data in place.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Building a network packet piece by piece</li><li>Editing image or file data in memory</li></ul></div></div></div><div class="op"><h4><code>memoryview</code> <span class="bx slow">depends on the buffer</span></h4><p>A <strong>window</strong> onto another object's memory. It lets you slice and read (or change) binary data <em>without copying it</em>.</p><div class="algo-note"><strong>Syntax:</strong> <code>view = memoryview(data)</code> &nbsp; where <code>data</code> is <code>bytes</code> or <code>bytearray</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>data = bytearray(b&quot;ABCDEF&quot;)
+view = memoryview(data)
+part = view[1:4]
+part[0] = 90
+print(bytes(part), data)
+print(view[0], len(view))</code></pre></div><div class="out-label">Output</div><pre class="out">b&#x27;ZCD&#x27; bytearray(b&#x27;AZCDEF&#x27;)
+65 6</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>Changing a slice of the view changes the original (if the original is mutable, like <code>bytearray</code>).</li><li>Saves memory and time with large data.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Processing very large files without copying</li><li>Fast slicing of binary buffers</li></ul></div></div></div><div class="typ-grp">G · None type</div><div class="op"><h4><code>NoneType</code> <span class="bx">immutable</span></h4><p>The type of the single value <code>None</code>, which means "no value here". It is Python's version of null.</p><div class="algo-note"><strong>Syntax:</strong> <code>result = None</code> &nbsp; test with <code>if result is None:</code></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>result = None
+print(result, type(result))
+print(result is None, result == 0)
+
+def greet():
+    print(&quot;hi&quot;)
+
+print(greet())</code></pre></div><div class="out-label">Output</div><pre class="out">None &lt;class &#x27;NoneType&#x27;&gt;
+True False
+hi
+None</pre><div class="grid2"><div class="mini pro"><h4>Important characteristics</h4><ul><li>There is exactly one <code>None</code> object in a program.</li><li>A function with no <code>return</code> gives back <code>None</code>.</li><li>Falsy, but <code>None == 0</code> is <code>False</code>. Always test with <code>is None</code>.</li></ul></div><div class="mini"><h4>Real-world use cases</h4><ul><li>Default value for "not set yet"</li><li>A function that returns "nothing found"</li><li>Empty pointers such as <code>next = None</code> in a linked list</li></ul></div></div></div></section><section class="sec page" id="py-s5" data-label="Compare &amp; mutability" data-sub="Comparison table and mutable vs immutable"><div class="sec-head"><div class="sec-num">5</div><h2>Comparison &amp; Mutability</h2></div><h3>A. Comparison of Python data types</h3><div class="tbl-wrap"><table class="cmp"><thead><tr><th>Data type</th><th>Category</th><th>Ordered?</th><th>Mutable?</th><th>Duplicates?</th><th>Example</th></tr></thead><tbody><tr><td>int</td><td>Numeric</td><td>N/A (single value)</td><td>Immutable</td><td>N/A</td><td><code>42</code></td></tr><tr><td>float</td><td>Numeric</td><td>N/A (single value)</td><td>Immutable</td><td>N/A</td><td><code>3.14</code></td></tr><tr><td>complex</td><td>Numeric</td><td>N/A (single value)</td><td>Immutable</td><td>N/A</td><td><code>2+3j</code></td></tr><tr><td>bool</td><td>Boolean</td><td>N/A (single value)</td><td>Immutable</td><td>N/A</td><td><code>True</code></td></tr><tr><td>str</td><td>Sequence</td><td>Ordered</td><td>Immutable</td><td>Yes</td><td><code>'hello'</code></td></tr><tr><td>list</td><td>Sequence</td><td>Ordered</td><td><strong>Mutable</strong></td><td>Yes</td><td><code>[1, 2, 2]</code></td></tr><tr><td>tuple</td><td>Sequence</td><td>Ordered</td><td>Immutable</td><td>Yes</td><td><code>(1, 2, 2)</code></td></tr><tr><td>range</td><td>Sequence</td><td>Ordered</td><td>Immutable</td><td>No (values are unique)</td><td><code>range(1, 5)</code></td></tr><tr><td>dict</td><td>Mapping</td><td>Ordered by insertion (3.7+)</td><td><strong>Mutable</strong></td><td>Keys: No. Values: Yes</td><td><code>{'a': 1}</code></td></tr><tr><td>set</td><td>Set</td><td>Unordered</td><td><strong>Mutable</strong></td><td>No</td><td><code>{1, 2, 3}</code></td></tr><tr><td>frozenset</td><td>Set</td><td>Unordered</td><td>Immutable</td><td>No</td><td><code>frozenset({1, 2})</code></td></tr><tr><td>bytes</td><td>Binary</td><td>Ordered</td><td>Immutable</td><td>Yes</td><td><code>b'hi'</code></td></tr><tr><td>bytearray</td><td>Binary</td><td>Ordered</td><td><strong>Mutable</strong></td><td>Yes</td><td><code>bytearray(b'hi')</code></td></tr><tr><td>memoryview</td><td>Binary</td><td>Ordered</td><td>Follows the original buffer</td><td>Yes</td><td><code>memoryview(b'hi')</code></td></tr><tr><td>NoneType</td><td>None</td><td>N/A (single value)</td><td>Immutable</td><td>N/A</td><td><code>None</code></td></tr></tbody></table></div><h3>B. Mutable vs immutable</h3><div class="box def"><span class="box-title">Definition</span><p>A <strong>mutable</strong> object can be changed <em>in place</em> after it is created, and it keeps the same identity (<code>id</code>). An <strong>immutable</strong> object can never be changed. Any "change" creates a <em>new</em> object and the name is re-pointed to it.</p></div><div class="tbl-wrap"><table class=""><thead><tr><th></th><th>Mutable</th><th>Immutable</th></tr></thead><tbody><tr><td>Types</td><td><code>list</code>, <code>dict</code>, <code>set</code>, <code>bytearray</code></td><td><code>int</code>, <code>float</code>, <code>complex</code>, <code>bool</code>, <code>str</code>, <code>tuple</code>, <code>frozenset</code>, <code>bytes</code>, <code>range</code>, <code>None</code></td></tr><tr><td>Change in place?</td><td>Yes</td><td>No (a new object is created)</td></tr><tr><td>Same <code>id</code> after a change?</td><td>Yes</td><td>No</td></tr><tr><td>Hashable (usable as dict key / set item)?</td><td>No</td><td>Yes (if all items inside are hashable)</td></tr><tr><td>Risk</td><td>Shared references: a change shows up everywhere</td><td>Slightly slower when building big values by repeated change</td></tr></tbody></table></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>nums = [1, 2, 3]
+before = id(nums)
+nums.append(4)
+print(nums, id(nums) == before)     # True: the same object was changed
+
+text = &quot;abc&quot;
+before = id(text)
+text += &quot;d&quot;
+print(text, id(text) == before)     # False: a brand-new string was made
+
+t = (1, 2)
+before = id(t)
+t += (3,)
+print(t, id(t) == before)           # False: a brand-new tuple
+
+x = 10
+y = x
+y += 1
+print(x, y)                         # ints are immutable, x is untouched</code></pre></div><div class="out-label">Output</div><pre class="out">[1, 2, 3, 4] True
+abcd False
+(1, 2, 3) False
+10 11</pre><h3>The aliasing trap</h3><p>Because mutable objects change in place, two names that point to the same object see each other's changes. Make a copy when you need an independent object.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = [1, 2]
+b = a              # NOT a copy: both names point to one list
+b.append(3)
+print(a, b, a is b)
+
+c = a.copy()       # a real (shallow) copy
+c.append(99)
+print(a, c, a is c)</code></pre></div><div class="out-label">Output</div><pre class="out">[1, 2, 3] [1, 2, 3] True
+[1, 2, 3] [1, 2, 3, 99] False</pre><div class="box warn"><span class="box-title">Careful with nested objects</span><p>A tuple is immutable, but if it contains a list, that inner list can still change: <code>t = ([1], 2); t[0].append(9)</code> works. Immutability applies to the tuple's own slots only.</p></div>
+<div class="lab">
+  <div class="lab-head"><b>Mutability lab</b><span>real results from Python</span></div>
+  <div class="lab-body">
+    <p style="margin-top:0">Pick an object and an operation. The results below were produced by running the code in real Python.</p>
+    <div class="controls">
+      <label class="fld">Operation<select class="wide" id="py-mut-sel"></select></label>
+      <button class="btn acc" id="py-mut-run">Run it</button>
+    </div>
+    <div class="res" id="py-mut-out">Choose an operation and press <b>Run it</b>.</div>
+  </div>
+</div>
+
+<div class="lab">
+  <div class="lab-head"><b>Type explorer</b><span>identify a Python value</span></div>
+  <div class="lab-body">
+    <p style="margin-top:0">Type any Python literal and see its type and properties. Try the presets or your own value.</p>
+    <div class="controls">
+      <label class="fld">Python value<input type="text" class="wide" id="py-ex-in" value="[1, 2, 2, 3]" spellcheck="false" autocomplete="off"></label>
+      <button class="btn acc" id="py-ex-go">Identify</button>
+    </div>
+    <div class="pick" id="py-ex-pick"></div>
+    <div class="res" id="py-ex-out"></div>
+  </div>
+</div>
+<h3>C. Speed of common operations (the DSA link)</h3><p>The type you choose decides how fast an operation runs. This is why data structures matter.</p><div class="tbl-wrap"><table class=""><thead><tr><th>Operation</th><th>list</th><th>tuple</th><th>dict</th><th>set</th></tr></thead><tbody><tr><td>Access by index / key</td><td>O(1)</td><td>O(1)</td><td>O(1) avg</td><td>no index</td></tr><tr><td>Search (<code>x in ...</code>)</td><td>O(n)</td><td>O(n)</td><td>O(1) avg (keys)</td><td>O(1) avg</td></tr><tr><td>Add at the end / add item</td><td>O(1) amortised</td><td>not allowed</td><td>O(1) avg</td><td>O(1) avg</td></tr><tr><td>Insert at the front / middle</td><td>O(n)</td><td>not allowed</td><td>n/a</td><td>n/a</td></tr><tr><td>Delete an item</td><td>O(n)</td><td>not allowed</td><td>O(1) avg</td><td>O(1) avg</td></tr></tbody></table></div></section><section class="sec page" id="py-s6" data-label="Check &amp; convert" data-sub="type(), isinstance(), type casting"><div class="sec-head"><div class="sec-num">6</div><h2>Checking &amp; Converting Types</h2></div><h3>A. Checking a type</h3><div class="grid2"><div class="mini pro"><h4><code>type(x)</code></h4><p>Returns the exact class of <code>x</code>. Use it to <em>see</em> a type or to print it.</p></div><div class="mini pro"><h4><code>isinstance(x, C)</code></h4><p>Returns <code>True</code> if <code>x</code> is an instance of <code>C</code> or a subclass of it. Accepts a tuple: <code>isinstance(x, (int, float))</code>. Preferred in real code.</p></div></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>print(type(42), type(3.5), type(&quot;hi&quot;), type([1]), type(None))
+print(type(42) == int)
+print(isinstance(42, int), isinstance(True, int), type(True) == int)
+print(isinstance(3.5, (int, float)))
+print(isinstance(&quot;a&quot;, (list, tuple)))
+for v in [1, 2.0, &quot;3&quot;, [4], (5,), {6}, {7: 8}, None]:
+    print(repr(v), &quot;-&gt;&quot;, type(v).__name__)</code></pre></div><div class="out-label">Output</div><pre class="out">&lt;class &#x27;int&#x27;&gt; &lt;class &#x27;float&#x27;&gt; &lt;class &#x27;str&#x27;&gt; &lt;class &#x27;list&#x27;&gt; &lt;class &#x27;NoneType&#x27;&gt;
+True
+True True False
+True
+False
+1 -&gt; int
+2.0 -&gt; float
+&#x27;3&#x27; -&gt; str
+[4] -&gt; list
+(5,) -&gt; tuple
+{6} -&gt; set
+{7: 8} -&gt; dict
+None -&gt; NoneType</pre><div class="box exam"><span class="box-title">Exam point</span><p><code>type(True) == int</code> is <code>False</code> (the type is <code>bool</code>), but <code>isinstance(True, int)</code> is <code>True</code> because <code>bool</code> inherits from <code>int</code>. That is the main difference between the two functions.</p></div><h3>B. Type conversion (type casting)</h3><h4>Implicit conversion</h4><p>Python converts automatically when it is safe, always towards the "wider" type: <code>bool → int → float → complex</code>. You do nothing; it just happens.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>print(5 + 2.5, type(5 + 2.5))
+print(True + 1, type(True + 1))
+print(type(2 + (3 + 4j)))
+try:
+    print(&quot;5&quot; + 5)
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">7.5 &lt;class &#x27;float&#x27;&gt;
+2 &lt;class &#x27;int&#x27;&gt;
+&lt;class &#x27;complex&#x27;&gt;
+Error: can only concatenate str (not &quot;int&quot;) to str</pre><h4>Explicit conversion</h4><p>You ask for the conversion with a constructor function. It can fail if the value cannot be converted.</p><div class="tbl-wrap"><table class=""><thead><tr><th>Function</th><th>Converts to</th><th>Notes</th></tr></thead><tbody><tr><td><code>int(x)</code></td><td>integer</td><td>Truncates floats toward zero. Strings must look like whole numbers.</td></tr><tr><td><code>float(x)</code></td><td>float</td><td>Accepts <code>'3.14'</code>, <code>'1e3'</code>, ints.</td></tr><tr><td><code>str(x)</code></td><td>string</td><td>Works on anything; gives the printable text.</td></tr><tr><td><code>list(x)</code></td><td>list</td><td>From any iterable: string, tuple, set, dict (keys), range.</td></tr><tr><td><code>tuple(x)</code></td><td>tuple</td><td>Same idea, immutable result.</td></tr><tr><td><code>set(x)</code></td><td>set</td><td>Drops duplicates, loses order. Items must be hashable.</td></tr><tr><td><code>bool(x)</code></td><td>bool</td><td>Falsy values give <code>False</code>, everything else <code>True</code>.</td></tr></tbody></table></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>print(int(&quot;42&quot;), int(3.99), int(-3.99), int(True), int(&quot;101&quot;, 2))
+print(float(&quot;3.14&quot;), float(5), float(&quot;1e3&quot;))
+print(str(100), str(3.5), str([1, 2]), str(None))
+print(list(&quot;abc&quot;), list((1, 2)), list({&quot;a&quot;: 1, &quot;b&quot;: 2}), list(range(3)))
+print(tuple([1, 2, 3]), tuple(&quot;hi&quot;))
+print(set([3, 1, 3, 2]), set((5, 5, 6)))
+print(bool(0), bool(0.0), bool(&quot;&quot;), bool([]), bool(None), bool(-1), bool(&quot; &quot;))
+for bad in [&quot;abc&quot;, &quot;3.5&quot;, &quot;&quot;]:
+    try:
+        int(bad)
+    except ValueError as e:
+        print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">42 3 -3 1 5
+3.14 5.0 1000.0
+100 3.5 [1, 2] None
+[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;] [1, 2] [&#x27;a&#x27;, &#x27;b&#x27;] [0, 1, 2]
+(1, 2, 3) (&#x27;h&#x27;, &#x27;i&#x27;)
+{1, 2, 3} {5, 6}
+False False False False False True True
+Error: invalid literal for int() with base 10: &#x27;abc&#x27;
+Error: invalid literal for int() with base 10: &#x27;3.5&#x27;
+Error: invalid literal for int() with base 10: &#x27;&#x27;</pre>
+<div class="lab">
+  <div class="lab-head"><b>Conversion lab</b><span>real results from Python</span></div>
+  <div class="lab-body">
+    <p style="margin-top:0">Pick a value and a conversion function to see what Python returns, or which error it raises.</p>
+    <div class="controls">
+      <label class="fld">Value<select class="wide" id="py-cv-val"></select></label>
+      <label class="fld">Function<select id="py-cv-fn"></select></label>
+      <button class="btn acc" id="py-cv-run">Convert</button>
+    </div>
+    <div class="res" id="py-cv-out">Choose a value and a function.</div>
+    <p class="algo-note" style="margin-top:8px">Sets are shown sorted here; in a real program their order is not guaranteed.</p>
+  </div>
+</div>
+</section><section class="sec page" id="py-s7" data-label="Practical programs" data-sub="Five tested programs"><div class="sec-head"><div class="sec-num">7</div><h2>Practical Examples</h2></div><p>Five complete programs. Each tab shows the code and its real output. Use <strong>Copy</strong> to paste a program into your editor.</p><div class="tabs" data-tabs="py-c"><button class="tab-btn on" data-pane="py-c1">1 · Lists &amp; tuples</button><button class="tab-btn" data-pane="py-c2">2 · Student dictionary</button><button class="tab-btn" data-pane="py-c3">3 · Remove duplicates</button><button class="tab-btn" data-pane="py-c4">4 · Numeric calculations</button><button class="tab-btn" data-pane="py-c5">5 · Check &amp; convert</button></div><div class="tab-pane on" id="py-c1"><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 1: working with lists and tuples
+marks = [72, 85, 90, 65]            # list: can change
+marks.append(88)
+marks.sort()
+print(&quot;Sorted marks:&quot;, marks)
+print(&quot;Highest:&quot;, max(marks), &quot;Lowest:&quot;, min(marks))
+print(&quot;Average:&quot;, sum(marks) / len(marks))
+
+coordinates = (19.07, 72.87)        # tuple: a fixed record
+lat, lon = coordinates
+print(&quot;Latitude:&quot;, lat, &quot;Longitude:&quot;, lon)
+try:
+    coordinates[0] = 0
+except TypeError as e:
+    print(&quot;Tuples cannot change:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">Sorted marks: [65, 72, 85, 88, 90]
+Highest: 90 Lowest: 65
+Average: 80.0
+Latitude: 19.07 Longitude: 72.87
+Tuples cannot change: &#x27;tuple&#x27; object does not support item assignment</pre></div><div class="tab-pane" id="py-c2"><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 2: student information using dictionaries
+students = {
+    101: {&quot;name&quot;: &quot;Asha&quot;, &quot;marks&quot;: [80, 90, 85]},
+    102: {&quot;name&quot;: &quot;Ravi&quot;, &quot;marks&quot;: [70, 65, 75]},
+}
+students[103] = {&quot;name&quot;: &quot;Meera&quot;, &quot;marks&quot;: [95, 88, 92]}   # add a record
+
+for roll, info in students.items():
+    avg = sum(info[&quot;marks&quot;]) / len(info[&quot;marks&quot;])
+    print(f&quot;{roll}  {info[&#x27;name&#x27;]:6} average = {avg:.1f}&quot;)
+
+print(students.get(999, &quot;No such student&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">101  Asha   average = 85.0
+102  Ravi   average = 70.0
+103  Meera  average = 91.7
+No such student</pre></div><div class="tab-pane" id="py-c3"><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 3: removing duplicates using sets
+emails = [&quot;a@x.com&quot;, &quot;b@x.com&quot;, &quot;a@x.com&quot;, &quot;c@x.com&quot;, &quot;b@x.com&quot;]
+
+unique = set(emails)
+print(&quot;Total:&quot;, len(emails), &quot;Unique:&quot;, len(unique))
+print(sorted(unique))            # a set has no order, so sort to print neatly
+
+# keep the original order while removing duplicates
+seen = set()
+ordered = []
+for e in emails:
+    if e not in seen:
+        seen.add(e)
+        ordered.append(e)
+print(ordered)
+print(list(dict.fromkeys(emails)))   # one-line version</code></pre></div><div class="out-label">Output</div><pre class="out">Total: 5 Unique: 3
+[&#x27;a@x.com&#x27;, &#x27;b@x.com&#x27;, &#x27;c@x.com&#x27;]
+[&#x27;a@x.com&#x27;, &#x27;b@x.com&#x27;, &#x27;c@x.com&#x27;]
+[&#x27;a@x.com&#x27;, &#x27;b@x.com&#x27;, &#x27;c@x.com&#x27;]</pre></div><div class="tab-pane" id="py-c4"><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 4: calculations using numeric types
+principal = 10000
+rate = 7.5
+years = 3
+interest = principal * rate * years / 100
+total = principal + interest
+print(f&quot;Simple interest: {interest}&quot;)
+print(f&quot;Total amount: {total:.2f}&quot;)
+
+print(divmod(17, 5), 17 % 5, 2 ** 10, round(3.14159, 2))
+r = 2.5
+area = 3.14159 * r ** 2
+print(f&quot;Area of circle: {area:.3f}&quot;)
+print(abs(-7.5), pow(2, 3), int(7.9))</code></pre></div><div class="out-label">Output</div><pre class="out">Simple interest: 2250.0
+Total amount: 12250.00
+(3, 2) 2 1024 3.14
+Area of circle: 19.635
+7.5 8 7</pre></div><div class="tab-pane" id="py-c5"><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Program 5: checking and converting data types
+inputs = [&quot;42&quot;, &quot;3.14&quot;, &quot;True&quot;, &quot;hello&quot;, &quot;&quot;, &quot;100&quot;]
+
+for raw in inputs:
+    if raw.isdigit():
+        value = int(raw)
+    else:
+        try:
+            value = float(raw)
+        except ValueError:
+            value = raw              # keep it as a string
+    print(f&quot;{raw!r:8} -&gt; {value!r:8} ({type(value).__name__})&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">&#x27;42&#x27;     -&gt; 42       (int)
+&#x27;3.14&#x27;   -&gt; 3.14     (float)
+&#x27;True&#x27;   -&gt; &#x27;True&#x27;   (str)
+&#x27;hello&#x27;  -&gt; &#x27;hello&#x27;  (str)
+&#x27;&#x27;       -&gt; &#x27;&#x27;       (str)
+&#x27;100&#x27;    -&gt; 100      (int)</pre></div></section><section class="sec page" id="py-s8" data-label="Mistakes &amp; interview" data-sub="Common mistakes and interview questions"><div class="sec-head"><div class="sec-num">8</div><h2>Common Mistakes &amp; Interview Questions</h2></div><h3>A. Common beginner mistakes</h3><div class="op"><h4>1. Thinking <code>b = a</code> makes a copy</h4><p>Assignment copies the <em>reference</em>, not the object. Changing one list changes the other.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = [1, 2, 3]
+b = a                # wrong idea: &quot;b is a copy&quot;
+b.append(4)
+print(a)             # a changed too!</code></pre></div><div class="out-label">Output</div><pre class="out">[1, 2, 3, 4]</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = [1, 2, 3]
+b = a.copy()         # or list(a) or a[:]
+b.append(4)
+print(a, b)</code></pre></div><div class="out-label">Output</div><pre class="out">[1, 2, 3] [1, 2, 3, 4]</pre></div></div></div><div class="op"><h4>2. Forgetting the comma in a one-item tuple</h4><p><code>(5)</code> is just the number 5 in brackets. The comma makes the tuple.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>t = (5)
+print(type(t))</code></pre></div><div class="out-label">Output</div><pre class="out">&lt;class &#x27;int&#x27;&gt;</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>t = (5,)
+print(type(t))</code></pre></div><div class="out-label">Output</div><pre class="out">&lt;class &#x27;tuple&#x27;&gt;</pre></div></div></div><div class="op"><h4>3. Creating an empty set with <code>{}</code></h4><p>Empty curly braces make a <em>dictionary</em>. Use <code>set()</code> for an empty set.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>s = {}
+print(type(s))</code></pre></div><div class="out-label">Output</div><pre class="out">&lt;class &#x27;dict&#x27;&gt;</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>s = set()
+print(type(s))</code></pre></div><div class="out-label">Output</div><pre class="out">&lt;class &#x27;set&#x27;&gt;</pre></div></div></div><div class="op"><h4>4. Adding a string and an integer</h4><p>Python never guesses between text and numbers. Convert one side explicitly.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>age = 20
+try:
+    print(&quot;Age: &quot; + age)
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">Error: can only concatenate str (not &quot;int&quot;) to str</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>age = 20
+print(&quot;Age: &quot; + str(age))
+print(f&quot;Age: {age}&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">Age: 20
+Age: 20</pre></div></div></div><div class="op"><h4>5. Removing items from a list while looping over it</h4><p>The list shrinks while the loop walks along it, so some items are skipped.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>nums = [2, 4, 6, 8]
+for n in nums:
+    if n % 2 == 0:
+        nums.remove(n)
+print(nums)          # expected [], got something else</code></pre></div><div class="out-label">Output</div><pre class="out">[4, 8]</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>nums = [2, 4, 6, 8]
+nums = [n for n in nums if n % 2 != 0]
+print(nums)</code></pre></div><div class="out-label">Output</div><pre class="out">[]</pre></div></div></div><div class="op"><h4>6. Comparing floats with <code>==</code></h4><p>Many decimals cannot be stored exactly in binary, so tiny errors appear.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>print(0.1 + 0.2 == 0.3)</code></pre></div><div class="out-label">Output</div><pre class="out">False</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>import math
+print(math.isclose(0.1 + 0.2, 0.3))
+print(round(0.1 + 0.2, 2) == 0.3)</code></pre></div><div class="out-label">Output</div><pre class="out">True
+True</pre></div></div></div><div class="op"><h4>7. Using a list as a dictionary key or set item</h4><p>Keys and set items must be <em>hashable</em> (immutable). Use a tuple instead.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>try:
+    d = {[1, 2]: &quot;x&quot;}
+except TypeError as e:
+    print(&quot;Error:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">Error: unhashable type: &#x27;list&#x27;</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>d = {(1, 2): &quot;x&quot;}
+print(d[(1, 2)])</code></pre></div><div class="out-label">Output</div><pre class="out">x</pre></div></div></div><div class="op"><h4>8. Forgetting that <code>input()</code> returns a string</h4><p>Even if the user types digits, you get text. Convert it before doing arithmetic.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = &quot;5&quot;              # what input() gives you
+b = &quot;3&quot;
+print(a + b)</code></pre></div><div class="out-label">Output</div><pre class="out">53</pre></div><div class="r"><h4>✓ Better</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = int(&quot;5&quot;)
+b = int(&quot;3&quot;)
+print(a + b)</code></pre></div><div class="out-label">Output</div><pre class="out">8</pre></div></div></div><h3>B. Top 10 interview questions</h3><details><summary>Q1. What are the built-in data types in Python?</summary><p>The main groups are numeric (<code>int</code>, <code>float</code>, <code>complex</code>), boolean (<code>bool</code>), sequence (<code>str</code>, <code>list</code>, <code>tuple</code>, <code>range</code>), mapping (<code>dict</code>), set (<code>set</code>, <code>frozenset</code>), binary (<code>bytes</code>, <code>bytearray</code>, <code>memoryview</code>) and <code>NoneType</code>.</p></details><details><summary>Q2. What is the difference between a list and a tuple?</summary><p>A list is mutable (items can be added, removed or changed) and written with <code>[]</code>. A tuple is immutable and written with <code>()</code>. Tuples are slightly faster and can be used as dictionary keys when all their items are hashable.</p></details><details><summary>Q3. What does "Python is dynamically typed" mean?</summary><p>You do not declare a variable's type. The type belongs to the <em>object</em> the name refers to, and it is checked at run time. The same name can later point to an object of a different type.</p></details><details><summary>Q4. Which types are mutable and which are immutable?</summary><p>Mutable: <code>list</code>, <code>dict</code>, <code>set</code>, <code>bytearray</code>. Immutable: <code>int</code>, <code>float</code>, <code>complex</code>, <code>bool</code>, <code>str</code>, <code>tuple</code>, <code>frozenset</code>, <code>bytes</code>, <code>range</code>, <code>NoneType</code>.</p></details><details><summary>Q5. What is the difference between <code>type()</code> and <code>isinstance()</code>?</summary><p><code>type(x)</code> returns the exact class of <code>x</code>. <code>isinstance(x, C)</code> returns <code>True</code> if <code>x</code> is an instance of <code>C</code> or of a subclass, and it accepts a tuple of classes. Because <code>bool</code> is a subclass of <code>int</code>, <code>isinstance(True, int)</code> is <code>True</code> but <code>type(True) == int</code> is <code>False</code>.</p></details><details><summary>Q6. Is a dictionary ordered in Python?</summary><p>Yes. From Python 3.7 a <code>dict</code> remembers insertion order. Keys must be unique and hashable. A <code>set</code>, however, has no defined order.</p></details><details><summary>Q7. How do you remove duplicates from a list?</summary><p><code>list(set(items))</code> removes them but loses the order. To keep the order use <code>list(dict.fromkeys(items))</code>.</p></details><details><summary>Q8. What is the difference between <code>==</code> and <code>is</code>?</summary><p><code>==</code> compares values. <code>is</code> checks whether two names refer to the very same object (same <code>id</code>). Use <code>is</code> mainly for <code>None</code>: <code>if x is None</code>.</p></details><details><summary>Q9. What is the difference between <code>set</code> and <code>frozenset</code>?</summary><p>A <code>set</code> is mutable and cannot be used as a dictionary key or inside another set. A <code>frozenset</code> is immutable and hashable, so it can.</p></details><details><summary>Q10. What is the difference between a shallow copy and a deep copy?</summary><p>A shallow copy (<code>list.copy()</code>, <code>a[:]</code>) creates a new outer container but shares the inner objects. <code>copy.deepcopy()</code> copies the inner objects as well, so nested lists become independent.</p></details></section><section class="sec page" id="py-s9" data-label="Practice &amp; conclusion" data-sub="Exercises, quiz, summary"><div class="sec-head"><div class="sec-num">9</div><h2>Practice, Quiz &amp; Conclusion</h2></div><h3>A. Five practice exercises</h3><p>Try each one yourself first. Open the hint if you are stuck, then compare with the solution and expected output.</p><div class="exer"><h4>Exercise 1: Swap and inspect</h4><p>Swap the values of <code>a = 5</code> and <code>b = 'five'</code> without a temporary variable, then print each value with its type.</p><details><summary>Show hint</summary><p>Python allows tuple unpacking: <code>a, b = b, a</code>.</p></details><details><summary>Show solution and expected output</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>a = 5
+b = &quot;five&quot;
+a, b = b, a
+print(a, type(a).__name__)
+print(b, type(b).__name__)</code></pre></div><div class="out-label">Output</div><pre class="out">five str
+5 int</pre></details></div><div class="exer"><h4>Exercise 2: Marks statistics</h4><p>Given <code>marks = [56, 78, 91, 64, 83]</code>, print the highest, lowest and average (one decimal place).</p><details><summary>Show hint</summary><p>Use <code>max()</code>, <code>min()</code>, <code>sum()</code>, <code>len()</code> and an f-string with <code>:.1f</code>.</p></details><details><summary>Show solution and expected output</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>marks = [56, 78, 91, 64, 83]
+print(&quot;Highest:&quot;, max(marks))
+print(&quot;Lowest:&quot;, min(marks))
+print(f&quot;Average: {sum(marks) / len(marks):.1f}&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">Highest: 91
+Lowest: 56
+Average: 74.4</pre></details></div><div class="exer"><h4>Exercise 3: Unique, in order</h4><p>Remove duplicates from <code>[4, 2, 4, 7, 2, 9]</code> but keep the first-seen order.</p><details><summary>Show hint</summary><p>A plain <code>set</code> loses order. Try <code>dict.fromkeys()</code> or a loop with a <code>seen</code> set.</p></details><details><summary>Show solution and expected output</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>data = [4, 2, 4, 7, 2, 9]
+print(list(dict.fromkeys(data)))</code></pre></div><div class="out-label">Output</div><pre class="out">[4, 2, 7, 9]</pre></details></div><div class="exer"><h4>Exercise 4: Word counter</h4><p>Count how many times each word appears in <code>'to be or not to be'</code> using a dictionary.</p><details><summary>Show hint</summary><p>Split the text, then use <code>counts[w] = counts.get(w, 0) + 1</code>.</p></details><details><summary>Show solution and expected output</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>text = &quot;to be or not to be&quot;
+counts = {}
+for w in text.split():
+    counts[w] = counts.get(w, 0) + 1
+print(counts)</code></pre></div><div class="out-label">Output</div><pre class="out">{&#x27;to&#x27;: 2, &#x27;be&#x27;: 2, &#x27;or&#x27;: 1, &#x27;not&#x27;: 1}</pre></details></div><div class="exer"><h4>Exercise 5: Safe converter</h4><p>From <code>['10', '20', 'x', '30']</code>, convert the valid entries to integers, skip the invalid ones and print the total.</p><details><summary>Show hint</summary><p>Wrap <code>int()</code> in <code>try / except ValueError</code>.</p></details><details><summary>Show solution and expected output</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>items = [&quot;10&quot;, &quot;20&quot;, &quot;x&quot;, &quot;30&quot;]
+total = 0
+for s in items:
+    try:
+        total += int(s)
+    except ValueError:
+        print(&quot;skipped&quot;, repr(s))
+print(&quot;Total:&quot;, total)</code></pre></div><div class="out-label">Output</div><pre class="out">skipped &#x27;x&#x27;
+Total: 60</pre></details></div><h3>B. Quiz: test yourself (8 MCQs)</h3><div id="py-quiz"></div><div class="score" id="py-quiz-score" style="display:none"><span>Your score: <b id="py-quiz-num">0</b> / 8</span><button class="btn acc" id="py-quiz-retry">Retry quiz</button></div><h3>C. Conclusion</h3><p>Python's built-in data types are the raw material of every program. Numbers and booleans hold single values. Strings, lists, tuples and ranges hold ordered items. Dictionaries and sets hold items you look up quickly. Knowing which types can change (mutable) and which cannot (immutable) explains most of the "surprising" behaviour beginners meet.</p><div class="box tip"><span class="box-title">Key takeaways</span><ul><li>Types belong to objects, and Python checks them at run time.</li><li>Immutable: int, float, complex, bool, str, tuple, frozenset, bytes, range, None. Mutable: list, dict, set, bytearray.</li><li>Use <code>isinstance()</code> to check types and <code>int()</code>, <code>str()</code>, <code>list()</code>... to convert them.</li><li>Choose the type that matches the job: a list for order, a dict for lookup by key, a set for uniqueness.</li></ul></div><h3>How these types lead into Data Structures &amp; Algorithms</h3><div class="tbl-wrap"><table class=""><thead><tr><th>Built-in type</th><th>Becomes this data structure in DSA</th></tr></thead><tbody><tr><td><code>list</code></td><td>Arrays, stacks, queues, heaps, adjacency lists</td></tr><tr><td><code>dict</code></td><td>Hash tables, graphs as adjacency maps, frequency counters</td></tr><tr><td><code>set</code></td><td>Visited sets in graph search, fast membership</td></tr><tr><td><code>tuple</code></td><td>Fixed records such as (node, weight) or (row, col)</td></tr><tr><td><code>None</code></td><td>The end of a linked list and empty tree children</td></tr></tbody></table></div><p>With these basics solid, you are ready for the next lesson, <strong>Linked lists</strong>, where nodes and <code>None</code> pointers build a structure Python does not provide out of the box.</p></section>
+<div class="footer">Data Structures Series · Python Built-in Data Types · Next topic: Linked Lists</div>
+</div>
+
+<script>
+(function(){
+  var root = document.getElementById('dsa-py'); if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  var CONV = {"42": {"int": {"ok": true, "r": "42"}, "float": {"ok": true, "r": "42.0"}, "str": {"ok": true, "r": "'42'"}, "list": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "bool": {"ok": true, "r": "True"}}, "'42'": {"int": {"ok": true, "r": "42"}, "float": {"ok": true, "r": "42.0"}, "str": {"ok": true, "r": "'42'"}, "list": {"ok": true, "r": "['4', '2']"}, "tuple": {"ok": true, "r": "('4', '2')"}, "set": {"ok": true, "r": "{'2', '4'}"}, "bool": {"ok": true, "r": "True"}}, "'3.14'": {"int": {"ok": false, "r": "ValueError: invalid literal for int() with base 10: '3.14'"}, "float": {"ok": true, "r": "3.14"}, "str": {"ok": true, "r": "'3.14'"}, "list": {"ok": true, "r": "['3', '.', '1', '4']"}, "tuple": {"ok": true, "r": "('3', '.', '1', '4')"}, "set": {"ok": true, "r": "{'.', '1', '3', '4'}"}, "bool": {"ok": true, "r": "True"}}, "'hello'": {"int": {"ok": false, "r": "ValueError: invalid literal for int() with base 10: 'hello'"}, "float": {"ok": false, "r": "ValueError: could not convert string to float: 'hello'"}, "str": {"ok": true, "r": "'hello'"}, "list": {"ok": true, "r": "['h', 'e', 'l', 'l', 'o']"}, "tuple": {"ok": true, "r": "('h', 'e', 'l', 'l', 'o')"}, "set": {"ok": true, "r": "{'e', 'h', 'l', 'o'}"}, "bool": {"ok": true, "r": "True"}}, "3.99": {"int": {"ok": true, "r": "3"}, "float": {"ok": true, "r": "3.99"}, "str": {"ok": true, "r": "'3.99'"}, "list": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "bool": {"ok": true, "r": "True"}}, "-3.99": {"int": {"ok": true, "r": "-3"}, "float": {"ok": true, "r": "-3.99"}, "str": {"ok": true, "r": "'-3.99'"}, "list": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'float' object is not iterable"}, "bool": {"ok": true, "r": "True"}}, "0": {"int": {"ok": true, "r": "0"}, "float": {"ok": true, "r": "0.0"}, "str": {"ok": true, "r": "'0'"}, "list": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'int' object is not iterable"}, "bool": {"ok": true, "r": "False"}}, "''": {"int": {"ok": false, "r": "ValueError: invalid literal for int() with base 10: ''"}, "float": {"ok": false, "r": "ValueError: could not convert string to float: ''"}, "str": {"ok": true, "r": "''"}, "list": {"ok": true, "r": "[]"}, "tuple": {"ok": true, "r": "()"}, "set": {"ok": true, "r": "set()"}, "bool": {"ok": true, "r": "False"}}, "[1, 2, 2, 3]": {"int": {"ok": false, "r": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'list'"}, "float": {"ok": false, "r": "TypeError: float() argument must be a string or a real number, not 'list'"}, "str": {"ok": true, "r": "'[1, 2, 2, 3]'"}, "list": {"ok": true, "r": "[1, 2, 2, 3]"}, "tuple": {"ok": true, "r": "(1, 2, 2, 3)"}, "set": {"ok": true, "r": "{1, 2, 3}"}, "bool": {"ok": true, "r": "True"}}, "(1, 2)": {"int": {"ok": false, "r": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'tuple'"}, "float": {"ok": false, "r": "TypeError: float() argument must be a string or a real number, not 'tuple'"}, "str": {"ok": true, "r": "'(1, 2)'"}, "list": {"ok": true, "r": "[1, 2]"}, "tuple": {"ok": true, "r": "(1, 2)"}, "set": {"ok": true, "r": "{1, 2}"}, "bool": {"ok": true, "r": "True"}}, "'abc'": {"int": {"ok": false, "r": "ValueError: invalid literal for int() with base 10: 'abc'"}, "float": {"ok": false, "r": "ValueError: could not convert string to float: 'abc'"}, "str": {"ok": true, "r": "'abc'"}, "list": {"ok": true, "r": "['a', 'b', 'c']"}, "tuple": {"ok": true, "r": "('a', 'b', 'c')"}, "set": {"ok": true, "r": "{'a', 'b', 'c'}"}, "bool": {"ok": true, "r": "True"}}, "None": {"int": {"ok": false, "r": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'"}, "float": {"ok": false, "r": "TypeError: float() argument must be a string or a real number, not 'NoneType'"}, "str": {"ok": true, "r": "'None'"}, "list": {"ok": false, "r": "TypeError: 'NoneType' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'NoneType' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'NoneType' object is not iterable"}, "bool": {"ok": true, "r": "False"}}, "True": {"int": {"ok": true, "r": "1"}, "float": {"ok": true, "r": "1.0"}, "str": {"ok": true, "r": "'True'"}, "list": {"ok": false, "r": "TypeError: 'bool' object is not iterable"}, "tuple": {"ok": false, "r": "TypeError: 'bool' object is not iterable"}, "set": {"ok": false, "r": "TypeError: 'bool' object is not iterable"}, "bool": {"ok": true, "r": "True"}}, "{'a': 1, 'b': 2}": {"int": {"ok": false, "r": "TypeError: int() argument must be a string, a bytes-like object or a real number, not 'dict'"}, "float": {"ok": false, "r": "TypeError: float() argument must be a string or a real number, not 'dict'"}, "str": {"ok": true, "r": "\"{'a': 1, 'b': 2}\""}, "list": {"ok": true, "r": "['a', 'b']"}, "tuple": {"ok": true, "r": "('a', 'b')"}, "set": {"ok": true, "r": "{'a', 'b'}"}, "bool": {"ok": true, "r": "True"}}}, MUT = [{"t": "list", "setup": "nums = [1, 2, 3]", "op": "nums.append(4)", "ok": true, "same": true, "res": "[1, 2, 3, 4]"}, {"t": "list", "setup": "nums = [1, 2, 3]", "op": "nums[0] = 99", "ok": true, "same": true, "res": "[99, 2, 3]"}, {"t": "dict", "setup": "d = {'a': 1}", "op": "d['b'] = 2", "ok": true, "same": true, "res": "{'a': 1, 'b': 2}"}, {"t": "set", "setup": "s = {1, 2}", "op": "s.add(3)", "ok": true, "same": true, "res": "{1, 2, 3}"}, {"t": "bytearray", "setup": "ba = bytearray(b'ab')", "op": "ba[0] = 65", "ok": true, "same": true, "res": "bytearray(b'Ab')"}, {"t": "tuple", "setup": "t = (1, 2, 3)", "op": "t[0] = 99", "ok": false, "err": "TypeError: 'tuple' object does not support item assignment"}, {"t": "tuple", "setup": "t = (1, 2, 3)", "op": "t += (4,)", "ok": true, "same": false, "res": "(1, 2, 3, 4)"}, {"t": "str", "setup": "s = 'hello'", "op": "s[0] = 'J'", "ok": false, "err": "TypeError: 'str' object does not support item assignment"}, {"t": "str", "setup": "s = 'hello'", "op": "s += '!'", "ok": true, "same": false, "res": "'hello!'"}, {"t": "int", "setup": "n = 10", "op": "n += 1", "ok": true, "same": false, "res": "11"}, {"t": "float", "setup": "f = 2.5", "op": "f += 1", "ok": true, "same": false, "res": "3.5"}, {"t": "frozenset", "setup": "fs = frozenset([1, 2])", "op": "fs.add(3)", "ok": false, "err": "AttributeError: 'frozenset' object has no attribute 'add'"}], QZ = [{"q": "What is the type of <code>(5)</code>?", "o": ["tuple", "int", "list", "str"], "a": 1, "e": "Brackets alone do nothing. <code>(5)</code> is the integer 5. The tuple needs a comma: <code>(5,)</code>."}, {"q": "Which of these is immutable?", "o": ["list", "dict", "tuple", "set"], "a": 2, "e": "A tuple cannot be changed after it is created. List, dict and set are all mutable."}, {"q": "What does <code>bool([])</code> return?", "o": ["True", "False", "None", "TypeError"], "a": 1, "e": "Empty containers (and 0, 0.0, '', None) are falsy, so <code>bool([])</code> is <code>False</code>."}, {"q": "What is the result of <code>type({})</code>?", "o": ["set", "dict", "list", "frozenset"], "a": 1, "e": "<code>{}</code> is an empty dictionary. An empty set is created with <code>set()</code>."}, {"q": "What is printed by <code>print(int(-3.99))</code>?", "o": ["-4", "-3", "3", "ValueError"], "a": 1, "e": "<code>int()</code> truncates toward zero. It does not round, so -3.99 becomes -3."}, {"q": "Which type can be used as a dictionary key?", "o": ["list", "set", "dict", "tuple of ints"], "a": 3, "e": "Keys must be hashable, which means immutable. A tuple of ints qualifies; lists, sets and dicts do not."}, {"q": "After <code>a = [1, 2]; b = a; b.append(3)</code>, what is <code>a</code>?", "o": ["[1, 2]", "[1, 2, 3]", "[3]", "Error"], "a": 1, "e": "<code>b = a</code> makes both names refer to the same list, so the change is visible through both."}, {"q": "Which expression is <code>True</code>?", "o": ["isinstance(True, int)", "type(True) == int", "isinstance(1, bool)", "isinstance('a', int)"], "a": 0, "e": "<code>bool</code> is a subclass of <code>int</code>, so <code>isinstance(True, int)</code> is <code>True</code>. <code>type(True)</code> is <code>bool</code>, not <code>int</code>."}];
+
+  /* tabs */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){ b.addEventListener('click', function(){
+      each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+      b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+    }); });
+  });
+  /* copy buttons */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+  /* ---------- mutability lab ---------- */
+  var ms=$('py-mut-sel');
+  MUT.forEach(function(m,i){ var o=document.createElement('option'); o.value=i; o.textContent=m.t+':  '+m.op; ms.appendChild(o); });
+  $('py-mut-run').addEventListener('click', function(){
+    var m=MUT[ms.value], h='<div><b>Type:</b> '+esc(m.t)+'</div><div><b>Setup:</b> '+esc(m.setup)+'</div><div><b>Operation:</b> '+esc(m.op)+'</div>';
+    if(m.ok){
+      h+='<div><b>Result:</b> '+esc(m.res)+'</div><div><b>Same object (same id)?</b> '+(m.same?'<span class="good">Yes: changed in place (mutable)</span>':'<span class="badc">No: a new object was created (immutable)</span>')+'</div>';
+    } else {
+      h+='<div><b>Result:</b> <span class="badc">'+esc(m.err)+'</span></div><div>The object cannot be changed in place: it is <b>immutable</b>.</div>';
+    }
+    $('py-mut-out').innerHTML=h;
+  });
+
+  /* ---------- type explorer ---------- */
+  var INFO={
+    'int':['Numeric','single value','Immutable','n/a'], 'float':['Numeric','single value','Immutable','n/a'], 'complex':['Numeric','single value','Immutable','n/a'],
+    'bool':['Boolean','single value','Immutable','n/a'], 'str':['Sequence','Ordered','Immutable','Yes'], 'list':['Sequence','Ordered','Mutable','Yes'],
+    'tuple':['Sequence','Ordered','Immutable','Yes'], 'range':['Sequence','Ordered','Immutable','No (unique values)'], 'dict':['Mapping','Ordered by insertion','Mutable','Keys: No, values: Yes'],
+    'set':['Set','Unordered','Mutable','No'], 'frozenset':['Set','Unordered','Immutable','No'], 'bytes':['Binary','Ordered','Immutable','Yes'],
+    'bytearray':['Binary','Ordered','Mutable','Yes'], 'memoryview':['Binary','Ordered','Depends on the buffer','Yes'], 'NoneType':['None type','single value','Immutable','n/a']
+  };
+  function classify(src){
+    var s=src.trim(), m;
+    if(!s) return null;
+    if(/^(True|False)$/.test(s)) return 'bool';
+    if(s==='None') return 'NoneType';
+    if(/^[+-]?(0[xX][0-9a-fA-F_]+|0[bB][01_]+|0[oO][0-7_]+|\d[\d_]*)$/.test(s)) return 'int';
+    if(/^[+-]?(\d[\d_]*\.\d*|\.\d+|\d[\d_]*)([eE][+-]?\d+)?$/.test(s)) return 'float';
+    if(/^[+-]?(\d+(\.\d*)?|\.\d+)?([+-](\d+(\.\d*)?|\.\d+))?[jJ]$/.test(s) && /[jJ]$/.test(s)) return 'complex';
+    if(/^b(['"]).*\1$/s.test(s)) return 'bytes';
+    if(/^(['"])[\s\S]*\1$/.test(s)) return 'str';
+    if(/^range\(.*\)$/.test(s)) return 'range';
+    if(/^frozenset\(.*\)$/.test(s)) return 'frozenset';
+    if(/^bytearray\(.*\)$/.test(s)) return 'bytearray';
+    if(/^memoryview\(.*\)$/.test(s)) return 'memoryview';
+    if(/^set\(.*\)$/.test(s)) return 'set';
+    if(/^\[[\s\S]*\]$/.test(s)) return 'list';
+    if(/^\([\s\S]*\)$/.test(s)){ var inner=s.slice(1,-1).trim(); return (inner===''||inner.indexOf(',')>-1) ? 'tuple' : classify(inner); }
+    if(/^\{[\s\S]*\}$/.test(s)){
+      var body=s.slice(1,-1).replace(/(['"]).*?\1/g,'x'); if(body.trim()==='') return 'dict';
+      return body.indexOf(':')>-1 ? 'dict' : 'set';
+    }
+    if(s.indexOf(',')>-1 && !/[()\[\]{}]/.test(s)) return 'tuple';
+    return null;
+  }
+  var presets=['42','3.14','2+3j','True','"hello"','[1, 2, 2, 3]','(1, 2)','(5)','(5,)','{}','{1, 2, 3}','{"a": 1}','range(5)','frozenset([1, 2])','b"hi"','None'];
+  var pk=$('py-ex-pick'), exIn=$('py-ex-in');
+  presets.forEach(function(p){ var b=el('button','btn gh sm'); b.textContent=p; b.addEventListener('click', function(){ exIn.value=p; identify(); }); pk.appendChild(b); });
+  function identify(){
+    var t=classify(exIn.value), o=$('py-ex-out');
+    if(!t){ o.innerHTML='<span class="badc">Not recognised.</span> Try a literal such as <b>42</b>, <b>"text"</b>, <b>[1, 2]</b> or <b>{"a": 1}</b>.'; return; }
+    var i=INFO[t];
+    o.innerHTML='<div><b>type(x):</b> &lt;class \''+t+'\'&gt;</div><div><b>Category:</b> '+i[0]+'</div><div><b>Order:</b> '+i[1]+'</div><div><b>Mutable?</b> '+(i[2]==='Mutable'?'<span class="good">Mutable</span>':i[2])+'</div><div><b>Duplicates allowed:</b> '+i[3]+'</div>';
+  }
+  $('py-ex-go').addEventListener('click', identify);
+  exIn.addEventListener('keydown', function(e){ if(e.key==='Enter') identify(); });
+  identify();
+
+  /* ---------- conversion lab ---------- */
+  var cv=$('py-cv-val'), cf=$('py-cv-fn');
+  Object.keys(CONV).forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=k; cv.appendChild(o); });
+  ['int','float','str','list','tuple','set','bool'].forEach(function(f){ var o=document.createElement('option'); o.value=f; o.textContent=f+'( )'; cf.appendChild(o); });
+  $('py-cv-run').addEventListener('click', function(){
+    var r=CONV[cv.value][cf.value];
+    $('py-cv-out').innerHTML='<div><b>Code:</b> '+esc(cf.value+'('+cv.value+')')+'</div><div><b>'+(r.ok?'Result:':'Error:')+'</b> '+(r.ok?'<span class="good">'+esc(r.r)+'</span>':'<span class="badc">'+esc(r.r)+'</span>')+'</div>';
+  });
+
+  /* ---------- quiz ---------- */
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('py-quiz'); qz.innerHTML=''; answered=0; score=0; $('py-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      card.appendChild(el('div','qt',item.q));
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.insertAdjacentHTML('beforeend', item.e); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('py-quiz-num').textContent=score; $('py-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('py-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+  /* ---------- section navigation ---------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('py-nav'), tabsBox=$('py-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('py-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('py-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('py-prev').disabled = cur===0; $('py-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('py-prev').addEventListener('click', function(){ go(cur-1); });
+  $('py-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('py-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('py-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+})();
+</script>
+
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="arrays.html"><small>← Previous lesson</small><b>Arrays</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="linked-lists.html"><small>Next lesson →</small><b>Linked lists</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures· prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>
