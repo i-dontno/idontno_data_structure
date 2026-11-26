@@ -3,7 +3,7 @@ Learn Data Structures with idontno: static course website
 
 What's inside
   index.html           Course home (modules, lessons, progress, Continue button)
-  <lesson>.html        One page per lesson (19), each wrapping the original post
+  <lesson>.html        One page per lesson (20), each wrapping the original post
   assets/              site.css, site.js, data.js (course outline + search index), favicon.svg
 
 How to open it
@@ -24,5 +24,5 @@ Notes
   - Progress ("Mark as complete") is saved in each visitor's browser only.
     There are no accounts and no data is collected.
   - Press "/" on any page to jump to search.
-  - Coming soon (not yet written): Recursion,
+  - Coming soon (not yet written):
     Expression trees & Huffman coding, Hashing.

@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recursion in Python: Examples, Call Stack &amp; DSA Guide · Learn Data Structures</title>
+<meta name="description" content="Learn recursion in Python with simple examples, call stack diagrams, base case, types, complexity, DSA uses, interview questions and practice problems.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-slug="recursion">
+<a class="idn-skip" href="#idn-content">Skip to lesson</a>
+<header class="idn-top"><div class="idn-top-in">
+  <button class="idn-menu" id="idn-menu" aria-label="Open lesson list" aria-expanded="false" aria-controls="idn-side"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="idn-brand" href="index.html"><span class="idn-logo">i<span>.</span></span>
+    <span class="idn-bname"><b>Learn Data Structures</b></span></a>
+  <div class="idn-search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="idn-q" type="search" placeholder="Search lessons and topics" aria-label="Search lessons and topics" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="idn-res">
+    <span class="idn-kbd" aria-hidden="true">/</span>
+    <div class="idn-results" id="idn-res" role="listbox"></div>
+  </div>
+  <div class="idn-prog" id="idn-prog" role="status"><span id="idn-ring" class="idn-ring"></span><span id="idn-prog-txt"></span></div>
+</div></header>
+<div class="idn-wrap">
+<nav class="idn-side" id="idn-side" aria-label="Course lessons">
+<a class="idn-home" href="index.html">&larr; Course home</a>
+<h4><span>Module I</span> · Foundations</h4><ol>
+<li><a href="introduction.html" class="" data-lesson="introduction"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Data structures &amp; complexity</a></li>
+<li><a href="arrays.html" class="" data-lesson="arrays"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Arrays</a></li>
+<li><a href="python-built-in-types.html" class="" data-lesson="python-built-in-types"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Python built-in data types</a></li>
+<li><a href="recursion.html" class="cur" data-lesson="recursion" aria-current="page"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Recursion</a></li>
+</ol>
+<h4><span>Module II</span> · Linear data structures</h4><ol>
+<li><a href="linked-lists.html" class="" data-lesson="linked-lists"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linked lists</a></li>
+<li><a href="stack.html" class="" data-lesson="stack"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Stack</a></li>
+<li><a href="queue.html" class="" data-lesson="queue"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Queue</a></li>
+<li><a href="stack-queue-applications.html" class="" data-lesson="stack-queue-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of stacks &amp; queues</a></li>
+</ol>
+<h4><span>Module III</span> · Trees</h4><ol>
+<li><a href="trees.html" class="" data-lesson="trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Trees</a></li>
+<li><a href="binary-trees.html" class="" data-lesson="binary-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Binary trees</a></li>
+<li><a href="avl-trees.html" class="" data-lesson="avl-trees"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>AVL trees</a></li>
+<li><a href="heaps.html" class="" data-lesson="heaps"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Heaps &amp; heap sort</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Expression trees &amp; Huffman coding<span class="idn-tag">Soon</span></span></li>
+</ol>
+<h4><span>Module IV</span> · Graphs</h4><ol>
+<li><a href="graphs.html" class="" data-lesson="graphs"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graphs</a></li>
+<li><a href="graph-traversal.html" class="" data-lesson="graph-traversal"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Graph traversal: BFS &amp; DFS</a></li>
+<li><a href="dijkstra.html" class="" data-lesson="dijkstra"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Dijkstra&#x27;s algorithm</a></li>
+<li><a href="floyd-warshall.html" class="" data-lesson="floyd-warshall"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Floyd–Warshall algorithm</a></li>
+<li><a href="minimum-spanning-tree.html" class="" data-lesson="minimum-spanning-tree"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Prim&#x27;s &amp; Kruskal&#x27;s (MST)</a></li>
+<li><a href="graph-applications.html" class="" data-lesson="graph-applications"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Applications of graphs</a></li>
+</ol>
+<h4><span>Module V</span> · Searching, sorting &amp; hashing</h4><ol>
+<li><a href="searching.html" class="" data-lesson="searching"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Linear &amp; binary search</a></li>
+<li><a href="sorting.html" class="" data-lesson="sorting"><span class="idn-dot"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg></span>Sorting algorithms</a></li>
+<li><span class="soon"><span class="idn-dot"></span>Hashing<span class="idn-tag">Soon</span></span></li>
+</ol>
+</nav><div class="idn-backdrop"></div>
+<main class="idn-main" id="idn-content">
+  <div class="idn-crumb"><a href="index.html">Home</a><span>›</span><span>Module I · Foundations</span><span>›</span><span>Lesson 4 of 20</span></div>
+  <article class="idn-lesson">
+<!-- RECURSION IN PYTHON: base case, call stack, types, complexity, DSA applications -->
+<style>
+#dsa-rc{
+  --ink:#1c2033; --ink2:#4a5068; --paper:#fbfaf6; --card:#ffffff; --soft:#f3f1ea;
+  --line:#e3dfd3; --accent:#d9480f; --accent-soft:#fff1e8; --teal:#0b7a6f; --teal-soft:#e4f5f2;
+  --blue:#2f5bd3; --blue-soft:#e9effd; --red:#c92a2a; --red-soft:#fdeaea; --gold:#b7791f; --gold-soft:#fdf5e3;
+  --code-bg:#1d2130; --code-ink:#e6e8ef;
+  font-family:'Bricolage Grotesque',system-ui,sans-serif; color:var(--ink); background:var(--paper);
+  line-height:1.7; font-size:17px; max-width:980px; margin:0 auto; padding:0 0 40px; box-sizing:border-box;
+}
+#dsa-rc *,#dsa-rc *::before,#dsa-rc *::after{box-sizing:border-box}
+#dsa-rc h1,#dsa-rc h2,#dsa-rc h3,#dsa-rc h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;color:var(--ink);line-height:1.25;margin:0;border:0;padding:0;background:none;text-transform:none;letter-spacing:normal}
+#dsa-rc p{margin:0 0 14px}
+#dsa-rc a{color:var(--blue)}
+#dsa-rc code{font-family:'Fira Code',monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:5px;color:#8a2c0b}
+#dsa-rc ul,#dsa-rc ol{margin:0 0 14px;padding-left:22px}
+#dsa-rc li{margin:4px 0}
+#dsa-rc strong{color:var(--ink)}
+
+/* ---------- hero ---------- */
+#dsa-rc .hero{background:var(--ink);color:#fff;border-radius:18px;padding:40px 34px 34px;position:relative;overflow:hidden;margin-bottom:26px}
+#dsa-rc .hero h1{color:#fff;font-size:2.5em;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+#dsa-rc .hero p{color:#c9cde0;max-width:640px;font-size:1.05em}
+#dsa-rc .hero .tag{display:inline-block;font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a;border:1px solid #ffb48a55;border-radius:30px;padding:3px 12px;margin-bottom:14px}
+#dsa-rc .hero-strip{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+#dsa-rc .hero-strip div{width:54px;height:54px;border:2px solid #ffffff40;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:1em;color:#fff}
+#dsa-rc .hero-strip div small{font-size:.6em;color:#9aa0bb}
+#dsa-rc .hero-strip div.hot{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- toc ---------- */
+#dsa-rc .toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:30px}
+#dsa-rc .toc h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin-bottom:8px}
+#dsa-rc .toc ol{columns:2;column-gap:30px;margin:0}
+#dsa-rc .toc a{text-decoration:none;color:var(--ink)}
+#dsa-rc .toc a:hover{color:var(--accent)}
+
+/* ---------- sections ---------- */
+#dsa-rc section.sec{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 30px 18px;margin-bottom:28px}
+#dsa-rc .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+#dsa-rc .sec-num{flex:0 0 46px;height:46px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3em;display:flex;align-items:center;justify-content:center}
+#dsa-rc .sec-head h2{font-size:1.65em;font-weight:800;letter-spacing:-.01em}
+#dsa-rc h3{font-size:1.25em;font-weight:700;margin:26px 0 10px;padding-left:12px;border-left:4px solid var(--accent)}
+#dsa-rc h4{font-size:1.05em;font-weight:700;margin:18px 0 8px}
+
+/* ---------- callouts ---------- */
+#dsa-rc .box{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid}
+#dsa-rc .box p:last-child,#dsa-rc .box ul:last-child{margin-bottom:0}
+#dsa-rc .box-title{font-weight:700;font-size:.9em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+#dsa-rc .def{background:var(--blue-soft);border-color:#c8d6fa}
+#dsa-rc .def .box-title{color:var(--blue)}
+#dsa-rc .tip{background:var(--teal-soft);border-color:#b8e3dc}
+#dsa-rc .tip .box-title{color:var(--teal)}
+#dsa-rc .warn{background:var(--red-soft);border-color:#f3c4c4}
+#dsa-rc .warn .box-title{color:var(--red)}
+#dsa-rc .exam{background:var(--gold-soft);border-color:#f0dcae}
+#dsa-rc .exam .box-title{color:var(--gold)}
+#dsa-rc .formula{font-family:'Fira Code',monospace;background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.95em;overflow-x:auto;white-space:nowrap}
+#dsa-rc .formula b{color:#ffb48a;font-weight:500}
+
+/* ---------- grids / cards ---------- */
+#dsa-rc .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+#dsa-rc .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+#dsa-rc .mini{background:var(--soft);border-radius:12px;padding:14px 16px}
+#dsa-rc .mini h4{margin:0 0 6px;font-size:1em}
+#dsa-rc .mini p{margin:0;font-size:.93em;color:var(--ink2)}
+#dsa-rc .mini .ico{font-size:1.5em;line-height:1;margin-bottom:6px;display:block}
+#dsa-rc .pro{border-left:4px solid var(--teal)}
+#dsa-rc .con{border-left:4px solid var(--red)}
+
+/* ---------- tables ---------- */
+#dsa-rc .tbl-wrap{overflow-x:auto;margin:14px 0}
+#dsa-rc table{border-collapse:collapse;width:100%;font-size:.93em;background:#fff;border:0}
+#dsa-rc th,#dsa-rc td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+#dsa-rc th{background:var(--ink);color:#fff;font-weight:600}
+#dsa-rc tr:nth-child(even) td{background:#faf9f5}
+#dsa-rc td.o1{color:var(--teal);font-family:'Fira Code',monospace;font-weight:500}
+#dsa-rc td.on{color:var(--red);font-family:'Fira Code',monospace;font-weight:500}
+
+/* ---------- static memory diagrams ---------- */
+#dsa-rc .mem{display:flex;flex-wrap:wrap;gap:0;margin:14px 0 6px;font-family:'Fira Code',monospace}
+#dsa-rc .mem .c{width:64px;text-align:center}
+#dsa-rc .mem .c .v{height:52px;border:2px solid var(--ink);border-right-width:0;display:flex;align-items:center;justify-content:center;font-size:1.05em;background:#fff}
+#dsa-rc .mem .c:last-child .v{border-right-width:2px}
+#dsa-rc .mem .c .i{font-size:.75em;color:var(--accent);margin-top:3px}
+#dsa-rc .mem .c .a{font-size:.68em;color:var(--ink2)}
+#dsa-rc .mem .c.hl .v{background:var(--accent-soft);color:var(--accent);font-weight:600}
+#dsa-rc .mem .c.new .v{background:var(--teal-soft);color:var(--teal);font-weight:600}
+#dsa-rc .mem .c.gone .v{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+#dsa-rc .mem .c.empty .v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#f1efe9 5px,#f1efe9 10px);color:#aaa}
+#dsa-rc .cap{font-size:.85em;color:var(--ink2);margin-bottom:14px}
+#dsa-rc .arrow-row{font-family:'Fira Code',monospace;font-size:.85em;color:var(--accent);margin:-2px 0 8px}
+
+/* ---------- code ---------- */
+#dsa-rc pre{font-family:'Fira Code',monospace;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:16px 18px;overflow-x:auto;font-size:.84em;line-height:1.6;margin:10px 0;white-space:pre;border:0;max-height:none}
+#dsa-rc pre code{background:none;color:inherit;padding:0;font-size:1em}
+#dsa-rc pre.pseudo{background:#fff;color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--blue)}
+#dsa-rc pre.out{background:#0f1a14;color:#9fe3b4;font-size:.8em}
+#dsa-rc .out-label{font-size:.78em;font-family:'Fira Code',monospace;color:var(--ink2);margin-top:6px}
+#dsa-rc .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;border-bottom:2px solid var(--line)}
+#dsa-rc .tab-btn{font-family:'Bricolage Grotesque',sans-serif;font-size:.92em;font-weight:600;border:0;background:none;padding:9px 14px;cursor:pointer;color:var(--ink2);border-bottom:3px solid transparent;margin-bottom:-2px}
+#dsa-rc .tab-btn.on{color:var(--accent);border-bottom-color:var(--accent)}
+#dsa-rc .tab-pane{display:none;padding-top:10px}
+#dsa-rc .tab-pane.on{display:block}
+#dsa-rc .code-wrap{position:relative}
+#dsa-rc .copy-btn{position:absolute;top:8px;right:8px;font-family:'Fira Code',monospace;font-size:.72em;background:#ffffff1a;color:#fff;border:1px solid #ffffff33;border-radius:6px;padding:4px 10px;cursor:pointer}
+#dsa-rc .copy-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* ---------- buttons / inputs ---------- */
+#dsa-rc .btn{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.92em;border:0;border-radius:9px;padding:9px 15px;cursor:pointer;background:var(--ink);color:#fff;transition:transform .1s,opacity .2s}
+#dsa-rc .btn:hover{transform:translateY(-1px)}
+#dsa-rc .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+#dsa-rc .btn.acc{background:var(--accent)}
+#dsa-rc .btn.tl{background:var(--teal)}
+#dsa-rc .btn.rd{background:var(--red)}
+#dsa-rc .btn.gh{background:var(--soft);color:var(--ink)}
+#dsa-rc input[type=number],#dsa-rc input[type=text],#dsa-rc select{font-family:'Fira Code',monospace;font-size:.9em;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;width:84px;background:#fff;color:var(--ink)}
+#dsa-rc label.fld{display:inline-flex;flex-direction:column;font-size:.75em;font-weight:600;color:var(--ink2);gap:3px;text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- lab / visualizer ---------- */
+#dsa-rc .lab{border:2px solid var(--ink);border-radius:16px;overflow:hidden;margin:20px 0}
+#dsa-rc .lab-head{background:var(--ink);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#dsa-rc .lab-head b{font-size:1.05em}
+#dsa-rc .lab-head span{font-family:'Fira Code',monospace;font-size:.75em;color:#ffb48a}
+#dsa-rc .lab-body{padding:18px;background:#fff}
+#dsa-rc .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:14px}
+#dsa-rc .stage{display:flex;gap:0;justify-content:center;flex-wrap:wrap;padding:22px 6px 10px;background:var(--soft);border-radius:12px;min-height:130px;position:relative}
+#dsa-rc .cell{width:62px;text-align:center;font-family:'Fira Code',monospace;position:relative}
+#dsa-rc .cell .box-v{height:56px;border:2px solid var(--ink);border-right-width:0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1em;transition:background .25s,color .25s,transform .25s}
+#dsa-rc .cell:last-child .box-v{border-right-width:2px}
+#dsa-rc .cell .idx{font-size:.75em;color:var(--accent);margin-top:4px}
+#dsa-rc .cell .adr{font-size:.66em;color:var(--ink2)}
+#dsa-rc .cell.empty .box-v{background:repeating-linear-gradient(45deg,#fff,#fff 5px,#eceae2 5px,#eceae2 10px);color:transparent}
+#dsa-rc .cell.cur .box-v{background:#ffd8a8;transform:translateY(-6px)}
+#dsa-rc .cell.shift .box-v{background:var(--blue-soft);color:var(--blue);transform:translateY(-6px)}
+#dsa-rc .cell.ins .box-v{background:#b2f2bb;color:#1b5e20;transform:translateY(-10px)}
+#dsa-rc .cell.del .box-v{background:#ffc9c9;color:var(--red)}
+#dsa-rc .cell.done .box-v{background:var(--teal-soft)}
+#dsa-rc .cell .ptr{position:absolute;top:-22px;left:0;right:0;font-size:.7em;color:var(--accent);font-weight:600}
+#dsa-rc .viz-split{display:grid;grid-template-columns:1.1fr 1fr;gap:14px;margin-top:14px}
+#dsa-rc .pc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 0;font-family:'Fira Code',monospace;font-size:.78em;min-height:150px}
+#dsa-rc .pc div{padding:1px 14px;white-space:pre}
+#dsa-rc .pc div.on{background:#ffe8cc;color:#8a2c0b;font-weight:500;border-left:3px solid var(--accent)}
+#dsa-rc .log{background:var(--code-bg);color:#cfd3e2;border-radius:10px;padding:10px 14px;font-family:'Fira Code',monospace;font-size:.76em;height:190px;overflow-y:auto}
+#dsa-rc .log div{margin:2px 0}
+#dsa-rc .log .ok{color:#8ce99a}
+#dsa-rc .log .bad{color:#ff8787}
+#dsa-rc .log .hd{color:#ffb48a}
+#dsa-rc .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+#dsa-rc .stat{background:var(--soft);border-radius:10px;padding:6px 14px;font-size:.85em}
+#dsa-rc .stat b{font-family:'Fira Code',monospace;color:var(--accent)}
+#dsa-rc .msg{margin-top:10px;font-weight:600;min-height:1.5em}
+#dsa-rc .msg.bad{color:var(--red)}
+#dsa-rc .msg.ok{color:var(--teal)}
+
+/* address lab */
+#dsa-rc .calc-out{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-rc .calc-out b{color:var(--accent)}
+#dsa-rc .mgrid{display:inline-grid;gap:4px;margin:14px 0 4px}
+#dsa-rc .mgrid div{width:74px;height:54px;border:1.5px solid var(--line);border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.72em;background:#fff;transition:background .2s}
+#dsa-rc .mgrid div small{color:var(--ink2);font-size:.85em}
+#dsa-rc .mgrid.small div{width:54px;height:46px;font-size:.9em}
+#dsa-rc .mgrid div.hd{background:transparent;border:0;color:var(--accent);font-weight:600}
+#dsa-rc .mgrid div.tg{background:var(--accent);color:#fff;border-color:var(--accent)}
+#dsa-rc .mgrid div.tg small{color:#ffe3d3}
+#dsa-rc .mgrid div.seen{background:var(--teal-soft);border-color:#9fd8cf}
+#dsa-rc .mgrid div.now{background:#ffd8a8}
+#dsa-rc .seq{font-family:'Fira Code',monospace;font-size:.8em;color:var(--ink2);margin-top:6px;min-height:1.4em;word-break:break-word}
+
+/* practice / quiz */
+#dsa-rc details{background:var(--soft);border-radius:10px;padding:10px 16px;margin:10px 0}
+#dsa-rc details summary{cursor:pointer;font-weight:600}
+#dsa-rc details[open] summary{margin-bottom:8px}
+#dsa-rc .q-card{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}
+#dsa-rc .q-card .qn{font-family:'Fira Code',monospace;font-size:.75em;color:var(--accent);font-weight:600}
+#dsa-rc .q-card .qt{font-weight:600;margin:4px 0 10px}
+#dsa-rc .opt{display:block;width:100%;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-size:.95em;background:var(--soft);border:1.5px solid transparent;border-radius:9px;padding:9px 14px;margin:6px 0;cursor:pointer;color:var(--ink)}
+#dsa-rc .opt:hover{border-color:var(--ink2)}
+#dsa-rc .opt.right{background:#d3f9d8;border-color:#40c057}
+#dsa-rc .opt.wrong{background:#ffe3e3;border-color:#fa5252}
+#dsa-rc .opt:disabled{cursor:default}
+#dsa-rc .expl{display:none;margin-top:8px;font-size:.92em;background:var(--blue-soft);border-radius:9px;padding:10px 14px}
+#dsa-rc .score{background:var(--ink);color:#fff;border-radius:12px;padding:16px 20px;font-size:1.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+#dsa-rc .score b{color:#ffb48a;font-size:1.3em}
+#dsa-rc .footer{text-align:center;color:var(--ink2);font-size:.85em;margin-top:24px}
+
+/* ---------- navigation menu ---------- */
+#dsa-rc .nav{position:sticky;top:0;z-index:50;background:var(--paper);padding:10px 0 12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#dsa-rc .nav-tabs{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:10px}
+#dsa-rc .nav-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;font-family:'Bricolage Grotesque',sans-serif;font-size:.84em;font-weight:600;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);border-radius:30px;padding:5px 11px 5px 6px;cursor:pointer;white-space:nowrap;transition:all .15s}
+#dsa-rc .nav-tab:hover{border-color:var(--ink2);color:var(--ink)}
+#dsa-rc .nav-tab .n{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--ink2);display:inline-flex;align-items:center;justify-content:center;font-size:.8em;font-weight:800}
+#dsa-rc .nav-tab.home{padding-left:14px}
+#dsa-rc .nav-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+#dsa-rc .nav-tab.on .n{background:var(--accent);color:#fff}
+#dsa-rc .nav-tab.seen:not(.on) .n{background:var(--teal-soft);color:var(--teal)}
+#dsa-rc .nav-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dsa-rc .nb,#dsa-rc .nt{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border-radius:9px;padding:8px 14px;cursor:pointer;border:1.5px solid var(--ink);background:var(--card);color:var(--ink)}
+#dsa-rc .nb:hover:not(:disabled){background:var(--ink);color:#fff}
+#dsa-rc .nb:disabled{opacity:.35;cursor:not-allowed}
+#dsa-rc .crumb{flex:1;min-width:140px;text-align:center;line-height:1.25}
+#dsa-rc .crumb b{display:block;font-size:1.02em}
+#dsa-rc .crumb span{font-size:.8em;color:var(--ink2)}
+#dsa-rc .nav-tools{display:flex;gap:8px}
+#dsa-rc .nt{border-color:var(--line);font-size:.82em}
+#dsa-rc .nt:hover{border-color:var(--ink)}
+#dsa-rc .nt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#dsa-rc.paged .page{display:none}
+#dsa-rc.paged .page.active{display:block;animation:pyFade .3s ease}
+@keyframes pyFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#dsa-rc .pager{display:flex;justify-content:space-between;gap:10px;margin:22px 0 8px;padding-top:16px;border-top:1px dashed var(--line)}
+#dsa-rc .pager button{font-family:'Bricolage Grotesque',sans-serif;background:var(--soft);border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-align:left;color:var(--ink);max-width:48%}
+#dsa-rc .pager button:hover{background:var(--accent-soft)}
+#dsa-rc .pager button small{display:block;font-size:.72em;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+#dsa-rc .pager button b{font-size:.95em}
+#dsa-rc .pager .nx{text-align:right;margin-left:auto}
+#dsa-rc:not(.paged) .pager{display:none}
+#dsa-rc .page{scroll-margin-top:130px}
+/* home overview */
+#dsa-rc .overview{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:28px}
+#dsa-rc .overview h4{font-size:.85em;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:0 0 12px}
+#dsa-rc .ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+#dsa-rc .ov{font-family:'Bricolage Grotesque',sans-serif;text-align:left;background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:all .15s}
+#dsa-rc .ov:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+#dsa-rc .ov-n{display:inline-flex;width:26px;height:26px;border-radius:7px;background:var(--accent);color:#fff;font-weight:800;align-items:center;justify-content:center;font-size:.85em;margin-bottom:6px}
+#dsa-rc .ov b{display:block;font-size:1.02em}
+#dsa-rc .ov small{display:block;color:var(--ink2);font-size:.82em;line-height:1.4;margin-top:3px}
+#dsa-rc .ov-hint{font-size:.85em;color:var(--ink2);margin:14px 0 0}
+/* fullscreen */
+#dsa-rc:fullscreen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-rc:-webkit-full-screen{overflow-y:auto;max-width:none;padding:0 max(18px,calc((100vw - 980px)/2)) 40px}
+#dsa-rc.pseudo-fs{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483000;overflow-y:auto;max-width:none;margin:0;padding:0 max(14px,calc((100vw - 980px)/2)) 40px}
+
+@media (max-width:720px){
+  #dsa-rc .nav-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+  #dsa-rc .nav-bar{gap:6px}
+  #dsa-rc .crumb{order:-1;flex-basis:100%;text-align:left}
+  #dsa-rc .nb{flex:1}
+  #dsa-rc .nav-tools{flex-basis:100%}
+  #dsa-rc .nav-tools .nt{flex:1}
+  #dsa-rc .pager button{max-width:49%;font-size:.9em}
+  #dsa-rc{font-size:16px}
+  #dsa-rc section.sec{padding:22px 16px 10px}
+  #dsa-rc .hero{padding:28px 20px}
+  #dsa-rc .hero h1{font-size:1.9em}
+  #dsa-rc .grid2,#dsa-rc .grid3,#dsa-rc .viz-split{grid-template-columns:1fr}
+  #dsa-rc .toc ol{columns:1}
+  #dsa-rc .cell{width:44px}
+  #dsa-rc .cell .box-v{height:46px;font-size:.95em}
+  #dsa-rc .cell .adr{display:none}
+  #dsa-rc .mem .c{width:50px}
+  #dsa-rc .mgrid div{width:56px;font-size:.62em}
+}
+
+/* ---------- linked-list specific ---------- */
+#dsa-rc .hero-chain{display:flex;align-items:center;gap:8px;margin-top:22px;flex-wrap:wrap;font-family:'Fira Code',monospace}
+#dsa-rc .hc-head{background:#ffffff1f;border:1px solid #ffffff40;border-radius:7px;padding:6px 10px;color:#ffb48a;font-size:.85em}
+#dsa-rc .hc-ar{color:#9aa0bb}
+#dsa-rc .hc-n{display:inline-flex;border:2px solid #ffffff55;border-radius:8px;overflow:hidden}
+#dsa-rc .hc-n b{padding:9px 14px;color:#fff;font-weight:500}
+#dsa-rc .hc-n i{padding:9px 10px;border-left:2px solid #ffffff55;color:#ffb48a;font-style:normal}
+#dsa-rc .hc-n.hot{border-color:var(--accent);background:var(--accent)}
+#dsa-rc .hc-n.hot i{border-color:#ffffff66;color:#fff}
+#dsa-rc .hc-null{color:#9aa0bb;font-size:.85em}
+#dsa-rc .lfig{background:var(--soft);border-radius:12px;padding:6px 8px;margin:10px 0 4px;overflow-x:auto}
+#dsa-rc .lfig svg{display:block;width:100%;height:auto}
+#dsa-rc .lfig{min-height:60px}
+#dsa-rc .fig-row{display:grid;grid-template-columns:1fr;gap:2px}
+#dsa-rc .fig-lbl{font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin-top:8px}
+#dsa-rc .op{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 10px;margin:16px 0;background:#fff}
+#dsa-rc .op h4{margin:0 0 6px;font-size:1.08em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#dsa-rc .op h4 .bx{font-family:'Fira Code',monospace;font-size:.7em;font-weight:500;padding:2px 9px;border-radius:20px;background:var(--teal-soft);color:var(--teal)}
+#dsa-rc .op h4 .bx.slow{background:var(--red-soft);color:var(--red)}
+#dsa-rc .op p{font-size:.95em}
+#dsa-rc .op-grp{font-size:.8em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:26px 0 0}
+#dsa-rc .ll-stage{background:var(--soft);border-radius:12px;padding:6px;overflow-x:auto}
+#dsa-rc .ll-stage svg{display:block;width:100%;min-width:600px;height:auto}
+#dsa-rc .memlab svg{display:block;width:100%;min-width:640px;height:auto}
+#dsa-rc .seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden}
+#dsa-rc .seg button{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.88em;border:0;background:#fff;color:var(--ink);padding:8px 14px;cursor:pointer}
+#dsa-rc .seg button+button{border-left:1.5px solid var(--ink)}
+#dsa-rc .seg button.on{background:var(--ink);color:#fff}
+#dsa-rc .btn-grid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 12px}
+#dsa-rc .btn.sm{padding:7px 12px;font-size:.85em}
+#dsa-rc .chk{display:inline-flex;align-items:center;gap:6px;font-size:.85em;font-weight:600;color:var(--ink2)}
+#dsa-rc .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.78em;color:var(--ink2);margin-top:8px}
+#dsa-rc .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:4px;border:1px solid #0002}
+#dsa-rc .ntable td,#dsa-rc .ntable th{font-family:'Fira Code',monospace;font-size:.85em;padding:6px 10px}
+#dsa-rc .ntable tr.on td{background:#ffe8cc !important}
+#dsa-rc .struct{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+#dsa-rc .struct pre{font-size:.76em;margin:6px 0 0}
+#dsa-rc .algo-note{font-size:.85em;color:var(--ink2);margin:-4px 0 10px}
+@media (max-width:720px){
+  #dsa-rc .fig-row,#dsa-rc .struct{grid-template-columns:1fr}
+  #dsa-rc .lfig svg{min-width:480px}
+  #dsa-rc .seg button{padding:7px 10px;font-size:.82em}
+}
+
+/* ---------- python-types specific ---------- */
+#dsa-rc .hero-types{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;font-family:'Fira Code',monospace}
+#dsa-rc .hero-types span{border:2px solid #ffffff55;border-radius:8px;padding:7px 12px;color:#fff;font-size:.88em}
+#dsa-rc .hero-types span small{display:block;font-size:.7em;color:#9aa0bb}
+#dsa-rc .hero-types span.hot{background:var(--accent);border-color:var(--accent)}
+#dsa-rc .hero-types span.hot small{color:#ffe3d3}
+#dsa-rc .op h4 code{background:none;padding:0;color:var(--ink);font-size:1em}
+#dsa-rc .op h4 .bx.slow{background:var(--gold-soft);color:var(--gold)}
+#dsa-rc .typ-grp{font-size:.8em;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:26px 0 0}
+#dsa-rc .res{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-rc .res b{color:var(--accent)}
+#dsa-rc .res .good{color:var(--teal)}
+#dsa-rc .res .badc{color:var(--red)}
+#dsa-rc .pick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+#dsa-rc input.wide{width:min(100%,360px)}
+#dsa-rc select.wide{width:min(100%,260px)}
+#dsa-rc .wrongright{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+#dsa-rc .wrongright h4{margin:0 0 4px;font-size:.85em;text-transform:uppercase;letter-spacing:.06em}
+#dsa-rc .wrongright .w h4{color:var(--red)}
+#dsa-rc .wrongright .r h4{color:var(--teal)}
+#dsa-rc .tbl-wrap table.cmp td:first-child{font-family:'Fira Code',monospace;font-weight:600;color:var(--accent)}
+#dsa-rc .tbl-wrap table.cmp td{font-size:.95em}
+#dsa-rc .qa-item{margin:10px 0}
+#dsa-rc .exer{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 8px;margin:16px 0;background:#fff}
+#dsa-rc .exer h4{margin:0 0 6px}
+@media (max-width:720px){ #dsa-rc .wrongright{grid-template-columns:1fr} }
+
+#dsa-rc .stkwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+#dsa-rc .stk{background:var(--soft);border-radius:12px;padding:12px;min-height:250px;display:flex;flex-direction:column-reverse;gap:6px;border-bottom:6px solid var(--ink)}
+#dsa-rc .stk .fr{background:#fff;border:2px solid var(--ink);border-radius:9px;padding:7px 12px;font-family:'Fira Code',monospace;font-size:.85em;display:flex;justify-content:space-between;gap:8px;animation:rcPush .25s ease}
+#dsa-rc .stk .fr.top{background:#ffd8a8;border-color:var(--accent)}
+#dsa-rc .stk .fr.ret{background:#b2f2bb;border-color:var(--teal)}
+#dsa-rc .stk .fr small{color:var(--ink2);font-size:.8em}
+#dsa-rc .stk .empty{color:var(--ink2);font-size:.85em;text-align:center;align-self:center;margin:auto}
+@keyframes rcPush{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+#dsa-rc .mini-stacks{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+#dsa-rc .ms{flex:1 1 118px;min-width:118px}
+#dsa-rc .ms h5{margin:0 0 5px;font-size:.72em;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);font-weight:700;min-height:2.4em}
+#dsa-rc .ms .box-s{background:var(--soft);border-bottom:4px solid var(--ink);border-radius:8px 8px 0 0;min-height:128px;display:flex;flex-direction:column-reverse;gap:4px;padding:6px}
+#dsa-rc .ms .box-s div{background:#fff;border:1.5px solid var(--ink);border-radius:6px;font-family:'Fira Code',monospace;font-size:.72em;padding:3px 6px;text-align:center}
+#dsa-rc .ms .box-s div.top{background:#ffd8a8;border-color:var(--accent)}
+#dsa-rc .ms .box-s div.ret{background:#b2f2bb;border-color:var(--teal)}
+#dsa-rc .diagram{background:var(--soft);border-radius:12px;padding:8px;margin:12px 0;overflow-x:auto}
+#dsa-rc .diagram svg{display:block;margin:0 auto;max-width:100%;height:auto}
+#dsa-rc .diagram .cap{font-size:.82em;color:var(--ink2);text-align:center;margin:4px 0 2px}
+#dsa-rc .lvl{display:inline-block;font-family:'Fira Code',monospace;font-size:.68em;font-weight:600;padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+#dsa-rc .lvl.b{background:var(--teal-soft);color:var(--teal)}
+#dsa-rc .lvl.i{background:var(--gold-soft);color:var(--gold)}
+#dsa-rc .lvl.a{background:var(--red-soft);color:var(--red)}
+#dsa-rc .wrongright{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+#dsa-rc .wrongright h4{margin:0 0 4px;font-size:.85em;text-transform:uppercase;letter-spacing:.06em}
+#dsa-rc .wrongright .w h4{color:var(--red)}
+#dsa-rc .wrongright .r h4{color:var(--teal)}
+#dsa-rc .op h4 code{background:none;padding:0;color:var(--ink);font-size:1em}
+#dsa-rc .res{background:var(--soft);border-radius:10px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:.85em;margin-top:12px;line-height:1.9;overflow-x:auto}
+#dsa-rc .res b{color:var(--accent)}
+#dsa-rc .exer{border:1.5px solid var(--line);border-radius:14px;padding:16px 18px 8px;margin:16px 0;background:#fff}
+#dsa-rc .exer h4{margin:0 0 6px}
+#dsa-rc .exer .io{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#dsa-rc .exer .io pre{margin:4px 0}
+#dsa-rc .trace-lbl{font-size:.78em;font-family:'Fira Code',monospace;color:var(--accent);margin-top:8px}
+@media (max-width:720px){ #dsa-rc .wrongright,#dsa-rc .stkwrap,#dsa-rc .exer .io{grid-template-columns:1fr} }
+</style>
+<div id="dsa-rc">
+
+<div class="nav" id="rc-nav">
+  <div class="nav-tabs" id="rc-tabs"></div>
+  <div class="nav-bar">
+    <button class="nb" id="rc-prev">← Previous</button>
+    <div class="crumb"><b id="rc-crumb-t">Home</b><span id="rc-crumb-s">Overview</span></div>
+    <button class="nb" id="rc-next">Next →</button>
+    <div class="nav-tools">
+      <button class="nt" id="rc-all">Show all sections</button>
+      <button class="nt" id="rc-fs">⛶ Fullscreen</button>
+    </div>
+  </div>
+</div>
+
+<section class="page" id="rc-home" data-label="Home" data-sub="Overview">
+<header class="hero">
+  <span class="tag">Python · Unit: Recursion</span>
+  <h1>Recursion in Python: A Complete Beginner's Guide</h1>
+  <p>Learn how a function can call itself to solve big problems by solving smaller ones. This lesson explains the base case, the call stack, the types of recursion, complexity, and where recursion appears in Data Structures and Algorithms, with an animated call-stack visualiser, run-tested Python code, interview questions and ten practice problems.</p>
+  <div class="hero-types" aria-hidden="true">
+    <span>fact(4)<small>calls</small></span><span>fact(3)<small>calls</small></span><span>fact(2)<small>calls</small></span>
+    <span class="hot">fact(1)<small>base case</small></span><span>→ 1<small>returns</small></span><span>→ 2<small>returns</small></span><span>→ 6<small>returns</small></span><span>→ 24<small>answer</small></span>
+  </div>
+</header>
+<div class="overview">
+  <h4>Start learning: pick a section</h4>
+  <div class="ov-grid">
+    <button class="ov" data-go="1"><span class="ov-n">1</span><b>Introduction</b><small>What recursion is, real-world example, recursion vs iteration</small></button>
+    <button class="ov" data-go="2"><span class="ov-n">2</span><b>How it works</b><small>Base case, recursive case, structure, flow diagram</small></button>
+    <button class="ov" data-go="3"><span class="ov-n">3</span><b>The call stack</b><small>Stack frames, unwinding, animated visualiser</small></button>
+    <button class="ov" data-go="4"><span class="ov-n">4</span><b>Simple examples</b><small>Nine classic problems with traces</small></button>
+    <button class="ov" data-go="5"><span class="ov-n">5</span><b>Types of recursion</b><small>Direct, indirect, tail, non-tail, linear, tree, multiple</small></button>
+    <button class="ov" data-go="6"><span class="ov-n">6</span><b>Base case &amp; depth</b><small>Correct vs incorrect, RecursionError, recursion limit</small></button>
+    <button class="ov" data-go="7"><span class="ov-n">7</span><b>Iteration &amp; complexity</b><small>Comparison table, time and space, recurrences</small></button>
+    <button class="ov" data-go="8"><span class="ov-n">8</span><b>Use in DSA</b><small>Trees, sorting, DFS, backtracking, Hanoi, pros and cons</small></button>
+    <button class="ov" data-go="9"><span class="ov-n">9</span><b>Mistakes &amp; interview</b><small>Six mistakes, 15 interview questions</small></button>
+    <button class="ov" data-go="10"><span class="ov-n">10</span><b>Practice &amp; wrap-up</b><small>10 problems, solutions, FAQ, quiz, takeaways</small></button>
+  </div>
+  <p class="ov-hint">Use the menu above, the Previous / Next buttons, or your keyboard's ← → keys to move between sections.</p>
+</div>
+</section>
+<section class="sec page" id="rc-s1" data-label="Introduction" data-sub="What is recursion?"><div class="sec-head"><div class="sec-num">1</div><h2>Introduction to Recursion</h2></div><div class="box def"><span class="box-title">Definition</span><p><strong>Recursion</strong> is a technique in which a function solves a problem by calling <strong>itself</strong> on a smaller version of the same problem, until the problem becomes so small that the answer is obvious. In Python, a <strong>recursive function</strong> is simply a function whose body contains a call to itself.</p></div><h3>Recursion in Python</h3><p>Python supports recursion directly: a function can refer to its own name inside its body. Python keeps track of every unfinished call on the <strong>call stack</strong> (Section 3). There is a safety limit on how deep this can go, which is about 1000 calls by default (Section 6).</p><h3>Why is recursion important in DSA?</h3><ul><li><strong>Trees and graphs</strong> are recursive by nature: a tree is a root with smaller trees below it.</li><li><strong>Divide and conquer</strong> algorithms such as merge sort, quick sort and binary search are written recursively.</li><li><strong>Backtracking</strong> problems (permutations, N-Queens, Sudoku) need a way to try a choice and undo it, which recursion handles neatly.</li><li><strong>Dynamic programming</strong> starts from a recursive idea and then removes repeated work.</li><li>Interviewers ask recursion questions to test how you break a problem into smaller pieces.</li></ul><h3>A real-world example: nested boxes</h3><p>Imagine a big box that contains a smaller box, which contains an even smaller box with a prize inside. To find the prize you repeat <em>one</em> rule: "open the box; if it holds another box, apply the same rule to that box; otherwise take the prize". Russian nesting dolls and folders inside folders work the same way.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Nested boxes: open a box; if it holds another box, open that one too.
+def open_box(box, level=0):
+    print(&quot;  &quot; * level + &quot;Opened:&quot;, box[&quot;name&quot;])
+    if &quot;inside&quot; in box:                  # recursive case: another box inside
+        open_box(box[&quot;inside&quot;], level + 1)
+    else:                                # base case: the prize
+        print(&quot;  &quot; * level + &quot;Found the prize!&quot;)
+
+open_box({&quot;name&quot;: &quot;big box&quot;, &quot;inside&quot;: {&quot;name&quot;: &quot;medium box&quot;, &quot;inside&quot;: {&quot;name&quot;: &quot;small box&quot;}}})</code></pre></div><div class="out-label">Output</div><pre class="out">Opened: big box
+  Opened: medium box
+    Opened: small box
+    Found the prize!</pre><h3>Recursion vs iteration</h3><p><strong>Iteration</strong> repeats work with a loop (<code>for</code>, <code>while</code>). <strong>Recursion</strong> repeats work by calling the function again. Both produce the same result here:</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def countdown_loop(n):          # iteration
+    while n &gt; 0:
+        print(n)
+        n -= 1
+
+def countdown_rec(n):           # recursion
+    if n == 0:
+        return
+    print(n)
+    countdown_rec(n - 1)
+
+countdown_loop(3)
+countdown_rec(3)</code></pre></div><div class="out-label">Output</div><pre class="out">3
+2
+1
+3
+2
+1</pre><div class="tbl-wrap"><table class=""><thead><tr><th></th><th>Iteration</th><th>Recursion</th></tr></thead><tbody><tr><td>Repeats using</td><td>A loop</td><td>Function calls</td></tr><tr><td>Stops when</td><td>The loop condition is false</td><td>The base case is reached</td></tr><tr><td>Extra memory</td><td>Usually O(1)</td><td>One stack frame per call</td></tr></tbody></table></div><div class="box tip"><span class="box-title">Mental model</span><p>To solve a problem recursively, ask two questions: <strong>1)</strong> What is the smallest version I can answer immediately? <strong>2)</strong> If I had the answer for a slightly smaller version, how would I use it to answer mine?</p></div></section><section class="sec page" id="rc-s2" data-label="How it works" data-sub="Base case, recursive case, structure"><div class="sec-head"><div class="sec-num">2</div><h2>How Recursion Works</h2></div><h3>The key ideas</h3><div class="grid2"><div class="mini pro"><h4>Recursive function</h4><p>A function that contains a call to itself.</p></div><div class="mini pro"><h4>Base case</h4><p>The condition where the function returns an answer <strong>without</strong> calling itself. It stops the recursion.</p></div><div class="mini pro"><h4>Recursive case</h4><p>The part where the function calls itself with a <strong>smaller</strong> input, moving toward the base case.</p></div><div class="mini pro"><h4>Returning results</h4><p>Each call waits for the call it made. When the base case returns, the answers travel back, one call at a time.</p></div></div><h3>Structure of a recursive function</h3><p>Every recursive function has four parts: a <strong>definition</strong>, a <strong>base case</strong>, a <strong>recursive case</strong> and a <strong>return</strong> statement.</p><pre class="pseudo">def function_name(parameters):       # 1. definition
+    if base_condition:               # 2. base case
+        return simple_answer
+    smaller = function_name(smaller_input)   # 3. recursive case
+    return combine(smaller)          # 4. return</pre><p>A simple working example, with each part labelled:</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def countdown(n):           # 1. function definition
+    if n == 0:              # 2. base case: stop here
+        print(&quot;Done!&quot;)
+        return              # 4. return statement (nothing to return here)
+    print(n)
+    countdown(n - 1)        # 3. recursive case: smaller problem
+
+countdown(3)</code></pre></div><div class="out-label">Output</div><pre class="out">3
+2
+1
+Done!</pre><h3>How the calls execute: <code>factorial(3)</code></h3><p>The function below computes 3! = 3 × 2 × 1. Follow the diagram: calls go <em>down</em> until the base case, then results come <em>back up</em>.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)</code></pre></div><div class="diagram"><svg viewBox="0 0 560 300" width="560" role="img" aria-label="Recursive call chain"><defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#d9480f"/></marker><marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#0b7a6f"/></marker></defs><rect x="60" y="20" width="190" height="50" rx="10" fill="#fff" stroke="#1c2033" stroke-width="2.5"/><text x="155" y="51" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600" fill="#1c2033">factorial(3)</text><line x1="120" y1="70" x2="120" y2="108" stroke="#d9480f" stroke-width="2.5" marker-end="url(#ah)"/><text x="108" y="94" text-anchor="end" font-family="Bricolage Grotesque,sans-serif" font-size="12" fill="#d9480f">calls</text><line x1="190" y1="128" x2="190" y2="72" stroke="#0b7a6f" stroke-width="2.5" marker-end="url(#ag)"/><text x="202" y="94" font-family="Fira Code,monospace" font-size="12" fill="#0b7a6f">returns 2</text><rect x="60" y="110" width="190" height="50" rx="10" fill="#fff" stroke="#1c2033" stroke-width="2.5"/><text x="155" y="141" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600" fill="#1c2033">factorial(2)</text><line x1="120" y1="160" x2="120" y2="198" stroke="#d9480f" stroke-width="2.5" marker-end="url(#ah)"/><text x="108" y="184" text-anchor="end" font-family="Bricolage Grotesque,sans-serif" font-size="12" fill="#d9480f">calls</text><line x1="190" y1="218" x2="190" y2="162" stroke="#0b7a6f" stroke-width="2.5" marker-end="url(#ag)"/><text x="202" y="184" font-family="Fira Code,monospace" font-size="12" fill="#0b7a6f">returns 1</text><rect x="60" y="200" width="190" height="50" rx="10" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2.5"/><text x="155" y="231" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600" fill="#1c2033">factorial(1)</text><text x="268" y="230" font-family="Bricolage Grotesque,sans-serif" font-size="13" fill="#0b7a6f" font-weight="700">Base case: n &lt;= 1, returns 1</text><text x="420" y="34" font-family="Fira Code,monospace" font-size="14" font-weight="700" fill="#1c2033">final: 6</text></svg><div class="cap">Orange arrows: each call waits for the next. Green arrows: answers travel back up when the base case is reached.</div></div><div class="tbl-wrap"><table class=""><thead><tr><th>Step</th><th>What happens</th></tr></thead><tbody><tr><td>1</td><td><code>factorial(3)</code> starts. n is 3, so it must compute <code>3 * factorial(2)</code>, and it <strong>waits</strong>.</td></tr><tr><td>2</td><td><code>factorial(2)</code> starts and needs <code>2 * factorial(1)</code>, so it waits too.</td></tr><tr><td>3</td><td><code>factorial(1)</code> hits the base case and <strong>returns 1</strong>.</td></tr><tr><td>4</td><td><code>factorial(2)</code> resumes: 2 × 1 = 2 and returns 2.</td></tr><tr><td>5</td><td><code>factorial(3)</code> resumes: 3 × 2 = 6 and returns 6. Done.</td></tr></tbody></table></div><h3>A tracer you can reuse</h3><p>This small decorator prints every call and return, so you can <em>see</em> the order of execution of any recursive function. We use it for the traces in this lesson.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def trace(fn):
+    depth = 0
+    def wrapper(*args):
+        nonlocal depth
+        print(&quot;  &quot; * depth + f&quot;{fn.__name__}({&#x27;, &#x27;.join(map(repr, args))})&quot;)
+        depth += 1
+        result = fn(*args)
+        depth -= 1
+        print(&quot;  &quot; * depth + f&quot;return {result!r}&quot;)
+        return result
+    return wrapper
+
+def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+
+factorial = trace(factorial)     # replace the name so recursive calls are traced too
+factorial(3)</code></pre></div><div class="out-label">Output</div><pre class="out">factorial(3)
+  factorial(2)
+    factorial(1)
+    return 1
+  return 2
+return 6</pre><div class="box warn"><span class="box-title">Common slip</span><p>When you wrap a recursive function, rebind the <em>same name</em> (<code>factorial = trace(factorial)</code>). Otherwise the inner recursive calls skip the wrapper and are not traced.</p></div></section><section class="sec page" id="rc-s3" data-label="The call stack" data-sub="Frames, push, pop, unwinding"><div class="sec-head"><div class="sec-num">3</div><h2>Understanding the Call Stack</h2></div><div class="box def"><span class="box-title">Definition</span><p>The <strong>call stack</strong> is the region of memory where Python keeps track of active function calls. It is a <strong>last-in, first-out (LIFO)</strong> structure: the most recent call is on top and must finish first.</p></div><h3>Stack frames</h3><p>Each call creates a <strong>stack frame</strong>, a block that stores that call's parameters, local variables and the place to continue when it returns. When a function calls itself, a <em>new frame is pushed</em> on top. When a call returns, its frame is <em>popped</em> and its result goes to the frame below.</p><ul><li><strong>Push:</strong> a function is called, a new frame goes on top of the stack.</li><li><strong>Run:</strong> only the top frame is executing; all frames below are waiting.</li><li><strong>Pop:</strong> the top frame returns a value and is removed.</li><li><strong>Unwinding:</strong> after the base case, frames pop one by one and each finishes its pending work.</li></ul><h3>Step by step: <code>factorial(3)</code></h3><p>Orange is the running frame (top of the stack). Green is a frame that is returning. Read left to right.</p><div class="mini-stacks"><div class="ms"><h5>1. call factorial(3)</h5><div class="box-s"><div class="top">factorial(3)</div></div></div><div class="ms"><h5>2. call factorial(2)</h5><div class="box-s"><div class="">factorial(3)</div><div class="top">factorial(2)</div></div></div><div class="ms"><h5>3. call factorial(1)</h5><div class="box-s"><div class="">factorial(3)</div><div class="">factorial(2)</div><div class="top">factorial(1)</div></div></div><div class="ms"><h5>4. factorial(1) returns 1</h5><div class="box-s"><div class="">factorial(3)</div><div class="">factorial(2)</div><div class="ret">factorial(1)</div></div></div><div class="ms"><h5>5. factorial(2) returns 2</h5><div class="box-s"><div class="">factorial(3)</div><div class="ret">factorial(2)</div></div></div><div class="ms"><h5>6. factorial(3) returns 6</h5><div class="box-s"><div class="ret">factorial(3)</div></div></div></div>
+<div class="lab">
+  <div class="lab-head"><b>Call stack visualiser</b><span>push / pop step by step</span></div>
+  <div class="lab-body">
+    <div class="controls">
+      <label class="fld">Function<select id="rc-fn" style="width:150px"><option value="fact">factorial(n)</option><option value="sum">sum_n(n)</option><option value="fib">fib(n)</option><option value="pow">power(2, n)</option></select></label>
+      <label class="fld">n<input type="number" id="rc-n" value="4" min="0" max="8"></label>
+      <button class="btn acc" id="rc-build">Load</button>
+      <button class="btn" id="rc-prev2">◀ Step back</button>
+      <button class="btn tl" id="rc-step">Step ▶</button>
+      <button class="btn gh" id="rc-play">Auto play</button>
+      <button class="btn gh" id="rc-reset">Reset</button>
+    </div>
+    <div class="msg" id="rc-msg"></div>
+    <div class="stkwrap">
+      <div><div class="fig-lbl">Call stack (top is the newest call)</div><div class="stk" id="rc-stk"></div></div>
+      <div><div class="fig-lbl">What happened</div><div class="log" id="rc-log"></div></div>
+    </div>
+    <div class="stats"><div class="stat">Step <b id="rc-st">0</b> / <b id="rc-tt">0</b></div><div class="stat">Stack depth <b id="rc-dp">0</b></div><div class="stat">Max depth <b id="rc-mx">0</b></div><div class="stat">Total calls <b id="rc-cl">0</b></div></div>
+  </div>
+</div>
+<div class="box exam"><span class="box-title">Exam point</span><p>For <code>factorial(n)</code>, the stack reaches depth <strong>n</strong> before the first call returns, so the space complexity is <strong>O(n)</strong>. That memory is released during unwinding.</p></div></section><section class="sec page" id="rc-s4" data-label="Simple examples" data-sub="Nine classic problems"><div class="sec-head"><div class="sec-num">4</div><h2>Simple Recursion Examples</h2></div><p>Nine classic problems. Each one has the idea, the code, its real output and a trace showing the order of calls and returns.</p><div class="op"><h4>1. Print numbers from 1 to N</h4><p>The trick is the <strong>order</strong>. We make the recursive call <em>first</em> so that the smaller numbers are printed before <code>n</code>. The print happens on the way <em>back</em> (while the stack unwinds).</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def print_1_to_n(n):
+    if n == 0:                 # base case
+        return
+    print_1_to_n(n - 1)        # print 1 .. n-1 first
+    print(n)                   # then print n
+
+print_1_to_n(5)</code></pre></div><div class="out-label">Output</div><pre class="out">1
+2
+3
+4
+5</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">1
+2
+3
+4
+5
+print_1_to_n(3)
+  print_1_to_n(2)
+    print_1_to_n(1)
+      print_1_to_n(0)
+      return None
+1
+    return None
+2
+  return None
+3
+return None</pre><ul><li>Base case: <code>n == 0</code> means there is nothing left to print.</li><li>Recursive case: solve the smaller problem (<code>n - 1</code>), then print <code>n</code>.</li></ul></div><div class="op"><h4>2. Print numbers from N to 1</h4><p>Now the print comes <em>before</em> the recursive call, so the numbers appear on the way <em>down</em>. Swapping two lines reverses the order. This is the clearest demonstration of what "before" and "after" the call mean.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def print_n_to_1(n):
+    if n == 0:                 # base case
+        return
+    print(n)                   # print first
+    print_n_to_1(n - 1)        # then handle the rest
+
+print_n_to_1(5)</code></pre></div><div class="out-label">Output</div><pre class="out">5
+4
+3
+2
+1</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">5
+4
+3
+2
+1
+print_n_to_1(3)
+3
+  print_n_to_1(2)
+2
+    print_n_to_1(1)
+1
+      print_n_to_1(0)
+      return None
+    return None
+  return None
+return None</pre><ul><li>Same base case, same recursive case, only the position of <code>print</code> changed.</li></ul></div><div class="op"><h4>3. Sum of the first N natural numbers</h4><p><code>sum(n) = n + sum(n - 1)</code>, and <code>sum(0) = 0</code>. Each call adds its own <code>n</code> to the answer of the smaller problem.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n - 1)
+
+print(sum_n(5))
+print(sum_n(100))</code></pre></div><div class="out-label">Output</div><pre class="out">15
+5050</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">15
+5050
+sum_n(4)
+  sum_n(3)
+    sum_n(2)
+      sum_n(1)
+        sum_n(0)
+        return 0
+      return 1
+    return 3
+  return 6
+return 10</pre><ul><li>Math form: <code>1 + 2 + ... + n = n + (1 + ... + (n-1))</code>.</li><li>Time O(n), stack space O(n). (A loop or the formula <code>n*(n+1)//2</code> is better in real code.)</li></ul></div><div class="op"><h4>4. Factorial of a number</h4><p><code>n! = n × (n-1)!</code> and <code>0! = 1! = 1</code>. The multiplication waits until the smaller factorial returns.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n &lt;= 1:                 # base case: 0! = 1! = 1
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))
+print(factorial(0))
+print(factorial(10))</code></pre></div><div class="out-label">Output</div><pre class="out">120
+1
+3628800</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">120
+1
+3628800
+factorial(4)
+  factorial(3)
+    factorial(2)
+      factorial(1)
+      return 1
+    return 2
+  return 6
+return 24</pre><ul><li><code>n <= 1</code> (not <code>n == 1</code>) also protects the call <code>factorial(0)</code>.</li><li>Calls: n, n-1, ..., 1. That is n calls, so O(n) time and O(n) stack space.</li></ul></div><div class="op"><h4>5. Power of a number</h4><p><code>b^e = b × b^(e-1)</code> and <code>b^0 = 1</code>. A faster version halves the exponent each time, using <code>b^e = (b^(e/2))^2</code>, which needs only about log₂(e) calls.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def power(base, exp):
+    if exp == 0:               # base case: anything^0 = 1
+        return 1
+    return base * power(base, exp - 1)
+
+def power_fast(base, exp):     # halves the exponent: O(log n) calls
+    if exp == 0:
+        return 1
+    half = power_fast(base, exp // 2)
+    if exp % 2 == 0:
+        return half * half
+    return half * half * base
+
+print(power(2, 5), power(3, 4), power(5, 0))
+print(power_fast(2, 30), power(2, 30) == power_fast(2, 30))</code></pre></div><div class="out-label">Output</div><pre class="out">32 81 1
+1073741824 True</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">32 81 1
+1073741824 True
+power(2, 3)
+  power(2, 2)
+    power(2, 1)
+      power(2, 0)
+      return 1
+    return 2
+  return 4
+return 8</pre><ul><li>This example assumes <code>exp</code> is a non-negative integer.</li></ul></div><div class="op"><h4>6. Nth Fibonacci number</h4><p><code>fib(n) = fib(n-1) + fib(n-2)</code> with <code>fib(0) = 0</code> and <code>fib(1) = 1</code>. This is the classic example of <strong>two</strong> recursive calls in one function (a recursion tree).</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def fib(n):
+    if n &lt;= 1:                 # base cases: fib(0) = 0, fib(1) = 1
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(10)])
+print(fib(10))</code></pre></div><div class="out-label">Output</div><pre class="out">[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+55</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+55
+fib(4)
+  fib(3)
+    fib(2)
+      fib(1)
+      return 1
+      fib(0)
+      return 0
+    return 1
+    fib(1)
+    return 1
+  return 2
+  fib(2)
+    fib(1)
+    return 1
+    fib(0)
+    return 0
+  return 1
+return 3</pre><ul><li>Two base cases are folded into one test: <code>n <= 1</code> returns <code>n</code>.</li><li>Very slow for large n (about 2<sup>n</sup> calls). See Section 7 for the reason and the fix.</li></ul></div><div class="op"><h4>7. Sum of digits of a number</h4><p>The last digit is <code>n % 10</code> and the remaining number is <code>n // 10</code>. Add the last digit to the digit-sum of the rest.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_digits(n):
+    if n &lt; 10:                       # base case: one digit left
+        return n
+    return n % 10 + sum_digits(n // 10)
+
+print(sum_digits(1234))
+print(sum_digits(9))
+print(sum_digits(99999))</code></pre></div><div class="out-label">Output</div><pre class="out">10
+9
+45</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">10
+9
+45
+sum_digits(1234)
+  sum_digits(123)
+    sum_digits(12)
+      sum_digits(1)
+      return 1
+    return 3
+  return 6
+return 10</pre><ul><li>For negative numbers call <code>sum_digits(abs(n))</code>.</li></ul></div><div class="op"><h4>8. Reverse a string</h4><p>The reverse of a string is the reverse of everything after the first character, followed by the first character.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def reverse(s):
+    if len(s) &lt;= 1:                  # base case: empty or 1 character
+        return s
+    return reverse(s[1:]) + s[0]
+
+print(reverse(&quot;python&quot;))
+print(repr(reverse(&quot;&quot;)), reverse(&quot;a&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">nohtyp
+&#x27;&#x27; a</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">nohtyp
+&#x27;&#x27; a
+reverse(&#x27;abc&#x27;)
+  reverse(&#x27;bc&#x27;)
+    reverse(&#x27;c&#x27;)
+    return &#x27;c&#x27;
+  return &#x27;cb&#x27;
+return &#x27;cba&#x27;</pre><ul><li><code>s[1:]</code> makes a new, shorter string each time, so this version uses O(n²) time overall. It is for learning; in practice use <code>s[::-1]</code>.</li></ul></div><div class="op"><h4>9. Check whether a string is a palindrome</h4><p>A string is a palindrome if its first and last characters match <em>and</em> the middle part is also a palindrome.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def is_palindrome(s):
+    if len(s) &lt;= 1:                  # base case: empty or 1 char is a palindrome
+        return True
+    if s[0] != s[-1]:                # mismatch: definitely not a palindrome
+        return False
+    return is_palindrome(s[1:-1])    # check the middle part
+
+print(is_palindrome(&quot;level&quot;), is_palindrome(&quot;python&quot;))
+print(is_palindrome(&quot;racecar&quot;), is_palindrome(&quot;&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">True False
+True True</pre><div class="trace-lbl">Execution trace: calls go in, returns come out</div><pre class="out">True False
+True True
+is_palindrome(&#x27;level&#x27;)
+  is_palindrome(&#x27;eve&#x27;)
+    is_palindrome(&#x27;v&#x27;)
+    return True
+  return True
+return True</pre><ul><li>There are <strong>two</strong> ways to stop: reaching a tiny string (success) or finding a mismatch (failure).</li></ul></div></section><section class="sec page" id="rc-s5" data-label="Types of recursion" data-sub="Direct, indirect, tail, linear, tree..."><div class="sec-head"><div class="sec-num">5</div><h2>Types of Recursion</h2></div><h3>1. Direct recursion</h3><p>A function calls <strong>itself</strong> directly.</p><div class="diagram"><svg viewBox="0 0 300 130" width="300" role="img" aria-label="Direct recursion"><defs><marker id="ad" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#d9480f"/></marker></defs><rect x="75" y="60" width="150" height="50" rx="10" fill="#fff" stroke="#1c2033" stroke-width="2.5"/><text x="150" y="91" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600">countdown()</text><path d="M110 60 C100 8 200 8 190 58" fill="none" stroke="#d9480f" stroke-width="2.5" marker-end="url(#ad)"/></svg><div class="cap">Direct recursion: the function calls itself.</div></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def countdown(n):
+    if n == 0:
+        print(&quot;Liftoff!&quot;)
+        return
+    print(n)
+    countdown(n - 1)          # calls itself
+
+countdown(3)</code></pre></div><div class="out-label">Output</div><pre class="out">3
+2
+1
+Liftoff!</pre><h3>2. Indirect recursion</h3><p>Function A calls function B, and B calls A back, forming a cycle. The recursion is not visible inside one function.</p><div class="diagram"><svg viewBox="0 0 480 120" width="480" role="img" aria-label="Indirect recursion"><defs><marker id="ai" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#d9480f"/></marker></defs><rect x="20" y="35" width="150" height="50" rx="10" fill="#fff" stroke="#1c2033" stroke-width="2.5"/><text x="95" y="66" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600">is_even()</text><rect x="310" y="35" width="150" height="50" rx="10" fill="#fff" stroke="#1c2033" stroke-width="2.5"/><text x="385" y="66" text-anchor="middle" font-family="Fira Code,monospace" font-size="15" font-weight="600">is_odd()</text><path d="M170 48 C220 20 260 20 310 48" fill="none" stroke="#d9480f" stroke-width="2.5" marker-end="url(#ai)"/><path d="M310 72 C260 100 220 100 170 72" fill="none" stroke="#d9480f" stroke-width="2.5" marker-end="url(#ai)"/></svg><div class="cap">Indirect recursion: A calls B, and B calls A again.</div></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def is_even(n):
+    if n == 0:
+        return True
+    return is_odd(n - 1)      # calls the OTHER function
+
+def is_odd(n):
+    if n == 0:
+        return False
+    return is_even(n - 1)     # which calls the first one back
+
+print(is_even(4), is_odd(7), is_even(7))</code></pre></div><div class="out-label">Output</div><pre class="out">True True False</pre><h3>3. Tail recursion and 4. Non-tail recursion</h3><p>In <strong>tail recursion</strong> the recursive call is the <em>last</em> thing the function does, so there is nothing left to do after it returns. In <strong>non-tail recursion</strong> some work (like <code>n *</code>) remains after the call returns.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def fact_non_tail(n):
+    if n &lt;= 1:
+        return 1
+    return n * fact_non_tail(n - 1)      # work (multiply) is done AFTER the call returns
+
+def fact_tail(n, acc=1):
+    if n &lt;= 1:
+        return acc
+    return fact_tail(n - 1, acc * n)     # the recursive call is the LAST thing done
+
+print(fact_non_tail(5), fact_tail(5))</code></pre></div><div class="out-label">Output</div><pre class="out">120 120</pre><div class="tbl-wrap"><table class=""><thead><tr><th>Non-tail: <code>fact_non_tail(3)</code></th><th>Tail: <code>fact_tail(3)</code></th></tr></thead><tbody><tr><td>3 * (2 * (1))  : multiplications wait on the stack</td><td>fact_tail(3, 1) → fact_tail(2, 3) → fact_tail(1, 6) → 6 : the answer is carried along in <code>acc</code></td></tr></tbody></table></div><div class="box warn"><span class="box-title">Python does not optimise tail calls</span><p>Languages like Scheme can reuse the frame for a tail call. <strong>Python cannot</strong>: <code>fact_tail</code> still uses O(n) stack space and still hits the recursion limit. Use a loop when depth could be large.</p></div><h3>5. Linear recursion</h3><p>The function makes <strong>at most one</strong> recursive call each time, so the calls form a straight line. Factorial and <code>sum_n</code> are linear.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def list_sum(items):
+    if not items:                        # base case: empty list
+        return 0
+    return items[0] + list_sum(items[1:])   # exactly ONE recursive call
+
+print(list_sum([4, 8, 15, 16, 23, 42]))</code></pre></div><div class="out-label">Output</div><pre class="out">108</pre><h3>6. Tree recursion</h3><p>A function that makes <strong>two or more</strong> recursive calls, so the calls branch like a tree. Fibonacci is the classic case.</p><div class="diagram"><svg viewBox="0 0 350 268" width="350" role="img" aria-label="Recursion tree of fib(4)"><line x1="69.0" y1="154" x2="36.0" y2="216" stroke="#9aa0bb" stroke-width="1.8"/><line x1="69.0" y1="154" x2="102.0" y2="216" stroke="#9aa0bb" stroke-width="1.8"/><line x1="118.5" y1="92" x2="69.0" y2="154" stroke="#9aa0bb" stroke-width="1.8"/><line x1="118.5" y1="92" x2="168.0" y2="154" stroke="#9aa0bb" stroke-width="1.8"/><line x1="267.0" y1="92" x2="234.0" y2="154" stroke="#9aa0bb" stroke-width="1.8"/><line x1="267.0" y1="92" x2="300.0" y2="154" stroke="#9aa0bb" stroke-width="1.8"/><line x1="192.8" y1="30" x2="118.5" y2="92" stroke="#9aa0bb" stroke-width="1.8"/><line x1="192.8" y1="30" x2="267.0" y2="92" stroke="#9aa0bb" stroke-width="1.8"/><rect x="8.0" y="202" width="56" height="28" rx="8" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2"/><text x="36.0" y="220" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(1)</text><rect x="74.0" y="202" width="56" height="28" rx="8" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2"/><text x="102.0" y="220" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(0)</text><rect x="41.0" y="140" width="56" height="28" rx="8" fill="#fff" stroke="#1c2033" stroke-width="2"/><text x="69.0" y="158" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(2)</text><rect x="140.0" y="140" width="56" height="28" rx="8" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2"/><text x="168.0" y="158" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(1)</text><rect x="90.5" y="78" width="56" height="28" rx="8" fill="#fff" stroke="#1c2033" stroke-width="2"/><text x="118.5" y="96" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(3)</text><rect x="206.0" y="140" width="56" height="28" rx="8" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2"/><text x="234.0" y="158" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(1)</text><rect x="272.0" y="140" width="56" height="28" rx="8" fill="#e4f5f2" stroke="#0b7a6f" stroke-width="2"/><text x="300.0" y="158" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(0)</text><rect x="239.0" y="78" width="56" height="28" rx="8" fill="#fff" stroke="#1c2033" stroke-width="2"/><text x="267.0" y="96" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#1c2033">fib(2)</text><rect x="164.8" y="16" width="56" height="28" rx="8" fill="#d9480f" stroke="#d9480f" stroke-width="2"/><text x="192.8" y="34" text-anchor="middle" font-family="Fira Code,monospace" font-size="12.5" font-weight="600" fill="#fff">fib(4)</text></svg><div class="cap">Recursion tree of fib(4): 9 calls in total. Green nodes are base cases. Notice that fib(2) is computed twice.</div></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>calls = 0
+
+def fib(n):
+    global calls
+    calls += 1
+    if n &lt;= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)       # TWO recursive calls -&gt; a tree of calls
+
+print(fib(6), &quot;calls:&quot;, calls)</code></pre></div><div class="out-label">Output</div><pre class="out">8 calls: 25</pre><h3>7. Multiple recursion</h3><p>A function whose body contains <strong>several different recursive calls</strong>. Tree recursion is the most common form of it. Another example is the binomial coefficient, which calls itself twice with different arguments.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def choose(n, k):                        # &quot;n choose k&quot; (Pascal&#x27;s triangle)
+    if k == 0 or k == n:
+        return 1
+    return choose(n - 1, k - 1) + choose(n - 1, k)
+
+print(choose(5, 2))
+print([choose(4, k) for k in range(5)])</code></pre></div><div class="out-label">Output</div><pre class="out">10
+[1, 4, 6, 4, 1]</pre><h3>Comparison</h3><div class="tbl-wrap"><table class=""><thead><tr><th>Type</th><th>Key idea</th><th>Example</th><th>Stack depth / calls</th></tr></thead><tbody><tr><td>Direct</td><td>Function calls itself</td><td><code>countdown</code></td><td>n deep</td></tr><tr><td>Indirect</td><td>A calls B, B calls A</td><td><code>is_even / is_odd</code></td><td>n deep</td></tr><tr><td>Tail</td><td>Recursive call is the last action</td><td><code>fact_tail</code></td><td>n deep in Python (no optimisation)</td></tr><tr><td>Non-tail</td><td>Work remains after the call</td><td><code>fact_non_tail</code></td><td>n deep</td></tr><tr><td>Linear</td><td>One recursive call per run</td><td><code>sum_n</code>, <code>list_sum</code></td><td>n calls</td></tr><tr><td>Tree</td><td>Two or more calls, branching</td><td><code>fib</code></td><td>up to 2<sup>n</sup> calls, depth n</td></tr><tr><td>Multiple</td><td>Several recursive calls in the body</td><td><code>choose</code></td><td>depends on branching</td></tr></tbody></table></div><p class="algo-note">These types overlap: <code>fib</code> is direct, non-tail <em>and</em> tree recursion at the same time. The names describe different properties.</p></section><section class="sec page" id="rc-s6" data-label="Base case &amp; depth" data-sub="Base case, RecursionError, recursion limit"><div class="sec-head"><div class="sec-num">6</div><h2>Base Case, Recursive Case &amp; Recursion Depth</h2></div><h3>What is a base case?</h3><div class="box def"><span class="box-title">Definition</span><p>The <strong>base case</strong> is the simplest version of the problem, which the function answers directly <em>without</em> calling itself. It is the stopping condition.</p></div><h3>Why is it necessary?</h3><p>Without a base case every call makes another call, forever. Each call adds a stack frame, memory fills up, and Python stops the program with a <code>RecursionError</code>.</p><div class="wrongright"><div class="w"><h4>✗ No base case</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    return n * factorial(n - 1)    # no base case: never stops
+
+try:
+    factorial(5)
+except RecursionError as e:
+    print(&quot;RecursionError:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">RecursionError: maximum recursion depth exceeded</pre></div><div class="r"><h4>✓ With a base case</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n &lt;= 1:                # base case
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))</code></pre></div><div class="out-label">Output</div><pre class="out">120</pre></div></div><h3>What is the recursive case?</h3><p>The recursive case is the rest of the function: it calls itself with an input that is <strong>closer to the base case</strong> and uses that answer to build its own.</p><h3>How to choose the right base condition</h3><ul><li>Find the <strong>smallest input</strong> you can answer without thinking: 0, 1, an empty list, an empty string, <code>None</code> (empty tree).</li><li>Check that <strong>every recursive call moves toward it</strong> (n-1, n//2, s[1:], node.left).</li><li>Use <code>&lt;=</code> or <code>len(x) &lt;= 1</code> when inputs might skip a value, for example 0 or negative numbers.</li><li>If the problem has two kinds of stopping (found / not found), write <strong>two base cases</strong>.</li><li>Test by hand with the smallest input and with one more than the smallest.</li></ul><h3>Recursion depth and the recursion limit</h3><div class="box def"><span class="box-title">Definition</span><p><strong>Recursion depth</strong> is the number of nested calls that are active at the same time. Python limits it to protect the interpreter from running out of memory. The default limit is usually <strong>1000</strong>.</p></div><p><code>sys.getrecursionlimit()</code> returns the current limit. When a program goes deeper, Python raises <code>RecursionError</code>.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>import sys
+print(&quot;Default limit:&quot;, sys.getrecursionlimit())
+
+def forever(n):
+    return forever(n + 1)
+
+try:
+    forever(0)
+except RecursionError as e:
+    print(&quot;RecursionError:&quot;, e)</code></pre></div><div class="out-label">Output</div><pre class="out">Default limit: 1000
+RecursionError: maximum recursion depth exceeded</pre><h3>Common reasons for infinite recursion</h3><ul><li>The base case is missing.</li><li>The base case is wrong or unreachable (for example <code>n == 0</code> while n decreases by 2 from an odd number).</li><li>The recursive call does not make the input smaller (<code>f(n)</code> or <code>f(n + 1)</code>).</li><li>Two functions call each other with no stopping condition.</li></ul><h3>How to avoid depth problems</h3><ul><li>Convert deep recursion into a <strong>loop</strong> (best fix for long linear recursion).</li><li>Use <strong>divide and conquer</strong>, which has depth O(log n) instead of O(n).</li><li>Use <strong>memoization</strong> to avoid repeated calls.</li><li>Process big inputs with an explicit stack (a list).</li></ul><h3><code>sys.setrecursionlimit()</code>: use with caution</h3><p>You can raise the limit, but it does <strong>not</strong> give you more memory. Setting it too high can crash Python with a segmentation fault instead of a clean error.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>import sys
+
+def fact(n):
+    return 1 if n &lt;= 1 else n * fact(n - 1)
+
+try:
+    fact(1500)
+except RecursionError:
+    print(&quot;fact(1500) failed with the default limit&quot;)
+
+sys.setrecursionlimit(10000)          # use with caution!
+print(&quot;digits in 1500!:&quot;, len(str(fact(1500))))
+sys.setrecursionlimit(1000)           # restore the default</code></pre></div><div class="out-label">Output</div><pre class="out">fact(1500) failed with the default limit
+digits in 1500!: 4115</pre><div class="box warn"><span class="box-title">Caution</span><p>Raising the limit hides the real problem (too much depth). Treat it as a temporary measure for small experiments. A loop, like the one below, is the safe solution.</p></div><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code># Safer: replace deep recursion with a loop
+def fact_loop(n):
+    result = 1
+    for k in range(2, n + 1):
+        result *= k
+    return result
+
+print(len(str(fact_loop(1500))))</code></pre></div><div class="out-label">Output</div><pre class="out">4115</pre></section><section class="sec page" id="rc-s7" data-label="Iteration &amp; complexity" data-sub="Comparison, time and space, recurrences"><div class="sec-head"><div class="sec-num">7</div><h2>Recursion vs Iteration &amp; Complexity</h2></div><h3>A. Recursion vs iteration</h3><div class="tbl-wrap"><table class=""><thead><tr><th>Feature</th><th>Recursion</th><th>Iteration</th></tr></thead><tbody><tr><td>Definition</td><td>A function calls itself on a smaller problem</td><td>A block of code repeats using a loop</td></tr><tr><td>Working mechanism</td><td>Uses the call stack; stops at the base case</td><td>Uses a counter or condition; stops when the condition fails</td></tr><tr><td>Memory usage</td><td>High: one stack frame per call, usually O(n)</td><td>Low: usually O(1) extra</td></tr><tr><td>Execution speed</td><td>Slower: every call has overhead</td><td>Faster: no call overhead</td></tr><tr><td>Code readability</td><td>Short and clear for trees, divide and conquer</td><td>Clear for simple repetition</td></tr><tr><td>Advantages</td><td>Elegant, mirrors the problem, natural for trees and backtracking</td><td>Efficient, no depth limit, easy to debug</td></tr><tr><td>Disadvantages</td><td>RecursionError, extra memory, possible repeated work</td><td>Can be long and awkward for tree-like problems</td></tr><tr><td>Best use cases</td><td>Trees, graphs, DFS, merge/quick sort, backtracking, Hanoi</td><td>Simple counting, summing, scanning arrays and lists</td></tr></tbody></table></div><p>One problem, both ways (factorial):</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial_rec(n):                # recursive
+    if n &lt;= 1:
+        return 1
+    return n * factorial_rec(n - 1)
+
+def factorial_iter(n):               # iterative
+    result = 1
+    for k in range(2, n + 1):
+        result *= k
+    return result
+
+print(factorial_rec(6), factorial_iter(6))
+print(factorial_rec(20) == factorial_iter(20))</code></pre></div><div class="out-label">Output</div><pre class="out">720 720
+True</pre><h3>B. Time and space complexity of recursive functions</h3><p><strong>How to analyse:</strong> (1) count how many calls are made, (2) count the work done inside <em>one</em> call (excluding the recursive calls), (3) multiply or add. For space, find the <strong>deepest</strong> chain of calls that is active at once, because that is the number of frames on the stack.</p><div class="tbl-wrap"><table class=""><thead><tr><th>Function</th><th>Recurrence relation</th><th>Time</th><th>Space (stack)</th></tr></thead><tbody><tr><td><code>sum_n(n)</code></td><td>T(n) = T(n-1) + O(1)</td><td>O(n)</td><td>O(n)</td></tr><tr><td><code>factorial(n)</code></td><td>T(n) = T(n-1) + O(1)</td><td>O(n)</td><td>O(n)</td></tr><tr><td><code>fib(n)</code> (naive)</td><td>T(n) = T(n-1) + T(n-2) + O(1)</td><td>O(2<sup>n</sup>) (tight: O(1.618<sup>n</sup>))</td><td>O(n)</td></tr><tr><td><code>fib(n)</code> (memoized)</td><td>each n is computed once</td><td>O(n)</td><td>O(n)</td></tr><tr><td><code>binary_search</code> (recursive)</td><td>T(n) = T(n/2) + O(1)</td><td>O(log n)</td><td>O(log n)</td></tr><tr><td><code>merge_sort</code></td><td>T(n) = 2T(n/2) + O(n)</td><td>O(n log n)</td><td>O(n) auxiliary, O(log n) stack</td></tr></tbody></table></div><h4>Reading a recurrence relation</h4><p>A <strong>recurrence relation</strong> describes the cost of a call using the cost of smaller calls. Beginner trick: <em>unroll</em> it.</p><pre class="pseudo">T(n) = T(n-1) + 1
+     = T(n-2) + 1 + 1
+     = T(n-3) + 1 + 1 + 1
+     ...
+     = T(0) + n  →  O(n)          (factorial, sum_n)
+
+T(n) = T(n/2) + 1
+     = T(n/4) + 1 + 1
+     ...  halves until size 1 → about log2(n) steps  →  O(log n)   (binary search)</pre><h4>Counting calls in real code</h4><p>Factorial makes exactly n calls (linear). Fibonacci makes an exploding number of calls, but the memoized version makes only about 2n - 1.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>calls = 0
+def factorial(n):
+    global calls
+    calls += 1
+    return 1 if n &lt;= 1 else n * factorial(n - 1)
+
+for n in (5, 10, 50):
+    calls = 0
+    factorial(n)
+    print(f&quot;factorial({n}) -&gt; {calls} calls&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">factorial(5) -&gt; 5 calls
+factorial(10) -&gt; 10 calls
+factorial(50) -&gt; 50 calls</pre><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>from functools import lru_cache
+
+calls = 0
+def fib_naive(n):
+    global calls
+    calls += 1
+    return n if n &lt;= 1 else fib_naive(n - 1) + fib_naive(n - 2)
+
+mcalls = 0
+@lru_cache(maxsize=None)
+def fib_memo(n):
+    global mcalls
+    mcalls += 1
+    return n if n &lt;= 1 else fib_memo(n - 1) + fib_memo(n - 2)
+
+for n in (5, 10, 20, 25):
+    calls = 0
+    fib_naive(n)
+    print(f&quot;fib({n}): naive calls = {calls}&quot;)
+fib_memo(25)
+print(&quot;fib(25) with memoization: calls =&quot;, mcalls)</code></pre></div><div class="out-label">Output</div><pre class="out">fib(5): naive calls = 15
+fib(10): naive calls = 177
+fib(20): naive calls = 21891
+fib(25): naive calls = 242785
+fib(25) with memoization: calls = 26</pre><h4>Binary search needs only about log₂ n calls</h4><p>For 1024 items the deepest search needs at most 11 calls.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def binary_search(arr, target, low, high, depth=1):
+    if low &gt; high:
+        return -1, depth
+    mid = (low + high) // 2
+    if arr[mid] == target:
+        return mid, depth
+    if arr[mid] &lt; target:
+        return binary_search(arr, target, mid + 1, high, depth + 1)
+    return binary_search(arr, target, low, mid - 1, depth + 1)
+
+arr = list(range(1024))
+print(binary_search(arr, 1023, 0, 1023))     # (index, calls made)
+print(binary_search(arr, -5, 0, 1023))</code></pre></div><div class="out-label">Output</div><pre class="out">(1023, 11)
+(-1, 11)</pre><div class="box tip"><span class="box-title">Recursive call overhead</span><p>Each call costs time (creating a frame, passing arguments, returning) and memory. Even if two solutions have the same Big-O, the recursive one is usually slower by a constant factor in Python.</p></div>
+<div class="lab">
+  <div class="lab-head"><b>Fibonacci call counter</b><span>why naive fib explodes</span></div>
+  <div class="lab-body">
+    <div class="controls"><label class="fld">n<input type="number" id="rc-fn-n" value="10" min="0" max="35"></label><button class="btn acc" id="rc-fn-go">Count calls</button></div>
+    <div class="res" id="rc-fn-out"></div>
+  </div>
+</div>
+</section><section class="sec page" id="rc-s8" data-label="Use in DSA" data-sub="Applications, advantages and disadvantages"><div class="sec-head"><div class="sec-num">8</div><h2>Applications in DSA, Advantages &amp; Disadvantages</h2></div><h3>A. Where recursion is used in DSA</h3><p>Each tab has a short, tested example.</p><div class="tabs" data-tabs="rc-a"><button class="tab-btn on" data-pane="rc-a1">Tree traversal</button><button class="tab-btn" data-pane="rc-a2">Binary search</button><button class="tab-btn" data-pane="rc-a3">Merge sort</button><button class="tab-btn" data-pane="rc-a4">Quick sort</button><button class="tab-btn" data-pane="rc-a5">DFS (graphs)</button><button class="tab-btn" data-pane="rc-a6">Backtracking</button><button class="tab-btn" data-pane="rc-a7">Tower of Hanoi</button><button class="tab-btn" data-pane="rc-a8">Graph algorithms</button></div><div class="tab-pane on" id="rc-a1"><p>A tree is a recursive structure: every subtree is itself a tree, so each traversal is just "handle the root, recurse on the children". The base case is an empty subtree (<code>None</code>).</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>class Node:
+    def __init__(self, value, left=None, right=None):
+        self.value, self.left, self.right = value, left, right
+
+def preorder(node):                  # root, left, right
+    if node is None:                 # base case: empty subtree
+        return []
+    return [node.value] + preorder(node.left) + preorder(node.right)
+
+def inorder(node):                   # left, root, right
+    if node is None:
+        return []
+    return inorder(node.left) + [node.value] + inorder(node.right)
+
+def postorder(node):                 # left, right, root
+    if node is None:
+        return []
+    return postorder(node.left) + postorder(node.right) + [node.value]
+
+#        4
+#       / \
+#      2   6
+#     / \ / \
+#    1  3 5  7
+tree = Node(4, Node(2, Node(1), Node(3)), Node(6, Node(5), Node(7)))
+print(&quot;preorder :&quot;, preorder(tree))
+print(&quot;inorder  :&quot;, inorder(tree))
+print(&quot;postorder:&quot;, postorder(tree))</code></pre></div><div class="out-label">Output</div><pre class="out">preorder : [4, 2, 1, 3, 6, 5, 7]
+inorder  : [1, 2, 3, 4, 5, 6, 7]
+postorder: [1, 3, 2, 5, 7, 6, 4]</pre></div><div class="tab-pane" id="rc-a2"><p>Each call throws away half of the remaining range, so only about log₂(n) calls are made.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def binary_search(arr, target, low, high):
+    if low &gt; high:                      # base case: not found
+        return -1
+    mid = (low + high) // 2
+    if arr[mid] == target:              # base case: found
+        return mid
+    if arr[mid] &lt; target:
+        return binary_search(arr, target, mid + 1, high)   # search right half
+    return binary_search(arr, target, low, mid - 1)        # search left half
+
+data = [3, 9, 14, 21, 30, 42, 57]
+print(binary_search(data, 30, 0, len(data) - 1))
+print(binary_search(data, 5, 0, len(data) - 1))</code></pre></div><div class="out-label">Output</div><pre class="out">4
+-1</pre></div><div class="tab-pane" id="rc-a3"><p>Divide and conquer: split in half, sort each half <em>recursively</em>, then merge. Time O(n log n).</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def merge_sort(arr):
+    if len(arr) &lt;= 1:                   # base case
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])        # sort the left half
+    right = merge_sort(arr[mid:])       # sort the right half
+    merged, i, j = [], 0, 0
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt;= right[j]:
+            merged.append(left[i]); i += 1
+        else:
+            merged.append(right[j]); j += 1
+    return merged + left[i:] + right[j:]
+
+print(merge_sort([38, 27, 43, 3, 9, 82, 10]))</code></pre></div><div class="out-label">Output</div><pre class="out">[3, 9, 10, 27, 38, 43, 82]</pre></div><div class="tab-pane" id="rc-a4"><p>Pick a pivot, split the rest into smaller and larger parts, and sort each part recursively. Average O(n log n), worst case O(n²).</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def quick_sort(arr):
+    if len(arr) &lt;= 1:                   # base case
+        return arr
+    pivot = arr[0]
+    smaller = [x for x in arr[1:] if x &lt; pivot]
+    larger = [x for x in arr[1:] if x &gt;= pivot]
+    return quick_sort(smaller) + [pivot] + quick_sort(larger)
+
+print(quick_sort([38, 27, 43, 3, 9, 82, 10]))</code></pre></div><div class="out-label">Output</div><pre class="out">[3, 9, 10, 27, 38, 43, 82]</pre></div><div class="tab-pane" id="rc-a5"><p>Depth-first search goes as deep as possible along one path before backtracking. Recursion keeps track of the path for you through the call stack.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>graph = {
+    &quot;A&quot;: [&quot;B&quot;, &quot;C&quot;],
+    &quot;B&quot;: [&quot;D&quot;],
+    &quot;C&quot;: [&quot;D&quot;, &quot;E&quot;],
+    &quot;D&quot;: [],
+    &quot;E&quot;: [&quot;F&quot;],
+    &quot;F&quot;: [],
+}
+
+def dfs(node, visited=None):
+    if visited is None:
+        visited = []
+    visited.append(node)                # visit the node
+    for neighbour in graph[node]:
+        if neighbour not in visited:    # base case is implicit: nothing new to visit
+            dfs(neighbour, visited)     # go deeper first
+    return visited
+
+print(dfs(&quot;A&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;D&#x27;, &#x27;C&#x27;, &#x27;E&#x27;, &#x27;F&#x27;]</pre></div><div class="tab-pane" id="rc-a6"><p>Backtracking tries a choice, recurses to explore it, and then goes back to try the next choice. Permutations, N-Queens and Sudoku all follow this pattern.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def permutations(items, chosen=None):
+    if chosen is None:
+        chosen = []
+    if not items:                       # base case: everything has been chosen
+        print(chosen)
+        return
+    for i in range(len(items)):
+        choice = items[i]
+        permutations(items[:i] + items[i + 1:], chosen + [choice])   # choose, explore, undo
+
+permutations([1, 2, 3])</code></pre></div><div class="out-label">Output</div><pre class="out">[1, 2, 3]
+[1, 3, 2]
+[2, 1, 3]
+[2, 3, 1]
+[3, 1, 2]
+[3, 2, 1]</pre></div><div class="tab-pane" id="rc-a7"><p>Moving n disks needs 2<sup>n</sup> - 1 moves. The solution is naturally recursive: solve a smaller puzzle, make one move, solve the smaller puzzle again.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def hanoi(n, source, target, spare):
+    if n == 0:                          # base case: no disks to move
+        return
+    hanoi(n - 1, source, spare, target)         # 1. move n-1 disks out of the way
+    print(f&quot;Move disk {n} from {source} to {target}&quot;)
+    hanoi(n - 1, spare, target, source)         # 2. move them onto the big disk
+
+hanoi(3, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)
+print(&quot;Moves for 10 disks:&quot;, 2 ** 10 - 1)</code></pre></div><div class="out-label">Output</div><pre class="out">Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C
+Moves for 10 disks: 1023</pre></div><div class="tab-pane" id="rc-a8"><p>Counting connected components, detecting cycles, finding paths and topological sorting are all commonly written with recursive DFS.</p><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>graph = {
+    1: [2, 3], 2: [1], 3: [1],
+    4: [5],    5: [4],
+    6: [],
+}
+
+def explore(node, seen):
+    seen.add(node)
+    for nxt in graph[node]:
+        if nxt not in seen:
+            explore(nxt, seen)
+
+seen, components = set(), 0
+for start in graph:
+    if start not in seen:
+        explore(start, seen)            # marks one whole connected component
+        components += 1
+print(&quot;Connected components:&quot;, components)</code></pre></div><div class="out-label">Output</div><pre class="out">Connected components: 3</pre></div><h3>B. Advantages and disadvantages</h3><div class="tbl-wrap"><table class=""><thead><tr><th>Aspect</th><th>Advantage</th><th>Disadvantage</th></tr></thead><tbody><tr><td>Code simplicity</td><td>Short, readable code that mirrors the definition</td><td>Hard to follow for beginners until the call stack is understood</td></tr><tr><td>Problem decomposition</td><td>Splits a big problem into identical smaller ones</td><td>Wrong decomposition causes repeated work</td></tr><tr><td>Tree structures</td><td>Natural fit for trees, graphs and nested data</td><td>-</td></tr><tr><td>Memory</td><td>-</td><td>Uses extra stack memory, usually O(depth)</td></tr><tr><td>Speed</td><td>-</td><td>Function call overhead on every call</td></tr><tr><td>Depth</td><td>-</td><td>Limited by the recursion limit (about 1000 in Python)</td></tr></tbody></table></div></section><section class="sec page" id="rc-s9" data-label="Mistakes &amp; interview" data-sub="Common mistakes and interview questions"><div class="sec-head"><div class="sec-num">9</div><h2>Common Mistakes &amp; Interview Questions</h2></div><h3>A. Common recursion mistakes</h3><div class="op"><h4>1. Missing base case</h4><p>Without a stopping rule the function calls itself until Python gives up.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    return n + sum_n(n - 1)
+
+try:
+    sum_n(3)
+except RecursionError:
+    print(&quot;RecursionError&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">RecursionError</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n - 1)
+
+print(sum_n(3))</code></pre></div><div class="out-label">Output</div><pre class="out">6</pre></div></div></div><div class="op"><h4>2. Incorrect base condition</h4><p>Here the base case <code>n == 1</code> is never reached for <code>n = 0</code> (or a negative number).</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+try:
+    print(factorial(0))
+except RecursionError:
+    print(&quot;RecursionError for factorial(0)&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">RecursionError for factorial(0)</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(0), factorial(5))</code></pre></div><div class="out-label">Output</div><pre class="out">1 120</pre></div></div></div><div class="op"><h4>3. Not moving toward the base case</h4><p>The argument must get <em>smaller</em> (closer to the base case) on every call.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def countdown(n):
+    if n == 0:
+        return
+    print(n)
+    countdown(n + 1)       # goes away from 0
+
+try:
+    countdown(3)
+except RecursionError:
+    print(&quot;RecursionError: n never reaches 0&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+RecursionError: n never reaches 0</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def countdown(n):
+    if n == 0:
+        return
+    print(n)
+    countdown(n - 1)
+
+countdown(3)</code></pre></div><div class="out-label">Output</div><pre class="out">3
+2
+1</pre></div></div></div><div class="op"><h4>4. Forgetting to return the recursive result</h4><p>Without <code>return</code>, the answer is lost and the function gives back <code>None</code>.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    if n == 0:
+        return 0
+    n + sum_n(n - 1)        # result thrown away: the function returns None
+
+print(sum_n(1))             # expected 1; for n &gt;= 2 it even crashes with a TypeError</code></pre></div><div class="out-label">Output</div><pre class="out">None</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n - 1)
+
+print(sum_n(3))</code></pre></div><div class="out-label">Output</div><pre class="out">6</pre></div></div></div><div class="op"><h4>5. Unnecessary repeated calls</h4><p>Plain Fibonacci recomputes the same values again and again. Caching the answers removes the waste.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>calls = 0
+def fib(n):
+    global calls
+    calls += 1
+    return n if n &lt;= 1 else fib(n - 1) + fib(n - 2)
+
+fib(25)
+print(&quot;calls:&quot;, calls)</code></pre></div><div class="out-label">Output</div><pre class="out">calls: 242785</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>from functools import lru_cache
+calls = 0
+
+@lru_cache(maxsize=None)
+def fib(n):
+    global calls
+    calls += 1
+    return n if n &lt;= 1 else fib(n - 1) + fib(n - 2)
+
+fib(25)
+print(&quot;calls:&quot;, calls)</code></pre></div><div class="out-label">Output</div><pre class="out">calls: 26</pre></div></div></div><div class="op"><h4>6. RecursionError on very deep input</h4><p>Python allows about 1000 nested calls. A long list processed one item per call can exceed this. A loop has no such limit.</p><div class="wrongright"><div class="w"><h4>✗ Wrong</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def total(items):
+    if not items:
+        return 0
+    return items[0] + total(items[1:])
+
+try:
+    print(total(list(range(5000))))
+except RecursionError:
+    print(&quot;RecursionError: too deep&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">RecursionError: too deep</pre></div><div class="r"><h4>✓ Corrected</h4><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def total(items):
+    result = 0
+    for x in items:
+        result += x
+    return result
+
+print(total(list(range(5000))))</code></pre></div><div class="out-label">Output</div><pre class="out">12497500</pre></div></div></div><h3>B. 15 interview questions</h3><details><summary>Q1. What is recursion?</summary><p>Recursion is a technique where a function solves a problem by calling <em>itself</em> on a smaller version of the same problem, until it reaches a simple case that it can answer directly.</p></details><details><summary>Q2. What are the two essential parts of a recursive function?</summary><p>A <strong>base case</strong> that stops the recursion, and a <strong>recursive case</strong> that calls the function again with a smaller or simpler input.</p></details><details><summary>Q3. What happens if the base case is missing?</summary><p>The function keeps calling itself, every call adds a stack frame, and Python eventually raises <code>RecursionError: maximum recursion depth exceeded</code>.</p></details><details><summary>Q4. What is the call stack?</summary><p>A region of memory that stores one <em>stack frame</em> per active function call (arguments, local variables, return address). It works last-in, first-out: the newest call finishes first.</p></details><details><summary>Q5. What is a stack frame?</summary><p>The record created for one function call. It holds the call's parameters, local variables and where to continue after it returns. It is removed (popped) when the call returns.</p></details><details><summary>Q6. What is stack unwinding?</summary><p>The phase after the base case is reached, when the calls return one by one in reverse order and the pending work (such as <code>n * ...</code>) is completed.</p></details><details><summary>Q7. What is Python's default recursion limit and can it be changed?</summary><p>About 1000 (see <code>sys.getrecursionlimit()</code>). It can be changed with <code>sys.setrecursionlimit()</code>, but raising it too far can crash the interpreter, so converting to a loop or using memoization is safer.</p></details><details><summary>Q8. Difference between recursion and iteration?</summary><p>Iteration repeats using a loop and constant extra memory. Recursion repeats using function calls and uses one stack frame per call (usually O(n) memory), but can be clearer for tree-like problems.</p></details><details><summary>Q9. What is tail recursion? Does Python optimise it?</summary><p>In tail recursion the recursive call is the very last action, so nothing remains to do after it returns. Some languages reuse the frame (tail-call optimisation). <strong>Python does not</strong>, so tail recursion still uses stack space.</p></details><details><summary>Q10. What is the time complexity of recursive Fibonacci?</summary><p>Exponential: each call makes two calls, giving a recurrence <code>T(n) = T(n-1) + T(n-2) + 1</code>, roughly O(1.618<sup>n</sup>), usually quoted as O(2<sup>n</sup>). With memoization it drops to O(n).</p></details><details><summary>Q11. What is the space complexity of recursive factorial?</summary><p>O(n), because n frames are on the stack at the deepest point, even though each frame is small.</p></details><details><summary>Q12. What is a recurrence relation?</summary><p>An equation that describes the running time of a recursive function in terms of smaller inputs, for example <code>T(n) = T(n-1) + O(1)</code> for factorial, which solves to O(n).</p></details><details><summary>Q13. What is memoization?</summary><p>Caching the result of a call so that repeated calls with the same arguments return instantly. In Python, use a dictionary or <code>functools.lru_cache</code>.</p></details><details><summary>Q14. Which problems are best solved with recursion?</summary><p>Problems that are naturally self-similar: tree and graph traversal, divide and conquer (merge sort, quick sort, binary search), backtracking (permutations, N-Queens) and puzzles like Tower of Hanoi.</p></details><details><summary>Q15. How do you convert a recursive solution into an iterative one?</summary><p>Replace the call stack with a loop, and if needed with your own explicit stack (a list). Accumulate the result in a variable instead of waiting for returns.</p></details></section><section class="sec page" id="rc-s10" data-label="Practice &amp; wrap-up" data-sub="Problems, FAQ, quiz, summary"><div class="sec-head"><div class="sec-num">10</div><h2>Practice, FAQ &amp; Conclusion</h2></div><h3>A. Ten practice problems</h3><p>Try each problem <strong>before</strong> looking at the solutions. The solutions are in a separate list below the problems.</p><div class="exer"><h4>Problem 1: Factorial of a number <span class="lvl b">Beginner</span></h4><p>Write <code>factorial(n)</code> that returns n! using recursion.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>factorial(5)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">120</pre></div></div><details><summary>Show hint</summary><p>Base case: n is 0 or 1.</p></details></div><div class="exer"><h4>Problem 2: Sum of natural numbers <span class="lvl b">Beginner</span></h4><p>Write <code>sum_n(n)</code> that returns 1 + 2 + ... + n.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>sum_n(10)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">55</pre></div></div><details><summary>Show hint</summary><p>sum_n(n) = n + sum_n(n - 1).</p></details></div><div class="exer"><h4>Problem 3: Print numbers from 1 to N <span class="lvl b">Beginner</span></h4><p>Write <code>print_1_to_n(n)</code> that prints 1 to n, one per line, with no loops.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>print_1_to_n(4)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">1
+2
+3
+4</pre></div></div><details><summary>Show hint</summary><p>Make the recursive call before the print.</p></details></div><div class="exer"><h4>Problem 4: Reverse a string <span class="lvl b">Beginner</span></h4><p>Write <code>reverse(s)</code> that returns the reversed string using recursion.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>reverse(&quot;recursion&quot;)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">noisrucer</pre></div></div><details><summary>Show hint</summary><p>Reverse of s = reverse(s[1:]) + s[0].</p></details></div><div class="exer"><h4>Problem 5: Fibonacci series <span class="lvl i">Intermediate</span></h4><p>Write <code>fib(n)</code> and print the first 8 Fibonacci numbers.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>[fib(i) for i in range(8)]</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">[0, 1, 1, 2, 3, 5, 8, 13]</pre></div></div><details><summary>Show hint</summary><p>Two base cases: fib(0) = 0 and fib(1) = 1.</p></details></div><div class="exer"><h4>Problem 6: Sum of digits <span class="lvl i">Intermediate</span></h4><p>Write <code>sum_digits(n)</code> that adds the digits of a non-negative integer.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>sum_digits(9045)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">18</pre></div></div><details><summary>Show hint</summary><p>Use n % 10 for the last digit and n // 10 for the rest.</p></details></div><div class="exer"><h4>Problem 7: Check palindrome <span class="lvl i">Intermediate</span></h4><p>Write <code>is_palindrome(s)</code> that returns True or False using recursion.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>is_palindrome(&quot;madam&quot;), is_palindrome(&quot;hello&quot;)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">True False</pre></div></div><details><summary>Show hint</summary><p>Compare first and last characters, then check the middle.</p></details></div><div class="exer"><h4>Problem 8: GCD using recursion <span class="lvl i">Intermediate</span></h4><p>Write <code>gcd(a, b)</code> using Euclid's algorithm.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>gcd(48, 18)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">6</pre></div></div><details><summary>Show hint</summary><p>gcd(a, b) = gcd(b, a % b), and gcd(a, 0) = a.</p></details></div><div class="exer"><h4>Problem 9: Tower of Hanoi <span class="lvl a">Advanced</span></h4><p>Write <code>hanoi(n, source, target, spare)</code> that prints every move for n disks.</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>hanoi(2, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">Move disk 1 from A to B
+Move disk 2 from A to C
+Move disk 1 from B to C</pre></div></div><details><summary>Show hint</summary><p>Move n-1 disks to the spare peg, move disk n, then move n-1 disks on top.</p></details></div><div class="exer"><h4>Problem 10: Generate all subsets <span class="lvl a">Advanced</span></h4><p>Write <code>subsets(items)</code> that returns every subset of a list (the order of subsets may differ in your answer).</p><div class="io"><div><div class="fig-lbl">Example input</div><pre><code>subsets([1, 2, 3])</code></pre></div><div><div class="fig-lbl">Expected output</div><pre class="out">[[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]</pre></div></div><details><summary>Show hint</summary><p>Subsets of a list = subsets of the rest, plus those same subsets with the first item added.</p></details></div><h3>B. Solutions (attempt the problems first)</h3><details><summary>Solution 1: Factorial of a number</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))</code></pre></div><div class="out-label">Output</div><pre class="out">120</pre></details><details><summary>Solution 2: Sum of natural numbers</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_n(n):
+    if n == 0:
+        return 0
+    return n + sum_n(n - 1)
+
+print(sum_n(10))</code></pre></div><div class="out-label">Output</div><pre class="out">55</pre></details><details><summary>Solution 3: Print numbers from 1 to N</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def print_1_to_n(n):
+    if n == 0:
+        return
+    print_1_to_n(n - 1)
+    print(n)
+
+print_1_to_n(4)</code></pre></div><div class="out-label">Output</div><pre class="out">1
+2
+3
+4</pre></details><details><summary>Solution 4: Reverse a string</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def reverse(s):
+    if len(s) &lt;= 1:
+        return s
+    return reverse(s[1:]) + s[0]
+
+print(reverse(&quot;recursion&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">noisrucer</pre></details><details><summary>Solution 5: Fibonacci series</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def fib(n):
+    if n &lt;= 1:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print([fib(i) for i in range(8)])</code></pre></div><div class="out-label">Output</div><pre class="out">[0, 1, 1, 2, 3, 5, 8, 13]</pre></details><details><summary>Solution 6: Sum of digits</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def sum_digits(n):
+    if n &lt; 10:
+        return n
+    return n % 10 + sum_digits(n // 10)
+
+print(sum_digits(9045))</code></pre></div><div class="out-label">Output</div><pre class="out">18</pre></details><details><summary>Solution 7: Check palindrome</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def is_palindrome(s):
+    if len(s) &lt;= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return is_palindrome(s[1:-1])
+
+print(is_palindrome(&quot;madam&quot;), is_palindrome(&quot;hello&quot;))</code></pre></div><div class="out-label">Output</div><pre class="out">True False</pre></details><details><summary>Solution 8: GCD using recursion</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+print(gcd(48, 18))</code></pre></div><div class="out-label">Output</div><pre class="out">6</pre></details><details><summary>Solution 9: Tower of Hanoi</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def hanoi(n, source, target, spare):
+    if n == 0:
+        return
+    hanoi(n - 1, source, spare, target)
+    print(f&quot;Move disk {n} from {source} to {target}&quot;)
+    hanoi(n - 1, spare, target, source)
+
+hanoi(2, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></pre></div><div class="out-label">Output</div><pre class="out">Move disk 1 from A to B
+Move disk 2 from A to C
+Move disk 1 from B to C</pre></details><details><summary>Solution 10: Generate all subsets</summary><div class="code-wrap"><button class="copy-btn">Copy</button><pre><code>def subsets(items):
+    if not items:
+        return [[]]
+    rest = subsets(items[1:])
+    return rest + [[items[0]] + s for s in rest]
+
+print(subsets([1, 2, 3]))</code></pre></div><div class="out-label">Output</div><pre class="out">[[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]</pre></details><h3>C. Frequently asked questions</h3><details><summary>What is recursion in Python?</summary><p>Recursion in Python is when a function calls itself to solve a smaller piece of the same problem. Every recursive function needs a base case to stop and a recursive case that moves toward it.</p></details><details><summary>Is recursion better than a loop in Python?</summary><p>Not always. Loops are faster and use less memory in Python, and they have no depth limit. Recursion is clearer for tree-like and divide-and-conquer problems such as tree traversal, merge sort and backtracking.</p></details><details><summary>What is the maximum recursion depth in Python?</summary><p>The default limit is usually 1000 calls. You can read it with <code>sys.getrecursionlimit()</code> and change it with <code>sys.setrecursionlimit()</code>, but raising it can crash the interpreter, so use it carefully.</p></details><details><summary>Why do I get RecursionError: maximum recursion depth exceeded?</summary><p>Either the base case is missing or wrong, the input never gets closer to the base case, or the input is simply too deep for the limit. Fix the base case first, then consider a loop or memoization.</p></details><details><summary>Does Python support tail recursion optimisation?</summary><p>No. Python does not remove stack frames for tail calls, so a tail-recursive function still uses O(n) stack space. Rewrite it as a loop when depth could be large.</p></details><h3>D. Quiz: test yourself (8 MCQs)</h3><div id="rc-quiz"></div><div class="score" id="rc-quiz-score" style="display:none"><span>Your score: <b id="rc-quiz-num">0</b> / 8</span><button class="btn acc" id="rc-quiz-retry">Retry quiz</button></div><h3>E. Key takeaways</h3><div class="box tip"><span class="box-title">Remember</span><ul><li><strong>What:</strong> recursion solves a problem by calling the same function on a smaller version of it.</li><li><strong>How:</strong> every recursive function needs a <strong>base case</strong> and a <strong>recursive case</strong> that moves toward it.</li><li><strong>Base case:</strong> without it the function never stops and Python raises <code>RecursionError</code>.</li><li><strong>Call stack:</strong> each call is a frame pushed on a LIFO stack; after the base case the frames pop and answers return.</li><li><strong>When to use it:</strong> trees, graphs, divide and conquer, backtracking. Prefer loops for simple repetition and very deep inputs.</li><li><strong>For DSA:</strong> recursion is the foundation of tree traversal, merge sort, quick sort, DFS and dynamic programming.</li></ul></div><h3>F. Conclusion</h3><p>Recursion is one of the most important ideas in programming because it lets you describe a complicated task by solving only the smallest case and trusting the same rule for the rest. Once you can find the base case, shrink the problem and picture the call stack, the most difficult DSA topics become approachable: trees and graphs are recursive structures, merge sort and quick sort are recursive algorithms, and backtracking is controlled recursion.</p><p>Practise by tracing small calls on paper, then write the code. When you are comfortable, continue with <strong>Linked lists</strong>, <strong>Trees</strong> and <strong>Sorting</strong>, where recursion appears again and again.</p></section>
+<div class="footer">Data Structures Series · Recursion in Python · Next topic: Linked Lists</div>
+</div>
+<script>
+(function(){
+  var root = document.getElementById('dsa-rc'); if(!root) return;
+  function $(id){ return document.getElementById(id); }
+  function el(tag, cls, html){ var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+  function each(list, fn){ Array.prototype.forEach.call(list, fn); }
+  var QZ = [{"q": "What stops a recursive function from running forever?", "o": ["The recursive case", "The base case", "The return type", "The recursion limit only"], "a": 1, "e": "The <strong>base case</strong> is the condition that returns an answer without another recursive call. The recursion limit only stops it by raising an error."}, {"q": "What does <code>factorial(3)</code> return for <code>def factorial(n): return 1 if n <= 1 else n * factorial(n-1)</code>?", "o": ["3", "6", "9", "RecursionError"], "a": 1, "e": "3 × 2 × 1 = 6."}, {"q": "Which data structure does the call stack follow?", "o": ["First in, first out", "Last in, first out", "Random access", "Sorted order"], "a": 1, "e": "The most recent call finishes first, so the stack is last in, first out (LIFO)."}, {"q": "What is the time complexity of naive recursive <code>fib(n)</code>?", "o": ["O(n)", "O(log n)", "O(2^n) (exponential)", "O(1)"], "a": 2, "e": "Each call makes two more calls, so the number of calls roughly doubles with n."}, {"q": "What is the space complexity of recursive <code>sum_n(n)</code>?", "o": ["O(1)", "O(n)", "O(n²)", "O(log n)"], "a": 1, "e": "There are n nested calls at the deepest point, so n stack frames are in memory."}, {"q": "Which kind of recursion is <code>is_even(n)</code> calling <code>is_odd(n-1)</code>, which calls <code>is_even</code>?", "o": ["Direct", "Tail", "Indirect", "Linear"], "a": 2, "e": "Two functions call each other in a cycle: that is <strong>indirect</strong> recursion."}, {"q": "What error does Python raise when the recursion depth is exceeded?", "o": ["StackOverflowError", "RecursionError", "MemoryError", "ValueError"], "a": 1, "e": "Python raises <code>RecursionError: maximum recursion depth exceeded</code>."}, {"q": "Which recurrence describes binary search?", "o": ["T(n) = T(n-1) + 1", "T(n) = 2T(n/2) + n", "T(n) = T(n/2) + 1", "T(n) = 2T(n-1)"], "a": 2, "e": "One call on half the data plus constant work gives <code>T(n) = T(n/2) + 1</code>, which is O(log n)."}];
+  /* tabs */
+  each(root.querySelectorAll('.tabs'), function(group){
+    var btns = group.querySelectorAll('.tab-btn');
+    each(btns, function(b){ b.addEventListener('click', function(){
+      each(btns, function(x){ x.classList.remove('on'); var p=$(x.getAttribute('data-pane')); if(p) p.classList.remove('on'); });
+      b.classList.add('on'); var pane=$(b.getAttribute('data-pane')); if(pane) pane.classList.add('on');
+    }); });
+  });
+  /* copy buttons */
+  each(root.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentNode.querySelector('pre').textContent;
+      function done(){ btn.textContent='Copied!'; setTimeout(function(){ btn.textContent='Copy'; },1500); }
+      function fallback(){
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }catch(e){ btn.textContent='Press Ctrl+C'; }
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+    });
+  });
+
+
+  /* ---------- call stack visualiser ---------- */
+  function genEvents(kind, n){
+    var ev=[], calls=0;
+    function P(lab, note){ calls++; ev.push({t:'push', lab:lab, note:note}); }
+    function R(lab, val, note){ ev.push({t:'pop', lab:lab, val:val, note:note}); }
+    function fact(k){
+      var lab='factorial('+k+')';
+      P(lab, k<=1 ? 'Call '+lab+': n ≤ 1, this is the base case.' : 'Call '+lab+': needs factorial('+(k-1)+') first, so it waits.');
+      var r; if(k<=1){ r=1; R(lab,r,lab+' returns 1 (base case).'); return r; }
+      var s=fact(k-1); r=k*s; R(lab,r,lab+' returns '+k+' × '+s+' = '+r+'.'); return r;
+    }
+    function sum(k){
+      var lab='sum_n('+k+')';
+      P(lab, k===0 ? 'Call '+lab+': n is 0, base case.' : 'Call '+lab+': needs sum_n('+(k-1)+') first, so it waits.');
+      var r; if(k===0){ r=0; R(lab,r,lab+' returns 0 (base case).'); return r; }
+      var s=sum(k-1); r=k+s; R(lab,r,lab+' returns '+k+' + '+s+' = '+r+'.'); return r;
+    }
+    function fib(k){
+      var lab='fib('+k+')';
+      P(lab, k<=1 ? 'Call '+lab+': base case.' : 'Call '+lab+': needs fib('+(k-1)+') and fib('+(k-2)+').');
+      var r; if(k<=1){ r=k; R(lab,r,lab+' returns '+k+' (base case).'); return r; }
+      var a=fib(k-1), b=fib(k-2); r=a+b; R(lab,r,lab+' returns '+a+' + '+b+' = '+r+'.'); return r;
+    }
+    function pw(k){
+      var lab='power(2, '+k+')';
+      P(lab, k===0 ? 'Call '+lab+': exponent 0, base case.' : 'Call '+lab+': needs power(2, '+(k-1)+') first.');
+      var r; if(k===0){ r=1; R(lab,r,lab+' returns 1 (base case).'); return r; }
+      var s=pw(k-1); r=2*s; R(lab,r,lab+' returns 2 × '+s+' = '+r+'.'); return r;
+    }
+    ({fact:fact,sum:sum,fib:fib,pow:pw})[kind](n);
+    return {ev:ev, calls:calls};
+  }
+  var EV=[], TOTAL=0, step=0, timer=null;
+  function stackAt(i){ // state after i events; last event shown partially
+    var st=[], mx=0;
+    for(var k=0;k<i;k++){
+      var e=EV[k], last=(k===i-1);
+      if(e.t==='push'){ st.push({lab:e.lab, ret:null}); }
+      else { if(last){ st[st.length-1].ret=e.val; } else { st.pop(); } }
+    }
+    return st;
+  }
+  function maxDepthUpTo(i){ var d=0,m=0; for(var k=0;k<i;k++){ if(EV[k].t==='push'){ d++; if(d>m) m=d; } else d--; } return m; }
+  function renderStack(){
+    var st=stackAt(step), box=$('rc-stk'); box.innerHTML='';
+    if(!st.length){ box.appendChild(el('div','empty', step===0 ? 'Stack is empty. Press Step.' : 'Stack is empty: all calls have returned.')); }
+    st.forEach(function(f,idx){
+      var cls='fr'+(f.ret!==null?' ret':(idx===st.length-1?' top':''));
+      box.appendChild(el('div',cls,'<span>'+f.lab+'</span><small>'+(f.ret!==null?'returns '+f.ret:(idx===st.length-1?'running':'waiting'))+'</small>'));
+    });
+    var log=$('rc-log'); log.innerHTML='';
+    for(var k=0;k<step;k++){ log.appendChild(el('div', EV[k].t==='pop'?'ok':'hd', (k+1)+'. '+EV[k].note)); }
+    log.scrollTop=log.scrollHeight;
+    $('rc-st').textContent=step; $('rc-tt').textContent=EV.length;
+    $('rc-dp').textContent=st.length; $('rc-mx').textContent=maxDepthUpTo(step);
+    $('rc-cl').textContent=TOTAL;
+    $('rc-msg').textContent = step>=EV.length && EV.length ? 'Finished. Final answer: '+EV[EV.length-1].val : '';
+    $('rc-step').disabled = step>=EV.length; $('rc-prev2').disabled = step===0;
+  }
+  function stopPlay(){ if(timer){ clearInterval(timer); timer=null; $('rc-play').textContent='Auto play'; } }
+  function loadViz(){
+    stopPlay();
+    var n=parseInt($('rc-n').value,10); if(isNaN(n)||n<0) n=0;
+    var kind=$('rc-fn').value, cap=(kind==='fib'?6:8); if(n>cap) n=cap; $('rc-n').value=n;
+    var g=genEvents(kind,n); EV=g.ev; TOTAL=g.calls; step=0; renderStack();
+  }
+  $('rc-build').addEventListener('click', loadViz);
+  $('rc-fn').addEventListener('change', function(){ $('rc-n').value = (this.value==='fib'?4:4); loadViz(); });
+  $('rc-step').addEventListener('click', function(){ if(step<EV.length){ step++; renderStack(); } });
+  $('rc-prev2').addEventListener('click', function(){ stopPlay(); if(step>0){ step--; renderStack(); } });
+  $('rc-reset').addEventListener('click', function(){ stopPlay(); step=0; renderStack(); });
+  $('rc-play').addEventListener('click', function(){
+    if(timer){ stopPlay(); return; }
+    if(step>=EV.length) step=0;
+    this.textContent='Pause';
+    timer=setInterval(function(){ if(step>=EV.length){ stopPlay(); return; } step++; renderStack(); }, 700);
+  });
+  loadViz();
+
+  /* ---------- fibonacci call counter ---------- */
+  function fibCalls(n){ var a=1,b=1; if(n<=1) return 1; for(var i=2;i<=n;i++){ var c=a+b+1; a=b; b=c; } return b; }
+  function fibRun(){
+    var n=parseInt($('rc-fn-n').value,10); if(isNaN(n)||n<0) n=0; if(n>35) n=35; $('rc-fn-n').value=n;
+    var naive=fibCalls(n), memo = n<=1 ? 1 : 2*n-1;
+    $('rc-fn-out').innerHTML='<div><b>fib('+n+')</b></div><div>Naive recursion: <b>'+naive.toLocaleString()+'</b> calls</div><div>With memoization: <b>'+memo.toLocaleString()+'</b> calls</div><div>Saved: <b>'+(naive/memo>=2?Math.round(naive/memo).toLocaleString()+'× fewer calls':'about the same')+'</b></div>';
+  }
+  $('rc-fn-go').addEventListener('click', fibRun); fibRun();
+
+  /* ---------- quiz ---------- */
+  var answered=0, score=0;
+  function buildQuiz(){
+    var qz=$('rc-quiz'); qz.innerHTML=''; answered=0; score=0; $('rc-quiz-score').style.display='none';
+    QZ.forEach(function(item, qi){
+      var card=el('div','q-card');
+      card.appendChild(el('div','qn','QUESTION '+(qi+1)+' OF '+QZ.length));
+      card.appendChild(el('div','qt',item.q));
+      var ex=el('div','expl'), btns=[];
+      item.o.forEach(function(op, oi){
+        var b=el('button','opt'); b.textContent=String.fromCharCode(65+oi)+'.  '+op;
+        b.addEventListener('click', function(){
+          btns.forEach(function(x){ x.disabled=true; });
+          btns[item.a].classList.add('right');
+          if(oi===item.a){ score++; ex.innerHTML='<strong>Correct!</strong> '; } else { b.classList.add('wrong'); ex.innerHTML='<strong>Not quite.</strong> '; }
+          ex.insertAdjacentHTML('beforeend', item.e); ex.style.display='block';
+          answered++; if(answered===QZ.length){ $('rc-quiz-num').textContent=score; $('rc-quiz-score').style.display='flex'; }
+        });
+        btns.push(b); card.appendChild(b);
+      });
+      card.appendChild(ex); qz.appendChild(card);
+    });
+  }
+  $('rc-quiz-retry').addEventListener('click', buildQuiz);
+  buildQuiz();
+
+  /* ---------- section navigation ---------- */
+  var pages=Array.prototype.slice.call(root.querySelectorAll('.page'));
+  var nav=$('rc-nav'), tabsBox=$('rc-tabs'), cur=0, showAll=false, tabBtns=[], lockUntil=0;
+  function plain(s){ var d=document.createElement('div'); d.innerHTML=s; return d.textContent; }
+  pages.forEach(function(pg, i){
+    var b=el('button','nav-tab'+(i===0?' home':''));
+    b.innerHTML=(i===0?'':'<span class="n">'+i+'</span>')+pg.getAttribute('data-label');
+    b.addEventListener('click', function(){ go(i); });
+    tabsBox.appendChild(b); tabBtns.push(b);
+    var pager=el('div','pager');
+    if(i>0){ var pv=el('button','pv','<small>\u2190 Previous</small><b>'+(i-1===0?'Home':(i-1)+'. '+pages[i-1].getAttribute('data-label'))+'</b>'); pv.addEventListener('click', function(){ go(i-1); }); pager.appendChild(pv); }
+    if(i<pages.length-1){ var nx=el('button','nx','<small>Next \u2192</small><b>'+(i+1)+'. '+pages[i+1].getAttribute('data-label')+'</b>'); nx.addEventListener('click', function(){ go(i+1); }); pager.appendChild(nx); }
+    pg.appendChild(pager);
+  });
+  function isFs(){ return document.fullscreenElement===root || document.webkitFullscreenElement===root || root.classList.contains('pseudo-fs'); }
+  function scrollTopOfBlog(){ if(isFs()){ root.scrollTop=0; return; } var top=root.getBoundingClientRect().top+window.pageYOffset; if(window.pageYOffset>top) window.scrollTo({top:top, behavior:'smooth'}); }
+  function updateUI(){
+    tabBtns.forEach(function(b,k){ b.classList.toggle('on', k===cur); });
+    $('rc-crumb-t').textContent = cur===0 ? 'Home' : cur+'. '+plain(pages[cur].getAttribute('data-label'));
+    $('rc-crumb-s').textContent = plain(pages[cur].getAttribute('data-sub'));
+    $('rc-prev').disabled = cur===0; $('rc-next').disabled = cur===pages.length-1;
+    var tb=tabBtns[cur]; if(tb) tabsBox.scrollLeft = tb.offsetLeft - tabsBox.offsetLeft - 20;
+  }
+  function go(i, noScroll){
+    if(i<0 || i>=pages.length) return;
+    cur=i; tabBtns[i].classList.add('seen');
+    if(showAll){
+      lockUntil=Date.now()+900;
+      var y=pages[i].getBoundingClientRect().top - nav.offsetHeight - 10;
+      if(isFs()) root.scrollTop += y; else window.scrollTo({top:window.pageYOffset+y, behavior:'smooth'});
+    } else {
+      pages.forEach(function(p,k){ p.classList.toggle('active', k===i); });
+      if(!noScroll) scrollTopOfBlog();
+    }
+    updateUI();
+  }
+  $('rc-prev').addEventListener('click', function(){ go(cur-1); });
+  $('rc-next').addEventListener('click', function(){ go(cur+1); });
+  each(root.querySelectorAll('[data-go]'), function(b){ b.addEventListener('click', function(){ go(parseInt(b.getAttribute('data-go'),10)); }); });
+  $('rc-all').addEventListener('click', function(){
+    showAll=!showAll; root.classList.toggle('paged', !showAll);
+    this.classList.toggle('on', showAll); this.textContent = showAll ? 'Show one at a time' : 'Show all sections';
+    go(cur);
+  });
+  function syncOnScroll(){
+    if(!showAll || Date.now()<lockUntil) return;
+    var line=nav.getBoundingClientRect().bottom+40, best=0;
+    pages.forEach(function(p,k){ if(p.getBoundingClientRect().top<=line) best=k; });
+    if(best!==cur){ cur=best; tabBtns[best].classList.add('seen'); updateUI(); }
+  }
+  window.addEventListener('scroll', syncOnScroll, {passive:true});
+  root.addEventListener('scroll', syncOnScroll, {passive:true});
+  var fsBtn=$('rc-fs');
+  function fsLabel(){ fsBtn.textContent = isFs() ? '\u2715 Exit fullscreen' : '\u26f6 Fullscreen'; fsBtn.classList.toggle('on', isFs()); }
+  function pseudoFs(on){ root.classList.toggle('pseudo-fs', on); document.documentElement.style.overflow = on ? 'hidden' : ''; fsLabel(); }
+  fsBtn.addEventListener('click', function(){
+    if(isFs()){
+      if(root.classList.contains('pseudo-fs')) pseudoFs(false);
+      else if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    } else {
+      var req=root.requestFullscreen || root.webkitRequestFullscreen;
+      if(req){ try{ var r=req.call(root); if(r && r.catch) r.catch(function(){ pseudoFs(true); }); }catch(e){ pseudoFs(true); } }
+      else pseudoFs(true);
+    }
+    setTimeout(fsLabel, 60);
+  });
+  document.addEventListener('fullscreenchange', fsLabel);
+  document.addEventListener('webkitfullscreenchange', fsLabel);
+  document.addEventListener('keydown', function(e){
+    var tag=(e.target && e.target.tagName)||'';
+    if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA'||e.altKey||e.ctrlKey||e.metaKey) return;
+    if(e.key==='Escape' && root.classList.contains('pseudo-fs')){ pseudoFs(false); return; }
+    if(showAll) return;
+    var r=root.getBoundingClientRect();
+    if(!isFs() && (r.bottom<0 || r.top>window.innerHeight)) return;
+    if(e.key==='ArrowRight') go(cur+1); else if(e.key==='ArrowLeft') go(cur-1);
+  });
+  root.classList.add('paged');
+  go(0, true);
+})();
+</script>
+
+  </article>
+  <div class="idn-foot-nav">
+    <a class="idn-pn prev" href="python-built-in-types.html"><small>← Previous lesson</small><b>Python built-in data types</b></a>
+    <button class="idn-done-btn" id="idn-done" aria-pressed="false"><svg width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none" viewBox="0 0 12 12"><path d="M2.5 6.2l2.3 2.3 4.7-5"/></svg><span>Mark as complete</span></button>
+    <a class="idn-pn next" href="linked-lists.html"><small>Next lesson →</small><b>Linked lists</b></a>
+  </div>
+  <footer class="idn-footer"><span>Learn Data Structures· prepared by Prof. Abhijeet Jadhav</span><span>Progress is saved in this browser only.</span></footer>
+</main>
+</div>
+<script src="assets/data.js"></script><script src="assets/site.js"></script>
+</body>
+</html>
